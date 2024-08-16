@@ -25,8 +25,7 @@
       align-items: center;
       padding: 25px;
       color: white;
-      
-      @media (max-width: 1080px) {
+       @media (max-width: 1080px) {
   flex-wrap: wrap;
       }
   
@@ -72,27 +71,58 @@
           border-radius: 5px;
           cursor: pointer;
         }
+        button:hover{
+        color: white;
+         background-color: #00B06C;
+      }
       }
     }
   
     .carousel-control {
       position: absolute;
+    
       top: 50%;
       transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: #FFFFFF21;
       color: white;
       border: none;
-      padding: 10px;
+      padding: 35px 30px;
+      
       cursor: pointer;
       border-radius: 50%;
+     
   
       &.prev {
-        left: 10px;
+        left: -70px;
+        padding-left: 75px;
       }
   
       &.next {
-        right: 10px;
+        right: -70px;
+        padding-right: 75px;
       }
     }
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      align-items: center;
+    .indicator {
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background-color: #fff;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .indicator.active {
+      height: 15px;
+      width: 15px;
+    }
+  }
+    
+    
   }
   

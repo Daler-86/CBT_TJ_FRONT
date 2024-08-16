@@ -9,8 +9,14 @@
       <img [src]="slide.image" alt="Car">
     </div>
   </div>
-  <button class="carousel-control prev" (click)="prevSlide()">&#10094;</button>
-  <button class="carousel-control next" (click)="nextSlide()">&#10095;</button>
+  <div class="carousel-indicators">
+    <span *ngFor="let slide of slides; let i = index"
+          class="indicator" 
+          [class.active]="i === currentSlide"
+          (click)="goToSlide(i)"></span>
+  </div>
+  <button class="carousel-control prev" (click)="prevSlide()"> <img src="../../assets/icons/arrow-right.svg" alt=""> </button>
+  <button class="carousel-control next" (click)="nextSlide()"><img src="../../assets/icons/arrow-rightt.svg" alt=""></button>
 </div>
 <!-- @media (max-width: 1000px){
   width: 805;

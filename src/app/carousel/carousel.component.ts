@@ -50,5 +50,8 @@ export class CarouselComponent {
     // Реализуйте функциональность для кнопки "Подробнее"
     console.log('Подробнее нажато');
   }
+  goToSlide(index: number): void {
+    this.currentSlide = index;
+  }
 }
 
