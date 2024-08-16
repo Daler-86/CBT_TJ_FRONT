@@ -1,0 +1,36 @@
+<div class="calculator">
+    <div class="calculator-tabs">
+      <button (click)="selectTab('credit')" [class.active]="selectedTab === 'credit'">Кредит</button>
+      <button (click)="selectTab('deposit')" [class.active]="selectedTab === 'deposit'">Вклад</button>
+      <button (click)="selectTab('car')" [class.active]="selectedTab === 'car'">Покупка авто</button>
+    </div>
+  
+    <div *ngIf="selectedTab === 'credit'" class="calculator-content">
+      <div class="calculator-form">
+        <h2>{{"Calculate your loan"|translate}}</h2>
+        <label for="loanAmount">{{"Loan amount"|translate}}</label>  
+        <input type="text" [value]="loanAmount + ' с.'" readonly>
+        <input class="range" type="range" id="loanAmount" min="10000" max="200000" [(ngModel)]="loanAmount">
+        <div class="range-labels">
+          <span *ngFor="let value of rangeValues">{{ value }}</span>
+        </div>
+        <label>{{"Loan term"|translate}}</label>  
+        <div class="loan-terms">
+          <button *ngFor="let term of loanTerms" (click)="selectTerm(term)" [class.active]="selectedTerm === term">{{ term }}</button>
+        </div>
+        <p>{{"Preliminary calculation. Not a public offer"|translate}}</p>
+      </div>
+
+      <div class="calculator-result">
+        <h2>{{"Our offer"|translate}}</h2>
+        <p> {{"Monthly payment"|translate}}</p>
+        <h3>{{ calculateMonthlyPayment() }}с.</h3>
+        <p>{{ "Interest rate"|translate}}</p>
+        <h3>{{ interestRate }}%</h3>
+        <button (click)="applyForLoan()">{{"Apply for a loan"|translate}}</button>
+      </div>
+    </div>
+  
+    <!-- Добавьте контент для других вкладок (deposit и car) аналогичным образом -->
+  </div>
+  

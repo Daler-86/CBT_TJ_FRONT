@@ -1,0 +1,49 @@
+<div class="currency-converter-container">
+    <div class="exchange-rates">
+      <h3>{{"Exchange rates"|translate}}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>{{"Currency"|translate}}</th>
+            <th>{{"Purchase"|translate}}</th>
+            <th>{{"Sale"|translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rate of exchangeRates">
+            <td class="flag">
+              <img [src]="rate.flag" alt="{{ rate.currency }}" >
+             <p>{{ rate.currency }}</p> 
+            </td>
+            <td>{{ rate.buy | number: '1.4-4' }}</td>
+            <td>{{ rate.sell | number: '1.4-4' }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p> {{"Current as "|translate}} {{ lastUpdated }}</p>
+    </div>
+    <div class="currency-converter">
+      <h3>{{"Currency converter"|translate}}</h3>
+      <div class="converter-inputs">
+        <label>{{"I have:"|translate}}</label>
+        <br>
+        <div class="a">
+        <input class="inp" type="number" [(ngModel)]="amount" (input)="convertCurrency()" />
+        <select [(ngModel)]="fromCurrency" (change)="convertCurrency()">
+          <option *ngFor="let rate of exchangeRates" [value]="rate.currency">{{ rate.currency }}</option>
+        </select></div>
+      </div>
+      <div class="converter-inputs">
+        <label>{{"I will receive:"|translate}}</label>
+        <br>
+        <div class="a">
+        <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
+        <select [(ngModel)]="toCurrency" (change)="convertCurrency()">
+          <option *ngFor="let rate of exchangeRates" [value]="rate.currency">{{ rate.currency }}</option>
+        </select></div>
+      </div>
+      <button (click)="sendMoney()">{{"Send money"|translate}}</button>
+    </div>
+  </div>
+ 
+  

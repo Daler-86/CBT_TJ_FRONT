@@ -1,0 +1,116 @@
+<app-carousel></app-carousel>
+<div class="main"><div class="home">
+<div class="container_1">
+    <div class="">
+        <img src="../../assets/icons/card.svg" alt="">
+        <p> {{ "Cards"|translate}}</p>
+    </div>
+    <div class="">
+        <img src="../../assets/icons/percentage-circle.svg" alt="">
+        <p>{{  "Loans"|translate}}</p>
+    </div>
+    <div class="">
+        <img src="../../assets/icons/arrow-2.svg" alt="">
+        <p>{{ "Transfers"|translate}}</p>
+    </div>
+    <div class="">
+        <img src="../../assets/icons/receipt-text.svg" alt="">
+        <p>{{ "Overdraft"|translate}}</p>
+    </div>
+    <div class="">
+        <img src="../../assets/icons/car.svg" alt="">
+        <p>{{ "Car loan"|translate}}</p>
+    </div>
+    <div class="">
+        <img src="../../assets/icons/house.svg" alt="">
+        <p>{{"Mortgage"|translate}}</p>
+    </div>
+    <div class="">
+        <img src="../../assets/icons/gameboy.svg" alt="">
+        <p>{{ "Acquiring"|translate}}</p>
+    </div>
+</div>
+
+<div class="container_2">
+    <div class="">
+        <p>{{ "Money transfers around the world" |translate}}</p>
+        <img width="320px" src="../../assets/icons/картинка.svg" alt="">
+    </div>
+    <div class="">
+        <p>{{"Payments cards"|translate}}</p>
+    </div>
+</div>
+<!-- <app-calculator></app-calculator> -->
+<app-calculate></app-calculate>
+
+
+<div class="container_3">
+    <div class="">
+        <img  class="logo" src="../../assets/icons/log.svg" alt="">
+
+        <h2>{{ "Favri mobile application"|translate}}</h2>
+        <p>{{"Check your balance, pay for services, get help in chat 24/7"|translate}}</p>
+        <div class="google">
+            <img src="../../assets/icons/googleplay.svg" alt="">
+            <img src="../../assets/icons/appstore.svg" alt="">
+        </div>
+    </div>
+    <div class="phone">
+        <img src="../../assets/icons/Phone.svg" alt="">
+    </div>
+</div>
+
+<div class="container_4">
+    <p class="p"> {{"Stay up to date with the latest news"|translate}}</p>
+    <div class="news">
+    <div *ngFor="let news of news" class="">
+        <img class="new" [src]="news.image" alt="">
+        <div class="content">
+        <p>{{news.date}}</p>
+        <h3>{{news.title}}</h3>
+        <p>{{news.content}}</p>
+        <div class="read">
+        <h4>{{"Read"|translate}}</h4>
+         <img width="24px" src="../../assets/icons/Arrow Right.svg" alt="">
+    </div></div>
+    </div>
+    </div>
+
+</div>
+
+<app-currency-converter></app-currency-converter>
+<div class="container_5">
+    <div class="container_3">
+        <div class="">
+            <img  class="logo" src="../../assets/icons/log.svg" alt="">
+    
+            <h2>Intiqol Next</h2>
+            <p>{{"Simple and convenient registration, reliable and secure transfers"|translate}}</p>
+            <div class="google">
+                <img src="../../assets/icons/googleplay.svg" alt="">
+                <img src="../../assets/icons/appstore.svg" alt="">
+            </div>
+        </div>
+        <div class="phone">
+            <img src="../../assets/icons/Iphone 15.svg" alt="">
+        </div>
+    </div>
+    
+    <div class="location">
+        <h3>{{ "Offices and ATMs"|translate}}</h3>
+        <p>{{"We are closer than you think"|translate}}</p>
+        <div class="">
+            <img src="../../assets/icons/loc.svg" alt="">
+        </div>
+        <button>{{"View on map"|translate}}</button>
+    </div>
+</div>
+
+
+
+
+</div>
+
+
+
+</div>

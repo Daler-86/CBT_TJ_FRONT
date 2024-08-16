@@ -1,6 +1,18 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+/// <reference types="@angular/localize" />
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
+import { provideHttpClient } from '@angular/common/http';
+import { importProvidersFrom } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslation } from './config/translate-loader.config';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(routes),
+    provideHttpClient(),
+    importProvidersFrom(TranslateModule.forRoot(provideTranslation()))
+  ]
+}).catch(err => console.error(err));
