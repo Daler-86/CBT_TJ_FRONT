@@ -4,6 +4,8 @@ import {  CalculateComponent } from "../calculate/calculate.component";
 import { NgFor } from '@angular/common';
 import { CurrencyConverterComponent } from '../currency-converter/currency-converter.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterLink, RouterModule } from '@angular/router';
+import { CardsComponent } from '../components/cards/cards.component';
 
 interface News{
   image:string;
@@ -15,7 +17,7 @@ interface News{
 @Component({
   selector: 'app-home',
   standalone:true,
-  imports: [CarouselComponent,TranslateModule ,CalculateComponent,CurrencyConverterComponent ,NgFor],
+  imports: [RouterModule,RouterLink, CarouselComponent,TranslateModule ,CalculateComponent,CurrencyConverterComponent ,NgFor],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

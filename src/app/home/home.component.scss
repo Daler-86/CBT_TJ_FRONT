@@ -1,8 +1,9 @@
 .main{
     background: #f8f9fa;
+    padding: 20px 0;
 .home{
     width: 80%;
-    margin: auto;
+    margin:auto;
   
     .container_1{
     display: flex;
@@ -11,14 +12,14 @@
     justify-content: space-around;
     margin: 15px auto;
     padding: 15px 20px;
-    border: 0.5px solid #cbcacaf1;
+    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     border-radius: 16px;
     div{
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        
+        cursor: pointer;
         padding: 0 15px;
         p{
             font-size: 16px;
@@ -37,7 +38,7 @@
     div{
         background-color: white;
         padding: 20px 0 0 30px;
-    border: 0.5px solid #cbcacaf1;
+        box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     border-radius: 16px;
     display: flex;
     flex-direction: column;
@@ -63,7 +64,7 @@
     background-color: white;
     justify-content: space-between;
     padding: 0 62px 0px 62px;
-    border: 0.5px solid #cbcacaf1;
+    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     border-radius: 16px;
     @media (max-width: 768px) {
         flex-direction: column;
@@ -141,7 +142,8 @@
     }
     .news{
         display: flex;
-        justify-content: space-between;padding-bottom: 25px;
+        justify-content: space-between;
+        padding-bottom: 25px;
         @media (max-width: 1024px) {  
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -153,6 +155,7 @@
         }
               
         div{
+            box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
             width: 30%;
           background-color: white;
            border-radius: 0 0 12px 12px ;
@@ -203,6 +206,7 @@
     display: flex;
     padding: 0 0 30px 0;
     justify-content: space-between; 
+    // box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     gap: 5%;
     @media (max-width: 1034px) {
         display: block;
@@ -210,17 +214,15 @@
         
       }
     .container_3{
-        width: 54%;
+        width: 60%;
         display: flex;
         margin: 20px 0;
         background-color: white;
         justify-content: space-between;
         padding: 26px 42px 0px 42px;
-        border: 0.5px solid #cbcacaf1;
         border-radius: 16px;
         @media (max-width: 1024px) {
             width: 80%;
-          
             
           }
         div{

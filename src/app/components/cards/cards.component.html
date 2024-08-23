@@ -1,0 +1,241 @@
+<div class="cards">
+    
+    <h1>{{"Bank cards"|translate}}</h1>
+    <div class="btnCards">
+        <button (click)="selectTab('all')" [class.active]="selectedTab === 'all'">Все</button>
+        <button (click)="selectTab('visa')" [class.active]="selectedTab === 'visa'">Visa</button>
+        <button (click)="selectTab('milli cards')" [class.active]="selectedTab === 'milli cards'">Корти милли</button>
+        <button (click)="selectTab('credit cards')" [class.active]="selectedTab === 'credit cards'">Кредитные карты</button>
+    </div>
+    <div *ngIf="selectedTab==='all'" class="content">
+        <div class="card-container">
+            <div class="card-info">
+              <h2 class="card-title">Visa Gold</h2>
+              <p class="card-description">
+                Для осуществления платежей, переводов и покупок. <br> Карта, которая подходит всем.
+              </p>
+              <div class="card-details">
+                <div class="currency-info">
+                  <p class="title">C / ₽ / $</p>
+                  <p class="description">Оплата в трёх валютах: сомони, долларах и рублях</p>
+                </div>
+                <div class="service-info">
+                  <p class="title">Бесплатно</p>
+                  <p class="description">обслуживание до 5 лет</p>
+                </div>
+              </div>
+              <div class="card-buttons">
+                <button class="btn-primary">Оформить карту</button>
+                <button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/visa-gold" routerLinkActive="active" class="btn-secondary" >Подробнее</button>
+              </div>
+            </div>
+            <div class="card-image">
+              <img class="card" src="../../../assets/icons/visa.png" alt="Visa Gold" />
+
+            </div>
+          </div>
+          
+          <div class="card-container">
+            <div class="card-info">
+              <h2 class="card-title">Visa PLATINUM</h2>
+              <p class="card-description">
+                Для совершения платежей, переводов, покупок и удобных путешествий.
+              </p>
+              <div class="card-details">
+                <div class="currency-info">
+                  <p class="title">C / ₽ / $</p>
+                  <p class="description">Оплата в трёх валютах: сомони, долларах и рублях</p>
+                </div>
+                <div class="service-info">
+                  <p class="title">До 3 раз в год</p>
+                  <p class="description">посещение бизнес-залов</p>
+                </div>
+              </div>
+              <div class="card-buttons">
+                <button class="btn-primary">Оформить карту</button>
+                <button class="btn-secondary">Подробнее</button>
+              </div>
+            </div>
+            <div class="card-image">
+              <img class="card" src="../../../assets/icons/platium.png" alt="Visa Gold" />
+           
+            </div>
+          </div>
+
+          <div class="card-container">
+            <div class="card-info">
+              <h2 class="card-title">Корти миллӣ</h2>
+              <p class="card-description">
+                Национальная платежная система "Корти милли" сминимальной стоимостью обслуживания,  для использования на территории страны.
+              </p>
+              <div class="card-details">
+                <div class="currency-info">
+                  <p class="title">Бесплатно</p>
+                  <p class="description">Получите первую карту в наших офисах</p>
+                </div>
+                <div class="service-info">
+                  <p class="title">Без комиссии</p>
+                  <p class="description">Оплачивайте без комиссии во всех POS-терминалах</p>
+                </div>
+              </div>
+              <div class="card-buttons">
+                <button class="btn-primary">Оформить карту</button>
+                <button class="btn-secondary">Подробнее</button>
+              </div>
+            </div>
+            <div class="card-image">
+              <img class="card" src="../../../assets/icons/milli.png" alt="Visa Gold" />
+            
+            </div>
+          </div>
+
+          <div class="card-container">
+            <div class="card-info">
+              <h2 class="card-title">Корти миллӣ</h2>
+              <p class="card-description">
+                Карта, которая подходит всем. Оплачивайте картой без комиссии через все POS-терминалы. </p>
+                <div class="card-details">
+                    <div class="currency-info">
+                      <p class="title">Бесплатно</p>
+                      <p class="description">Получите первую карту в наших офисах</p>
+                    </div>
+                    <div class="service-info">
+                      <p class="title">Без комиссии</p>
+                      <p class="description">Оплачивайте без комиссии во всех POS-терминалах</p>
+                    </div>
+                  </div>
+              <div class="card-buttons">
+                <button class="btn-primary">Оформить карту</button>
+                <button class="btn-secondary">Подробнее</button>
+              </div>
+            </div>
+            <div class="card-image">
+              <img class="card" src="../../../assets/icons/milli2.png" alt="Visa Gold" />
+             
+            </div>
+          </div>
+    </div>
+    <div *ngIf="selectedTab==='visa'" class="content">
+        <div class="card-container">
+            <div class="card-info">
+              <h2 class="card-title">Visa Gold</h2>
+              <p class="card-description">
+                Для осуществления платежей, переводов и покупок. <br> Карта, которая подходит всем.
+              </p>
+              <div class="card-details">
+                <div class="currency-info">
+                  <p class="title">C / ₽ / $</p>
+                  <p class="description">Оплата в трёх валютах: сомони, долларах и рублях</p>
+                </div>
+                <div class="service-info">
+                  <p class="title">Бесплатно</p>
+                  <p class="description">обслуживание до 5 лет</p>
+                </div>
+              </div>
+              <div class="card-buttons">
+                <button class="btn-primary">Оформить карту</button>
+                <button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/visa-gold" routerLinkActive="active" class="btn-secondary" >Подробнее</button>
+              </div>
+            </div>
+            <div class="card-image">
+              <img class="card" src="../../../assets/icons/visa.png" alt="Visa Gold" />
+             
+            </div>
+          </div>
+          
+          <div class="card-container">
+            <div class="card-info">
+              <h2 class="card-title">Visa PLATINUM</h2>
+              <p class="card-description">
+                Для совершения платежей, переводов, покупок и удобных путешествий.
+              </p>
+              <div class="card-details">
+                <div class="currency-info">
+                  <p class="title">C / ₽ / $</p>
+                  <p class="description">Оплата в трёх валютах: сомони, долларах и рублях</p>
+                </div>
+                <div class="service-info">
+                  <p class="title">До 3 раз в год</p>
+                  <p class="description">посещение бизнес-залов</p>
+                </div>
+              </div>
+              <div class="card-buttons">
+                <button class="btn-primary">Оформить карту</button>
+                <button class="btn-secondary">Подробнее</button>
+              </div>
+            </div>
+            <div class="card-image">
+              <img class="card" src="../../../assets/icons/platium.png" alt="Visa Gold" />
+              
+            </div>
+          </div>
+    </div>
+
+    <div *ngIf="selectedTab==='milli cards'" class="content">
+        <div class="card-container">
+            <div class="card-info">
+              <h2 class="card-title">Корти миллӣ</h2>
+              <p class="card-description">
+                Национальная платежная система "Корти милли" сминимальной стоимостью обслуживания,  для использования на территории страны.
+              </p>
+              <div class="card-details">
+                <div class="currency-info">
+                  <p class="title">Бесплатно</p>
+                  <p class="description">Получите первую карту в наших офисах</p>
+                </div>
+                <div class="service-info">
+                  <p class="title">Без комиссии</p>
+                  <p class="description">Оплачивайте без комиссии во всех POS-терминалах</p>
+                </div>
+              </div>
+              <div class="card-buttons">
+                <button class="btn-primary">Оформить карту</button>
+                <button class="btn-secondary">Подробнее</button>
+              </div>
+            </div>
+            <div class="card-image">
+              <img class="card" src="../../../assets/icons/milli.png" alt="Visa Gold" />
+             
+            </div>
+          </div>
+
+          <div class="card-container">
+            <div class="card-info">
+              <h2 class="card-title">Корти миллӣ</h2>
+              <p class="card-description">
+                Карта, которая подходит всем. Оплачивайте картой без комиссии через все POS-терминалы. </p>
+                <div class="card-details">
+                    <div class="currency-info">
+                      <p class="title">Бесплатно</p>
+                      <p class="description">Получите первую карту в наших офисах</p>
+                    </div>
+                    <div class="service-info">
+                      <p class="title">Без комиссии</p>
+                      <p class="description">Оплачивайте без комиссии во всех POS-терминалах</p>
+                    </div>
+                  </div>
+              <div class="card-buttons">
+                <button class="btn-primary">Оформить карту</button>
+                <button class="btn-secondary">Подробнее</button>
+              </div>
+            </div>
+            <div class="card-image">
+              <img class="card" src="../../../assets/icons/milli2.png" alt="Visa Gold" />
+             
+            </div>
+          </div>
+    </div>
+
+    <div class="faq-container">
+        <h2 class="faq-title">Часто задаваемые вопросы</h2>
+        <div *ngFor="let faq of faqs; let i = index" class="faq-item">
+          <div class="faq-question" (click)="toggleFaq(i)">
+            <span>{{ faq.question }}</span>
+            <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+          </div>
+          <div *ngIf="selectedFaqIndex === i" class="faq-answer">
+            {{ faq.answer }}
+          </div>
+        </div>
+      </div>
+</div>
