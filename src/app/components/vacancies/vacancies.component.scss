@@ -1,0 +1,257 @@
+.vacancies{
+       background-color: white;
+       margin: none;
+   
+    .vacancies-container {
+          margin: 30px 10% 0;
+      box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);   
+      background-color: #f8f9fa;
+      border-radius: 24px;
+      display: flex;
+      padding: 29px 58px;
+      justify-content: space-between;
+      align-items: center;
+      @media (max-width: 1024px) {
+          display: block;
+          padding: 30px 50px;
+       }
+          .card-info {
+           width: 50%;
+        //    padding: 62px 76px;
+           @media (max-width: 1024px) {
+             width: 100%;
+             padding: 0;
+          }
+       
+           .card-title {
+             font-size: 42px;
+             font-weight: 700;
+             margin-bottom: 10px;
+           }
+       
+           .card-description {
+             font-size: 18px;
+             color:  #475569;
+             font-weight: 500;
+             margin: 30px 0;
+             line-height: 23px;
+           }
+          
+       .card-buttons {
+            
+          button{
+             @media (max-width: 1024px) {
+                 width: 100%;
+                 margin-bottom: 30px;
+               }
+     
+          }
+             .btn-primary {
+               background-color: #00B06C;
+               color: #fff;
+               border: none;
+               padding: 19px 50px;
+               border-radius: 5px;
+               cursor: pointer;
+               font-size: 14px;
+             }
+           }
+         }
+       
+         .card-image {
+      
+           align-self: end; 
+           @media (max-width: 1024px) {
+             width: 100%;
+           }
+           img{
+             width: 100%;
+           }
+         }
+       }
+
+      .container{
+        display: grid;
+        grid-template-columns: 462px 354px;
+        gap: 30px;
+        margin: 50px 10%;
+        justify-content: end;
+        @media (max-width: 1024px) {
+            grid-template-columns: 1fr;
+        }
+    .box{
+        background-color: #F7F8FA;
+border-radius: 24px;
+padding: 30px 60px;
+box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18); 
+h1{
+font-size: 42px;
+font-weight: 700;
+color: #141A20;
+}
+p{
+    margin-top: 30px;
+    font-weight: 500;
+}
+    }
+
+      }
+      .why-we-are-great {
+  
+      padding: 50px 10%;
+      background-color: #f9fafc;
+    
+      h2 {
+        font-size: 42px;
+        font-weight: 700;
+        margin-bottom: 40px;
+        width: 60%;
+        @media (max-width: 1024px) {
+            width: 100%;
+            font-size: 36px;
+        }
+      }
+    
+      .features-container {
+        width: 100%;
+       display: grid;
+      grid-template-columns: 30% 30% 30%;
+      @media (max-width: 1024px) {
+        grid-template-columns: 48% 48%;
+      }
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+        gap: 20px;
+      
+    
+        .feature-card {
+          background-color: #fff;
+          border-radius: 10px;
+        //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          padding: 25px 40px;
+    
+          transition: transform 0.3s ease;
+    
+          &:hover {
+            transform: translateY(-3px);
+          }
+    
+            .feature-icon {
+              margin-bottom: 15px;
+      
+              img {
+              margin-bottom: 20px;
+              }
+            }
+      
+            h3 {
+              font-size: 28px;
+      
+              font-weight: 700;
+              margin-bottom: 10px;
+            }
+      
+            p {
+              font-size: 17px;
+              color: #475569;
+            }
+          }
+        }
+      }
+      .offices-container { 
+        padding: 100px 10%;
+        text-align: center;
+        h2{
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            width: 60%;
+            text-align: start;
+            @media (max-width: 1024px) {
+                font-size: 36px;
+                width: 100%;
+            }
+           
+        }
+        
+        .office-content {
+          display: flex;
+          justify-content: center;
+          margin: 20px 0;
+          @media (max-width: 1024px) {
+            flex-wrap: wrap;
+          }
+
+          gap: 30px;
+        }
+      
+        .office-image {
+       
+          margin-right: 20px;
+          border-radius: 10px;
+          overflow: hidden;
+      
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      
+        .office-info {
+         width: 25%;
+          background-color: #F7F8FA;
+          border-radius: 24px;
+          padding: 30px 60px;
+          text-align: start;
+      display: flex;
+      flex-direction: column;
+      @media (max-width: 1024px) {
+        width: 100%;
+      }
+          p {
+            margin-bottom: 10px;
+          }
+      
+          h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+          }
+      
+          .navigation-buttons {
+            align-self: end;
+          margin-top: auto;
+      
+            button {
+              margin: 0 10px;
+              padding: 20px;
+              background-color: #fff;
+              border: none;
+       border-radius: 50px;
+              cursor: pointer;
+      
+              &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+              }
+            }
+          }
+        }
+      
+        .view-vacancies-button {
+            background-color: #00B06C;
+            color: #fff;
+            border: none;
+            padding: 19px 50px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+           
+      
+          &:hover {
+            background-color: #218838;
+          }
+        }
+      }
+      
+}

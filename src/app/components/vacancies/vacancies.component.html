@@ -1,1 +1,109 @@
-<p>vacancies works!</p>
+
+<div class="vacancies">
+    <div class="vacancies-container">
+        <div class="card-info">
+          <h2 class="card-title">Стань частью нашей
+            дружной команды</h2>
+          <p class="card-description">
+            Присоединяйтесь к команде Коммерцбанка Таджикистана <br>
+            и воплощайте идеи в жизнь. 
+          </p>
+          <div class="card-buttons">
+            <button class="btn-primary">Смотреть вакансии</button>
+          </div>
+        </div>
+        <div class="card-image">
+          <img class="card" src="../../../assets/icons/вакансии.png" alt="Visa Gold" />
+        </div>
+
+
+        
+      </div>
+<div class="container">
+            <div class="box">
+                <h1>344+</h1>
+                <p>офисов обслуживания</p>
+            </div>
+            <div class="box">
+                <h1>200 000+</h1>
+                <p>активных пользователей услуг
+                    банка</p>
+            </div>
+            <div class="box">
+                <h1>580+</h1>
+                <p>сотрудников работают у нас</p>
+            </div>
+            <div class="box">
+                <h1>66+</h1>
+                <p>продуктов реализованным банком</p>
+            </div>
+        </div>
+
+        <div class="why-we-are-great">
+            <h2>У нас классно работать, и вот почему</h2>
+            <div class="features-container">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <img src="../../../assets/icons/home-outline.png" alt="Офис">
+                </div>
+                <h3>Офис</h3>
+                <p>Крутой офис в центре города, стиль и удобство для вас</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <img src="../../../assets/icons/shield.png" alt="ДМС и льготы">
+                </div>
+                <h3>ДМС и льготы</h3>
+                <p>Удобный ДМС с покрытием медицины, а также корпоративные скидки на фитнес, одежду, технику, книги и многое другое.</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <img src="../../../assets/icons/heart-outline.png" alt="Доступ к курсам">
+                </div>
+                <h3>Доступ к курсам</h3>
+                <p>Все сотрудники могут бесплатно проходить курсы — столько, сколько хотят, всё оплатим!</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <img src="../../../assets/icons/people.png" alt="Лекции и вебинары">
+                </div>
+                <h3>Лекции и вебинары</h3>
+                <p>Организуем встречи с экспертами, участвуем в конференциях и митапах.</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <img src="../../../assets/icons/smiling-face-outline.png" alt="Мероприятия">
+                </div>
+                <h3>Мероприятия</h3>
+                <p>Активно развиваем корпоративную культуру.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="offices-container">
+            <h2>Наши уютные офисы</h2>
+            <div class="office-content">
+              <div class="office-image">
+               
+                <img [src]="offices[currentIndex].imageUrl" alt="Офис">
+              </div>
+              <div class="office-info">
+                <p>{{ currentIndex + 1 }}/{{ offices.length }}</p>
+                <h3>{{ offices[currentIndex].title }}</h3>
+                <p>{{ offices[currentIndex].description }}</p>
+                <div class="navigation-buttons">
+                  <button (click)="prev()" [disabled]="currentIndex === 0">
+                    ←
+                  </button>
+                  <button (click)="next()" [disabled]="currentIndex === offices.length - 1">
+                    →
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="view-vacancies-button">Смотреть вакансии</button>
+          </div>
+          
+
+
+</div>
