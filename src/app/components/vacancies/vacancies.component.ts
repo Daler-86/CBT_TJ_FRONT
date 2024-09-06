@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-vacancies',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, RouterModule, RouterOutlet],
   templateUrl: './vacancies.component.html',
   styleUrl: './vacancies.component.scss'
 })

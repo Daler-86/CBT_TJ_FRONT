@@ -10,6 +10,8 @@ import { CreditComponent } from './components/credit/credit.component';
 import { VisaPlatinumComponent } from './components/visa-platinum/visa-platinum.component';
 import { MilliCard1Component } from './components/milli-card-1/milli-card-1.component';
 import { MilliCard2Component } from './components/milli-card-2/milli-card-2.component';
+import { VacancyListComponent } from './components/vacancy-list/vacancy-list.component';
+import { VacancyDetailComponent } from './components/vacancy-detail/vacancy-detail.component';
 
 
 export const routes: Routes = [
@@ -24,6 +26,9 @@ export const routes: Routes = [
   { path: 'credit', component: CreditComponent },
   { path: 'milli-card-1', component: MilliCard1Component },
   { path: 'milli-card-2', component: MilliCard2Component },
+  {path:'vacancy-list', component:VacancyListComponent},
+  { path: 'vacancy-list/:id', component: VacancyDetailComponent }
 ];
+
 
 

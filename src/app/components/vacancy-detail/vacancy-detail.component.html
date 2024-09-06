@@ -1,0 +1,107 @@
+<div class="more-vacancy">
+<div *ngIf="vacancy">
+  <div class="title">
+    <div class="">
+  <h2>{{ vacancy.title }}</h2>
+  <div class="city-location">
+    <img src="../../../assets/icons/Layer 2.svg" alt="Location icon">
+  <p>{{ vacancy.city }}</p>
+</div>
+</div>
+<div class="">
+  <button>Откликнуться на вакансию</button>
+</div>
+</div>
+<div class="">
+ 
+    
+    <div class="vacancy-details" *ngIf="vacancy.educationAndQualification?.length"> 
+    <h4>Образование и квалификация:</h4>
+    <ul>
+      <li *ngFor="let education of vacancy.educationAndQualification">{{ education }}</li>
+    </ul>
+
+
+  </div>
+
+  <div  class="vacancy-details" *ngIf="vacancy.workExperience ?.length">
+    <h4>Опыт работы:</h4>
+    <ul>
+      <li *ngFor="let work of vacancy.workExperience">{{ work }}</li>
+    </ul>
+  </div>
+
+  <div  class="vacancy-details" *ngIf="vacancy.skillsAndKnowledge?.length">
+    <h4>Навыки и знания:</h4>
+    <ul>
+      <li *ngFor="let skill of vacancy.skillsAndKnowledge">{{ skill }}</li>
+    </ul>
+  </div>
+  <div  class="vacancy-details" *ngIf="vacancy.personalQualities?.length">
+    <h4>Личные качества:</h4>
+    <ul>
+      <li *ngFor="let quality of vacancy.personalQualities">{{ quality }}</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+
+
+<form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
+  <h2>Откликнуться на вакансию</h2>
+  <p>Расскажите нам о себе, и мы обязательно свяжемся с вами</p>
+
+  <div class="form-row">
+    <input formControlName="lastName" placeholder="Фамилия*" />
+    <input formControlName="firstName" placeholder="Имя*" />
+  </div>
+  
+  <div class="form-row">
+    <input formControlName="phone" placeholder="Телефон*" />
+    <input formControlName="email" placeholder="Email*" />
+  </div>
+
+  <!-- Зона перетаскивания файла -->
+  <div class="file-drop-area"
+       (drop)="onDrop($event)"
+       (dragover)="onDragOver($event)"
+       (dragleave)="onDragLeave($event)">
+       <label >Перетащите или</label>
+      <small>Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)</small>
+        <div>
+    <input type="file" (change)="onFileSelected($event)" #fileInput hidden>
+    <button type="button" (click)="fileInput.click()">Загрузите CV</button>
+    <span *ngIf="fileName">{{ fileName }}</span>
+  </div>
+
+  </div>
+
+  <!-- Кнопка выбора файла -->
+
+
+  <!-- Кнопка отправки -->
+  <button type="submit">Отправить</button>
+</form>
+
+
+  
+  
+</div>
+    <!-- <div 
+      class="file-drop-area" 
+      (drop)="onFileDropped($event)" 
+      (dragover)="onDragOver($event)"
+    >
+      <label >Перетащите или</label>
+   
+      <p *ngIf="fileName">{{ fileName }}</p>
+      <button for="resume" type="button">Загрузите CV</button>
+         <input 
+        type="file" 
+        id="resume" 
+        (change)="onFileChange($event)"
+        accept=".pdf, .doc, .docx, .jpg, .jpeg"
+      />
+      <small>Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)</small>
+    </div> -->
