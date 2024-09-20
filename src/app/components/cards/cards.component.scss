@@ -71,7 +71,8 @@ align-items: center;
       }
   
       .card-details {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         justify-content: space-between;
         margin: 45px 0;
         @media (max-width: 1024px) {

@@ -14,7 +14,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class HeaderComponent {
   selectedOption: string = '';
   showSubMenu: boolean = false;
-  selectedLanguage = 'en';
+  selectedLanguage = 'tj';
+
+  
   toggleSubMenu() {
     this.showSubMenu = !!this.selectedOption;
   }

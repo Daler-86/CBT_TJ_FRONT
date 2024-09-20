@@ -5,7 +5,7 @@ import { NgFor } from '@angular/common';
 import { CurrencyConverterComponent } from '../currency-converter/currency-converter.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink, RouterModule } from '@angular/router';
-import { CardsComponent } from '../components/cards/cards.component';
+import { CardsComponent } from '../cards/cards.component';
 
 interface News{
   image:string;

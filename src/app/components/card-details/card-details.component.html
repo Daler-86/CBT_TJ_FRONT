@@ -1,0 +1,177 @@
+<div class="milli-card">
+    <div class="card-container">
+    <div class="card-info">
+      <h2 class="card-title">Корти миллӣ</h2>
+      <p class="card-description">
+        Карта, которая подходит всем. Оплачивайте картой без комиссии через все POS-терминалы.
+      </p>
+      <div class="card-buttons">
+        <button class="btn-primary">Оформить карту</button>
+      </div>
+    </div>
+    <div class="card-image">
+      <img class="card" src="../../../assets/icons/milli.png" alt="Visa Gold" />
+    </div>
+  </div>
+
+  <div class="features-container" [class]="{'type1': cardId === 1, 'type2': cardId!=1}">
+    <div class="feature-card" *ngFor="let detail of cardDetails">
+          <div class="">
+         <h3>{{detail.title}}</h3>
+      <p>{{detail.description}}</p>
+  </div>  
+      <img [src]="'http://172.16.16.88:9009/storage/' + detail.upload_file" [alt]="detail.title" class="feature-icon">
+   
+</div>
+
+ 
+  </div>
+
+  
+  
+  <div class="container">
+    <h1>Тарифы и условия</h1>
+    <div class="btnCards">
+        <button (click)="selectTab('services')" [class.active]="selectedTab === 'services'">Услуги</button>
+        <button (click)="selectTab('limits')" [class.active]="selectedTab === 'limits'">Лимиты</button>
+        <button (click)="selectTab('operations')" [class.active]="selectedTab === 'operations'">Операции</button>
+        <button (click)="selectTab('documents')" [class.active]="selectedTab === 'documents'">Полезные документы</button>
+    </div>
+    <div *ngIf="selectedTab==='services'" class="content">
+        <div class="info-container">
+            <div class="info-box" *ngFor="let service of services">
+              <div class="info-title">{{service.name}}</div>
+              <div class="info-title">
+               {{service.title}}
+                <div class="info-detail">{{service.description}}</div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div *ngIf="selectedTab==='limits'" class="content">
+    <div class="info-container">
+      <div class="info-box-limits" *ngFor="let limit of limits">
+        <div class="info-title">{{limit.name}}</div>
+        <div class="info-title"> 
+        <div class="info-detail">Счёт TJS</div>
+        {{limit.tjs}}
+         
+        </div>
+        <div class="info-title"> 
+          <div class="info-detail">Счёт RUB</div>
+          {{limit.rub}}
+         
+        </div>
+        <div class="info-title">
+             <div class="info-detail">Счёт USD</div>
+             {{limit.usd}}
+       
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+    <div *ngIf="selectedTab==='operations'" class="content">
+        <div class="info-container">
+            <div class="info-box" *ngFor="let operation of operations">
+                <div class="info-title">{{operation.name}}</div>
+                <div class="info-title">{{operation.title}}<div class="info-detail">{{operation.description}}</div></div>
+              </div>
+          </div>
+    </div>
+
+    <div *ngIf="selectedTab==='documents'" class="content">
+         <div class="info-container">
+          <div class="info-box-documents" *ngFor="let document of documents">
+            <a  [href]="'http://172.16.16.88:9009/storage/'+ document.upload_file" target="_blank">  <img src="../../../assets/icons/pdficon.png" alt=""></a>
+            <p class="info-title">{{document.name}}</p>
+          </div>
+
+         </div>
+
+    </div>
+  </div> 
+
+  <div class="application-form-container">
+    <h2 class="form-title">Заявка на карту</h2>
+    <p class="form-subtitle">Оставьте свои контакты, и мы обязательно с вами свяжемся</p>
+  <div class="form">
+    <form (ngSubmit)="onSubmit()" #applicationForm="ngForm">
+      <div class="form-group">
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
+          Это поле обязательно для заполнения
+        </div> 
+        <input 
+          type="text" 
+          id="phone" 
+          placeholder="Мобильный телефон" 
+          class="form-control" 
+          required 
+          [(ngModel)]="model.phone" 
+          name="phone"
+          #phone="ngModel">
+       
+      </div>
+  
+      <div class="form-group">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+          Это поле обязательно для заполнения
+        </div> 
+        <input 
+          type="text" 
+          id="name" 
+          placeholder="ФИО" 
+          class="form-control" 
+          required 
+          [(ngModel)]="model.name" 
+          name="name"
+          #name="ngModel">
+       
+      </div>
+  
+      <div class="form-group">
+      <div *ngIf="branch.invalid && (branch.dirty || branch.touched)" class="error">
+          Это поле обязательно для заполнения
+        </div> 
+         <input 
+          type="text" 
+          id="branch" 
+          placeholder="Выберите отделение банка" 
+          class="form-control" 
+          required 
+          [(ngModel)]="model.branch" 
+          name="branch"
+          #branch="ngModel">
+        
+      </div>
+      <div class="form-group"> 
+      <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">Оформить карту</button>
+   </div>
+   </form>
+  
+    <p class="form-disclaimer">
+        Нажимая «Получить», вы соглашаетесь на
+      <a href="#">обработку персональных данных</a>.
+    </p>
+  </div>
+
+</div>
+  
+
+
+  <div class="faq-container">
+    <h2 class="faq-title">Часто задаваемые вопросы</h2>
+    <div *ngFor="let faq of faqs; let i = index" class="faq-item">
+      <div class="faq-question" (click)="toggleFaq(i)">
+        <span>{{ faq.question }}</span>
+        <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+      </div>
+      <div *ngIf="selectedFaqIndex === i" class="faq-answer">
+        {{ faq.answer }}
+      </div>
+    </div>
+  </div>
+
+</div>

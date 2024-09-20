@@ -206,9 +206,7 @@ p{
           text-align: start;
       display: flex;
       flex-direction: column;
-      @media (max-width: 1024px) {
-        width: 100%;
-      }
+     
           p {
             margin-bottom: 10px;
           }

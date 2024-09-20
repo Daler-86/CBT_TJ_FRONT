@@ -1,4 +1,4 @@
-.visa-gold{ 
+.milli-card{ 
     margin: none;
    padding:3% 10% ;
    background-color: #f8f9fa;
@@ -8,7 +8,7 @@
              margin: 30px 0 0;
          box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
         
-         background-color: white;
+         background-color: #E6F4EE;
          border-radius: 24px;
  display: flex;
  justify-content: space-between;
@@ -73,7 +73,44 @@
      }
    }
  
-  .features-container {
+   .type2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 40px 0;
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+    .feature-card {
+      background-color: #fff;
+      border-radius: 10px;
+      display: flex;
+      gap: 20px;
+      box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+      padding: 40px 10px 15px 40px;
+      @media (max-width: 768px) {
+    flex-wrap: wrap;
+      }
+      .feature-icon {
+        align-self: end;
+      }
+  div{
+    
+      h3 {
+        font-size: 22px;
+        color: #141A20;
+        font-weight: 800 ;
+        margin-bottom: 20px;
+      }
+  
+      p {
+        font-size: 17px;
+        color: #475569;
+      }
+    }
+    }
+  }
+  .type1{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
@@ -93,15 +130,19 @@ grid-template-columns: 1fr;
       padding: 50px 30px;
       text-align: center;
       box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-     width: 100%;
+      width: 100%;
      
+  display: flex;
+  flex-direction: column-reverse;
   
       box-sizing: border-box;
       flex: 1;
     
   
       .feature-icon {
-        width: 230px;
+        align-self: center;
+        align-items: baseline;
+        width: 200px;
         height: auto;
         margin-bottom: 15px;
       }
@@ -120,6 +161,8 @@ grid-template-columns: 1fr;
       }
     }
   }
+  
+  
   
    .container{
      h1{
@@ -265,7 +308,7 @@ box-sizing: border-box;
         border-radius: 6px;
         border: 1px solid #CBD5E1;
         font-size: 14px;
-        background-color: #F1F5F9; 
+        background-color: #f8f9fa; 
         margin-bottom: 20px;
       }
   
@@ -306,6 +349,7 @@ box-sizing: border-box;
       color: #475569;
       margin-top: 20px;
       font-weight: 500;
+      text-align: left;
   
       a {
         color: #00B06C;
