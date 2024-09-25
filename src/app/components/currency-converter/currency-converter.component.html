@@ -1,7 +1,16 @@
 <div class="currency-converter-container">
-  <div class="exchange-rates">
-    <h3>{{ "Exchange rates" | translate }}</h3>
-    <!-- <div *ngFor="let mode of getModes()"> -->
+  <div class="calculator-tabs">
+    <!-- Buttons for selecting the mode, dynamically generated -->
+    <button *ngFor="let mode of getModes()" 
+            (click)="selectMode(mode)" 
+            [class.active]="selectedMode === mode">
+      {{ mode }}
+    </button>
+  </div>
+
+  <div class="div">
+    <div class="exchange-rates">
+      <h3>{{ "Exchange rates" | translate }}</h3>
       <h4>{{ selectedMode }}</h4>
       <table>
         <thead>
@@ -22,46 +31,37 @@
           </tr>
         </tbody>
       </table>
-    <!-- </div> -->
-    <p>{{ "Current as " | translate }} {{ lastUpdated }}</p>
-  </div>
-
-  <div class="currency-converter">
-    <h3>{{ "Currency converter" | translate }}</h3>
-    
-    <!-- Новый селект для выбора mode -->
-    <div class="converter-inputs">
-      <label>{{ "Choose mode:" | translate }}</label><br>
-      <select class="mode" [(ngModel)]="selectedMode" (change)="updateCurrencies()">
-        <option *ngFor="let mode of getModes()" [value]="mode">{{ mode }}</option>
-      </select>
+      <p>{{ "Current as of" | translate }} {{ lastUpdated }}</p>
     </div>
 
-    <!-- Селект для выбора валюты "от" -->
-    <div class="converter-inputs">
-      <label>{{ "I have:" | translate }}</label><br>
-      <div class="a">
-        <input class="inp" type="number" [(ngModel)]="amount" (input)="convertCurrency()" />
-        <select [(ngModel)]="fromCurrency" (change)="convertCurrency()">
-          <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency">{{ rate.currency }}</option>
-        </select>
+    <div class="currency-converter">
+      <h3>{{ "Currency converter" | translate }}</h3>
+
+      <div class="converter-inputs">
+        <label>{{ "I have:" | translate }}</label><br>
+        <div class="a">
+          <input class="inp" type="number" [(ngModel)]="amount" (input)="convertCurrency()" />
+          <select [(ngModel)]="fromCurrency" (change)="convertCurrency()">
+            <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency">{{ rate.currency }}</option>
+          </select>
+        </div>
       </div>
-    </div>
 
-    <!-- Селект для выбора валюты "в" -->
-    <div class="converter-inputs">
-      <label>{{ "I will receive:" | translate }}</label><br>
-      <div class="a">
-        <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
-        <select [(ngModel)]="toCurrency" (change)="convertCurrency()">
-          <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency">{{ rate.currency }}</option>
-        </select>
+      <div class="converter-inputs">
+        <label>{{ "I will receive:" | translate }}</label><br>
+        <div class="a">
+          <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
+          <select [(ngModel)]="toCurrency" (change)="convertCurrency()">
+            <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency">{{ rate.currency }}</option>
+          </select>
+        </div>
       </div>
+
+      <button (click)="sendMoney()">{{ "Send money" | translate }}</button>
     </div>
-    
-    <button (click)="sendMoney()">{{ "Send money" | translate }}</button>
   </div>
 </div>
+
 
 
 

@@ -4,20 +4,23 @@
       <div class="carousel-content">
         <h2>{{ slide.title }}</h2>
         <p>{{ slide.description }}</p>
-        <button (click)="onLearnMore()">{{  "More details"|translate}}</button>
+        <button (click)="onLearnMore()">{{ 'More details' | translate }}</button>
       </div>
-      <img [src]="slide.image" alt="Car">
+      <img [src]="slide.image" alt="Car" />
     </div>
   </div>
   <div class="carousel-indicators">
-    <span *ngFor="let slide of slides; let i = index"
-          class="indicator" 
-          [class.active]="i === currentSlide"
-          (click)="goToSlide(i)"></span>
+    <span
+      *ngFor="let slide of slides; let i = index"
+      class="indicator"
+      [class.active]="i === currentSlide"
+      (click)="goToSlide(i)"
+    ></span>
   </div>
-  <button class="carousel-control prev" (click)="prevSlide()"> <img src="../../assets/icons/arrow-right.svg" alt=""> </button>
-  <button class="carousel-control next" (click)="nextSlide()"><img src="../../assets/icons/arrow-rightt.svg" alt=""></button>
+  <button class="carousel-control prev" (click)="prevSlide()"> <img src="../../../assets/icons/arrow-rightt.svg" alt=""> </button>
+  <button class="carousel-control next" (click)="nextSlide()">  <img src="../../../assets/icons/arrow-right.svg" alt=""></button>
 </div>
+
 <!-- @media (max-width: 1000px){
   width: 805;
 } -->

@@ -1,8 +1,10 @@
 .footer{
 
-    padding: 20px 10%;
-    background-color: black;
-    color: white;
+    padding: 20px 5%;
+    background-color: white;
+    color: #141A20;
+    font-size: 16px;
+    line-height: 30px;
     .box_1{
         display: flex;
         flex-wrap: wrap;
@@ -13,7 +15,14 @@
             display: flex;
             justify-content: space-between;
             text-align: end;
-            
+            h4{
+                font-size: 20px;
+                font-weight: 700;
+                       }
+                       p{
+                        font-size: 17px;
+                        color: #64748B;
+                       }
             @media (max-width: 1034px) {
               width: 100%;
          
@@ -23,7 +32,7 @@
     }
     .box_2{
         padding: 20px 0 ;
-        border: 1.5px solid #454343;
+        border: 1px solid #E2E8F0;
         border-right: 0px;
         border-left: 0px;
         display: flex;
@@ -31,14 +40,29 @@
         justify-content: space-between;
         align-items: first baseline;
         .navbar{
-            width: 60%;
+            width: 70%;
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
             gap: 20px;
-            a{
+            @media (max-width: 1024px) {
+               flex-wrap: wrap;
+            }
+            div{
+                display: flex;
+                flex-direction: column;
+            a,p{
             text-decoration: none;
-            color: white;
+            color: #141A20;
+            font-weight: 500;
+            font-size: 17px;
           }
+          .p{
+font-weight: 700;
+          }
+          a{
+            cursor: pointer;
+          }
+        }
         }
         .sotset{
             justify-self: end;
@@ -49,6 +73,7 @@ justify-content: space-between;
            
             img{
                 width: 20%;
+                cursor: pointer;
             }
         }
     }

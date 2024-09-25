@@ -2,6 +2,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CardBrand, CardList,CardBrandsResponse, CardContentItem, CardHelpfulDocument, CardLimits, CardOperations, CardServices } from '../models/cards.model';
+import { LanguagesService } from '../languages.service';
+import { switchMap } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,71 +20,86 @@ export class CardsService {
   private apiUrlCardServices="http://172.16.16.88:9009/api/v1/card/services/";
   private apiUrlCardTypes="http://172.16.16.88:9009/api/v1/card/types";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private languageService:LanguagesService) { }
 
- getCardList(): Observable<CardList> {
-  
-  const headers = new HttpHeaders({
-    'accept': 'application/json',  // Указываем формат, который мы ожидаем
-    'Language': '1'  // Ваш кастомный заголовок
-  });
-  return this.http.get<CardList>(this.apiUrlCardList, { headers });
-}
+  getCardList(): Observable<CardList> {
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'accept': 'application/json',
+          'Language': lang  // Установка динамического заголовка
+        });
+        return this.http.get<CardList>(this.apiUrlCardList, { headers });
+      })
+    );
+  }
 
 
   getCardBrands():Observable<CardBrandsResponse>{
-    const headers = new HttpHeaders({
-      'accept': 'application/json',  // Указываем формат, который мы ожидаем
-      'Language': '1'  // Ваш кастомный заголовок
-    });
+    return this.languageService.language$.pipe(  switchMap(lang => {
+      const headers = new HttpHeaders({
+        'accept': 'application/json',
+        'Language': lang  // Установка динамического заголовка
+      });
     return this.http.get<CardBrandsResponse>(this.apiUrlCardBrands, { headers });
-  }
+  }))
+}
  
   getCardContentItem(cardId: number):Observable<CardContentItem>{
-   
-    const headers = new HttpHeaders({
-      'accept': 'application/json',  // Указываем формат, который мы ожидаем
-      'Language': '1'  // Ваш кастомный заголовок
-    });
-    return this.http.get<CardContentItem>(`${this.apiUrlCardContentItems}${cardId}`, { headers });
+    return this.languageService.language$.pipe(
 
+ switchMap(lang => {
+      const headers = new HttpHeaders({
+        'accept': 'application/json',
+        'Language': lang  // Установка динамического заголовка
+      });
+    return this.http.get<CardContentItem>(`${this.apiUrlCardContentItems}${cardId}`, { headers });
+     }) )
   }
  
   getCardhDocuments(cardId:number):Observable<CardHelpfulDocument>{
-    console.log(cardId)
-    const headers = new HttpHeaders({
-      'accept': 'application/json',  // Указываем формат, который мы ожидаем
-      'Language': '1'  // Ваш кастомный заголовок
-    });
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'accept': 'application/json',
+          'Language': lang  // Установка динамического заголовка
+        });
     return this.http.get<CardHelpfulDocument>(`${this.apiUrlCardhDocuments}${cardId}`, { headers });
-
+      }))
   }
   getCardLinits(cardId:number):Observable<CardLimits>{
 
-    const headers = new HttpHeaders({
-      'accept': 'application/json',  // Указываем формат, который мы ожидаем
-      'Language': '1'  // Ваш кастомный заголовок
-    });
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'accept': 'application/json',
+          'Language': lang  // Установка динамического заголовка
+        });
     return this.http.get<CardLimits>(`${this.apiUrlCardLimits}${cardId}`, { headers });
-
+      }))
   }
   getCardOperation(cardId:number):Observable<CardOperations>{
 
-    const headers = new HttpHeaders({
-      'accept': 'application/json',  // Указываем формат, который мы ожидаем
-      'Language': '1'  // Ваш кастомный заголовок
-    });
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'accept': 'application/json',
+          'Language': lang  // Установка динамического заголовка
+        });
     return this.http.get<CardOperations>(`${this.apiUrlCardOperations}${cardId}`, { headers });
-
+      }))
   }
   getCardServices(cardId:number):Observable<CardServices>{
-
-    const headers = new HttpHeaders({
-      'accept': 'application/json',  // Указываем формат, который мы ожидаем
-      'Language': '1'  // Ваш кастомный заголовок
-    });
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'accept': 'application/json',
+          'Language': lang  // Установка динамического заголовка
+        });
+    
     return this.http.get<CardServices>(`${this.apiUrlCardServices}${cardId}`, { headers });
-
+  }
+      ))
   }
 
 

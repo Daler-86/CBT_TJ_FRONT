@@ -29,7 +29,6 @@ export class CarouselComponent {
       description: 'Мечтаете приобрести автомобиль? Теперь покупка автомобиля стала еще выгоднее!',
       image: '../../assets/icons/logo.png'
     },
-    
   ];
 
   currentSlide: number = 0;
@@ -46,12 +45,12 @@ export class CarouselComponent {
     this.currentSlide = (this.currentSlide + 1) % this.slides.length;
   }
 
-  onLearnMore(): void {
-    // Реализуйте функциональность для кнопки "Подробнее"
-    console.log('Подробнее нажато');
-  }
   goToSlide(index: number): void {
     this.currentSlide = index;
+  }
+
+  onLearnMore(): void {
+    console.log('Подробнее нажато');
   }
 }
 

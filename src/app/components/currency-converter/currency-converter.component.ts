@@ -36,6 +36,12 @@ export class CurrencyConverterComponent {
     this.fetchExchangeRates();
   }
 
+  // Function to handle mode selection via button click
+  selectMode(mode: string) {
+    this.selectedMode = mode;
+    this.updateCurrencies();
+  }
+
   fetchExchangeRates() {
     this.http.get('http://192.168.42.200:8025/ws/v3/info/exchange-rates', { responseType: 'text' })
       .subscribe((data: string) => {
@@ -64,20 +70,22 @@ export class CurrencyConverterComponent {
     });
 
     this.lastUpdated = xml.getElementsByTagName('lastUpdate')[0]?.textContent || '';
-    
+
     const modes = this.getModes();
     if (modes.length > 0) {
-      this.selectedMode = modes[0]; // Устанавливаем начальное значение для selectedMode
-      this.updateCurrencies(); // Обновляем валюты для начального режима
+      this.selectedMode = modes[0]; // Set the default selected mode
+      this.updateCurrencies(); // Update currencies for the default mode
     }
   }
 
   getFlag(currency: string): string {
-    if (currency === 'USD') return '../../assets/icons/usd.svg';
-    if (currency === 'EUR') return '../../assets/icons/euro.svg';
-    if (currency === 'RUB') return '../../assets/icons/rub.svg';
-    if (currency === 'KZT') return '../../assets/icons/kzt.png';
-    return '';
+    switch (currency) {
+      case 'USD': return '../../assets/icons/usd.svg';
+      case 'EUR': return '../../assets/icons/euro.svg';
+      case 'RUB': return '../../assets/icons/rub.svg';
+      case 'KZT': return '../../assets/icons/kzt.png';
+      default: return '';
+    }
   }
 
   getModes(): string[] {
@@ -102,11 +110,12 @@ export class CurrencyConverterComponent {
     if (fromRate && toRate) {
       this.convertedAmount = (this.amount * fromRate.sell) / toRate.buy;
     } else {
-      this.convertedAmount = 0; // Обнуление, если курс не найден
+      this.convertedAmount = 0; // Reset if no rate is found
     }
   }
 
   sendMoney() {
-    alert(`Вы отправили ${this.convertedAmount.toFixed(2)} ${this.toCurrency}`);
+    alert(`You sent ${this.convertedAmount.toFixed(2)} ${this.toCurrency}`);
   }
 }
+
