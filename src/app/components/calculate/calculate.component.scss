@@ -45,86 +45,151 @@ background-color: hsl(210, 17%, 98%);
         flex-wrap: wrap;
         box-sizing: border-box;
        }
-      .calculator-form {
+  
+       .calculator-form {
         width: 55%;
-      
-        @media (max-width: 1000px) {
-  padding: 20px 30px;
-           margin-bottom: 20px;
-           width: 100%;
-        }
         padding: 46px 62px;
         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
         border-radius: 16px;
         background-color: white;
-        h2{
+        @media (max-width: 1024px) {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+        h2 {
           font-size: 24px;
           font-weight: 800;
-          margin-bottom: 30px;        }
-        label{
-margin: 15px 0;
-          font-size:20px ;
+          margin-bottom: 30px;
+        }
+      
+        label {
+          margin: 25px 0;
+          font-size: 20px;
           font-weight: 600;
         }
       
-        .range-container {
+        .input-slider-container {
           position: relative;
-          width: 100%;
-          margin-bottom: 20px;
+          margin: 20px 0;
+      
+          /* Объединение инпута и слайдера */
+          .loan-input {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 18px;
+            border: 1px solid #dde2e9;
+            border-radius: 8px 8px 0 0;
+            border-bottom: none;
+            color: #333;
+            font-weight: 600;
+            box-sizing: border-box;
+            margin: 0;
+          }
+      
+          .loan-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+            height: 4px;
+            background: linear-gradient(to right, #00B06C 0%, #00B06C var(--range-percent), #e0e6ee var(--range-percent), #e0e6ee 100%);
+            border-radius: 0 0 8px 8px;
+            border: 1px solid #dde2e9;
+            border-top: none;
+            outline: none;
+            // padding: 0 12px;
+          }
+      
+          .loan-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 2px solid #00B06C;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+      
+          .loan-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 2px solid #00B06C;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+      
+          .loan-slider::-ms-thumb {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 2px solid #00B06C;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+      
+          .loan-slider::-webkit-slider-runnable-track {
+            background: transparent;
+          }
+      
+          .loan-slider::-moz-range-track {
+            background: transparent;
+          }
+      
+          .loan-slider::-ms-track {
+            background: transparent;
+          }
         }
-        
-        input {
-          width: 100%;
-          // margin-top:0;
-        }
-        
+      
         .range-labels {
           display: flex;
           justify-content: space-between;
-          margin-bottom: 5px; /* Расстояние между ползунком и метками */
           padding: 0 5px;
-          @media (max-width: 1000px) {
-            display: none;
-            
-          } /* Отступы по бокам, чтобы числа были в пределах ползунка */
-        }
-        
-        .range-labels span {
+          margin-top: 10px;
           font-size: 16px;
           color: #66788F;
-          
-          position: relative;
+          @media (max-width: 768px) {
+          display: none;
+          }
         }
-      .loan-terms {
-        display: flex;
-        // justify-content: space-between;
-        gap: 10px;
-  margin: 20px 0;
-  flex-wrap: wrap;
-        button {
-          border: 1px solid #ddd;
-          background: none;
-          padding: 10px 16px;
-          cursor: pointer;
-          border-radius: 8px;
-          background-color: #F1F5F9;
-          color: #141A20;
-          font-size: 18px;
-          font-weight: 600;
-
-  
-          &.active {
-            background-color: #00B06C;
-            color: white;
+      
+        .loan-terms {
+          display: flex;
+          gap: 10px;
+          margin: 20px 0;
+          flex-wrap: wrap;
+      
+          button {
+            border: 1px solid #ddd;
+            background: none;
+            padding: 10px 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: #F1F5F9;
+            color: #141A20;
+            font-size: 18px;
+            font-weight: 600;
+      
+            &.active {
+              background-color: #00B06C;
+              color: white;
+            }
           }
         }
       }
-    }
+      
   
-    input[type="range"] {
+    input.range {
       width: 100%;
       margin-top: 10px;
-      margin-bottom: 10px;
+    }
+  
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 5px;
+      margin-top: 10px;
     }
   p{
     color: #66788F;
@@ -140,10 +205,11 @@ margin: 15px 0;
   
   }
   .calculator-result {
-    @media (max-width: 1000px) {
+    @media (max-width: 1024px) {
       width: 100%;
       justify-self: center;
-      padding: 20px 30px;
+      padding: 46px 62px;
+     
     }
 width: 40%;
 padding: 46px 62px;
@@ -177,8 +243,8 @@ button {
       border-radius: 6px;
       cursor: pointer;
       @media (max-width: 1000px) {
-        padding: 10px 30px;
-        font-size: 14px;
+        padding: 20px 35px;
+        font-size: 16px;
         margin:0 10% ;
       }
     } 

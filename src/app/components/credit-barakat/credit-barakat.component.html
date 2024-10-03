@@ -1,0 +1,200 @@
+<p>Kredit barakat</p>
+
+<div class="barakat">
+    <div class="card-container">
+        <div class="card-info">
+          <h2 class="card-title">Баракат</h2>
+          <p class="card-description">
+            Данный кредитный продукт предназначен для физических и юридических лиц, а также частных предпринимателей.
+          </p>
+       
+          <div class="card-buttons">
+            <button class="btn-primary">Получить кредит</button>
+     
+           
+            
+          </div>
+        </div>
+        <div class="card-image">
+          <img class="card" src="../../../assets/icons/credit 1.png" alt="Barakat" />
+       
+        </div>
+      </div>
+
+        
+  <div class="container">
+    <h1>Тарифы и условия</h1>
+    
+
+    <div class="content">
+    <div class="info-container">
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+            Сумма кредита
+        </div>
+        <div class="info-title"> 
+            до 30 000 сомони
+        </div>
+  
+      </div>
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+            Валюта кредита
+        </div>
+        <div class="info-title"> 
+            сомони
+        </div>
+  
+      </div>
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+            Процентная ставка
+        </div>
+        <div class="info-title"> 
+            25% годовых
+            <div class="info-detail">Новым клиентам</div>
+        </div>
+        <div class="info-title"> 
+            20% годовых
+            <div class="info-detail">Повторным клиентам</div>
+        </div>
+  
+      </div>
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+            Срок кредита
+        </div>
+        <div class="info-title"> 
+            До 36 месяца.
+        </div>
+  
+      </div>
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+      Обеспечение кредита
+        </div>
+        <div class="info-title"> 
+            1 поручитель
+        </div>
+  
+      </div>
+    </div>
+    </div>
+
+
+
+  </div> 
+
+  <div class="container-2">
+    <h1>Перечень необходимых документов</h1>
+<div class="box">
+    <div class="box-details">
+        <img src="../../../assets/icons/User Id.svg" alt="">
+        <p>Паспорт гражданина 
+            Республики Таджикистан 
+            (оригинал)</p>
+    </div>
+    <div class="box-details">
+        <img src="../../../assets/icons/Document.svg" alt="">
+        <p>Справка о заработной плате за 6 месяцев</p>
+    </div>
+    <div class="box-details">
+        <img src="../../../assets/icons/Diploma Verified.svg" alt="">
+        <p>Копия трудовой книжки</p>
+    </div>
+    <div class="box-details">
+        <img src="../../../assets/icons/File Favourite.svg" alt="">
+        <p>ИНН (оригинал)</p>
+    </div>
+</div>
+
+
+  </div>
+  <div class="container-3">
+    <h1>Онлайн заявка на кредит</h1>
+  <div class="calculator">
+ 
+  
+    <div  class="calculator-content">
+      <div class="calculator-form"> 
+      
+      
+        <label for="loanAmount">{{"Loan amount" | translate}}</label>
+        
+        <!-- Поле ввода суммы кредита -->
+        <div class="input-slider-container">
+          <input type="text" [ngModel]="formattedLoanAmount" (ngModelChange)="onLoanAmountChange($event)" class="loan-input" />
+          
+          <!-- Слайдер суммы кредита -->
+          <input class="range loan-slider" type="range" id="loanAmountRange" min="10000" max="200000" step="50" [(ngModel)]="loanAmount" (input)="updateFormattedLoanAmount()">
+        </div>
+      
+        <!-- Метки слайдера -->
+        <div class="range-labels">
+          <span *ngFor="let value of rangeValues">{{ value }}</span>
+        </div>
+      
+        <label>{{"Loan term" | translate}}</label>
+        <div class="loan-terms">
+          <button *ngFor="let term of loanTerms" (click)="selectTerm(term)" [class.active]="selectedTerm === term">{{ term }}</button>
+        </div>
+      
+        <p>Все расчеты являются предварительными и могут отличаться от фактически полученных</p>
+        <form class="custom-form">
+            <div class="form-group">
+              <input type="text" placeholder="Полное имя *" required class="required-input">
+            </div>
+          
+            <div class="form-group">
+              <input type="text" placeholder="Мобильный телефон *" required class="required-input">
+            </div>
+          
+            <div class="form-group">
+              <input type="text" placeholder="Цель кредита *" required class="required-input">
+            </div>
+          
+            <div class="form-group">
+              <div class="select-wrapper" >
+                <select id="bankBranch" required class="required-input" >
+                  <option value="">Выберите отделение банка</option>
+                  <!-- Добавьте дополнительные опции здесь -->
+                </select>
+                <span class="icon"><img src="../../../assets/icons/Map Point1.svg" alt=""></span> <!-- Это FontAwesome иконка для карты -->
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <input type="text" placeholder="Место работы и адрес" class="required-input">
+            </div>
+          
+            <button type="submit" class="submit-button">Отправить</button>
+          </form>
+          
+    </div>
+      
+    
+<div class="result">
+      <div class="calculator-result">
+        <p> {{"Monthly payment"|translate}}</p>
+        <h3>{{ calculateMonthlyPayment() }}с.</h3>
+        <p>{{ "Interest rate"|translate}}</p>
+        <h3>{{ interestRate }}%</h3>
+        <button (click)="applyForLoan()">{{"Apply for a loan"|translate}}</button>
+      </div>
+      <div class="calculator-result">
+        <div class="info">
+            <img src="../../../assets/icons/Info Circle.svg" alt="">
+        <h4>Онлайн заявки принимаются и рассматриваются в будние дни 
+            с 8:00 до 17:00.</h4></div>
+      </div>
+    </div>
+
+
+  </div>
+    <!-- Добавьте контент для других вкладок (deposit и car) аналогичным образом -->
+  </div>
+
+  </div>
+
+<app-favri></app-favri>
+</div>

@@ -3,7 +3,7 @@
        margin: none;
    
     .vacancies-container {
-          margin: 30px 10% 0;
+          margin: 30px 5% 0;
       box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);   
       background-color: #f8f9fa;
       border-radius: 24px;
@@ -74,7 +74,7 @@
         display: grid;
         grid-template-columns: 462px 354px;
         gap: 30px;
-        margin: 50px 10%;
+        margin: 50px 5%;
         justify-content: end;
         @media (max-width: 1024px) {
             grid-template-columns: 1fr;
@@ -98,7 +98,7 @@ p{
       }
       .why-we-are-great {
   
-      padding: 50px 10%;
+      padding: 50px 5%;
       background-color: #f9fafc;
     
       h2 {
@@ -115,7 +115,8 @@ p{
       .features-container {
         width: 100%;
        display: grid;
-      grid-template-columns: 30% 30% 30%;
+      grid-template-columns: 32% 32% 32%;
+      justify-content: space-between;
       @media (max-width: 1024px) {
         grid-template-columns: 48% 48%;
       }
@@ -160,7 +161,7 @@ p{
         }
       }
       .offices-container { 
-        padding: 100px 10%;
+        padding: 100px 5%;
         text-align: center;
         h2{
             font-size: 42px;
@@ -182,19 +183,21 @@ p{
           @media (max-width: 1024px) {
             flex-wrap: wrap;
           }
-
-          gap: 30px;
         }
       
         .office-image {
-       
+          width: 75%;
           margin-right: 20px;
           border-radius: 10px;
           overflow: hidden;
-      
+          @media (max-width: 1024px) {
+            width: 100%;
+            margin-bottom: 25px;
+          }
           img {
             width: 100%;
-            height: auto;
+            // height: auto;
+            border-radius: 24px;
           }
         }
       
@@ -206,6 +209,9 @@ p{
           text-align: start;
       display: flex;
       flex-direction: column;
+      @media (max-width: 1024px) {
+        width: 100%;
+      }
      
           p {
             margin-bottom: 10px;

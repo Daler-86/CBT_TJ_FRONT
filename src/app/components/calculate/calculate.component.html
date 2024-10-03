@@ -6,20 +6,33 @@
     </div>
   
     <div *ngIf="selectedTab === 'credit'" class="calculator-content">
-      <div class="calculator-form">
-        <h2>{{"Calculate your loan"|translate}}</h2>
-        <label for="loanAmount">{{"Loan amount"|translate}}</label>  
-        <input type="text" [value]="loanAmount + ' с.'" readonly>
-        <input class="range" type="range" id="loanAmount" min="10000" max="200000" [(ngModel)]="loanAmount">
+      <div class="calculator-form"> 
+        <h2>{{"Calculate your loan" | translate}}</h2>
+      
+        <label for="loanAmount">{{"Loan amount" | translate}}</label>
+        
+        <!-- Поле ввода суммы кредита -->
+        <div class="input-slider-container">
+          <input type="text" [ngModel]="formattedLoanAmount" (ngModelChange)="onLoanAmountChange($event)" class="loan-input" />
+          
+          <!-- Слайдер суммы кредита -->
+          <input class="range loan-slider" type="range" id="loanAmountRange" min="10000" max="200000" step="50" [(ngModel)]="loanAmount" (input)="updateFormattedLoanAmount()">
+        </div>
+      
+        <!-- Метки слайдера -->
         <div class="range-labels">
           <span *ngFor="let value of rangeValues">{{ value }}</span>
         </div>
-        <label>{{"Loan term"|translate}}</label>  
+      
+        <label>{{"Loan term" | translate}}</label>
         <div class="loan-terms">
           <button *ngFor="let term of loanTerms" (click)="selectTerm(term)" [class.active]="selectedTerm === term">{{ term }}</button>
         </div>
-        <p>{{"Preliminary calculation. Not a public offer"|translate}}</p>
+      
+        <p>{{"Preliminary calculation. Not a public offer" | translate}}</p>
       </div>
+      
+      
 
       <div class="calculator-result">
         <h2>{{"Our offer"|translate}}</h2>

@@ -4,24 +4,24 @@
     <button *ngFor="let mode of getModes()" 
             (click)="selectMode(mode)" 
             [class.active]="selectedMode === mode">
-      {{ mode }}
+      {{ getReadableMode(mode) }}
     </button>
   </div>
 
   <div class="div">
     <div class="exchange-rates">
-      <h3>{{ "Exchange rates" | translate }}</h3>
-      <h4>{{ selectedMode }}</h4>
+      <h3>{{ "Курсы валют" | translate }}</h3>
+     
       <table>
         <thead>
           <tr>
-            <th>{{ "Currency" | translate }}</th>
-            <th>{{ "Purchase" | translate }}</th>
-            <th>{{ "Sale" | translate }}</th>
+            <th>{{ "Валюта" | translate }}</th>
+            <th>{{ "Покупка" | translate }}</th>
+            <th>{{ "Продажа" | translate }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let rate of exchangeRatesByMode[selectedMode]">
+          <tr *ngFor="let rate of exchangeRatesByMode[selectedMode] | slice:0:3">
             <td class="flag">
               <img [src]="rate.flag" alt="{{ rate.currency }}">
               <p>{{ rate.currency }}</p>
@@ -29,16 +29,53 @@
             <td>{{ rate.buy | number: '1.4-4' }}</td>
             <td>{{ rate.sell | number: '1.4-4' }}</td>
           </tr>
+          <ng-container *ngIf="showMore">
+          <tr  *ngFor="let rate of exchangeRatesByMode[selectedMode] | slice:3:ratesCount">
+            <td class="flag">
+              <img [src]="rate.flag" alt="{{ rate.currency }}">
+              <p>{{ rate.currency }}</p>
+            </td>
+            <td>{{ rate.buy | number: '1.4-4' }}</td>
+            <td>{{ rate.sell | number: '1.4-4' }}</td>
+          </tr> 
+        </ng-container>
         </tbody>
       </table>
-      <p>{{ "Current as of" | translate }} {{ lastUpdated }}</p>
+      <div class="more">
+      <p>{{ "Актуально на" | translate }} {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}</p>
+
+      <!-- Кнопка для показа большего количества валют -->
+      <button *ngIf="ratesCount > 3" (click)="toggleShowMore()">
+        {{ showMore ? "Свернуть" : "Показать еще" | translate }}
+      </button>
     </div>
+  </div>
 
-    <div class="currency-converter">
-      <h3>{{ "Currency converter" | translate }}</h3>
-
+    <div class="currency-converter" [ngClass]="{'sell-active': transactionType === 'sell'}">
+      <div class="switch-container" (click)="toggleTransaction()">
+        <!-- SVG анимация -->
+        <svg class="switch-buttons" viewBox="0 0 400 50" preserveAspectRatio="none">
+          <!-- Двигающийся фон -->
+          <rect [attr.x]="transactionType === 'buy' ? 0 : 200" y="0" width="200" height="100%" fill="#00B06C"
+          rx="12" ry="12">
+      <animate attributeName="x"
+               [attr.from]="transactionType === 'buy' ? 200 : 0"
+               [attr.to]="transactionType === 'buy' ? 0 : 200"
+               dur="0.3s"
+               fill="freeze"
+               begin="indefinite"
+               #anim />
+    </rect>
+          <!-- Тексты кнопок -->
+          <text x="50" y="30" [attr.fill]="transactionType === 'buy' ? 'white' : 'black'" style="cursor: pointer;">Купить</text>
+          <text x="250" y="30" [attr.fill]="transactionType === 'sell' ? 'white' : 'black'" style="cursor: pointer;">Продать</text>
+        </svg>
+      </div>
+      
+      
+      
       <div class="converter-inputs">
-        <label>{{ "I have:" | translate }}</label><br>
+        <label>{{"I have:" | translate }}</label><br>
         <div class="a">
           <input class="inp" type="number" [(ngModel)]="amount" (input)="convertCurrency()" />
           <select [(ngModel)]="fromCurrency" (change)="convertCurrency()">
@@ -48,7 +85,7 @@
       </div>
 
       <div class="converter-inputs">
-        <label>{{ "I will receive:" | translate }}</label><br>
+        <label>{{ "I will receive:"| translate }}</label><br>
         <div class="a">
           <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
           <select [(ngModel)]="toCurrency" (change)="convertCurrency()">

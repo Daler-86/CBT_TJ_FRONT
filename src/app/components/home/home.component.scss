@@ -77,70 +77,71 @@
     padding: 2% 5%;
     background-color: #f8f9fa;
     .favri{
-    display: flex;
-    margin: 30px 0;
-    background-color: white;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 5% 0 ;
-    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-    border-radius: 16px;
-    @media (max-width: 768px) {
-        flex-direction: column;
-        padding: 25px 35px 0 35px;
-        justify-content: center;
-    }
-   div{
-        width: 60%;
-     @media (max-width: 768px) {
+        display: flex;
+        margin: 30px 0;
+        background-color: white;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 5% 0 ;
+        box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+        border-radius: 16px;
+        @media (max-width: 768px) {
+            flex-direction: column;
+            padding: 25px 35px 0 35px;
+            justify-content: center;
+        }
+       div{
+            width: 60%;
+         @media (max-width: 768px) {
+                width: 100%;
+                
+            }
+        }}
+       
+            h2{
+                font-size: 32px;
+                font-weight: 800;
+                padding: 10px 0;
+          
+            }
+            p{
+                color: #64748B;
+                font-size: 20px;
+                font-weight: 500;
+            }
+            .google{
+                margin: 20px 0;
+                display: flex;
+                gap: 20px;
+                @media (max-width: 1034px) {
+                  display: block;
+                    
+                  }
+                img{
+                    cursor: pointer;
+                }
+            }
+       
+        .phone{
             width: 100%;
-            
-        }
-    }}
-   
-        h2{
-            font-size: 32px;
-            font-weight: 800;
-            padding: 10px 0;
-      
-        }
-        p{
-            color: #64748B;
-            font-size: 20px;
-            font-weight: 500;
-        }
-        .google{
-            margin: 20px 0;
             display: flex;
-            gap: 20px;
-            @media (max-width: 1034px) {
-              display: block;
+            justify-content: end;
+            @media (max-width: 1024px) {
+               justify-content: center;
+                
+             }
+            img{
+                width:520px;
+                justify-self: end;
+                 @media (max-width: 1024px) {
+               justify-self: center;
+               width: 420px;
                 
               }
-            img{
-                cursor: pointer;
+                
             }
         }
-   
-    .phone{
-        width: 100%;
-        display: flex;
-        justify-content: end;
-        @media (max-width: 1024px) {
-           justify-content: center;
-            
-         }
-        img{
-            width:520px;
-            justify-self: end;
-             @media (max-width: 1024px) {
-           justify-self: center;
-           width: 420px;
-            
-          }
-            
-        }
-    }
+
 } 
 
 .container_5{

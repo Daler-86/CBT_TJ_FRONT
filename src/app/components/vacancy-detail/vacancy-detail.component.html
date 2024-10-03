@@ -1,11 +1,11 @@
 <div class="more-vacancy">
-<div *ngIf="vacancy">
+<div *ngIf="personalQuality">
   <div class="title">
     <div class="">
-  <h2>{{ vacancy.title }}</h2>
+  <!-- <h2>{{ vacancy.title }}</h2> -->
   <div class="city-location">
     <img src="../../../assets/icons/Layer 2.svg" alt="Location icon">
-  <p>{{ vacancy.city }}</p>
+  <!-- <p>{{ vacancy.city }}</p> -->
 </div>
 </div>
 <div class="">
@@ -15,32 +15,39 @@
 <div class="">
  
     
-    <div class="vacancy-details" *ngIf="vacancy.educationAndQualification?.length"> 
+    <div class="vacancy-details" > 
     <h4>Образование и квалификация:</h4>
     <ul>
-      <li *ngFor="let education of vacancy.educationAndQualification">{{ education }}</li>
+      <li *ngFor="let education of education">{{ education.content }}</li>
     </ul>
 
 
   </div>
 
-  <div  class="vacancy-details" *ngIf="vacancy.workExperience ?.length">
+  <div  class="vacancy-details" >
     <h4>Опыт работы:</h4>
     <ul>
-      <li *ngFor="let work of vacancy.workExperience">{{ work }}</li>
+      <li *ngFor="let work of experience">{{ work.content }}</li>
     </ul>
   </div>
 
-  <div  class="vacancy-details" *ngIf="vacancy.skillsAndKnowledge?.length">
+  <div  class="vacancy-details" >
     <h4>Навыки и знания:</h4>
     <ul>
-      <li *ngFor="let skill of vacancy.skillsAndKnowledge">{{ skill }}</li>
+      <li *ngFor="let skill of skill">{{ skill.content }}</li>
     </ul>
   </div>
-  <div  class="vacancy-details" *ngIf="vacancy.personalQualities?.length">
+  <div  class="vacancy-details" >
     <h4>Личные качества:</h4>
     <ul>
-      <li *ngFor="let quality of vacancy.personalQualities">{{ quality }}</li>
+      <li *ngFor="let quality of personalQuality">{{ quality.content }}</li>
+    </ul>
+  </div>
+
+  <div  class="vacancy-details" >
+    <h4>Условия:</h4>
+    <ul>
+      <li *ngFor="let condition of condition">{{condition.content }}</li>
     </ul>
   </div>
 </div>

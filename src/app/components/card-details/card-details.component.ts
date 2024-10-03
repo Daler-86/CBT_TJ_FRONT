@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { cardLimits, cardOperations, cardServices, helpfulDocument } from '../../models/cards.model';
+import { Card, cardFaqs, cardLimits, cardOperations, cardServices, helpfulDocument } from '../../models/cards.model';
 
 @Component({
   selector: 'app-card-details',
@@ -19,6 +19,8 @@ export class CardDetailsComponent implements OnInit {
   limits: cardLimits[]=[];
   operations: cardOperations[]=[];
   documents: helpfulDocument[]=[];
+  faqs:cardFaqs[]=[]
+  card:Card[]=[]
   constructor(
     private route: ActivatedRoute,
     private cardsService: CardsService
@@ -30,30 +32,7 @@ export class CardDetailsComponent implements OnInit {
     this.loadTabData(tab,this.cardId);
   }
     selectedFaqIndex: number | null = null;
-  
-    faqs = [
-      {
-        question: 'Можно ли оплачивать картой Visa в интернете?',
-        answer: 'Для того чтобы оплачивать картой Visa, нужно ...'
-      },
-      {
-        question: 'Как пополнить свою карту?',
-        answer: 'Пополнить свою карту можно ...'
-      },
-      {
-        question: 'Есть ли лимиты на пополнение карты?',
-        answer: 'Да есть лимиты ...'
-      },
-      {
-        question: 'Где я могу использовать свою карту Visa Gold?',
-        answer: 'Вы можете использовать свою карту ...'
-      },
-      {
-        question: 'Могу ли я использовать карту Visa за границей?',
-        answer: 'Да, вы можете использовать ...'
-      },
-  
-    ];
+
   
     toggleFaq(index: number) {
       this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
@@ -79,7 +58,9 @@ export class CardDetailsComponent implements OnInit {
     }
 
     this.loadCardDetails(this.cardId);
+    this.loadCardFaqs(this.cardId)
     this.loadTabData(this.selectedTab, this.cardId);
+    this.loadCardByBrand(this.cardId)
   }
 
 
@@ -89,16 +70,13 @@ export class CardDetailsComponent implements OnInit {
         this.cardsService.getCardServices(id).subscribe(
           (details) => {
         
-            this.services=details.data.card_services  
+            this.services=details.data.card_services 
             
           },
           (error) => {
             console.error('Ошибка при получении деталей карты', error);
           }
         );
-   
-      
-        
         break;
       case 'limits':
         this.cardsService.getCardLinits(id).subscribe(data => this.limits = data.data.card_limits);
@@ -116,6 +94,27 @@ export class CardDetailsComponent implements OnInit {
       (details) => {
         this.cardDetails=details.data.card_content_items
      
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+  }
+  loadCardFaqs(id: number): void {
+    this.cardsService.getCardFaqs(id).subscribe(
+      (details) => { 
+        this.faqs=details.data.card_faqs
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+  }
+  loadCardByBrand(id: number): void {
+    this.cardsService.getCardByBrand(id).subscribe(
+      (details) => { 
+        this.card=details.data.cards
+        console.log(this.card)
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);

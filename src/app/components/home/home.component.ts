@@ -6,6 +6,7 @@ import { CurrencyConverterComponent } from '../currency-converter/currency-conve
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { CardsComponent } from '../cards/cards.component';
+import { FavriComponent } from "../favri/favri.component";
 
 interface News{
   image:string;
@@ -17,7 +18,7 @@ interface News{
 @Component({
   selector: 'app-home',
   standalone:true,
-  imports: [RouterModule,RouterLink, CarouselComponent,TranslateModule ,CalculateComponent,CurrencyConverterComponent ,NgFor],
+  imports: [RouterModule, RouterLink, CarouselComponent, TranslateModule, CalculateComponent, CurrencyConverterComponent, NgFor, FavriComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

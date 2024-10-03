@@ -93,6 +93,17 @@ p{
     padding: 10px;
 }
 }
+.more{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button{
+    border: none;
+    background-color: white;
+    color: #00B06C;
+    font-size: 17px;
+  }
+}
  }
 .currency-converter {
     width: 40%;
@@ -102,6 +113,35 @@ p{
       
     }
 background-color: white;
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #F1F5F9;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px 0px #AFAFAF2E;
+margin-bottom: 30px;
+
+  cursor: pointer;
+
+  .switch-buttons {
+    width: 100%;
+  
+  }
+
+  text {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+  
+  }
+}
+
+
+
+
  .converter-inputs {
     display: block;
     align-items: center;

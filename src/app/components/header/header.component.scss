@@ -48,7 +48,7 @@ nav{
     display: flex;
     gap: 5px;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
   }
     .dropdown-selected::after {
     // content: "\2304"; /* Маленькая стрелка вниз */
@@ -111,13 +111,13 @@ box-sizing: border-box;
   display: flex;
   gap: 5px;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
 }
   .dropdown-selected::after {
   // content: "\2304"; /* Маленькая стрелка вниз */
 position: absolute;
 right: 1px;
-top: 50%;
+top: 20%;
 transform: translateY(-50%);
 font-size: 16px;
 color: #999;
@@ -125,7 +125,7 @@ color: #999;
 
 .dropdown-options {
   position: absolute;
-  top: 110%;
+  top: 95%;
   left: 0;
   width: 100%;
   background-color:#fff ;
@@ -240,7 +240,7 @@ border: none;
         flex-direction: column;
         background-color: #fff;
         position: absolute;
-        top: 120px;
+        top: 130px;
         left: 10%;
         width: 80%;
         padding: 10px;

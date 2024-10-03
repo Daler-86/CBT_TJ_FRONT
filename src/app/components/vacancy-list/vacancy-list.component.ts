@@ -3,6 +3,10 @@ import { Vacancy, VacancyService, Category, City } from '../../services/vacancy.
 import { NgForOf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { VacanciesService } from '../../api/vacancies.service';
+import { vacancyCategory, vacancyList } from '../../models/vacancies.model';
+import { RegionService } from '../../api/region.service';
+import { regionList } from '../../models/region.model';
 
 @Component({
   selector: 'app-vacancy-list',
@@ -11,41 +15,69 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './vacancy-list.component.html',
   styleUrls: ['./vacancy-list.component.scss']
 })
-export class VacancyListComponent implements OnInit {
-  vacancies: Vacancy[] = [];
-  filteredVacancies: Vacancy[] = [];
-  categories: Category[] = [];
-  cities: City[] = [];
+export class VacancyListComponent{
+  vacancyCategory: vacancyCategory[] = [];
+  regionList: regionList[] = [];
+  vacancyList: vacancyList[] = [];
   selectedCategory: string = '';
-  selectedCity: string = '';
-
-  constructor(private vacancyService: VacancyService) {}
+  selectedRegion: string = '';
+  constructor(private vacanciesService: VacanciesService, private regionService:RegionService) {}
 
   ngOnInit() {
-    this.vacancyService.getVacancies().subscribe(vacancies => {
-      this.vacancies = vacancies;
-      this.filteredVacancies = vacancies; // Изначально показываем все вакансии
-    });
-
-    this.vacancyService.getCategories().subscribe(categories => {
-      this.categories = categories;
-    });
-
-    this.vacancyService.getCities().subscribe(cities => {
-      this.cities = cities;
-    });
-  }
-
-  // Метод для фильтрации вакансий по категории и городу
-  filterVacancies() {
-    this.filteredVacancies = this.vacancies.filter(v =>
-      (!this.selectedCategory || v.title === this.selectedCategory) &&
-      (!this.selectedCity || v.city === this.selectedCity)
+    this.vacanciesService.getVacancyCategory().subscribe(
+      (response) => {
+        this.vacancyCategory = response.data.vacancy_categories;
+      },
+      (error) => {
+        console.error('Ошибка при запросе данных', error);
+      }
     );
+
+    this.regionService.getRegionList().subscribe(
+      (response) => {
+        this.regionList = response.data.regions;
+      
+      },
+      (error) => {
+        console.error('Ошибка при запросе данных', error);
+      }
+    );
+
+    this.vacanciesService.getVacancyList().subscribe(
+      (response) => {
+        this.vacancyList = response.data.vacancies;
+       
+      },
+      (error) => {
+        console.error('Ошибка при запросе данных', error);
+      }
+    );
+
   }
 
-  // Метод для обработки клика по кнопке "Подробнее"
-  onMoreDetails(vacancy: Vacancy): void {
-    this.vacancyService.selectVacancy(vacancy);
+  onCategoryChange() {
+    if (this.selectedCategory) {
+      this.vacanciesService.getVacancyByCategory(+this.selectedCategory).subscribe(
+        (data) => {
+          this.vacancyList = data.data.vacancies;
+        },
+        error => {
+          console.error('Error loading vacancies by category', error);
+        }
+      );
+    }
+  }
+
+  onRegionChange() {
+    if (this.selectedRegion) {
+      this.vacanciesService.getVacancyByRegion(+this.selectedRegion).subscribe(
+        (data) => {
+          this.vacancyList = data.data.vacancies;
+        },
+        error => {
+          console.error('Error loading vacancies by category', error);
+        }
+      );
+    }
   }
 }

@@ -11,19 +11,46 @@ import { CreditComponent } from './components/credit/credit.component';
 import { VacancyListComponent } from './components/vacancy-list/vacancy-list.component';
 import { VacancyDetailComponent } from './components/vacancy-detail/vacancy-detail.component';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
+import { CreditBarakatComponent } from './components/credit-barakat/credit-barakat.component';
+import { CreditOverviewComponent } from './components/credit-overview/credit-overview.component';
+import { AutocreditComponent } from './components/autocredit/autocredit.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'private-clients', component: PrivateClientsComponent },
-  { path: 'business', component: BusinessComponent },
-  { path: 'mobile-banking', component: MobileBankingComponent },
-  { path: 'vacancies', component: VacanciesComponent },
-  { path: 'cards', component: CardsComponent },
-  { path: 'credit', component: CreditComponent },
-  {path:'vacancy-list', component:VacancyListComponent},
-  { path: 'vacancy-list/:id', component: VacancyDetailComponent },
-  { path: 'card-details/:id', component: CardDetailsComponent }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, data: { breadcrumb: 'Главная' } },
+  { path: 'private-clients', component: PrivateClientsComponent, data: { breadcrumb: 'Частные клиенты' } },
+  { path: 'business', component: BusinessComponent, data: { breadcrumb: 'Бизнес' } },
+  { path: 'mobile-banking', component: MobileBankingComponent, data: { breadcrumb: 'Мобильный банкинг' } },
+  { path: 'vacancies', component: VacanciesComponent, data: { breadcrumb: 'Вакансии' } },
+  { path: 'cards', component: CardsComponent, data: { breadcrumb: 'Карты' } },
+  { path: 'vacancy-list', component: VacancyListComponent, data: { breadcrumb: 'Список вакансий' } },
+  { path: 'vacancy-list/:id', component: VacancyDetailComponent, data: { breadcrumb: 'Детали вакансии' } },
+  { path: 'card-details/:id', component: CardDetailsComponent, data: { breadcrumb: 'Детали карты' } },
+  {
+    path: 'credit',
+    component: CreditComponent, // Общий контейнер
+    children: [
+      {
+        path: '',
+        component: CreditOverviewComponent, // По умолчанию показывает обзор кредитов
+        data: { breadcrumb: 'Кредит' },
+        
+      },
+      {
+        path: 'credit-barakat',
+        component: CreditBarakatComponent, // Детальная информация о Кредит Баракат
+        data: { breadcrumb: 'Кредит Баракат' }
+      },
+      {
+        path: 'credit-auto',
+        component: AutocreditComponent, // Детальная информация о Кредит Баракат
+        data: { breadcrumb: 'Автокредит ' }
+      }
+    ]
+  }
+  // { path: 'credit/credit-barakat', component: CreditBarakatComponent, data: { breadcrumb: 'Кредит Баракат' } }
 ];
+
 
 
 

@@ -1,21 +1,12 @@
-import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
-
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-credit',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgIf, NgFor],
+  imports: [RouterOutlet],
   templateUrl: './credit.component.html',
   styleUrl: './credit.component.scss'
 })
 export class CreditComponent {
-  selectedTab: string = 'all';
-  selectTab(tab: string) {
-    this.selectedTab = tab;
-   
-  }
 
-  
 }

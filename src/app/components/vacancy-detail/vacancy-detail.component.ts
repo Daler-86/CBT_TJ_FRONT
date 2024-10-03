@@ -6,6 +6,10 @@ import { routes } from '../../app.routes';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; 
+import { VacanciesService } from '../../api/vacancies.service';
+import { personalQuality, vacancyCondition, vacancyEducation, vacancyExperience, vacancySkill } from '../../models/vacancies.model';
+import { forkJoin } from 'rxjs'; // Импортируем forkJoin
+
 @Component({
   selector: 'app-vacancy-detail',
   standalone: true,
@@ -16,12 +20,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 export class VacancyDetailComponent implements OnInit {
   applyForm: FormGroup;
-  vacancy: Vacancy | null = null;
-  selectedFile: File | null = null;  // Переменная для хранения выбранного файла
+  id:number=0
+ // Переменная для хранения выбранного файла
   fileName: string = '';
   allowedExtensions = ['image/doc', 'image/jpeg', 'application/pdf'];
+   personalQuality:personalQuality[]=[]
+   condition:vacancyCondition[]=[]
+  education:vacancyEducation[]=[]
+  experience:vacancyExperience[]=[]
+  skill:vacancySkill[]=[]
 
-  constructor(private fb: FormBuilder,private vacancyService: VacancyService,    private route: ActivatedRoute) {
+
+  constructor(private fb: FormBuilder,private vacanciesService: VacanciesService,    private route: ActivatedRoute) {
     this.applyForm = this.fb.group({
       lastName: [''],
       firstName: [''],
@@ -30,17 +40,57 @@ export class VacancyDetailComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    // Извлечение ID из параметров маршрута
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      // Загрузка вакансии по ID
-      const vacancy = this.vacancyService.getVacancyById(id);
-      if (vacancy) {
-        this.vacancy = vacancy;
-      } else {
-        console.error('Vacancy not found');
-      }
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam !== null) {
+      this.id= +idParam; 
+      console.log(this.id)
+       // Преобразование строки в число
+    } else {
+      console.error('ID is missing in the route parameters.');
     }
+       this.vacanciesService.getPersonalQuality(this.id).subscribe(
+      (details) => {
+        this.personalQuality=details.data.vacancy_personal_qualities;
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+
+    this.vacanciesService.getVacancyEducation(this.id).subscribe(
+      (details) => {
+        this.education=details.data.vacancy_educations;
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+    this.vacanciesService.getVacancyExperience(this.id).subscribe(
+      (details) => {
+        this.experience=details.data.vacancy_experiences;
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+    this.vacanciesService.getVacancyCondition(this.id).subscribe(
+      (details) => {
+        this.condition=details.data.vacancy_conditions;
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+
+    this.vacanciesService.getVacancySkill(this.id).subscribe(
+      (details) => {
+        this.skill=details.data.vacancy_skills;
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+
   }
 
   onFileSelected(event: Event): void {
@@ -74,7 +124,7 @@ export class VacancyDetailComponent implements OnInit {
 
   handleFile(file: File): void {
     if (this.isAllowedExtension(file.type)) {
-      this.selectedFile = file;
+      // this.selectedFile = file;
       this.fileName = file.name;
       console.log('Selected file:', file);
     } else {
@@ -87,36 +137,36 @@ export class VacancyDetailComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.applyForm.valid && this.selectedFile) {
-      const formData = new FormData();
+    // if (this.applyForm.valid && this.selectedFile) {
+    //   const formData = new FormData();
       
-      const lastName = this.applyForm.get('lastName')?.value || '';
-      const firstName = this.applyForm.get('firstName')?.value || '';
-      const phone = this.applyForm.get('phone')?.value || '';
-      const email = this.applyForm.get('email')?.value || '';
+    //   const lastName = this.applyForm.get('lastName')?.value || '';
+    //   const firstName = this.applyForm.get('firstName')?.value || '';
+    //   const phone = this.applyForm.get('phone')?.value || '';
+    //   const email = this.applyForm.get('email')?.value || '';
   
-      formData.append('lastName', lastName);
-      formData.append('firstName', firstName);
-      formData.append('phone', phone);
-      formData.append('email', email);
+    //   formData.append('lastName', lastName);
+    //   formData.append('firstName', firstName);
+    //   formData.append('phone', phone);
+    //   formData.append('email', email);
   
-      if (this.selectedFile) {
-        formData.append('file', this.selectedFile);
-      }
+    //   if (this.selectedFile) {
+    //     formData.append('file', this.selectedFile);
+    //   }
 
-      // Проверяем содержимое formData с помощью forEach
-      formData.forEach((value, key) => {
-        console.log(`${key}:`, value);
-      });
+    //   // Проверяем содержимое formData с помощью forEach
+    //   formData.forEach((value, key) => {
+    //     console.log(`${key}:`, value);
+    //   });
   
-      // Пример отправки данных
-      // this.yourService.submitForm(formData).subscribe(response => {
-      //   console.log('Ответ сервера:', response);
-      // });
-    } else {
-      console.log('Форма невалидна или файл не выбран');
-      this.applyForm.markAllAsTouched();
-    }
+    //   // Пример отправки данных
+    //   // this.yourService.submitForm(formData).subscribe(response => {
+    //   //   console.log('Ответ сервера:', response);
+    //   // });
+    // } else {
+    //   console.log('Форма невалидна или файл не выбран');
+    //   this.applyForm.markAllAsTouched();
+    // }
   }
   
 }

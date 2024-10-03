@@ -1,6 +1,6 @@
 .milli-card{ 
     margin: none;
-   padding:3% 10% ;
+   padding:3% 5% ;
    background-color: #f8f9fa;
 
    .card-container {
@@ -61,7 +61,7 @@
      }
    
      .card-image {
-       width: 50%;
+    
        padding-top: 52px;
        align-self: flex-end; 
        @media (max-width: 1024px) {
@@ -234,6 +234,11 @@ box-sizing: border-box;
       }
 
       }
+      .info-title-1{
+        font-size: 18px;
+        color: #475569;
+        font-weight: 500;
+     }
     
       .info-detail {
      width: 70%;

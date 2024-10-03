@@ -5,6 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { transition } from '@angular/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
   standalone: true,

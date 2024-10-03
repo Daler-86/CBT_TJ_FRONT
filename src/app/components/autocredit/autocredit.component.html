@@ -1,0 +1,247 @@
+<div class="barakat">
+    <div class="card-container">
+        <div class="card-info">
+          <h2 class="card-title">Автокредит</h2>
+          <p class="card-description">
+            Данный кредитный продукт предназначен для физических и юридических лиц, а также частных предпринимателей.
+          </p>
+       
+          <div class="card-buttons">
+            <button class="btn-primary">Получить кредит</button>  
+          </div>
+        </div>
+        <div class="card-image">
+          <img class="card" src="../../../assets/icons/cre.png" alt="Auto Credit" />
+       
+        </div>
+      </div>
+
+        
+  <div class="container">
+    <h1>Тарифы и условия</h1>
+    
+
+    <div class="content">
+    <div class="info-container">
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+            Цель кредита
+        </div>
+        <div class="info-title"> 
+            Покупка автомобиля        </div>
+  
+      </div>
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+            Сумма кредита        </div>
+        <div class="info-title"> 
+            от 50 000 до 300 000 сомони
+        </div>
+  
+      </div>
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+            Процентная ставка        </div>
+        <div class="info-title"> 
+            от 20% до 25% годовых          <div class="info-detail">в сомони</div>
+        </div>
+        <div class="info-title"> 
+            от 13% до 15% годовых
+            <div class="info-detail">в долларах США</div>
+        </div>
+  
+      </div>
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+            Срок кредита
+        </div>
+        <div class="info-title"> 
+            До 36 месяца.
+        </div>
+  
+      </div>
+      <div class="info-box-limits" >
+        <div class="info-title-1">
+            Обеспечение кредита
+        </div>
+        <div class="info-title"> 
+            Автомобиль
+        </div>
+  
+      </div>
+    </div>
+    </div>
+
+
+
+  </div> 
+
+  <div class="container-2">
+    <h1>Перечень необходимых документов</h1>
+<div class="box">
+    <div class="box-details ">
+        <img src="../../../assets/icons/User Id.svg" alt="">
+        <p>Паспорт гражданина 
+            Республики Таджикистан 
+            (оригинал)</p>
+    </div>
+    <div class="box-details ">
+        <img src="../../../assets/icons/Document.svg" alt="">
+        <p>Справка о заработной плате за 6 месяцев</p>
+    </div>
+    <div class="box-details">
+        <img src="../../../assets/icons/Diploma Verified.svg" alt="">
+        <p>Копия трудовой книжки</p>
+    </div>
+    <div class="box-details">
+        <img src="../../../assets/icons/File Favourite.svg" alt="">
+        <p>ИНН (оригинал)</p>
+    </div>
+</div>
+
+
+  </div>
+
+  <div class="container-2">
+    <h1>Перечень необходимых документов для частных предпринимателей:</h1>
+<div class="box">
+    <div class="box-details card">
+        <img src="../../../assets/icons/User Id.svg" alt="">
+        <p>Паспорт гражданина 
+            Республики Таджикистан 
+            (оригинал)</p>
+    </div>
+    <div class="box-details card">
+        <img src="../../../assets/icons/Book.svg" alt="">
+        <p>Копия патента или свидетельство о предпринимательстве</p>
+    </div>
+    <div class="box-details card">
+        <img src="../../../assets/icons/File Favourite.svg" alt="">
+        <p>ИНН (оригинал)</p>
+    </div>
+</div>
+
+
+  </div>
+
+
+
+  <div class="container-3">
+    <h1>Онлайн заявка на кредит</h1>
+  <div class="calculator">
+ 
+  
+    <div  class="calculator-content">
+      <div class="calculator-form"> 
+      
+  
+        <p>Валюта:</p>
+<div class="radio-group">
+  <label class="custom-radio">
+    <input type="radio" name="currency" value="somoni" [(ngModel)]="selectedCurrency">
+    <span class="radio-btn"><i class="icon"></i></span>
+    Сомони
+  </label>
+  <label class="custom-radio">
+    <input type="radio" name="currency" value="usd" [(ngModel)]="selectedCurrency">
+    <span class="radio-btn"><i class="icon"></i></span>
+    Доллар США
+  </label>
+</div>
+        <!-- Поле ввода суммы кредита -->    
+        <label for="loanAmount">Стоимость авто</label>
+        <div class="input-slider-container">
+          <input type="text"  [(ngModel)]="loanAmount" (input)="onLoanAmountChange($event)" class="loan-input" />
+          
+          <!-- Слайдер суммы кредита -->
+          <input class="range loan-slider-auto" type="range" id="loanAmountRange" min="50000" max="300000" step="1000"  [(ngModel)]="loanAmount" (input)="onLoanAmountChange($event)">
+        </div>
+        <!-- Метки слайдера -->
+        <div class="range-labels">
+          <span *ngFor="let value of rangeValues">{{ value }}</span>
+        </div>
+        <label for="loanAmount">Предоплата</label>
+        <div class="input-slider-container">
+          <input type="text" [(ngModel)]="downPayment" (input)="onDownPaymentChange($event)" class="loan-input" />
+          
+          <!-- Слайдер суммы кредита -->
+          <input class="range loan-slider-prepayment" type="range" id="loanAmountRange" min="20000" max="200000" step="1000" [(ngModel)]="downPayment" (input)="onDownPaymentChange($event)">
+        </div>
+      
+      
+        <label>{{"Loan term" | translate}}</label>
+        <div class="loan-terms">
+          <button *ngFor="let term of loanTerms" (click)="selectTerm(term)" [class.active]="selectedTerm === term">{{ term }}</button>
+        </div>
+      
+        <p>Все расчеты являются предварительными и могут отличаться от фактически полученных</p>
+   
+          
+    </div>
+      
+    
+<div class="result">
+      <div class="calculator-result">
+        <p> {{"Monthly payment"|translate}}</p>
+        <h3>{{ calculateMonthlyPayment() }}с.</h3>
+        <p>{{ "Interest rate"|translate}}</p>
+        <h3>{{ interestRate }}%</h3>
+        <button (click)="applyForLoan()">{{"Apply for a loan"|translate}}</button>
+      </div>
+      <div class="calculator-result">
+        <div class="info">
+            <img src="../../../assets/icons/Info Circle.svg" alt="">
+        <h4>Онлайн заявки принимаются и рассматриваются в будние дни 
+            с 8:00 до 17:00.</h4></div>
+      </div>
+    </div>
+
+
+  </div>
+    <!-- Добавьте контент для других вкладок (deposit и car) аналогичным образом -->
+  </div>
+
+  </div>
+
+<div class="container-4">
+  <h1>Как оформить покупку:</h1>
+  <div class="box">
+    <div class="box-details">
+      <img src="../../../assets/icons/Frame.svg" alt="">
+      <p>Выберите авто в автосалоне 
+        или предложите сами</p>
+    </div>
+
+    <div class="box-details">
+      <img src="../../../assets/icons/Frame 831885718.svg" alt="">
+      <p>Отправьте заявку с помощью 
+        нашей формы ниже</p>
+    </div>
+
+    <div class="box-details">
+      <img src="../../../assets/icons/Frame2.svg" alt="">
+      <p>Рассмотрим вашу заявку 
+        в течение нескольких дней</p>
+    </div>
+  </div>
+</div>
+
+<div class="container-5">
+  <h1>Оставьте заявку</h1>
+<div class="contact">
+  <form class="custom-form">
+    <div class="form-group">
+      <input type="text" placeholder="Полное имя *" required class="required-input">
+    </div>
+  
+    <div class="form-group">
+      <input type="text" placeholder="Мобильный телефон *" required class="required-input">
+    </div>
+  
+    <button type="submit" class="submit-button">Отправить</button>
+
+    <p>Нажимая «Получить», вы соглашаетесь на <span>обработку персональных данных</span></p>
+  </form>
+</div>
+</div>
+</div>

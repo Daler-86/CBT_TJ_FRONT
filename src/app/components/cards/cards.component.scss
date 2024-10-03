@@ -1,6 +1,6 @@
 .cards{
     margin: none;
-   padding:3% 10% ;
+   padding:3% 5% ;
    background-color: #f8f9fa;
     h1{
     font-size: 42px;
@@ -75,19 +75,20 @@ align-items: center;
         grid-template-columns: 1fr 1fr;
         justify-content: space-between;
         margin: 45px 0;
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             display: block;
          }
         .currency-info,
         .service-info {
-          width: 48%;
-          @media (max-width: 1024px) {
-            width: 100%;
-         }
+          width: 90%;
+      
           .title {
             font-weight: 700;
             font-size: 24px;
             margin-bottom: 5px;
+            @media (max-width: 768px) {
+             margin-top: 20px ;
+           }
           }
   
           .description {
@@ -138,6 +139,10 @@ align-items: center;
       @media (max-width: 1024px) {
         width: 100%;
       }
+      @media (max-width: 1320px) {
+        align-self: center;
+      }
+
       img{
         width: 100%;
       }
