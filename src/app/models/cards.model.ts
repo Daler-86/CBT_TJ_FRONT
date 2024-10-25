@@ -125,3 +125,9 @@ title:string;
 description:string;
 sort_id:number
 }
+
+export interface SaveCard{
+  status:string;
+  title:string;
+  // card_order:
+}

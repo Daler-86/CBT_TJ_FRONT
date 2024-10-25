@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CardBrand, CardList,CardBrandsResponse, CardContentItem, CardHelpfulDocument, CardLimits, CardOperations, CardServices, CardFaqs } from '../models/cards.model';
 import { LanguagesService } from '../languages.service';
@@ -9,28 +10,18 @@ import { switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CardsService {
-  private apiUrlCardList = 'http://172.16.16.88:9009/api/v1/card/list';
-  private apiUrlCardBrands="http://172.16.16.88:9009/api/v1/card/by-brand/1";
-  private apiUrlCardByBrand="http://172.16.16.88:9009/api/v1/card/by-brand/";
-  private apiUrlCardByType="http://172.16.16.88:9009/api/v1/card/by-type/{id}";
-  private apiUrlCardContentItems="http://172.16.16.88:9009/api/v1/card/content-items/";
-  private apiUrlCardhDocuments="http://172.16.16.88:9009/api/v1/card/h-documents/";
-  private apiUrlCardLimits="http://172.16.16.88:9009/api/v1/card/limits/";
-  private apiUrlCardOperations="http://172.16.16.88:9009/api/v1/card/operations/";
-  private apiUrlCardServices="http://172.16.16.88:9009/api/v1/card/services/";
-  private apiUrlCardTypes="http://172.16.16.88:9009/api/v1/card/types";
-  private apiUrlCardFaqs="http://172.16.16.88:9009/api/v1/card/faqs/"
-
+  private baseUrl = 'http://172.16.16.88:9009/api/v1'
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
 
-  getCardList(): Observable<CardList> {
+  getCardList(personTypeId: number, brandId: number): Observable<CardList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
-          'accept': 'application/json',
-          'Language': lang  // Установка динамического заголовка
+          'Accept': 'application/json',
+          'Language': lang  // Setting the dynamic language header
         });
-        return this.http.get<CardList>(this.apiUrlCardList, { headers });
+        const url = `${this.baseUrl+'/card/by-brand/'+personTypeId}/${brandId}`;
+        return this.http.get<CardList>(url, { headers });
       })
     );
   }
@@ -40,7 +31,7 @@ export class CardsService {
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<CardBrandsResponse>(this.apiUrlCardBrands, { headers });
+    return this.http.get<CardBrandsResponse>(this.baseUrl+'/card/brands', { headers });
   }))
   }
   getCardContentItem(cardId: number):Observable<CardContentItem>{
@@ -51,7 +42,7 @@ export class CardsService {
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<CardContentItem>(`${this.apiUrlCardContentItems}${cardId}`, { headers });
+    return this.http.get<CardContentItem>(this.baseUrl+'/card/content-items/'+cardId, { headers });
      }) )
   }
   getCardhDocuments(cardId:number):Observable<CardHelpfulDocument>{
@@ -61,11 +52,9 @@ export class CardsService {
           'accept': 'application/json',
           'Language': lang  // Установка динамического заголовка
         });
-    return this.http.get<CardHelpfulDocument>(`${this.apiUrlCardhDocuments}${cardId}`, { headers });
+    return this.http.get<CardHelpfulDocument>(`${this.baseUrl+'/card/h-documents/'}${cardId}`, { headers });
       }))
   }
-
-
   getCardLinits(cardId:number):Observable<CardLimits>{
 
     return this.languageService.language$.pipe(
@@ -74,7 +63,7 @@ export class CardsService {
           'accept': 'application/json',
           'Language': lang  // Установка динамического заголовка
         });
-    return this.http.get<CardLimits>(`${this.apiUrlCardLimits}${cardId}`, { headers });
+    return this.http.get<CardLimits>(`${this.baseUrl+'/card/limits/'}${cardId}`, { headers });
       }))
   }
   getCardOperation(cardId:number):Observable<CardOperations>{
@@ -85,7 +74,7 @@ export class CardsService {
           'accept': 'application/json',
           'Language': lang  // Установка динамического заголовка
         });
-    return this.http.get<CardOperations>(`${this.apiUrlCardOperations}${cardId}`, { headers });
+    return this.http.get<CardOperations>(`${this.baseUrl+'/card/operations/'}${cardId}`, { headers });
       }))
   }
   getCardServices(cardId:number):Observable<CardServices>{
@@ -96,7 +85,7 @@ export class CardsService {
           'Language': lang  // Установка динамического заголовка
         });
     
-    return this.http.get<CardServices>(`${this.apiUrlCardServices}${cardId}`, { headers });
+    return this.http.get<CardServices>(`${this.baseUrl+'/card/services/'}${cardId}`, { headers });
   }
       ))
   }
@@ -108,11 +97,10 @@ export class CardsService {
           'Language': lang  // Установка динамического заголовка
         });
     
-    return this.http.get<CardFaqs>(`${this.apiUrlCardFaqs}${cardId}`, { headers });
+    return this.http.get<CardFaqs>(`${this.baseUrl+"/card/faqs/"}${cardId}`, { headers });
   }
       ))
   }
-
   getCardByBrand(cardId:number):Observable<CardList>{
     return this.languageService.language$.pipe(
       switchMap(lang => {
@@ -121,9 +109,21 @@ export class CardsService {
           'Language': lang  // Установка динамического заголовка
         });
     
-    return this.http.get<CardList>(`${this.apiUrlCardByBrand}${cardId}`, { headers });
+    return this.http.get<CardList>(`${this.baseUrl+'/card/by-brand/'}${cardId}`, { headers });
   }
       ))
+  }
+  submitCardByBrand(cardData: any): Observable<any> {
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'Accept': 'application/json',
+          'Language': lang  // Динамическая установка языкового заголовка
+        });
+        
+         return this.http.post(this.baseUrl+'/card/order/save', cardData, { headers });
+      })
+    );
   }
 }
 

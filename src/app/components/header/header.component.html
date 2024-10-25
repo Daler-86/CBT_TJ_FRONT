@@ -13,7 +13,7 @@
     
   
  <div class="custom-dropdown ">
-              <div class="dropdown-selected contact" (click)="toggleDropdown($event)">
+              <div class="dropdown-selected contact" (click)="toggleDropdown1($event)">
                 
                  <img src="../../../assets/icons/Global.svg" alt="">   
                  <p class="p">{{selectedLanguage==='1'?"Тоҷ":selectedLanguage==='2'?"Рус":"En"}}</p> 
@@ -38,49 +38,24 @@
       <img width="200px" src="./../assets/icons/logoblack.svg" alt="">
       </div></a>
 
+     
       <ul class="menu" [class.active]="menuActive">
-        <li>
-          <a >
-            <div class="custom-dropdown" (mouseenter)="toggleDropdown1($event)" (mouseleave)="closeDropdown1()">
-              <div class="dropdown-selected contact">
-                <p class="p">{{"For private individuals" | translate}}</p>
-              </div>
-              <div class="dropdown-options" *ngIf="dropdownOpen1">
-                <div class="dropdown-option" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngFor="let option of options" (click)="selectOption(option, $event)">
-                  <p>{{ option.label }}</p>
-                </div>
+        <li *ngFor="let menu of menus; let i = index">
+          <div *ngIf="menu.items && menu.items.length > 0" class="custom-dropdown" (mouseenter)="toggleDropdown(i, $event)" (mouseleave)="closeDropdown(i)">
+            <div class="dropdown-selected contact">
+              <a>{{ menu.name | translate }}</a>
+            </div>
+            <div class="dropdown-options" *ngIf="dropdownOpenMap[i]">
+              <div class="dropdown-option" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let item of menu.items" [routerLink]="item.route" (click)="selectOption(item, i, $event,menu)">
+                <p>{{ item.name }}</p>
               </div>
             </div>
-          </a>
-        </li>
-        
-        <li>
-          <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/business" routerLinkActive="active">{{"Business" | translate}}</a>
-        </li>
-        
-        <li>
-          <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/mobile-banking" routerLinkActive="active">{{"Mobile banking" | translate}}</a>
-        </li>
-        
-        <li>
-          <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/vacancies" routerLinkActive="active">{{"Vacancies" | translate}}</a>
-        </li>
-      
-        <li>
-          <a href="">
-            <div class="custom-dropdown" (mouseenter)="toggleDropdown2($event)" (mouseleave)="closeDropdown2()">
-              <div class="dropdown-selected contact">
-                <p class="p">{{"More" | translate}}</p>
-              </div>
-              <div class="dropdown-options" *ngIf="dropdownOpen2">
-                <div class="dropdown-option" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  *ngFor="let option of Options" (click)="Option(option, $event)" [routerLink]="option.route">
-                  <p>{{ option.label }}</p>
-                </div>
-              </div>
-            </div>
-          </a>
+          </div>
+          <a *ngIf="menu.items.length===0" href="">{{menu.name}}</a>
         </li>
       </ul>
+      
+
       
       <div class="burger" (click)="toggleMenu()">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

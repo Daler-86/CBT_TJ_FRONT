@@ -1,78 +1,83 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CardsService } from '../../api/cards.service';
 import { Card, CardBrand } from '../../models/cards.model'; 
+import { MenuService } from '../../api/menu.service';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-cards',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgIf, NgFor],
+  imports: [RouterLink, RouterModule, TranslateModule, NgIf, NgFor,CommonModule],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.scss'
 })
 
-export class CardsComponent {
-
+export class CardsComponent implements OnInit {
   cardList: any[] = [];
-  cardBrands:any[]=[]
-  contentItem:any[]=[]
-  constructor(private cardsService: CardsService) {}
+  cardBrands: any[] = [];
+  contentItem: any[] = [];
+  personTypeId: number = 1;
+   selectedBrandId = new BehaviorSubject<number>(1);
+  selectedBrandId$ = this.selectedBrandId.asObservable();
+  currentBrandId: number = 1; 
+  selectedTab: string = 'all';
+
+
+  constructor(private cardsService: CardsService, private menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.cardsService.getCardList().subscribe(
+    this.menuService.currentPersonTypeId.subscribe(id => {
+      this.personTypeId = id;
+      this.loadCards();
+    });
+
+    this.selectedBrandId$.subscribe(() => {
+      this.loadCards();
+    });
+
+    this.loadCardBrands();
+  }
+
+  loadCards() {
+    this.cardsService.getCardList(this.personTypeId, this.selectedBrandId.getValue()).subscribe(
       (response) => {
         this.cardList = response.data.cards;
+        console.log('cardList updated:', this.cardList);
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
       }
     );
-
+  }
+  loadCardBrands() {
     this.cardsService.getCardBrands().subscribe(
       (response) => {
         this.cardBrands = response.data.card_brands;
-        console.log(response)
+        console.log(response);
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
       }
     );
   }
-  selectedTab: string = 'all';
-  selectTab(tab: string) {
-    this.selectedTab = tab;
-   
+
+  selectBrand(brandId: number) {
+    this.selectedBrandId.next(brandId);
+    this.currentBrandId = brandId;
   }
 
-  selectedFaqIndex: number | null = null;
-
-  faqs = [
-    {
-      question: 'Как заказать карту Visa от Коммерцбанка?',
-      answer: 'Для того чтобы заказать карту Visa, нужно ...'
-    },
-    {
-      question: 'Какой срок действия у карт?',
-      answer: 'Срок действия карт составляет ...'
-    },
-    {
-      question: 'Где можно скачать реквизиты Visa?',
-      answer: 'Реквизиты можно скачать на ...'
-    },
-    {
-      question: 'Как мне установить или изменить ПИН-код карты?',
-      answer: 'Для установки или изменения ПИН-кода ...'
-    }
-  ];
-
-  toggleFaq(index: number) {
-    this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
+  selectTab(tab: string) {
+    this.selectedTab = tab;
   }
   onCardClick(cardId: number) {
     this.cardsService.getCardContentItem(cardId).subscribe(
       (details) => {
-        this.contentItem=details.data.card_content_items
+        this.contentItem = details.data.card_content_items;
         console.log(details);
       },
       (error) => {
@@ -80,4 +85,5 @@ export class CardsComponent {
       }
     );
   }
+
 }

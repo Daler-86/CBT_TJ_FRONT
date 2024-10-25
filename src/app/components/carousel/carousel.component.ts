@@ -1,6 +1,8 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { MenuService } from '../../api/menu.service';
+import { mainGalleries } from '../../models/menu.model';
 
 interface Slide {
   title: string;
@@ -30,6 +32,18 @@ export class CarouselComponent {
       image: '../../assets/icons/logo.png'
     },
   ];
+  galleries:mainGalleries[]=[]
+  constructor(private menuService:MenuService){}
+  ngOnInit():void{
+    this.menuService.getMainGalleries().subscribe(
+      (response) => {
+        this.galleries = response.data.main_galleries;
+      },
+      (error) => {
+        console.error('Ошибка при запросе данных', error);
+      }
+    );
+  }
 
   currentSlide: number = 0;
 

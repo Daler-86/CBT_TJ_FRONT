@@ -13,6 +13,7 @@ export class LanguagesService {
   constructor() {}
 
   setLanguage(lang: string) {
+    console.log(lang)
     this.language.next(lang);
   }
 }

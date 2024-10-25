@@ -1,22 +1,17 @@
-<p>Kredit barakat</p>
-
 <div class="barakat">
     <div class="card-container">
         <div class="card-info">
-          <h2 class="card-title">Баракат</h2>
+          <h2 class="card-title">{{credits[0].title}}</h2>
           <p class="card-description">
-            Данный кредитный продукт предназначен для физических и юридических лиц, а также частных предпринимателей.
+            {{credits[0].description}}
           </p>
        
           <div class="card-buttons">
-            <button class="btn-primary">Получить кредит</button>
-     
-           
-            
+            <button class="btn-primary">Получить кредит</button>  
           </div>
         </div>
         <div class="card-image">
-          <img class="card" src="../../../assets/icons/credit 1.png" alt="Barakat" />
+          <img class="card"  [src]="'http://172.16.16.88:9009/storage/' + credits[0].upload_file" alt="Barakat" />
        
         </div>
       </div>
@@ -24,60 +19,19 @@
         
   <div class="container">
     <h1>Тарифы и условия</h1>
-    
-
     <div class="content">
     <div class="info-container">
-      <div class="info-box-limits" >
+    
+      <div class="info-box-limits" *ngFor="let tariff of tariffs" >
         <div class="info-title-1">
-            Сумма кредита
+            {{tariff.name}}
         </div>
-        <div class="info-title"> 
-            до 30 000 сомони
-        </div>
-  
+        <div class="info-title" *ngFor="let item of tariff.items" > 
+            {{item.title}}
+            <div class="info-detail">{{item.description}}</div>
+        </div>  
       </div>
-      <div class="info-box-limits" >
-        <div class="info-title-1">
-            Валюта кредита
-        </div>
-        <div class="info-title"> 
-            сомони
-        </div>
-  
-      </div>
-      <div class="info-box-limits" >
-        <div class="info-title-1">
-            Процентная ставка
-        </div>
-        <div class="info-title"> 
-            25% годовых
-            <div class="info-detail">Новым клиентам</div>
-        </div>
-        <div class="info-title"> 
-            20% годовых
-            <div class="info-detail">Повторным клиентам</div>
-        </div>
-  
-      </div>
-      <div class="info-box-limits" >
-        <div class="info-title-1">
-            Срок кредита
-        </div>
-        <div class="info-title"> 
-            До 36 месяца.
-        </div>
-  
-      </div>
-      <div class="info-box-limits" >
-        <div class="info-title-1">
-      Обеспечение кредита
-        </div>
-        <div class="info-title"> 
-            1 поручитель
-        </div>
-  
-      </div>
+
     </div>
     </div>
 
@@ -88,23 +42,9 @@
   <div class="container-2">
     <h1>Перечень необходимых документов</h1>
 <div class="box">
-    <div class="box-details">
-        <img src="../../../assets/icons/User Id.svg" alt="">
-        <p>Паспорт гражданина 
-            Республики Таджикистан 
-            (оригинал)</p>
-    </div>
-    <div class="box-details">
-        <img src="../../../assets/icons/Document.svg" alt="">
-        <p>Справка о заработной плате за 6 месяцев</p>
-    </div>
-    <div class="box-details">
-        <img src="../../../assets/icons/Diploma Verified.svg" alt="">
-        <p>Копия трудовой книжки</p>
-    </div>
-    <div class="box-details">
-        <img src="../../../assets/icons/File Favourite.svg" alt="">
-        <p>ИНН (оригинал)</p>
+    <div class="box-details" *ngFor="let document of documents">
+        <img [src]="'http://172.16.16.88:9009/storage/' + document.upload_file" alt="">
+        <p>{{document.name}}</p>
     </div>
 </div>
 
@@ -140,35 +80,80 @@
         </div>
       
         <p>Все расчеты являются предварительными и могут отличаться от фактически полученных</p>
-        <form class="custom-form">
+     <div class="application-form-container" >
+       <form class="form" (ngSubmit)="submitApplication()"> 
+        <div class="form-group">
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
+            Это поле обязательно для заполнения
+          </div> 
+          <input 
+            type="text" 
+            id="phone" 
+            placeholder="Полное имя *" 
+            class="form-control" 
+            required 
+            [(ngModel)]="model.client_name" 
+            name="phone"
+            #phone="ngModel">
+         
+        </div>
+        <div class="form-group">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+            Это поле обязательно для заполнения
+          </div> 
+          <input 
+            type="text" 
+            id="name" 
+            placeholder="Мобильный телефон *" 
+            class="form-control" 
+            required 
+            [(ngModel)]="model.phone" 
+            name="name"
+            #name="ngModel">
+        </div>   
             <div class="form-group">
-              <input type="text" placeholder="Полное имя *" required class="required-input">
+              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+                Это поле обязательно для заполнения
+              </div> 
+              <input 
+                type="text" 
+                id="name" 
+                placeholder="Цель кредита *" 
+                class="form-control" 
+                required 
+                [(ngModel)]="model.purpose" 
+                name="name"
+                #name="ngModel">
+            </div>  
+            <div class="custom-dropdown"  >
+              <div class="dropdown-selected ">
+               <div class="form-group" >
+            <div class="dropdown-selected form-control" (click)="toggleDropdown($event)" >
+              {{officeName}}
             </div>
-          
-            <div class="form-group">
-              <input type="text" placeholder="Мобильный телефон *" required class="required-input">
-            </div>
-          
-            <div class="form-group">
-              <input type="text" placeholder="Цель кредита *" required class="required-input">
-            </div>
-          
-            <div class="form-group">
-              <div class="select-wrapper" >
-                <select id="bankBranch" required class="required-input" >
-                  <option value="">Выберите отделение банка</option>
-                  <!-- Добавьте дополнительные опции здесь -->
-                </select>
-                <span class="icon"><img src="../../../assets/icons/Map Point1.svg" alt=""></span> <!-- Это FontAwesome иконка для карты -->
+          </div>
+              </div>
+              <div class="dropdown-options" *ngIf="dropdownOpen">
+                <div class="dropdown-option"  *ngFor="let item of offices"  (click)="selectOption($event, item)">
+                  <p>{{ item.name }}</p>
+                </div>
               </div>
             </div>
-          
             <div class="form-group">
-              <input type="text" placeholder="Место работы и адрес" class="required-input">
-            </div>
-          
-            <button type="submit" class="submit-button">Отправить</button>
+              <input 
+                type="text" 
+                id="name" 
+                placeholder="Место работы и адрес" 
+                class="form-control" 
+                required 
+                [(ngModel)]="model.address" 
+                name="name"
+                #name="ngModel">
+            </div>  
+          <p>Если у вас нет постоянного места работы, то можете оставить поле пустым.</p>
+            <button type="submit" class="btn-primary" >Отправить</button>
           </form>
+        </div>
           
     </div>
       

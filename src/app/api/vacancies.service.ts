@@ -10,22 +10,7 @@ import { VacancyCategory, VacancyContent,VacancyGallery,VacancyItem, VacancyStat
 })
 export class VacanciesService {
 
-private apiUrlVacancyContent ="http://172.16.16.88:9009/api/v1/vacancy/content"
-private apiUrlVacancyItem='http://172.16.16.88:9009/api/v1/vacancy/item'
-private apiUrlVacancyStatistic="http://172.16.16.88:9009/api/v1/vacancy/statistic"
-private apiUrlVacancyGallery="http://172.16.16.88:9009/api/v1/vacancy/gallery"
-private apiUrlVacancyCategory="http://172.16.16.88:9009/api/v1/vacancy/category"
-private apiUrlVacancyList="http://172.16.16.88:9009/api/v1/vacancy/list"
-
-private apiUrlVacancyPersonalQuality='http://172.16.16.88:9009/api/v1/vacancy/personal-quality/'
-private apiUrlVacancyCondition="http://172.16.16.88:9009/api/v1/vacancy/condition/"
-private apiUrlVacancyEducation="http://172.16.16.88:9009/api/v1/vacancy/education/"
-private apiUrlVacancyExperience="http://172.16.16.88:9009/api/v1/vacancy/experience/"
-private apiUrlVacancySkill="http://172.16.16.88:9009/api/v1/vacancy/skill/"
-
-private apiUrlVacancyByCategory="http://172.16.16.88:9009/api/v1/vacancy/by-category-id/"
-private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region-id/"
-
+  private baseUrl='http://172.16.16.88:9009/api/v1'
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
 
   getVacancyContent(): Observable<VacancyContent> {
@@ -35,7 +20,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
           'accept': 'application/json',
           'Language': lang  // Установка динамического заголовка
         });
-        return this.http.get<VacancyContent>(this.apiUrlVacancyContent, { headers });
+        return this.http.get<VacancyContent>(this.baseUrl+"/vacancy/content", { headers });
       })
     );
   }
@@ -47,7 +32,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
           'accept': 'application/json',
           'Language': lang  // Установка динамического заголовка
         });
-        return this.http.get<VacancyItem>(this.apiUrlVacancyItem, { headers });
+        return this.http.get<VacancyItem>(this.baseUrl+'/vacancy/item', { headers });
       })
     );
   }
@@ -59,7 +44,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
           'accept': 'application/json',
           'Language': lang  // Установка динамического заголовка
         });
-        return this.http.get<VacancyStatistic>(this.apiUrlVacancyStatistic, { headers });
+        return this.http.get<VacancyStatistic>(this.baseUrl+"/vacancy/statistic", { headers });
       })
     );
   }
@@ -71,7 +56,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
           'accept': 'application/json',
           'Language': lang  // Установка динамического заголовка
         });
-        return this.http.get<VacancyGallery>(this.apiUrlVacancyGallery, { headers });
+        return this.http.get<VacancyGallery>(this.baseUrl+'/vacancy/gallery', { headers });
       })
     );
   } 
@@ -83,7 +68,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
           'accept': 'application/json',
           'Language': lang  
         });
-        return this.http.get<VacancyCategory>(this.apiUrlVacancyCategory, { headers });
+        return this.http.get<VacancyCategory>(this.baseUrl+'/vacancy/category', { headers });
       })
     );
   } 
@@ -95,14 +80,11 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
           'accept': 'application/json',
           'Language': lang  
         });
-        return this.http.get<VacancyList>(this.apiUrlVacancyList, { headers });
+        return this.http.get<VacancyList>(this.baseUrl+'/vacancy/list', { headers });
       })
     );
   } 
 
-
-
-  
   getPersonalQuality(cardId: number):Observable<PersonalQuality>{
     return this.languageService.language$.pipe(
 
@@ -111,7 +93,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<PersonalQuality>(`${this.apiUrlVacancyPersonalQuality}${cardId}`, { headers });
+    return this.http.get<PersonalQuality>(`${this.baseUrl+'/vacancy/personal-quality/'}${cardId}`, { headers });
      }) )
   }
   getVacancyCondition(cardId: number):Observable<VacancyCondition>{
@@ -122,7 +104,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<VacancyCondition>(`${this.apiUrlVacancyCondition}${cardId}`, { headers });
+    return this.http.get<VacancyCondition>(`${this.baseUrl+'/vacancy/condition/'}${cardId}`, { headers });
      }) )
   }
   
@@ -134,7 +116,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<VacancyEducation>(`${this.apiUrlVacancyEducation}${cardId}`, { headers });
+    return this.http.get<VacancyEducation>(`${this.baseUrl+'/vacancy/education/'}${cardId}`, { headers });
      }) )
   }
 
@@ -146,7 +128,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<VacancyExperience>(`${this.apiUrlVacancyExperience}${cardId}`, { headers });
+    return this.http.get<VacancyExperience>(`${this.baseUrl+'/vacancy/experience/'}${cardId}`, { headers });
      }) )
   }
   getVacancySkill(cardId: number):Observable<VacancySkill>{
@@ -157,7 +139,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<VacancySkill>(`${this.apiUrlVacancySkill}${cardId}`, { headers });
+    return this.http.get<VacancySkill>(`${this.baseUrl+'/vacancy/skill/'}${cardId}`, { headers });
      }) )
   }
 
@@ -169,7 +151,7 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<VacancyList>(`${this.apiUrlVacancyByCategory}${cardId}`, { headers });
+    return this.http.get<VacancyList>(`${this.baseUrl+'/vacancy/by-category-id/'}${cardId}`, { headers });
      }) )
   }
   
@@ -181,9 +163,23 @@ private apiUrlVacancyByRegion="http://172.16.16.88:9009/api/v1/vacancy/by-region
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<VacancyList>(`${this.apiUrlVacancyByRegion}${cardId}`, { headers });
+    return this.http.get<VacancyList>(`${this.baseUrl+'/vacancy/by-region-id/'}${cardId}`, { headers });
      }) )
   }
   
+  uploadFile(file: File): Observable<any> {
+    const uploadData = new FormData();
+    uploadData.append('file', file, file.name);
+
+    const headers = new HttpHeaders({
+      'accept': 'application/json'
+    });
+
+    return this.http.post(this.baseUrl+'/file/upload', uploadData, { headers });
+  }
+
+  submitFormData(formData: any): Observable<any> {
+    return this.http.post(this.baseUrl+'/vacancy/order/save', formData);
+  }
 
 }

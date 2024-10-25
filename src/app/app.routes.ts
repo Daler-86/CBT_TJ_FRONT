@@ -22,33 +22,33 @@ export const routes: Routes = [
   { path: 'business', component: BusinessComponent, data: { breadcrumb: 'Бизнес' } },
   { path: 'mobile-banking', component: MobileBankingComponent, data: { breadcrumb: 'Мобильный банкинг' } },
   { path: 'vacancies', component: VacanciesComponent, data: { breadcrumb: 'Вакансии' } },
-  { path: 'cards', component: CardsComponent, data: { breadcrumb: 'Карты' } },
+  { path: 'card', component: CardsComponent, data: { breadcrumb: 'Карты' } },
   { path: 'vacancy-list', component: VacancyListComponent, data: { breadcrumb: 'Список вакансий' } },
   { path: 'vacancy-list/:id', component: VacancyDetailComponent, data: { breadcrumb: 'Детали вакансии' } },
   { path: 'card-details/:id', component: CardDetailsComponent, data: { breadcrumb: 'Детали карты' } },
   {
     path: 'credit',
-    component: CreditComponent, // Общий контейнер
+    component: CreditComponent, 
     children: [
       {
         path: '',
-        component: CreditOverviewComponent, // По умолчанию показывает обзор кредитов
+        component: CreditOverviewComponent, 
         data: { breadcrumb: 'Кредит' },
         
       },
       {
         path: 'credit-barakat',
-        component: CreditBarakatComponent, // Детальная информация о Кредит Баракат
+        component: CreditBarakatComponent, 
         data: { breadcrumb: 'Кредит Баракат' }
       },
       {
         path: 'credit-auto',
-        component: AutocreditComponent, // Детальная информация о Кредит Баракат
+        component: AutocreditComponent, 
         data: { breadcrumb: 'Автокредит ' }
       }
     ]
   }
-  // { path: 'credit/credit-barakat', component: CreditBarakatComponent, data: { breadcrumb: 'Кредит Баракат' } }
+
 ];
 
 

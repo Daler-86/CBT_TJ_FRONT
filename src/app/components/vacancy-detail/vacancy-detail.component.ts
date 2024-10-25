@@ -29,8 +29,10 @@ export class VacancyDetailComponent implements OnInit {
   education:vacancyEducation[]=[]
   experience:vacancyExperience[]=[]
   skill:vacancySkill[]=[]
-
-
+  selectedFile: File | null = null;
+  uploadFileId: number | null = null;
+  isSubmitted: boolean = false;
+  isError:boolean=false
   constructor(private fb: FormBuilder,private vacanciesService: VacanciesService,    private route: ActivatedRoute) {
     this.applyForm = this.fb.group({
       lastName: [''],
@@ -93,13 +95,6 @@ export class VacancyDetailComponent implements OnInit {
 
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      this.handleFile(file);
-    }
-  }
 
   onDrop(event: DragEvent): void {
     event.preventDefault();
@@ -135,38 +130,69 @@ export class VacancyDetailComponent implements OnInit {
   isAllowedExtension(fileType: string): boolean {
     return this.allowedExtensions.includes(fileType);
   }
+   onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      this.fileName = this.selectedFile.name;
+      this.uploadFile(); // Сразу загружаем файл после его выбора
+    }
+  }
+ uploadFile() {
+    if (this.selectedFile) {
+      this.vacanciesService.uploadFile(this.selectedFile)
+        .subscribe(
+          (response: any) => {
+            if (response.status === 'success') {
+              this.uploadFileId = response.data.upload_file.id; // Сохраняем ID загруженного файла
+              console.log('File uploaded successfully:', response);
+            }
+          },
+          (error) => {
+            console.error('File upload failed:', error);
+          }
+        );
+    }
+  }
 
-  onSubmit(): void {
-    // if (this.applyForm.valid && this.selectedFile) {
-    //   const formData = new FormData();
-      
-    //   const lastName = this.applyForm.get('lastName')?.value || '';
-    //   const firstName = this.applyForm.get('firstName')?.value || '';
-    //   const phone = this.applyForm.get('phone')?.value || '';
-    //   const email = this.applyForm.get('email')?.value || '';
-  
-    //   formData.append('lastName', lastName);
-    //   formData.append('firstName', firstName);
-    //   formData.append('phone', phone);
-    //   formData.append('email', email);
-  
-    //   if (this.selectedFile) {
-    //     formData.append('file', this.selectedFile);
-    //   }
+  onSubmit() {
+    if (this.applyForm.valid && this.uploadFileId !== null) {
+      const formData = {
+        email: this.applyForm.value.email,
+        first_name: this.applyForm.value.firstName,
+        last_name: this.applyForm.value.lastName,
+        phone: this.applyForm.value.phone,
+        upload_file_id: this.uploadFileId,
+        vacancy_id: 123 // Здесь укажите нужный ID вакансии
+      };
 
-    //   // Проверяем содержимое formData с помощью forEach
-    //   formData.forEach((value, key) => {
-    //     console.log(`${key}:`, value);
-    //   });
-  
-    //   // Пример отправки данных
-    //   // this.yourService.submitForm(formData).subscribe(response => {
-    //   //   console.log('Ответ сервера:', response);
-    //   // });
-    // } else {
-    //   console.log('Форма невалидна или файл не выбран');
-    //   this.applyForm.markAllAsTouched();
-    // }
+      this.vacanciesService.submitFormData(formData)
+      .subscribe(
+        (response) => {
+          console.log('Form submitted successfully:', response);
+          this.applyForm.reset(); // Очистка формы после успешной отправки
+          this.selectedFile = null; // Сбросить выбранный файл
+          this.fileName = ''; // Сбросить имя файла
+          this.uploadFileId = null; // Сбросить ID загруженного файла
+          this.isSubmitted = true; // Показать сообщение об успешной отправке
+
+          setTimeout(() => {
+            this.isSubmitted = false; // Скрыть сообщение через 30 секунд
+          }, 30000);
+        },
+        (error) => {
+          console.error('Form submission failed:', error);
+          this.isError = true; // Показать сообщение об ошибке
+
+          setTimeout(() => {
+            this.isError = false; // Скрыть сообщение через 30 секунд
+          }, 30000);
+        }
+      );
+       
+    } else {
+      console.warn('Form is not valid or file is not uploaded');
+    }
   }
   
 }

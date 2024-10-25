@@ -2,9 +2,14 @@
 
     <h1>{{"Bank cards"|translate}}</h1>
 
-<div class="btnCards">
-  <button *ngFor="let cBrand of cardBrands" class="active">{{cBrand.name}}</button>
-</div>
+    <div class="btnCards">
+      <button *ngFor="let cBrand of cardBrands" 
+              [ngClass]="{'active': cBrand.id ===  currentBrandId}"
+              (click)="selectBrand(cBrand.id)">
+        {{ cBrand.name }}
+      </button>
+    </div>
+
     <div class="content">
       <div class="card-container" *ngFor="let card of cardList">
         <div class="card-info">
@@ -32,16 +37,5 @@
     </div>
 
 
-    <div class="faq-container">
-        <h2 class="faq-title">Часто задаваемые вопросы</h2>
-        <div *ngFor="let faq of faqs; let i = index" class="faq-item">
-          <div class="faq-question" (click)="toggleFaq(i)">
-            <span>{{ faq.question }}</span>
-            <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
-          </div>
-          <div *ngIf="selectedFaqIndex === i" class="faq-answer">
-            {{ faq.answer }}
-          </div>
-        </div>
-      </div>
+ 
 </div>

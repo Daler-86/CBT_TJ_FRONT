@@ -3,11 +3,11 @@
     <p class="p">Выбирайте лучшее</p>
 <div class="container_1">
    
-    <div class="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/cards" routerLinkActive="active" >
+    <div [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/card" routerLinkActive="active" >
         <img src="../../assets/icons/img1.svg" alt="">
         <p> {{ "Cards"|translate}}</p>
     </div>
-    <div class="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/credit" routerLinkActive="active" >
+    <div  [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/credit" routerLinkActive="active" >
         <img src="../../assets/icons/img2.svg" alt="">
         <p>{{  "Loans"|translate}}</p>
     </div>
@@ -15,7 +15,7 @@
         <img src="../../assets/icons/img3.svg" alt="">
         <p>{{ "Transfers"|translate}}</p>
     </div>
-    <div class="">
+    <div [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/credit" routerLinkActive="active">
         <img src="../../assets/icons/img4.svg" alt="">
    <p>{{ "Car loan"|translate}}</p>
     </div>
@@ -103,7 +103,7 @@
             </div>
    <img src="../../../assets/icons/im1.svg" alt="">
         </div>
-        <div class="box">
+        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  routerLink="/vacancies" routerLinkActive="active">
             <div class="details">
                 <h3>{{ "Offices and ATMs"|translate}}</h3>
                 <p>{{"We are closer than you think"|translate}}</p>

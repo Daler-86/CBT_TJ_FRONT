@@ -5,6 +5,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { FavriComponent } from "../favri/favri.component";
+import { CreditService } from '../../api/credit.service';
+import { creditDocument, creditList, creditTariff } from '../../models/credit.model';
+import { officeList } from '../../models/region.model';
+import { RegionService } from '../../api/region.service';
 
 @Component({
   selector: 'app-credit-barakat',
@@ -17,11 +21,25 @@ export class CreditBarakatComponent {
   selectedTab: string = 'credit';
   loanAmount: number = 30000;
   rangeValues: number[] = [10000, 50000, 100000, 150000, 200000]; // Значения меток
-
+  cardId: number=0;
   selectedTerm: string = '1 год';
   interestRate: number = 30; 
   loanTerms: string[] = ['1 год', '2 года', '3 года', '4 года', '5 лет'];
+credits:creditList[]=[]
+tariffs:creditTariff[]=[]
+documents:creditDocument[]=[]
+offices:officeList[]=[]
+dropdownOpen:boolean=false
+officeName:string='Выберите отделение банка'
 
+model: any = {
+  address:'',
+  client_name: "",
+  credit_id: 1,
+  office_id: 0,
+  phone: "",
+  purpose: ""
+};
   selectTab(tab: string) {
     this.selectedTab = tab;
    
@@ -38,14 +56,74 @@ export class CreditBarakatComponent {
   applyForLoan() {
     alert('Вы оформили кредит на сумму ' + this.loanAmount + 'с.');
   }
+  submitApplication() {
+    debugger;
+    if (this.model.phone && this.model.client_name && this.model.office_id) {
+      console.log(this.model);
+      this.creditService.submitCredit(this.model).subscribe(resp =>{
+        console.log(resp);
+        
+      },(err =>{
+        console.log(err);
+      }));
+    }
 
+  }
   // loanAmount: number = 30000; // Начальное значение
   formattedLoanAmount: string = this.formatCurrency(this.loanAmount); // Отформатированное значение для отображения в поле ввода
- 
+  constructor(
+    private regionService:RegionService,
+    private creditService: CreditService,
+  ) { }
   ngOnInit() {
     this.updateSliderBackground();
+    this.loadCreditList(1);
+    this.loadCreditTariff(1);
+    this.loadOffice()
+    this.loadCreditDocument(1)
+  }
+  loadOffice(): void {
+    this.regionService.getOfficeList().subscribe(
+      (response) => {
+        this.offices = response.data.offices;
+      },
+      (error) => {
+        console.error('Ошибка при запросе данных', error);
+      }
+    );
+  }
+  loadCreditList(id: number): void {
+    this.creditService.getCreditList(id).subscribe(
+      (details) => { 
+        this.credits=details.data.credits
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
   }
 
+  loadCreditTariff(id: number): void {
+    this.creditService.getCreditTariff(id).subscribe(
+      (details) => { 
+        this.tariffs=details.data.credit_tariffs
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+  }
+
+  loadCreditDocument(id: number): void {
+    this.creditService.getCreditDocument(id).subscribe(
+      (details) => { 
+        this.documents=details.data.credit_documents
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+  }
   // Форматирование суммы для отображения в поле ввода
   formatCurrency(value: number): string {
     return new Intl.NumberFormat('ru-RU').format(value) + ' с.';
@@ -75,5 +153,18 @@ export class CreditBarakatComponent {
   // Метод для выбора срока кредита
   selectTerm(term: string) {
     this.selectedTerm = term;
+  }
+  toggleDropdown(event: Event) {
+    this.dropdownOpen = !this.dropdownOpen;
+    event.stopPropagation(); // Останавливаем распространение события
+  }
+  // @HostListener('document:click', ['$event'])
+  
+  selectOption( event: Event,item:officeList) {
+    this.officeName = item.name; // Обновляем имя для отображения
+    this.model.office_id = item.id; 
+    event.stopPropagation();
+    this.dropdownOpen = false;
+  
   }
 }

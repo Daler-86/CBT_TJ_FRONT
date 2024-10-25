@@ -83,32 +83,15 @@
   </div>
 
   </div>
-
-  <!-- Кнопка выбора файла -->
-
-
-  <!-- Кнопка отправки -->
   <button type="submit">Отправить</button>
 </form>
+<div *ngIf="isSubmitted" class="notification success-message">
+  Данные успешно отправлены! Мы свяжемся с вами в ближайшее время.
+</div>
 
-
-  
+<div *ngIf="isError" class="notification error-message animated">
+  ❌ Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.
+</div>
   
 </div>
-    <!-- <div 
-      class="file-drop-area" 
-      (drop)="onFileDropped($event)" 
-      (dragover)="onDragOver($event)"
-    >
-      <label >Перетащите или</label>
-   
-      <p *ngIf="fileName">{{ fileName }}</p>
-      <button for="resume" type="button">Загрузите CV</button>
-         <input 
-        type="file" 
-        id="resume" 
-        (change)="onFileChange($event)"
-        accept=".pdf, .doc, .docx, .jpg, .jpeg"
-      />
-      <small>Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)</small>
-    </div> -->
+    
