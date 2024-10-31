@@ -10,25 +10,22 @@
     <div *ngIf="selectedTab==='all'" class="content">
     
           
-          <div class="card-container">
+          <div class="card-container" *ngFor="let credit of credits ">
             <div class="card-info">
-              <h2 class="card-title">Баракат</h2>
+              <h2 class="card-title">{{credit.title}}
+              </h2>
               <p class="card-description">
-                Данный кредитный продукт предназначен для физических и юридических лиц, а также частных предпринимателей.
+            {{credit.description}}
               </p>
               <div class="card-details">
-                <div class="currency-info">
-                  <p class="title">до 30 000 сомони</p>
-                  <p class="description">Максимальная сумма кредита</p>
-                </div>
-                <div class="service-info">
-                  <p class="title">До 36 месяцев</p>
-                  <p class="description">Срок кредита</p>
+                <div class="currency-info" *ngFor="let content of credit.content">
+                  <p class="title">{{content.title}}</p>
+                  <p class="description">{{content.description}}</p>
                 </div>
               </div>
               <div class="card-buttons">
                 <button class="btn-primary">Оформить карту</button>
-                <button class="btn-secondary" routerLink="/credit/credit-barakat" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <button class="btn-secondary"  (click)="onCreditClick(credit)" [routerLink]="['/card-details', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                   Подробнее
                 </button>
                 

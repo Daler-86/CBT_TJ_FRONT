@@ -4,25 +4,24 @@
     <div class="adress">
       <div class="contact">
         <img src="../../../assets/icons/phonegrey.svg" alt="">
-        <p class="p">+(992) 44 630 8888</p>
+        <p class="p" id="body-medium">+(992) 44 630 8888</p>
       </div>
       <div class="contact"> 
          <img src="../../../assets/icons/Map Point.svg" alt="">
-        <p class="p">{{  "Offices and ATMs"|translate}}</p> 
+        <p class="p" id="body-medium">{{  "Offices and ATMs"|translate}}</p> 
       </div>
     
   
  <div class="custom-dropdown ">
               <div class="dropdown-selected contact" (click)="toggleDropdown1($event)">
-                
                  <img src="../../../assets/icons/Global.svg" alt="">   
-                 <p class="p">{{selectedLanguage==='1'?"Тоҷ":selectedLanguage==='2'?"Рус":"En"}}</p> 
+                 <p class="p" id="body-medium">{{selectedLanguage==='1'?"Тоҷ":selectedLanguage==='2'?"Рус":"En"}}</p> 
                  <img src="../../../assets/icons/arrow-down.png" alt="">
               </div>
               <div class="dropdown-options" *ngIf="dropdownOpen">
                 <div class="dropdown-option" *ngFor="let option of languageOptions"
                      (click)="selectLanguage(option)">
-                  <p>{{ option.label }}</p>
+                  <p id="body-medium">{{ option.label }}</p>
                     <img *ngIf="option.value==selectedLanguage" src="../../../assets/icons/tick-circle.svg" alt="">
                
                 </div>
@@ -43,28 +42,25 @@
         <li *ngFor="let menu of menus; let i = index">
           <div *ngIf="menu.items && menu.items.length > 0" class="custom-dropdown" (mouseenter)="toggleDropdown(i, $event)" (mouseleave)="closeDropdown(i)">
             <div class="dropdown-selected contact">
-              <a>{{ menu.name | translate }}</a>
+              <a id="body-medium">{{ menu.name | translate }}</a>
             </div>
             <div class="dropdown-options" *ngIf="dropdownOpenMap[i]">
               <div class="dropdown-option" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let item of menu.items" [routerLink]="item.route" (click)="selectOption(item, i, $event,menu)">
-                <p>{{ item.name }}</p>
+                <p id="body-medium">{{ item.name }}</p>
               </div>
             </div>
           </div>
-          <a *ngIf="menu.items.length===0" href="">{{menu.name}}</a>
-        </li>
-      </ul>
-      
+        
+          <a class="a" *ngIf="menu.items.length === 0" href="">{{ menu.name }}</a>
 
-      
+      </li>
+      </ul>
       <div class="burger" (click)="toggleMenu()">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path d="M3 6h18c.552 0 1-.448 1-1s-.448-1-1-1H3C2.448 4 2 4.448 2 5s.448 1 1 1zm0 5h18c.552 0 1-.448 1-1s-.448-1-1-1H3c-.552 0-1 .448-1 1s.448 1 1 1zm0 5h18c.552 0 1-.448 1-1s-.448-1-1-1H3c-.552 0-1 .448-1 1s.448 1 1 1z"/>
       </svg></div>
 
-        <button class="btnSignIn" ><img src="../../../assets/icons/login.svg" alt=""><p>{{"Login"|translate}}</p></button>
-      
-      
+        <button class="btnSignIn" ><img src="../../../assets/icons/login.svg" alt=""><p id="body-medium">{{"Login"|translate}}</p></button>
       </div>
+      </nav>
 
-<!-- </nav> -->

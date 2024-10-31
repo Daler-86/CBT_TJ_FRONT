@@ -1,3 +1,4 @@
+@import '../../../styles/variables.scss';
 .footer{
 
     padding: 20px 5%;
@@ -16,11 +17,13 @@
             justify-content: space-between;
             text-align: end;
             h4{
-                font-size: 20px;
+                font-size: $font-size-h5;
+                line-height: $line-height-h5;
                 font-weight: 700;
                        }
                        p{
-                        font-size: 17px;
+                        font-size: $font-size-body-large;
+                        line-height: $line-height-body-large;
                         color: #64748B;
                        }
             @media (max-width: 1034px) {
@@ -52,12 +55,15 @@
                 flex-direction: column;
             a,p{
             text-decoration: none;
-            color: #141A20;
+            color: #475569;
+            margin: 7px 0;
             font-weight: 500;
-            font-size: 17px;
+            font-size: $font-size-body-medium;
+            line-height: $line-height-body-medium;
           }
           .p{
-font-weight: 700;
+            color: $color-text;
+            font-weight: 700;
           }
           a{
             cursor: pointer;
@@ -69,7 +75,7 @@ font-weight: 700;
         
             display: flex;
 
-justify-content: space-between;
+            justify-content: space-between;
            
             img{
                 width: 20%;

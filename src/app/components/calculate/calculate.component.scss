@@ -1,14 +1,9 @@
+@import '../../../styles/variables.scss';
 .calculator {
 width: 90%;
-
- 
-    // padding: 20px;
 background-color: hsl(210, 17%, 98%);
     margin:20px  0 0;
     padding: 2% 5%;
-    
-    // display: flex;
-    // justify-content: space-between;
   
     .calculator-tabs {
       display: flex;
@@ -23,8 +18,9 @@ background-color: hsl(210, 17%, 98%);
         cursor: pointer;
         background-color: white;
         color: #141A20;
-        font-size: 18px;
-        font-weight: 600;
+        font-size: $font-size-body-medium;
+        line-height: $line-height-body-medium;
+        font-weight: 500;
         box-shadow: 0px 4px 20px 0px #AFAFAF2E;
   @media (max-width: 1024px) {
        margin-bottom: 15px; 
@@ -57,15 +53,17 @@ background-color: hsl(210, 17%, 98%);
           margin-bottom: 30px;
         }
         h2 {
-          font-size: 24px;
-          font-weight: 800;
-          margin-bottom: 30px;
+          font-size: $font-size-h4;
+          line-height: $line-height-h4;
+          font-weight: 700;
+          margin-bottom: 32px;
         }
       
         label {
           margin: 25px 0;
-          font-size: 20px;
-          font-weight: 600;
+          font-size: $font-size-body-large;
+          line-height: $line-height-body-large;
+          font-weight: 500;
         }
       
         .input-slider-container {
@@ -75,13 +73,14 @@ background-color: hsl(210, 17%, 98%);
           /* Объединение инпута и слайдера */
           .loan-input {
             width: 100%;
-            padding: 10px 12px;
-            font-size: 18px;
+            padding: 19px;
+            font-size: $font-size-h5;
+            line-height: $line-height-h5;
             border: 1px solid #dde2e9;
             border-radius: 8px 8px 0 0;
             border-bottom: none;
             color: #333;
-            font-weight: 600;
+            font-weight: 700;
             box-sizing: border-box;
             margin: 0;
           }
@@ -146,8 +145,9 @@ background-color: hsl(210, 17%, 98%);
           display: flex;
           justify-content: space-between;
           padding: 0 5px;
-          margin-top: 10px;
-          font-size: 16px;
+          margin-top: 5px;
+          font-size: $font-size-body-medium;
+          line-height: $line-height-body-medium;
           color: #66788F;
           @media (max-width: 768px) {
           display: none;
@@ -161,15 +161,16 @@ background-color: hsl(210, 17%, 98%);
           flex-wrap: wrap;
       
           button {
-            border: 1px solid #ddd;
+            border: 0px solid #ddd;
             background: none;
             padding: 10px 16px;
             cursor: pointer;
             border-radius: 8px;
             background-color: #F1F5F9;
             color: #141A20;
-            font-size: 18px;
-            font-weight: 600;
+            font-size: $font-size-body-large;
+            line-height: $line-height-body-large;
+            font-weight: 500;
       
             &.active {
               background-color: #00B06C;
@@ -193,7 +194,8 @@ background-color: hsl(210, 17%, 98%);
     }
   p{
     color: #66788F;
-    font-size: 16px;
+    font-size:$font-size-body-medium;
+    line-height: $line-height-body-medium;
     font-weight: 500;
   }
     input[type="text"] {
@@ -217,19 +219,21 @@ box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
 border-radius: 16px;
 background-color: white;
 h2{
-  font-size: 24px;
-  font-weight: 800;
+  font-size: $font-size-h4;
+  line-height: $line-height-h4;
+  font-weight: 700;
   margin-bottom: 30px;        }
 p{
   color: #141A20;
 margin: 15px 0;
-  font-size:20px ;
-  font-weight: 600;
+  font-size:$font-size-body-large;
+  line-height: $line-height-body-large;
+  font-weight: 500;
 }
 h3{
-  font-weight: 800;
-  font-size: 42px;
-  line-height: 50px;
+  font-weight: 700;
+  font-size: $font-size-h2;
+  line-height: $line-height-h2;
   color: #00B06C;
   margin-bottom: 20px;
 }  
@@ -238,8 +242,9 @@ button {
       color: white;
       padding: 20px 50px;
       border: none;
-      font-size: 18px;
-      font-weight: 600;
+      font-size: $font-size-body-large;
+      line-height: $line-height-body-large;
+      font-weight: 500;
       border-radius: 6px;
       cursor: pointer;
       @media (max-width: 1000px) {

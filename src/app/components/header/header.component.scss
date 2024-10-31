@@ -1,7 +1,11 @@
+@import '../../../styles/variables.scss';
 nav{ 
     width:90%;
    margin: auto;
-   
+   #body-medium{
+    font-size: $font-size-body-medium;
+    line-height: $line-height-body-medium;
+   }
  
    .adress{
 
@@ -9,7 +13,6 @@ nav{
   display: flex;
   justify-content: end;
    align-items: center;
-  //  padding: 5px 0;
    gap: 2%;
    .contact{
     display: flex;
@@ -19,14 +22,13 @@ nav{
 
     }
     p{
-       font-size: 16px;
-       font-weight: 700;
+       font-weight: 500;
        color: #94A3B8;
     }
   }
   
    div{
-       justify-self: end;
+      //  justify-self: end;
        select{
          border: none;
        }
@@ -35,14 +37,13 @@ nav{
   
    .custom-dropdown {
     position: relative;
-    width: 200px;
-    font-family: Arial, sans-serif; 
+width: 150px;
      .dropdown-selected {
+  
     padding: 10px;
     border-radius: 4px;
     background-color: #fff;
     cursor: pointer;
-    font-size: 16px;
     position: relative;
     display: flex;
     gap: 5px;
@@ -50,12 +51,11 @@ nav{
     justify-content: center;
   }
     .dropdown-selected::after {
-    // content: "\2304"; /* Маленькая стрелка вниз */
   position: absolute;
   right: 1px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 16px;
+
   color: #999;
   }
   
@@ -97,15 +97,11 @@ box-sizing: border-box;
 
 .custom-dropdown {
   position: relative;
-  width: 200px;
-  font-family: Arial, sans-serif; 
    .dropdown-selected {
   padding: 10px;
-  // border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #fff;
   cursor: pointer;
-  font-size: 16px;
   position: relative;
   display: flex;
   gap: 5px;
@@ -113,12 +109,10 @@ box-sizing: border-box;
   justify-content: center;
 }
   .dropdown-selected::after {
-  // content: "\2304"; /* Маленькая стрелка вниз */
 position: absolute;
 right: 1px;
 top: 20%;
 transform: translateY(-50%);
-font-size: 16px;
 color: #999;
 }
 
@@ -126,7 +120,7 @@ color: #999;
   position: absolute;
   top: 95%;
   left: 0;
-  width: 100%;
+  width: 140px;
   background-color:#fff ;
   border: 1px solid #CBD5E1;
   border-radius: 12px;
@@ -149,8 +143,6 @@ color: #999;
 }
 }
 .menu{
-   
-    // padding: 5px 0;
        display: flex; 
        justify-self: center;
      justify-content: space-between; 
@@ -158,38 +150,12 @@ color: #999;
     align-items: center;
    
     gap: 25px;
-    // text-decoration: none;
-    li{
-
-        a{
-            white-space: nowrap;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            color: #141A20;
-            
-        }
-        a.active{
-   
-   border-bottom:2px solid #00B06C ;
- }
-       
-        select{
-         width: 80px;
-            border: none;
-            option{
-               
-                    font-size: 16px;
-                    font-weight: 700;
-                    padding: 10px 0
-        }
-           
-      }
-
-
-} 
-
-
+    li a, > a {
+      white-space: nowrap;
+      font-weight: 500;
+      text-decoration: none;
+      color: #141A20;
+         }
 
 }  
   .burger {
@@ -206,12 +172,8 @@ color: #999;
   }
 .btnSignIn{
    background-color: white;
-  //  padding: 10px 20px;
 display: flex;
 align-items: center;
-// gap: 6%;
- font-size: 16px;
-font-weight: 700;
 border: none;
 }
 

@@ -1,9 +1,11 @@
+@import '../../../styles/variables.scss';
 .main{
     background: #fff;
     padding: 20px 0;
 .home{
 .p{
-    font-size: 32px;
+    font-size:$font-size-h4;
+    line-height: $line-height-h4;
     font-weight: 700;
     padding: 20px 5%;
 }
@@ -27,11 +29,12 @@
         justify-content: center;
         flex-direction: column;
         cursor: pointer;
-        padding: 35px 20px;
+        padding: 35px 24px;
         background-color: #F1F5F9;
         border-radius: 16px;
         p{
-            font-size: 16px;
+            font-size: $font-size-body-large;
+            line-height: $line-height-body-large;
             margin-top: 20px;
             font-weight: 500;
         }
@@ -82,7 +85,7 @@
         background-color: white;
         justify-content: space-between;
         align-items: center;
-        padding: 30px 5% 0 ;
+        padding: 30px 7% 0 ;
         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
         border-radius: 16px;
         @media (max-width: 768px) {
@@ -91,7 +94,7 @@
             justify-content: center;
         }
        div{
-            width: 60%;
+            width: 50%;
          @media (max-width: 768px) {
                 width: 100%;
                 
@@ -99,14 +102,16 @@
         }}
        
             h2{
-                font-size: 32px;
-                font-weight: 800;
+                font-size: $font-size-h3;
+                line-height: $line-height-h3;
+                font-weight: 700;
                 padding: 10px 0;
           
             }
             p{
                 color: #64748B;
-                font-size: 20px;
+                font-size: $font-size-body-large;
+                line-height: $line-height-body-large;
                 font-weight: 500;
             }
             .google{
@@ -157,6 +162,7 @@
       }
     .location{
         width: 53%;
+        flex: 1;
         box-shadow: 0px 4px 20px 0px #AFAFAF2E;
 
         @media (max-width: 1034px) {
@@ -164,12 +170,10 @@
             box-sizing: border-box;
             margin-bottom: 20px;
   }
-        // background-color: #141A20;
+   
         background-image: url(../../../assets/icons/bgMap.png);
         background-size: cover;
-        // background-position: 30px;
         background-repeat: no-repeat;
-        // background-attachment: fixed;
         background-position: center;
 
         border-radius: 16px;
@@ -178,11 +182,15 @@
         h3{
             color: #141A20;
             padding: 5px 0;
-            font-size:32px ;
+            font-size:$font-size-h3 ;
+            line-height: $line-height-h3;
             font-weight: 700;
         
         }
-        p{    color: #64748B;
+        p{    
+            color: #64748B;
+            font-size: $font-size-body-large;
+            line-height: $line-height-body-large;
             
         }
      
@@ -190,8 +198,10 @@
             background-color: #F1F5F9;
             padding: 19px 60px;
             color: #141A20;
-            font-size: 18px;
-            font-weight:700 ;
+            font-size: $font-size-body-large;
+            line-height: $line-height-body-large;
+            font-weight:500 ;
+            color: $color-text;
             margin: 150px 0 0;
             border-radius: 6px;
             border: 0;
@@ -199,9 +209,10 @@
         }
     }
     .d{
+        width: 43%;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2%;
+      gap: 4%;
         .box{
             display: flex;
             justify-content: space-between;
@@ -210,18 +221,20 @@
             background-color: white;
             border-radius: 16px;
             box-shadow: 0px 4px 20px 0px #AFAFAF2E;
-       
+       gap: 30px;
+       cursor: pointer;
 
             h3{
-                color: #141A20;
+                color: $color-text;
                 padding: 5px 0;
-                font-size:22px ;
+                font-size:$font-size-h5 ;
+                line-height: $line-height-h5;
                 font-weight: 700;
             
             }
             p{  
                   color: #64748B;
-                font-size: 15px;
+                font-size: $font-size-body-medium;
             }
         }
     }
