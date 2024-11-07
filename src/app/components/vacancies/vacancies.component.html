@@ -43,12 +43,12 @@
             <div class="office-content">
               <div class="office-image">
                
-                <img [src]="'http://172.16.16.88:9009/storage/'+vacancyGalleries[currentIndex].upload_file" alt="Офис">
+                <img [src]="'http://172.16.16.88:9009/storage/'+vacancyGalleries[currentIndex]?.upload_file" alt="Офис">
               </div>
               <div class="office-info">
                 <p>{{ currentIndex + 1 }}/{{ vacancyGalleries.length }}</p>
-                <h3>{{ vacancyGalleries[currentIndex].title }}</h3>
-                <p>{{ vacancyGalleries[currentIndex].description }}</p>
+                <h3>{{ vacancyGalleries[currentIndex]?.title }}</h3>
+                <p>{{ vacancyGalleries[currentIndex]?.description }}</p>
                 <div class="navigation-buttons">
                   <button (click)="prev()" [disabled]="currentIndex === 0">
                     ←

@@ -1,35 +1,21 @@
 <app-carousel></app-carousel>
 <div class="main"><div class="home"> 
     <p class="p">Выбирайте лучшее</p>
+
+
 <div class="container_1">
+
+
+<div class="box_1" *ngFor="let menu of menus">
+ 
+    <div [routerLinkActiveOptions]="{exact: true}"  *ngFor="let favorite of menu.favorites"  class="" [routerLink]="favorite.route" routerLinkActive="active" >
+        <img [src]="'http://172.16.16.88:9009/storage/' + favorite?.upload_file" alt="">
+        <p> {{ favorite?.name}}</p>
+    </div>
    
-    <div [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/card" routerLinkActive="active" >
-        <img src="../../assets/icons/img1.svg" alt="">
-        <p> {{ "Cards"|translate}}</p>
-    </div>
-    <div  [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/credit" routerLinkActive="active" >
-        <img src="../../assets/icons/img2.svg" alt="">
-        <p>{{  "Loans"|translate}}</p>
-    </div>
-    <div class="">
-        <img src="../../assets/icons/img3.svg" alt="">
-        <p>{{ "Transfers"|translate}}</p>
-    </div>
-    <div [routerLinkActiveOptions]="{exact: true}" class="" routerLink="/credit" routerLinkActive="active">
-        <img src="../../assets/icons/img4.svg" alt="">
-   <p>{{ "Car loan"|translate}}</p>
-    </div>
-    <div class="">
-        <img src="../../assets/icons/img5.svg" alt="">
-             <p>{{ "strach"|translate}}</p>
-    </div>
-    <div class="">
-        <img src="../../assets/icons/img6.svg" alt="">
-        <p>{{"vklad"|translate}}</p>
-    </div>
   
 </div>
-
+    </div>
 <app-calculate></app-calculate>
 
 

@@ -101,18 +101,18 @@ export class CardsService {
   }
       ))
   }
-  getCardByBrand(cardId:number):Observable<CardList>{
-    return this.languageService.language$.pipe(
-      switchMap(lang => {
-        const headers = new HttpHeaders({
-          'accept': 'application/json',
-          'Language': lang  // Установка динамического заголовка
-        });
+  // getCardByBrand(cardId:number):Observable<CardList>{
+  //   return this.languageService.language$.pipe(
+  //     switchMap(lang => {
+  //       const headers = new HttpHeaders({
+  //         'accept': 'application/json',
+  //         'Language': lang  // Установка динамического заголовка
+  //       });
     
-    return this.http.get<CardList>(`${this.baseUrl+'/card/by-brand/'}${cardId}`, { headers });
-  }
-      ))
-  }
+  //   return this.http.get<CardList>(`${this.baseUrl+'/card/by-brand/'}${cardId}/${}`, { headers });
+  // }
+  //     ))
+  // }
   submitCardByBrand(cardData: any): Observable<any> {
     return this.languageService.language$.pipe(
       switchMap(lang => {

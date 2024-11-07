@@ -18,7 +18,14 @@
     margin: 15px auto;
     padding: 15px 5%;
  
+ .box_1{
+    display: flex; 
+      gap: 20px;
+    justify-content: space-between;
     div{ 
+        // flex: 1;
+  
+        box-sizing: border-box;
           @media (max-width: 1064px) {
      margin-bottom: 15px;
     }
@@ -39,6 +46,7 @@
             font-weight: 500;
         }
     }
+}
 }
 .container_2{
     width: 90%;

@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { CarouselComponent } from '../carousel/carousel.component';
 import {  CalculateComponent } from "../calculate/calculate.component";
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { CurrencyConverterComponent } from '../currency-converter/currency-converter.component';
-import { TranslateModule } from '@ngx-translate/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CardsComponent } from '../cards/cards.component';
 import { FavriComponent } from "../favri/favri.component";
+import { MenuService } from '../../api/menu.service';
+import { HttpClient } from '@angular/common/http';
+import { LanguagesService } from '../../languages.service';
 
 interface News{
   image:string;
@@ -18,37 +21,36 @@ interface News{
 @Component({
   selector: 'app-home',
   standalone:true,
-  imports: [RouterModule, RouterLink, CarouselComponent, TranslateModule, CalculateComponent, CurrencyConverterComponent, NgFor, FavriComponent],
+  imports: [RouterModule, RouterLink, CarouselComponent, TranslateModule, CalculateComponent, CurrencyConverterComponent, NgFor, FavriComponent,NgIf],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 
 export class HomeComponent {
-news:News[]=[
-  {
-    image:"../../assets/icons/image 1.png",
-    date:"29 декабря 2023",
-    title:"Итоги 2023 года",
-    content:"Спасибо каждому из них и всему колле ктиву за их неутомимость.."
+  constructor(
+    private elementRef: ElementRef,
+    private router: Router,
+    private http: HttpClient,
+    private menuService:MenuService,
+ 
+    private languageService: LanguagesService,
+    private translateService: TranslateService
+  ) {
 
-  },
-  {
-    image:"../../assets/icons/image 2.png",
-    date:"28 ноября 2023",
-    title:"Фестиваль финансовой...",
-    content:"26.10.2023 года в городе Худжанде прошел Фестиваль финансовой..."
-
-  },
-  {
-    image:"../../assets/icons/image 3.png",
-    date:"28 сентября 2023",
-    title:"Открытие ЦБО в г. Душанбе ",
-    content:"Мы стремимся быть ближе к Вам, и спешим сообщить об открытии.."
-
-  },
-
-
-  
-]
-
+  }
+  ngOnInit(): void {
+    this.loadMenu();
+  }
+  menus: any[] = [];
+  loadMenu(): void {
+    this.menuService.getMenu().subscribe(
+      (response) => {
+        this.menus = response.data.menus;
+        console.log(this.menus)
+      },
+      (error) => {
+        console.error('Ошибка при запросе данных', error);
+      }
+    );
+  }
 }

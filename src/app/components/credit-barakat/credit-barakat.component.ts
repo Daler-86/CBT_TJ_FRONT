@@ -9,7 +9,7 @@ import { CreditService } from '../../api/credit.service';
 import { creditDocument, creditList, creditTariff } from '../../models/credit.model';
 import { officeList } from '../../models/region.model';
 import { RegionService } from '../../api/region.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-credit-barakat',
   standalone: true,
@@ -31,6 +31,7 @@ documents:creditDocument[]=[]
 offices:officeList[]=[]
 dropdownOpen:boolean=false
 officeName:string='Выберите отделение банка'
+creditId: number=0;
 
 model: any = {
   address:'',
@@ -57,9 +58,9 @@ model: any = {
     alert('Вы оформили кредит на сумму ' + this.loanAmount + 'с.');
   }
   submitApplication() {
-    debugger;
+    
     if (this.model.phone && this.model.client_name && this.model.office_id) {
-      console.log(this.model);
+      
       this.creditService.submitCredit(this.model).subscribe(resp =>{
         console.log(resp);
         
@@ -73,19 +74,36 @@ model: any = {
   formattedLoanAmount: string = this.formatCurrency(this.loanAmount); // Отформатированное значение для отображения в поле ввода
   constructor(
     private regionService:RegionService,
+    private route: ActivatedRoute,
     private creditService: CreditService,
   ) { }
+
   ngOnInit() {
+    console.log(1)
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam !== null) {
+      this.creditId= +idParam;  // Преобразование строки в число
+      
+    } else {
+      console.error('ID is missing in the route parameters.');
+      // Здесь может быть код для обработки ситуации отсутствия ID
+    }
+    
     this.updateSliderBackground();
     this.loadCreditList(1);
     this.loadCreditTariff(1);
     this.loadOffice()
     this.loadCreditDocument(1)
   }
+
+
+
+
   loadOffice(): void {
     this.regionService.getOfficeList().subscribe(
       (response) => {
         this.offices = response.data.offices;
+        console.log(this.offices)
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);

@@ -62,7 +62,7 @@ officeName:string='Выберите отделение банка'
     this.loadCardDetails(this.cardId);
     this.loadCardFaqs(this.cardId)
     this.loadTabData(this.selectedTab, this.cardId);
-    this.loadCardByBrand(this.cardId)
+    // this.loadCardByBrand(this.cardId)
     this.loadOffice()
   }
   loadTabData(tab: string,id:number): void {
@@ -111,17 +111,17 @@ officeName:string='Выберите отделение банка'
       }
     );
   }
-  loadCardByBrand(id: number): void {
-    this.cardsService.getCardByBrand(id).subscribe(
-      (details) => { 
-        this.card=details.data.cards
-        console.log(this.card)
-      },
-      (error) => {
-        console.error('Ошибка при получении деталей карты', error);
-      }
-    );
-  }
+  // loadCardByBrand(id: number): void {
+  //   this.cardsService.getCardByBrand(id).subscribe(
+  //     (details) => { 
+  //       this.card=details.data.cards
+  //       console.log(this.card)
+  //     },
+  //     (error) => {
+  //       console.error('Ошибка при получении деталей карты', error);
+  //     }
+  //   );
+  // }
   loadOffice(): void {
     this.regionService.getOfficeList().subscribe(
       (response) => {
@@ -152,8 +152,8 @@ toggleDropdown(event: Event) {
 @HostListener('document:click', ['$event'])
 
 selectOption( event: Event,item:officeList) {
-  this.officeName = item.name; // Обновляем имя для отображения
-  this.model.office_id = item.id; 
+  this.officeName = item?.name; // Обновляем имя для отображения
+  this.model.office_id = item?.id; 
   event.stopPropagation();
   this.dropdownOpen = false;
 

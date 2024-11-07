@@ -90,8 +90,9 @@ width: 150px;
 }
 .men{
 display: flex;
-justify-content:space-between ;
+gap: 25px;
 align-items: center;
+justify-content: space-between;
 border-top: 1px solid #E6EAEE;
 box-sizing: border-box; 
 
@@ -144,19 +145,29 @@ color: #999;
 }
 .menu{
        display: flex; 
-       justify-self: center;
-     justify-content: space-between; 
+      width: 70%;
+     gap: 25px;
     list-style-type: none;
     align-items: center;
    
     gap: 25px;
     li a, > a {
       white-space: nowrap;
+      box-sizing: border-box;
       font-weight: 500;
       text-decoration: none;
       color: #141A20;
+         &:hover{
+       font-size: $font-size-body-medium;
+       line-height: $line-height-body-medium;
+          font-weight: 700;
+          border-bottom: 3px solid $color-primary;
+          border-width: 80%;
+          box-sizing: border-box;
          }
 
+         }
+      
 }  
   .burger {
     display: none;
@@ -172,6 +183,7 @@ color: #999;
   }
 .btnSignIn{
    background-color: white;
+
 display: flex;
 align-items: center;
 border: none;

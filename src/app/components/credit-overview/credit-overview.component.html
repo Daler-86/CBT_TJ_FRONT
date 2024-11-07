@@ -25,14 +25,14 @@
               </div>
               <div class="card-buttons">
                 <button class="btn-primary">Оформить карту</button>
-                <button class="btn-secondary"  (click)="onCreditClick(credit)" [routerLink]="['/card-details', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <button class="btn-secondary"  (click)="onCreditClick(credit)" [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                   Подробнее
                 </button>
                 
               </div>
             </div>
             <div class="card-image">
-              <img class="card" src="../../../assets/icons/credit 1.png" alt="Barakat" />
+              <img class="card" [src]="'http://172.16.16.88:9009/storage/' + credit.upload_file" alt="Barakat" />
            
             </div>
           </div>
@@ -55,7 +55,7 @@
               </div>
               <div class="card-buttons">
                 <button class="btn-primary">Оформить карту</button>
-                <button class="btn-secondary"  routerLink="/credit/credit-auto" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Подробнее</button>
+                <button class="btn-secondary"  routerLink="/credits/credit-auto" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Подробнее</button>
               </div>
             </div>
             <div class="card-image">
