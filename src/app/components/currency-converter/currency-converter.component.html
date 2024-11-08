@@ -1,4 +1,4 @@
-<div class="currency-converter-container">
+<div class="currency-converter-container"> 
   <div class="calculator-tabs">
     <!-- Buttons for selecting the mode, dynamically generated -->
     <button *ngFor="let mode of getModes()" 
@@ -79,7 +79,9 @@
         <div class="a">
           <input class="inp" type="number" [(ngModel)]="amount" (input)="convertCurrency()" />
           <select [(ngModel)]="fromCurrency" (change)="convertCurrency()">
-            <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency">{{ rate.currency }}</option>
+            <option value="TJS" [disabled]="fromCurrency === 'TJS'">TJS</option>
+
+            <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency" [disabled]="rate.currency === toCurrency">{{ rate.currency }}</option>
           </select>
         </div>
       </div>
@@ -89,7 +91,9 @@
         <div class="a">
           <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
           <select [(ngModel)]="toCurrency" (change)="convertCurrency()">
-            <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency">{{ rate.currency }}</option>
+            <option value="TJS" [disabled]="fromCurrency === 'TJS'">TJS </option>
+
+            <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency" [disabled]="rate.currency === fromCurrency">{{ rate.currency }}</option>
           </select>
         </div>
       </div>

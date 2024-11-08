@@ -9,45 +9,79 @@
     font-weight: 700;
     padding: 20px 5%;
 }
-   .container_1{ 
-     width: 90%;
-
+.container_1 {
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-between;
+    justify-content: space-between;
     margin: 15px auto;
     padding: 15px 5%;
- 
- .box_1{
-    display: flex; 
-      gap: 20px;
+}
+
+.box_1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
     justify-content: space-between;
-    div{ 
-        // flex: 1;
-  
-        box-sizing: border-box;
-          @media (max-width: 1064px) {
-     margin-bottom: 15px;
-    }
-    @media (max-width: 678px) {
-    }
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        cursor: pointer;
-        padding: 35px 24px;
-        background-color: #F1F5F9;
-        border-radius: 16px;
-        p{
-            font-size: $font-size-body-large;
-            line-height: $line-height-body-large;
-            margin-top: 20px;
-            font-weight: 500;
-        }
+}
+
+.box_1 > div {
+    flex: 1 1 calc(16.66% - 20px); /* 6 элементов на строку по умолчанию */
+    max-width: calc(16.66% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 24px;
+    background-color: #F1F5F9;
+    border-radius: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* Медиа-запросы для адаптации под различные экраны */
+@media (max-width: 1264px) {
+    .box_1 > div {
+        flex: 1 1 calc(20% - 20px); /* 5 элементов на строку */
+        max-width: calc(20% - 20px);
     }
 }
+
+@media (max-width: 1024px) {
+    .box_1 > div {
+        flex: 1 1 calc(25% - 20px); /* 4 элемента на строку */
+        max-width: calc(25% - 20px);
+    }
 }
+
+@media (max-width: 768px) {
+    .box_1 > div {
+        flex: 1 1 calc(33.33% - 20px); /* 3 элемента на строку */
+        max-width: calc(33.33% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .box_1 > div {
+        flex: 1 1 calc(50% - 20px); /* 2 элемента на строку */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 375px) {
+    .box_1 > div {
+        flex: 1 1 100%; /* 1 элемент на строку */
+        max-width: 100%;
+    }
+}
+
+.box_1 p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
 .container_2{
     width: 90%;
     margin: auto;
