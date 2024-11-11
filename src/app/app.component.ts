@@ -17,10 +17,19 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 export class AppComponent {
-  constructor(private translate: TranslateService) {
-    // Установка языка по умолчанию
-    translate.setDefaultLang('1');
-    // Активация начального языка
-    translate.use('1');
+   constructor(private translate: TranslateService) {
+   
+    
   }
+ngOnInit():void{
+let savedLanguage = localStorage.getItem('appLanguage');
+   if(savedLanguage){
+      this.translate.setDefaultLang(savedLanguage);
+    }
+    else{
+       this.translate.setDefaultLang('1');
+      this.translate.use('1');
+    }
+}
+  
 }

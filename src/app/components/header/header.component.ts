@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   menus: any[] = [];
   dropdownOpenMap: { [key: number]: boolean } = {}; // Состояние для каждого селекта
   dropdownOpen = false; // Локальное состояние для языка
-  selectedLanguage: string = '1'; // Начальный выбранный язык
+  selectedLanguage: string | null = localStorage.getItem('appLanguage');// Начальный выбранный язык
   menuActive = false;
   index: number;
   
@@ -73,8 +73,12 @@ export class HeaderComponent implements OnInit {
   selectLanguage(option: any) {
     this.selectedLanguage = option.value;
     this.dropdownOpen = false; // Закрываем селектор после выбора
-    this.languageService.setLanguage(this.selectedLanguage);
-    this.translateService.use(this.selectedLanguage);
+    if(this.selectLanguage!==null){
+      
+    this.languageService.setLanguage(option.value);
+    this.translateService.use(option.value);
+    }
+
   }
   // Открытие/закрытие селекта по индексу
   toggleDropdown(index: number, event: Event) {
