@@ -135,7 +135,17 @@ margin-bottom: 30px;
 
   .switch-buttons {
     width: 100%;
-  
+    .switch-rect {
+      transition: transform 0.6s ease; /* Настраиваем продолжительность и плавность */
+    }
+    
+    .switch-rect.buy {
+      transform: translateX(0);
+    }
+    
+    .switch-rect.sell {
+      transform: translateX(200px); /* Смещение вправо при продаже */
+    }
   }
 
 }
