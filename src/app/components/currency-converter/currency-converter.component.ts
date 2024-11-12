@@ -178,12 +178,6 @@ export class CurrencyConverterComponent implements OnInit {
       }
     }
   }
-  
-  
-  
-  
-  
-  
 
   toggleShowMore() {
     this.showMore = !this.showMore;

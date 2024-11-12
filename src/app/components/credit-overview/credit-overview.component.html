@@ -24,7 +24,7 @@
                 </div>
               </div>
               <div class="card-buttons">
-                <button class="btn-primary">Оформить карту</button>
+                <button class="btn-primary">Оформить заявку</button>
                 <button class="btn-secondary"  (click)="onCreditClick(credit)" [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                   Подробнее
                 </button>
@@ -37,113 +37,7 @@
             </div>
           </div>
     
-          <div class="card-container">
-            <div class="card-info">
-              <h2 class="card-title">Автокредит</h2>
-              <p class="card-description">
-                Данный кредитный продукт предназначен для физических и юридических лиц, а также частных предпринимателей.
-              </p>
-              <div class="card-details">
-                <div class="currency-info">
-                  <p class="title">300 000 сомони</p>
-                  <p class="description">Максимальная сумма кредита</p>
-                </div>
-                <div class="service-info">
-                  <p class="title">До 36 месяцев</p>
-                  <p class="description">Срок кредита</p>
-                </div>
-              </div>
-              <div class="card-buttons">
-                <button class="btn-primary">Оформить карту</button>
-                <button class="btn-secondary"  routerLink="/credits/credit-auto" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Подробнее</button>
-              </div>
-            </div>
-            <div class="card-image">
-              <img class="card" src="../../../assets/icons/cre.png" alt="Visa Gold" />
-           
-            </div>
-          </div>
-    
-          <div class="card-container">
-            <div class="card-info">
-              <h2 class="card-title">Фоиданок</h2>
-              <p class="card-description">
-                Создание и расширение доступа к финансовым услугам и развитию бизнеса.
-              </p>
-              <div class="card-details">
-                <div class="currency-info">
-                  <p class="title">до 500 000 сомони</p>
-                  <p class="description">Максимальная сумма кредита</p>
-                </div>
-                <div class="service-info">
-                  <p class="title">18%</p>
-                  <p class="description">Процентная ставка</p>
-                </div>
-              </div>
-              <div class="card-buttons">
-                <button class="btn-primary">Оформить карту</button>
-                <button class="btn-secondary">Подробнее</button>
-              </div>
-            </div>
-            <div class="card-image">
-              <img class="card" src="../../../assets/icons/credit 3.png" alt="Visa Gold" />
-           
-            </div>
-          </div>
-    
-          <div class="card-container">
-            <div class="card-info">
-              <h2 class="card-title">Золото</h2>
-              <p class="card-description">
-                Данный кредитный продукт предназначен для физических лиц и юридических лиц, а также частных предпринимателей, который оформляется в течение одного банковского дня.
-              </p>
-              <div class="card-details">
-                <div class="currency-info">
-                  <p class="title">до 3 000 000 сомони</p>
-                  <p class="description">Максимальная сумма кредита</p>
-                </div>
-                <div class="service-info">
-                  <p class="title">До 36 месяцев</p>
-                  <p class="description">Срок кредита</p>
-                </div>
-              </div>
-              <div class="card-buttons">
-                <button class="btn-primary">Оформить карту</button>
-                <button class="btn-secondary">Подробнее</button>
-              </div>
-            </div>
-            <div class="card-image">
-              <img class="card" src="../../../assets/icons/credit 4.png" alt="Visa Gold" />
-           
-            </div>
-          </div>
-    
-          <div class="card-container">
-            <div class="card-info">
-              <h2 class="card-title">Товары в кредит</h2>
-              <p class="card-description">
-                Быстрый и удобный доступ к банковским услугам
-              </p>
-              <div class="card-details">
-                <div class="currency-info">
-                  <p class="title">до 20 000 сомони</p>
-                  <p class="description">Максимальная сумма кредита</p>
-                </div>
-                <div class="service-info">
-                  <p class="title">До 18 месяцев</p>
-                  <p class="description">Срок кредита</p>
-                </div>
-              </div>
-              <div class="card-buttons">
-                <button class="btn-primary">Оформить карту</button>
-                <button class="btn-secondary">Подробнее</button>
-              </div>
-            </div>
-            <div class="card-image">
-              <img class="card" src="../../../assets/icons/credit 5.png" alt="Visa Gold" />
-           
-            </div>
-          </div>
+       
         
     </div>
     <div *ngIf="selectedTab==='credit'" class="content"></div>

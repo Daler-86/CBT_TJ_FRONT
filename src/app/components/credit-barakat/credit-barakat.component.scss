@@ -12,6 +12,7 @@
          border-radius: 24px;
  display: flex;
  justify-content: space-between;
+ gap: 10%;
  align-items: center;
  @media (max-width: 1024px) {
      display: block;
@@ -101,7 +102,7 @@
      }
    
      .card-image {
-       width: 40%;
+       width: 30%;
        padding: 25px 72px 0 0;
        align-self: flex-end; 
        @media (max-width: 1024px) {
