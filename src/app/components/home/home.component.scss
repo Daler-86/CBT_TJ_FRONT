@@ -37,6 +37,16 @@
     border-radius: 16px;
     cursor: pointer;
     box-sizing: border-box;
+img{
+    transition: transform 0.5s ease; /* Анимация будет длиться 0.5 секунды */
+    transform: scale(1);
+  
+}  
+&:hover{
+    img{
+        transform: scale(1.1);
+    } 
+    }
 }
 
 /* Медиа-запросы для адаптации под различные экраны */

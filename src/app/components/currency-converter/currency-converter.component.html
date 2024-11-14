@@ -11,44 +11,45 @@
   <div class="div">
     <div class="exchange-rates">
       <h3>{{ "Курсы валют" | translate }}</h3>
-     
       <table>
         <thead>
           <tr>
             <th>{{ "Валюта" | translate }}</th>
-            <th>{{ "Покупка" | translate }}</th>
-            <th>{{ "Продажа" | translate }}</th>
+            <ng-container *ngIf="selectedMode === 'CB_RATE'">
+              <th>{{ "Учетный курс" | translate }}</th>
+            </ng-container>
+            <ng-container *ngIf="selectedMode !== 'CB_RATE'">
+              <th>{{ "Покупка" | translate }}</th>
+              <th>{{ "Продажа" | translate }}</th>
+            </ng-container>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let rate of exchangeRatesByMode[selectedMode] | slice:0:3">
+          <tr *ngFor="let rate of exchangeRatesByMode[selectedMode] | slice:0:(showMore ? exchangeRatesByMode[selectedMode].length : 3)">
             <td class="flag">
               <img [src]="rate.flag" alt="{{ rate.currency }}">
               <p>{{ rate.currency }}</p>
             </td>
-            <td>{{ rate.buy | number: '1.4-4' }}</td>
-            <td>{{ rate.sell | number: '1.4-4' }}</td>
+            <ng-container *ngIf="selectedMode === 'CB_RATE'">
+              <td>{{ rate.buy | number: '1.4-4' }}</td> <!-- Используем курс покупки как учетный -->
+            </ng-container>
+            <ng-container *ngIf="selectedMode !== 'CB_RATE'">
+              <td>{{ rate.buy | number: '1.4-4' }}</td>
+              <td>{{ rate.sell | number: '1.4-4' }}</td>
+            </ng-container>
           </tr>
-          <ng-container *ngIf="showMore">
-          <tr  *ngFor="let rate of exchangeRatesByMode[selectedMode] | slice:3:ratesCount">
-            <td class="flag">
-              <img [src]="rate.flag" alt="{{ rate.currency }}">
-              <p>{{ rate.currency }}</p>
-            </td>
-            <td>{{ rate.buy | number: '1.4-4' }}</td>
-            <td>{{ rate.sell | number: '1.4-4' }}</td>
-          </tr> 
-        </ng-container>
         </tbody>
       </table>
+      
       <div class="more">
-      <p>{{ "Актуально на" | translate }} {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}</p>
-
-      <!-- Кнопка для показа большего количества валют -->
-      <button *ngIf="ratesCount > 3" (click)="toggleShowMore()">
-        {{ showMore ? "Свернуть" : "Показать еще" | translate }}
-      </button>
-    </div>
+        <p>{{ "Актуально на" | translate }} {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}</p>
+      
+        <!-- Кнопка для показа большего количества валют -->
+        <button *ngIf="exchangeRatesByMode[selectedMode].length > 3" (click)="toggleShowMore()">
+          {{ showMore ? "Свернуть" : "Показать еще" | translate }}
+        </button>
+      </div>
+      
   </div>
 
     <div class="currency-converter" [ngClass]="{'sell-active': transactionType === 'sell'}">

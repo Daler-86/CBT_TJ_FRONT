@@ -43,7 +43,7 @@
           <div *ngIf="menu.items && menu.items.length > 0" class="custom-dropdown" (mouseenter)="toggleDropdown(i, $event)" (mouseleave)="closeDropdown(i)">
             <div class="dropdown-selected contact">
               <a id="body-medium">{{ menu.name | translate }}</a>
-            </div>
+            </div> 
             <div class="dropdown-options" *ngIf="dropdownOpenMap[i]">
               <div class="dropdown-option" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let item of menu.items" [routerLink]="item.route" (click)="selectOption(item, i, $event,menu)">
                 <p id="body-medium">{{ item.name }}</p>

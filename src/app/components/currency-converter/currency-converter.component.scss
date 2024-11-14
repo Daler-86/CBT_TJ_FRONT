@@ -106,6 +106,7 @@ p{
   button{
     border: none;
     background-color: white;
+    cursor: pointer;
     color: $color-primary;
     font-size: $font-size-body-medium;
     line-height: $line-height-body-medium;
@@ -154,7 +155,9 @@ margin-bottom: 30px;
     display: block;
     align-items: center;
     width: 100%;
-  
+  input:focus{
+    outline: none;
+  }
     padding: 10px 0;
     label {
     width: 100px;
@@ -171,6 +174,9 @@ margin-bottom: 30px;
     margin: 10px 0 0;
     border: 1.5px solid #CBD5E1;
     // margin-right: 10px;
+    }
+    select:focus {
+      outline: none;
     }
     .a{
       display: flex;
