@@ -80,7 +80,7 @@ officeName:string='Выберите отделение банка'
         );
         break;
       case 'limits':
-        this.cardsService.getCardLinits(id).subscribe(data => this.limits = data.data.card_limits);
+        this.cardsService.getCardLimits(id).subscribe(data => this.limits = data.data.card_limits);
         break;
       case 'operations':
         this.cardsService.getCardOperation(id).subscribe(data => this.operations = data.data.card_operations);

@@ -1,17 +1,17 @@
 <div class="carousel">
-  <div class="carousel-slides" [style.transform]="getTransform()">
+  <div *ngIf="galleries.length>0" class="carousel-slides" [style.transform]="getTransform()">
     <div class="carousel-item" *ngFor="let slide of galleries">
       <div class="carousel-content">
         <h2>{{ slide.title }}</h2>
         <p>{{ slide.description }}</p>
-        <button (click)="onLearnMore()" >{{ 'More details' | translate }}</button>
+        <button *ngIf="slide.show_button" (click)="onLearnMore()">{{ 'More details' | translate }}</button>
       </div>
       <img [src]="'http://172.16.16.88:9009/storage/'+slide.upload_file" alt="Car" />
     </div>
   </div>
   <div class="carousel-indicators">
     <span
-      *ngFor="let slide of slides; let i = index"
+      *ngFor="let slide of galleries; let i = index"
       class="indicator"
       [class.active]="i === currentSlide"
       (click)="goToSlide(i)"

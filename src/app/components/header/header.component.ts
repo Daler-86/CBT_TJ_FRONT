@@ -8,6 +8,7 @@ import { LanguagesService } from '../../languages.service';
 import { NgFor, NgIf } from '@angular/common';
 import { DropdownService } from '../../services/dropdown.service';
 import { MenuService } from '../../api/menu.service';
+import { Menu } from '../../models/menu.model';
 
 
 @Component({
@@ -19,7 +20,7 @@ import { MenuService } from '../../api/menu.service';
 })
 
 export class HeaderComponent implements OnInit {
-  menus: any[] = [];
+  menus: Menu[] = [];
   dropdownOpenMap: { [key: number]: boolean } = {}; // Состояние для каждого селекта
   dropdownOpen = false; // Локальное состояние для языка
   selectedLanguage: string | null = localStorage.getItem('appLanguage');// Начальный выбранный язык
@@ -32,7 +33,6 @@ export class HeaderComponent implements OnInit {
     { value: '3', label: 'English' }
   ];
 
-  private apiUrl = 'http://172.16.16.88:9009/api/v1/menu/list'; // URL вашего API
 
   constructor(
     private elementRef: ElementRef,
@@ -52,7 +52,8 @@ export class HeaderComponent implements OnInit {
   loadMenu(): void {
     this.menuService.getMenu().subscribe(
       (response) => {
-        this.menus = response.data.menus;
+        this.menus = response.data.menus
+
         console.log(this.menus)
       },
       (error) => {

@@ -50,12 +50,6 @@ export interface CreditDocument {
     credit_documents: creditDocument[];
   }
 }
-// "credit_documents": [
-//   {
-//     "id": 1,
-//     "name": "Паспорт гражданина Республики Таджикистан (оригинал)",
-//     "sort_id": 1,
-//     "upload_file": "847d6bb6-12f1-4ee0-b596-2b425178f0f7User Id.png"
-//   },
+
 
 

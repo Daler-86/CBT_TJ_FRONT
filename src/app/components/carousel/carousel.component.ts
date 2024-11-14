@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MenuService } from '../../api/menu.service';
@@ -12,7 +12,7 @@ interface Slide {
 
 @Component({
   selector: 'app-carousel',
-  imports:[NgFor,TranslateModule],
+  imports:[NgFor,NgIf,TranslateModule],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   standalone:true,
@@ -20,18 +20,18 @@ interface Slide {
 
 
 export class CarouselComponent {
-  slides: Slide[] = [
-    {
-      title: 'Автокредит на новое авто от 150 000с.',
-      description: 'Мечтаете приобрести автомобиль? Теперь покупка автомобиля стала еще выгоднее!',
-      image: '../../assets/icons/foto1.png'
-    },
-    {
-      title: 'Автокредит на новое авто от 150 000с.',
-      description: 'Мечтаете приобрести автомобиль? Теперь покупка автомобиля стала еще выгоднее!',
-      image: '../../assets/icons/logo.png'
-    },
-  ];
+  // slides: Slide[] = [
+  //   {
+  //     title: 'Автокредит на новое авто от 150 000с.',
+  //     description: 'Мечтаете приобрести автомобиль? Теперь покупка автомобиля стала еще выгоднее!',
+  //     image: '../../assets/icons/foto1.png'
+  //   },
+  //   {
+  //     title: 'Автокредит на новое авто от 150 000с.',
+  //     description: 'Мечтаете приобрести автомобиль? Теперь покупка автомобиля стала еще выгоднее!',
+  //     image: '../../assets/icons/logo.png'
+  //   },
+  // ];
   galleries:mainGalleries[]=[]
   constructor(private menuService:MenuService){}
   ngOnInit():void{
@@ -52,11 +52,11 @@ export class CarouselComponent {
   }
 
   prevSlide(): void {
-    this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+    this.currentSlide = (this.currentSlide - 1 + this.galleries.length) % this.galleries.length;
   }
 
   nextSlide(): void {
-    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+    this.currentSlide = (this.currentSlide + 1) % this.galleries.length;
   }
 
   goToSlide(index: number): void {

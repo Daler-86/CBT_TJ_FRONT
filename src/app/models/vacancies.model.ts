@@ -1,16 +1,4 @@
-// export interface vacancyContent{
-//     id:number;
-//     title:string;
-//     description:string;
-//     file_name:string
-// }
-// export interface VacancyContent{
-//  status:string;
-//  status_code:string;
-//  data:{
-    
-//  }
-// }
+
 export interface vacancyContent{
     id:number;
     title:string;

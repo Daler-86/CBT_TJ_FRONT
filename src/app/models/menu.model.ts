@@ -11,8 +11,41 @@ export interface MainGalleries{
  status:string;
  status_code:string;
  data:{
-    main_galleries:[]
+    main_galleries:mainGalleries[]
  }
 }
+export interface Menu {
+    id: number;
+    name: string;
+    route: string;
+    person_type_id: number;
+    sort_id: number;
+    items: MenuItem[];
+    favorites: FavoriteItem[];
+  }
+  
+  export interface MenuItem {
+    id: number;
+    name: string;
+    route: string;
+    sort_id: number;
+  }
+  
+  export interface FavoriteItem {
+    id: number;
+    name: string;
+    route: string;
+    sort_id: number;
+    upload_file: string;
+  }
+  
+  export interface MenusResponse {
+    status: string;
+    status_code: string;
+    data: {
+      menus: Menu[];
+    };
+  }
+  
 
  
