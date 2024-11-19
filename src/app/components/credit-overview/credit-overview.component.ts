@@ -6,6 +6,7 @@ import { CreditBarakatComponent } from '../credit-barakat/credit-barakat.compone
 import { AutocreditComponent } from '../autocredit/autocredit.component';
 import { CreditService } from '../../api/credit.service';
 import { creditList } from '../../models/credit.model';
+import { MenuService } from '../../api/menu.service';
 @Component({
   selector: 'app-credit-overview',
   standalone: true,
@@ -16,7 +17,7 @@ import { creditList } from '../../models/credit.model';
 export class CreditOverviewComponent {
   selectedTab: string = 'all';
   credits:creditList[]=[]
-
+personTypeId:number=1
 
   selectTab(tab: string) {
     this.selectedTab = tab;
@@ -24,9 +25,13 @@ export class CreditOverviewComponent {
   }
   
   ngOnInit(): void {
-    this.loadCreditList(1)
+    this.menuService.currentPersonTypeId.subscribe(id => {
+      this.personTypeId = id;
+      this.loadCreditList(this.personTypeId);
+    });
+ 
   }
-constructor(  private creditService: CreditService,){}
+constructor(  private creditService: CreditService, private menuService: MenuService){}
   loadCreditList(id: number): void {
     this.creditService.getCreditList(id).subscribe(
       (details) => { 

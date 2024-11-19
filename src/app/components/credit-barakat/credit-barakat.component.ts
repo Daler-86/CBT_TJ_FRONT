@@ -21,7 +21,7 @@ export class CreditBarakatComponent {
   selectedTab: string = 'credit';
   loanAmount: number = 30000;
   rangeValues: number[] = [10000, 50000, 100000, 150000, 200000]; // Значения меток
-  cardId: number=0;
+  // cardId: number=0;
   selectedTerm: string = '1 год';
   interestRate: number = 30; 
   loanTerms: string[] = ['1 год', '2 года', '3 года', '4 года', '5 лет'];
@@ -79,9 +79,9 @@ model: any = {
   ) { }
 
   ngOnInit() {
-    console.log(1)
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
+    
       this.creditId= +idParam;  // Преобразование строки в число
       
     } else {
@@ -90,14 +90,11 @@ model: any = {
     }
     
     this.updateSliderBackground();
-    this.loadCreditList(1);
-    this.loadCreditTariff(1);
+    this.loadCreditList();
+    this.loadCreditTariff(this.creditId);
     this.loadOffice()
-    this.loadCreditDocument(1)
+    this.loadCreditDocument(this.creditId)
   }
-
-
-
 
   loadOffice(): void {
     this.regionService.getOfficeList().subscribe(
@@ -110,8 +107,8 @@ model: any = {
       }
     );
   }
-  loadCreditList(id: number): void {
-    this.creditService.getCreditList(id).subscribe(
+  loadCreditList(): void {
+    this.creditService.getCreditList(1).subscribe(
       (details) => { 
         this.credits=details.data.credits
       },

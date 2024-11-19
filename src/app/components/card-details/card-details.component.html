@@ -1,21 +1,21 @@
 <div class="milli-card">
     <div class="card-container">
     <div class="card-info">
-      <h2 class="card-title">{{card[0]?.title}}</h2>
+      <h2 class="card-title">{{cardList[cardId-1]?.title}}</h2>
       <p class="card-description">
-  {{card[0]?.description}}
+  {{cardList[cardId-1]?.description}}
       </p>
       <div class="card-buttons">
         <button class="btn-primary">Оформить карту</button>
       </div>
     </div>
     <div class="card-image">
-      <img class="card" [src]="'http://172.16.16.88:9009/storage/' + card[0]?.upload_file" alt="Visa Gold" />
+      <img class="card" [src]="'http://172.16.16.88:9009/storage/' + cardList[cardId-1]?.upload_file" alt="Visa Gold" />
     </div>
   </div>
 
-  <div class="features-container" [class]="{'type1': cardId === 1, 'type2': cardId!=1}">
-    <div class="feature-card" *ngFor="let detail of cardDetails">
+  <div class="features-container" [class]="{'type1': cardContent?.length%3==0, 'type2': cardContent?.length%2==0}">
+    <div class="feature-card" *ngFor="let detail of cardContent">
           <div class="">
          <h3>{{detail.title}}</h3>
       <p>{{detail.description}}</p>

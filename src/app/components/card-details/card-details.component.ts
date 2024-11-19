@@ -3,10 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Card, cardFaqs, cardLimits, cardOperations, helpfulDocument } from '../../models/cards.model';
+import { Card, CardList, cardFaqs, cardLimits, cardOperations, helpfulDocument } from '../../models/cards.model';
 import { RegionService } from '../../api/region.service';
 import { officeList } from '../../models/region.model';
-
+import { MenuService } from '../../api/menu.service';
+import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-card-details',
   standalone: true,
@@ -16,14 +17,17 @@ import { officeList } from '../../models/region.model';
 })
 export class CardDetailsComponent implements OnInit {
   cardId: number=0;
-  cardDetails: any; // Замените any на ваш тип данных
+  cardContent: any; // Замените any на ваш тип данных
   services: any;
+  cardDetails:any;
   limits: cardLimits[]=[];
   operations: cardOperations[]=[];
   documents: helpfulDocument[]=[];
   faqs:cardFaqs[]=[]
   card:Card[]=[]
 offices:officeList[]=[]
+cardList: Card[] = [];
+
 select:any
 officeName:string='Выберите отделение банка'
   model = {
@@ -32,14 +36,18 @@ officeName:string='Выберите отделение банка'
     office_id: 0,
     phone: ''
   };  
+  personTypeId: number = 1;
     selectedFaqIndex: number | null = null;
   dropdownOpen:boolean=false;
   selectedTab: string = 'services';
+  selectedBrandId = new BehaviorSubject<number>(1);
+  selectedBrandId$ = this.selectedBrandId.asObservable();
   constructor(
     private route: ActivatedRoute,
     private cardsService: CardsService,
     private regionService:RegionService,
     private elementRef: ElementRef,
+    private menuService: MenuService
   ) { }
 
   
@@ -51,6 +59,13 @@ officeName:string='Выберите отделение банка'
       this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
     }
   ngOnInit(): void {
+    this.menuService.currentPersonTypeId.subscribe(id => {
+      this.personTypeId = id;
+      this.loadCards();
+    });
+    this.selectedBrandId$.subscribe(() => {
+      this.loadCards();
+    });
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.cardId= +idParam;  // Преобразование строки в число
@@ -64,6 +79,18 @@ officeName:string='Выберите отделение банка'
     this.loadTabData(this.selectedTab, this.cardId);
     // this.loadCardByBrand(this.cardId)
     this.loadOffice()
+    this.loadCards()
+  }
+  loadCards() {
+    this.cardsService.getCardList(this.personTypeId, 1).subscribe(
+      (response) => {
+        this.cardList = response.data.cards;
+        console.log('cardList updated:', this.cardList);
+      },
+      (error) => {
+        console.error('Ошибка при запросе данных', error);
+      }
+    );
   }
   loadTabData(tab: string,id:number): void {
     switch (tab) {
@@ -93,7 +120,7 @@ officeName:string='Выберите отделение банка'
   loadCardDetails(id: number): void {
     this.cardsService.getCardContentItem(id).subscribe(
       (details) => {
-        this.cardDetails=details.data.card_content_items
+        this.cardContent=details.data.card_content_items
      
       },
       (error) => {

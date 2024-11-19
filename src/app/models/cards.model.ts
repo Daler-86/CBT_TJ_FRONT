@@ -12,6 +12,7 @@ export interface CardContent {
     title: string;
     description: string;
     upload_file: string;
+    sort_id:number;
     content: CardContent[];
   }
   

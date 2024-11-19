@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { CardBrand, CardList,CardBrandsResponse, CardContentItem, CardHelpfulDocument, CardLimits, CardOperations, CardServices, CardFaqs } from '../models/cards.model';
 import { LanguagesService } from '../languages.service';
 import { switchMap,map } from 'rxjs/operators';
-
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +15,13 @@ export class CardsService {
   private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
     return items.sort((a, b) => a.sort_id - b.sort_id);
   }
-  getCardList(personTypeId: number, brandId: number): Observable<CardList> {
+
+  private selectedCardSource = new BehaviorSubject<any>(null);
+  selectedCard$ = this.selectedCardSource.asObservable();
+  setSelectedCard(card: any) {
+    this.selectedCardSource.next(card);
+  }
+  getCardList(personTypeId: number, brandId: number): Observable<CardList> { 
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -27,6 +33,10 @@ export class CardsService {
       }),
       map(response => {
         if (response.data.cards && Array.isArray(response.data.cards)) {
+          // Сортируем сначала карты по sortId
+          response.data.cards = this.sortBySortId(response.data.cards);
+          
+          // Сортируем контент каждой карты по sortId
           response.data.cards.forEach(card => {
             if (Array.isArray(card.content)) {
               card.content = this.sortBySortId(card.content);
@@ -37,6 +47,9 @@ export class CardsService {
       })
     );
   }
+  
+
+  
   getCardBrands():Observable<CardBrandsResponse>{
     return this.languageService.language$.pipe(  switchMap(lang => {
       const headers = new HttpHeaders({

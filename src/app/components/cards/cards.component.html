@@ -1,41 +1,41 @@
 <div class="cards">
 
-    <h1>{{"Bank cards"|translate}}</h1>
+  <h1>{{"Bank cards"|translate}}</h1>
 
-    <div class="btnCards">
-      <button *ngFor="let cBrand of cardBrands" 
-              [ngClass]="{'active': cBrand.id ===  currentBrandId}"
-              (click)="selectBrand(cBrand.id)">
-        {{ cBrand.name }}
-      </button>
-    </div>
+  <div class="btnCards">
+    <button *ngFor="let cBrand of cardBrands" 
+            [ngClass]="{'active': cBrand.id ===  currentBrandId}"
+            (click)="selectBrand(cBrand.id)">
+      {{ cBrand.name }}
+    </button>
+  </div>
 
-    <div class="content">
-      <div class="card-container" *ngFor="let card of cardList">
-        <div class="card-info">
-          <h2 class="card-title">{{card.title}}</h2>
-          <p class="card-description">
-           {{card.description}}
-          </p>
-          <div class="card-details" >
-            <div class="currency-info" *ngFor="let c of card.content">
-              <p class="title">{{c.title}}</p>
-              <p class="description">{{c.description}}</p>
-            </div>
-          </div>
-          <div class="card-buttons">
-            <button class="btn-primary">Оформить карту</button>
-            <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details', card.id]">Подробнее</button>
+  <div class="content">
+    <div class="card-container" *ngFor="let card of cardList">
+      <div class="card-info">
+        <h2 class="card-title">{{card.title}}</h2>
+        <p class="card-description">
+         {{card.description}}
+        </p>
+        <div class="card-details" >
+          <div class="currency-info" *ngFor="let c of card.content">
+            <p class="title">{{c.title}}</p>
+            <p class="description">{{c.description}}</p>
           </div>
         </div>
-        <div class="card-image">
-          <img class="card" [src]="'http://172.16.16.88:9009/storage/' + card.upload_file" [alt]="card.title" />
-
-
+        <div class="card-buttons">
+          <button class="btn-primary">Оформить карту</button>
+          <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details',card.sort_id]">Подробнее</button>
         </div>
       </div>
+      <div class="card-image">
+        <img class="card" [src]="'http://172.16.16.88:9009/storage/' + card.upload_file" [alt]="card.title" />
+
+
+      </div>
     </div>
+  </div>
 
 
- 
+
 </div>

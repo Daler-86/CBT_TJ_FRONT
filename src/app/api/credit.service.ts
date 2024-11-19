@@ -13,14 +13,14 @@ export class CreditService {
   private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
     return items.sort((a, b) => a.sort_id - b.sort_id);
   }
-  getCreditList(cardId: number): Observable<CreditList> {
+  getCreditList(personTypeId: number): Observable<CreditList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
           'accept': 'application/json',
           'Language': lang
         });
-        return this.http.get<CreditList>(`${this.baseUrl}/credit/list/${cardId}`, { headers });
+        return this.http.get<CreditList>(`${this.baseUrl}/credit/list/${personTypeId}`, { headers });
       }),
       map(response => {
         if (response.data.credits && Array.isArray(response.data.credits)) {

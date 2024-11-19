@@ -1,9 +1,9 @@
 <div class="barakat">
     <div class="card-container">
         <div class="card-info">
-          <h2 class="card-title">{{credits[creditId].title}}</h2>
+          <h2 class="card-title">{{credits[creditId-1]?.title}}</h2>
           <p class="card-description">
-            {{credits[creditId].description}}
+            {{credits[creditId-1]?.description}}
           </p>
        
           <div class="card-buttons">
@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="card-image">
-          <img class="card"  [src]="'http://172.16.16.88:9009/storage/' + credits[creditId].upload_file" alt="Barakat" />
+          <img class="card"  [src]="'http://172.16.16.88:9009/storage/' + credits[creditId-1]?.upload_file" alt="Barakat" />
        
         </div>
       </div>

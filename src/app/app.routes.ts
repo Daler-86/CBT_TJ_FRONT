@@ -36,11 +36,6 @@ export const routes: Routes = [
         data: { breadcrumb: 'Кредит' },
         
       },
-      // {
-      //   path: 'credit-barakat',
-      //   component: CreditBarakatComponent, 
-      //   data: { breadcrumb: 'Кредит Баракат' }
-      // },
       {
         path: 'credit-auto',
         component: AutocreditComponent, 
