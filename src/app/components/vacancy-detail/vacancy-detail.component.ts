@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { VacanciesService } from '../../api/vacancies.service';
-import { personalQuality, vacancyCondition, vacancyEducation, vacancyExperience, vacancySkill } from '../../models/vacancies.model';
+import { personalQuality, vacancyCondition, vacancyData, vacancyEducation, vacancyExperience, vacancySkill } from '../../models/vacancies.model';
 import { forkJoin } from 'rxjs'; // Импортируем forkJoin
 
 @Component({
@@ -33,6 +33,8 @@ export class VacancyDetailComponent implements OnInit {
   uploadFileId: number | null = null;
   isSubmitted: boolean = false;
   isError:boolean=false
+  vacancyData:any={}
+
   constructor(private fb: FormBuilder,private vacanciesService: VacanciesService,    private route: ActivatedRoute) {
     this.applyForm = this.fb.group({
       lastName: [''],
@@ -45,8 +47,6 @@ export class VacancyDetailComponent implements OnInit {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.id= +idParam; 
-      console.log(this.id)
-       // Преобразование строки в число
     } else {
       console.error('ID is missing in the route parameters.');
     }
@@ -67,6 +67,7 @@ export class VacancyDetailComponent implements OnInit {
         console.error('Ошибка при получении деталей карты', error);
       }
     );
+
     this.vacanciesService.getVacancyExperience(this.id).subscribe(
       (details) => {
         this.experience=details.data.vacancy_experiences;
@@ -92,7 +93,14 @@ export class VacancyDetailComponent implements OnInit {
         console.error('Ошибка при получении деталей карты', error);
       }
     );
-
+    this.vacanciesService.getVacancyData(1).subscribe(
+      (details) => {
+        this.vacancyData=details.data.vacancy_data
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
   }
 
 

@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { FavriComponent } from "../favri/favri.component";
 import { CreditService } from '../../api/credit.service';
-import { creditDocument, creditList, creditTariff } from '../../models/credit.model';
+import { creditData, creditDocument, creditList, creditTariff } from '../../models/credit.model';
 import { officeList } from '../../models/region.model';
 import { RegionService } from '../../api/region.service';
 import { ActivatedRoute } from '@angular/router';
@@ -25,14 +25,13 @@ export class CreditBarakatComponent {
   selectedTerm: string = '1 год';
   interestRate: number = 30; 
   loanTerms: string[] = ['1 год', '2 года', '3 года', '4 года', '5 лет'];
-credits:creditList[]=[]
 tariffs:creditTariff[]=[]
 documents:creditDocument[]=[]
 offices:officeList[]=[]
 dropdownOpen:boolean=false
 officeName:string='Выберите отделение банка'
 creditId: number=0;
-
+creditData:any={}
 model: any = {
   address:'',
   client_name: "",
@@ -88,12 +87,14 @@ model: any = {
       console.error('ID is missing in the route parameters.');
       // Здесь может быть код для обработки ситуации отсутствия ID
     }
-    
+
+  
     this.updateSliderBackground();
-    this.loadCreditList();
     this.loadCreditTariff(this.creditId);
     this.loadOffice()
     this.loadCreditDocument(this.creditId)
+
+this.loadCreditData(this.creditId)
   }
 
   loadOffice(): void {
@@ -104,16 +105,6 @@ model: any = {
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
-    );
-  }
-  loadCreditList(): void {
-    this.creditService.getCreditList(1).subscribe(
-      (details) => { 
-        this.credits=details.data.credits
-      },
-      (error) => {
-        console.error('Ошибка при получении деталей карты', error);
       }
     );
   }
@@ -133,6 +124,17 @@ model: any = {
     this.creditService.getCreditDocument(id).subscribe(
       (details) => { 
         this.documents=details.data.credit_documents
+      },
+      (error) => {
+        console.error('Ошибка при получении деталей карты', error);
+      }
+    );
+  }
+  
+  loadCreditData(id: number): void {
+    this.creditService.getCreditData(id).subscribe(
+      (details) => { 
+        this.creditData=details.data.credit_data
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);

@@ -1,16 +1,16 @@
 <div class="milli-card">
     <div class="card-container">
     <div class="card-info">
-      <h2 class="card-title">{{cardList[cardId-1]?.title}}</h2>
+      <h2 class="card-title">{{cardData.title}}</h2>
       <p class="card-description">
-  {{cardList[cardId-1]?.description}}
+  {{cardData.description}}
       </p>
       <div class="card-buttons">
         <button class="btn-primary">Оформить карту</button>
       </div>
     </div>
     <div class="card-image">
-      <img class="card" [src]="'http://172.16.16.88:9009/storage/' + cardList[cardId-1]?.upload_file" alt="Visa Gold" />
+      <img class="card" [src]="'http://172.16.16.88:9009/storage/' + cardData.upload_file" alt="Visa Gold" />
     </div>
   </div>
 

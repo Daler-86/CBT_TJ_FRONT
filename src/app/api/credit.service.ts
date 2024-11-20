@@ -3,7 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { LanguagesService } from '../languages.service';
 import { switchMap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { CreditDocument, CreditList, CreditTariff, creditTariff } from '../models/credit.model';
+import { CreditData, CreditDocument, CreditList, CreditTariff, creditTariff } from '../models/credit.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -75,7 +75,17 @@ export class CreditService {
     );
   }
   
-
+  getCreditData(cardId: number): Observable<CreditData> {
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'accept': 'application/json',
+          'Language': lang
+        });
+        return this.http.get<CreditData>(`${this.baseUrl}/credit/${cardId}`, { headers });
+      })
+    );
+  }
 
   submitCredit(creditData: any): Observable<any> {
     return this.languageService.language$.pipe(

@@ -157,11 +157,16 @@ export interface VacancyByCategory{
  }
 }
 
-
-export interface VacancyByRegion{
- status:string;
- status_code:string;
- data:{
-    vacancies:vacancyList[]
- }
+export interface vacancyData{
+   id:number;
+   name:string;
+   region_name:string
+}
+export interface VacancyData{
+status:string;
+status_code:string;
+data:{
+   vacancy_data:vacancyData
+   
+}
 }

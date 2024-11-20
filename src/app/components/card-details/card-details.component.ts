@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Card, CardList, cardFaqs, cardLimits, cardOperations, helpfulDocument } from '../../models/cards.model';
+import { Card, CardList, cardDetail, cardFaqs, cardLimits, cardOperations, helpfulDocument } from '../../models/cards.model';
 import { RegionService } from '../../api/region.service';
 import { officeList } from '../../models/region.model';
 import { MenuService } from '../../api/menu.service';
@@ -19,15 +19,11 @@ export class CardDetailsComponent implements OnInit {
   cardId: number=0;
   cardContent: any; // Замените any на ваш тип данных
   services: any;
-  cardDetails:any;
   limits: cardLimits[]=[];
   operations: cardOperations[]=[];
   documents: helpfulDocument[]=[];
   faqs:cardFaqs[]=[]
-  card:Card[]=[]
 offices:officeList[]=[]
-cardList: Card[] = [];
-
 select:any
 officeName:string='Выберите отделение банка'
   model = {
@@ -36,6 +32,7 @@ officeName:string='Выберите отделение банка'
     office_id: 0,
     phone: ''
   };  
+  cardData:any={}
   personTypeId: number = 1;
     selectedFaqIndex: number | null = null;
   dropdownOpen:boolean=false;
@@ -59,13 +56,7 @@ officeName:string='Выберите отделение банка'
       this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
     }
   ngOnInit(): void {
-    this.menuService.currentPersonTypeId.subscribe(id => {
-      this.personTypeId = id;
-      this.loadCards();
-    });
-    this.selectedBrandId$.subscribe(() => {
-      this.loadCards();
-    });
+
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.cardId= +idParam;  // Преобразование строки в число
@@ -73,19 +64,18 @@ officeName:string='Выберите отделение банка'
       console.error('ID is missing in the route parameters.');
       // Здесь может быть код для обработки ситуации отсутствия ID
     }
-
+    this.loadCards(this.cardId);
     this.loadCardDetails(this.cardId);
     this.loadCardFaqs(this.cardId)
     this.loadTabData(this.selectedTab, this.cardId);
-    // this.loadCardByBrand(this.cardId)
     this.loadOffice()
-    this.loadCards()
+  
   }
-  loadCards() {
-    this.cardsService.getCardList(this.personTypeId, 1).subscribe(
+
+  loadCards(id:number):void {
+    this.cardsService.getCardData(id).subscribe(
       (response) => {
-        this.cardList = response.data.cards;
-        console.log('cardList updated:', this.cardList);
+        this.cardData = response.data.card_data;
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
@@ -138,17 +128,7 @@ officeName:string='Выберите отделение банка'
       }
     );
   }
-  // loadCardByBrand(id: number): void {
-  //   this.cardsService.getCardByBrand(id).subscribe(
-  //     (details) => { 
-  //       this.card=details.data.cards
-  //       console.log(this.card)
-  //     },
-  //     (error) => {
-  //       console.error('Ошибка при получении деталей карты', error);
-  //     }
-  //   );
-  // }
+
   loadOffice(): void {
     this.regionService.getOfficeList().subscribe(
       (response) => {

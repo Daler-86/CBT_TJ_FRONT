@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { LanguagesService } from '../languages.service';
 import { switchMap, map } from 'rxjs/operators';
-import { VacancyCategory, VacancyContent,VacancyGallery,VacancyItem, VacancyStatistic,VacancyList, PersonalQuality, VacancyCondition, VacancyEducation, VacancyExperience, VacancySkill } from '../models/vacancies.model';
+import { VacancyCategory, VacancyContent,VacancyGallery,VacancyItem, VacancyStatistic,VacancyList, PersonalQuality, VacancyCondition, VacancyEducation, VacancyExperience, VacancySkill, VacancyData } from '../models/vacancies.model';
 
 @Injectable({
   providedIn: 'root'
@@ -124,17 +124,7 @@ export class VacanciesService {
     );
   }
 
-  // getVacancyContentItem(): Observable<VacancyItem> {
-  //   return this.languageService.language$.pipe(
-  //     switchMap(lang => {
-  //       const headers = new HttpHeaders({
-  //         'accept': 'application/json',
-  //         'Language': lang  // Установка динамического заголовка
-  //       });
-  //       return this.http.get<VacancyItem>(this.baseUrl+'/vacancy/item', { headers });
-  //     })
-  //   );
-  // }
+
   
   getVacancyStatistic():Observable<VacancyStatistic> {
     return this.languageService.language$.pipe(
@@ -184,64 +174,19 @@ export class VacanciesService {
     );
   } 
 
-//   getPersonalQuality(cardId: number):Observable<PersonalQuality>{
-//     return this.languageService.language$.pipe(
+  getVacancyData(cardId:number):Observable<VacancyData> {
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'accept': 'application/json',
+          'Language': lang  
+        });
 
-//  switchMap(lang => {
-//       const headers = new HttpHeaders({
-//         'accept': 'application/json',
-//         'Language': lang  // Установка динамического заголовка
-//       });
-//     return this.http.get<PersonalQuality>(`${this.baseUrl+'/vacancy/personal-quality/'}${cardId}`, { headers });
-//      }) )
-//   }
-//   getVacancyCondition(cardId: number):Observable<VacancyCondition>{
-//     return this.languageService.language$.pipe(
-
-//  switchMap(lang => {
-//       const headers = new HttpHeaders({
-//         'accept': 'application/json',
-//         'Language': lang  // Установка динамического заголовка
-//       });
-//     return this.http.get<VacancyCondition>(`${this.baseUrl+'/vacancy/condition/'}${cardId}`, { headers });
-//      }) )
-//   }
+        return this.http.get<VacancyData>(this.baseUrl+'/vacancy/'+cardId, { headers });
+      })
+    );
+  } 
   
-//   getVacancyEducation(cardId: number):Observable<VacancyEducation>{
-//     return this.languageService.language$.pipe(
-
-//  switchMap(lang => {
-//       const headers = new HttpHeaders({
-//         'accept': 'application/json',
-//         'Language': lang  // Установка динамического заголовка
-//       });
-//     return this.http.get<VacancyEducation>(`${this.baseUrl+'/vacancy/education/'}${cardId}`, { headers });
-//      }) )
-//   }
-
-//   getVacancyExperience(cardId: number):Observable<VacancyExperience>{
-//     return this.languageService.language$.pipe(
-
-//  switchMap(lang => {
-//       const headers = new HttpHeaders({
-//         'accept': 'application/json',
-//         'Language': lang  // Установка динамического заголовка
-//       });
-//     return this.http.get<VacancyExperience>(`${this.baseUrl+'/vacancy/experience/'}${cardId}`, { headers });
-//      }) )
-//   }
-//   getVacancySkill(cardId: number):Observable<VacancySkill>{
-//     return this.languageService.language$.pipe(
-
-//  switchMap(lang => {
-//       const headers = new HttpHeaders({
-//         'accept': 'application/json',
-//         'Language': lang  // Установка динамического заголовка
-//       });
-//     return this.http.get<VacancySkill>(`${this.baseUrl+'/vacancy/skill/'}${cardId}`, { headers });
-//      }) )
-//   }
-
   getVacancyByCategory(cardId: number):Observable<VacancyList>{
     return this.languageService.language$.pipe(
 

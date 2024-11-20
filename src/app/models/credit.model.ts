@@ -50,6 +50,19 @@ export interface CreditDocument {
     credit_documents: creditDocument[];
   }
 }
-
+export interface creditData{
+  id:number;
+  title:string;
+  description:string;
+  sort_id:number;
+  upload_file:string
+}
+export interface CreditData {
+  status: string;
+  status_code: string;
+  data: {
+    credit_data: creditData;
+  }
+}
 
 

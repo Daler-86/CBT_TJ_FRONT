@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular
 import { Observable, throwError } from 'rxjs';
 import { catchError} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { CardBrand, CardList,CardBrandsResponse, CardContentItem, CardHelpfulDocument, CardLimits, CardOperations, CardServices, CardFaqs } from '../models/cards.model';
+import { CardBrand, CardList,CardBrandsResponse, CardContentItem, CardHelpfulDocument, CardLimits, CardOperations, CardServices, CardFaqs, CardDetail } from '../models/cards.model';
 import { LanguagesService } from '../languages.service';
 import { switchMap,map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
@@ -47,8 +47,19 @@ export class CardsService {
       })
     );
   }
+  getCardData(cardId: number): Observable<CardDetail> {
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'accept': 'application/json',
+          'Language': lang
+        });
+        return this.http.get<CardDetail>(`${this.baseUrl}/card/${cardId}`, { headers });
+      }),
+      map(response => response) // Теперь здесь нет изменения данных, просто возвращаем полученный ответ
+    );
+  }
   
-
   
   getCardBrands():Observable<CardBrandsResponse>{
     return this.languageService.language$.pipe(  switchMap(lang => {

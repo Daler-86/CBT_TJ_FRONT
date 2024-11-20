@@ -36,7 +36,7 @@ export interface CardContent {
       card_brands: CardBrand[];
     }
   }
-export interface CardContent{
+export interface cardContentItem{
   id: number,
   title: string,
   description:string,
@@ -48,7 +48,7 @@ export interface CardContentItem{
    status: string;
     status_code: string;
     data: {
-      card_content_items: CardContent[];
+      card_content_items: cardContentItem[];
     }
 }
 export interface helpfulDocument{
@@ -131,4 +131,20 @@ export interface SaveCard{
   status:string;
   title:string;
   // card_order:
+}
+
+export interface cardDetail{
+  id:number;
+title:string;
+description:string;
+upload_file:string;
+sort_id:number;
+}
+
+export interface CardDetail{
+  status: string,
+  status_code: string,
+  data: {
+    card_data:cardDetail
+}
 }
