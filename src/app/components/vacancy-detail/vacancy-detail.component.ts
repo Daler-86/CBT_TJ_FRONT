@@ -108,7 +108,7 @@ export class VacancyDetailComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
-      const file = event.dataTransfer.files[0];
+      const file = event.dataTransfer.files[0]; 
       this.handleFile(file);
     }
   }
