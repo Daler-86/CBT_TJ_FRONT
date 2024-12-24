@@ -7,16 +7,17 @@
       <form>
         <label for="category">Направление:</label><br>
         <select id="category" [(ngModel)]="selectedCategory" name="category" (change)="onCategoryChange()" >
-          <option value="" disabled>Все направления ({{vacancyCategory.length}})</option>
+          <option value="" >Все направления ({{vacancyCategory.length}})</option>
           <option *ngFor="let category of vacancyCategory" [value]="category.id">{{ category.name }}</option>
         </select>
         <br>
         <label for="city">Город:</label><br>
         <select id="city" [(ngModel)]="selectedRegion" name="city" (change)="onRegionChange()" >
-          <option value="" disabled>Все города ({{regionList.length}})</option>
+          <option value="" >Все города ({{regionList.length}})</option>
           <option *ngFor="let city of regionList" [value]="city.id">{{ city.name }}</option>
         </select>
       </form>
+      
     </div>
     <!-- Список вакансий -->
     <div class="vacancy-items">
@@ -31,7 +32,7 @@
             <img src="../../../assets/icons/Layer 2.svg" alt="Location icon">
             <p>{{ vacancy.region_name }}</p>
           </div>
-          <img src="../../../assets/icons/strel.svg" alt="Arrow icon">
+         <a href="" [routerLink]="['/vacancy-list', vacancy.id]" > <img src="../../../assets/icons/strel.svg" alt="Arrow icon"></a>
         </div>
       </div>
     </div>

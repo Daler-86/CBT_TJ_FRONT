@@ -26,7 +26,7 @@ ngOnInit():void{
     },
     (error) => {
       console.error('Ошибка при запросе данных', error);
-    }
+    } 
   );
 
   this.vacanciesService.getVacancyContentItem().subscribe(
@@ -38,7 +38,7 @@ ngOnInit():void{
     }
   );
 
-  this.vacanciesService.getVacancyStatistic().subscribe(
+  this.vacanciesService.getVacancyStatistic( ).subscribe(
     (response) => {
       this.vacancyStatistics = response.data.vacancy_content_statistics;
     },

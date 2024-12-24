@@ -12,13 +12,13 @@
       </div>
     
   
- <div class="custom-dropdown ">
+ <div class="custom-dropdown "> 
               <div class="dropdown-selected contact" (click)="toggleDropdown1($event)">
                  <img src="../../../assets/icons/Global.svg" alt="">   
                  <p class="p" id="body-medium">{{selectedLanguage==='1'?"Тоҷ":selectedLanguage==='2'?"Рус":"En"}}</p> 
                  <img src="../../../assets/icons/arrow-down.png" alt="">
               </div>
-              <div class="dropdown-options" *ngIf="dropdownOpen">
+              <div class="dropdown-options" *ng If="dropdownOpen">
                 <div class="dropdown-option" *ngFor="let option of languageOptions"
                      (click)="selectLanguage(option)">
                   <p id="body-medium">{{ option.label }}</p>
@@ -48,7 +48,7 @@
               <div class="dropdown-option" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let item of menu.items" [routerLink]="item.route" (click)="selectOption(item, i, $event,menu)">
                 <p id="body-medium">{{ item.name }}</p>
               </div>
-            </div>
+            </div> 
           </div>
         
           <a class="a" *ngIf="menu.items.length === 0" href="">{{ menu.name }}</a>

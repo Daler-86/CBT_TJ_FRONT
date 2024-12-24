@@ -7,7 +7,7 @@
          {{vacancyContent[0]?.description}}
           </p>
           <div class="card-buttons">
-            <button class="btn-primary">Смотреть вакансии</button>
+            <button class="btn-primary" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" routerLink="/vacancy-list" routerLinkActive="active">Смотреть вакансии</button>
           </div>
         </div>
         <div class="card-image">

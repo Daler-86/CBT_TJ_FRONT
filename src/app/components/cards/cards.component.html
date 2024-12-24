@@ -2,14 +2,17 @@
 
   <h1>{{"Bank cards"|translate}}</h1>
 
-  <div class="btnCards">
+  <div class="btnCards"> 
+    <button [ngClass]="{'active': selectedTab === 'all'}" (click)="selectTab('all')">
+      Все 
+    </button>
     <button *ngFor="let cBrand of cardBrands" 
-            [ngClass]="{'active': cBrand.id ===  currentBrandId}"
-            (click)="selectBrand(cBrand.id)">
+            [ngClass]="{'active': isBrandSelected(cBrand.id)}"
+            (click)="selectBrand(cBrand.id); selectTab('brand')">
       {{ cBrand.name }}
     </button>
   </div>
-
+  
   <div class="content">
     <div class="card-container" *ngFor="let card of cardList">
       <div class="card-info">
@@ -24,7 +27,7 @@
           </div>
         </div>
         <div class="card-buttons">
-          <button class="btn-primary">Оформить карту</button>
+          <button class="btn-primary" (click)="navigateToCardDetailsAndForm(card.id)">Оформить карту</button>
           <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details',card.id]">Подробнее</button>
         </div>
       </div>

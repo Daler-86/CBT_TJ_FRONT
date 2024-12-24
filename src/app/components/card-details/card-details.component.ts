@@ -1,4 +1,4 @@
-import { Component ,HostListener, ElementRef, OnInit} from '@angular/core';
+import { Component ,HostListener, ElementRef, OnInit, ViewChild,} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
@@ -55,8 +55,11 @@ officeName:string='Выберите отделение банка'
     toggleFaq(index: number) {
       this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
     }
-  ngOnInit(): void {
+    @ViewChild('applicationForm') applicationForm!: ElementRef;
+    scrollToFormFlag = false;
 
+  ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.cardId= +idParam;  // Преобразование строки в число
@@ -72,6 +75,21 @@ officeName:string='Выберите отделение банка'
   
   }
 
+  ngAfterViewInit(): void {
+    // Проверяем, нужно ли прокручивать к форме
+    this.route.queryParams.subscribe((params) => {
+      if (params['scrollToForm'] === 'true') {
+        this.scrollToForm();
+      }
+    });
+  }
+
+  scrollToForm(): void {
+    const element = this.applicationForm.nativeElement;
+    const headerHeight = document.querySelector('.header')?.clientHeight || 0; // Учитываем фиксированный заголовок
+    const offsetTop = element.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  }
   loadCards(id:number):void {
     this.cardsService.getCardData(id).subscribe(
       (response) => {

@@ -47,11 +47,11 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadMenu();
-  }
+  }  
 
   loadMenu(): void {
     this.menuService.getMenu().subscribe(
-      (response) => {
+      (response) => { 
         this.menus = response.data.menus
 
         console.log(this.menus)
@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit {
     
   selectLanguage(option: any) {
     this.selectedLanguage = option.value;
-    this.dropdownOpen = false; // Закрываем селектор после выбора
+    this.dropdownOpen = false; // Закрываем селектор после выбора  
     if(this.selectLanguage!==null){
       
     this.languageService.setLanguage(option.value);
@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit {
     event.stopPropagation(); // Останавливаем распространение события
   }
 
-  selectOption(option: any, index: number, event: Event,menuItem:any) {
+  selectOption(option: any, index: number, event: Event,menuItem:any) {  
     event.stopPropagation();
     this.dropdownOpenMap[index] = false;
     

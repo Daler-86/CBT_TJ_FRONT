@@ -21,6 +21,35 @@ export class CardsService {
   setSelectedCard(card: any) {
     this.selectedCardSource.next(card);
   }
+  
+  getCardListAll(personTypeId: number): Observable<CardList> { 
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'Accept': 'application/json',
+          'Language': lang
+        });
+        const url = `${this.baseUrl}/card/list/${personTypeId}`;
+        return this.http.get<CardList>(url, { headers });
+      }),
+      map(response => {
+        if (response.data.cards && Array.isArray(response.data.cards)) {
+          // Сортируем сначала карты по sortId
+          response.data.cards = this.sortBySortId(response.data.cards);
+          
+          // Сортируем контент каждой карты по sortId
+          response.data.cards.forEach(card => {
+            if (Array.isArray(card.content)) {
+              card.content = this.sortBySortId(card.content);
+            }
+          });
+        }
+        return response;
+      })
+    );
+  }
+
+
   getCardList(personTypeId: number, brandId: number): Observable<CardList> { 
     return this.languageService.language$.pipe(
       switchMap(lang => {
@@ -47,6 +76,7 @@ export class CardsService {
       })
     );
   }
+
   getCardData(cardId: number): Observable<CardDetail> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
