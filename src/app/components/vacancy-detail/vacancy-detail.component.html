@@ -9,14 +9,14 @@
 </div>
 </div>
 <div class="">
-  <button>Откликнуться на вакансию</button>
+  <button>{{"Apply for a vacancy"|translate}}</button>
 </div>
 </div>
 <div class="">
  
     
     <div class="vacancy-details" > 
-    <h4>Образование и квалификация:</h4>
+    <h4>{{"Education and qualifications:"|translate}}</h4>
     <ul>
       <li *ngFor="let education of education">{{ education.content }}</li>
     </ul>
@@ -25,27 +25,27 @@
   </div>
 
   <div  class="vacancy-details" >
-    <h4>Опыт работы:</h4>
+    <h4>{{"Experience:"|translate}}</h4>
     <ul>
       <li *ngFor="let work of experience">{{ work.content }}</li>
     </ul>
   </div>
 
   <div  class="vacancy-details" >
-    <h4>Навыки и знания:</h4>
+    <h4>{{"Skills and knowledge:"|translate}}</h4>
     <ul>
       <li *ngFor="let skill of skill">{{ skill.content }}</li>
     </ul>
   </div>
   <div  class="vacancy-details" >
-    <h4>Личные качества:</h4>
+    <h4>{{"Personal qualities:"|translate}}</h4>
     <ul>
       <li *ngFor="let quality of personalQuality">{{ quality.content }}</li>
     </ul>
   </div>
 
   <div  class="vacancy-details" >
-    <h4>Условия:</h4>
+    <h4>{{"Conditions:"|translate}}</h4>
     <ul>
       <li *ngFor="let condition of condition">{{condition.content }}</li>
     </ul>
@@ -56,8 +56,8 @@
 
 
 <form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
-  <h2>Откликнуться на вакансию</h2>
-  <p>Расскажите нам о себе, и мы обязательно свяжемся с вами</p>
+  <h2>{{"Apply for a vacancy"|translate}}</h2>
+  <p>{{"Tell us about yourself and we will definitely contact you"|translate}}</p>
 
   <div class="form-row">
     <input formControlName="lastName" placeholder="Фамилия*" />
@@ -74,23 +74,23 @@
        (drop)="onDrop($event)"
        (dragover)="onDragOver($event)"
        (dragleave)="onDragLeave($event)">
-       <label >Перетащите или</label>
-      <small>Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)</small>
+       <label >{{"Drag or"|translate}}</label>
+      <small>{{"Supported formats: PDF, Doc, JPG (Max 5Mb)"|translate}}</small>
         <div>
     <input type="file" (change)="onFileSelected($event)" #fileInput hidden>
-    <button type="button" (click)="fileInput.click()">Загрузите CV</button>
+    <button type="button" (click)="fileInput.click()">{{"Upload your CV"|translate}}</button>
     <span *ngIf="fileName">{{ fileName }}</span>
   </div>
 
   </div>
-  <button type="submit">Отправить</button>
+  <button type="submit">{{"Send"|translate}}</button>
 </form>
 <div *ngIf="isSubmitted" class="notification success-message">
-  Данные успешно отправлены! Мы свяжемся с вами в ближайшее время.
+{{"Data sent successfully! We will contact you shortly."|translate}}
 </div>
 
 <div *ngIf="isError" class="notification error-message animated">
-  ❌ Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.
+{{"❌ An error occurred while sending data. Please try again."|translate}}
 </div>
   
 </div>

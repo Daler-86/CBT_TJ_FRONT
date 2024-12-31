@@ -7,11 +7,12 @@ import { VacanciesService } from '../../api/vacancies.service';
 import { vacancyCategory, vacancyList } from '../../models/vacancies.model';
 import { RegionService } from '../../api/region.service';
 import { regionList } from '../../models/region.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-vacancy-list',
   standalone: true,
-  imports: [NgForOf, RouterLink, FormsModule],
+  imports: [NgForOf, RouterLink, FormsModule,TranslateModule],
   templateUrl: './vacancy-list.component.html',
   styleUrls: ['./vacancy-list.component.scss']
 })

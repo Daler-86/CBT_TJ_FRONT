@@ -8,10 +8,11 @@ import { RegionService } from '../../api/region.service';
 import { officeList } from '../../models/region.model';
 import { MenuService } from '../../api/menu.service';
 import { BehaviorSubject } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-card-details',
   standalone: true,
-  imports: [NgFor, NgIf,FormsModule],
+  imports: [NgFor, NgIf,FormsModule, TranslateModule],
   templateUrl: './card-details.component.html',
   styleUrl: './card-details.component.scss'
 })

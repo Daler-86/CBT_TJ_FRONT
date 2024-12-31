@@ -1,11 +1,11 @@
 
 <div class="credit">
-    <h1>Потребительские кредиты</h1>
+    <h1>{{"Consumer loans"|translate}}</h1>
     <div class="btnCards">
-        <button (click)="selectTab('all')" [class.active]="selectedTab === 'all'">Все</button>
-        <button (click)="selectTab('credit')" [class.active]="selectedTab === 'credit'">Кредит</button>
-        <button (click)="selectTab('auto credit')" [class.active]="selectedTab === 'auto credit'">Автокредит</button>
-        <button (click)="selectTab('credit stroy')" [class.active]="selectedTab === 'credit stroy'">Кредит на строительство</button>
+        <button (click)="selectTab('all')" [class.active]="selectedTab === 'all'">{{"All"|translate}}</button>
+        <button (click)="selectTab('credit')" [class.active]="selectedTab === 'credit'">{{"Credit"|translate}}</button>
+        <button (click)="selectTab('auto credit')" [class.active]="selectedTab === 'auto credit'">{{"Car loan"|translate}}</button>
+        <button (click)="selectTab('credit stroy')" [class.active]="selectedTab === 'credit stroy'">{{"Construction loan"|translate}}</button>
     </div>
     <div *ngIf="selectedTab==='all'" class="content">
     
@@ -24,9 +24,9 @@
                 </div>
               </div>
               <div class="card-buttons">
-                <button class="btn-primary">Оформить заявку</button>
+                <button class="btn-primary">{{"Submit an application"|translate}}</button>
                 <button class="btn-secondary"  (click)="onCreditClick(credit)" [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                  Подробнее
+                  {{"More details"|translate}}
                 </button>
                 
               </div>

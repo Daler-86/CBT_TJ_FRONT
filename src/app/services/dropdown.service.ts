@@ -12,6 +12,7 @@ export class DropdownService {
 
   // Метод для установки открытого селектора
   setOpenDropdown(index: number) {
+    debugger
     this.openDropdownIndex.next(index);
   }
 

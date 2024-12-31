@@ -1,7 +1,4 @@
 import { Routes } from '@angular/router';
-import { PrivateClientsComponent } from './components/private-clients/private-clients.component';
-import { BusinessComponent } from './components/business/business.component';
-import { MobileBankingComponent } from './components/mobile-banking/mobile-banking.component';
 import { VacanciesComponent } from './components/vacancies/vacancies.component';
 import { HomeComponent } from './components/home/home.component';
 import { CardsComponent } from './components/cards/cards.component';
@@ -18,9 +15,6 @@ import { AutocreditComponent } from './components/autocredit/autocredit.componen
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data: { breadcrumb: 'Главная' } },
-  { path: 'private-clients', component: PrivateClientsComponent, data: { breadcrumb: 'Частные клиенты' } },
-  { path: 'business', component: BusinessComponent, data: { breadcrumb: 'Бизнес' } },
-  { path: 'mobile-banking', component: MobileBankingComponent, data: { breadcrumb: 'Мобильный банкинг' } },
   { path: 'vacancies', component: VacanciesComponent, data: { breadcrumb: 'Вакансии' } },
   { path: 'cards', component: CardsComponent, data: { breadcrumb: 'Карты' } },
   { path: 'vacancy-list', component: VacancyListComponent, data: { breadcrumb: 'Список вакансий' } },

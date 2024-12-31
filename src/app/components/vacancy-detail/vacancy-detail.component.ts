@@ -9,11 +9,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { VacanciesService } from '../../api/vacancies.service';
 import { personalQuality, vacancyCondition, vacancyData, vacancyEducation, vacancyExperience, vacancySkill } from '../../models/vacancies.model';
 import { forkJoin } from 'rxjs'; // Импортируем forkJoin
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-vacancy-detail',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLinkActive, RouterModule,ReactiveFormsModule],
+  imports: [NgIf, NgFor, RouterLinkActive, RouterModule,ReactiveFormsModule, TranslateModule],
   templateUrl: './vacancy-detail.component.html',
   styleUrls: ['./vacancy-detail.component.scss']
 })

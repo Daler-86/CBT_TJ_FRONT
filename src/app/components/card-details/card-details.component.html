@@ -6,11 +6,11 @@
   {{cardData.description}}
       </p>
       <div class="card-buttons">
-        <button class="btn-primary">Оформить карту</button>
+        <button class="btn-primary">{{"Apply for a card"|translate}}</button>
       </div>
     </div>
     <div class="card-image">
-      <img class="card" [src]="'http://172.16.16.88:9009/storage/' + cardData.upload_file" alt="Visa Gold" />
+      <img class="card" [src]="'http://172.16.16.88:9009/storage/' + cardData.upload_file" [alt]="cardData.title"/>
     </div>
   </div>
 
@@ -30,12 +30,12 @@
   
   
   <div class="container">
-    <h1>Тарифы и условия</h1>
+    <h1>{{"Tariffs and conditions"|translate}}</h1>
     <div class="btnCards">
-        <button (click)="selectTab('services')" [class.active]="selectedTab === 'services'">Услуги</button>
-        <button (click)="selectTab('limits')" [class.active]="selectedTab === 'limits'">Лимиты</button>
-        <button (click)="selectTab('operations')" [class.active]="selectedTab === 'operations'">Операции</button>
-        <button (click)="selectTab('documents')" [class.active]="selectedTab === 'documents'">Полезные документы</button>
+        <button (click)="selectTab('services')" [class.active]="selectedTab === 'services'">{{"Services"|translate}}</button>
+        <button (click)="selectTab('limits')" [class.active]="selectedTab === 'limits'">{{"Limits"|translate}}</button>
+        <button (click)="selectTab('operations')" [class.active]="selectedTab === 'operations'">{{"Operations"|translate}}</button>
+        <button (click)="selectTab('documents')" [class.active]="selectedTab === 'documents'">{{"Useful documents"|translate}}</button>
     </div>
     <div *ngIf="selectedTab==='services'" class="content">
         <div class="info-container">
@@ -54,17 +54,17 @@
       <div class="info-box-limits" *ngFor="let limit of limits">
         <div class="info-title-1">{{limit.name}}</div>
         <div class="info-title"> 
-        <div class="info-detail">Счёт TJS</div>
+        <div class="info-detail">{{"TJS account"|translate}}</div>
         {{limit.tjs}}
          
         </div>
         <div class="info-title"> 
-          <div class="info-detail">Счёт RUB</div>
+          <div class="info-detail">{{"RUB account"|translate}}</div>
           {{limit.rub}}
          
         </div>
         <div class="info-title">
-             <div class="info-detail">Счёт USD</div>
+             <div class="info-detail">{{"USD account"|translate}}</div>
              {{limit.usd}}
         </div>
       </div>
@@ -94,13 +94,13 @@
   </div> 
 
   <div class="application-form-container" #applicationForm>
-    <h2 class="form-title">Заявка на карту</h2>
-    <p class="form-subtitle">Оставьте свои контакты, и мы обязательно с вами свяжемся</p>
+    <h2 class="form-title">{{"Application for a card"|translate}}</h2>
+    <p class="form-subtitle">{{"Leave your contacts and we will definitely contact you"|translate}}</p>
     <div class="form">
       <form (ngSubmit)="submitApplication()" #form="ngForm" >
         <div class="form-group">
           <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
-            Это поле обязательно для заполнения
+            {{"This field is required"|translate}}
           </div>
           <input
             type="text"
@@ -116,7 +116,7 @@
   
         <div class="form-group">
           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-            Это поле обязательно для заполнения
+            {{"This field is required"|translate}}
           </div>
           <input
             type="text"
@@ -146,13 +146,13 @@
         </div>
   
         <div class="form-group">
-          <button type="submit" class="btn-primary" [disabled]="form.invalid">Оформить карту</button>
+          <button type="submit" class="btn-primary" [disabled]="form.invalid">{{"Apply for a card"|translate}}</button>
         </div>
       </form>
   
       <p class="form-disclaimer">
-        Нажимая «Получить», вы соглашаетесь на
-        <a href="#">обработку персональных данных</a>.
+        {{"By clicking 'Get', you agree to"|translate}}
+        <a href="#">{{"processing of personal data"|translate}}</a>.
       </p>
     </div>
   </div>
@@ -161,7 +161,7 @@
 
 
   <div class="faq-container">
-    <h2 class="faq-title">Часто задаваемые вопросы</h2>
+    <h2 class="faq-title">{{"Frequently Asked Questions"|translate}}</h2>
     <div *ngFor="let faq of faqs; let i = index" class="faq-item">
       <div class="faq-question" (click)="toggleFaq(i)">
         <span>{{ faq.title }}</span>

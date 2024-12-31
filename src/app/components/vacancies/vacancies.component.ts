@@ -3,10 +3,11 @@ import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { VacanciesService } from '../../api/vacancies.service';
 import { vacancyContent, vacancyGallery, vacancyItem, vacancyStatistic } from '../../models/vacancies.model';
 import { NgFor, NgIf } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-vacancies',
   standalone: true,
-  imports: [RouterLink, RouterModule, RouterOutlet,NgFor],
+  imports: [RouterLink, RouterModule, RouterOutlet, NgFor,TranslateModule],
   templateUrl: './vacancies.component.html',
   styleUrl: './vacancies.component.scss'
 })

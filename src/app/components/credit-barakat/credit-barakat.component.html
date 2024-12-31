@@ -7,18 +7,18 @@
           </p>
        
           <div class="card-buttons">
-            <button class="btn-primary">Получить кредит</button>  
+            <button class="btn-primary">{{"Get a loan"|translate}}</button>  
           </div>
         </div>
         <div class="card-image">
-          <img class="card"  [src]="'http://172.16.16.88:9009/storage/' +creditData.upload_file " alt="Barakat" />
+          <img class="card"  [src]="'http://172.16.16.88:9009/storage/' +creditData.upload_file " [alt]="creditData.title" />
        
         </div>
       </div>
 
         
   <div class="container">
-    <h1>Тарифы и условия</h1>
+    <h1>{{"Tariffs and conditions"|translate}}</h1>
     <div class="content">
     <div class="info-container">
     
@@ -40,7 +40,7 @@
   </div> 
 
   <div class="container-2">
-    <h1>Перечень необходимых документов</h1>
+    <h1>{{"List of required documents"|translate}}</h1>
 <div class="box">
     <div class="box-details" *ngFor="let document of documents">
         <img [src]="'http://172.16.16.88:9009/storage/' + document.upload_file" alt="">
@@ -51,7 +51,7 @@
 
   </div>
   <div class="container-3">
-    <h1>Онлайн заявка на кредит</h1>
+    <h1>{{"Online loan application"|translate}}</h1>
   <div class="calculator">
  
   
@@ -79,12 +79,12 @@
           <button *ngFor="let term of loanTerms" (click)="selectTerm(term)" [class.active]="selectedTerm === term">{{ term }}</button>
         </div>
       
-        <p>Все расчеты являются предварительными и могут отличаться от фактически полученных</p>
+        <p>{{"All calculations are preliminary and may differ from those actually received."|translate}}</p>
      <div class="application-form-container" >
        <form class="form" (ngSubmit)="submitApplication()"> 
         <div class="form-group">
           <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
-            Это поле обязательно для заполнения
+          {{"This field is required"|translate}}
           </div> 
           <input 
             type="text" 
@@ -99,7 +99,7 @@
         </div>
         <div class="form-group">
           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-            Это поле обязательно для заполнения
+            {{"This field is required"|translate}}
           </div> 
           <input 
             type="text" 
@@ -113,7 +113,7 @@
         </div>   
             <div class="form-group">
               <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-                Это поле обязательно для заполнения
+                {{"This field is required"|translate}}
               </div> 
               <input 
                 type="text" 
@@ -150,8 +150,8 @@
                 name="name"
                 #name="ngModel">
             </div>  
-          <p>Если у вас нет постоянного места работы, то можете оставить поле пустым.</p>
-            <button type="submit" class="btn-primary" >Отправить</button>
+          <p>{{"If you do not have a permanent place of work, you can leave the field blank."|translate}}</p>
+            <button type="submit" class="btn-primary" >{{"Send"|translate}}</button>
           </form>
         </div>
           
@@ -169,8 +169,7 @@
       <div class="calculator-result">
         <div class="info">
             <img src="../../../assets/icons/Info Circle.svg" alt="">
-        <h4>Онлайн заявки принимаются и рассматриваются в будние дни 
-            с 8:00 до 17:00.</h4></div>
+        <h4>{{"Online applications are accepted and reviewed on weekdays from 8:00 to 17:00."|translate}}</h4></div>
       </div>
     </div>
 

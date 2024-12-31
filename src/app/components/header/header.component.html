@@ -18,7 +18,8 @@
                  <p class="p" id="body-medium">{{selectedLanguage==='1'?"Тоҷ":selectedLanguage==='2'?"Рус":"En"}}</p> 
                  <img src="../../../assets/icons/arrow-down.png" alt="">
               </div>
-              <div class="dropdown-options" *ng If="dropdownOpen">
+
+              <div class="dropdown-options" *ngIf="dropdownOpen">
                 <div class="dropdown-option" *ngFor="let option of languageOptions"
                      (click)="selectLanguage(option)">
                   <p id="body-medium">{{ option.label }}</p>

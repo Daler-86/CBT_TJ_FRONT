@@ -4,7 +4,7 @@
 
   <div class="btnCards"> 
     <button [ngClass]="{'active': selectedTab === 'all'}" (click)="selectTab('all')">
-      Все 
+      {{"All"|translate}}
     </button>
     <button *ngFor="let cBrand of cardBrands" 
             [ngClass]="{'active': isBrandSelected(cBrand.id)}"
@@ -27,8 +27,8 @@
           </div>
         </div>
         <div class="card-buttons">
-          <button class="btn-primary" (click)="navigateToCardDetailsAndForm(card.id)">Оформить карту</button>
-          <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details',card.id]">Подробнее</button>
+          <button class="btn-primary" (click)="navigateToCardDetailsAndForm(card.id)">{{"Apply for a card"|translate}}</button>
+          <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details',card.id]">{{"More details"|translate}}</button>
         </div>
       </div>
       <div class="card-image">
