@@ -159,7 +159,7 @@ officeName:string='Выберите отделение банка'
     );
   }
   submitApplication() {
-    debugger
+ 
     if (this.model.phone && this.model.client_name && this.model.office_id) {
       console.log(this.model)
       this.model.card_id=this.cardId

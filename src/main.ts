@@ -8,11 +8,14 @@ import { provideHttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideTranslation } from './config/translate-loader.config';
+import { GoogleMapsModule } from '@angular/google-maps'
+import { MapComponent } from './app/components/map/map.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    importProvidersFrom(TranslateModule.forRoot(provideTranslation()))
+    importProvidersFrom(TranslateModule.forRoot(provideTranslation())),
+    importProvidersFrom(GoogleMapsModule)
   ]
 }).catch(err => console.error(err));

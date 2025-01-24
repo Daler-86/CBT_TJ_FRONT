@@ -118,6 +118,15 @@
   "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license": "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license",
   "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.": "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.",
   "strach": "Insurance",
-  "vklad": "Deposits"
-}
+  "vklad": "Deposits",
+    "all": "All",
+    "offices": "Offices",
+    "atm": "ATMs",
+    "terminals": "Terminals",
+    "24h": "24 Hours",
+    "now": "Open Now",
+
+    "qr": "QR Code",
+    "nfc": "NFC Contactless"
+  }
 

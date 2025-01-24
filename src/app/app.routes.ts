@@ -11,6 +11,7 @@ import { CardDetailsComponent } from './components/card-details/card-details.com
 import { CreditBarakatComponent } from './components/credit-barakat/credit-barakat.component';
 import { CreditOverviewComponent } from './components/credit-overview/credit-overview.component';
 import { AutocreditComponent } from './components/autocredit/autocredit.component';
+import { MapComponent } from './components/map/map.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -41,7 +42,8 @@ export const routes: Routes = [
         data: { breadcrumb: 'Детали кредита' }
       }
     ]
-  }
+  },
+  { path: 'map', component: MapComponent, data: { breadcrumb: 'Карты' } },
 
 ];
 

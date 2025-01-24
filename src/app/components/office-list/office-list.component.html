@@ -1,0 +1,127 @@
+
+<div class="adress">
+    
+  <div class="application-form-container">
+    <div class="form">
+      <!-- Выпадающий список фильтров -->
+      <div class="custom-dropdown">
+        <div class="dropdown-selected" (click)="toggleDropdown($event)">
+          Фильтр
+        </div>
+        <div class="dropdown-options" *ngIf="dropdownOpen">
+          <div class="dropdown-section">
+            <h4>Типы объектов</h4>
+            <div class="dropdown-option">
+              <label class="custom-checkbox">
+                <input
+                  type="radio"
+                  [checked]="terminalsSelected"
+                  (change)="onCheckboxChange('terminalsSelected', $event)"
+                />
+                <span class="checkbox"></span>
+                {{"terminals"|translate}}
+              </label>
+            </div>
+            <div class="dropdown-option">
+              <label class="custom-checkbox">
+                <input
+                  type="radio"
+                  [checked]="officesSelected"
+                  (change)="onCheckboxChange('officesSelected', $event)"
+                />
+                <span class="checkbox"></span>
+                {{"offices"|translate}}
+              </label>
+            </div>
+            <div class="dropdown-option">
+              <label class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  [checked]="atmsSelected"
+                  (change)="onCheckboxChange('atmsSelected', $event)"
+                />
+                <span class="checkbox"></span>
+                {{"atm"|translate}}
+              </label>
+            </div>
+          </div>
+        
+    
+        </div>
+      </div>
+      
+  
+      <!-- Второй выпадающий список для региона -->
+      <div class="custom-dropdown">
+        <div class="dropdown-selected" (click)="toggleDropdown2($event)">
+         {{regionSelectedName}}
+        </div>
+        <div class="dropdown-options" *ngIf="dropdownOpen2">
+          <div class="dropdown-section">
+            <div *ngFor="let option of regionList" class="dropdown-option">
+              <label class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  [checked]="regionSelected==option.id"
+                  (change)="onRegionChange(option)"
+                />
+                <span class="checkbox"></span>
+                {{ option.name }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+ 
+    <div *ngIf="combinedData.length > 0; else noData">
+      <div *ngFor="let terminal of combinedData" class="card">
+      
+        <div class="name">
+        <div class="icon">
+            <img *ngIf="officesSelected" src="../../../assets/icons/offices.svg" alt="">
+            <img *ngIf="atmsSelected" src="../../../assets/icons/atms.svg" alt="">
+            <img *ngIf="terminalsSelected" src="../../../assets/icons/terminals.svg" alt="">
+        </div>
+        <div class="info">
+        <h3>{{ terminal.name  }}</h3>
+        <p>{{ terminal.address }}</p>
+     
+</div>
+        </div> 
+        <div class="">
+        <strong>Время работы</strong> 
+        <p>
+          
+          {{ terminal.is_24_time ? '24 часа' : '08:00-17:00' }}
+        </p></div>
+   
+      </div>
+      
+    </div>
+
+    <ng-template #noData>
+      <p>Нет данных для отображения.</p>
+    </ng-template>
+
+    <div class="">
+
+        <div class="pagination">
+            <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
+            <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
+          
+            <button
+              *ngFor="let page of pages"
+              [class.active]="page === currentPage"
+              (click)="selectPage(page)"
+            >
+              {{ page === -1 ? '...' : page }}
+            </button>
+          
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+            <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
+          </div>
+    </div>
+  </div>

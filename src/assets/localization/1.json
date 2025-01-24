@@ -118,6 +118,19 @@
   "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license": "© 2017 - 2024 ОАО 'Коммерцбанк Таджикистана', сомонаи расмӣ.",
   "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.": "Иҷозати Бонки Миллии Тоҷикистон №0000085 аз 10 октябри соли 2017.",
   "strach": "Суғурта",
-  "vklad": "Амонатҳо"
+  "vklad": "Амонатҳо",
+
+    "all": "Ҳама",
+    "offices": "Идораҳо",
+    "atm": "Бонкоматҳо",
+    "terminals": "Терминалҳо",
+
+    "24h": "Ҳамарӯза",
+    "now": "Кор мекунад",
+    "qr": "QR-код",
+    "nfc": "NFC-ҳамворавӣ"
+
+
+
 }
 

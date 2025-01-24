@@ -6,11 +6,13 @@
         <img src="../../../assets/icons/phonegrey.svg" alt="">
         <p class="p" id="body-medium">+(992) 44 630 8888</p>
       </div>
-      <div class="contact"> 
+       <a href="" routerLink="map" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> 
+        <div class="contact"> 
          <img src="../../../assets/icons/Map Point.svg" alt="">
-        <p class="p" id="body-medium">{{  "Offices and ATMs"|translate}}</p> 
+        <p class="p" id="body-medium">
+        {{  "Offices and ATMs"|translate}}</p> 
       </div>
-    
+    </a>
   
  <div class="custom-dropdown "> 
               <div class="dropdown-selected contact" (click)="toggleDropdown1($event)">

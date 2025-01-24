@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit {
   }
   toggleDropdown1(event: Event) {
     this.dropdownOpen = !this.dropdownOpen;
-    debugger
+  
     if (this.dropdownOpen) {
       this.dropdownService.setOpenDropdown(this.index); // Уведомляем сервис, что открылся текущий селектор
     }
