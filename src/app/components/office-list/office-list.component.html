@@ -6,7 +6,7 @@
       <!-- Выпадающий список фильтров -->
       <div class="custom-dropdown">
         <div class="dropdown-selected" (click)="toggleDropdown($event)">
-          Фильтр
+          {{inputvalue}}
         </div>
         <div class="dropdown-options" *ngIf="dropdownOpen">
           <div class="dropdown-section">
@@ -58,11 +58,22 @@
         </div>
         <div class="dropdown-options" *ngIf="dropdownOpen2">
           <div class="dropdown-section">
+            <div class="dropdown-option">
+              <label class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  [checked]="regionSelected === 0"
+                  (change)="onRegionChange(0)"
+                />
+                <span class="checkbox"></span>
+                Все
+              </label>
+            </div>
             <div *ngFor="let option of regionList" class="dropdown-option">
               <label class="custom-checkbox">
                 <input
                   type="checkbox"
-                  [checked]="regionSelected==option.id"
+                  [checked]="regionSelected === option.id"
                   (change)="onRegionChange(option)"
                 />
                 <span class="checkbox"></span>
@@ -71,6 +82,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   
@@ -91,12 +103,22 @@
      
 </div>
         </div> 
-        <div class="">
+        <div class="item">
+        <div *ngFor="let item of terminal.items">
+          <strong>{{item.title}}</strong> 
+          <p>
+            
+            {{ item.description}}
+          </p>
+        </div>
+      </div>
+        <div class="time">
         <strong>Время работы</strong> 
         <p>
           
           {{ terminal.is_24_time ? '24 часа' : '08:00-17:00' }}
-        </p></div>
+        </p>
+      </div>
    
       </div>
       

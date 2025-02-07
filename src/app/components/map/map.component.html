@@ -133,6 +133,17 @@
         </div>
         <div class="dropdown-options" *ngIf="dropdownOpen2">
           <div class="dropdown-section">
+            <div  class="dropdown-option">
+              <label class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  [checked]="regionSelected==0"
+                  (change)="onRegionChange(0)"
+                />
+                <span class="checkbox"></span>
+                Все
+              </label>
+            </div>
             <div *ngFor="let option of regionList" class="dropdown-option">
               <label class="custom-checkbox">
                 <input
@@ -153,16 +164,43 @@
   
     <!-- Карта -->
    
-      <google-map [height]="'500px'" [width]="'100%'" [center]="center" [zoom]="zoom">
+      <!-- <google-map [height]="'500px'" [width]="'100%'" [center]="center" [zoom]="zoom">
         <map-marker
           *ngFor="let marker of markers"
           [position]="marker.position"
           [label]="marker.label"
           (mapClick)="showInfo(marker.info)"
         ></map-marker>
-      </google-map>
+      </google-map> -->
 
+      <div class="map-container">
+        <google-map
+          height="500px"
+          width="100%"
+          [center]="center"
+          [zoom]="zoom"
+        >
+        
+          <map-marker
+            *ngFor="let marker of markers"
+            [position]="marker.position"
+            [options]="{ icon: getMarkerIcon(marker.type) }"
+          
+            (mapClick)="showInfo(marker)"
+          >
+          </map-marker>
       
+          <map-info-window
+            *ngIf="activeMarker"
+            [position]="activeMarker.position"
+            (closeclick)="hideInfo()"
+          >
+            <div [innerHTML]="activeMarker.info">
+            <p>vujhbkl</p>
+            </div>
+          </map-info-window>
+        </google-map> 
+      </div>
     <!-- Часто задаваемые вопросы -->
     <div class="faq-container">
       <h2 class="faq-title">{{ "Frequently Asked Questions" | translate }}</h2>

@@ -24,7 +24,37 @@
 </div>
 
 <app-currency-converter></app-currency-converter>
+<div class="container_3">
+<div class="container_4">
+    <div class="box1">
+         <h1>Новости</h1>
+         <div class="p">  
+             <p>Все новости </p>
+            <span><img src="../../../assets/icons/arrow_forward.svg" alt=""></span>
+         </div>
+      
+    </div>
+    <div class="box2">
+        <div class="">
+            <img src="../../../assets/icons/news1.png" alt="">
+            <p>16 января 2025</p> 
+            <h3>Международное рейтинговое агентство «Moody's Investors Service»</h3>
+     </div>
 
+     <div class="">
+        <img src="../../../assets/icons/news1.png" alt="">
+        <p>16 января 2025</p> 
+        <h3>Международное рейтинговое агентство «Moody's Investors Service»</h3>
+ </div>
+ <div class="">
+    <img src="../../../assets/icons/news1.png" alt="">
+    <p>16 января 2025</p> 
+    <h3>Международное рейтинговое агентство «Moody's Investors Service»</h3>
+</div>
+    </div>
+   
+</div>
+</div>
 
 <div class="container_3">
     <div class="favri">
@@ -44,6 +74,7 @@
 </div>
 </div>
 
+
 <div class="container_5">
       <div class="location">
         <h3>{{ "Offices and ATMs"|translate}}</h3>
@@ -54,7 +85,7 @@
         <button>{{"View on map"|translate}}</button>
     </div>
     <div class="d">
-        <div class="box">
+        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  routerLink="/map" routerLinkActive="active">
             <div class="details">
                 <h3>{{ "Offices and ATMs"|translate}}</h3>
                 <p>{{"We are closer than you think"|translate}}</p>

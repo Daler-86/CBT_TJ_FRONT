@@ -90,6 +90,7 @@ export interface OfficeFaqs{
     status_code: string; // Код статуса, например "200"
     data: {
       list_data: any[];
+      total_count:number;
     
     };
   }

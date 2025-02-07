@@ -32,3 +32,409 @@ $color-gradient-start: #00FF00; // Начальный цвет градиент�
 $color-gradient-end: #006400; // Конечный цвет градиента, предположительно темно-зеленый
 $color-primary: #00B06C; // Основной цвет, предположительно синий
 $color-grey: #666F8D;
+
+// export class MapComponent implements OnInit, OnDestroy {
+//     @ViewChild('infoWindow', { static: false }) infoWindow!: MapInfoWindow;
+//     // @ViewChild('infoWindow', { static: false }) infoWindow: MapInfoWindow;
+//     constructor(
+//       private filterService: RegionService,
+//       private translateService: TranslateService,
+//       private cardsService: CardsService
+//     ) {}
+  
+//     // Центр карты
+//     center: google.maps.LatLngLiteral = { lat: 38.5367, lng: 68.7803 };
+//     // Уровень масштабирования
+//     zoom = 13;
+//     // Выбранная вкладка
+//     selectedTab: string = 'NaKarte';
+  
+//     // Пути к иконкам для разных типов маркеров
+//     ATM_ICON = '../../../assets/icons/atms.svg';
+//     TERMINAL_ICON = '../../../assets/icons/terminals.svg';
+//     OFFICE_ICON = '../../../assets/icons/offices.svg';
+  
+//     // Фильтры (можно настроить по необходимости)
+//     filterOptions: {
+//       types: string[];
+//       accessibility: string[];
+//       additional: string[];
+//     } = {
+//       types: [],
+//       accessibility: [],
+//       additional: [],
+//     };
+  
+//     // Флаги для фильтров
+//     allSelected: boolean = false;
+//     terminalsSelected: boolean = false;
+//     officesSelected: boolean = false;
+//     atmsSelected: boolean = false;
+  
+//     is24Selected: boolean = false;
+//     workingNowSelected: boolean = false;
+  
+//     qrCodeSelected: boolean = false;
+//     nfcSelected: boolean = false;
+  
+//     dropdownOpen: boolean = false;
+//     dropdownOpen2: boolean = false;
+  
+//     regionSelected: number = 0;
+//     regionList: any[] = [];
+//     faqs: { title: string; description: string }[] = [];
+//     selectedFaqIndex: number | null = null;
+  
+//     // Массивы данных
+//     offices: Office[] = [];
+//     atms: Atm[] = [];
+//     terminals: Terminal[] = [];
+  
+//     // Массив маркеров
+//     markers: Marker[] = [];
+//     // Активный маркер для InfoWindow
+//     activeMarker: Marker | null = null;
+  
+//     // Имя выбранного региона
+//     regionSelectedName: string = 'Город';
+//     lastOpenedMarker: MapMarker | null = null;
+//     @HostListener('document:click', ['$event'])
+//     closeDropdownsManual(event: Event): void {
+//       const target = event.target as HTMLElement;
+//       if (!target.closest('.custom-dropdown')) {
+//         this.dropdownOpen = false;
+//         this.dropdownOpen2 = false;
+//       }
+//     }
+  
+//     ngOnInit(): void {
+//       document.addEventListener('click', this.closeDropdownsManual.bind(this));
+  
+//       // Загрузка списка регионов
+//       this.filterService.getRegionList().subscribe(
+//         (response) => {
+//           this.regionList = response.data.regions;
+//         },
+//         (error) => {
+//           console.error('Ошибка при запросе данных', error);
+//         }
+//       );
+  
+//       // Установка флага "Все выбраны"
+//       this.allSelected = true;
+  
+//       // Загрузка FAQ для карты
+//       this.loadCardFaqs();
+  
+//       // Загрузка и отображение данных на карте
+//       this.sendFilteredData();
+//     }
+  
+//     ngOnDestroy(): void {
+//       document.removeEventListener('click', this.closeDropdownsManual.bind(this));
+//     }
+  
+//     // Загрузка FAQ для карты
+//     loadCardFaqs(): void {
+//       this.filterService.getCardFaqs().subscribe(
+//         (details) => {
+//           this.faqs = details.data.office_faqs;
+//         },
+//         (error) => {
+//           console.error('Ошибка при получении деталей карты', error);
+//         }
+//       );
+//     }
+  
+//     // Переключение FAQ
+//     toggleFaq(index: number) {
+//       this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
+//     }
+  
+//     // Отправка фильтрованных данных и формирование маркеров
+//     sendFilteredData(): void {
+//       this.filterService
+//         .getFilteredData(
+//           this.atmsSelected,
+//           this.is24Selected,
+//           this.officesSelected,
+//           this.regionSelected,
+//           this.terminalsSelected,
+//           this.workingNowSelected
+//         )
+//         .subscribe({
+//           next: (response) => {
+//             console.log('Filtered data received:', response);
+//             this.terminals = response.data.terminals || [];
+//             this.atms = response.data.atms || [];
+//             this.offices = response.data.offices || [];
+  
+//             // Формируем markers с типом
+//             this.markers = [
+//               ...this.parseTerminals(this.terminals),
+//               ...this.parseAtms(this.atms),
+//               ...this.parseOffices(this.offices),
+//             ];
+            
+//           },
+//           error: (err) => {
+//             console.error('Error fetching filtered data:', err);
+//           },
+//         });
+//     }
+  
+//     // Парсинг терминалов
+//     parseTerminals(terminals: Terminal[]): Marker[] {
+//       return terminals
+//         .map((terminal) => {
+//           const lat = this.extractLatitude(terminal.latitude);
+//           const lng = this.extractLongitude(terminal.longitude);
+  
+//           if (lat !== null && lng !== null) {
+//             return {
+//               position: { lat, lng },
+//               label: terminal.name,
+//               info: `Терминал: ${terminal.name}<br>Адрес: ${terminal.address}`,
+//               type: 'terminal',
+//             } as Marker;
+//           }
+//           debugger
+//           console.warn('Некорректные координаты терминала:', terminal);
+//           return null;
+//         })
+//         .filter((marker): marker is Marker => marker !== null);
+//     }
+  
+//     // Парсинг банкоматов
+//     parseAtms(atms: Atm[]):Marker[] {
+//       return atms
+//         .map((atm) => {
+//           const lat = this.extractLatitude(atm.latitude);
+//           const lng = this.extractLongitude(atm.longitude);
+  
+//           if (lat !== null && lng !== null) {
+//             return {
+//               position: { lat, lng },
+//               label: atm.name,
+//               info: `Банкомат: ${atm.name}<br>Адрес: ${atm.address}`,
+//               type: 'atm',
+//             } as Marker;
+//           }
+//           debugger 
+//           console.warn('Некорректные координаты банкомата:', atm);
+//           return null;
+//         })
+//         .filter((marker): marker is Marker => marker !== null);
+//     }
+  
+//     // Парсинг офисов
+//     parseOffices(offices: Office[]): Marker[] {
+//       return offices
+//         .map((office) => {
+//           const lat = this.extractLatitude(office.latitude);
+//           const lng = this.extractLongitude(office.longitude);
+  
+//           if (lat !== null && lng !== null) {
+//             return {
+//               position: { lat, lng },
+//               label: office.name,
+//               info: `Офис: ${office.name}<br>Адрес: ${office.address}`,
+//               type: 'office',
+//             } as Marker;
+//           }
+//           console.warn('Некорректные координаты офиса:', office);
+//           return null;
+//         })
+//         .filter((marker): marker is Marker => marker !== null);
+//     }
+  
+//     // Извлечение широты из строки
+//     extractLatitude(latStr: string): number | null {
+//       const parts = latStr.split(',');
+//       const lat = parseFloat(parts[0].trim());
+//       return isNaN(lat) ? null : lat;
+//     }
+  
+//     // Извлечение долготы из строки
+//     extractLongitude(lngStr: string): number | null {
+//       const parts = lngStr.split(',');
+//       const lng = parseFloat(parts[0].trim());
+//       return isNaN(lng) ? null : lng;
+//     }
+  
+//     // Получение иконки в зависимости от типа маркера
+//     getMarkerIcon(type: 'atm' | 'office' | 'terminal'): string {
+//       switch (type) {
+//         case 'atm':
+//           return this.ATM_ICON;
+//         case 'terminal':
+//           return this.TERMINAL_ICON;
+//         case 'office':
+//           return this.OFFICE_ICON;
+//         default:
+//           return '';
+//       }
+//     }
+  
+//     openInfoWindow(marker: Marker, mapMarker: MapMarker): void {
+//       // Проверка, был ли уже открыт этот маркер
+//       if (this.lastOpenedMarker === mapMarker) {
+//         this.infoWindow.close();  // Закрываем окно, если это тот же маркер
+//         this.activeMarker = null;
+//         this.lastOpenedMarker = null;
+//       } else {
+//         this.activeMarker = marker;  // Обновляем активный маркер
+//         this.infoWindow.open(mapMarker);  // Открываем окно для маркера
+//         this.lastOpenedMarker = mapMarker;  // Обновляем последний открытый маркер
+//       }
+//     }
+  
+//     @HostListener('document:click', ['$event'])
+//     closeInfoWindowIfClickedOutside(event: Event): void {
+//       const target = event.target as HTMLElement;
+//       if (!target.closest('.map-container') && this.infoWindow) {
+//         this.infoWindow.close();
+//         this.activeMarker = null;
+//         this.lastOpenedMarker = null;
+//       }
+//     }
+//     // Обработка изменений чекбоксов фильтров
+//     onCheckboxChange(variableName: string, event: Event): void {
+//       const inputElement = event.target as HTMLInputElement;
+  
+//       // Проверяем, существует ли свойство
+//       if (inputElement && variableName in this) {
+//         (this as any)[variableName] = inputElement.checked;
+//         console.log(`${variableName} changed to:`, (this as any)[variableName]);
+//         this.sendFilteredData();
+//       }
+//     }
+  
+//     // Обработка изменения региона
+//     onRegionChange(obj: any) {
+//       this.regionSelected = obj.id;
+//       this.regionSelectedName = obj.name;
+//       this.sendFilteredData();
+//       this.dropdownOpen2 = false;
+//     }
+  
+//     // Переключение вкладки
+//     selectTab(tab: string) {
+//       this.selectedTab = tab;
+//     }
+  
+//     // Переключение выпадающего меню 1
+//     toggleDropdown(event: Event): void {
+//       this.dropdownOpen = !this.dropdownOpen;
+//       // event.stopPropagation();
+//     }
+  
+//     // Переключение выпадающего меню 2
+//     toggleDropdown2(event: Event): void {
+//       this.dropdownOpen2 = !this.dropdownOpen2;
+//       // event.stopPropagation();
+//     }
+//   }
+  
+
+// <div [hidden]="selectedTab !== 'NaKarte'">
+// <div class="application-form-container">
+//   <div class="form">
+//     <!-- Выпадающий список фильтров -->
+//     <div class="custom-dropdown">
+//       <div class="dropdown-selected" (click)="toggleDropdown($event)">
+//         Фильтр
+//       </div>
+//       <div class="dropdown-options" *ngIf="dropdownOpen">
+//         <div class="dropdown-section">
+//           <h4>Типы объектов</h4>
+//           <div class="dropdown-option">
+//             <label class="custom-checkbox">
+//               <input type="checkbox" [checked]="allSelected" (change)="onCheckboxChange('allSelected', $event)" />
+//               <span class="checkbox"></span>
+//               {{"all" | translate}}
+//             </label>
+//           </div>
+//           <div class="dropdown-option">
+//             <label class="custom-checkbox">
+//               <input type="checkbox" [checked]="terminalsSelected" (change)="onCheckboxChange('terminalsSelected', $event)" />
+//               <span class="checkbox"></span>
+//               {{"terminals" | translate}}
+//             </label>
+//           </div>
+//           <div class="dropdown-option">
+//             <label class="custom-checkbox">
+//               <input type="checkbox" [checked]="officesSelected" (change)="onCheckboxChange('officesSelected', $event)" />
+//               <span class="checkbox"></span>
+//               {{"offices" | translate}}
+//             </label>
+//           </div>
+//           <div class="dropdown-option">
+//             <label class="custom-checkbox">
+//               <input type="checkbox" [checked]="atmsSelected" (change)="onCheckboxChange('atmsSelected', $event)" />
+//               <span class="checkbox"></span>
+//               {{"atm" | translate}}
+//             </label>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+
+//     <!-- Второй выпадающий список для региона -->
+//     <div class="custom-dropdown">
+//       <div class="dropdown-selected" (click)="toggleDropdown2($event)">
+//         {{ regionSelectedName }}
+//       </div>
+//       <div class="dropdown-options" *ngIf="dropdownOpen2">
+//         <div class="dropdown-section">
+//           <div *ngFor="let option of regionList" class="dropdown-option">
+//             <label class="custom-checkbox">
+//               <input type="checkbox" [checked]="regionSelected == option.id" (change)="onRegionChange(option)" />
+//               <span class="checkbox"></span>
+//               {{ option.name }}
+//             </label>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+
+// <!-- Карта с маркерами -->
+// <div class="map-container">
+//   <google-map [center]="center" [zoom]="zoom" height="500px" width="100%">
+//     <!-- Маркеры -->
+//     <map-marker
+//       *ngFor="let marker of markers"
+//       #mapMarker="mapMarker"
+//       [position]="marker.position"
+//       [options]="{ icon: getMarkerIcon(marker.type) }"
+//       (mapClick)="openInfoWindow(marker, mapMarker)"
+//     >
+//     </map-marker>
+  
+//     <!-- Информационное окно -->
+//     <map-info-window #infoWindow>
+//       <div class="info-window-content">
+//         <h4>{{ activeMarker?.label }}</h4>
+//         <p [innerHTML]="activeMarker?.info"></p>
+//       </div>
+//     </map-info-window>
+//   </google-map>
+// </div>
+
+
+// <!-- Часто задаваемые вопросы -->
+// <div class="faq-container">
+// <h2 class="faq-title">{{ "Frequently Asked Questions" | translate }}</h2>
+// <div *ngFor="let faq of faqs; let i = index" class="faq-item">
+//   <div class="faq-question" (click)="toggleFaq(i)">
+//     <span>{{ faq.title }}</span>
+//     <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+//   </div>
+//   <div *ngIf="selectedFaqIndex === i" class="faq-answer">
+//     {{ faq.description }}
+//   </div>
+// </div>
+// </div>
+// </div>
