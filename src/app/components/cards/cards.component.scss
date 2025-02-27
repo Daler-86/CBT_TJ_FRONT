@@ -138,6 +138,7 @@ align-items: center;
     .card-image {
       width: 50%;
       align-self: flex-end; 
+      
       @media (max-width: 1024px) {
         width: 100%;
       }
@@ -147,6 +148,9 @@ align-items: center;
 
       img{
         width: 100%;
+        border-radius: 24px;
+        display: flex;
+        justify-content: end;
       }
     }
   }

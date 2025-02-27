@@ -12,6 +12,7 @@ import { CreditBarakatComponent } from './components/credit-barakat/credit-barak
 import { CreditOverviewComponent } from './components/credit-overview/credit-overview.component';
 import { AutocreditComponent } from './components/autocredit/autocredit.component';
 import { MapComponent } from './components/map/map.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -44,7 +45,7 @@ export const routes: Routes = [
     ]
   },
   { path: 'map', component: MapComponent, data: { breadcrumb: 'Карты' } },
-
+   {path:'about-us',component:AboutUsComponent}
 ];
 
 

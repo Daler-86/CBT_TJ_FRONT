@@ -94,7 +94,7 @@ export class VacancyDetailComponent implements OnInit {
         console.error('Ошибка при получении деталей карты', error);
       }
     );
-    this.vacanciesService.getVacancyData(1).subscribe(
+    this.vacanciesService.getVacancyData(this.id).subscribe(
       (details) => {
         this.vacancyData=details.data.vacancy_data
       },

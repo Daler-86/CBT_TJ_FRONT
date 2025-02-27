@@ -7,10 +7,7 @@
             <h4>+(992) 44 630 8888</h4>
             <p> {{"For private individuals"|translate}}</p>
           </div>
-          <div class="">
-            <h4>+(992) 44 630 6666</h4>
-            <p>{{ "Business"|translate}}</p>
-          </div>
+     
         </div>
     </div>
     <div class="box_2">
@@ -21,8 +18,8 @@
            <a>{{"Deposits"|translate}}</a>
         </div>
         <div class=""> 
-            <a>{{ "About the bank"|translate}}</a> 
-            <a routerLink="/vacancies" routerLinkActive="active">{{"Vacancies"|translate}}</a>
+            <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ "About the bank"|translate}}</a> 
+            <a routerLink="vacancy-list" routerLinkActive="active">{{"Vacancies"|translate}}</a>
             <a>{{"Offices and ATMs"|translate}}</a>
           </div>
           <div class="">
