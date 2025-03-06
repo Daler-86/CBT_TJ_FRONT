@@ -21,7 +21,7 @@
     </div>
     <!-- Список вакансий -->
     <div class="vacancy-items">
-      <p>{{"Total"|translate}} {{ vacancyList.length }}{{"vacancies"|translate}}</p>
+      <p>{{"Total"|translate}} {{ vacancyCount }}{{"vacancies"|translate}}</p>
       <div *ngFor="let vacancy of vacancyList" class="vacancy-item">
         <!-- Используем routerLink для навигации к деталям вакансии -->
         <a [routerLink]="['/vacancy-list', vacancy.id]">
@@ -35,6 +35,23 @@
          <a href="" [routerLink]="['/vacancy-list', vacancy.id]" > <img src="../../../assets/icons/strel.svg" alt="Arrow icon"></a>
         </div>
       </div>
+    </div>
+
+</div><div class="">
+    <div class="pagination">
+      <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
+      <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
+    
+      <button
+        *ngFor="let page of pages"
+        [class.active]="page === currentPage"
+        (click)="selectPage(page)"
+      >
+        {{ page === -1 ? '...' : page }}
+      </button>
+    
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+      <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
     </div>
   </div>
 </div>

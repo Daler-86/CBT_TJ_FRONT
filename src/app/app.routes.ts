@@ -13,12 +13,17 @@ import { CreditOverviewComponent } from './components/credit-overview/credit-ove
 import { AutocreditComponent } from './components/autocredit/autocredit.component';
 import { MapComponent } from './components/map/map.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { TransfersComponent } from './components/transfers/transfers.component';
+import { DepositsComponent } from './components/deposits/deposits.component';
+import { TransfersDetailsComponent } from './components/transfers-details/transfers-details.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data: { breadcrumb: 'Главная' } },
   { path: 'vacancies', component: VacanciesComponent, data: { breadcrumb: 'Вакансии' } },
-  { path: 'cards', component: CardsComponent, data: { breadcrumb: 'Карты' } },
+  { path: 'cards', component: CardsComponent, data: { breadcrumb: 'Карты' } }, 
+   { path: 'transfers', component: TransfersComponent, data: { breadcrumb: 'Переводы' } },
+  { path: 'deposits', component: DepositsComponent, data: { breadcrumb: 'Вклады' } },
   { path: 'vacancy-list', component: VacancyListComponent, data: { breadcrumb: 'Список вакансий' } },
   { path: 'vacancy-list/:id', component: VacancyDetailComponent, data: { breadcrumb: 'Детали вакансии' } },
   { path: 'card-details/:id', component: CardDetailsComponent, data: { breadcrumb: 'Детали карты' } },
@@ -44,7 +49,9 @@ export const routes: Routes = [
       }
     ]
   },
-  { path: 'map', component: MapComponent, data: { breadcrumb: 'Карты' } },
+  { path: 'map', component: MapComponent, data: { breadcrumb: 'Карта' } },
+  { path: 'transfers-details/:id', component: TransfersDetailsComponent, data: { breadcrumb: 'Детали карты' } },
+  
    {path:'about-us',component:AboutUsComponent}
 ];
 

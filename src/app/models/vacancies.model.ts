@@ -76,6 +76,7 @@ export interface VacancyList{
  status:string;
  status_code:string;
  data:{
+   total_count:number,
     vacancies:vacancyList[]
     
  }
@@ -153,7 +154,9 @@ export interface VacancyByCategory{
  status:string;
  status_code:string;
  data:{
+
     vacancies:vacancyList[]
+    
  }
 }
 

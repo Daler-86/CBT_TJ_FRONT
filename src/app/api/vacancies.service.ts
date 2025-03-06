@@ -162,17 +162,22 @@ export class VacanciesService {
     );
   } 
 
-  getVacancyList():Observable<VacancyList> {
+  getVacancyList(limit:number,currentPage:number):Observable<VacancyList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
           'accept': 'application/json',
           'Language': lang  
         });
-        return this.http.get<VacancyList>(this.baseUrl+'/vacancy/list', { headers });
+        const params = new HttpParams()
+        .set('limit', limit)
+        .set('offset', currentPage)
+        return this.http.get<VacancyList>(this.baseUrl+'/vacancy/list', { headers, params });
       })
     );
   } 
+
+ 
 
   getVacancyData(cardId:number):Observable<VacancyData> {
     return this.languageService.language$.pipe(
@@ -187,7 +192,7 @@ export class VacanciesService {
     );
   } 
   
-  getVacancyByCategory(cardId: number):Observable<VacancyList>{
+  getVacancyByCategory(cardId: number,limit:number,currentPage:number):Observable<VacancyList>{
     return this.languageService.language$.pipe(
 
  switchMap(lang => {
@@ -195,11 +200,15 @@ export class VacanciesService {
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<VacancyList>(`${this.baseUrl+'/vacancy/by-category-id/'}${cardId}`, { headers });
+      const params = new HttpParams()
+      .set('limit', limit)
+      .set('offset', currentPage)
+      .set('region_id',cardId)
+    return this.http.get<VacancyList>(`${this.baseUrl+'/vacancy/by-category-id'}`, { headers,params });
      }) )
   }
   
-  getVacancyByRegion(cardId: number):Observable<VacancyList>{
+  getVacancyByRegion(cardId: number,limit:number,currentPage:number):Observable<VacancyList>{
     return this.languageService.language$.pipe(
 
  switchMap(lang => {
@@ -207,7 +216,11 @@ export class VacanciesService {
         'accept': 'application/json',
         'Language': lang  // Установка динамического заголовка
       });
-    return this.http.get<VacancyList>(`${this.baseUrl+'/vacancy/by-region-id/'}${cardId}`, { headers });
+      const params = new HttpParams()
+      .set('limit', limit)
+      .set('offset', currentPage)
+      .set('region_id',cardId)
+    return this.http.get<VacancyList>(`${this.baseUrl+'/vacancy/by-region-id'}`, { headers,params });
      }) )
   }
   
