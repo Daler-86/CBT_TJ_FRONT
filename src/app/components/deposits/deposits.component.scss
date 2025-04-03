@@ -14,7 +14,8 @@
 }
 
 .card-container {
-    position: relative;
+width: 100%;
+    // position: relative;
              margin: 30px 0 0;
          box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
         
@@ -44,8 +45,10 @@
    .box-description{
     display: flex;
     gap:24px ;
+    flex-wrap: wrap;
+
     .detail{
-        width: 25%;
+        width: 22%;
         p{
             color: #475569;
             font-size: 16px;
@@ -54,7 +57,13 @@
             font-size: 22px;
             font-weight: 700;
         }
+    } 
+       @media (max-width: 1024px) {
+      .detail{
+        width: 45%;
+      }
     }
+ 
    }
    
    .card-buttons {
@@ -90,18 +99,19 @@
        }
      }
    .card-image{
-    width: 40%;
+  
     margin: 62px 0 62px 76px;
 border-radius: 22px;
   
  background-color: #f8f9fa;
-    padding: 24px 34px;
+    padding: 2px 102px;
     @media (max-width: 768px) {
       width: 80%;
       margin: 15px auto;
     }
     .transfers_img{
-     width: 100%;
+      
+    margin: auto;
      }
 }
     }

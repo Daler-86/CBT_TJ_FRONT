@@ -119,58 +119,20 @@ export class VacancyListComponent {
   }
 vacancyCount:number=0
   loadAllVacancies() {
-    this.vacanciesService.getVacancyList(2,this.currentPage).subscribe(
+
+    this.vacanciesService.getVacancyList(2,this.currentPage,+this.selectedCategory,+this.selectedRegion).subscribe(
       (response) => {
         this.vacancyList = response.data.vacancies;
-      
-        this.totalPages=Math.ceil(response.data.total_count/2)
+     
+        this.totalPages=Math.round(response.data.total_count/2)
         this.vacancyCount=response.data.total_count
-        this.updatePages();
+        this.updatePages(); 
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
       }
     );
   }
-
-  onCategoryChange() {
-    if (this.selectedCategory) {
-      this.vacanciesService.getVacancyByCategory(+this.selectedCategory,2,this.currentPage).subscribe(
-        (response) => {
-          this.vacancyList = response.data.vacancies;
-          debugger
-          this.totalPages=Math.ceil(response.data.total_count/2)
-          this.vacancyCount=response.data.total_count
-          this.updatePages();
-        },
-        (error) => {
-          console.error('Error loading vacancies by category', error);
-        }
-      );
-    } else {
-      this.loadAllVacancies(); // Сбрасываем фильтр, загружаем все вакансии
-    }
-  }
-
-  onRegionChange() {
-    if (this.selectedRegion) {
-      this.vacanciesService.getVacancyByRegion(+this.selectedRegion,2,this.currentPage).subscribe(
-        (response) => {
-          this.vacancyList = response.data.vacancies;
-          this.totalPages=Math.ceil(response.data.total_count/2)
-          this.vacancyCount=response.data.total_count
-          this.updatePages();
-        },
-        (error) => {
-          console.error('Error loading vacancies by region', error);
-        }
-      );
-    } else {
-      this.loadAllVacancies(); // Сбрасываем фильтр, загружаем все вакансии
-    }
-  }
-
-  
   ngOnChanges() {
     this.updatePages();
   }

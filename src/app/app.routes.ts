@@ -16,6 +16,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { TransfersComponent } from './components/transfers/transfers.component';
 import { DepositsComponent } from './components/deposits/deposits.component';
 import { TransfersDetailsComponent } from './components/transfers-details/transfers-details.component';
+import { DepositDetailComponent } from './components/deposit-detail/deposit-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -51,10 +52,10 @@ export const routes: Routes = [
   },
   { path: 'map', component: MapComponent, data: { breadcrumb: 'Карта' } },
   { path: 'transfers-details/:id', component: TransfersDetailsComponent, data: { breadcrumb: 'Детали карты' } },
-  
+  { path: 'deposit-details/:id', component: DepositDetailComponent, data: { breadcrumb: 'Детали карты' } },
    {path:'about-us',component:AboutUsComponent}
 ];
 
-
+ 
 
 

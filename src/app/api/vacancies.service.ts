@@ -162,7 +162,7 @@ export class VacanciesService {
     );
   } 
 
-  getVacancyList(limit:number,currentPage:number):Observable<VacancyList> {
+  getVacancyList(limit:number,currentPage:number,category_id:number,region_id:number):Observable<VacancyList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -172,6 +172,8 @@ export class VacanciesService {
         const params = new HttpParams()
         .set('limit', limit)
         .set('offset', currentPage)
+        .set('region_id', region_id)
+        .set('category_id', category_id)
         return this.http.get<VacancyList>(this.baseUrl+'/vacancy/list', { headers, params });
       })
     );

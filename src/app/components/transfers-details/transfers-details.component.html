@@ -3,72 +3,53 @@
     <!-- <div class="card-container" *ngFor="let card of cardList"> -->
         <div class="card-container" >   
               <div class="card-info">
-        <h2 class="card-title">Western Union</h2>
+        <h2 class="card-title">{{transferData.title}}</h2>
         <p class="card-description">
-            Получайте денежные переводы из более 200 стран мира. Перевод можно получить на счет мобильного банкинга "Фаври" и в офисах Банка.
+    {{transferData.description}}
         </p>
  
       
       </div>
         <div class="card-image">
-        <!-- <img class="card" [src]="'http://172.16.16.88:9009/storage/' + card.upload_file" [alt]="card.title" /> -->
-        <img class="transfers_img" src="../../../assets/icons/western.png" alt="">
-
-
+        <img class="transfers_img" [src]="'http://172.16.16.88:9009/storage/' + transferData.upload_icon_file_id" [alt]="transferData.title" />
       </div>
  
-    
+     
 
-  </div>
+  </div>   
+  <h1 *ngIf="transferData.upload_tariff_file_id">Условия</h1>
+  <p *ngIf="transferData.upload_tariff_file_id">Чтобы получать или отправлять деньги по SWIFT, нужно открыть расчётный счёт. Это бесплатно</p>
   <div class="section2">
-    <div class="box">
-        <p>Время перевода</p>
-        <h1>от 1 минуты</h1>
+ 
+
+    <div class="box" *ngFor="let condition of transferData.conditions">
+        <p>{{condition.title}}</p>
+        <h1>{{condition.description}}</h1>
+        <p *ngFor="let i of condition.items">{{i.title}}</p>
     </div>
-    <div class="box">
-        <p>Время перевода</p>
-        <h1>от 1 минуты</h1>
-    </div>
-    <div class="box">
-        <p>Время перевода</p>
-        <h1>До 126 000 сомони 
-            в день</h1>
+
+    <div class="box" *ngIf="transferData.upload_tariff_file_id">
+    <p>Посмотреть все тарифы</p>
+    <button class="btn-secondary" >Все тарифы</button>
     </div>
   </div>
 
   <div class="section3">
-    <h1>Документы и тарифы</h1>
+    <h1 *ngIf="!transferData.upload_tariff_file_id">Документы и тарифы</h1>
     <div class="section2">
-        <div class="box">
-                 <h2>Для получения:</h2>
-            <p>Оригинал паспорта получателя;</p>
-            <p>Код перевода;</p>
-            <p>Ф. И. О. отправителя.</p>
-       
+        <div class="box" *ngFor="let document of transferData.documents">
+                 <h2>{{document.title}}</h2>
+            <p *ngFor="let item of document.items">{{item.title}}</p>
         </div>
-        <div class="box">
-            <h2>Для получения:</h2>
-       <p>Оригинал паспорта получателя;</p>
-       <p>Код перевода;</p>
-       <p>Ф. И. О. отправителя.</p>
-  
-   </div>
-   <div class="box">
-    <h2>Для получения:</h2>
-<p>Оригинал паспорта получателя;</p>
-<p>Код перевода;</p>
-<p>Ф. И. О. отправителя.</p>
-
-</div>
       </div>
   </div>
   
 <div class="container_5"> 
     <div class="d">
-      <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  routerLink="/map" routerLinkActive="active">
+      <div class="box" >
           <div class="details">
               <h3>Подробная информация на сайте:</h3>
-              <p>Western Union</p>
+              <p>{{transferData.title}}</p>
           </div>
 
       </div>
@@ -80,7 +61,7 @@
       <div class="">
         
       </div>
-      <button>{{"View on map"|translate}}</button>
+      <button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  routerLink="/map" routerLinkActive="active">{{"View on map"|translate}}</button>
   </div>
  
 </div>

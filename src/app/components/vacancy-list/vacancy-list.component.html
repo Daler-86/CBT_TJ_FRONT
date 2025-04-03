@@ -6,14 +6,14 @@
       <p>{{"Filters"|translate}}</p>
       <form>
         <label for="category">{{"Direction:"|translate}}</label><br>
-        <select id="category" [(ngModel)]="selectedCategory" name="category" (change)="onCategoryChange()" >
+        <select id="category" [(ngModel)]="selectedCategory" name="category" (change)=" loadAllVacancies()" >
           <option value="" >{{"All directions"|translate}} ({{vacancyCategory.length}})</option>
           <option *ngFor="let category of vacancyCategory" [value]="category.id">{{ category.name }}</option>
         </select>
         <br>
         <label for="city">{{"City:"|translate}}</label><br>
-        <select id="city" [(ngModel)]="selectedRegion" name="city" (change)="onRegionChange()" >
-          <option value="" >{{"All cities"|translate}} ({{regionList.length}})</option>
+        <select id="city" [(ngModel)]="selectedRegion" name="city" (change)="loadAllVacancies()" >
+          <option value="">{{"All cities"|translate}} ({{regionList.length}})</option>
           <option *ngFor="let city of regionList" [value]="city.id">{{ city.name }}</option>
         </select>
       </form>
