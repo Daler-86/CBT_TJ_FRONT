@@ -1,0 +1,67 @@
+<div class="tender">
+
+    <div class="card-container">
+    <div class="card-info">
+      <h2 class="card-title">Тендеры</h2>
+      <p class="card-description">
+        Актуальные Информация о проводимых тендерах
+      </p>
+      
+    </div>
+
+  </div>
+
+  <div class="tender-div-container">
+    <!-- Заголовок списка (имитация thead) -->
+    <div class="tender-div-header">
+      <div class="tender-div-cell header-cell">Тендер</div>
+      <div class="tender-div-cell header-cell">Дата начала</div>
+      <div class="tender-div-cell header-cell">Дата завершения</div>
+      <div class="tender-div-cell header-cell">Статус</div>
+    </div>
+  
+    <!-- Строки данных (имитация tbody и tr) -->
+     <!-- Сообщение об отсутствии данных -->
+     <div *ngIf="tenders.length === 0" class="no-data-row">
+         Нет данных для отображения
+     </div>
+  
+    <div class="tender-div-row" *ngFor="let tender of tenders; " (click)="navigateToCardDetailsAndForm(tender.id)"  >
+      <!-- Ячейки данных (имитация td) -->
+      <!-- <a href="" [routerLink]="['/tender-detail',1]"> -->
+      <div class="tender-div-cell">{{ tender.name }}</div>
+      <div class="tender-div-cell">{{ tender.start_date }}</div>
+      <div class="tender-div-cell">{{ tender.end_date }}</div>
+      <div class="tender-div-cell cell-status"> <!-- Добавим класс для центрирования статуса -->
+        <span class="status-badge"
+              [ngClass]="{
+                'status-open': tender.status === 'open',
+                'status-completed': tender.status === 'close'
+              }">
+          {{ tender.status=='open'?"Открытый":"Завершенный" }}
+        </span>
+      </div>
+    <!-- </a> -->
+
+    </div>
+
+    
+            <div class="pagination">
+              <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
+              <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
+            
+              <button
+                *ngFor="let page of pages"
+                [class.active]="page === currentPage"
+                (click)="selectPage(page)"
+              >
+                {{ page === -1 ? '...' : page }}
+              </button>
+            
+              <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+              <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
+            </div>
+          </div>
+   
+  </div>
+

@@ -1,0 +1,236 @@
+.newsDetail{
+    padding:3% 5% ;
+    background-color: #f8f9fa;
+    .card-container {
+        position: relative;
+                 margin: 30px 0 0;
+             box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+            
+             background-color: white;
+             border-radius: 24px;
+    
+     
+    
+     @media (max-width: 1024px) {
+         display: block;
+         padding: 29px 50px;
+      }
+         .card-info {
+           width: 80%;
+           padding: 62px 76px;
+           @media (max-width: 1024px) {
+             width: 100%;
+             padding: 0;
+          }
+       
+           .card-title {
+             font-size: 30px;
+             font-weight: bold;
+             margin-bottom: 10px;
+           }
+       
+           .card-description {
+             font-size: 18px;
+             color:  #475569;
+             font-weight: 500;
+             margin-bottom: 20px;
+             line-height: 23px;
+           }
+          
+    
+    
+        }
+    } 
+
+    $layout-bg: #f8f9fa; // Фон всей страницы/секции
+$sidebar-card-bg: #ffffff;
+$sidebar-border-radius: 12px;
+$sidebar-padding: 20px 25px;
+$main-content-max-width: 800px; // Макс. ширина основного контента
+$layout-gap: 30px; // Отступ между контентом и сайдбаром
+
+$text-color: #333;
+$paragraph-color: #454f5b;
+$gallery-gap: 15px;
+$image-border-radius: 8px;
+
+$share-title-color: #10b981; // Зеленый цвет для "Поделиться"
+$share-icon-bg: #eefbf7; // Светло-зеленый фон иконки
+$share-icon-color: $share-title-color;
+$share-icon-hover-bg: darken($share-icon-bg, 5%);
+$copy-button-border: #ced4da;
+$copy-button-hover-bg: #e9ecef;
+$copy-button-copied-bg: #10b981;
+$copy-button-copied-color: #fff;
+
+
+// Основной макет
+.news-detail-layout {
+  display: flex;
+  gap: $layout-gap;
+  padding: 30px 20px; // Отступы секции
+  align-items: flex-start; // Выравнивание по верху
+  background-color: $layout-bg; // Если нужен фон
+}
+
+// Основной контент
+.news-main-content {
+  flex: 1 1 65%; // Гибкая ширина, основа 65%
+  max-width: $main-content-max-width; // Ограничиваем ширину текста для читаемости
+
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: $paragraph-color;
+    margin-bottom: 1.5em; // Отступ между параграфами
+
+    &:last-of-type {
+      margin-bottom: 2em; // Больший отступ перед галереей
+    }
+  }
+}
+
+// Галерея изображений
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // Две колонки
+  gap: $gallery-gap;
+
+  .gallery-item {
+    img {
+      display: block;
+      width: 100%;
+      height: auto; // Сохраняем пропорции
+      border-radius: $image-border-radius;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  }
+}
+
+// Сайдбар
+.news-sidebar {
+  flex: 0 0 280px; // Фиксированная ширина сайдбара
+  width: 280px;
+  position: sticky;
+  top: 20px; // "Прилипает" при скролле с отступом 20px
+}
+
+.sidebar-card {
+  background-color: $sidebar-card-bg;
+  border-radius: $sidebar-border-radius;
+  padding: $sidebar-padding;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $share-title-color;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+}
+
+// Иконки "Поделиться"
+.social-share-icons {
+  display: flex;
+  justify-content: center; // Центрируем иконки
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; // Перенос на новую строку, если не помещаются
+
+  .social-icon {
+    display: inline-flex; // Для центрирования иконки внутри
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; // Круглые иконки
+    background-color: $share-icon-bg;
+    color: $share-icon-color;
+    font-size: 1.1rem; // Размер иконки Font Awesome
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: $share-icon-hover-bg;
+      transform: translateY(-2px); // Легкий подъем при наведении
+    }
+  }
+}
+
+// Кнопка "Скопировать ссылку"
+.copy-link-button {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  color: $paragraph-color;
+  background-color: transparent;
+  border: 1px solid $copy-button-border;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: $copy-button-hover-bg;
+    border-color: darken($copy-button-border, 10%);
+  }
+
+  // Стиль для состояния "Скопировано!"
+  &:disabled, // Можно использовать disabled или отдельный класс
+  &.copied { // Добавь класс .copied при копировании, если не используешь disabled
+    background-color: $copy-button-copied-bg;
+    border-color: $copy-button-copied-bg;
+    color: $copy-button-copied-color;
+    cursor: default;
+  }
+}
+
+
+// --- Адаптивность ---
+@media (max-width: 991.98px) {
+  .news-detail-layout {
+    flex-direction: column; // Колонки друг под другом
+    gap: 25px;
+  }
+  .news-main-content {
+     max-width: none; // Убираем ограничение ширины текста
+     flex-basis: auto;
+     width: 100%;
+  }
+  .news-sidebar {
+    flex-basis: auto;
+    width: 100%; // Сайдбар на всю ширину
+    position: static; // Убираем "липкость"
+  }
+}
+
+@media (max-width: 575.98px) {
+  .news-detail-layout {
+     padding: 20px 15px; // Уменьшаем отступы
+  }
+  .image-gallery {
+     grid-template-columns: 1fr; // Одна колонка для изображений
+     gap: 12px;
+  }
+   .sidebar-card {
+     padding: 15px 20px;
+   }
+   .social-share-icons {
+     gap: 8px;
+     .social-icon {
+         width: 36px;
+         height: 36px;
+         font-size: 1rem;
+     }
+   }
+   .copy-link-button {
+     font-size: 0.85rem;
+     padding: 8px 12px;
+   }
+}
+
+}

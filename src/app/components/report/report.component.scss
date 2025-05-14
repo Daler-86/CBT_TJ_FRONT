@@ -1,0 +1,226 @@
+.report{
+    padding:3% 5% ;
+    background-color: #f8f9fa;
+  .card-container {
+    position: relative;
+             margin: 30px 0 0;
+         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+        
+         background-color: white;
+         border-radius: 24px;
+
+ 
+
+ @media (max-width: 1024px) {
+     display: block;
+     padding: 29px 50px;
+  }
+     .card-info {
+       width: 50%;
+       padding: 62px 76px;
+       @media (max-width: 1024px) {
+         width: 100%;
+         padding: 0;
+      }
+   
+       .card-title {
+         font-size: 30px;
+         font-weight: bold;
+         margin-bottom: 10px;
+       }
+   
+       .card-description {
+         font-size: 18px;
+         color:  #475569;
+         font-weight: 500;
+         margin-bottom: 20px;
+         line-height: 23px;
+       }
+      
+
+
+    }
+} 
+// Переменные
+
+$card-bg: #ffffff;
+$card-border-radius: 22px; 
+$card-padding: 40px 45px;
+$card-gap: 20px; // Промежуток между карточками
+$section-gap: 30px; // Промежуток между сеткой и документами
+
+// $text-color: #333;
+$label-color: #666F8D; // Серый для дат и подписей
+$heading-color: #666F8D; // Темно-серый для заголовков карточек
+$value-color: #020617; // Черный для значений
+
+// Основной контейнер
+
+
+// Сетка карточек показателей
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 3 колонки по умолчанию
+  gap: $card-gap;
+  margin-bottom: $section-gap; // Отступ перед секцией документов
+margin: 60px 0;
+}
+
+// Стили отдельной карточки показателя
+.stat-card {
+    background-color: white;
+  background-color: $card-bg;
+  border-radius: $card-border-radius;
+  padding: $card-padding;
+//   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); // Мягкая тень
+
+  h3 {
+    font-size: 24px;
+    color: $heading-color;
+    margin-top: 0;
+    margin-bottom: 1.5rem; // Отступ после заголовка
+    font-weight: 700; // Не слишком жирный
+  }
+
+  .data-point {
+    margin-bottom: 1rem; // Отступ между точками данных
+
+    &:last-child {
+      margin-bottom: 0; // Убираем отступ у последнего элемента
+    }
+
+    // Особый отступ для строки "Отклонение", если она есть
+    &.deviation {
+        margin-top: 1.5rem; // Доп. отступ сверху перед отклонением
+    }
+
+    .data-label {
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+      color: $label-color;
+      margin-bottom: 4px;
+    }
+
+    .data-value {
+      display: block;
+      font-size: 1.25rem; // Крупные значения
+      font-weight: 700; // Жирные значения
+      color: $value-color;
+      line-height: 32px; // Слегка уменьшим межстрочный интервал для крупных цифр
+    }
+  }
+}
+
+// Секция с документами
+.documents-section {
+  display: flex; // Используем flex для управления карточками
+  flex-direction: column; // Карточки друг под другом
+  gap: 15px; // Отступ между карточками документов
+}
+
+// Карточка документа
+.document-card {
+  background-color: $card-bg;
+  border-radius: $card-border-radius;
+  padding: 32px 40px; // Чуть меньше паддинг, чем у стат.карточек
+//   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 12px; // Отступ между иконкой и текстом
+
+  .pdf-icon {
+    width: 24px; // Размер иконки PDF
+    height: auto;
+    flex-shrink: 0; // Не сжимать иконку
+  }
+
+  .document-link {
+    color: $value-color;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+
+    &:hover {
+      text-decoration: underline;
+      color: darken($value-color, 15%);
+    }
+  }
+}
+
+
+// --- Адаптивность ---
+
+// Планшеты
+@media (max-width: 991.98px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr); // 2 колонки на планшетах
+  }
+  .financial-dashboard {
+    padding: 20px; // Уменьшаем общие отступы
+  }
+}
+
+// Телефоны
+@media (max-width: 600px) { // Брейкпоинт можно подстроить
+  .stats-grid {
+    grid-template-columns: 1fr; // 1 колонка на телефонах
+    gap: 15px; // Уменьшаем отступ между карточками
+  }
+  .financial-dashboard {
+    padding: 15px;
+  }
+  .stat-card {
+    //   padding: 15px 20px; // Уменьшаем отступы внутри карточек
+      .data-value {
+          font-size: 1.1rem; // Можно чуть уменьшить шрифт значений
+      }
+  }
+  .document-card {
+    //   padding: 12px 15px;
+      .document-link {
+          font-size: 0.9rem;
+      }
+  }
+} 
+.pagination {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+button {
+
+  border: 1.55px solid #E3E6EA;
+  background-color: white;
+  cursor: pointer;
+  color: #353E5C;
+  box-sizing: border-box;
+  font-size: 18px;
+  width: 50px; /* Установите нужный размер */
+  height: 50px; /* Ширина и высота одинаковые для круга */
+  border-radius: 50%; /* Делает кнопку круглой */
+  display: flex; /* Для центрирования текста */
+  align-items: center; /* Вертикальное выравнивание */
+  justify-content: center; /* Горизонтальное выравнивание */
+
+  background-color: white; /* Фон кнопки */
+  cursor: pointer; /* Указатель при наведении */
+
+  transition: background-color 0.3s ease; 
+}
+
+button.active {
+  background-color: #00B06C;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+}

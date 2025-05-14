@@ -1,0 +1,48 @@
+<section class="news-events-section">
+    <div class="section-header">
+      <h1>Актуальные события банка</h1>
+      <p class="subtitle">Следите за развитием и достижениями банка</p>
+    </div>
+  
+    <div class="news-list">
+      <!-- Используем ng-container если не нужен лишний div-обертка для *ngIf -->
+      <ng-container *ngIf="news.length > 0; else noNews">
+        <article class="news-card" *ngFor="let item of news; " (click)="navigateToCardDetailsAndForm(item.id)">
+          <div class="news-text-content">
+          
+               <h2>{{ item.title }}</h2>
+       
+            <!-- <h2 >{{ item.title }}</h2> -->
+  
+            <p> {{ item.description| slice:0:200 }}{{ item.description.length > 200 ? '...' : '' }}</p>
+            <!-- Можно добавить кнопку "Подробнее", если нужно -->
+            <!-- <a *ngIf="item.linkUrl" [href]="item.linkUrl" class="read-more-btn">Подробнее</a> -->
+          </div>
+          <div class="news-image-content">
+            <img [src]="'http://172.16.16.88:9009/storage/'+item.upload_file" [alt]="item.title"> <!-- Используем заголовок для alt -->
+          </div>
+        </article>
+        
+        <div class="pagination">
+          <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
+          <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
+        
+          <button
+            *ngFor="let page of pages"
+            [class.active]="page === currentPage"
+            (click)="selectPage(page)"
+          >
+            {{ page === -1 ? '...' : page }}
+          </button>
+        
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+          <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
+        </div>
+      </ng-container>
+  
+      <!-- Сообщение, если нет новостей -->
+      <ng-template #noNews>
+        <p class="no-news-message">Актуальных событий пока нет.</p>
+      </ng-template>
+    </div>
+  </section>

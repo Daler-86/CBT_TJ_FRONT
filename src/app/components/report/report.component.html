@@ -1,0 +1,59 @@
+<div class="report">
+<div class="card-container">
+    <div class="card-info">
+      <h2 class="card-title">Отчетность</h2>
+      <p class="card-description">{{reportData.description}}</p>
+      
+    </div>
+
+  </div>
+
+  <div class="financial-dashboard">
+
+    <!-- Сетка с карточками показателей -->
+    <div class="stats-grid" > <!-- Показываем, только если есть данные -->
+      <!-- Итерация по карточкам -->
+      <div class="stat-card" *ngFor="let card of reportData.report_indicator trackBy: trackByCardId">
+        <h3>{{ card.name }}</h3>
+        <!-- Итерация по точкам данных внутри карточки -->
+        <div class="data-point"
+             *ngFor="let point of card.report_indicator_data; trackBy: trackByDataPointLabel"
+             [ngClass]="{ 'deviation': point.isDeviation }"> <!-- Применяем класс, если isDeviation=true -->
+          <span class="data-label">{{ point.title }}</span>
+          <span class="data-value">{{ point.description }}</span>
+        </div>
+      </div>
+    </div>
+    
+  
+  
+    <!-- Секция с документами -->
+    <div class="documents-section" *ngIf="reportFile.length > 0"> <!-- Показываем, только если есть данные -->
+      <!-- Итерация по документам -->
+      <div class="document-card" *ngFor="let doc of reportFile; trackBy: trackByDocumentId">
+        <img src="../../../assets/icons/файл.png" alt="PDF" class="pdf-icon"> <!-- Используем свойство компонента для пути к иконке -->
+        <a [href]="doc.upload_file" target="_blank" rel="noopener noreferrer" class="document-link">{{ doc.name }}</a>
+      </div>
+      <div class="">
+        <div class="pagination">
+          <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
+          <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
+        
+          <button
+            *ngFor="let page of pages"
+            [class.active]="page === currentPage"
+            (click)="selectPage(page)"
+          >
+            {{ page === -1 ? '...' : page }}
+          </button>
+        
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+          <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
+        </div>
+      </div>
+    </div>
+    <!-- Можно добавить сообщение, если documentsData пустой -->
+     <div *ngIf="reportFile.length === 0">Нет доступных документов.</div>
+  
+  </div>
+</div>

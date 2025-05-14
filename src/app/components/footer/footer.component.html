@@ -19,14 +19,14 @@
         </div>
         <div class=""> 
             <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ "About the bank"|translate}}</a> 
-            <a routerLink="vacancy-list" routerLinkActive="active">{{"Vacancies"|translate}}</a>
-            <a>{{"Offices and ATMs"|translate}}</a>
+            <a routerLink="vacancies" routerLinkActive="active">{{"Vacancies"|translate}}</a>
+            <a routerLink="Offices" routerLinkActive="active">{{"Offices and ATMs"|translate}}</a>
           </div>
           <div class="">
-          <a>{{"Questions and answers"|translate}}</a>
-          <a>{{"Contact the bank"|translate}}</a>
-          <a>{{ "Tenders"|translate}}</a> 
-          <a>{{"News"|translate}}</a>
+          <a routerLink="bank-detail" routerLinkActive="active">Реквизиты</a>
+          <a routerLink="report" routerLinkActive="active" >Финансовая отчетность</a>
+          <a routerLink="tender" routerLinkActive="active">{{ "Tenders"|translate}}</a> 
+          <a routerLink="news" routerLinkActive="active">{{"News"|translate}}</a>
           </div>
       <div class="">
        <p class="p">{{"Working hours"|translate}}</p> 

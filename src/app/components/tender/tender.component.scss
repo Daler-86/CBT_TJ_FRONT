@@ -1,0 +1,324 @@
+
+.tender{
+    padding:3% 5% ;
+    background-color: #f8f9fa;
+  .card-container {
+    position: relative;
+             margin: 30px 0 0;
+         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+        
+         background-color: white;
+         border-radius: 24px;
+
+ 
+
+ @media (max-width: 1024px) {
+     display: block;
+     padding: 29px 50px;
+  }
+     .card-info {
+       width: 50%;
+       padding: 62px 76px;
+       @media (max-width: 1024px) {
+         width: 100%;
+         padding: 0;
+      }
+   
+       .card-title {
+         font-size: 30px;
+         font-weight: bold;
+         margin-bottom: 10px;
+       }
+   
+       .card-description {
+         font-size: 18px;
+         color:  #475569;
+         font-weight: 500;
+         margin-bottom: 20px;
+         line-height: 23px;
+       }
+      
+
+
+    }
+}  
+
+// Переменные для удобства (опционально)
+$border-color: #e9ecef;
+$header-bg: #f8f9fa;
+$hover-bg: #f1f3f5;
+$text-color: #212529;
+$header-text-color: #495057;
+
+$status-open-bg: #28a745; // Зеленый
+$status-completed-bg: #dc3545; // Красный
+$status-text-color: #ffffff; // Белый для текста статуса
+
+$base-padding: 12px 15px;
+$border-radius: 0.25rem; // Радиус скругления для бейджа
+
+.tender-table-container {
+  overflow-x: auto; // Добавляем горизонтальный скролл на маленьких экранах
+  padding: 1rem; // Небольшой отступ вокруг таблицы
+  background-color: #fff; // Фон контейнера (если нужно)
+  border: 1px solid $border-color;
+  border-radius: $border-radius * 2;
+}
+
+// Переменные
+
+
+
+$text-color: #475569;
+$header-text-color: #666F8D;
+$row-spacing: 22px; // Отступ между строками
+
+$status-open-bg: #00B06C;
+$status-completed-bg: #F61302;
+$status-text-color: #ffffff;
+
+$base-padding-vertical: 12px;
+$base-padding-horizontal: 15px;
+$border-radius: 12px;
+
+
+.tender-div-container {
+margin: 5% 0;
+  overflow-x: auto; // Горизонтальный скролл при необходимости
+}
+
+// Общие стили для строки (заголовка и данных)
+.tender-div-header,
+.tender-div-row {
+  display: flex; // Используем Flexbox для расположения ячеек в ряд
+  background-color: white; // Белый фон строки
+  margin-bottom: $row-spacing; // Отступ снизу для создания промежутка
+  border-radius: $border-radius; // Небольшое скругление строк
+  // border-bottom: 1px solid $border-color; // Можно добавить линию под строкой, если нужно
+align-items: center;
+ padding: 22px 34px;
+}
+
+.tender-div-row {
+    transition: background-color 0.15s ease-in-out;
+     &:hover {
+       background-color: $hover-bg;
+     }
+}
+
+
+// Стили для ячеек (общие)
+.tender-div-cell {
+//   padding: $base-padding-vertical $base-padding-horizontal;
+  color: #020617;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  // Важно: задаем базовые размеры для колонок
+  flex-grow: 0; // Не растягиваться
+  flex-shrink: 0; // Не сжиматься (кроме описания, если нужно)
+  word-wrap: break-word; // Перенос слов в ячейках
+  overflow: hidden; // Скрыть то, что не помещается (или text-overflow: ellipsis)
+
+  // Определяем ширину колонок через flex-basis
+  // Сумма должна быть ~100% (или меньше, если есть отступы/границы внутри flex)
+  &:nth-child(1) { // Тендер (описание)
+    flex-basis: 50%;
+    padding-right: 40px;
+    box-sizing: border-box;
+    color: $text-color;
+    font-weight: 500;
+    flex-shrink: 1; // Позволяем этой колонке сжиматься при нехватке места
+    // text-overflow: ellipsis; // Добавить троеточие если текст обрезан
+    // white-space: nowrap; // Если троеточие нужно, иначе убрать
+  }
+  &:nth-child(2) { // Дата начала
+    flex-basis: 15%;
+     white-space: nowrap; // Не переносить дату
+  }
+  &:nth-child(3) { // Дата завершения
+    flex-basis: 15%;
+    white-space: nowrap; // Не переносить дату
+  }
+  &:nth-child(4) { // Статус
+    flex-basis: 20%;
+    text-align: center; // Горизонтальное выравнивание текста в ячейке
+  }
+}
+
+// Специфичные стили для ячеек заголовка
+.header-cell {
+  font-weight: 700;
+  font-size: 18px;
+  color: $header-text-color;
+//   background-color: $header-bg; // Можно задать другой фон для шапки
+  white-space: nowrap; // Не переносить заголовки
+
+
+}
+
+// Дополнительный стиль для ячейки со статусом для вертикального выравнивания
+.cell-status {
+   display: flex; // Используем flex для выравнивания содержимого ячейки
+   align-items: center; // Вертикально по центру
+   justify-content: center; // Горизонтально по центру (дублирует text-align, но надежнее для flex-элементов)
+}
+
+// Стили для бейджа статуса (остаются прежними)
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 1;
+  color: $status-text-color;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline; // Для inline-block
+  border-radius: 50rem;
+
+  &.status-open {
+    background-color: $status-open-bg;
+  }
+  &.status-completed {
+    background-color: $status-completed-bg;
+  }
+}
+
+// Стиль для сообщения "Нет данных"
+.no-data-row {
+    background-color: white;
+    padding: 2rem $base-padding-horizontal;
+    text-align: center;
+    color: #6c757d;
+    border-radius: $border-radius;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 767.98px) { // Стили для экранов меньше 768px
+
+    
+  
+    // Скрываем стандартную шапку таблицы
+    .tender-div-header {
+      display: none;
+    }
+  
+    // Строка больше не flex-контейнер, а просто блок
+    .tender-div-row {
+      display: block; // Ячейки будут располагаться друг под другом
+      margin-bottom: 1rem; // Увеличим отступ между "карточками" тендеров
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1); // Можно добавить тень для эффекта карточки
+    //   border: 1px solid $border-color; // Добавим границу вокруг карточки
+      padding: 0; // Убираем внутренние отступы у строки, они будут у ячеек
+    }
+  
+    // Стили для ячеек на мобильных
+    .tender-div-cell {
+      display: flex; // Используем flex для выравнивания лейбла и значения
+      justify-content: space-between; // Разносим лейбл и значение по краям
+      align-items: center; // Выравниваем по центру вертикально
+      width: 100%; // Ячейка занимает всю ширину строки
+      padding: 15px 30px; // Внутренние отступы ячейки
+
+      border-bottom: 1px solid #eee; // Разделитель между "полями" внутри карточки
+    
+      box-sizing: border-box;
+      white-space: normal; // Разрешаем перенос текста
+  
+      // Убираем границу у последней ячейки в карточке
+      &:last-child {
+        border-bottom: none;
+      }
+  
+      // Добавляем лейбл перед содержимым ячейки, используя data-label
+      &::before {
+
+        font-weight: bold;
+     
+        padding-right: 10px; // Отступ между лейблом и значением
+        color: $header-text-color; // Цвет как у заголовков
+        white-space: nowrap; // Не переносить текст лейбла
+      }
+  
+      // Особые стили для первой ячейки (описание) - обычно лейбл не нужен
+      &:first-child {
+         display: block; // Отображаем как блок, без space-between
+        //  text-align: left; // Выравнивание текста описания по левому краю
+         font-weight: 500; // Можно сделать чуть жирнее
+         padding-bottom: 15px; // Больше отступ снизу
+  
+         &::before {
+           display: none; // Скрываем стандартный лейбл "Тендер:"
+         }
+      }
+  
+      // Стили для ячейки статуса
+      &.cell-status {
+         // flex выравнивание уже есть от общего .tender-div-cell
+         // Нужно убедиться, что сам бейдж не растягивается
+         .status-badge {
+           // display: inline-block; // Уже должно быть так
+        //    margin-left: auto; // Дополнительно прижмет к правому краю, если нужно
+           flex-shrink: 0; // Не сжимать бейдж
+         }
+  
+         // Переопределяем text-align для ::before, если нужно
+         &::before {
+             // Можно оставить text-align: left;
+         }
+      }
+  
+      // Стили для ячеек с датами (можно убрать nowrap, если даты могут быть длинными)
+       &:nth-child(2), &:nth-child(3) {
+          // white-space: normal; // Если нужно переносить
+       }
+    }
+  
+    // Адаптация сообщения "Нет данных"
+     .no-data-row {
+         padding: 1.5rem 15px; // Корректируем отступы
+         text-align: center;
+     }
+  }
+
+  .pagination {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  button {
+  
+    border: 1.55px solid #E3E6EA;
+    background-color: white;
+    cursor: pointer;
+    color: #353E5C;
+    box-sizing: border-box;
+    font-size: 18px;
+    width: 50px; /* Установите нужный размер */
+    height: 50px; /* Ширина и высота одинаковые для круга */
+    border-radius: 50%; /* Делает кнопку круглой */
+    display: flex; /* Для центрирования текста */
+    align-items: center; /* Вертикальное выравнивание */
+    justify-content: center; /* Горизонтальное выравнивание */
+  
+    background-color: white; /* Фон кнопки */
+    cursor: pointer; /* Указатель при наведении */
+  
+    transition: background-color 0.3s ease; 
+  }
+  
+  button.active {
+    background-color: #00B06C;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

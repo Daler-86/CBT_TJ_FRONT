@@ -1,63 +1,78 @@
-import { Component,Output, OnInit, Input,EventEmitter, } from '@angular/core';
-import { Vacancy, VacancyService, Category, City } from '../../services/vacancy.service';
-import { NgForOf } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { CommonModule } from '@angular/common';
 import { VacanciesService } from '../../api/vacancies.service';
-import { vacancyCategory, vacancyList } from '../../models/vacancies.model';
 import { RegionService } from '../../api/region.service';
-import { regionList } from '../../models/region.model';
-import { TranslateModule } from '@ngx-translate/core';
+import { reportData, reportFile } from '../../models/report.model';
+import { ReportService } from '../../api/report.service';
 
 @Component({
-  selector: 'app-vacancy-list',
+  selector: 'app-report',
   standalone: true,
-  imports: [NgForOf, RouterLink,  FormsModule,TranslateModule],
-  templateUrl: './vacancy-list.component.html',
-  styleUrls: ['./vacancy-list.component.scss']
+  imports: [CommonModule],
+  templateUrl: './report.component.html',
+  styleUrl: './report.component.scss'
 })
+export class ReportComponent {
 
-export class VacancyListComponent {
-  vacancyCategory: vacancyCategory[] = [];
-  regionList: regionList[] = [];
-  vacancyList: vacancyList[] = [];
+
+  reportData: any = {};
+  // pdfIconPath: string = 'assets/icons/pdf-icon.svg'; // Путь к иконке
+
+  constructor( private reportService:ReportService) { }
+
+  ngOnInit(): void {
+    this.loadData(); // Загружаем данные при инициализации
+    this.loadReportFile();
+    this.updatePages();
+  }
+
+  loadData(): void {
+    
+      this.reportService.getReportData().subscribe(
+        (response) => {
+          this.reportData = response.data.reports;
+          // console.log('All cards loaded:', this.cardList);
+        },
+        (error) => {
+          console.error('Ошибка при загрузке всех карт', error);
+        }
+      );
+    }
+  
+
+
+  // Функции trackBy для оптимизации *ngFor
+  trackByCardId(index: number, item: reportData): number {
+    return item.id;
+  }
+
+  trackByDocumentId(index: number, item: reportFile): number {
+    return item.id;
+  }
+
+  // Можно добавить trackBy для dataPoints, если они могут динамически меняться
+  trackByDataPointLabel(index: number, item: reportData): string {
+      return item.description; // Предполагаем, что label уникален внутри карточки
+  }
+
+
   selectedCategory: string = '';
   selectedRegion: string = '';
 
-  constructor(private vacanciesService: VacanciesService, private regionService: RegionService) {}
-  @Input() totalPages: number = 0; // Общее количество страниц
+
+  @Input () totalPages: number = 0; // Общее количество страниц
   @Input() currentPage: number = 1; // Текущая страница
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   pages: number[] = [];
 
-  ngOnInit() {
-    this.vacanciesService.getVacancyCategory().subscribe(
-      (response) => {
-        this.vacancyCategory = response.data.vacancy_categories;
-      },
-      (error) => {
-        console.error('Ошибка при запросе данных', error);
-      }
-    );
-
-    this.regionService.getRegionList().subscribe(
-      (response) => {
-        this.regionList = response.data.regions;
-      },
-      (error) => {
-        console.error('Ошибка при запросе данных', error);
-      }
-    );
-
-    this.loadAllVacancies();
-    this.updatePages();
-  }
+reportFile:reportFile[]=[]
 vacancyCount:number=0
-  loadAllVacancies() {
+  loadReportFile() {
 
-    this.vacanciesService.getVacancyList(2,this.currentPage,+this.selectedCategory,+this.selectedRegion).subscribe(
+    this.reportService.getReportFile(2,this.currentPage).subscribe(
       (response) => {
-        this.vacancyList = response.data.vacancies;
+        this.reportFile = response.data.report_files;
      
         this.totalPages=Math.round(response.data.total_count/2)
         this.vacancyCount=response.data.total_count
@@ -106,7 +121,7 @@ vacancyCount:number=0
     this.updatePages();
     this.pageChange.emit(this.currentPage);
     this.scrollToTop(); 
-    this.loadAllVacancies()
+    this.loadReportFile()
   }
   scrollToTop(): void {
     const listElement = document.querySelector('.list-container'); // Замените '.list-container' на ваш селектор списка
@@ -137,4 +152,3 @@ vacancyCount:number=0
     }
   }
 }
-

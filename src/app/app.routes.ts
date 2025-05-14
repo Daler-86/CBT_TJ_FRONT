@@ -17,6 +17,12 @@ import { TransfersComponent } from './components/transfers/transfers.component';
 import { DepositsComponent } from './components/deposits/deposits.component';
 import { TransfersDetailsComponent } from './components/transfers-details/transfers-details.component';
 import { DepositDetailComponent } from './components/deposit-detail/deposit-detail.component';
+import { TenderComponent } from './components/tender/tender.component';
+import { TenderDetailsComponent } from './components/tender-details/tender-details.component';
+import { ReportComponent } from './components/report/report.component';
+import { BankDetailComponent } from './components/bank-detail/bank-detail.component';
+import { NewsComponent } from './components/news/news.component';
+import { NewsDetailComponent } from './components/news-detail/news-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -53,7 +59,13 @@ export const routes: Routes = [
   { path: 'map', component: MapComponent, data: { breadcrumb: 'Карта' } },
   { path: 'transfers-details/:id', component: TransfersDetailsComponent, data: { breadcrumb: 'Детали карты' } },
   { path: 'deposit-details/:id', component: DepositDetailComponent, data: { breadcrumb: 'Детали карты' } },
-   {path:'about-us',component:AboutUsComponent}
+   {path:'about-us',component:AboutUsComponent},
+   {path:'tender',component:TenderComponent},
+   { path: 'tender-detail/:id', component: TenderDetailsComponent, data: { breadcrumb: 'Детали карты' } },
+   {path:'report',component:ReportComponent},
+   {path:'bank-detail',component:BankDetailComponent},
+   {path:'news', component:NewsComponent},
+   {path:'news-detail/:id', component:NewsDetailComponent}
 ];
 
  

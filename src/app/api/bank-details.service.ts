@@ -1,0 +1,83 @@
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { LanguagesService } from '../languages.service';
+import { switchMap,map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { TransferDetail, TransfersList } from '../models/transfers.model';
+import { BankDetails } from '../models/bank-detail.model';
+@Injectable({
+  providedIn: 'root'
+})
+export class BankDetailsService {
+  private baseUrl = 'http://172.16.16.88:9009/api/v1'
+  constructor(private http: HttpClient, private languageService:LanguagesService) { }
+  private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
+    return items.sort((a, b) => a.sort_id - b.sort_id);
+  }
+
+  private selectedCardSource = new BehaviorSubject<any>(null);
+  selectedCard$ = this.selectedCardSource.asObservable();
+  setSelectedCard(card: any) {
+    this.selectedCardSource.next(card);
+  }
+  
+  getBankDetails(): Observable<BankDetails> { 
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'Accept': 'application/json',
+          'Language': lang
+        });
+        const url = `${this.baseUrl}/bank-detail/list`;
+        return this.http.get<BankDetails>(url, { headers });
+      }),
+      map(response => {
+        if (response.data.bank_details && Array.isArray(response.data.bank_details)) {
+          // Сортируем сначала карты по sortId
+          response.data.bank_details = this.sortBySortId(response.data.bank_details);
+          
+   
+        }
+        return response;
+      })
+    );
+  }
+
+  getTransferData(cardId: number): Observable<TransferDetail> { 
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'accept': 'application/json',
+          'Language': lang
+        });
+        return this.http.get<TransferDetail>(`${this.baseUrl}/transfer/${cardId}`, { headers });
+      }),
+      map(response => {
+        if (response.data.transfer_data) {
+          const transferData = response.data.transfer_data;
+  
+          if (Array.isArray(transferData.conditions)) {
+            transferData.conditions = this.sortBySortId(transferData.conditions);
+            transferData.conditions.forEach(condition => {
+              if (Array.isArray(condition.items)) {
+                condition.items = this.sortBySortId(condition.items);
+              }
+            });
+          }
+  
+          if (Array.isArray(transferData.documents)) {
+            transferData.documents = this.sortBySortId(transferData.documents);
+            transferData.documents.forEach(document => {
+              if (Array.isArray(document.items)) {
+                document.items = this.sortBySortId(document.items);
+              }
+            });
+          }
+        }
+        return response;
+      })
+    );
+  }
+  
+}

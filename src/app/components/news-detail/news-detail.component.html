@@ -1,0 +1,57 @@
+<div class="newsDetail">
+    <div class="card-container">
+        <div class="card-info">
+          <h2 class="card-title">Международное рейтинговое агентство «Moody's Investors Service»</h2>
+          <p class="card-description">
+            01.09.2024
+          </p>
+          
+        </div>
+    
+      </div>
+
+      <div class="news-detail-layout">
+
+  <!-- Основной контент статьи -->
+  <main class="news-main-content">
+    <!-- Заголовок, если он нужен здесь -->
+    <!-- <h1 *ngIf="articleTitle">{{ articleTitle }}</h1> -->
+
+    <!-- Отображение параграфов -->
+    <p *ngFor="let paragraph of articleParagraphs; trackBy: trackByIndex">
+      {{ paragraph }}
+    </p>
+
+    <!-- Галерея изображений -->
+    <div class="image-gallery" *ngIf="imageUrls.length > 0">
+      <div class="gallery-item" *ngFor="let imageUrl of imageUrls; trackBy: trackByIndex">
+        <img [src]="imageUrl" alt="Изображение к новости"> <!-- Добавь более осмысленный alt, если возможно -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Боковая панель (Сайдбар) -->
+  <aside class="news-sidebar">
+    <div class="sidebar-card">
+      <h4>Поделиться</h4>
+      <div class="social-share-icons" *ngIf="socialLinks.length > 0">
+        <a *ngFor="let link of socialLinks; trackBy: trackBySocialType"
+           [href]="link.url"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="social-icon"
+           [attr.aria-label]="link.ariaLabel">
+           <!-- Используем Font Awesome иконки (убедись, что FA подключен) -->
+          <i [class]="link.iconClass"></i>
+          <!-- Или можно использовать SVG/img -->
+        </a>
+      </div>
+      <button class="copy-link-button" (click)="copyLink()" type="button">
+        {{ copyButtonText }}
+      </button>
+    </div>
+  </aside>
+
+</div>
+
+</div>

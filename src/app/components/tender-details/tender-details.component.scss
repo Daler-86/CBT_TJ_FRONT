@@ -1,0 +1,255 @@
+.tenderDetail{
+    padding:3% 5% ;
+    background-color: #f8f9fa;
+  .card-container {
+    position: relative;
+             margin: 30px 0 0;
+         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+        
+         background-color: white;
+         border-radius: 24px;
+
+ 
+
+ @media (max-width: 1024px) {
+     display: block;
+     padding: 29px 50px;
+  }
+     .card-info {
+  
+       padding: 62px 76px;
+       @media (max-width: 1024px) {
+         width: 100%;
+         padding: 0;
+      }
+   
+       .card-title {
+         font-size: 30px;
+         font-weight: bold;
+         margin-bottom: 10px;
+       }
+   
+       .card-description {
+         font-size: 18px;
+         color:  #475569;
+         font-weight: 500;
+         margin-bottom: 20px;
+         line-height: 23px;
+       }
+      
+
+
+    }
+}
+
+// Переменные для удобства
+$card-bg: #ffffff;
+$card-border-radius: 22px; // Как ты просил
+$card-padding: 25px 30px; // Внутренние отступы карточек (подбери по вкусу)
+$column-gap: 25px; // Расстояние между колонками
+$main-column-width: 65%; // Ширина левой колонки (~60-70%)
+$sidebar-width: 35%; // Ширина правой колонки (~30-40%)
+
+$text-color: #666f8d; // Основной цвет текста
+$label-color: #666F8D; // Цвет для подписей (серый)
+$heading-color: #020617; // Цвет заголовков
+$link-color: #007bff; // Цвет ссылок
+
+$border-color: #e9ecef; // Цвет границы карточки (если нужна)
+
+
+// Основной контейнер макета
+.tender-detail-layout {
+  display: flex;
+  align-items: flex-start; // Важно: колонки выравниваются по верху
+  gap: $column-gap;
+  margin: 30px 0; // Пространство между колонками
+//   padding: 20px; // Общий отступ для всего макета (опционально)
+  // background-color: #f8f9fa; // Если нужен фон страницы отличный от белого
+}
+
+// Левая колонка
+.tender-main-column {
+  flex: 0 0 $main-column-width; // Не расти, не сжиматься, базовая ширина %
+  display: flex; // Чтобы управлять расположением карточек внутри
+  flex-direction: column; // Карточки одна под другой
+  gap: $column-gap; // Расстояние между карточкой описания и карточкой документа
+}
+
+// Правая колонка
+.tender-sidebar-column {
+  flex: 0 0 $sidebar-width; // Не расти, не сжиматься, базовая ширина %
+  position: sticky; // Опционально: сделать сайдбар "липким" при скролле
+  top: 20px; // Отступ сверху для липкого сайдбара
+}
+
+// Общие стили для белых карточек
+.tender-card {
+  background-color: $card-bg;
+  border-radius: $card-border-radius;
+  padding: $card-padding;
+  // border: 1px solid $border-color; // Раскомментируй, если нужна тонкая граница
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); // Мягкая тень для объема
+}
+
+// Стили для карточки описания
+.tender-description-card {
+  h2 {
+    font-size: 24px;
+    color: $heading-color;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: $label-color;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    color: $heading-color;
+    margin-top: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: $text-color;
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+  }
+}
+
+// Стили для карточки с документацией
+.tender-document-card {
+  display: flex;
+  align-items: center;
+  gap: 15px; // Отступ между иконкой и текстом
+
+  .pdf-icon {
+    width: 32px; // Размер иконки
+    height: auto;
+    flex-shrink: 0; // Не сжимать иконку
+  }
+
+  .document-link {
+    color: $heading-color; // Или $link-color
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+// Стили для карточки с метаданными в сайдбаре
+.tender-metadata-card {
+  .metadata-item {
+    margin-bottom: 1.2rem; // Отступ между элементами метаданных
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .label {
+      display: block; // Лейбл над значением
+      font-size: 16px;
+      color: $label-color;
+      margin-bottom: 5px;
+    }
+
+    .value {
+      display: block;
+      font-size: 16px;
+      font-weight: 700; // Значение жирным
+      color: $heading-color;
+      line-height: 1.4;
+
+      // Стили для ссылок внутри значения
+      a{
+     
+        text-decoration: none;
+        // word-break: break-word; // Перенос длинных email/тел
+
+        &:hover {
+           color: $link-color; // Цвет ссылки при наведении
+        //    text-decoration: underline;
+        }
+      }
+    }
+
+    // Для элемента со статусом выравниваем бейдж
+    .status-badge {
+        padding: 6px 10px;
+        display: inline-block; // Чтобы не растягивался на всю ширину
+    }
+  }
+}
+
+// Подключаем стили для status-badge (если они не глобальные)
+// Скопируй стили .status-badge, .status-open, .status-completed из предыдущих примеров сюда
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 50rem;
+
+  &.status-open {
+    background-color: #00B06C;
+  }
+
+  &.status-completed {
+    background-color: #F61302;
+  }
+  // Добавь другие статусы при необходимости
+}
+
+
+// --- Адаптивные стили (Пример для планшетов/телефонов) ---
+@media (max-width: 991.98px) { // Брейкпоинт для планшетов
+  .tender-detail-layout {
+    flex-direction: column; // Колонки встают друг под друга
+    gap: 20px; // Вертикальный отступ между бывшими колонками
+  }
+
+  // Сбрасываем ширину колонок, они теперь занимают всю ширину
+  .tender-main-column,
+  .tender-sidebar-column {
+    flex: 1 1 100%; // Могут расти/сжиматься, базовая ширина 100%
+    width: 100%;
+  }
+
+  .tender-sidebar-column {
+      position: static; // Убираем "липкость" на мобильных
+  }
+}
+
+@media (max-width: 575.98px) { // Брейкпоинт для телефонов
+    .tender-detail-layout {
+        padding: 10px; // Уменьшаем общие отступы
+    }
+    .tender-card {
+        padding: 15px 20px; // Уменьшаем отступы внутри карточек
+        border-radius: 15px; // Можно уменьшить радиус скругления
+    }
+     .tender-description-card h2 {
+         font-size: 1.5rem; // Уменьшаем заголовок
+     }
+}
+}
