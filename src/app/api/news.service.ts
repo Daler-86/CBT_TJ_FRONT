@@ -41,7 +41,7 @@ export class NewsService {
           'accept': 'application/json',
           'Language': lang
         });
-        return this.http.get<NewsDetailData>(`${this.baseUrl}/tender/${cardId}`, { headers });
+        return this.http.get<NewsDetailData>(`${this.baseUrl}/news/${cardId}`, { headers });
       }),
       map(response => {
         if (response.data.news) {

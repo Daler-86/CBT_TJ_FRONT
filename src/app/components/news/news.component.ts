@@ -4,6 +4,15 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { NewsService } from '../../api/news.service';
+
+export interface new_news {
+  id: number;
+  title?: string;
+  description: string; // Исходная HTML строка
+  date_time: string;
+  upload_file: string;
+  firstParagraphText?: string; // <--- Это поле мы добавляем ЛОКАЛЬНО для удобства шаблона
+}
 @Component({
   selector: 'app-news',
   standalone: true,
@@ -26,7 +35,7 @@ export class NewsComponent {
     this.router.navigate(['/news-detail', cardId], { queryParams: { scrollToForm: true } });
   }
 
-  news:news[]=[]
+  news:new_news[]=[]
   ngOnInit(): void {
     // Здесь позже будет логика получения данных с бэкенда
     console.log('Tender list initialized with mock data.');
@@ -40,18 +49,36 @@ export class NewsComponent {
   tenderCount:number=0
   loadData(): void {
     
-    this.newsService.getNewsList(2,this.currentPage).subscribe(
+    this.newsService.getNewsList(2, this.currentPage).subscribe(
       (response) => {
-        this.news = response.data.news;
-        this.totalPages=Math.round(response.data.total_count/2)
-        this.tenderCount=response.data.total_count;
-        
+        // *** Вот здесь происходит обработка и создание НОВОГО массива ***
+        const processedNews = response.data.news.map(item => {
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = item.description || '';
+          const firstParagraph = tempDiv.querySelector('p');
+          const extractedText = firstParagraph ? firstParagraph.textContent : tempDiv.textContent;
+
+          // Возвращаем НОВЫЙ объект, который включает все свойства исходного 'item'
+          // плюс наше новое локальное свойство 'firstParagraphText'
+          return {
+            ...item, // Копирует id, title, description, date_time, upload_file из исходного item
+            firstParagraphText: extractedText // Добавляет новое свойство в этот НОВЫЙ объект
+          } as new_news; // Приводим к типу news (с учетом опционального поля)
+        });
+
+        // Присваиваем этот НОВЫЙ массив свойству 'news' компонента
+        this.news = processedNews;
+
+        this.totalPages = Math.ceil(response.data.total_count / 2);
+        this.tenderCount = response.data.total_count;
+
         this.updatePages();
       },
       (error) => {
         console.error('Ошибка при загрузке всех карт', error);
       }
     );
+
   }
   ngOnChanges() {
     this.updatePages();

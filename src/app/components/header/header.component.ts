@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   menus: Menu[] = [];
   dropdownOpenMap: { [key: number]: boolean } = {}; // Состояние для каждого селекта
   dropdownOpen = false; // Локальное состояние для языка
-  selectedLanguage: string | null = localStorage.getItem('appLanguage');// Начальный выбранный язык
+  selectedLanguage: string | null = localStorage.getItem('1');// Начальный выбранный язык
   menuActive = false;
   index: number;
   

@@ -10,10 +10,10 @@ export interface NewsEventItem {
 
   export interface news{
 id:number;
-title:string;
-description:string;
-date_time:string;
-upload_file:string;
+title?:string;
+description?:string;
+date_time?:string;
+upload_file?:string;
   }
   export interface NewsData{
 
@@ -31,7 +31,7 @@ upload_file:string;
     status:string;
     status_code:string;
     data:{
-       news:news[]
+       news:news
        
     }
    }

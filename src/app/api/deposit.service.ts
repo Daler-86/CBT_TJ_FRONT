@@ -35,8 +35,13 @@ export class DepositsService {
       map(response => {
         if (response.data.deposits && Array.isArray(response.data.deposits)) {
           // Сортируем сначала карты по sortId
-          response.data.deposits = this.sortBySortId(response.data.deposits);
-
+          response.data.deposits = this.sortBySortId(response.data.deposits).map(deposit => {
+            if (Array.isArray(deposit.content_item)) {
+              deposit.content_item = this.sortBySortId(deposit.content_item);
+            }
+            return deposit;
+          });
+             
    
         }
         return response;

@@ -22,7 +22,7 @@ export class DepositsComponent {
       this.loadAllTransfers(); // Загрузка всех карт по умолчанию
     });
   }
-depositsList:Deposit[]=[]
+depositsList:Deposit[]=[] 
   loadAllTransfers() {
     
     this.depositService.getDepositsListAll().subscribe(

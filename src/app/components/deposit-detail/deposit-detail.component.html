@@ -102,12 +102,23 @@
       <div class="info-box" *ngFor="let service of tariff.tariffs">
         <div class="info-title-1">{{ service.title }}</div>
         <div class="info-title">
-          {{ service.title }}
-          <div class="info-detail">{{ service.description }}</div>
+          {{ service.description }}
+
+        </div>
+      </div>
+      <div class="info-box" *ngFor="let service of depositData.documents">
+        <div class="info-title-1">{{ service.title }}</div>
+        
+        <div class="info-title document-card">
+
+          <img src="../../../assets/icons/Book.png" alt="PDF" class="pdf-icon"> <!-- Используем свойство компонента для пути к иконке -->
+          <a [href]="service.upload_file" target="_blank" rel="noopener noreferrer" class="document-link">{{service.title }}</a>
+
         </div>
       </div>
     </div>
   </div>
+
 </div>
 
 

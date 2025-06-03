@@ -13,8 +13,10 @@
                <h2>{{ item.title }}</h2>
        
             <!-- <h2 >{{ item.title }}</h2> -->
-  
-            <p> {{ item.description| slice:0:200 }}{{ item.description.length > 200 ? '...' : '' }}</p>
+            <p class="article-content">
+              {{ item.firstParagraphText | slice:0:200 }}
+              <!-- {{ (item.firstParagraphText)?.length > 200 ? '...' : '' }} -->
+            </p>
             <!-- Можно добавить кнопку "Подробнее", если нужно -->
             <!-- <a *ngIf="item.linkUrl" [href]="item.linkUrl" class="read-more-btn">Подробнее</a> -->
           </div>

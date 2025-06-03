@@ -49,8 +49,8 @@ $sidebar-padding: 20px 25px;
 $main-content-max-width: 800px; // Макс. ширина основного контента
 $layout-gap: 30px; // Отступ между контентом и сайдбаром
 
-$text-color: #333;
-$paragraph-color: #454f5b;
+$text-color: #666F8D;
+$paragraph-color: #666F8D;
 $gallery-gap: 15px;
 $image-border-radius: 8px;
 
@@ -68,44 +68,52 @@ $copy-button-copied-color: #fff;
 .news-detail-layout {
   display: flex;
   gap: $layout-gap;
-  padding: 30px 20px; // Отступы секции
+  justify-content: space-between;
+  padding: 30px 0px;
+   // Отступы секции
   align-items: flex-start; // Выравнивание по верху
   background-color: $layout-bg; // Если нужен фон
 }
 
 // Основной контент
 .news-main-content {
-  flex: 1 1 65%; // Гибкая ширина, основа 65%
-  max-width: $main-content-max-width; // Ограничиваем ширину текста для читаемости
+  flex: 1 1 50%; // Гибкая ширина, основа 65%
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  // max-width: $main-content-max-width; // Ограничиваем ширину текста для читаемости
 
-  p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: $paragraph-color;
-    margin-bottom: 1.5em; // Отступ между параграфами
 
-    &:last-of-type {
-      margin-bottom: 2em; // Больший отступ перед галереей
-    }
-  }
+ .article-content ::ng-deep img {
+  /* Обязательные стили для адаптивности и базового отображения */
+  max-width: 45%; /* Гарантируем, что изображение не выйдет за контейнер */
+  height: auto;    /* Сохраняем пропорции */
+  /* Полезно для контроля отступов и центрирования */
+  margin: 15px ; /* Пример: отступы сверху/снизу 15px, авто по бокам для центрирования */
+
+  /* >>> Стили для радиуса углов <<< */
+  border-radius: 8px; /* Пример: скругление углов на 8 пикселей. Выберите значение по вкусу */
+
+  /* Дополнительные стили (опционально) */
+  /* border: 1px solid #ddd; */ /* Пример: тонкая серая рамка */
+  /* box-shadow: 2px 2px 5px rgba(0,0,0,0.2); */ /* Пример: легкая тень */
+
+  /* Если вы хотите убрать красные волнистые линии от проверки орфографии */
+  /* spell-check: false; <- Это CSS свойство, но оно может не работать во всех браузерах
+     Лучше отключить проверку орфографии на элементе с [innerHTML] в HTML:
+     <div spellcheck="false" class="article-content" [innerHTML]="..."></div>
+  */
+}
+.article-content ::ng-deep p{
+  color: #666F8D;
+  font-size: 24px;
+  line-height: 32px;
 }
 
-// Галерея изображений
-.image-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); // Две колонки
-  gap: $gallery-gap;
 
-  .gallery-item {
-    img {
-      display: block;
-      width: 100%;
-      height: auto; // Сохраняем пропорции
-      border-radius: $image-border-radius;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-  }
 }
+
+
 
 // Сайдбар
 .news-sidebar {
@@ -135,7 +143,7 @@ $copy-button-copied-color: #fff;
 .social-share-icons {
   display: flex;
   justify-content: center; // Центрируем иконки
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 20px;
   flex-wrap: wrap; // Перенос на новую строку, если не помещаются
 
@@ -146,14 +154,13 @@ $copy-button-copied-color: #fff;
     width: 40px;
     height: 40px;
     border-radius: 50%; // Круглые иконки
-    background-color: $share-icon-bg;
-    color: $share-icon-color;
+   
     font-size: 1.1rem; // Размер иконки Font Awesome
     text-decoration: none;
     transition: background-color 0.2s ease, transform 0.2s ease;
 
     &:hover {
-      background-color: $share-icon-hover-bg;
+    
       transform: translateY(-2px); // Легкий подъем при наведении
     }
   }
