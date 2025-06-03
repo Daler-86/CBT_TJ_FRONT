@@ -4,13 +4,14 @@ import { Injectable } from '@angular/core';
 import { LanguagesService } from '../languages.service';
 import { switchMap, map } from 'rxjs/operators';
 import { VacancyCategory, VacancyContent,VacancyGallery,VacancyItem, VacancyStatistic,VacancyList, PersonalQuality, VacancyCondition, VacancyEducation, VacancyExperience, VacancySkill, VacancyData } from '../models/vacancies.model';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VacanciesService {
 
-  private baseUrl='http://172.16.16.88:9009/api/v1'
+  private baseUrl=environment.BASE_URL
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
   private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
     return items.sort((a, b) => a.sort_id - b.sort_id);
@@ -125,7 +126,7 @@ export class VacanciesService {
   }
 
 
-  
+
   getVacancyStatistic():Observable<VacancyStatistic> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
@@ -148,26 +149,26 @@ export class VacanciesService {
         return this.http.get<VacancyGallery>(this.baseUrl+'/vacancy/gallery', { headers });
       })
     );
-  } 
-  
+  }
+
   getVacancyCategory():Observable<VacancyCategory> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
           'accept': 'application/json',
-          'Language': lang  
+          'Language': lang
         });
         return this.http.get<VacancyCategory>(this.baseUrl+'/vacancy/category', { headers });
       })
     );
-  } 
+  }
 
   getVacancyList(limit:number,currentPage:number,category_id:number,region_id:number):Observable<VacancyList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
           'accept': 'application/json',
-          'Language': lang  
+          'Language': lang
         });
         const params = new HttpParams()
         .set('limit', limit)
@@ -177,23 +178,23 @@ export class VacanciesService {
         return this.http.get<VacancyList>(this.baseUrl+'/vacancy/list', { headers, params });
       })
     );
-  } 
+  }
 
- 
+
 
   getVacancyData(cardId:number):Observable<VacancyData> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
           'accept': 'application/json',
-          'Language': lang  
+          'Language': lang
         });
 
         return this.http.get<VacancyData>(this.baseUrl+'/vacancy/'+cardId, { headers });
       })
     );
-  } 
-  
+  }
+
   getVacancyByCategory(cardId: number,limit:number,currentPage:number):Observable<VacancyList>{
     return this.languageService.language$.pipe(
 
@@ -209,7 +210,7 @@ export class VacanciesService {
     return this.http.get<VacancyList>(`${this.baseUrl+'/vacancy/by-category-id'}`, { headers,params });
      }) )
   }
-  
+
   getVacancyByRegion(cardId: number,limit:number,currentPage:number):Observable<VacancyList>{
     return this.languageService.language$.pipe(
 
@@ -225,7 +226,7 @@ export class VacanciesService {
     return this.http.get<VacancyList>(`${this.baseUrl+'/vacancy/by-region-id'}`, { headers,params });
      }) )
   }
-  
+
   uploadFile(file: File): Observable<any> {
     const uploadData = new FormData();
     uploadData.append('file', file, file.name);

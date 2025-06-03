@@ -6,11 +6,12 @@ import { switchMap,map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { TransferDetail, TransfersList } from '../models/transfers.model';
 import { DepositDetail, DepositsList } from '../models/deposit.model';
+import {environment} from "../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
 export class DepositsService {
-  private baseUrl = 'http://172.16.16.88:9009/api/v1'
+  private baseUrl = environment.BASE_URL
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
   private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
     return items.sort((a, b) => a.sort_id - b.sort_id);
@@ -21,8 +22,8 @@ export class DepositsService {
   setSelectedCard(card: any) {
     this.selectedCardSource.next(card);
   }
-  
-  getDepositsListAll(): Observable<DepositsList> { 
+
+  getDepositsListAll(): Observable<DepositsList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -41,15 +42,15 @@ export class DepositsService {
             }
             return deposit;
           });
-             
-   
+
+
         }
         return response;
       })
     );
   }
 
-  getDepositData(cardId: number): Observable<DepositDetail> {  
+  getDepositData(cardId: number): Observable<DepositDetail> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -61,11 +62,11 @@ export class DepositsService {
       map(response => {
         if (response.data) {
           const depositData = response.data;
-  
+
           // Сортируем currency, если это массив
           if (Array.isArray(depositData.currency)) {
             depositData.currency = this.sortBySortId(depositData.currency);
-            
+
             // Для каждого элемента currency сортируем tariffs
             depositData.currency.forEach(currencyItem => {
               if (Array.isArray(currencyItem.tariffs)) {
@@ -73,12 +74,12 @@ export class DepositsService {
               }
             });
           }
-  
+
           // Сортируем documents, если это массив
           if (Array.isArray(depositData.documents)) {
             depositData.documents = this.sortBySortId(depositData.documents);
           }
-  
+
           // Сортируем faqs, если это массив
           if (Array.isArray(depositData.faqs)) {
             depositData.faqs = this.sortBySortId(depositData.faqs);
@@ -96,10 +97,10 @@ export class DepositsService {
           'Accept': 'application/json',
           'Language': lang  // Динамическая установка языкового заголовка
         });
-        
+
          return this.http.post(this.baseUrl+'/card/order/save', cardData, { headers });
       })
     );
   }
-  
+
 }

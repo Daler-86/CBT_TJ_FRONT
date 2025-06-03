@@ -6,11 +6,12 @@ import { CardBrand, CardList,CardBrandsResponse, CardContentItem, CardHelpfulDoc
 import { LanguagesService } from '../languages.service';
 import { switchMap,map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import {environment} from "../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
 export class CardsService {
-  private baseUrl = 'http://172.16.16.88:9009/api/v1'
+  private baseUrl = environment.BASE_URL
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
   private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
     return items.sort((a, b) => a.sort_id - b.sort_id);
@@ -21,8 +22,8 @@ export class CardsService {
   setSelectedCard(card: any) {
     this.selectedCardSource.next(card);
   }
-  
-  getCardListAll(personTypeId: number): Observable<CardList> { 
+
+  getCardListAll(personTypeId: number): Observable<CardList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -36,7 +37,7 @@ export class CardsService {
         if (response.data.cards && Array.isArray(response.data.cards)) {
           // Сортируем сначала карты по sortId
           response.data.cards = this.sortBySortId(response.data.cards);
-          
+
           // Сортируем контент каждой карты по sortId
           response.data.cards.forEach(card => {
             if (Array.isArray(card.content)) {
@@ -50,7 +51,7 @@ export class CardsService {
   }
 
 
-  getCardList(personTypeId: number, brandId: number): Observable<CardList> { 
+  getCardList(personTypeId: number, brandId: number): Observable<CardList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -64,7 +65,7 @@ export class CardsService {
         if (response.data.cards && Array.isArray(response.data.cards)) {
           // Сортируем сначала карты по sortId
           response.data.cards = this.sortBySortId(response.data.cards);
-          
+
           // Сортируем контент каждой карты по sortId
           response.data.cards.forEach(card => {
             if (Array.isArray(card.content)) {
@@ -89,8 +90,8 @@ export class CardsService {
       map(response => response) // Теперь здесь нет изменения данных, просто возвращаем полученный ответ
     );
   }
-  
-  
+
+
   getCardBrands():Observable<CardBrandsResponse>{
     return this.languageService.language$.pipe(  switchMap(lang => {
       const headers = new HttpHeaders({
@@ -117,7 +118,7 @@ export class CardsService {
       })
     );
   }
-  
+
   getCardhDocuments(cardId: number): Observable<CardHelpfulDocument> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
@@ -135,7 +136,7 @@ export class CardsService {
       })
     );
   }
-  
+
   getCardLimits(cardId: number): Observable<CardLimits> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
@@ -153,7 +154,7 @@ export class CardsService {
       })
     );
   }
-  
+
   getCardOperation(cardId: number): Observable<CardOperations> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
@@ -171,7 +172,7 @@ export class CardsService {
       })
     );
   }
-  
+
   getCardServices(cardId: number): Observable<CardServices> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
@@ -206,7 +207,7 @@ export class CardsService {
       })
     );
   }
-  
+
 
   submitCardByBrand(cardData: any): Observable<any> {
     return this.languageService.language$.pipe(
@@ -215,7 +216,7 @@ export class CardsService {
           'Accept': 'application/json',
           'Language': lang  // Динамическая установка языкового заголовка
         });
-        
+
          return this.http.post(this.baseUrl+'/card/order/save', cardData, { headers });
       })
     );

@@ -9,6 +9,7 @@ import { officeList } from '../../models/region.model';
 import { MenuService } from '../../api/menu.service';
 import { BehaviorSubject } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
+import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-card-details',
   standalone: true,
@@ -17,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './card-details.component.scss'
 })
 export class CardDetailsComponent implements OnInit {
+  imageUrl: string = environment.IMAGE_URL;
   cardId: number=0;
   cardContent: any; // Замените any на ваш тип данных
   services: any;
@@ -32,7 +34,7 @@ officeName:string='Выберите отделение банка'
     client_name: '',
     office_id: 0,
     phone: ''
-  };  
+  };
   cardData:any={}
   personTypeId: number = 1;
     selectedFaqIndex: number | null = null;
@@ -48,7 +50,7 @@ officeName:string='Выберите отделение банка'
     private menuService: MenuService
   ) { }
 
-  
+
   selectTab(tab: string): void {
     this.selectedTab = tab;
     this.loadTabData(tab,this.cardId);
@@ -73,7 +75,7 @@ officeName:string='Выберите отделение банка'
     this.loadCardFaqs(this.cardId)
     this.loadTabData(this.selectedTab, this.cardId);
     this.loadOffice()
-  
+
   }
 
   ngAfterViewInit(): void {
@@ -106,9 +108,9 @@ officeName:string='Выберите отделение банка'
       case 'services':
         this.cardsService.getCardServices(id).subscribe(
           (details) => {
-        
-            this.services=details.data.card_services 
-            
+
+            this.services=details.data.card_services
+
           },
           (error) => {
             console.error('Ошибка при получении деталей карты', error);
@@ -130,7 +132,7 @@ officeName:string='Выберите отделение банка'
     this.cardsService.getCardContentItem(id).subscribe(
       (details) => {
         this.cardContent=details.data.card_content_items
-     
+
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
@@ -139,7 +141,7 @@ officeName:string='Выберите отделение банка'
   }
   loadCardFaqs(id: number): void {
     this.cardsService.getCardFaqs(id).subscribe(
-      (details) => { 
+      (details) => {
         this.faqs=details.data.card_faqs
       },
       (error) => {
@@ -159,13 +161,13 @@ officeName:string='Выберите отделение банка'
     );
   }
   submitApplication() {
- 
+
     if (this.model.phone && this.model.client_name && this.model.office_id) {
       console.log(this.model)
       this.model.card_id=this.cardId
       this.cardsService.submitCardByBrand(this.model).subscribe(resp =>{
         console.log(resp);
-        
+
       },(err =>{
         console.log(err);
       }));
@@ -179,7 +181,7 @@ toggleDropdown(event: Event) {
 
 selectOption( event: Event,item:officeList) {
   this.officeName = item?.name; // Обновляем имя для отображения
-  this.model.office_id = item?.id; 
+  this.model.office_id = item?.id;
   event.stopPropagation();
   this.dropdownOpen = false;
 

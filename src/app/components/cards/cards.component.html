@@ -2,17 +2,17 @@
 
   <h1>{{"Bank cards"|translate}}</h1>
 
-  <div class="btnCards"> 
+  <div class="btnCards">
     <button [ngClass]="{'active': selectedTab === 'all'}" (click)="selectTab('all')">
       {{"All"|translate}}
     </button>
-    <button *ngFor="let cBrand of cardBrands" 
+    <button *ngFor="let cBrand of cardBrands"
             [ngClass]="{'active': isBrandSelected(cBrand.id)}"
             (click)="selectBrand(cBrand.id); selectTab('brand')">
       {{ cBrand.name }}
     </button>
   </div>
-  
+
   <div class="content">
     <div class="card-container" *ngFor="let card of cardList">
       <div class="card-info">
@@ -32,13 +32,8 @@
         </div>
       </div>
       <div class="card-image">
-        <img class="card" [src]="'http://172.16.16.88:9009/storage/' + card.upload_file" [alt]="card.title" />
-
-
+        <img class="card" [src]="imageUrl + card.upload_file" [alt]="card.title" />
       </div>
     </div>
   </div>
-
-
-
 </div>

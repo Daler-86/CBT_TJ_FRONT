@@ -10,6 +10,7 @@ import { DepositsService } from '../../api/deposit.service';
 import { depositDetail } from '../../models/deposit.model';
 import { RegionService } from '../../api/region.service';
 import { officeList } from '../../models/region.model';
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-deposit-detail',
@@ -29,6 +30,7 @@ export class DepositDetailComponent {
     private regionService:RegionService,
   ) { }
 
+  imageUrl: string = environment.IMAGE_URL;
   selectedFaqIndex: number | null = null;
   cardId: number=0;
   depositData:depositDetail={}
@@ -43,7 +45,7 @@ export class DepositDetailComponent {
       // Здесь может быть код для обработки ситуации отсутствия ID
     }
 
-    
+
     this.loadOffice();
     this.loadCards(this.cardId);
 
@@ -56,9 +58,9 @@ export class DepositDetailComponent {
   loadCards(id:number):void {
     this.depositService.getDepositData(id).subscribe(
       (response) => {
-    
+
         this.depositData = response.data;
-        
+
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
@@ -88,21 +90,21 @@ export class DepositDetailComponent {
   formattedLoanTerm: string = this.formatTerm(this.loanTerm);
 
 
-  
+
   updateFormattedLoanAmount() {
       this.formattedLoanAmount = this.formatCurrency(this.loanAmount);
-    
+
   }
-  
+
 
   updateFormattedLoanTerm() {
       this.formattedLoanTerm = this.formatTerm(this.loanTerm);
-    
+
     }
 
   selectTab(tab: string) {
     this.selectedTab = tab;
-   
+
   }
   loanAmountPercent: string = '';
   loanTermPercent: string = '';
@@ -126,7 +128,7 @@ export class DepositDetailComponent {
       this.depositTermPercent = `${percent}%`;
     }
   }
-  
+
   calculateMonthlyPayment(): number {
       const months = this.loanTerm;
       const monthlyInterest = this.interestRate / 100 / 12;
@@ -179,7 +181,7 @@ applyForDeposit() {
     alert('Вы оформили вклад на сумму ' + this.depositAmount + 'с.');
 }
 onDepositAmountChange(value:any){
-  
+
 }
 officeName:string='Выберите отделение банка'
 offices:officeList[]=[]
@@ -206,7 +208,7 @@ submitApplication() {
     this.model.card_id=this.cardId
     this.depositService.submitDeposit(this.model).subscribe(resp =>{
       console.log(resp);
-      
+
     },(err =>{
       console.log(err);
     }));
@@ -222,7 +224,7 @@ event.stopPropagation(); // Останавливаем распростране�
 
 selectOption( event: Event,item:officeList) {
 this.officeName = item?.name; // Обновляем имя для отображения
-this.model.office_id = item?.id; 
+this.model.office_id = item?.id;
 event.stopPropagation();
 this.dropdownOpen = false;
 

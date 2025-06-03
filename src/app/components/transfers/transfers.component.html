@@ -1,30 +1,30 @@
-
 <div class="cards">
 
-    <h1>Денежные переводы</h1>
-    <div class="content">
-        <div class="card-container" *ngFor="let transfer of transfersList">
-          
-            <div class="card-image">
-            <img class="transfers_img" [src]="'http://172.16.16.88:9009/storage/' + transfer.upload_icon_file_id" [alt]="transfer.title" />
-            <!-- <img class="transfers_img" src="../../../assets/icons/western.png" alt=""> -->
-  
-          </div>
-          <div class="card-info">
-            <h2 class="card-title">{{transfer.title}}</h2>
-            <p class="card-description">
-               {{transfer.description}}
-            </p>
-     
-            <div class="card-buttons">
-              <!-- <button class="btn-primary" (click)="navigateToCardDetailsAndForm(card.id)">{{"Apply for a card"|translate}}</button>
-              <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details',card.id]">{{"More details"|translate}}</button> -->
-              <button (click)="onCardClick(transfer.id)" class="btn-primary"  [routerLink]="['/transfers-details',transfer.id]" >{{"More details"|translate}}</button>
+  <h1>Денежные переводы</h1>
+  <div class="content">
+    <div class="card-container" *ngFor="let transfer of transfersList">
 
-            </div>
-          </div>
-        
+      <div class="card-image">
+        <img class="transfers_img" [src]="imageUrl + transfer.upload_icon_file_id" [alt]="transfer.title"/>
+        <!-- <img class="transfers_img" src="../../../assets/icons/western.png" alt=""> -->
+
+      </div>
+      <div class="card-info">
+        <h2 class="card-title">{{ transfer.title }}</h2>
+        <p class="card-description">
+          {{ transfer.description }}
+        </p>
+
+        <div class="card-buttons">
+          <!-- <button class="btn-primary" (click)="navigateToCardDetailsAndForm(card.id)">{{"Apply for a card"|translate}}</button>
+          <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details',card.id]">{{"More details"|translate}}</button> -->
+          <button (click)="onCardClick(transfer.id)" class="btn-primary"
+                  [routerLink]="['/transfers-details',transfer.id]">{{ "More details"|translate }}
+          </button>
+
         </div>
-    
-    
+      </div>
+
     </div>
+  </div>
+</div>

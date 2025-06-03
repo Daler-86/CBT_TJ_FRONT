@@ -5,11 +5,12 @@ import { LanguagesService } from '../languages.service';
 import { switchMap,map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { TransferDetail, TransfersList } from '../models/transfers.model';
+import {environment} from "../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
 export class TransfersService {
-  private baseUrl = 'http://172.16.16.88:9009/api/v1'
+  private baseUrl = environment.BASE_URL
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
   private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
     return items.sort((a, b) => a.sort_id - b.sort_id);
@@ -20,8 +21,8 @@ export class TransfersService {
   setSelectedCard(card: any) {
     this.selectedCardSource.next(card);
   }
-  
-  getTransfersListAll(): Observable<TransfersList> { 
+
+  getTransfersListAll(): Observable<TransfersList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -35,15 +36,15 @@ export class TransfersService {
         if (response.data.transfers && Array.isArray(response.data.transfers)) {
           // Сортируем сначала карты по sortId
           response.data.transfers = this.sortBySortId(response.data.transfers);
-          
-   
+
+
         }
         return response;
       })
     );
   }
 
-  getTransferData(cardId: number): Observable<TransferDetail> { 
+  getTransferData(cardId: number): Observable<TransferDetail> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -55,7 +56,7 @@ export class TransfersService {
       map(response => {
         if (response.data.transfer_data) {
           const transferData = response.data.transfer_data;
-  
+
           if (Array.isArray(transferData.conditions)) {
             transferData.conditions = this.sortBySortId(transferData.conditions);
             transferData.conditions.forEach(condition => {
@@ -64,7 +65,7 @@ export class TransfersService {
               }
             });
           }
-  
+
           if (Array.isArray(transferData.documents)) {
             transferData.documents = this.sortBySortId(transferData.documents);
             transferData.documents.forEach(document => {
@@ -78,5 +79,5 @@ export class TransfersService {
       })
     );
   }
-  
+
 }

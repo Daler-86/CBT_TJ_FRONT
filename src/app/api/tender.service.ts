@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { LanguagesService } from '../languages.service';
 import { switchMap, map } from 'rxjs/operators';
 import { TenderData, TenderdetailData } from '../models/tender.model';
+import {environment} from "../../environments/environment";
 
 
 
@@ -12,7 +13,7 @@ import { TenderData, TenderdetailData } from '../models/tender.model';
 })
 export class TenderService {
 
-  private baseUrl='http://172.16.16.88:9009/api/v1'
+  private baseUrl=environment.BASE_URL
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
   private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
     return items.sort((a, b) => a.sort_id - b.sort_id);
@@ -23,7 +24,7 @@ export class TenderService {
       switchMap(lang => {
         const headers = new HttpHeaders({
           'accept': 'application/json',
-          'Language': lang  
+          'Language': lang
         });
         const params = new HttpParams()
         .set('limit', limit)
@@ -31,9 +32,9 @@ export class TenderService {
         return this.http.get<TenderData>(this.baseUrl+'/tender/list', { headers, params });
       })
     );
-  } 
+  }
 
-  getTenderDetailData(cardId: number): Observable<TenderdetailData> { 
+  getTenderDetailData(cardId: number): Observable<TenderdetailData> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -45,13 +46,13 @@ export class TenderService {
       map(response => {
         if (response.data.tender) {
           const tenderDetailData = response.data.tender;
-  
+
           if (Array.isArray(tenderDetailData.information)) {
             tenderDetailData.information = this.sortBySortId(tenderDetailData.information);
-      
+
           }
-  
-     
+
+
         }
         return response;
       })

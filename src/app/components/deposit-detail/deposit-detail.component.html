@@ -1,78 +1,78 @@
 <div class="cards">
-    <div class="card-container" >   
-        <div class="card-info">
-  <h2 class="card-title">{{depositData.title}}</h2>
-  <p class="card-description">
-{{depositData.description}}
-  </p>
-  <div class="card-buttons">
-    <!-- <button class="btn-primary" (click)="navigateToCardDetailsAndForm(card.id)">{{"Apply for a card"|translate}}</button>
-    <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details',card.id]">{{"More details"|translate}}</button> -->
-    <button class="btn-primary" >Открыть вклад</button>
+  <div class="card-container">
+    <div class="card-info">
+      <h2 class="card-title">{{ depositData.title }}</h2>
+      <p class="card-description">
+        {{ depositData.description }}
+      </p>
+      <div class="card-buttons">
+        <!-- <button class="btn-primary" (click)="navigateToCardDetailsAndForm(card.id)">{{"Apply for a card"|translate}}</button>
+        <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details',card.id]">{{"More details"|translate}}</button> -->
+        <button class="btn-primary">Открыть вклад</button>
+
+      </div>
+
+
+    </div>
+    <div class="card-image">
+      <img class="transfers_img" [src]="imageUrl + depositData.upload_icon_file" [alt]="depositData.title"/>
+    </div>
+
 
   </div>
-
-
-</div>
-  <div class="card-image">
-  <img class="transfers_img" [src]="'http://172.16.16.88:9009/storage/' + depositData.upload_icon_file" [alt]="depositData.title" />
-</div>
-
-
-
-</div>
-<div class="deposit-calculator"  > 
-  <div class="calculator-form">
+  <div class="deposit-calculator">
+    <div class="calculator-form">
       <h2>Рассчитайте свой вклад</h2>
 
       <!-- Валютные вкладки -->
       <div class="currency-tabs">
-          <button *ngFor="let currency of currencies" 
-                  (click)="selectCurrency(currency)" 
-                  [class.active]="selectedCurrency === currency">
-              {{ currency }}
-          </button>
+        <button *ngFor="let currency of currencies"
+                (click)="selectCurrency(currency)"
+                [class.active]="selectedCurrency === currency">
+          {{ currency }}
+        </button>
       </div>
 
       <!-- Сумма вклада -->
       <label for="depositAmount">Сумма вклада</label>
       <div class="input-slider-container">
-          <input type="text" [ngModel]="formattedDepositAmount" (ngModelChange)="onDepositAmountChange($event)" class="deposit-input" />
-          <input class="range deposit-slider"
-                 type="range"
-                 min="10000"
-                 max="100000"
-                 step="5000"
-                 [(ngModel)]="depositAmount"
-                 (input)="updateFormattedDepositAmount(); updateDepositSliderBackground('depositAmount')"
-                 [style.--range-percent]="depositAmountPercent">
-        </div>
+        <input type="text" [ngModel]="formattedDepositAmount" (ngModelChange)="onDepositAmountChange($event)"
+               class="deposit-input"/>
+        <input class="range deposit-slider"
+               type="range"
+               min="10000"
+               max="100000"
+               step="5000"
+               [(ngModel)]="depositAmount"
+               (input)="updateFormattedDepositAmount(); updateDepositSliderBackground('depositAmount')"
+               [style.--range-percent]="depositAmountPercent">
+      </div>
       <div class="range-labels">
-          <span *ngFor="let value of depositAmountLabels">{{ value }}</span>
+        <span *ngFor="let value of depositAmountLabels">{{ value }}</span>
       </div>
 
       <!-- Срок вклада -->
       <label>Срок вклада</label>
       <div class="input-slider-container">
-          <input type="text" [ngModel]="formattedDepositTerm" class="deposit-input" readonly />
-          <input class="range deposit-slider"
-                 type="range"
-                 min="3"
-                 max="36"
-                 step="3"
-                 [(ngModel)]="depositTerm"
-                 (input)="updateFormattedDepositTerm(); updateDepositSliderBackground('depositTerm')"
-                 [style.--range-percent]="depositTermPercent">
-        </div>
+        <input type="text" [ngModel]="formattedDepositTerm" class="deposit-input" readonly/>
+        <input class="range deposit-slider"
+               type="range"
+               min="3"
+               max="36"
+               step="3"
+               [(ngModel)]="depositTerm"
+               (input)="updateFormattedDepositTerm(); updateDepositSliderBackground('depositTerm')"
+               [style.--range-percent]="depositTermPercent">
+      </div>
       <div class="range-labels">
-          <span *ngFor="let value of depositTermLabels">{{ value }}</span>
+        <span *ngFor="let value of depositTermLabels">{{ value }}</span>
       </div>
 
       <p>Все расчеты являются предварительными и могут отличаться от фактически полученных</p>
-  </div>
+    </div>
 
-  <!-- Результат -->
-  <div class="calculator-result">
+    <!-- Результат -->
+    <div class="calculator-result">
       <h2>Наше предложение</h2>
       <p>Депозитный продукт</p>
       <h3 class="deposit-product">Срочный депозит</h3>
@@ -83,128 +83,126 @@
       <p>Сумма в конце срока</p>
       <h3>{{ calculateFinalAmount() }} с.</h3>
       <button (click)="applyForDeposit()">Оставить заявку на вклад</button>
-  </div>
-</div>
-
-<div class="container">
-  <h1>{{ "Tariffs and conditions" | translate }}</h1>
-  
-  <!-- Кнопки для выбора валюты -->
-  <div class="btnCards">
-    <button *ngFor="let btn of depositData.currency" (click)="selectTab(btn.code)" [class.active]="selectedTab === btn.code">
-      {{ btn.title }}
-    </button>
-  </div>
-
-  <!-- Контент для каждой валюты -->
-  <div *ngFor="let tariff of depositData.currency" class="content">
-    <div class="info-container" *ngIf="selectedTab === tariff.code">
-      <div class="info-box" *ngFor="let service of tariff.tariffs">
-        <div class="info-title-1">{{ service.title }}</div>
-        <div class="info-title">
-          {{ service.description }}
-
-        </div>
-      </div>
-      <div class="info-box" *ngFor="let service of depositData.documents">
-        <div class="info-title-1">{{ service.title }}</div>
-        
-        <div class="info-title document-card">
-
-          <img src="../../../assets/icons/Book.png" alt="PDF" class="pdf-icon"> <!-- Используем свойство компонента для пути к иконке -->
-          <a [href]="service.upload_file" target="_blank" rel="noopener noreferrer" class="document-link">{{service.title }}</a>
-
-        </div>
-      </div>
     </div>
   </div>
 
-</div>
+  <div class="container">
+    <h1>{{ "Tariffs and conditions" | translate }}</h1>
+
+    <!-- Кнопки для выбора валюты -->
+    <div class="btnCards">
+      <button *ngFor="let btn of depositData.currency" (click)="selectTab(btn.code)"
+              [class.active]="selectedTab === btn.code">
+        {{ btn.title }}
+      </button>
+    </div>
+
+    <!-- Контент для каждой валюты -->
+    <div *ngFor="let tariff of depositData.currency" class="content">
+      <div class="info-container" *ngIf="selectedTab === tariff.code">
+        <div class="info-box" *ngFor="let service of tariff.tariffs">
+          <div class="info-title-1">{{ service.title }}</div>
+          <div class="info-title">
+            {{ service.description }}
+
+          </div>
+        </div>
+        <div class="info-box" *ngFor="let service of depositData.documents">
+          <div class="info-title-1">{{ service.title }}</div>
+
+          <div class="info-title document-card">
+
+            <img src="../../../assets/icons/Book.png" alt="PDF" class="pdf-icon">
+            <!-- Используем свойство компонента для пути к иконке -->
+            <a [href]="service.upload_file" target="_blank" rel="noopener noreferrer"
+               class="document-link">{{ service.title }}</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 
- <div class="application-form-container" #applicationForm>
+  <div class="application-form-container" #applicationForm>
 
 
-  <div class="form">
-    <div class="text">
+    <div class="form">
+      <div class="text">
         <h2 class="form-title">Оставьте заявку</h2>
-      <p class="form-subtitle">Мы свяжемся с вами в ближайшее время.</p>
-    </div>
-    <form (ngSubmit)="submitApplication()" #form="ngForm" >
-      <div class="form-group">
-        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
-          {{"This field is required"|translate}}
-        </div>
-        <input
-          type="text"
-          id="phone"
-          placeholder="Мобильный телефон"
-          class="form-control"
-          required
-          [(ngModel)]="model.phone"
-          name="phone"
-          #phone="ngModel"
-        >
+        <p class="form-subtitle">Мы свяжемся с вами в ближайшее время.</p>
       </div>
-
-      <div class="form-group">
-        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-          {{"This field is required"|translate}}
+      <form (ngSubmit)="submitApplication()" #form="ngForm">
+        <div class="form-group">
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
+            {{ "This field is required"|translate }}
+          </div>
+          <input
+            type="text"
+            id="phone"
+            placeholder="Мобильный телефон"
+            class="form-control"
+            required
+            [(ngModel)]="model.phone"
+            name="phone"
+            #phone="ngModel"
+          >
         </div>
-        <input
-          type="text"
-          id="name"
-          placeholder="ФИО"
-          class="form-control"
-          required
-          [(ngModel)]="model.client_name"
-          name="name"
-          #name="ngModel"
-        >
-      </div>
 
-      <div class="custom-dropdown">
-        <div class="dropdown-selected">
-          <div class="form-group">
-            <div class="dropdown-selected form-control" (click)="toggleDropdown($event)">
-              {{officeName}}
-              
+        <div class="form-group">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+            {{ "This field is required"|translate }}
+          </div>
+          <input
+            type="text"
+            id="name"
+            placeholder="ФИО"
+            class="form-control"
+            required
+            [(ngModel)]="model.client_name"
+            name="name"
+            #name="ngModel"
+          >
+        </div>
+
+        <div class="custom-dropdown">
+          <div class="dropdown-selected">
+            <div class="form-group">
+              <div class="dropdown-selected form-control" (click)="toggleDropdown($event)">
+                {{ officeName }}
+
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-options" *ngIf="dropdownOpen">
+            <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption($event, item)">
+              <p>{{ item.name }}</p>
             </div>
           </div>
         </div>
-        <div class="dropdown-options" *ngIf="dropdownOpen">
-          <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption($event, item)">
-            <p>{{ item.name }}</p>
-          </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn-primary" [disabled]="form.invalid">{{ "Apply for a card"|translate }}
+          </button>
         </div>
-      </div>
-
-      <div class="form-group">
-        <button type="submit" class="btn-primary" [disabled]="form.invalid">{{"Apply for a card"|translate}}</button>
-      </div>
-      <p class="form-disclaimer">
-      {{"By clicking 'Get', you agree to"|translate}}
-      <a href="#">{{"processing of personal data"|translate}}</a>.
-    </p> </form>
-
- 
-  </div>
-</div>
-
-
-
-
-<div class="faq-container">
-  <h2 class="faq-title">{{"Frequently Asked Questions"|translate}}</h2>
-  <div *ngFor="let faq of depositData.faqs; let i = index" class="faq-item">
-    <div class="faq-question" (click)="toggleFaq(i)">
-      <span>{{ faq.title }}</span>
-      <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
-    </div>
-    <div   *ngIf="selectedFaqIndex === i" class="faq-answer">
-      {{ faq.description}}
+        <p class="form-disclaimer">
+          {{ "By clicking 'Get', you agree to"|translate }}
+          <a href="#">{{ "processing of personal data"|translate }}</a>.
+        </p></form>
     </div>
   </div>
-</div> 
 
+  <div class="faq-container">
+    <h2 class="faq-title">{{ "Frequently Asked Questions"|translate }}</h2>
+    <div *ngFor="let faq of depositData.faqs; let i = index" class="faq-item">
+      <div class="faq-question" (click)="toggleFaq(i)">
+        <span>{{ faq.title }}</span>
+        <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+      </div>
+      <div *ngIf="selectedFaqIndex === i" class="faq-answer">
+        {{ faq.description }}
+      </div>
+    </div>
+  </div>
 </div>

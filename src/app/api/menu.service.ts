@@ -5,12 +5,13 @@ import { LanguagesService } from '../languages.service';
 import { switchMap, map } from 'rxjs/operators';
 import { MainGalleries, MenusResponse } from '../models/menu.model';
 import { BehaviorSubject } from 'rxjs';
+import {environment} from "../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
 
 export class MenuService {
-  private baseUrl = 'http://172.16.16.88:9009/api/v1'
+  private baseUrl = environment.BASE_URL
 private personTypeIdSource = new BehaviorSubject<number>(1);
 currentPersonTypeId = this.personTypeIdSource.asObservable();
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
@@ -69,7 +70,7 @@ currentPersonTypeId = this.personTypeIdSource.asObservable();
       })
     );
   }
-  
+
 
 
 }

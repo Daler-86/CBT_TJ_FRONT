@@ -10,6 +10,7 @@ import { FavriComponent } from "../favri/favri.component";
 import { MenuService } from '../../api/menu.service';
 import { HttpClient } from '@angular/common/http';
 import { LanguagesService } from '../../languages.service';
+import {environment} from "../../../environments/environment";
 
 interface News{
   image:string;
@@ -32,7 +33,7 @@ export class HomeComponent {
     private router: Router,
     private http: HttpClient,
     private menuService:MenuService,
- 
+
     private languageService: LanguagesService,
     private translateService: TranslateService
   ) {
@@ -41,6 +42,7 @@ export class HomeComponent {
   ngOnInit(): void {
     this.loadMenu();
   }
+  imageUrl: string = environment.IMAGE_URL;
   menus: any[] = [];
   loadMenu(): void {
     this.menuService.getMenu().subscribe(

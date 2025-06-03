@@ -8,8 +8,8 @@
         <button (click)="selectTab('credit stroy')" [class.active]="selectedTab === 'credit stroy'">{{"Construction loan"|translate}}</button>
     </div>
     <div *ngIf="selectedTab==='all'" class="content">
-    
-          
+
+
           <div class="card-container" *ngFor="let credit of credits ">
             <div class="card-info">
               <h2 class="card-title">{{credit.title}}
@@ -28,21 +28,18 @@
                 <button class="btn-secondary"  (click)="onCreditClick(credit)" [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                   {{"More details"|translate}}
                 </button>
-                
+
               </div>
             </div>
             <div class="card-image">
-              <img class="card" [src]="'http://172.16.16.88:9009/storage/' + credit.upload_file" alt="Barakat" />
-           
+              <img class="card" [src]="imageUrl + credit.upload_file" alt="Barakat" />
+
             </div>
           </div>
-    
-       
-        
     </div>
     <div *ngIf="selectedTab==='credit'" class="content"></div>
     <div *ngIf="selectedTab==='auto credit'" class="content"></div>
     <div *ngIf="selectedTab==='credit stroy'" class="content"></div>
-   
+
     </div>
  <router-outlet></router-outlet>

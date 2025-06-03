@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MenuService } from '../../api/menu.service';
 import { mainGalleries } from '../../models/menu.model';
+import {environment} from "../../../environments/environment";
 
 interface Slide {
   title: string;
@@ -33,6 +34,7 @@ export class CarouselComponent {
   //   },
   // ];
   galleries:mainGalleries[]=[]
+  imageUrl: string = environment.IMAGE_URL;
   constructor(private menuService:MenuService){}
   ngOnInit():void{
     this.menuService.getMainGalleries().subscribe(

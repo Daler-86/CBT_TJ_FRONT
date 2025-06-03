@@ -5,6 +5,7 @@ import { LanguagesService } from '../languages.service';
 import { switchMap, map  } from 'rxjs/operators';
 import { FilteredByRegion, FilteredData, OfficeFaqs, OfficeList, RegionList } from '../models/region.model';
 import { CardFaqs } from '../models/cards.model';
+import {environment} from "../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
@@ -14,14 +15,14 @@ export class RegionService {
     return items.sort((a, b) => a.sort_id - b.sort_id);
   }
 
-  private baseUrl='http://172.16.16.88:9009/api/v1'
+  private baseUrl=environment.BASE_URL
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
   getRegionList():Observable<RegionList> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
           'accept': 'application/json',
-          'Language': lang  
+          'Language': lang
         });
         return this.http.get<RegionList>(this.baseUrl+'/region/list', { headers });
       })
@@ -32,7 +33,7 @@ getOfficeList ():Observable<OfficeList> {
       switchMap(lang => {
         const headers = new HttpHeaders({
           'accept': 'application/json',
-          'Language': lang  
+          'Language': lang
         });
         return this.http.get<OfficeList>(this.baseUrl+'/office/list', { headers });
       })
@@ -53,7 +54,7 @@ getOfficeList ():Observable<OfficeList> {
           'Accept': 'application/json',
           'Language': lang
         });
-        
+
         const params = new HttpParams()
           .set('atms', atms)
           .set('is_24_time', is24Time)
@@ -61,9 +62,9 @@ getOfficeList ():Observable<OfficeList> {
           .set('region_id', regionId)
           .set('terminals', terminals)
           .set('working_now', workingNow);
-  
+
         const url = `${this.baseUrl}/office/search`; // Замените на свой конечный URL
-  
+
         return this.http.get<FilteredData>(url, { headers, params });
       })
     );
@@ -82,7 +83,7 @@ getOfficeList ():Observable<OfficeList> {
           'Accept': 'application/json',
           'Language': lang
         });
-        
+
         const params = new HttpParams()
           .set('atms', atms)
           .set('offices', offices)
@@ -90,9 +91,9 @@ getOfficeList ():Observable<OfficeList> {
           .set('terminals', terminals)
           .set('limit', limit)
           .set('offset', offset)
-  
+
         const url = `${this.baseUrl}/office/by-region`; // Замените на свой конечный URL
-  
+
         return this.http.get<FilteredByRegion>(url, { headers, params });
       })
     );

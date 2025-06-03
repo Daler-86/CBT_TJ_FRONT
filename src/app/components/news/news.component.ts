@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { NewsService } from '../../api/news.service';
+import {environment} from "../../../environments/environment";
 
 export interface new_news {
   id: number;
@@ -21,12 +22,9 @@ export interface new_news {
   styleUrl: './news.component.scss'
 })
 export class NewsComponent {
-
+  imageUrl: string = environment.IMAGE_URL;
   newsItems: NewsEventItem[] = [];
   constructor( private router: Router, private newsService:NewsService){}
-
-
-  
 
   trackById(index: number, item: NewsEventItem): number {
     return item.id;
@@ -48,7 +46,7 @@ export class NewsComponent {
   pages: number[] = [];
   tenderCount:number=0
   loadData(): void {
-    
+
     this.newsService.getNewsList(2, this.currentPage).subscribe(
       (response) => {
         // *** Вот здесь происходит обработка и создание НОВОГО массива ***
@@ -117,7 +115,7 @@ export class NewsComponent {
     this.currentPage = page;
     this.updatePages();
     this.pageChange.emit(this.currentPage);
-    this.scrollToTop(); 
+    this.scrollToTop();
     this.loadData()
   }
   scrollToTop(): void {
@@ -135,7 +133,7 @@ export class NewsComponent {
       });
     }
   }
-  nextPage() { 
+  nextPage() {
     if (this.currentPage < this.totalPages) {
       this.selectPage(this.currentPage + 1);
       this.scrollToTop();

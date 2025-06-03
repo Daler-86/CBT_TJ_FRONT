@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet } from '
 import { TransfersService } from '../../api/transfer.service';
 import { MenuService } from '../../api/menu.service';
 import { TransferDetail, transferDetail } from '../../models/transfers.model';
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-transfers-details',
@@ -24,6 +25,7 @@ export class TransfersDetailsComponent {
   ) { }
 
   cardId: number=0;
+  imageUrl: string = environment.IMAGE_URL;
   transferData:transferDetail={}
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class TransfersDetailsComponent {
   loadCards(id:number):void {
     this.transferService.getTransferData(id).subscribe(
       (response) => {
-    
+
         this.transferData = response.data.transfer_data;
       },
       (error) => {

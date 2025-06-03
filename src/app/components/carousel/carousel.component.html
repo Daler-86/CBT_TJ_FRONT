@@ -6,7 +6,7 @@
         <p>{{ slide.description }}</p>
         <button *ngIf="slide.show_button" (click)="onLearnMore()">{{ 'More details' | translate }}</button>
       </div>
-      <img [src]="'http://172.16.16.88:9009/storage/'+slide.upload_file" alt="Car" />
+      <img [src]="imageUrl+slide.upload_file" alt="Car" />
     </div>
   </div>
   <div class="carousel-indicators">

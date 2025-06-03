@@ -1,26 +1,26 @@
 <div class="cards">
 
     <!-- <div class="card-container" *ngFor="let card of cardList"> -->
-        <div class="card-container" >   
+        <div class="card-container" >
               <div class="card-info">
         <h2 class="card-title">{{transferData.title}}</h2>
         <p class="card-description">
     {{transferData.description}}
         </p>
- 
-      
+
+
       </div>
         <div class="card-image">
-        <img class="transfers_img" [src]="'http://172.16.16.88:9009/storage/' + transferData.upload_icon_file_id" [alt]="transferData.title" />
+        <img class="transfers_img" [src]="imageUrl + transferData.upload_icon_file_id" [alt]="transferData.title" />
       </div>
- 
-     
 
-  </div>   
+
+
+  </div>
   <h1 *ngIf="transferData.upload_tariff_file_id">Условия</h1>
   <p *ngIf="transferData.upload_tariff_file_id">Чтобы получать или отправлять деньги по SWIFT, нужно открыть расчётный счёт. Это бесплатно</p>
   <div class="section2">
- 
+
 
     <div class="box" *ngFor="let condition of transferData.conditions">
         <p>{{condition.title}}</p>
@@ -43,8 +43,8 @@
         </div>
       </div>
   </div>
-  
-<div class="container_5"> 
+
+<div class="container_5">
     <div class="d">
       <div class="box" >
           <div class="details">
@@ -59,10 +59,10 @@
       <h3>{{ "Offices and ATMs"|translate}}</h3>
       <p>{{"We are closer than you think"|translate}}</p>
       <div class="">
-        
+
       </div>
       <button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  routerLink="/map" routerLinkActive="active">{{"View on map"|translate}}</button>
   </div>
- 
+
 </div>
 </div>

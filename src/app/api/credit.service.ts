@@ -4,11 +4,12 @@ import { LanguagesService } from '../languages.service';
 import { switchMap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CreditData, CreditDocument, CreditList, CreditTariff, creditTariff } from '../models/credit.model';
+import {environment} from "../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
 export class CreditService {
-  private baseUrl = 'http://172.16.16.88:9009/api/v1'
+  private baseUrl = environment.BASE_URL
   constructor(private http: HttpClient, private languageService:LanguagesService) { }
   private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
     return items.sort((a, b) => a.sort_id - b.sort_id);
@@ -74,7 +75,7 @@ export class CreditService {
       })
     );
   }
-  
+
   getCreditData(cardId: number): Observable<CreditData> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
@@ -94,10 +95,10 @@ export class CreditService {
           'Accept': 'application/json',
           'Language': lang  // Динамическая установка языкового заголовка
         });
-        
+
          return this.http.post(this.baseUrl+'/credit/order/save', creditData, { headers });
       })
     );
   }
-  
+
 }

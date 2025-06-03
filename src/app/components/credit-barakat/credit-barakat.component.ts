@@ -10,6 +10,7 @@ import { creditData, creditDocument, creditList, creditTariff } from '../../mode
 import { officeList } from '../../models/region.model';
 import { RegionService } from '../../api/region.service';
 import { ActivatedRoute } from '@angular/router';
+import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-credit-barakat',
   standalone: true,
@@ -18,12 +19,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './credit-barakat.component.scss'
 })
 export class CreditBarakatComponent {
+  imageUrl: string = environment.IMAGE_URL;
   selectedTab: string = 'credit';
   loanAmount: number = 30000;
   rangeValues: number[] = [10000, 50000, 100000, 150000, 200000]; // Значения меток
   // cardId: number=0;
   selectedTerm: string = '1 год';
-  interestRate: number = 30; 
+  interestRate: number = 30;
   loanTerms: string[] = ['1 год', '2 года', '3 года', '4 года', '5 лет'];
 tariffs:creditTariff[]=[]
 documents:creditDocument[]=[]
@@ -42,7 +44,7 @@ model: any = {
 };
   selectTab(tab: string) {
     this.selectedTab = tab;
-   
+
   }
 
   calculateMonthlyPayment(): number {
@@ -57,12 +59,12 @@ model: any = {
     alert('Вы оформили кредит на сумму ' + this.loanAmount + 'с.');
   }
   submitApplication() {
-    
+
     if (this.model.phone && this.model.client_name && this.model.office_id) {
-      
+
       this.creditService.submitCredit(this.model).subscribe(resp =>{
         console.log(resp);
-        
+
       },(err =>{
         console.log(err);
       }));
@@ -80,15 +82,15 @@ model: any = {
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
-    
+
       this.creditId= +idParam;  // Преобразование строки в число
-      
+
     } else {
       console.error('ID is missing in the route parameters.');
       // Здесь может быть код для обработки ситуации отсутствия ID
     }
 
-  
+
     this.updateSliderBackground();
     this.loadCreditTariff(this.creditId);
     this.loadOffice()
@@ -111,7 +113,7 @@ this.loadCreditData(this.creditId)
 
   loadCreditTariff(id: number): void {
     this.creditService.getCreditTariff(id).subscribe(
-      (details) => { 
+      (details) => {
         this.tariffs=details.data.credit_tariffs
       },
       (error) => {
@@ -122,7 +124,7 @@ this.loadCreditData(this.creditId)
 
   loadCreditDocument(id: number): void {
     this.creditService.getCreditDocument(id).subscribe(
-      (details) => { 
+      (details) => {
         this.documents=details.data.credit_documents
       },
       (error) => {
@@ -130,10 +132,10 @@ this.loadCreditData(this.creditId)
       }
     );
   }
-  
+
   loadCreditData(id: number): void {
     this.creditService.getCreditData(id).subscribe(
-      (details) => { 
+      (details) => {
         this.creditData=details.data.credit_data
       },
       (error) => {
@@ -176,12 +178,12 @@ this.loadCreditData(this.creditId)
     event.stopPropagation(); // Останавливаем распространение события
   }
   // @HostListener('document:click', ['$event'])
-  
+
   selectOption( event: Event,item:officeList) {
     this.officeName = item.name; // Обновляем имя для отображения
-    this.model.office_id = item.id; 
+    this.model.office_id = item.id;
     event.stopPropagation();
     this.dropdownOpen = false;
-  
+
   }
 }

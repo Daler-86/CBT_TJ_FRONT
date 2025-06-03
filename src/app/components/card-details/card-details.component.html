@@ -1,106 +1,111 @@
 <div class="milli-card">
-    <div class="card-container">
+  <div class="card-container">
     <div class="card-info">
-      <h2 class="card-title">{{cardData.title}}</h2>
+      <h2 class="card-title">{{ cardData.title }}</h2>
       <p class="card-description">
-  {{cardData.description}}
+        {{ cardData.description }}
       </p>
       <div class="card-buttons">
-        <button class="btn-primary">{{"Apply for a card"|translate}}</button>
+        <button class="btn-primary">{{ "Apply for a card"|translate }}</button>
       </div>
     </div>
     <div class="card-image">
-      <img class="card" [src]="'http://172.16.16.88:9009/storage/' + cardData.upload_file" [alt]="cardData.title"/>
+      <img class="card" [src]="imageUrl + cardData.upload_file" [alt]="cardData.title"/>
     </div>
   </div>
 
   <div class="features-container" [class]="{'type1': cardContent?.length%3==0, 'type2': cardContent?.length%2==0}">
     <div class="feature-card" *ngFor="let detail of cardContent">
-          <div class="">
-         <h3>{{detail.title}}</h3>
-      <p>{{detail.description}}</p>
-  </div>  
-      <img [src]="'http://172.16.16.88:9009/storage/' + detail.upload_file" [alt]="detail.title" class="feature-icon">
-   
-</div>
+      <div class="">
+        <h3>{{ detail.title }}</h3>
+        <p>{{ detail.description }}</p>
+      </div>
+      <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="feature-icon">
 
- 
+    </div>
+
+
   </div>
 
-  
-  
+
   <div class="container">
-    <h1>{{"Tariffs and conditions"|translate}}</h1>
+    <h1>{{ "Tariffs and conditions"|translate }}</h1>
     <div class="btnCards">
-        <button (click)="selectTab('services')" [class.active]="selectedTab === 'services'">{{"Services"|translate}}</button>
-        <button (click)="selectTab('limits')" [class.active]="selectedTab === 'limits'">{{"Limits"|translate}}</button>
-        <button (click)="selectTab('operations')" [class.active]="selectedTab === 'operations'">{{"Operations"|translate}}</button>
-        <button (click)="selectTab('documents')" [class.active]="selectedTab === 'documents'">{{"Useful documents"|translate}}</button>
+      <button (click)="selectTab('services')" [class.active]="selectedTab === 'services'">{{ "Services"|translate }}
+      </button>
+      <button (click)="selectTab('limits')" [class.active]="selectedTab === 'limits'">{{ "Limits"|translate }}</button>
+      <button (click)="selectTab('operations')"
+              [class.active]="selectedTab === 'operations'">{{ "Operations"|translate }}
+      </button>
+      <button (click)="selectTab('documents')"
+              [class.active]="selectedTab === 'documents'">{{ "Useful documents"|translate }}
+      </button>
     </div>
     <div *ngIf="selectedTab==='services'" class="content">
-        <div class="info-container">
-            <div class="info-box" *ngFor="let service of services">
-              <div class="info-title-1">{{service.name}}</div>
-              <div class="info-title">
-               {{service.title}}
-                <div class="info-detail">{{service.description}}</div>
-              </div>
-            </div>
+      <div class="info-container">
+        <div class="info-box" *ngFor="let service of services">
+          <div class="info-title-1">{{ service.name }}</div>
+          <div class="info-title">
+            {{ service.title }}
+            <div class="info-detail">{{ service.description }}</div>
           </div>
-    </div>
-
-    <div *ngIf="selectedTab==='limits'" class="content">
-    <div class="info-container">
-      <div class="info-box-limits" *ngFor="let limit of limits">
-        <div class="info-title-1">{{limit.name}}</div>
-        <div class="info-title"> 
-        <div class="info-detail">{{"TJS account"|translate}}</div>
-        {{limit.tjs}}
-         
-        </div>
-        <div class="info-title"> 
-          <div class="info-detail">{{"RUB account"|translate}}</div>
-          {{limit.rub}}
-         
-        </div>
-        <div class="info-title">
-             <div class="info-detail">{{"USD account"|translate}}</div>
-             {{limit.usd}}
         </div>
       </div>
     </div>
+
+    <div *ngIf="selectedTab==='limits'" class="content">
+      <div class="info-container">
+        <div class="info-box-limits" *ngFor="let limit of limits">
+          <div class="info-title-1">{{ limit.name }}</div>
+          <div class="info-title">
+            <div class="info-detail">{{ "TJS account"|translate }}</div>
+            {{ limit.tjs }}
+
+          </div>
+          <div class="info-title">
+            <div class="info-detail">{{ "RUB account"|translate }}</div>
+            {{ limit.rub }}
+
+          </div>
+          <div class="info-title">
+            <div class="info-detail">{{ "USD account"|translate }}</div>
+            {{ limit.usd }}
+          </div>
+        </div>
+      </div>
     </div>
 
 
     <div *ngIf="selectedTab==='operations'" class="content">
-        <div class="info-container">
-            <div class="info-box" *ngFor="let operation of operations">
-                <div class="info-title=1">{{operation.name}}</div>
-                <div class="info-title">{{operation.title}}<div class="info-detail">{{operation.description}}</div></div>
-              </div>
+      <div class="info-container">
+        <div class="info-box" *ngFor="let operation of operations">
+          <div class="info-title=1">{{ operation.name }}</div>
+          <div class="info-title">{{ operation.title }}
+            <div class="info-detail">{{ operation.description }}</div>
           </div>
+        </div>
+      </div>
     </div>
 
     <div *ngIf="selectedTab==='documents'" class="content">
-         <div class="info-container">
-          <div class="info-box-documents" *ngFor="let document of documents">
-            <a  [href]="'http://172.16.16.88:9009/storage/'+ document.upload_file" target="_blank">  <img src="../../../assets/icons/pdficon.png" alt=""></a>
-            <p class="info-title">{{document.name}}</p>
-          </div>
-
-         </div>
-
+      <div class="info-container">
+        <div class="info-box-documents" *ngFor="let document of documents">
+          <a [href]="imageUrl+ document.upload_file" target="_blank"> <img src="../../../assets/icons/pdficon.png"
+                                                                           alt=""></a>
+          <p class="info-title">{{ document.name }}</p>
+        </div>
+      </div>
     </div>
-  </div> 
+  </div>
 
   <div class="application-form-container" #applicationForm>
-    <h2 class="form-title">{{"Application for a card"|translate}}</h2>
-    <p class="form-subtitle">{{"Leave your contacts and we will definitely contact you"|translate}}</p>
+    <h2 class="form-title">{{ "Application for a card"|translate }}</h2>
+    <p class="form-subtitle">{{ "Leave your contacts and we will definitely contact you"|translate }}</p>
     <div class="form">
-      <form (ngSubmit)="submitApplication()" #form="ngForm" >
+      <form (ngSubmit)="submitApplication()" #form="ngForm">
         <div class="form-group">
           <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
-            {{"This field is required"|translate}}
+            {{ "This field is required"|translate }}
           </div>
           <input
             type="text"
@@ -113,10 +118,10 @@
             #phone="ngModel"
           >
         </div>
-  
+
         <div class="form-group">
           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-            {{"This field is required"|translate}}
+            {{ "This field is required"|translate }}
           </div>
           <input
             type="text"
@@ -129,12 +134,12 @@
             #name="ngModel"
           >
         </div>
-  
+
         <div class="custom-dropdown">
           <div class="dropdown-selected">
             <div class="form-group">
               <div class="dropdown-selected form-control" (click)="toggleDropdown($event)">
-                {{officeName}}
+                {{ officeName }}
               </div>
             </div>
           </div>
@@ -144,33 +149,30 @@
             </div>
           </div>
         </div>
-  
+
         <div class="form-group">
-          <button type="submit" class="btn-primary" [disabled]="form.invalid">{{"Apply for a card"|translate}}</button>
+          <button type="submit" class="btn-primary" [disabled]="form.invalid">{{ "Apply for a card"|translate }}
+          </button>
         </div>
       </form>
-  
+
       <p class="form-disclaimer">
-        {{"By clicking 'Get', you agree to"|translate}}
-        <a href="#">{{"processing of personal data"|translate}}</a>.
+        {{ "By clicking 'Get', you agree to"|translate }}
+        <a href="#">{{ "processing of personal data"|translate }}</a>.
       </p>
     </div>
   </div>
-  
-  
-
 
   <div class="faq-container">
-    <h2 class="faq-title">{{"Frequently Asked Questions"|translate}}</h2>
+    <h2 class="faq-title">{{ "Frequently Asked Questions"|translate }}</h2>
     <div *ngFor="let faq of faqs; let i = index" class="faq-item">
       <div class="faq-question" (click)="toggleFaq(i)">
         <span>{{ faq.title }}</span>
         <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
       </div>
-      <div   *ngIf="selectedFaqIndex === i" class="faq-answer">
-        {{ faq.description}}
+      <div *ngIf="selectedFaqIndex === i" class="faq-answer">
+        {{ faq.description }}
       </div>
     </div>
   </div>
-
 </div>

@@ -4,11 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CardsService } from '../../api/cards.service';
-import { Card, CardBrand } from '../../models/cards.model'; 
+import { Card, CardBrand } from '../../models/cards.model';
 import { MenuService } from '../../api/menu.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-cards',
   standalone: true,
@@ -18,13 +19,14 @@ import { Router } from '@angular/router';
 })
 
 export class CardsComponent implements OnInit {
+  imageUrl: string = environment.IMAGE_URL;
   cardList: any[] = [];
   cardBrands: any[] = [];
   contentItem: any[] = [];
   personTypeId: number = 1;
   selectedBrandId = new BehaviorSubject<number>(1);
   selectedBrandId$ = this.selectedBrandId.asObservable();
-  currentBrandId: any = null; 
+  currentBrandId: any = null;
   selectedTab: string = 'all';
   constructor(private cardsService: CardsService, private menuService: MenuService, private router: Router) {}
 
@@ -34,7 +36,7 @@ export class CardsComponent implements OnInit {
       this.personTypeId = id;
       this.loadAllCards(); // Загрузка всех карт по умолчанию
     });
-  
+
     this.loadCardBrands();
   }
 
@@ -53,7 +55,7 @@ export class CardsComponent implements OnInit {
     this.cardsService.getCardBrands().subscribe(
       (response) => {
         this.cardBrands = response.data.card_brands;
-    
+
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);

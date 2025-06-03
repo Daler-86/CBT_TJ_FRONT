@@ -1,64 +1,66 @@
-
 <div class="vacancies">
-    <div class="vacancies-container">
-        <div class="card-info">
-          <h2 class="card-title">{{vacancyContent[0]?.title}}</h2>
-          <p class="card-description">
-         {{vacancyContent[0]?.description}}
-          </p>
-          <div class="card-buttons">
-            <button class="btn-primary" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" routerLink="/vacancy-list" routerLinkActive="active">Смотреть вакансии</button>
-          </div>
-        </div>
-        <div class="card-image">
-          <img class="card" [src]="'http://172.16.16.88:9009/storage/'+ vacancyContent[0]?.file_name " alt="Visa Gold" />
-        </div>
-
-
-        
+  <div class="vacancies-container">
+    <div class="card-info">
+      <h2 class="card-title">{{ vacancyContent[0]?.title }}</h2>
+      <p class="card-description">
+        {{ vacancyContent[0]?.description }}
+      </p>
+      <div class="card-buttons">
+        <button class="btn-primary" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                routerLink="/vacancy-list" routerLinkActive="active">Смотреть вакансии
+        </button>
       </div>
-<div class="container">
-            <div class="box" *ngFor="let item of vacancyStatistics">
-                <h1>{{item.title}}</h1>
-                <p>{{item.description}}</p>
-            </div>
-        </div>
+    </div>
+    <div class="card-image">
+      <img class="card" [src]="imageUrl+ vacancyContent[0]?.file_name " alt="Visa Gold"/>
+    </div>
 
-        <div class="why-we-are-great">
-            <h2>{{"It's great to work here, and here's why"|translate}}</h2>
-            <div class="features-container">
-              <div class="feature-card" *ngFor="let item of vacancyItems" >
-                <div class="feature-icon">
-                  <img [src]="'http://172.16.16.88:9009/storage/'+item?.upload_file" [alt]="item.title">
-                </div>
-                <h3>{{item?.title}}</h3>
-                <p>{{item?.description}}</p>
-              </div>
-            
-            </div>
-          </div>
-          
-          <div class="offices-container">
-            <h2>{{"Our cozy offices"|translate}}</h2>
-            <div class="office-content">
-              <div class="office-image">
-               
-                <img [src]="'http://172.16.16.88:9009/storage/'+vacancyGalleries[currentIndex]?.upload_file" alt="Офис">
-              </div>
-              <div class="office-info">
-                <p>{{ currentIndex + 1 }}/{{ vacancyGalleries.length }}</p>
-                <h3>{{ vacancyGalleries[currentIndex-1]?.title }}</h3>
-                <p>{{ vacancyGalleries[currentIndex]?.description }}</p>
-                <div class="navigation-buttons">
-                  <button (click)="prev()" [disabled]="currentIndex === 0">
-                    ←
-                  </button>
-                  <button (click)="next()" [disabled]="currentIndex === vacancyGalleries.length - 1">
-                    →
-                  </button>
-                </div>
-              </div>
-            </div>
-            <button  class="view-vacancies-button" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" routerLink="/vacancy-list" routerLinkActive="active" >{{"View vacancies"|translate}} </button>
-          </div>
+
+  </div>
+  <div class="container">
+    <div class="box" *ngFor="let item of vacancyStatistics">
+      <h1>{{ item.title }}</h1>
+      <p>{{ item.description }}</p>
+    </div>
+  </div>
+
+  <div class="why-we-are-great">
+    <h2>{{ "It's great to work here, and here's why"|translate }}</h2>
+    <div class="features-container">
+      <div class="feature-card" *ngFor="let item of vacancyItems">
+        <div class="feature-icon">
+          <img [src]="imageUrl+item?.upload_file" [alt]="item.title">
+        </div>
+        <h3>{{ item?.title }}</h3>
+        <p>{{ item?.description }}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="offices-container">
+    <h2>{{ "Our cozy offices"|translate }}</h2>
+    <div class="office-content">
+      <div class="office-image">
+
+        <img [src]="imageUrl+vacancyGalleries[currentIndex]?.upload_file" alt="Офис">
+      </div>
+      <div class="office-info">
+        <p>{{ currentIndex + 1 }}/{{ vacancyGalleries.length }}</p>
+        <h3>{{ vacancyGalleries[currentIndex - 1]?.title }}</h3>
+        <p>{{ vacancyGalleries[currentIndex]?.description }}</p>
+        <div class="navigation-buttons">
+          <button (click)="prev()" [disabled]="currentIndex === 0">
+            ←
+          </button>
+          <button (click)="next()" [disabled]="currentIndex === vacancyGalleries.length - 1">
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+    <button class="view-vacancies-button" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+            routerLink="/vacancy-list" routerLinkActive="active">{{ "View vacancies"|translate }}
+    </button>
+  </div>
 </div>
