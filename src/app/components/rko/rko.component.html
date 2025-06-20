@@ -1,0 +1,34 @@
+
+    <div class="cards" >
+  <div class="card-container">
+      <div class="card-info">
+        <h2 class="card-title">Расчетно-кассовое обслуживание</h2>
+        <p class="card-description">Надежные банковские операции для вашего бизнеса — быстро, удобно, безопасно.</p>
+      </div>
+    </div>
+       
+        <div class="content">
+          <div class="card-container" *ngFor="let card of rkoList">
+     
+            <div class="card-info">
+                <h2 class="card-title">{{card.title}}</h2>
+                <p class="card-description">
+                 {{card.description}}
+                </p>
+                <div class="card-details" >
+                  <div class="currency-info" *ngFor="let c of card.scs_item">
+                    <p class="title">{{c.title}}</p>
+                    <p class="description">{{c.description}}</p>
+                  </div>
+                </div>
+                <div class="card-buttons">
+                  <button     class="btn-primary" [routerLink]="['/scs-details',card.id]">{{"More details"|translate}}</button>
+                </div>
+              </div>
+        <div class="card-image">
+                <img class="card-image" [src]="imageUrl + card.upload_file" [alt]="card.title"/>
+              </div>
+            </div>
+          </div>
+    </div>
+      

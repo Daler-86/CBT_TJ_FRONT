@@ -1,23 +1,25 @@
 <div class="bankDetail">
-    <div class="card-container">
-        <div class="card-info">
-          <h2 class="card-title">Реквизиты</h2>
-          <p class="card-description">
-            Банковские реквизиты для финансовых операций
-          </p>
-          
-        </div>
-    
+  <div class="card-container">
+      <div class="card-info">
+        <h2 class="card-title">Реквизиты</h2>
+        <p class="card-description">
+          Банковские реквизиты для финансовых операций
+        </p>
       </div>
-    <div class="info-list-container">
-        <div class="info-item-row" *ngFor="let item of bankdetailList; ">
-          <div class="info-label">{{ item.title }}</div>
-          <div class="info-value">
-
-            <ng-container >{{ item.description }}</ng-container>
-          </div>
-        </div>
-      
-     
+  </div>
+  <div class="btnCards">
+      <!-- Добавили trackBy для оптимизации -->
+      <button *ngFor="let currency of bankdetailCurrency; trackBy: trackByCurrencyId"
+              [ngClass]="{'active': isTabSelected(currency.id)}"
+              (click)="selectTab(currency.id)">
+        {{ currency.title }}
+      </button>
+  </div>
+  <div class="info-list-container">
+      <!-- Добавили trackBy и убрали лишний ng-container -->
+      <div class="info-item-row" *ngFor="let item of bankdetailList; trackBy: trackByDetailId">
+        <div class="info-label">{{ item.title }}</div>
+        <div class="info-value">{{ item.description }}</div>
       </div>
+  </div>
 </div>

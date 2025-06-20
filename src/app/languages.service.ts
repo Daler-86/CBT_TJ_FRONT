@@ -24,3 +24,4 @@ export class LanguagesService {
       localStorage.setItem('appLanguage', lang); // Save the language to localStorage
     }
   }
+  

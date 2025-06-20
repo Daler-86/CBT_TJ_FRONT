@@ -1,0 +1,177 @@
+// Подключаем переменные
+@import '../../../styles/variables.scss';
+
+// Общий контейнер для секции
+*{
+      box-sizing: border-box;
+}
+.cards {
+  padding: 3% 5%; // Используем проценты для гибкости
+  background-color: #f8f9fa;
+
+  
+  h1 {
+    font-size: $font-size-h2;
+    line-height: $line-height-h2;
+    font-weight: 700;
+    margin-bottom: 25px;
+    
+    // Планшеты и меньше
+    @media (max-width: $breakpoint-md) {
+      font-size: 36px;
+      // padding лучше применять к родительскому элементу, а не к заголовку
+    }
+  }
+}
+
+// Контейнер для одной большой карточки
+.card-container {
+  width: 100%;
+  margin-top: 30px;
+  padding:20px  56px ;
+  box-shadow: 0 4px 20px rgba(175, 175, 175, 0.18);
+  background-color: white;
+  border-radius: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  // Планшеты и меньше: карточка становится вертикальной
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column; // Вместо display: block, чтобы сохранить flex-свойства
+    padding: 20px; // Добавим общий внутренний отступ для мобильных
+  }
+
+  // Секция с текстом
+  .card-info {
+    // На больших экранах занимает ~60%
+    flex-basis: 60%;
+    // padding: 40px 50px; // Уменьшим отступы для большей универсальности
+
+    // Планшеты в альбомной ориентации
+    @media (max-width: $breakpoint-lg) {
+      padding: 30px 40px;
+      flex-basis: 55%;
+    }
+    
+    // Планшеты и меньше
+    @media (max-width: $breakpoint-md) {
+      width: 100%; // Занимает всю ширину родителя
+      padding: 15px; // Небольшой отступ
+      order: 2; // Текст будет идти после картинки
+      text-align: center; // Центрируем текст для мобильных
+    }
+
+    .card-title {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card-description {
+      font-size: 18px;
+      color: #475569;
+      font-weight: 500;
+      line-height: 1.5; // Лучше использовать относительные единицы
+      margin-bottom: 20px;
+    }
+    
+    // Контейнер с деталями (валюта, сервис)
+    .card-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px; // gap лучше, чем margin на дочерних элементах
+      margin: 45px 0;
+
+      // Планшеты и меньше: детали становятся в один столбец
+      @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr; // Все в одну колонку
+        margin: 30px 0;
+      }
+      
+      .currency-info, .service-info {
+        // width больше не нужен, grid сам управляет шириной
+        .title {
+          font-weight: 700;
+          font-size: 24px;
+          margin-bottom: 5px;
+        }
+
+        .description {
+          color: #475569;
+          font-size: 16px;
+        }
+      }
+    }
+
+    // Кнопки
+    .card-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+      justify-content: flex-start; // Явно указываем выравнивание
+
+      // Планшеты и меньше
+      @media (max-width: $breakpoint-md) {
+        flex-direction: column; // Кнопки в столбец
+        align-items: center; // Центрируем их
+      }
+
+      button {
+        padding: 16px 32px; // Сделаем одинаковые отступы
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        border: 2px solid transparent; // Добавим рамку для лучшего вида при hover/focus
+        transition: background-color 0.3s, color 0.3s; // Плавный переход
+
+        @media (max-width: $breakpoint-md) {
+          width: 100%; // Кнопки на всю ширину
+          max-width: 300px; // Но не слишком широкие
+        }
+      }
+
+      .btn-primary {
+        background-color: #00B06C;
+        color: #fff;
+        border-color: #00B06C;
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: #00B06C;
+        border-color: #00B06C;
+      }
+    }
+  }
+
+  // Секция с картинкой
+  .card-image {
+    flex-basis: 40%; // На больших экранах занимает ~40%
+    // padding: 40px; // Внутренний отступ
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: $breakpoint-lg) {
+        flex-basis: 45%;
+        padding: 20px;
+    }
+    
+    // Планшеты и меньше
+    @media (max-width: $breakpoint-md) {
+      width: 80%;
+      order: 1; // Картинка будет идти первой
+      padding: 0; // Убираем лишние отступы
+      margin-bottom: 20px;
+    }
+    
+    // Сама картинка
+    .transfers_img {
+      max-width: 100%; // Чтобы картинка не вылезала за пределы контейнера
+      height: auto; // Сохраняем пропорции
+      border-radius: 16px;
+    }
+  }
+}

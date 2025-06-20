@@ -1,0 +1,58 @@
+<div class="cards">
+    <div class="card-container">
+      <div class="card-info">
+        <h2 class="card-title">{{ scsData.title }}</h2>
+        <p class="card-description">
+          {{ scsData.description }}
+        </p>
+        <div class="card-buttons">
+          <!-- <button class="btn-primary" (click)="navigateToCardDetailsAndForm(card.id)">{{"Apply for a card"|translate}}</button>
+          <button  (click)="onCardClick(card.id)"   class="btn-secondary" [routerLink]="['/card-details',card.id]">{{"More details"|translate}}</button> -->
+          <button class="btn-primary">Открыть вклад</button>
+  
+        </div>
+  
+  
+      </div>
+      <div class="card-image">
+        <img class="transfers_img" [src]="imageUrl + scsData.upload_file" [alt]="scsData.title"/>
+     
+      </div>
+  
+  
+    </div>
+  
+  
+    <div class="container">
+      <h2>Преимущества</h2>
+  
+ 
+  <div class="advantages">
+    <div class="item" *ngFor="let a of scsData.advantages" >
+        <h3>{{a.title}}</h3>
+        <p>{{a.description}}</p>
+    </div>
+  </div>
+      <!-- Контент для каждой валюты -->
+  
+    </div>
+  
+ 
+  
+    <div class="faq-container">
+      <h2 class="faq-title">Условия</h2>
+      <div *ngFor="let faq of scsData.conditions; let i = index" class="faq-item">
+        <div class="faq-question" (click)="toggleFaq(i)">
+          <span>{{ faq.title }}</span>
+          <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+        </div>
+        <div *ngIf="selectedFaqIndex === i" class="faq-answer" >
+            <p *ngFor="let i of faq.items">   {{ i.title }}</p>
+       
+        </div>
+      </div>
+      
+  
+    </div>
+  
+</div>

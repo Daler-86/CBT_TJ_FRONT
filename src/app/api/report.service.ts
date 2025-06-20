@@ -34,7 +34,8 @@ export class ReportService {
   }
 
 
-  getReportData():Observable<ReportData> {
+  getReportData(year?: number): Observable<ReportData> {
+  
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
@@ -42,7 +43,9 @@ export class ReportService {
           'Language': lang
         });
 
-        return this.http.get<ReportData>(this.baseUrl+'/report/data', { headers });
+
+        // Передаем headers и params в запрос
+        return this.http.get<ReportData>(this.baseUrl + '/report/data-by-year/'+year, { headers});
       })
     );
   }

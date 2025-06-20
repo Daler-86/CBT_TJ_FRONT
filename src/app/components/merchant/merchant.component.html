@@ -1,0 +1,87 @@
+<!-- src/app/pages/merchant-list/merchant-list.component.html -->
+<!-- Контейнер всей страницы для общих отступов и фона -->
+<div class="page-container">
+
+    <!-- Заголовок страницы -->
+    <div class="page-header">
+      <h1>Мерчанты</h1>
+      <p>Удобные решения для приёма платежей и роста вашего бизнеса.</p>
+    </div>
+  
+    <!-- Основной контент: фильтры + сетка -->
+    <div class="content-wrapper">
+  
+      <!-- Блок с фильтрами (левая колонка) -->
+      <div class="filters-panel">
+        
+  
+        <div class="filter-controls">
+          <!-- 1. Поиск по названию -->
+          <p class="filters-title">Фильтры</p>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Поиск"
+            [(ngModel)]="filterName"
+            (keyup.enter)="onFilterChange()"
+          />
+  
+          <!-- 2. Выпадающий список регионов -->
+          <select class="filter-select" [(ngModel)]="filterRegionId" (change)="onFilterChange()">
+            <!-- Опция "Все". [ngValue]="null" важно для правильной работы фильтра -->
+            <option [ngValue]="null">Все регионы</option>
+            <option *ngFor="let region of regions" [value]="region.id">{{ region.name }}</option>
+          </select>
+  
+          <!-- 3. Выпадающий список категорий -->
+          <select class="filter-select" [(ngModel)]="filterCategoryId" (change)="onFilterChange()">
+            <option [ngValue]="null">Все категории</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+          </select>
+  
+          <!-- 4. Переключатель "Кэшбеки" -->
+          <div class="cashback-toggle">
+            <label for="cashback">Кэшбеки</label>
+            <label class="switch">
+              <input
+                type="checkbox"
+                id="cashback"
+                [(ngModel)]="filterHasCashback"
+                (change)="onFilterChange()"
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Сетка с карточками мерчантов (правая колонка) -->
+      <div class="merchants-grid">
+        <div class="merchant-card" *ngFor="let merchant of merchants">
+          <div class="card-logo-wrapper">
+            <!-- Убедитесь, что upload_file содержит полный URL или правильный путь к изображению -->
+            <img [src]="imageUrl+merchant.upload_file" [alt]="merchant.name" class="card-logo" />
+          </div>
+          <h3 class="card-name">{{ merchant.name }}</h3>
+          <p class="card-phone">{{ merchant.phone }}</p>
+          <p class="card-address">{{ merchant.address }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Пагинация, отображается только если страниц больше одной -->
+    <div class="pagination-container" *ngIf="totalPages >= 1">
+      <button (click)="selectPage(1)" [disabled]="currentPage === 1" title="На первую страницу">«</button>
+      <button (click)="prevPage()" [disabled]="currentPage === 1" title="Предыдущая страница">‹</button>
+      
+      <button *ngFor="let page of pages" 
+              [class.active]="page === currentPage"
+              [disabled]="page === -1"
+              (click)="selectPage(page)">
+        {{ page === -1 ? '...' : page }}
+      </button>
+    
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" title="Следующая страница">›</button>
+      <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages" title="На последнюю страницу">»</button>
+    </div>
+  </div>

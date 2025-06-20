@@ -15,18 +15,21 @@
         <div class="">
           <a>{{"Credit cards"|translate}}</a>
           <a>{{"Debit cards"|translate}}</a> 
-           <a>{{"Deposits"|translate}}</a>
+           <a routerLink="scss" routerLinkActive="active">Scs-Rko</a>
+           <a routerLink="merchant" routerLinkActive="active">Мерчанты</a>
         </div>
         <div class=""> 
             <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ "About the bank"|translate}}</a> 
             <a routerLink="vacancies" routerLinkActive="active">{{"Vacancies"|translate}}</a>
             <a routerLink="Offices" routerLinkActive="active">{{"Offices and ATMs"|translate}}</a>
+            <a routerLink="contact" routerLinkActive="active">Контакты</a>
           </div>
           <div class="">
           <a routerLink="bank-detail" routerLinkActive="active">Реквизиты</a>
           <a routerLink="report" routerLinkActive="active" >Финансовая отчетность</a>
           <a routerLink="tender" routerLinkActive="active">{{ "Tenders"|translate}}</a> 
           <a routerLink="news" routerLinkActive="active">{{"News"|translate}}</a>
+       
           </div>
       <div class="">
        <p class="p">{{"Working hours"|translate}}</p> 

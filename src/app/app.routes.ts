@@ -23,6 +23,10 @@ import { ReportComponent } from './components/report/report.component';
 import { BankDetailComponent } from './components/bank-detail/bank-detail.component';
 import { NewsComponent } from './components/news/news.component';
 import { NewsDetailComponent } from './components/news-detail/news-detail.component';
+import { RkoComponent } from './components/rko/rko.component';
+import { RkoDetailsComponent } from './components/rko-details/rko-details.component';
+import { MerchantComponent } from './components/merchant/merchant.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -65,7 +69,11 @@ export const routes: Routes = [
    {path:'report',component:ReportComponent},
    {path:'bank-detail',component:BankDetailComponent},
    {path:'news', component:NewsComponent},
-   {path:'news-detail/:id', component:NewsDetailComponent}
+   {path:'news-detail/:id', component:NewsDetailComponent},
+   { path: 'scss', component: RkoComponent },
+   { path: 'scs-details/:id', component: RkoDetailsComponent },
+   { path: 'merchant', component: MerchantComponent },
+   { path: 'contact', component: ContactComponent },
 ];
 
  

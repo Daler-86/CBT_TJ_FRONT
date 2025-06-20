@@ -1,0 +1,61 @@
+<!-- src/app/pages/contact/contact.component.html -->
+
+<div class="contact-page">
+    <div class="page-header">
+      <h1>Контакты</h1>
+      <p>Свяжитесь с нами — мы всегда на связи и готовы помочь.</p>
+    </div>
+  
+    <!-- Сетка с контактными блоками -->
+    <div class="contact-grid">
+      <div class="contact-card" *ngFor="let block of contactBlocks">
+        <div class="card-header"> 
+            <h2>{{ block.title }}</h2>
+          <img [src]="imageUrl+block.upload_file" [alt]="block.title" class="card-icon" />
+         
+        </div>
+        <div class="card-body">
+          <div class="contact-item" *ngFor="let detail of block.data">
+            <img *ngIf="detail.upload_file" [src]="imageUrl+detail.upload_file" [alt]="detail.title" class="item-icon" />
+            <div>
+              <p class="item-title">{{ detail.title }}</p>
+              <p class="item-description">{{ detail.Description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Контейнер для Google Карты -->
+    <div class="map-wrapper">
+        <div class="map">
+      <google-map
+        height="500px"
+        width="100%"
+        [center]="center"
+        [zoom]="zoom"
+        [options]="{ disableDefaultUI: true, scrollwheel: false }"
+      >
+        <!-- Создаем маркер на карте -->
+        <map-marker
+          *ngFor="let marker of markers"
+          [position]="marker.position"
+          [options]="marker.options"
+          (mapClick)="showInfo(marker)"
+        >
+        </map-marker>
+  
+        <!-- Информационное окно, которое появляется при клике на маркер -->
+        <map-info-window
+          *ngIf="activeMarkerInfo"
+          [position]="activeMarkerPosition!"
+          (closeclick)="hideInfo()"
+        >
+          <!-- Используем innerHTML, чтобы можно было вставлять HTML-теги (например, <strong>) -->
+          <div [innerHTML]="activeMarkerInfo"></div>
+        </map-info-window>
+  
+      </google-map> 
+    </div>
+</div>
+  </div>

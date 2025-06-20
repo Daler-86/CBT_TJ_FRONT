@@ -1,0 +1,71 @@
+import { NgFor, NgIf } from '@angular/common';
+import { Component, ElementRef } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { TransfersService } from '../../api/transfer.service';
+import { RkoService } from '../../api/rko.service';
+import { MenuService } from '../../api/menu.service';
+import { RegionService } from '../../api/region.service';
+import { environment } from '../../../environments/environment';
+import { scs, scsDetail } from '../../models/rko.model';
+
+@Component({
+  selector: 'app-rko-details',
+  standalone: true,
+  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink, RouterOutlet],
+  templateUrl: './rko-details.component.html',
+  styleUrl: './rko-details.component.scss'
+})
+export class RkoDetailsComponent {
+
+  constructor(
+    private route: ActivatedRoute,
+    private transferService: TransfersService,
+    private rkoService:RkoService,
+    private elementRef: ElementRef,
+    private menuService: MenuService,
+    private regionService:RegionService,
+  ) { }
+
+  imageUrl: string = environment.IMAGE_URL;
+  selectedFaqIndex: number | null = null;
+  cardId: number=0;
+  scsData:scsDetail={}
+
+  ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam !== null) {
+      this.cardId= +idParam;  // Преобразование строки в число
+    } else {
+      console.error('ID is missing in the route parameters.');
+      // Здесь может быть код для обработки ситуации отсутствия ID
+    }
+
+
+    this.loadRkoDetail(this.cardId);
+
+
+   
+  }
+  toggleFaq(index: number) {
+    this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
+  }
+  loadRkoDetail(id:number):void {
+    this.rkoService.getRkoDetails(id).subscribe(
+      (response) => {
+
+        this.scsData = response.data;
+
+      },
+      (error) => {
+        console.error('Ошибка при запросе данных', error);
+      }
+    );
+  }
+
+
+
+
+}

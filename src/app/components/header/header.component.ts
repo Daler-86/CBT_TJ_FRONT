@@ -1,114 +1,98 @@
-import { Component ,HostListener, ElementRef, OnInit} from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
-
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { LanguagesService } from '../../languages.service';
 import { NgFor, NgIf } from '@angular/common';
-import { DropdownService } from '../../services/dropdown.service';
-import { MenuService } from '../../api/menu.service';
-import { Menu } from '../../models/menu.model';
+import { Subscription } from 'rxjs';
+import { ElementRef, HostListener } from '@angular/core';
 
+// Ваши сервисы
+import { MenuService } from '../../api/menu.service';
+import { LanguagesService } from '../../languages.service';
+import { Menu } from '../../models/menu.model';
+import { DropdownService } from '../../services/dropdown.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink, RouterOutlet],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss']
 })
-
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   menus: Menu[] = [];
-  dropdownOpenMap: { [key: number]: boolean } = {}; // Состояние для каждого селекта
-  dropdownOpen = false; // Локальное состояние для языка
-  selectedLanguage: string | null = localStorage.getItem('1');// Начальный выбранный язык
+  dropdownOpenMap: { [key: number]: boolean } = {};
+  dropdownOpen = false;
+  selectedLanguage: string = '1';
   menuActive = false;
-  index: number;
   
+  private subscriptions = new Subscription();
+
   languageOptions = [
     { value: '1', label: 'Тоҷикӣ' },
     { value: '2', label: 'Русский' },
     { value: '3', label: 'English' }
   ];
 
-
   constructor(
     private elementRef: ElementRef,
     private router: Router,
-    private http: HttpClient,
-    private menuService:MenuService,
+    private menuService: MenuService,
     private dropdownService: DropdownService,
-    private languageService: LanguagesService,
-    private translateService: TranslateService
-  ) {
-    this.index = Math.floor(Math.random() * 10000); // Уникальный индекс для селектора
-  }
+    private translateService: TranslateService,
+    private languageService: LanguagesService
+  ) {}
+
   ngOnInit(): void {
-    this.loadMenu();
+    const langSub = this.languageService.language$.subscribe(lang => {
+      this.selectedLanguage = lang;
+      this.translateService.use(lang);
+    });
 
-  }  
-
-  loadMenu(): void {
-    this.menuService.getMenu().subscribe(
+    const menuSub = this.menuService.getMenu().subscribe(
       (response) => { 
-        this.menus = response.data.menus
-
-        console.log(this.menus)
+        this.menus = response.data.menus;
       },
       (error) => {
-        console.error('Ошибка при запросе данных', error);
+        console.error('Ошибка при получении меню', error);
       }
     );
+
+    this.subscriptions.add(langSub);
+    this.subscriptions.add(menuSub);
   }
+
+  selectLanguage(option: { value: string; label: string }) {
+    this.dropdownOpen = false;
+    this.languageService.setLanguage(option.value);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  // --- Остальные методы управления UI ---
+
   toggleDropdown1(event: Event) {
     this.dropdownOpen = !this.dropdownOpen;
+    event.stopPropagation();
+  }
   
-    if (this.dropdownOpen) {
-      this.dropdownService.setOpenDropdown(this.index); // Уведомляем сервис, что открылся текущий селектор
-    }
-    event.stopPropagation(); // Останавливаем распространение клика
-  }
-
-
-    
-  selectLanguage(option: any) {
-    this.selectedLanguage = option.value;
-    this.dropdownOpen = false; // Закрываем селектор после выбора  
-    if(this.selectLanguage!==null){
-      
-    this.languageService.setLanguage(option.value);
-    this.translateService.use(option.value);
-    }
-
-  }
-  // Открытие/закрытие селекта по индексу
   toggleDropdown(index: number, event: Event) {
     this.dropdownOpenMap[index] = !this.dropdownOpenMap[index];
-    event.stopPropagation(); // Останавливаем распространение события
+    event.stopPropagation();
   }
 
-  selectOption(option: any, index: number, event: Event,menuItem:any) {  
+  selectOption(option: any, index: number, event: Event, menuItem: any) {  
     event.stopPropagation();
     this.dropdownOpenMap[index] = false;
-    
     if (option.route) {
       this.menuService.changePersonTypeId(menuItem.person_type_id)
       this.router.navigate([option.route]);
-
     }
     window.scrollTo(0, 0);
   }
 
-  // Управление языком
-  toggleLanguageDropdown(event: Event) {
-    this.dropdownOpen = !this.dropdownOpen;
-    event.stopPropagation();
-  }
-
-
-  // Закрытие всех дропдаунов при клике вне компонента
   @HostListener('document:click', ['$event'])
   closeAllDropdowns(event: Event) {
     if (!this.elementRef.nativeElement.contains(event.target)) {
@@ -117,12 +101,13 @@ export class HeaderComponent implements OnInit {
       this.menuActive = false;
     }
   }
-  closeDropdown(index: number, event?: Event) {
-    if (event) {
-      event.stopPropagation(); // Останавливаем распространение события, если есть событие
-    }
+
+  // ==== ВОТ ИСПРАВЛЕНИЕ: ВОЗВРАЩАЕМ НЕДОСТАЮЩИЙ МЕТОД ====
+  closeDropdown(index: number) {
     this.dropdownOpenMap[index] = false;
   }
+  // =======================================================
+
   toggleMenu() {
     this.menuActive = !this.menuActive;
   }

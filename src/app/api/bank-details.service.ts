@@ -5,7 +5,7 @@ import { LanguagesService } from '../languages.service';
 import { switchMap,map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { TransferDetail, TransfersList } from '../models/transfers.model';
-import { BankDetails } from '../models/bank-detail.model';
+import { BankDetailCurrency, BankDetails } from '../models/bank-detail.model';
 import {environment} from "../../environments/environment";
 @Injectable({
   providedIn: 'root'
@@ -23,14 +23,14 @@ export class BankDetailsService {
     this.selectedCardSource.next(card);
   }
 
-  getBankDetails(): Observable<BankDetails> {
+  getBankDetails(id:number): Observable<BankDetails> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
           'Accept': 'application/json',
           'Language': lang
         });
-        const url = `${this.baseUrl}/bank-detail/list`;
+        const url = `${this.baseUrl}/bank-detail/list/${id}`;
         return this.http.get<BankDetails>(url, { headers });
       }),
       map(response => {
@@ -44,41 +44,28 @@ export class BankDetailsService {
       })
     );
   }
-
-  getTransferData(cardId: number): Observable<TransferDetail> {
+  getBankDetailCurrency(): Observable<BankDetailCurrency> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
-          'accept': 'application/json',
+          'Accept': 'application/json',
           'Language': lang
         });
-        return this.http.get<TransferDetail>(`${this.baseUrl}/transfer/${cardId}`, { headers });
+        const url = `${this.baseUrl}/bank-detail/currency`;
+        return this.http.get<BankDetailCurrency>(url, { headers });
       }),
       map(response => {
-        if (response.data.transfer_data) {
-          const transferData = response.data.transfer_data;
+        if (response.data.bank_detail_currencies && Array.isArray(response.data.bank_detail_currencies)) {
+          // Сортируем сначала карты по sortId
+          response.data.bank_detail_currencies = this.sortBySortId(response.data.bank_detail_currencies);
 
-          if (Array.isArray(transferData.conditions)) {
-            transferData.conditions = this.sortBySortId(transferData.conditions);
-            transferData.conditions.forEach(condition => {
-              if (Array.isArray(condition.items)) {
-                condition.items = this.sortBySortId(condition.items);
-              }
-            });
-          }
 
-          if (Array.isArray(transferData.documents)) {
-            transferData.documents = this.sortBySortId(transferData.documents);
-            transferData.documents.forEach(document => {
-              if (Array.isArray(document.items)) {
-                document.items = this.sortBySortId(document.items);
-              }
-            });
-          }
         }
         return response;
       })
     );
   }
+
+
 
 }

@@ -19,13 +19,18 @@ export interface ReportFile{
 export interface reportData{
   id:number;
   description:string;
+  report_year: number; // <-- ДОБАВИТЬ
+  report_years: number[]; // <-- ДОБАВИТЬ
+  quarter: number; // <-- ДОБАВИТЬ
+  is_quarter_or_year: boolean;
   report_indicator:indecator[];
 }
 interface indecator{
   id:number;
   name:string;
   sort_id:number;
-  report_indecator_data:indecator_data[]
+  report_indicator_data: indecator_data[]; 
+  // report_indecator_data:indecator_data[]
 }
 interface indecator_data{
 
