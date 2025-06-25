@@ -32,6 +32,17 @@
                 {{"all"|translate}}
               </label>
             </div>
+             <div class="dropdown-option">
+              <label class="custom-checkbox">
+                <input
+                  type="checkbox"
+                  [checked]="officesSelected"
+                  (change)="onCheckboxChange('officesSelected', $event)"
+                />
+                <span class="checkbox"></span>
+                {{"offices"|translate}}
+              </label>
+            </div>
             <div class="dropdown-option">
               <label class="custom-checkbox">
                 <input
@@ -43,17 +54,7 @@
                 {{"terminals"|translate}}
               </label>
             </div>
-            <div class="dropdown-option">
-              <label class="custom-checkbox">
-                <input
-                  type="checkbox"
-                  [checked]="officesSelected"
-                  (change)="onCheckboxChange('officesSelected', $event)"
-                />
-                <span class="checkbox"></span>
-                {{"offices"|translate}}
-              </label>
-            </div>
+           
             <div class="dropdown-option">
               <label class="custom-checkbox">
                 <input
@@ -196,7 +197,7 @@
             (closeclick)="hideInfo()"
           >
             <div [innerHTML]="activeMarker.info">
-            <p>vujhbkl</p>
+            <p></p>
             </div>
           </map-info-window>
         </google-map> 

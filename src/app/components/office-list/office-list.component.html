@@ -10,18 +10,7 @@
         </div>
         <div class="dropdown-options" *ngIf="dropdownOpen">
           <div class="dropdown-section">
-            <h4>Типы объектов</h4>
-            <div class="dropdown-option">
-              <label class="custom-checkbox">
-                <input
-                  type="radio"
-                  [checked]="terminalsSelected"
-                  (change)="onCheckboxChange('terminalsSelected', $event)"
-                />
-                <span class="checkbox"></span>
-                {{"terminals"|translate}}
-              </label>
-            </div>
+            <h4>Типы объектов</h4>  
             <div class="dropdown-option">
               <label class="custom-checkbox">
                 <input
@@ -33,6 +22,18 @@
                 {{"offices"|translate}}
               </label>
             </div>
+            <div class="dropdown-option">
+              <label class="custom-checkbox">
+                <input
+                  type="radio"
+                  [checked]="terminalsSelected"
+                  (change)="onCheckboxChange('terminalsSelected', $event)"
+                />
+                <span class="checkbox"></span>
+                {{"terminals"|translate}}
+              </label>
+            </div>
+          
             <div class="dropdown-option">
               <label class="custom-checkbox">
                 <input

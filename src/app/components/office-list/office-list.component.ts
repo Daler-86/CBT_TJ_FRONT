@@ -80,7 +80,7 @@ data:any[]=[]
         console.error('Ошибка при запросе данных', error);
       }
     );
-  this.terminalsSelected=true
+  this.officesSelected=true
 this.sendFilteredData();  
 this.updatePages();
    
@@ -98,11 +98,11 @@ this.updatePages();
   }
   combinedData: any[] = [];
   sendFilteredData(): void {
-    this.filterService.getFilteredByRegion(this.atmsSelected, this.officesSelected, this.terminalsSelected,this.regionSelected,2,this.currentPage).subscribe({
+    this.filterService.getFilteredByRegion(this.atmsSelected, this.officesSelected, this.terminalsSelected,this.regionSelected,8,this.currentPage).subscribe({
       next: (response) => {
       console.log('Filtered data received:', response); 
       this.combinedData=response.data.list_data
-      this.totalPages=Math.ceil(response.data.total_count/2)
+      this.totalPages=Math.ceil(response.data.total_count/8)
       this.updatePages();
       },
       error: (err) => {
