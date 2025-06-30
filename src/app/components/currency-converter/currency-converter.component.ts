@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
+import { RateService } from '../../api/rate.service';
 
 interface ExchangeRate {
   currency: string;
@@ -34,7 +35,7 @@ export class CurrencyConverterComponent implements OnInit {
   exchangeRatesByMode: { [key: string]: any[] } = {};
   showMore: boolean = false;
 
-  constructor(private http: HttpClient, private translate: TranslateService) {}
+  constructor(private http: HttpClient, private translate: TranslateService, private rateService:RateService) {}
 
   ngOnInit() {
     this.fetchExchangeRates();
@@ -44,56 +45,27 @@ export class CurrencyConverterComponent implements OnInit {
     return this.exchangeRatesByMode[this.selectedMode]?.length || 0;
   }
   fetchExchangeRates() {
-    this.http.get('http://192.168.42.200:8025/ws/v3/info/exchange-rates', { responseType: 'text' })
-      .subscribe({
-        next: (data: string) => {
-          this.parseXML(data); // Парсим XML, если запрос успешен
-        },
-        error: (err) => {
-          console.error('Error fetching exchange rates:', err); // Обработка ошибок
+    this.rateService.getProcessedExchangeRates().subscribe({
+      next: (processedData) => {
+        // Просто присваиваем готовые данные свойствам компонента
+        this.exchangeRatesByMode = processedData.ratesByMode;
+        this.lastUpdated = processedData.lastUpdated;
+debugger
+        // Устанавливаем режим по умолчанию после получения данных
+        const modes = this.getModes();
+        if (modes.length > 0) {
+          this.selectedMode = modes[0]; 
+          this.updateCurrencies(); 
         }
-      });
-  }
-
-  parseXML(data: string) {
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(data, 'application/xml');
-    const rates = xml.getElementsByTagName('rate');
-    this.exchangeRatesByMode = {}; // Очистка предыдущих данных
-
-    Array.from(rates).forEach(rate => {
-      const mode = rate.getElementsByTagName('mode')[0].textContent || ''; // Режим обмена
-      const currency = rate.getElementsByTagName('cur')[0].textContent || ''; // Валюта
-      const buy = parseFloat(rate.getElementsByTagName('buy')[0].textContent || '0'); // Покупка
-      const sell = parseFloat(rate.getElementsByTagName('sell')[0].textContent || '0'); // Продажа
-      const flag = this.getFlag(currency); // Получение иконки флага для валюты
-
-      if (!this.exchangeRatesByMode[mode]) {
-        this.exchangeRatesByMode[mode] = [];
+      },
+      error: (err) => {
+        debugger
+        console.error('Error fetching and processing exchange rates:', err);
       }
-
-      this.exchangeRatesByMode[mode].push({ currency, buy, sell, flag });
     });
-
-    this.lastUpdated = xml.getElementsByTagName('lastUpdate')[0]?.textContent || ''; // Получение даты последнего обновления
-
-    const modes = this.getModes();
-    if (modes.length > 0) {
-      this.selectedMode = modes[0]; // Установка режима по умолчанию
-      this.updateCurrencies(); // Обновляем валюты после выбора режима
-    }
   }
 
-  getFlag(currency: string): string {
-    switch (currency) {
-      case 'USD': return '../../assets/icons/usd.svg';
-      case 'EUR': return '../../assets/icons/euro.svg';
-      case 'RUB': return '../../assets/icons/rub.svg';
-      case 'KZT': return '../../../assets/icons/kzt.png';
-      case 'TJS': return '../../assets/icons/tjs.svg';
-      default: return '../../assets/icons/default.svg';
-    }
-  }
+
 
   getModes(): string[] {
     return ['REMITTANCE_RATE', 'CASH', 'CB_RATE'];
@@ -105,7 +77,7 @@ export class CurrencyConverterComponent implements OnInit {
     switch (mode) {
       case 'CASH':
         return this.translate.instant('currencyConverter.rateModes.cash');
-      case 'NON_CASH':
+      case 'REMITTANCE_RATE':
         return this.translate.instant('currencyConverter.rateModes.nonCash');
       case 'CB_RATE':
         return this.translate.instant('currencyConverter.rateModes.cbRate');
