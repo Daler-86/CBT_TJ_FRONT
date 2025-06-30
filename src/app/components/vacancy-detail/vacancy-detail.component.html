@@ -1,101 +1,94 @@
 <div class="more-vacancy">
-<div *ngIf="personalQuality">
-  <div class="title">
+  <div *ngIf="personalQuality">
+    <div class="title">
+      <div class="">
+        <h2>{{ vacancyData.name }}</h2>
+        <div class="city-location">
+          <img src="../../../assets/icons/Layer 2.svg" [alt]="'alt.location' | translate">
+          <p>{{ vacancyData.region_name }}</p>
+        </div>
+        <div class="city-location">
+          <img src="../../../assets/icons/calendar.svg" [alt]="'alt.calendar' | translate">
+          <p>{{ vacancyData.deadline_at }}</p>
+        </div>
+      </div>
+      <div class="">
+        <!-- Кнопка теперь находится внутри формы ниже, для лучшей семантики -->
+      </div>
+    </div>
     <div class="">
-  <h2>{{ vacancyData.name }}</h2>
-  <div class="city-location">
-    <img src="../../../assets/icons/Layer 2.svg" alt="Location icon">
-  <p>{{ vacancyData.region_name }}</p>
-</div>
-<div class="city-location">
-  <img src="../../../assets/icons/calendar.svg" alt="Location icon">
-<p>{{ vacancyData.deadline_at }}</p>
-</div>
-</div>
-<div class="">
-  <button>{{"Apply for a vacancy"|translate}}</button>
-</div>
-</div>
-<div class="">
- 
+      <div class="vacancy-details"> 
+        <h4>{{ 'vacancyDetails.sections.education' | translate }}</h4>
+        <ul>
+          <li *ngFor="let education of education">{{ education.content }}</li>
+        </ul>
+      </div>
+
+      <div class="vacancy-details">
+        <h4>{{ 'vacancyDetails.sections.experience' | translate }}</h4>
+        <ul>
+          <li *ngFor="let work of experience">{{ work.content }}</li>
+        </ul>
+      </div>
+
+      <div class="vacancy-details">
+        <h4>{{ 'vacancyDetails.sections.skills' | translate }}</h4>
+        <ul>
+          <li *ngFor="let skill of skill">{{ skill.content }}</li>
+        </ul>
+      </div>
+
+      <div class="vacancy-details">
+        <h4>{{ 'vacancyDetails.sections.qualities' | translate }}</h4>
+        <ul>
+          <li *ngFor="let quality of personalQuality">{{ quality.content }}</li>
+        </ul>
+      </div>
+
+      <div class="vacancy-details">
+        <h4>{{ 'vacancyDetails.sections.conditions' | translate }}</h4>
+        <ul>
+          <li *ngFor="let condition of condition">{{ condition.content }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
+    <h2>{{ 'vacancyDetails.form.title' | translate }}</h2>
+    <p>{{ 'vacancyDetails.form.subtitle' | translate }}</p>
+
+    <div class="form-row">
+      <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'"/>
+      <input formControlName="firstName" [placeholder]="('vacancyDetails.form.firstName' | translate) + '*'"/>
+    </div>
     
-    <div class="vacancy-details" > 
-    <h4>{{"Education and qualifications:"|translate}}</h4>
-    <ul>
-      <li *ngFor="let education of education">{{ education.content }}</li>
-    </ul>
+    <div class="form-row">
+      <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'"/>
+      <input formControlName="email" [placeholder]="('vacancyDetails.form.email' | translate) + '*'"/>
+    </div>
 
+    <!-- Зона перетаскивания файла -->
+    <div class="file-drop-area"
+         (drop)="onDrop($event)"
+         (dragover)="onDragOver($event)"
+         (dragleave)="onDragLeave($event)">
+      <label>{{ 'vacancyDetails.form.dragOr' | translate }}</label>
+      <small>{{ 'vacancyDetails.form.supportedFormats' | translate }}</small>
+      <div>
+        <input type="file" (change)="onFileSelected($event)" #fileInput hidden>
+        <button type="button" (click)="fileInput.click()">{{ 'buttons.uploadCV' | translate }}</button>
+        <span *ngIf="fileName">{{ fileName }}</span>
+      </div>
+    </div>
+    <button type="submit">{{ 'buttons.send' | translate }}</button>
+  </form>
 
+  <div *ngIf="isSubmitted" class="notification success-message">
+    {{ 'notifications.submitSuccess' | translate }}
   </div>
 
-  <div  class="vacancy-details" >
-    <h4>{{"Experience:"|translate}}</h4>
-    <ul>
-      <li *ngFor="let work of experience">{{ work.content }}</li>
-    </ul>
-  </div>
-
-  <div  class="vacancy-details" >
-    <h4>{{"Skills and knowledge:"|translate}}</h4>
-    <ul>
-      <li *ngFor="let skill of skill">{{ skill.content }}</li>
-    </ul>
-  </div>
-  <div  class="vacancy-details" >
-    <h4>{{"Personal qualities:"|translate}}</h4>
-    <ul>
-      <li *ngFor="let quality of personalQuality">{{ quality.content }}</li>
-    </ul>
-  </div>
-
-  <div  class="vacancy-details" >
-    <h4>{{"Conditions:"|translate}}</h4>
-    <ul>
-      <li *ngFor="let condition of condition">{{condition.content }}</li>
-    </ul>
+  <div *ngIf="isError" class="notification error-message animated">
+    {{ 'notifications.submitError' | translate }}
   </div>
 </div>
-</div>
-
-
-
-<form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
-  <h2>{{"Apply for a vacancy"|translate}}</h2>
-  <p>{{"Tell us about yourself and we will definitely contact you"|translate}}</p>
-
-  <div class="form-row">
-    <input formControlName="lastName" placeholder="Фамилия*" />
-    <input formControlName="firstName" placeholder="Имя*" />
-  </div>
-  
-  <div class="form-row">
-    <input formControlName="phone" placeholder="Телефон*" />
-    <input formControlName="email" placeholder="Email*" />
-  </div>
-
-  <!-- Зона перетаскивания файла -->
-  <div class="file-drop-area"
-       (drop)="onDrop($event)"
-       (dragover)="onDragOver($event)"
-       (dragleave)="onDragLeave($event)">
-       <label >{{"Drag or"|translate}}</label>
-      <small>{{"Supported formats: PDF, Doc, JPG (Max 5Mb)"|translate}}</small>
-        <div>
-    <input type="file" (change)="onFileSelected($event)" #fileInput hidden>
-    <button type="button" (click)="fileInput.click()">{{"Upload your CV"|translate}}</button>
-    <span *ngIf="fileName">{{ fileName }}</span>
-  </div>
-
-  </div>
-  <button type="submit">{{"Send"|translate}}</button>
-</form>
-<div *ngIf="isSubmitted" class="notification success-message">
-{{"Data sent successfully! We will contact you shortly."|translate}}
-</div>
-
-<div *ngIf="isError" class="notification error-message animated">
-{{"❌ An error occurred while sending data. Please try again."|translate}}
-</div>
-  
-</div>
-    

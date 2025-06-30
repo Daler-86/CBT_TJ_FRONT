@@ -5,6 +5,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { NewsService } from '../../api/news.service';
 import {environment} from "../../../environments/environment";
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface new_news {
   id: number;
@@ -17,7 +18,7 @@ export interface new_news {
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './news.component.html',
   styleUrl: './news.component.scss'
 })

@@ -4,10 +4,11 @@ import { TenderService } from '../../api/tender.service';
 import { ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { tenderDetail } from '../../models/tender.model';
 import { CommonModule, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-tender-details',
   standalone: true,
-  imports: [NgFor, CommonModule],
+  imports: [NgFor, CommonModule, TranslateModule],
   templateUrl: './tender-details.component.html',
   styleUrl: './tender-details.component.scss'
 })

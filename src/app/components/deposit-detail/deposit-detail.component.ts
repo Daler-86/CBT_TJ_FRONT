@@ -1,7 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, ElementRef,HostListener, } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { TransfersService } from '../../api/transfer.service';
 import { MenuService } from '../../api/menu.service';
@@ -28,6 +28,7 @@ export class DepositDetailComponent {
     private elementRef: ElementRef,
     private menuService: MenuService,
     private regionService:RegionService,
+    private translateService:TranslateService
   ) { }
 
   imageUrl: string = environment.IMAGE_URL;
@@ -51,6 +52,9 @@ export class DepositDetailComponent {
 
     this.updateSliderBackground('loanAmount');
     this.updateSliderBackground('loanTerm');
+    this.translateService.get('depositDetails.applicationForm.officePlaceholder').subscribe(translation => {
+      this.officeName = translation;
+    });
   }
   toggleFaq(index: number) {
     this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;

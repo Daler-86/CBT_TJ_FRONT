@@ -1,60 +1,54 @@
 <div class="vacancies-container">
-  <h1>{{"Vacancies"|translate}}</h1>
+  <h1>{{ 'vacancies.title' | translate }}</h1>
   <div class="vacancies-list">
     <!-- Фильтры для направлений и городов -->
     <div class="vacancy-filter">
-      <p>{{"Filters"|translate}}</p>
+      <p>{{ 'vacancies.filters.title' | translate }}</p>
       <form>
-        <label for="category">{{"Direction:"|translate}}</label><br>
-        <select id="category" [(ngModel)]="selectedCategory" name="category" (change)=" loadAllVacancies()" >
-          <option value="" >{{"All directions"|translate}} ({{vacancyCategory.length}})</option>
+        <label for="category">{{ 'vacancies.filters.directionLabel' | translate }}</label><br>
+        <select id="category" [(ngModel)]="selectedCategory" name="category" (change)="loadAllVacancies()">
+          <option value="">{{ 'vacancies.filters.allDirections' | translate }} ({{vacancyCategory.length}})</option>
           <option *ngFor="let category of vacancyCategory" [value]="category.id">{{ category.name }}</option>
         </select>
         <br>
-        <label for="city">{{"City:"|translate}}</label><br>
-        <select id="city" [(ngModel)]="selectedRegion" name="city" (change)="loadAllVacancies()" >
-          <option value="">{{"All cities"|translate}} ({{regionList.length}})</option>
+        <label for="city">{{ 'vacancies.filters.cityLabel' | translate }}</label><br>
+        <select id="city" [(ngModel)]="selectedRegion" name="city" (change)="loadAllVacancies()">
+          <option value="">{{ 'vacancies.filters.allCities' | translate }} ({{regionList.length}})</option>
           <option *ngFor="let city of regionList" [value]="city.id">{{ city.name }}</option>
         </select>
       </form>
-      
     </div>
     <!-- Список вакансий -->
     <div class="vacancy-items">
-      <p>{{"Total"|translate}} {{ vacancyCount }}{{"vacancies"|translate}}</p>
+      <p>{{ 'vacancies.list.total' | translate }} {{ vacancyCount }} {{ 'vacancies.list.vacanciesLabel' | translate }}</p>
       <div *ngFor="let vacancy of vacancyList" class="vacancy-item">
-        <!-- Используем routerLink для навигации к деталям вакансии -->
         <a [routerLink]="['/vacancy-list', vacancy.id]">
           {{ vacancy.name }}
         </a>
         <div class="city">
           <div class="city-location">
-            <img src="../../../assets/icons/Layer 2.svg" alt="Location icon">
+            <img src="../../../assets/icons/Layer 2.svg" [alt]="'vacancies.list.locationIconAlt' | translate">
             <p>{{ vacancy.region_name }}</p>
           </div>
-         <a href="" [routerLink]="['/vacancy-list', vacancy.id]" > <img src="../../../assets/icons/strel.svg" alt="Arrow icon"></a>
+          <a [routerLink]="['/vacancy-list', vacancy.id]">
+            <img src="../../../assets/icons/strel.svg" [alt]="'vacancies.list.arrowIconAlt' | translate">
+          </a>
         </div>
       </div>
     </div>
-
-</div>
-<div class="">
+  </div>
+  
+  <div class="">
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-    
-      <button
-        *ngFor="let page of pages"
-        [class.active]="page === currentPage"
-        (click)="selectPage(page)"
-      >
+      
+      <button *ngFor="let page of pages" [class.active]="page === currentPage" (click)="selectPage(page)">
         {{ page === -1 ? '...' : page }}
       </button>
-    
+      
       <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
       <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
     </div>
   </div>
 </div>
-
-

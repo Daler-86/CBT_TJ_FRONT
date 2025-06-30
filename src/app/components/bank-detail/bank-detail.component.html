@@ -1,24 +1,23 @@
 <div class="bankDetail">
   <div class="card-container">
       <div class="card-info">
-        <h2 class="card-title">Реквизиты</h2>
-        <p class="card-description">
-          Банковские реквизиты для финансовых операций
-        </p>
+        <h2 class="card-title">{{ 'bankDetails.pageTitle' | translate }}</h2>
+        <p class="card-description">{{ 'bankDetails.pageSubtitle' | translate }}</p>
       </div>
   </div>
   <div class="btnCards">
-      <!-- Добавили trackBy для оптимизации -->
+      <!-- ВАЖНО: Добавлен пайп translate для названий валют -->
       <button *ngFor="let currency of bankdetailCurrency; trackBy: trackByCurrencyId"
               [ngClass]="{'active': isTabSelected(currency.id)}"
               (click)="selectTab(currency.id)">
-        {{ currency.title }}
+        {{ currency.title | translate }}
       </button>
   </div>
   <div class="info-list-container">
-      <!-- Добавили trackBy и убрали лишний ng-container -->
       <div class="info-item-row" *ngFor="let item of bankdetailList; trackBy: trackByDetailId">
-        <div class="info-label">{{ item.title }}</div>
+        <!-- ВАЖНО: Добавлен пайп translate для названий реквизитов -->
+        <div class="info-label">{{ item.title | translate }}</div>
+        <!-- Значение реквизита (item.description) не переводится, что правильно -->
         <div class="info-value">{{ item.description }}</div>
       </div>
   </div>

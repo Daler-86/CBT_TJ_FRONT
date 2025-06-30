@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { TenderService } from '../../api/tender.service';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-tender',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterModule],
+  imports: [CommonModule,RouterLink,RouterModule, TranslateModule],
   templateUrl: './tender.component.html',
   styleUrl: './tender.component.scss'
 })

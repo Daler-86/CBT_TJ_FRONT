@@ -11,6 +11,7 @@ import { MenuService } from '../../api/menu.service';
 import { HttpClient } from '@angular/common/http';
 import { LanguagesService } from '../../languages.service';
 import {environment} from "../../../environments/environment";
+import { NewsBoxComponent } from "../news-box/news-box.component";
 
 interface News{
   image:string;
@@ -22,7 +23,7 @@ interface News{
 @Component({
   selector: 'app-home',
   standalone:true,
-  imports: [RouterModule, RouterLink, CarouselComponent, TranslateModule, CalculateComponent, CurrencyConverterComponent, NgFor, FavriComponent,NgIf],
+  imports: [RouterModule, RouterLink, CarouselComponent, TranslateModule, CalculateComponent, CurrencyConverterComponent, NgFor, FavriComponent, NgIf, NewsBoxComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

@@ -1,140 +1,608 @@
 {
-    "For private individuals":"Частным лицам",
-    "Business":"Бизнесу",
-    "Mobile banking":"Мобильный банкинг",
-    "Vacancies":"Вакансии",
-    "More":"Еще",
-    "Credit cards":"Кредитные карты",
-    "Debit cards":"Дебетовые  карты",
-    "Overdraft":"Овердрафт",
-    "Car loan":"Автокредит",
-   "Deposits" :"Вклады",
-    "About the bank":"О банке",
-    "News":"Новости",
-    "Offices and ATMs":"Офисы и банкоматы",
-    "Questions and answers":"Вопросы и ответы",
-    "Contact the bank":"Связятся с банком",
-    "Tenders":"Тендеры",
-    "Money transfers around the world":"Денежные переводы по всему миру",
-    "Login":"Войти",
-    "Mortgage":"Ипотека",
-    "Cards":"Карты",
-    "Loans":"Кредиты",
-    "Transfers":"Переводы",
-    "Credit":"Кредит",
-"Contribution":"Вклад",
-  "Buying a car":"Покупка авто",
-"Calculate your loan":"Рассчитайте свой кредит",
-"Loan amount":"Сумма кредита",
-"Monthly payment":"Ежемесячный платёж",
-"Our offer":"Наше предложение",
-    "Payments cards":"Платежные карты",
-    "Interest rate":"Процентная ставка",
-    "Apply for a loan":"Оформить кредит",
-    "Loan term":"Срок кредита",
-    "Preliminary calculation. Not a public offer":"Предварительный расчет. Не является публичной офертой",
-    "Favri mobile application":"Мобильное приложение Favri",
-    "Check your balance, pay for services, get help in chat 24/7":"Проверяйте баланс, оплачивайте услуги, получайте помощь в чате 24/7",
-
-
-"Choose the best":"Выбирайте лучшее",
-"Join the team Commerzbank":"Присоединяйтесь к команде Коммерцбанка Таджикистана и воплощайте идеи в жизнь.",
-"Support":"Поддержка",
-"We will resolve":"Любой вопрос решим по телефону или в чате",
-"Currency rates":"Курсы валют",
-"Currency":"Валюта",
-"Accounting course":"Учетный курс",
-"Collapse":"Свернуть",
-"Show more":"Показать еще",
-"Buy":"Купить",
-"Sell":"Продать",
-"It's great to work here, and here's why":"У нас классно работать, и вот почему",
-"Our cozy offices":"Наши уютные офисы",
-"View vacancies":"Смотреть вакансии",
-"Apply for a vacancy":"Откликнуться на вакансию",
-"Education and qualifications:":"Образование и квалификация:",
-"Experience:":"Опыт работы:",
-"Skills and knowledge:":"Навыки и знания:",
-"Personal qualities:":"Личные качества:",
-"Conditions:":"Условия:",
-"Tell us about yourself and we will definitely contact you":"Расскажите нам о себе, и мы обязательно свяжемся с вами",
-"Drag or":"Перетащите или",
-"Supported formats: PDF, Doc, JPG (Max 5Mb)":"Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)",
-"Upload your CV":"Загрузите CV",
-"Send":"Отправить",
-"Data sent successfully! We will contact you shortly.":"  Данные успешно отправлены! Мы свяжемся с вами в ближайшее время.",
-"❌ An error occurred while sending data. Please try again.":"  ❌ Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.",
-"Filters":"Фильтры",
-"Direction:":"Направление:",
-"All directions":"Все направления",
-"City:":"Город:",
-"All cities":"Все города",
-"Total":"Всего",
-"vacancies":" вакансий",
-"Working hours":"Рабочее время",
-"Working days:":"Рабочие дни:",
-"from Monday to Friday":"с понедельника по пятницу",
-"from 08:00 to 17:00":"с 08:00 до 17:00",
-"Saturday: from 09:00 to 12:00":"Суббота: с 09:00 до 12:00",
-"Consumer loans":"Потребительские кредиты",
-"All":"Все",
-"Construction loan":"Кредит на строительство",
-"Submit an application":"Оформить заявку",
-
-"Get a loan":"Получить кредит",
-"Tariffs and conditions":"Тарифы и условия",
-"List of required documents":"Перечень необходимых документов",
-"Online loan application":"Онлайн заявка на кредит",
-"All calculations are preliminary and may differ from those actually received.":"Все расчеты являются предварительными и могут отличаться от фактически полученных.",
-"This field is required":"Это поле обязательно для заполнения",
-"If you do not have a permanent place of work, you can leave the field blank.":"Если у вас нет постоянного места работы, то можете оставить поле пустым.",
-
-"Online applications are accepted and reviewed on weekdays from 8:00 to 17:00.":"Онлайн заявки принимаются и рассматриваются в будние дни с 8:00 до 17:00.",
-"Apply for a card":"Оформить карту",
-"Frequently Asked Questions":"Часто задаваемые вопросы",
-"By clicking 'Get', you agree to":" Нажимая «Получить», вы соглашаетесь на",
-"processing of personal data":"обработку персональных данных",
-"Services":"Услуги",
-"Limits":"Лимиты",
-"Operations":"Операции",
-"Useful documents":"Полезные документы",
-"TJS account":"Счёт TJS",
-"RUB account":"Счёт RUB",
-"USD account":"Счёт USD",
-"Application for a card":"Заявка на карту",
-"Leave your contacts and we will definitely contact you":"Оставьте свои контакты, и мы обязательно с вами свяжемся",
-"Bank cards":"Банковские карты",
-
-    "More details":"Подробнее",
-    "Acquiring":"",
-"Read":"Читать",
-"Stay up to date with the latest news":"Будьте в курсе последних новостей",
-"Exchange rates":"Курсы валют",
-"Sale":"Продажа",
-
-"Purchase":"Покупка",
-"I have:":"Сумма к обмену",
-"I will receive:":"Сумма к получению",
-"Send money":"Отправить деньги",
-"View on map":"Посмотреть на карте",
-"We are closer than you think":"Мы ближе, чем вам кажется",
-"Currency converter":"Конвертер валют",
-"Current as of":"Актуально на",
-    "Simple and convenient registration, reliable and secure transfers":"Простая и удобная регистрация, надежные и безопасные переводы",
-    "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license":"© 2017 — 2024 ОАО 'Коммерцбанк Таджикистана', официальный сайт.",
-    "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.":" Лицензия Национального Банка Таджикистана на осуществление банковских операций, №0000085 от 10 октября 2017 года.",
-    "strach":"Страхование",
-  "vklad":"Вклады",
- 
-    "all": "Все",
-    "offices": "Офисы",
-    "atm": "Банкоматы",
-    "terminals": "Терминалы",
- 
-    "24h": "Круглосуточно",
-    "now": "Работает сейчас",
-
-    "qr": "QR-код",
-    "nfc": "NFC-бесконтактно"
+  "For private individuals": "Частным лицам",
+  "Business": "Бизнесу",
+  "Mobile banking": "Мобильный банкинг",
+  "Vacancies": "Вакансии",
+  "More": "Еще",
+  "Credit cards": "Кредитные карты",
+  "Debit cards": "Дебетовые карты",
+  "Overdraft": "Овердрафт",
+  "Car loan": "Автокредит",
+  "Deposits": "Вклады",
+  "About the bank": "О банке",
+  "News": "Новости",
+  "Offices and ATMs": "Офисы и банкоматы",
+  "Questions and answers": "Вопросы и ответы",
+  "Contact the bank": "Связаться с банком",
+  "Tenders": "Тендеры",
+  "Money transfers around the world": "Денежные переводы по всему миру",
+  "Login": "Войти",
+  "Mortgage": "Ипотека",
+  "Cards": "Карты",
+  "Loans": "Кредиты",
+  "Transfers": "Переводы",
+  "Credit": "Кредит",
+  "Contribution": "Вклад",
+  "Buying a car": "Покупка авто",
+  "Calculate your loan": "Рассчитайте свой кредит",
+  "Loan amount": "Сумма кредита",
+  "Monthly payment": "Ежемесячный платёж",
+  "Our offer": "Наше предложение",
+  "Payments cards": "Платежные карты",
+  "Interest rate": "Процентная ставка",
+  "Apply for a loan": "Оформить кредит",
+  "Loan term": "Срок кредита",
+  "Preliminary calculation. Not a public offer": "Предварительный расчет. Не является публичной офертой",
+  "Favri mobile application": "Мобильное приложение Favri",
+  "Check your balance, pay for services, get help in chat 24/7": "Проверяйте баланс, оплачивайте услуги, получайте помощь в чате 24/7",
+  "Choose the best": "Выбирайте лучшее",
+  "Join the team Commerzbank": "Присоединяйтесь к команде Коммерцбанка Таджикистана и воплощайте идеи в жизнь.",
+  "Support": "Поддержка",
+  "We will resolve": "Любой вопрос решим по телефону или в чате",
+  "Currency rates": "Курсы валют",
+  "Currency": "Валюта",
+  "Accounting course": "Учетный курс",
+  "Collapse": "Свернуть",
+  "Show more": "Показать еще",
+  "Buy": "Купить",
+  "Sell": "Продать",
+  "It's great to work here, and here's why": "У нас классно работать, и вот почему",
+  "Our cozy offices": "Наши уютные офисы",
+  "View vacancies": "Смотреть вакансии",
+  "Apply for a vacancy": "Откликнуться на вакансию",
+  "Education and qualifications:": "Образование и квалификация:",
+  "Experience:": "Опыт работы:",
+  "Skills and knowledge:": "Навыки и знания:",
+  "Personal qualities:": "Личные качества:",
+  "Conditions:": "Условия:",
+  "Tell us about yourself and we will definitely contact you": "Расскажите нам о себе, и мы обязательно свяжемся с вами",
+  "Drag or": "Перетащите или",
+  "Supported formats: PDF, Doc, JPG (Max 5Mb)": "Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)",
+  "Upload your CV": "Загрузите CV",
+  "Send": "Отправить",
+  "Data sent successfully! We will contact you shortly.": "Данные успешно отправлены! Мы свяжемся с вами в ближайшее время.",
+  "❌ An error occurred while sending data. Please try again.": "❌ Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.",
+  "Filters": "Фильтры",
+  "Direction:": "Направление:",
+  "All directions": "Все направления",
+  "City:": "Город:",
+  "All cities": "Все города",
+  "Total": "Всего",
+  "vacancies": " вакансий",
+  "Working hours": "Рабочее время",
+  "Working days:": "Рабочие дни:",
+  "from Monday to Friday": "с понедельника по пятницу",
+  "from 08:00 to 17:00": "с 08:00 до 17:00",
+  "Saturday: from 09:00 to 12:00": "Суббота: с 09:00 до 12:00",
+  "Consumer loans": "Потребительские кредиты",
+  "All": "Все",
+  "Construction loan": "Кредит на строительство",
+  "Submit an application": "Оформить заявку",
+  "Get a loan": "Получить кредит",
+  "Tariffs and conditions": "Тарифы и условия",
+  "List of required documents": "Перечень необходимых документов",
+  "Online loan application": "Онлайн заявка на кредит",
+  "All calculations are preliminary and may differ from those actually received.": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
+  "This field is required": "Это поле обязательно для заполнения",
+  "If you do not have a permanent place of work, you can leave the field blank.": "Если у вас нет постоянного места работы, то можете оставить поле пустым.",
+  "Online applications are accepted and reviewed on weekdays from 8:00 to 17:00.": "Онлайн заявки принимаются и рассматриваются в будние дни с 8:00 до 17:00.",
+  "Apply for a card": "Оформить карту",
+  "Frequently Asked Questions": "Часто задаваемые вопросы",
+  "By clicking 'Get', you agree to": "Нажимая «Получить», вы соглашаетесь на",
+  "processing of personal data": "обработку персональных данных",
+  "Services": "Услуги",
+  "Limits": "Лимиты",
+  "Operations": "Операции",
+  "Useful documents": "Полезные документы",
+  "TJS account": "Счёт TJS",
+  "RUB account": "Счёт RUB",
+  "USD account": "Счёт USD",
+  "Application for a card": "Заявка на карту",
+  "Leave your contacts and we will definitely contact you": "Оставьте свои контакты, и мы обязательно с вами свяжемся",
+  "Bank cards": "Банковские карты",
+  "More details": "Подробнее",
+  "Acquiring": "",
+  "Read": "Читать",
+  "Stay up to date with the latest news": "Будьте в курсе последних новостей",
+  "Exchange rates": "Курсы валют",
+  "Sale": "Продажа",
+  "Purchase": "Покупка",
+  "I have:": "Сумма к обмену",
+  "I will receive:": "Сумма к получению",
+  "Send money": "Отправить деньги",
+  "View on map": "Посмотреть на карте",
+  "We are closer than you think": "Мы ближе, чем вам кажется",
+  "Currency converter": "Конвертер валют",
+  "Current as of": "Актуально на",
+  "Simple and convenient registration, reliable and secure transfers": "Простая и удобная регистрация, надежные и безопасные переводы",
+  "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license": "© 2017 — 2024 ОАО 'Коммерцбанк Таджикистана', официальный сайт.",
+  "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.": "Лицензия Национального Банка Таджикистана на осуществление банковских операций, №0000085 от 10 октября 2017 года.",
+  "strach": "Страхование",
+  "vklad": "Вклады",
+  "all": "Все",
+  "offices": "Офисы",
+  "atm": "Банкоматы",
+  "terminals": "Терминалы",
+  "24h": "Круглосуточно",
+  "now": "Работает сейчас",
+  "qr": "QR-код",
+  "nfc": "NFC-бесконтактно",
+  "vacancies": {
+    "title": "Вакансии",
+    "filters": {
+      "title": "Фильтры",
+      "directionLabel": "Направление:",
+      "allDirections": "Все направления",
+      "cityLabel": "Город:",
+      "allCities": "Все города"
+    },
+    "list": {
+      "total": "Всего",
+      "vacanciesLabel": "вакансий",
+      "locationIconAlt": "Иконка местоположения",
+      "arrowIconAlt": "Иконка стрелки"
+    },
+    "promoCard": {
+      "imageAlt": "Карта Visa Gold"
+    },
+    "whyWorkHere": {
+      "title": "У нас классно работать, и вот почему"
+    },
+    "ourOffices": {
+      "title": "Наши уютные офисы",
+      "imageAlt": "Фотография офиса"
+    }
+  },
+  "alt": {
+    "location": "Иконка местоположения",
+    "calendar": "Иконка календаря",
+    "pdfIcon": "Иконка PDF",
+    "fileIcon": "Иконка файла",
+    "officeIcon": "Иконка офиса",
+    "atmIcon": "Иконка банкомата",
+    "terminalIcon": "Иконка терминала",
+    "telegram": "Иконка Телеграм",
+    "whatsapp": "Иконка WhatsApp",
+    "instagram": "Иконка Instagram",
+    "facebook": "Иконка Facebook",
+    "arrowForward": "Иконка-стрелка вперед",
+    "phoneIcon": "Иконка телефона",
+    "mapPointIcon": "Иконка точки на карте",
+    "globalIcon": "Иконка выбора языка",
+    "arrowDown": "Иконка-стрелка вниз",
+    "tickIcon": "Иконка выбранного пункта",
+    "mainLogo": "Главный логотип банка",
+    "loginIcon": "Иконка входа",
+    "mapIllustration": "Иллюстрация карты и местоположения",
+    "vacanciesIllustration": "Иллюстрация для раздела вакансий",
+    "supportIllustration": "Иллюстрация для раздела поддержки",
+    "mainLogoBlack": "Логотип банка (черный)",
+    "youtube": "Иконка YouTube",
+    "googlePlay": "Перейти в Google Play",
+    "appStore": "Перейти в App Store",
+    "favriAppMockup": "Макет приложения Favri",
+    "previousSlide": "Предыдущий слайд",
+    "nextSlide": "Следующий слайд",
+    "infoIcon": "Иконка информации",
+    "bookIcon": "Иконка книги",
+    "missionIcon": "Иконка миссии",
+    "goalIcon": "Иконка цели",
+    "visionIcon": "Иконка видения",
+    "historyImage1": "Историческое фото здания банка",
+    "historyImage2": "Фото операционного зала банка",
+    "historyImage3": "Фото современного офиса банка"
+  },
+  "vacancyDetails": {
+    "sections": {
+      "education": "Образование и квалификация:",
+      "experience": "Опыт работы:",
+      "skills": "Навыки и знания:",
+      "qualities": "Личные качества:",
+      "conditions": "Условия:"
+    },
+    "form": {
+      "title": "Откликнуться на вакансию",
+      "subtitle": "Расскажите нам о себе, и мы обязательно свяжемся с вами",
+      "lastName": "Фамилия",
+      "firstName": "Имя",
+      "phone": "Телефон",
+      "email": "Email",
+      "dragOr": "Перетащите или",
+      "supportedFormats": "Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)"
+    }
+  },
+  "buttons": {
+    "applyForVacancy": "Откликнуться на вакансию",
+    "uploadCV": "Загрузите CV",
+    "send": "Отправить",
+    "viewVacancies": "Смотреть вакансии",
+    "allTariffs": "Все тарифы",
+    "viewOnMap": "Посмотреть на карте",
+    "moreDetails": "Подробнее",
+    "openDeposit": "Открыть вклад",
+    "copyLink": "Копировать ссылку",
+    "linkCopied": "Ссылка скопирована!",
+    "applyForCard": "Оформить карту",
+    "applyForDeposit": "Оставить заявку на вклад",
+    "showMore": "Показать еще",
+    "collapse": "Свернуть",
+    "buy": "Купить",
+    "sell": "Продать",
+    "sendMoney": "Отправить деньги",
+    "getLoan": "Получить кредит",
+    "applyForLoan": "Оформить кредит"
+  },
+  "notifications": {
+    "submitSuccess": "Данные успешно отправлены! Мы свяжемся с вами в ближайшее время.",
+    "submitError": "❌ Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз."
+  },
+  "transfers": {
+    "details": {
+      "conditionsTitle": "Условия",
+      "swiftInfo": "Чтобы получать или отправлять деньги по SWIFT, нужно открыть расчётный счёт. Это бесплатно",
+      "viewAllTariffsText": "Посмотреть все тарифы",
+      "documentsAndTariffsTitle": "Документы и тарифы",
+      "moreInfoOnSite": "Подробная информация на сайте:"
+    },
+    "pageTitle": "Денежные переводы"
+  },
+  "common": {
+    "officesAndAtms": "Офисы и банкоматы",
+    "toggleMenu": "Переключить навигационное меню",
+    "tariffsAndConditions": "Тарифы и условия",
+    "fieldIsRequired": "Это поле обязательно для заполнения",
+    "faqTitle": "Часто задаваемые вопросы",
+    "consent": {
+      "prefix": "Нажимая «Получить», вы соглашаетесь на",
+      "linkText": "обработку персональных данных"
+    },
+    "pagination": {
+      "firstPage": "Перейти на первую страницу",
+      "previousPage": "Перейти на предыдущую страницу",
+      "nextPage": "Перейти на следующую страницу",
+      "lastPage": "Перейти на последнюю страницу"
+    }
+  },
+  "map": {
+    "tagline": "Мы ближе, чем вам кажется",
+    "filters": {
+      "typesTitle": "Типы объектов"
+    },
+    "card": {
+      "workingHours": "Время работы",
+      "workingHours24": "24 часа"
+    },
+    "noDataMessage": "Нет данных для отображения."
+  },
+  "tenderDetails": {
+    "documentationLink": "Тендерная документация",
+    "meta": {
+      "startDate": "Дата начало конкурса",
+      "endDate": "Дата завершения конкурса",
+      "responsiblePerson": "Ответственное лицо",
+      "phoneNumber": "Номер телефона",
+      "emailAddress": "Адрес электронной почты",
+      "statusLabel": "Статус"
+    },
+    "status": {
+      "open": "Открытый",
+      "closed": "Завершенный"
+    }
+  },
+  "tendersList": {
+    "title": "Тендеры",
+    "description": "Актуальные Информация о проводимых тендерах",
+    "table": {
+      "headerTender": "Тендер",
+      "headerStartDate": "Дата начала",
+      "headerEndDate": "Дата завершения",
+      "headerStatus": "Статус",
+      "noData": "Нет данных для отображения"
+    }
+  },
+  "depositDetails": {
+    "advantagesTitle": "Преимущества",
+    "conditionsTitle": "Условия",
+    "calculator": {
+      "title": "Рассчитайте свой вклад",
+      "amountLabel": "Сумма вклада",
+      "termLabel": "Срок вклада",
+      "disclaimer": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
+      "results": {
+        "title": "Наше предложение",
+        "productLabel": "Депозитный продукт",
+        "productExample": "Срочный депозит",
+        "interestRateLabel": "Процентная ставка",
+        "incomeLabel": "Доход по вкладу",
+        "finalAmountLabel": "Сумма в конце срока"
+      }
+    },
+    "applicationForm": {
+      "title": "Оставьте заявку",
+      "subtitle": "Мы свяжемся с вами в ближайшее время.",
+      "phonePlaceholder": "Мобильный телефон",
+      "namePlaceholder": "ФИО",
+      "officePlaceholder": "Выберите офис"
+    }
+  },
+  "rko": {
+    "pageTitle": "Расчетно-кассовое обслуживание",
+    "pageDescription": "Надежные банковские операции для вашего бизнеса — быстро, удобно, безопасно."
+  },
+  "reporting": {
+    "pageTitle": "Отчетность",
+    "filter": {
+      "currentYear": "Текущий год"
+    },
+    "stats": {
+      "deviationLabel": "Отклонение (+, -)"
+    },
+    "documents": {
+      "noData": "Нет доступных документов."
+    }
+  },
+  "newsDetails": {
+    "shareTitle": "Поделиться"
+  },
+  "news": {
+    "sectionTitle": "Новости"
+  },
+  "links": {
+    "allNews": "Все новости"
+  },
+  "newsPage": {
+    "title": "Новости",
+    "subtitle": "Будьте в курсе последних новостей",
+    "noNewsMessage": "На данный момент новостей нет. Загляните позже."
+  },
+  "merchantsPage": {
+    "title": "Партнеры и скидки",
+    "subtitle": "Найдите предложения и кэшбеки от наших партнеров",
+    "filters": {
+      "title": "Фильтры",
+      "searchPlaceholder": "Поиск по названию...",
+      "allRegions": "Все регионы",
+      "allCategories": "Все категории",
+      "cashbacks": "Кэшбеки"
+    }
+  },
+  "mapPage": {
+    "title": "Офисы, банкоматы и терминалы",
+    "tabs": {
+      "onMap": "На карте",
+      "asList": "Списком"
+    },
+    "filters": {
+      "mainButtonLabel": "Фильтр",
+      "objectTypes": "Типы объектов",
+      "availability": "Доступность",
+      "additional": "Дополнительно",
+      "regionPlaceholder": "Город"
+    },
+    "infoWindow": {
+      "terminalLabel": "Терминал",
+      "atmLabel": "Банкомат",
+      "officeLabel": "Офис",
+      "addressLabel": "Адрес"
+    }
+  },
+  "header": {
+    "top": {
+      "officesAndAtms": "Офисы и банкоматы"
+    },
+    "nav": {
+      "loginButton": "Войти"
+    }
+  },
+  "home": {
+    "tagline": "Выбирайте лучшее",
+    "joinTeam": {
+      "subtitle": "Присоединяйтесь к команде Коммерцбанка"
+    },
+    "support": {
+      "title": "Поддержка",
+      "subtitle": "Любой вопрос решим"
+    }
+  },
+  "footer": {
+    "contacts": {
+      "forIndividuals": "Частным лицам"
+    },
+    "nav": {
+      "creditCards": "Кредитные карты",
+      "debitCards": "Дебетовые карты",
+      "scsRko": "РКО",
+      "merchants": "Партнеры",
+      "aboutBank": "О банке",
+      "vacancies": "Вакансии",
+      "officesAndAtms": "Офисы и банкоматы",
+      "contacts": "Контакты",
+      "bankDetails": "Реквизиты",
+      "financialReporting": "Финансовая отчетность",
+      "tenders": "Тендеры",
+      "news": "Новости"
+    },
+    "workingHours": {
+      "title": "Рабочее время",
+      "daysLabel": "Рабочие дни:",
+      "weekdays": "с понедельника по пятницу",
+      "weekdaysTime": "с 08:00 до 17:00",
+      "saturday": "Суббота: с 09:00 до 12:00"
+    },
+    "copyright": {
+      "main": "© 2017 - 2024 ОАО 'Коммерцбанк Таджикистана', официальный сайт.",
+      "license": "Лицензия Национального Банка Таджикистана на осуществление банковских операций, №0000085 от 10 октября 2017 года."
+    }
+  },
+  "favriApp": {
+    "title": "Мобильное приложение Favri",
+    "subtitle": "Проверяйте баланс, оплачивайте услуги, получайте помощь в чате 24/7"
+  },
+  "deposits": {
+    "pageTitle": "Депозиты"
+  },
+  "currencyConverter": {
+    "rateModes": {
+      "cash": "Наличный",
+      "nonCash": "Безналичный",
+      "cbRate": "Курс НБТ"
+    },
+    "ratesTable": {
+      "title": "Курсы валют",
+      "headers": {
+        "currency": "Валюта",
+        "accounting": "Учетный курс",
+        "purchase": "Покупка",
+        "sale": "Продажа"
+      },
+      "updatedLabel": "Актуально на"
+    },
+    "converter": {
+      "haveLabel": "У меня есть:",
+      "receiveLabel": "Я получу:"
+    }
+  },
+  "creditsPage": {
+    "title": "Кредиты",
+    "filters": {
+      "all": "Все",
+      "credit": "Потребительские кредиты",
+      "autoLoan": "Автокредит",
+      "constructionLoan": "Кредит на строительство"
+    },
+    "card": {
+      "applyButton": "Оформить заявку",
+      "detailsButton": "Подробнее"
+    }
+  },
+  "creditDetails": {
+    "sections": {
+      "tariffsAndConditions": "Тарифы и условия",
+      "requiredDocuments": "Перечень необходимых документов",
+      "onlineApplication": "Онлайн заявка на кредит"
+    },
+    "applicationForm": {
+      "amountLabel": "Сумма кредита",
+      "termLabel": "Срок кредита",
+      "preliminaryCalcDisclaimer": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
+      "noWorkplaceDisclaimer": "Если у вас нет постоянного места работы, то можете оставить поле пустым.",
+      "fullNamePlaceholder": "Полное имя",
+      "phonePlaceholder": "Мобильный телефон",
+      "purposePlaceholder": "Цель кредита",
+      "workplacePlaceholder": "Место работы и адрес",
+      "officePlaceholder": "Выберите офис"
+    },
+    "results": {
+      "monthlyPaymentLabel": "Ежемесячный платёж",
+      "interestRateLabel": "Процентная ставка",
+      "onlineApplicationInfo": "Онлайн заявки принимаются и рассматриваются в будние дни с 8:00 до 17:00."
+    }
+  },
+  "contactsPage": {
+    "title": "Контакты",
+    "subtitle": "Свяжитесь с нами — мы всегда на связи и готовы помочь.",
+    "infoWindow": {
+      "phoneLabel": "Телефон"
+    }
+  },
+  "aboutUs": {
+    "mainTitle": "ОАО «Коммерцбанк Таджикистана» — один из самых надежных и динамично развивающихся банков страны",
+    "cards": {
+      "mission": {
+        "title": "Наша миссия",
+        "text": "Мы обеспечиваем надежные, доступные и современные финансовые решения..."
+      },
+      "goal": {
+        "title": "Наша цель",
+        "text": "Наша цель — быть надежным партнером для каждого, кто стремится к финансовой стабильности..."
+      },
+      "vision": {
+        "title": "Наше видение",
+        "text": "Быть драйвером финансовых инноваций и надежным партнером для клиентов..."
+      }
+    },
+    "history": {
+      "title": "Наша история",
+      "p1": "Становление и развитие Открытого акционерного общества «Коммерцбанк Таджикистана», как универсальной кредитной организации, происходило в условиях многолетней деятельности в конкурентной среде на отечественном рынке банковских услуг.",
+      "p2": "Начало было положено в 2006 году, когда было образовано Общество с ограниченной ответственностью «Музаффарият», организовавшего банковскую деятельность в форме микрозаёмной организации на основании лицензии Национального банка Таджикистана за номером №001-2519 «А».",
+      "p3": "В мае 2016 года обновлённая команда ООО МДО «Музаффарият» провела ребрендинг, переименовав кредитную организацию в ООО МДО «Фардо». Месяцем спустя была обновлена лицензия Национального банка Таджикистана для осуществления банковских операций за номером БМТ №0000062.",
+      "p4": "В октябре 2017 года кредитная организация, функционирующая в форме общества с ограниченной ответственностью, преобразовалась в акционерное общество, пополнив за счет акционеров (нового акционера) уставный капитал до уровня, позволяющего продолжить деятельность уже в статуте банка. МДО «Фардо» было преобразовано в ОАО «Коммерцбанк Таджикистана», которому со стороны Национального банка Таджикистана была предоставлена лицензия за номером БМТ №0000085.",
+      "p5": "Реализуемая стратегия развития Банка на ближайшую перспективу направлена на расширение сферы применения системы безналичных платежей, совершенствование технологической платформы и внедрение инновационных продуктов. К примеру, технологическая платформа «ФАВРИ» позволяет физическим и юридическим лицам пользоваться широким спектром банковских услуг дистанционно. Став участниками электронной коммерции, они получили возможность производить оплату за приобретаемые товары и услуги посредством QR-кода, а также осуществлять вне офиса Банка множество других операций.",
+      "p6": "Новым и инновационным продуктом стало мобильное приложение «Фаври интикол», которое к настоящему времени не имеет аналога на финансовом рынке Таджикистана. Оно, являясь унифицированным дополнением к приложению «Сбербанк онлайн», не имеет ограничений по пользователям: держатели любых карт, выпущенных российскими банками, могут совершать по нему мгновенные денежные переводы в Республику Таджикистан. Разработка инновационного технологического решения стала возможной благодаря двустороннему проекту «Один шлюз – вся Россия», позволившему мобильному банкингу стать еще более функциональным, универсальным и удобным. Его уникальная новизна заключается в том, что им могут воспользоваться пользователи любых карт российской национальной платежной системы, а также международных платежных систем.",
+      "p7": "С первых дней своего образования на рынке кредитных организаций, банк стремится предоставлять качественные и доступные финансовые услуги населению, поддерживая тем самым развитие малого и среднего бизнеса в регионах страны.",
+      "p8": "Коммерцбанк как социально-активный банк на сегодняшний день шагает в ногу с инновационными технологиями, применяя во взаимоотношениях с клиентами стандартизированные процедуры доступа к микрофинансированию, что позволяет минимизировать возможные кредитные риски.",
+      "p9": "На сегодняшний день на территории страны функционируют 63 Центров банковского обслуживания и 11 филиалов. В будущем планируется открытие новых Центров банковского обслуживания и филиалов, что сделает Банк еще более доступным на региональном уровне."
+    }
+  },
+  "cardsPage": {
+    "title": "Банковские карты"
+  },
+  "cardDetails": {
+    "tabs": {
+      "services": "Услуги",
+      "limits": "Лимиты",
+      "operations": "Операции",
+      "documents": "Полезные документы"
+    },
+    "accounts": {
+      "tjs": "Счёт TJS",
+      "rub": "Счёт RUB",
+      "usd": "Счёт USD"
+    },
+    "applicationForm": {
+      "title": "Заявка на карту",
+      "subtitle": "Оставьте свои контакты, и мы обязательно с вами свяжемся",
+      "phonePlaceholder": "Мобильный телефон",
+      "namePlaceholder": "ФИО",
+      "officePlaceholder": "Выберите офис"
+    }
+  },
+  "calculator": {
+    "tabs": {
+      "credit": "Кредит",
+      "deposit": "Вклад",
+      "carPurchase": "Покупка авто"
+    },
+    "common": {
+      "disclaimer": "Предварительный расчет. Не является публичной офертой",
+      "ourOffer": "Наше предложение",
+      "interestRateLabel": "Процентная ставка"
+    },
+    "credit": {
+      "title": "Рассчитайте свой кредит",
+      "loanAmountLabel": "Сумма кредита",
+      "loanTermLabel": "Срок кредита",
+      "productLabel": "Кредитный продукт",
+      "productName": "Потребительский кредит",
+      "monthlyPaymentLabel": "Ежемесячный платёж",
+      "applyButton": "Оформить кредит"
+    },
+    "deposit": {
+      "title": "Рассчитайте свой вклад",
+      "depositAmountLabel": "Сумма вклада",
+      "depositTermLabel": "Срок вклада",
+      "productLabel": "Депозитный продукт",
+      "productName": "Срочный депозит",
+      "incomeLabel": "Доход по вкладу",
+      "finalAmountLabel": "Сумма в конце срока",
+      "applyButton": "Оставить заявку на вклад"
+    }
+  },
+  "currency": {
+    "somoni": "с."
+  },
+  "bankDetails": {
+    "pageTitle": "Реквизиты",
+    "pageSubtitle": "Банковские реквизиты для финансовых операций",
+    "labels": {
+      "bankName": "Наименование банка",
+      "legalAddress": "Юридический адрес",
+      "inn": "ИНН",
+      "kpp": "КПП",
+      "corrAccount": "Корр. счёт",
+      "bik": "БИК",
+      "swift": "SWIFT"
+    }
   }
+}
   

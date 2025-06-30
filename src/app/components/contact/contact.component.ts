@@ -6,11 +6,12 @@ import { GoogleMapsModule } from '@angular/google-maps'; // Убедись, чт
 import { ContactService } from '../../api/contact.service';
 import { ContactBlock } from '../../models/contact.model';
 import { environment } from '../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, GoogleMapsModule],
+  imports: [CommonModule, GoogleMapsModule, TranslateModule],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
@@ -33,7 +34,7 @@ export class ContactComponent implements OnInit {
       options: {
         // Опции для кастомной иконки
         icon: {
-          url: 'assets/icons/map-pin.svg', // ЗАМЕНИ НА ПУТЬ К ТВОЕЙ ИКОНКЕ
+          url: '../../../assets/icons/Map Point.svg', // ЗАМЕНИ НА ПУТЬ К ТВОЕЙ ИКОНКЕ
           scaledSize: new google.maps.Size(50, 50)
         }
       }

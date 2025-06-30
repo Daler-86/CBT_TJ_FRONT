@@ -1,188 +1,116 @@
 <div class="barakat">
+  <!-- Блок 1: Промо -->
   <div class="card-container">
     <div class="card-info">
       <h2 class="card-title">{{ creditData.title }}</h2>
-      <p class="card-description">
-        {{ creditData.description }}
-      </p>
-
+      <p class="card-description">{{ creditData.description }}</p>
       <div class="card-buttons">
-        <button class="btn-primary">{{ "Get a loan"|translate }}</button>
+        <button class="btn-primary">{{ 'buttons.getLoan' | translate }}</button>
       </div>
     </div>
     <div class="card-image">
-      <img class="card" [src]="imageUrl +creditData.upload_file " [alt]="creditData.title"/>
-
+      <img class="card" [src]="imageUrl +creditData.upload_file" [alt]="creditData.title"/>
     </div>
   </div>
 
-
+  <!-- Блок 2: Тарифы и условия -->
   <div class="container">
-    <h1>{{ "Tariffs and conditions"|translate }}</h1>
+    <h1>{{ 'creditDetails.sections.tariffsAndConditions' | translate }}</h1>
     <div class="content">
       <div class="info-container">
-
         <div class="info-box-limits" *ngFor="let tariff of tariffs">
-          <div class="info-title-1">
-            {{ tariff.name }}
-          </div>
+          <div class="info-title-1">{{ tariff.name }}</div>
           <div class="info-title" *ngFor="let item of tariff.items">
             {{ item.title }}
             <div class="info-detail">{{ item.description }}</div>
           </div>
         </div>
-
       </div>
     </div>
-
-
   </div>
 
+  <!-- Блок 3: Список документов -->
   <div class="container-2">
-    <h1>{{ "List of required documents"|translate }}</h1>
+    <h1>{{ 'creditDetails.sections.requiredDocuments' | translate }}</h1>
     <div class="box">
       <div class="box-details" *ngFor="let document of documents">
-        <img [src]="imageUrl + document.upload_file" alt="">
+        <!-- ВАЖНО: Добавлен динамический alt-текст -->
+        <img [src]="imageUrl + document.upload_file" [alt]="document.name">
         <p>{{ document.name }}</p>
       </div>
     </div>
-
-
   </div>
+
+  <!-- Блок 4: Онлайн-заявка и калькулятор -->
   <div class="container-3">
-    <h1>{{ "Online loan application"|translate }}</h1>
+    <h1>{{ 'creditDetails.sections.onlineApplication' | translate }}</h1>
     <div class="calculator">
-
-
       <div class="calculator-content">
         <div class="calculator-form">
-
-
-          <label for="loanAmount">{{ "Loan amount" | translate }}</label>
-
-          <!-- Поле ввода суммы кредита -->
+          <label for="loanAmount">{{ 'creditDetails.applicationForm.amountLabel' | translate }}</label>
           <div class="input-slider-container">
-            <input type="text" [ngModel]="formattedLoanAmount" (ngModelChange)="onLoanAmountChange($event)"
-                   class="loan-input"/>
-
-            <!-- Слайдер суммы кредита -->
-            <input class="range loan-slider" type="range" id="loanAmountRange" min="10000" max="200000" step="50"
-                   [(ngModel)]="loanAmount" (input)="updateFormattedLoanAmount()">
+            <input type="text" [ngModel]="formattedLoanAmount" (ngModelChange)="onLoanAmountChange($event)" class="loan-input"/>
+            <input class="range loan-slider" type="range" id="loanAmountRange" min="10000" max="200000" step="50" [(ngModel)]="loanAmount" (input)="updateFormattedLoanAmount()">
           </div>
-
-          <!-- Метки слайдера -->
-          <div class="range-labels">
-            <span *ngFor="let value of rangeValues">{{ value }}</span>
-          </div>
-
-          <label>{{ "Loan term" | translate }}</label>
+          <div class="range-labels"><span *ngFor="let value of rangeValues">{{ value }}</span></div>
+          
+          <label>{{ 'creditDetails.applicationForm.termLabel' | translate }}</label>
           <div class="loan-terms">
-            <button *ngFor="let term of loanTerms" (click)="selectTerm(term)"
-                    [class.active]="selectedTerm === term">{{ term }}
-            </button>
+            <button *ngFor="let term of loanTerms" (click)="selectTerm(term)" [class.active]="selectedTerm === term">{{ term }}</button>
           </div>
+          
+          <p>{{ 'creditDetails.applicationForm.preliminaryCalcDisclaimer' | translate }}</p>
 
-          <p>{{ "All calculations are preliminary and may differ from those actually received."|translate }}</p>
           <div class="application-form-container">
             <form class="form" (ngSubmit)="submitApplication()">
+              <!-- Имя -->
               <div class="form-group">
-                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
-                  {{ "This field is required"|translate }}
-                </div>
-                <input
-                  type="text"
-                  id="phone"
-                  placeholder="Полное имя *"
-                  class="form-control"
-                  required
-                  [(ngModel)]="model.client_name"
-                  name="phone"
-                  #phone="ngModel">
-
+                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">{{ 'common.fieldIsRequired' | translate }}</div>
+                <input type="text" id="fullName" [placeholder]="('creditDetails.applicationForm.fullNamePlaceholder' | translate) + ' *'" class="form-control" required [(ngModel)]="model.client_name" name="fullName" #phone="ngModel">
               </div>
+              <!-- Телефон -->
               <div class="form-group">
-                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-                  {{ "This field is required"|translate }}
-                </div>
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Мобильный телефон *"
-                  class="form-control"
-                  required
-                  [(ngModel)]="model.phone"
-                  name="name"
-                  #name="ngModel">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">{{ 'common.fieldIsRequired' | translate }}</div>
+                <input type="text" id="phone" [placeholder]="('creditDetails.applicationForm.phonePlaceholder' | translate) + ' *'" class="form-control" required [(ngModel)]="model.phone" name="phone" #name="ngModel">
               </div>
+              <!-- Цель кредита -->
               <div class="form-group">
-                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-                  {{ "This field is required"|translate }}
-                </div>
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Цель кредита *"
-                  class="form-control"
-                  required
-                  [(ngModel)]="model.purpose"
-                  name="name"
-                  #name="ngModel">
+                <input type="text" id="purpose" [placeholder]="('creditDetails.applicationForm.purposePlaceholder' | translate) + ' *'" class="form-control" required [(ngModel)]="model.purpose" name="purpose">
               </div>
+              <!-- Выбор офиса -->
               <div class="custom-dropdown">
-                <div class="dropdown-selected ">
-                  <div class="form-group">
-                    <div class="dropdown-selected form-control" (click)="toggleDropdown($event)">
-                      {{ officeName }}
-                    </div>
-                  </div>
-                </div>
-                <div class="dropdown-options" *ngIf="dropdownOpen">
-                  <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption($event, item)">
-                    <p>{{ item.name }}</p>
-                  </div>
-                </div>
+                <div class="dropdown-selected"><div class="form-group"><div class="dropdown-selected form-control" (click)="toggleDropdown($event)">{{ officeName }}</div></div></div>
+                <div class="dropdown-options" *ngIf="dropdownOpen"><div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption($event, item)"><p>{{ item.name }}</p></div></div>
               </div>
+              <!-- Место работы -->
               <div class="form-group">
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Место работы и адрес"
-                  class="form-control"
-                  required
-                  [(ngModel)]="model.address"
-                  name="name"
-                  #name="ngModel">
+                <input type="text" id="workplace" [placeholder]="'creditDetails.applicationForm.workplacePlaceholder' | translate" class="form-control" [(ngModel)]="model.address" name="workplace">
               </div>
-              <p>{{ "If you do not have a permanent place of work, you can leave the field blank."|translate }}</p>
-              <button type="submit" class="btn-primary">{{ "Send"|translate }}</button>
+
+              <p>{{ 'creditDetails.applicationForm.noWorkplaceDisclaimer' | translate }}</p>
+              <button type="submit" class="btn-primary">{{ 'buttons.send' | translate }}</button>
             </form>
           </div>
-
         </div>
-
-
+        
+        <!-- Результаты -->
         <div class="result">
           <div class="calculator-result">
-            <p> {{ "Monthly payment"|translate }}</p>
-            <h3>{{ calculateMonthlyPayment() }}с.</h3>
-            <p>{{ "Interest rate"|translate }}</p>
+            <p>{{ 'creditDetails.results.monthlyPaymentLabel' | translate }}</p>
+            <h3>{{ calculateMonthlyPayment() }} {{ 'currency.somoni' | translate }}</h3>
+            <p>{{ 'creditDetails.results.interestRateLabel' | translate }}</p>
             <h3>{{ interestRate }}%</h3>
-            <button (click)="applyForLoan()">{{ "Apply for a loan"|translate }}</button>
+            <button (click)="applyForLoan()">{{ 'buttons.applyForLoan' | translate }}</button>
           </div>
           <div class="calculator-result">
             <div class="info">
-              <img src="../../../assets/icons/Info Circle.svg" alt="">
-              <h4>{{ "Online applications are accepted and reviewed on weekdays from 8:00 to 17:00."|translate }}</h4>
+              <img src="../../../assets/icons/Info Circle.svg" [alt]="'alt.infoIcon' | translate">
+              <h4>{{ 'creditDetails.results.onlineApplicationInfo' | translate }}</h4>
             </div>
           </div>
         </div>
-
-
       </div>
-      <!-- Добавьте контент для других вкладок (deposit и car) аналогичным образом -->
     </div>
-
   </div>
-
   <app-favri></app-favri>
 </div>

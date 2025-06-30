@@ -1,9 +1,8 @@
 <!-- report.component.html -->
-
 <div class="report" *ngIf="reportData">
   <div class="card-container">
     <div class="card-info">
-      <h2 class="card-title">Отчетность</h2>
+      <h2 class="card-title">{{ 'reporting.pageTitle' | translate }}</h2>
       <p class="card-description">{{ reportData.description }}</p>
     </div>
   </div>
@@ -11,18 +10,15 @@
   <div class="financial-dashboard">
     <div class="btnCards" *ngIf="availableYears.length > 0">
       
-      <!-- Проходим по всем доступным годам: [2025, 2024] -->
       <ng-container *ngFor="let year of availableYears">
         
-        <!-- ЕСЛИ ЭТО "ТЕКУЩИЙ" ГОД (например, 2025) -->
         <button *ngIf="year === currentApiYear"
                 class="button"
                 (click)="onYearChange(0)"
                 [class.active]="selectedYear === currentApiYear">
-          Текущий год
+          {{ 'reporting.filter.currentYear' | translate }}
         </button>
 
-        <!-- ЕСЛИ ЭТО ОБЫЧНЫЙ ГОД (например, 2024) -->
         <button *ngIf="year !== currentApiYear"
                 class="button"
                 (click)="onYearChange(year)"
@@ -33,7 +29,6 @@
 
     </div>
 
-    <!-- Карточки с данными (без изменений) -->
     <div class="stats-grid">
       <div class="stat-card" *ngFor="let card of reportData.report_indicator; trackBy: trackByCardId">
         <h3>{{ card.name }}</h3>
@@ -43,16 +38,16 @@
             <span class="data-value">{{ card.report_indicator_data[0].description }}</span>
           </div>
           <div class="data-point deviation" *ngIf="card.report_indicator_data.length > 1">
-            <span class="data-label">Отклонение (+, -)</span>
+            <span class="data-label">{{ 'reporting.stats.deviationLabel' | translate }}</span>
             <span class="data-value">{{ card.report_indicator_data[1].description }}</span>
           </div>
         </ng-container>
       </div>
     </div>
-    <!-- СЕКЦИЯ С ДОКУМЕНТАМИ И ПАГИНАЦИЕЙ -->
+    
     <div class="documents-section" *ngIf="reportFile.length > 0">
       <div class="document-card" *ngFor="let doc of reportFile; trackBy: trackByDocumentId">
-        <img src="../../../assets/icons/файл.png" alt="File" class="pdf-icon">
+        <img src="../../../assets/icons/файл.png" [alt]="'alt.fileIcon' | translate" class="pdf-icon">
         <a [href]="imageUrl+doc.upload_file" target="_blank" rel="noopener noreferrer" class="document-link">{{ doc.name }}</a>
       </div>
       
@@ -75,8 +70,8 @@
     </div>
     
     <!-- Сообщение, если документов нет -->
-    <div *ngIf="reportFile.length === 0">
-      Нет доступных документов.
+    <div *ngIf="reportFile.length === 0" class="no-data-message">
+      {{ 'reporting.documents.noData' | translate }}
     </div>
   
   </div>

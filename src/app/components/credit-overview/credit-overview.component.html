@@ -1,11 +1,10 @@
-
 <div class="credit">
-    <h1>{{"Consumer loans"|translate}}</h1>
+    <h1>{{'creditsPage.title' | translate}}</h1>
     <div class="btnCards">
-        <button (click)="selectTab('all')" [class.active]="selectedTab === 'all'">{{"All"|translate}}</button>
-        <button (click)="selectTab('credit')" [class.active]="selectedTab === 'credit'">{{"Credit"|translate}}</button>
-        <button (click)="selectTab('auto credit')" [class.active]="selectedTab === 'auto credit'">{{"Car loan"|translate}}</button>
-        <button (click)="selectTab('credit stroy')" [class.active]="selectedTab === 'credit stroy'">{{"Construction loan"|translate}}</button>
+        <button (click)="selectTab('all')" [class.active]="selectedTab === 'all'">{{'creditsPage.filters.all' | translate}}</button>
+        <button (click)="selectTab('credit')" [class.active]="selectedTab === 'credit'">{{'creditsPage.filters.credit' | translate}}</button>
+        <button (click)="selectTab('auto credit')" [class.active]="selectedTab === 'auto credit'">{{'creditsPage.filters.autoLoan' | translate}}</button>
+        <button (click)="selectTab('credit stroy')" [class.active]="selectedTab === 'credit stroy'">{{'creditsPage.filters.constructionLoan' | translate}}</button>
     </div>
     <div *ngIf="selectedTab==='all'" class="content">
 
@@ -24,9 +23,9 @@
                 </div>
               </div>
               <div class="card-buttons">
-                <button class="btn-primary">{{"Submit an application"|translate}}</button>
+                <button class="btn-primary">{{'creditsPage.card.applyButton' | translate}}</button>
                 <button class="btn-secondary"  (click)="onCreditClick(credit)" [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                  {{"More details"|translate}}
+                  {{'creditsPage.card.detailsButton' | translate}}
                 </button>
 
               </div>

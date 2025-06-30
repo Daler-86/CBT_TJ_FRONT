@@ -1,149 +1,76 @@
 <div class="calculator">
-    <div class="calculator-tabs">
-      <button (click)="selectTab('credit')" [class.active]="selectedTab === 'credit'">Кредит</button>
-      <button (click)="selectTab('deposit')" [class.active]="selectedTab === 'deposit'">Вклад</button>
-      <button (click)="selectTab('car')" [class.active]="selectedTab === 'car'">Покупка авто</button>
-    </div>
-  
-  
-    <div *ngIf="selectedTab === 'credit'" class="calculator-content"> 
-        <div class="calculator-form"> 
-            <h2>Рассчитайте свой кредит</h2>
-          
-            <!-- Loan Amount -->
-            <label for="loanAmount">Сумма желаемого кредита</label>
-            <div class="input-slider-container">
-                <input
-                  type="text"
-                  [ngModel]="formattedLoanAmount"
-                  (ngModelChange)="onLoanAmountChange($event)"
-                  class="loan-input"
-                />
-                <input
-                  class="range loan-slider"
-                  type="range"
-                  id="loanAmountRange"
-                  min="10000"
-                  max="200000"
-                  step="100"
-                  [(ngModel)]="loanAmount"
-                  (input)="updateFormattedLoanAmount(); updateSliderBackground('loanAmount')"
-                  [style.--range-percent]="loanAmountPercent"
-                />
-              </div>
-
-            <div class="range-labels">
-                <span *ngFor="let value of loanAmountLabels">{{ value }}</span>
-            </div>
-          
-            <!-- Loan Term -->
-            <label>Срок кредита</label>
-      
-              <div class="input-slider-container">
-                <input
-                  type="text"
-                  [ngModel]="formattedLoanTerm"
-                  class="loan-input"
-                  readonly
-                />
-                <input
-                  class="range loan-slider"
-                  type="range"
-                  min="12"
-                  max="48"
-                  step="6"
-                  [(ngModel)]="loanTerm"
-                  (input)="updateFormattedLoanTerm(); updateSliderBackground('loanTerm')"
-                  [style.--range-percent]="loanTermPercent"
-                />
-              </div>
-            <div class="range-labels">
-                <span *ngFor="let value of loanTermLabels">{{ value }}</span>
-            </div>
-          
-            <p>Все расчеты являются предварительными и могут отличаться от фактически полученных</p>
-          </div>
-          
-  
-      <!-- Offer Section -->
-      <div class="calculator-result">
-          <h2>Наше предложение</h2>
-          <p>Кредитный продукт</p>
-          <h3 class="loan-product">Баракат</h3>
-          <p>Ежемесячный платёж</p>
-          <h3>{{ calculateMonthlyPayment() }}с.</h3>
-          <p>Процентная ставка</p>
-          <h3>{{ interestRate }}%</h3>
-          <button (click)="applyForLoan()">Оставить заявку на кредит</button>
-      </div>
+  <div class="calculator-tabs">
+    <button (click)="selectTab('credit')" [class.active]="selectedTab === 'credit'">{{ 'calculator.tabs.credit' | translate }}</button>
+    <button (click)="selectTab('deposit')" [class.active]="selectedTab === 'deposit'">{{ 'calculator.tabs.deposit' | translate }}</button>
+    <button (click)="selectTab('car')" [class.active]="selectedTab === 'car'">{{ 'calculator.tabs.carPurchase' | translate }}</button>
   </div>
 
-  <div class="deposit-calculator"  *ngIf="selectedTab === 'deposit'" > 
-    <div class="calculator-form">
-        <h2>Рассчитайте свой вклад</h2>
-
-        <!-- Валютные вкладки -->
-        <div class="currency-tabs">
-            <button *ngFor="let currency of currencies" 
-                    (click)="selectCurrency(currency)" 
-                    [class.active]="selectedCurrency === currency">
-                {{ currency }}
-            </button>
-        </div>
-
-        <!-- Сумма вклада -->
-        <label for="depositAmount">Сумма вклада</label>
-        <div class="input-slider-container">
-            <input type="text" [ngModel]="formattedDepositAmount" (ngModelChange)="onDepositAmountChange($event)" class="deposit-input" />
-            <input class="range deposit-slider"
-                   type="range"
-                   min="10000"
-                   max="100000"
-                   step="5000"
-                   [(ngModel)]="depositAmount"
-                   (input)="updateFormattedDepositAmount(); updateDepositSliderBackground('depositAmount')"
-                   [style.--range-percent]="depositAmountPercent">
+  <div *ngIf="selectedTab === 'credit'" class="calculator-content"> 
+      <div class="calculator-form"> 
+          <h2>{{ 'calculator.credit.title' | translate }}</h2>
+          <label for="loanAmount">{{ 'calculator.credit.loanAmountLabel' | translate }}</label>
+          <div class="input-slider-container">
+              <input type="text" [ngModel]="formattedLoanAmount" (ngModelChange)="onLoanAmountChange($event)" class="loan-input"/>
+              <input class="range loan-slider" type="range" id="loanAmountRange" min="10000" max="200000" step="100" [(ngModel)]="loanAmount" (input)="updateFormattedLoanAmount(); updateSliderBackground('loanAmount')" [style.--range-percent]="loanAmountPercent"/>
           </div>
-        <div class="range-labels">
-            <span *ngFor="let value of depositAmountLabels">{{ value }}</span>
-        </div>
-
-        <!-- Срок вклада -->
-        <label>Срок вклада</label>
-        <div class="input-slider-container">
-            <input type="text" [ngModel]="formattedDepositTerm" class="deposit-input" readonly />
-            <input class="range deposit-slider"
-                   type="range"
-                   min="3"
-                   max="36"
-                   step="3"
-                   [(ngModel)]="depositTerm"
-                   (input)="updateFormattedDepositTerm(); updateDepositSliderBackground('depositTerm')"
-                   [style.--range-percent]="depositTermPercent">
+          <div class="range-labels"><span *ngFor="let value of loanAmountLabels">{{ value }}</span></div>
+          
+          <label>{{ 'calculator.credit.loanTermLabel' | translate }}</label>
+          <div class="input-slider-container">
+              <input type="text" [ngModel]="formattedLoanTerm" class="loan-input" readonly/>
+              <input class="range loan-slider" type="range" min="12" max="48" step="6" [(ngModel)]="loanTerm" (input)="updateFormattedLoanTerm(); updateSliderBackground('loanTerm')" [style.--range-percent]="loanTermPercent"/>
           </div>
-        <div class="range-labels">
-            <span *ngFor="let value of depositTermLabels">{{ value }}</span>
+          <div class="range-labels"><span *ngFor="let value of loanTermLabels">{{ value }}</span></div>
+          
+          <p>{{ 'calculator.common.disclaimer' | translate }}</p>
         </div>
-
-        <p>Все расчеты являются предварительными и могут отличаться от фактически полученных</p>
-    </div>
-
-    <!-- Результат -->
+        
     <div class="calculator-result">
-        <h2>Наше предложение</h2>
-        <p>Депозитный продукт</p>
-        <h3 class="deposit-product">Срочный депозит</h3>
-        <p>Процентная ставка</p>
+        <h2>{{ 'calculator.common.ourOffer' | translate }}</h2>
+        <p>{{ 'calculator.credit.productLabel' | translate }}</p>
+        <h3 class="loan-product">{{ 'calculator.credit.productName' | translate }}</h3>
+        <p>{{ 'calculator.credit.monthlyPaymentLabel' | translate }}</p>
+        <h3>{{ calculateMonthlyPayment() }} {{ 'currency.somoni' | translate }}</h3>
+        <p>{{ 'calculator.common.interestRateLabel' | translate }}</p>
         <h3>{{ interestRate }}%</h3>
-        <p>Доход по вкладу</p>
-        <h3>{{ calculateDepositIncome() }} с.</h3>
-        <p>Сумма в конце срока</p>
-        <h3>{{ calculateFinalAmount() }} с.</h3>
-        <button (click)="applyForDeposit()">Оставить заявку на вклад</button>
+        <button (click)="applyForLoan()">{{ 'calculator.credit.applyButton' | translate }}</button>
     </div>
 </div>
 
-  
-    <!-- Добавьте контент для других вкладок (deposit и car) аналогичным образом -->
+<div class="deposit-calculator" *ngIf="selectedTab === 'deposit'"> 
+  <div class="calculator-form">
+      <h2>{{ 'calculator.deposit.title' | translate }}</h2>
+      <div class="currency-tabs">
+          <button *ngFor="let currency of currencies" (click)="selectCurrency(currency)" [class.active]="selectedCurrency === currency">{{ currency }}</button>
+      </div>
+      <label for="depositAmount">{{ 'calculator.deposit.depositAmountLabel' | translate }}</label>
+      <div class="input-slider-container">
+          <input type="text" [ngModel]="formattedDepositAmount" (ngModelChange)="onDepositAmountChange($event)" class="deposit-input" />
+          <input class="range deposit-slider" type="range" min="10000" max="100000" step="5000" [(ngModel)]="depositAmount" (input)="updateFormattedDepositAmount(); updateDepositSliderBackground('depositAmount')" [style.--range-percent]="depositAmountPercent">
+      </div>
+      <div class="range-labels"><span *ngFor="let value of depositAmountLabels">{{ value }}</span></div>
+      
+      <label>{{ 'calculator.deposit.depositTermLabel' | translate }}</label>
+      <div class="input-slider-container">
+          <input type="text" [ngModel]="formattedDepositTerm" class="deposit-input" readonly />
+          <input class="range deposit-slider" type="range" min="3" max="36" step="3" [(ngModel)]="depositTerm" (input)="updateFormattedDepositTerm(); updateDepositSliderBackground('depositTerm')" [style.--range-percent]="depositTermPercent">
+      </div>
+      <div class="range-labels"><span *ngFor="let value of depositTermLabels">{{ value }}</span></div>
+      
+      <p>{{ 'calculator.common.disclaimer' | translate }}</p>
   </div>
-  
+
+  <div class="calculator-result">
+      <h2>{{ 'calculator.common.ourOffer' | translate }}</h2>
+      <p>{{ 'calculator.deposit.productLabel' | translate }}</p>
+      <h3 class="deposit-product">{{ 'calculator.deposit.productName' | translate }}</h3>
+      <p>{{ 'calculator.common.interestRateLabel' | translate }}</p>
+      <h3>{{ interestRate }}%</h3>
+      <p>{{ 'calculator.deposit.incomeLabel' | translate }}</p>
+      <h3>{{ calculateDepositIncome() }} {{ 'currency.somoni' | translate }}</h3>
+      <p>{{ 'calculator.deposit.finalAmountLabel' | translate }}</p>
+      <h3>{{ calculateFinalAmount() }} {{ 'currency.somoni' | translate }}</h3>
+      <button (click)="applyForDeposit()">{{ 'calculator.deposit.applyButton' | translate }}</button>
+  </div>
+</div>
+</div>

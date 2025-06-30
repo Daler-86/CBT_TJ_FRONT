@@ -1,17 +1,23 @@
 <div class="container_3">
     <div class="favri">
-    <div class="">
-        
-
-        <h2>{{ "Favri mobile application"|translate}}</h2>
-        <p>{{"Check your balance, pay for services, get help in chat 24/7"|translate}}</p>
-        <div class="google">
-            <img src="../../assets/icons/googleplay.svg" alt="">
-            <img src="../../assets/icons/appstore.svg" alt="">
+        <div class="">
+            <!-- Заголовок и подзаголовок заменены на ключи -->
+            <h2>{{ 'favriApp.title' | translate }}</h2>
+            <p>{{ 'favriApp.subtitle' | translate }}</p>
+            
+            <div class="google">
+                <!-- Изображения обернуты в ссылки и добавлен alt-текст с ключами -->
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img src="../../assets/icons/googleplay.svg" [alt]="'alt.googlePlay' | translate">
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img src="../../assets/icons/appstore.svg" [alt]="'alt.appStore' | translate">
+                </a>
+            </div>
+        </div>
+        <div class="phone">
+            <!-- Добавлен alt-текст с ключом для изображения телефона -->
+            <img src="../../../assets/icons/favri.png" [alt]="'alt.favriAppMockup' | translate">
         </div>
     </div>
-    <div class="phone">
-        <img src="../../../assets/icons/favri.png" alt="">
-    </div>
-</div>
 </div>

@@ -1,68 +1,63 @@
 <div class="cards">
 
-    <!-- <div class="card-container" *ngFor="let card of cardList"> -->
-        <div class="card-container" >
-              <div class="card-info">
-        <h2 class="card-title">{{transferData.title}}</h2>
-        <p class="card-description">
-    {{transferData.description}}
-        </p>
-
-
+  <div class="card-container">
+      <div class="card-info">
+          <!-- Динамический контент, перевод не требуется -->
+          <h2 class="card-title">{{transferData.title}}</h2>
+          <p class="card-description">{{transferData.description}}</p>
       </div>
-        <div class="card-image">
-        <img class="transfers_img" [src]="imageUrl + transferData.upload_icon_file_id" [alt]="transferData.title" />
+      <div class="card-image">
+          <!-- Динамический alt, перевод не требуется -->
+          <img class="transfers_img" [src]="imageUrl + transferData.upload_icon_file_id" [alt]="transferData.title" />
       </div>
-
-
-
   </div>
-  <h1 *ngIf="transferData.upload_tariff_file_id">Условия</h1>
-  <p *ngIf="transferData.upload_tariff_file_id">Чтобы получать или отправлять деньги по SWIFT, нужно открыть расчётный счёт. Это бесплатно</p>
+
+  <!-- Заголовок и текст для блока условий -->
+  <h1 *ngIf="transferData.upload_tariff_file_id">{{ 'transfers.details.conditionsTitle' | translate }}</h1>
+  <p *ngIf="transferData.upload_tariff_file_id">{{ 'transfers.details.swiftInfo' | translate }}</p>
+
   <div class="section2">
+      <!-- Динамический блок, перевод не требуется -->
+      <div class="box" *ngFor="let condition of transferData.conditions">
+          <p>{{condition.title}}</p>
+          <h1>{{condition.description}}</h1>
+          <p *ngFor="let i of condition.items">{{i.title}}</p>
+      </div>
 
-
-    <div class="box" *ngFor="let condition of transferData.conditions">
-        <p>{{condition.title}}</p>
-        <h1>{{condition.description}}</h1>
-        <p *ngFor="let i of condition.items">{{i.title}}</p>
-    </div>
-
-    <div class="box" *ngIf="transferData.upload_tariff_file_id">
-    <p>Посмотреть все тарифы</p>
-    <button class="btn-secondary" >Все тарифы</button>
-    </div>
+      <!-- Блок для кнопки тарифов -->
+      <div class="box" *ngIf="transferData.upload_tariff_file_id">
+          <p>{{ 'transfers.details.viewAllTariffsText' | translate }}</p>
+          <button class="btn-secondary">{{ 'buttons.allTariffs' | translate }}</button>
+      </div>
   </div>
 
   <div class="section3">
-    <h1 *ngIf="!transferData.upload_tariff_file_id">Документы и тарифы</h1>
-    <div class="section2">
-        <div class="box" *ngFor="let document of transferData.documents">
-                 <h2>{{document.title}}</h2>
-            <p *ngFor="let item of document.items">{{item.title}}</p>
-        </div>
-      </div>
-  </div>
-
-<div class="container_5">
-    <div class="d">
-      <div class="box" >
-          <div class="details">
-              <h3>Подробная информация на сайте:</h3>
-              <p>{{transferData.title}}</p>
+      <!-- Заголовок для блока документов -->
+      <h1 *ngIf="!transferData.upload_tariff_file_id">{{ 'transfers.details.documentsAndTariffsTitle' | translate }}</h1>
+      <div class="section2">
+          <!-- Динамический блок, перевод не требуется -->
+          <div class="box" *ngFor="let document of transferData.documents">
+              <h2>{{document.title}}</h2>
+              <p *ngFor="let item of document.items">{{item.title}}</p>
           </div>
-
       </div>
-
-  </div>
-    <div class="location">
-      <h3>{{ "Offices and ATMs"|translate}}</h3>
-      <p>{{"We are closer than you think"|translate}}</p>
-      <div class="">
-
-      </div>
-      <button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  routerLink="/map" routerLinkActive="active">{{"View on map"|translate}}</button>
   </div>
 
-</div>
+  <div class="container_5">
+      <div class="d">
+          <div class="box">
+              <div class="details">
+                  <h3>{{ 'transfers.details.moreInfoOnSite' | translate }}</h3>
+                  <!-- Динамический контент, перевод не требуется -->
+                  <p>{{transferData.title}}</p>
+              </div>
+          </div>
+      </div>
+      <div class="location">
+          <h3>{{ 'common.officesAndAtms' | translate }}</h3>
+          <p>{{ 'map.tagline' | translate }}</p>
+          <div class=""></div>
+          <button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/map">{{ 'buttons.viewOnMap' | translate }}</button>
+      </div>
+  </div>
 </div>

@@ -2,7 +2,7 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 
 interface ExchangeRate {
@@ -34,7 +34,7 @@ export class CurrencyConverterComponent implements OnInit {
   exchangeRatesByMode: { [key: string]: any[] } = {};
   showMore: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private translate: TranslateService) {}
 
   ngOnInit() {
     this.fetchExchangeRates();
@@ -99,12 +99,18 @@ export class CurrencyConverterComponent implements OnInit {
     return ['REMITTANCE_RATE', 'CASH', 'CB_RATE'];
   }
 
+
   getReadableMode(mode: string): string {
+    // Используем translate.instant() для синхронного получения перевода
     switch (mode) {
-      case 'CASH': return 'В кассе';
-      case 'REMITTANCE_RATE': return 'Денежные переводы';
-      case 'CB_RATE': return 'НБТ';
-      default: return mode;
+      case 'CASH':
+        return this.translate.instant('currencyConverter.rateModes.cash');
+      case 'NON_CASH':
+        return this.translate.instant('currencyConverter.rateModes.nonCash');
+      case 'CB_RATE':
+        return this.translate.instant('currencyConverter.rateModes.cbRate');
+      default:
+        return mode; // На случай, если появится новый режим
     }
   }
 

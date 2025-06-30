@@ -225,7 +225,7 @@ export class MapComponent implements OnInit, OnDestroy {
   regionList: any[] = [];
   faqs: { title: string; description: string }[] = [];
   selectedFaqIndex: number | null = null;
-
+  regionSelectedName: string = '';
   // Массивы данных
   offices: Office[] = [];
   atms: Atm[] = [];
@@ -237,7 +237,7 @@ export class MapComponent implements OnInit, OnDestroy {
   activeMarker: Marker | null = null;
 
   // Имя выбранного региона
-  regionSelectedName: string = 'Город';
+  // regionSelectedName: string = 'Город';
 
   @HostListener('document:click', ['$event'])
   closeDropdownsManual(event: Event): void {
@@ -261,6 +261,9 @@ export class MapComponent implements OnInit, OnDestroy {
       }
     );
 
+    this.translateService.get('mapPage.filters.regionPlaceholder').subscribe(translation => {
+      this.regionSelectedName = translation;
+    });
     // Установка флага "Все выбраны"
     this.allSelected = true;
 
@@ -324,8 +327,10 @@ export class MapComponent implements OnInit, OnDestroy {
       });
   }
 
-  // Парсинг терминалов
   parseTerminals(terminals: Terminal[]): Marker[] {
+    const terminalLabel = this.translateService.instant('mapPage.infoWindow.terminalLabel');
+    const addressLabel = this.translateService.instant('mapPage.infoWindow.addressLabel');
+
     return terminals
       .map((terminal) => {
         const lat = this.extractLatitude(terminal.latitude);
@@ -335,19 +340,22 @@ export class MapComponent implements OnInit, OnDestroy {
           return {
             position: { lat, lng },
             label: terminal.name,
-            info: `Терминал: ${terminal.name}<br>Адрес: ${terminal.address}`,
+            // Строка формируется с переведенными метками
+            info: `<strong>${terminalLabel}:</strong> ${terminal.name}<br><strong>${addressLabel}:</strong> ${terminal.address}`,
             type: 'terminal',
           } as Marker;
         }
-        debugger
         console.warn('Некорректные координаты терминала:', terminal);
         return null;
       })
       .filter((marker): marker is Marker => marker !== null);
   }
 
-  // Парсинг банкоматов
-  parseAtms(atms: Atm[]):Marker[] {
+  // ИЗМЕНЕНО: Метод теперь использует translateService.instant()
+  parseAtms(atms: Atm[]): Marker[] {
+    const atmLabel = this.translateService.instant('mapPage.infoWindow.atmLabel');
+    const addressLabel = this.translateService.instant('mapPage.infoWindow.addressLabel');
+
     return atms
       .map((atm) => {
         const lat = this.extractLatitude(atm.latitude);
@@ -357,19 +365,22 @@ export class MapComponent implements OnInit, OnDestroy {
           return {
             position: { lat, lng },
             label: atm.name,
-            info: `Банкомат: ${atm.name}<br>Адрес: ${atm.address}`,
+            // Строка формируется с переведенными метками
+            info: `<strong>${atmLabel}:</strong> ${atm.name}<br><strong>${addressLabel}:</strong> ${atm.address}`,
             type: 'atm',
           } as Marker;
         }
-        debugger 
         console.warn('Некорректные координаты банкомата:', atm);
         return null;
       })
       .filter((marker): marker is Marker => marker !== null);
   }
 
-  // Парсинг офисов
+  // ИЗМЕНЕНО: Метод теперь использует translateService.instant()
   parseOffices(offices: Office[]): Marker[] {
+    const officeLabel = this.translateService.instant('mapPage.infoWindow.officeLabel');
+    const addressLabel = this.translateService.instant('mapPage.infoWindow.addressLabel');
+
     return offices
       .map((office) => {
         const lat = this.extractLatitude(office.latitude);
@@ -379,7 +390,8 @@ export class MapComponent implements OnInit, OnDestroy {
           return {
             position: { lat, lng },
             label: office.name,
-            info: `Офис: ${office.name}<br>Адрес: ${office.address}`,
+            // Строка формируется с переведенными метками
+            info: `<strong>${officeLabel}:</strong> ${office.name}<br><strong>${addressLabel}:</strong> ${office.address}`,
             type: 'office',
           } as Marker;
         }
@@ -388,7 +400,6 @@ export class MapComponent implements OnInit, OnDestroy {
       })
       .filter((marker): marker is Marker => marker !== null);
   }
-
   // Извлечение широты из строки
   extractLatitude(latStr: string): number | null {
     const parts = latStr.split(',');

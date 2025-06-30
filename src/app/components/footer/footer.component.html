@@ -1,57 +1,53 @@
 
 <div class="footer">
-    <div class="box_1">
-       <a routerLink="/" href="">  <img src="../../../assets/icons/logoblack.svg" alt=""></a>
-        <div class="contact">
-          <div class="">
-            <h4>+(992) 44 630 8888</h4>
-            <p> {{"For private individuals"|translate}}</p>
-          </div>
-     
-        </div>
-    </div>
-    <div class="box_2">
-      <div class="navbar">
+  <div class="box_1">
+     <a routerLink="/" href="">
+       <img src="../../../assets/icons/logoblack.svg" [alt]="'alt.mainLogoBlack' | translate">
+     </a>
+      <div class="contact">
         <div class="">
-          <a>{{"Credit cards"|translate}}</a>
-          <a>{{"Debit cards"|translate}}</a> 
-           <a routerLink="scss" routerLinkActive="active">Scs-Rko</a>
-           <a routerLink="merchant" routerLinkActive="active">Мерчанты</a>
+          <h4>+(992) 44 630 8888</h4>
+          <p>{{ 'footer.contacts.forIndividuals' | translate }}</p>
         </div>
-        <div class=""> 
-            <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ "About the bank"|translate}}</a> 
-            <a routerLink="vacancies" routerLinkActive="active">{{"Vacancies"|translate}}</a>
-            <a routerLink="Offices" routerLinkActive="active">{{"Offices and ATMs"|translate}}</a>
-            <a routerLink="contact" routerLinkActive="active">Контакты</a>
-          </div>
-          <div class="">
-          <a routerLink="bank-detail" routerLinkActive="active">Реквизиты</a>
-          <a routerLink="report" routerLinkActive="active" >Финансовая отчетность</a>
-          <a routerLink="tender" routerLinkActive="active">{{ "Tenders"|translate}}</a> 
-          <a routerLink="news" routerLinkActive="active">{{"News"|translate}}</a>
-       
-          </div>
+      </div>
+  </div>
+  <div class="box_2">
+    <div class="navbar">
       <div class="">
-       <p class="p">{{"Working hours"|translate}}</p> 
-<p>{{"Working days:"|translate}} </p>
-<p> {{"from Monday to Friday"|translate}} </p>
-<p>{{"from 08:00 to 17:00"|translate}}</p>
-<p>{{"Saturday: from 09:00 to 12:00"|translate}}</p>
+        <a [routerLink]="'/cards/credit'">{{ 'footer.nav.creditCards' | translate }}</a>
+        <a [routerLink]="'/cards/debit'">{{ 'footer.nav.debitCards' | translate }}</a> 
+        <a routerLink="scs-rko" routerLinkActive="active">{{ 'footer.nav.scsRko' | translate }}</a>
+        <a routerLink="merchant" routerLinkActive="active">{{ 'footer.nav.merchants' | translate }}</a>
       </div>
-        
-       
-        
-     
+      <div class=""> 
+        <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ 'footer.nav.aboutBank' | translate }}</a> 
+        <a routerLink="vacancies" routerLinkActive="active">{{ 'footer.nav.vacancies' | translate }}</a>
+        <a routerLink="map" routerLinkActive="active">{{ 'footer.nav.officesAndAtms' | translate }}</a>
+        <a routerLink="contact" routerLinkActive="active">{{ 'footer.nav.contacts' | translate }}</a>
       </div>
-      <div class="sotset">
-  <img src="../../../assets/icons/insta.svg" alt="">
-  <img src="../../../assets/icons/facebook.svg" alt="">
-  <img src="../../../assets/icons/telegram.svg" alt="">
-  <img src="../../../assets/icons/youtube.svg" alt="">
+      <div class="">
+        <a routerLink="bank-detail" routerLinkActive="active">{{ 'footer.nav.bankDetails' | translate }}</a>
+        <a routerLink="report" routerLinkActive="active">{{ 'footer.nav.financialReporting' | translate }}</a>
+        <a routerLink="tender" routerLinkActive="active">{{ 'footer.nav.tenders' | translate }}</a> 
+        <a routerLink="news" routerLinkActive="active">{{ 'footer.nav.news' | translate }}</a>
+      </div>
+      <div class="">
+        <p class="p">{{ 'footer.workingHours.title' | translate }}</p> 
+        <p>{{ 'footer.workingHours.daysLabel' | translate }}</p>
+        <p>{{ 'footer.workingHours.weekdays' | translate }}</p>
+        <p>{{ 'footer.workingHours.weekdaysTime' | translate }}</p>
+        <p>{{ 'footer.workingHours.saturday' | translate }}</p>
       </div>
     </div>
-    <div class="box_3">
-      <p> {{ "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license"|translate}}</p>
-      <p>{{ "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017."|translate}}</p>
+    <div class="sotset">
+      <img src="../../../assets/icons/insta.svg" [alt]="'alt.instagram' | translate">
+      <img src="../../../assets/icons/facebook.svg" [alt]="'alt.facebook' | translate">
+      <img src="../../../assets/icons/telegram.svg" [alt]="'alt.telegram' | translate">
+      <img src="../../../assets/icons/youtube.svg" [alt]="'alt.youtube' | translate">
     </div>
   </div>
+  <div class="box_3">
+    <p>{{ 'footer.copyright.main' | translate }}</p>
+    <p>{{ 'footer.copyright.license' | translate }}</p>
+  </div>
+</div>

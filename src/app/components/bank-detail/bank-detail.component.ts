@@ -3,11 +3,12 @@ import { bankDetails, currency } from '../../models/bank-detail.model';
 import { CommonModule } from '@angular/common';
 import { BankDetailsService } from '../../api/bank-details.service';
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bank-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './bank-detail.component.html',
   styleUrls: ['./bank-detail.component.scss']
 })

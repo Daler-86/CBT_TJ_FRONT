@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../api/news.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; // <-- Все еще нужен для SafeHtml
 import { inject } from '@angular/core/testing';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 interface SocialLink {
   type: string;
   url: string;
@@ -14,13 +15,13 @@ interface SocialLink {
 @Component({
   selector: 'app-news-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.scss'
 })
 export class NewsDetailComponent {
  // --- Данные для статьи (замени на реальные) ---
-
+ copyButtonText: string='';
  imageUrls: string[] = [
    'assets/images/news-detail-1.jpg', 
    'assets/images/news-detail-2.jpg',
@@ -30,12 +31,18 @@ export class NewsDetailComponent {
  // --- Данные для блока "Поделиться" ---
  socialLinks: SocialLink[] = [];
  pageUrl: string = '';
- copyButtonText: string = 'Скопировать ссылку';
+//  copyButtonText: string = 'Скопировать ссылку';
 
  constructor(@Inject(DOCUMENT) private document: Document,
  private route: ActivatedRoute,
- private newsService:NewsService
- ) {} // Внедряем DOCUMENT
+ private newsService:NewsService,
+ private translate: TranslateService
+ ) {
+  this.translate.get('buttons.copyLink').subscribe((text: string) => {
+    this.copyButtonText = text;
+  });
+
+ } // Внедряем DOCUMENT
 
  cardId: number=0;
 newDetailData:any={}
@@ -64,7 +71,22 @@ newDetailData:any={}
     );
   }
 
- 
+  onCopyLink() {
+    // Ваша логика копирования ссылки...
+    // navigator.clipboard.writeText(window.location.href);
+
+    // После успешного копирования меняем текст
+    this.translate.get('buttons.linkCopied').subscribe((text: string) => {
+      this.copyButtonText = text;
+    });
+
+    // Опционально: вернуть исходный текст через пару секунд
+    setTimeout(() => {
+      this.translate.get('buttons.copyLink').subscribe((text: string) => {
+        this.copyButtonText = text;
+      });
+    }, 2000);
+  }
 
 
 

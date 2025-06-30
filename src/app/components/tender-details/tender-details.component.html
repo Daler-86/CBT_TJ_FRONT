@@ -1,34 +1,27 @@
 <div class="tenderDetail">
-    <div class="card-container">
+  <div class="card-container">
     <div class="card-info">
-      <h2 class="card-title">{{tenderDetailData.name}} </h2>
-      <p class="card-description">
-        {{tenderDetailData.start_date}}
-     
-      </p>
-      
+      <!-- Динамические данные -->
+      <h2 class="card-title">{{tenderDetailData.name}}</h2>
+      <p class="card-description">{{tenderDetailData.start_date}}</p>
     </div>
-
   </div>
 
   <div class="tender-detail-layout">
-
     <!-- Левая колонка (основное содержимое) -->
     <div class="tender-main-column">
-      <!-- Карточка с описанием тендера -->
+      <!-- Карточка с описанием тендера (динамические данные) -->
       <div class="tender-card tender-description-card">
         <div class="" *ngFor="let item of tenderDetailData.information">
-        <h2>{{item.title}}</h2>
-        <p class="subtitle">{{item.description}}</p>
-
-  </div>
-  </div>
+          <h2>{{item.title}}</h2>
+          <p class="subtitle">{{item.description}}</p>
+        </div>
+      </div>
   
       <!-- Карточка с документацией (под основной) -->
       <div class="tender-card tender-document-card">
-         <!-- Замени src на реальный путь к иконке PDF -->
-        <img src="../../../assets/icons/файл.png" alt="PDF" class="pdf-icon">
-        <a [href]="tenderDetailData.upload_file" class="document-link" >Тендерная документация</a>
+        <img src="../../../assets/icons/файл.png" [alt]="'alt.pdfIcon' | translate" class="pdf-icon">
+        <a [href]="tenderDetailData.upload_file" class="document-link">{{ 'tenderDetails.documentationLink' | translate }}</a>
       </div>
     </div>
   
@@ -36,47 +29,38 @@
     <div class="tender-sidebar-column">
       <div class="tender-card tender-metadata-card">
         <div class="metadata-item">
-          <span class="label">Дата начало конкурса</span>
+          <span class="label">{{ 'tenderDetails.meta.startDate' | translate }}</span>
           <span class="value">{{tenderDetailData.start_date}}</span>
         </div>
         <div class="metadata-item">
-          <span class="label">Дата завершения конкурса</span>
+          <span class="label">{{ 'tenderDetails.meta.endDate' | translate }}</span>
           <span class="value">{{tenderDetailData.end_date}}</span>
         </div>
         <div class="metadata-item">
-          <span class="label">Ответственное лицо</span>
+          <span class="label">{{ 'tenderDetails.meta.responsiblePerson' | translate }}</span>
           <span class="value">{{tenderDetailData.responsible_person}}</span>
         </div>
         <div class="metadata-item">
-          <span class="label">Номер телефона</span>
-          <!-- Используем тег 'a' для кликабельности номера -->
+          <span class="label">{{ 'tenderDetails.meta.phoneNumber' | translate }}</span>
           <a [href]="'tel:'+tenderDetailData.phone_number" class="value">{{tenderDetailData.phone_number}}</a>
         </div>
         <div class="metadata-item">
-          <span class="label">Адрес электронной почты</span>
-           <!-- Используем тег 'a' для кликабельности email -->
+          <span class="label">{{ 'tenderDetails.meta.emailAddress' | translate }}</span>
           <a [href]="'mailto:'+ tenderDetailData.email " class="value">{{tenderDetailData.email}}</a>
         </div>
         <div class="metadata-item">
-          <span class="label">Статус</span>
+          <span class="label">{{ 'tenderDetails.meta.statusLabel' | translate }}</span>
           <span class="value">
-            
             <span class="status-badge"
-            [ngClass]="{
-              'status-open': tenderDetailData.status === 'open',
-              'status-completed': tenderDetailData.status === 'close'
-            }">
-        {{ tenderDetailData.status=='open'?"Открытый":"Завершенный" }}
-      </span>
-            <!-- Пример другого статуса:
-            <span class="status-badge status-completed">Завершенный</span>
-            -->
+                  [ngClass]="{
+                    'status-open': tenderDetailData.status === 'open',
+                    'status-completed': tenderDetailData.status === 'close'
+                  }">
+              {{ tenderDetailData.status === 'open' ? ('tenderDetails.status.open' | translate) : ('tenderDetails.status.closed' | translate) }}
+            </span>
           </span>
         </div>
       </div>
     </div>
-  
   </div>
-
-
 </div>

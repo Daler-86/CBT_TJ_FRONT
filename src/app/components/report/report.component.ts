@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { ReportService } from '../../api/report.service';
 import { reportData, reportFile } from '../../models/report.model';
 import { environment } from '../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './report.component.html',
   styleUrl: './report.component.scss'
 })

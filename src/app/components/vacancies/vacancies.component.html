@@ -7,17 +7,18 @@
       </p>
       <div class="card-buttons">
         <button class="btn-primary" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                routerLink="/vacancy-list" routerLinkActive="active">Смотреть вакансии
+                routerLink="/vacancy-list">{{ 'buttons.viewVacancies' | translate }}
         </button>
       </div>
     </div>
     <div class="card-image">
-      <img class="card" [src]="imageUrl+ vacancyContent[0]?.file_name " alt="Visa Gold"/>
+      <!-- Динамический src, но статичный alt -->
+      <img class="card" [src]="imageUrl+ vacancyContent[0]?.file_name" [alt]="'vacancies.promoCard.imageAlt' | translate"/>
     </div>
-
-
   </div>
+  
   <div class="container">
+    <!-- Этот блок полностью динамический, перевод не требуется -->
     <div class="box" *ngFor="let item of vacancyStatistics">
       <h1>{{ item.title }}</h1>
       <p>{{ item.description }}</p>
@@ -25,8 +26,9 @@
   </div>
 
   <div class="why-we-are-great">
-    <h2>{{ "It's great to work here, and here's why"|translate }}</h2>
+    <h2>{{ 'vacancies.whyWorkHere.title' | translate }}</h2>
     <div class="features-container">
+      <!-- Этот блок также динамический -->
       <div class="feature-card" *ngFor="let item of vacancyItems">
         <div class="feature-icon">
           <img [src]="imageUrl+item?.upload_file" [alt]="item.title">
@@ -34,16 +36,14 @@
         <h3>{{ item?.title }}</h3>
         <p>{{ item?.description }}</p>
       </div>
-
     </div>
   </div>
 
   <div class="offices-container">
-    <h2>{{ "Our cozy offices"|translate }}</h2>
+    <h2>{{ 'vacancies.ourOffices.title' | translate }}</h2>
     <div class="office-content">
       <div class="office-image">
-
-        <img [src]="imageUrl+vacancyGalleries[currentIndex]?.upload_file" alt="Офис">
+        <img [src]="imageUrl+vacancyGalleries[currentIndex]?.upload_file" [alt]="'vacancies.ourOffices.imageAlt' | translate">
       </div>
       <div class="office-info">
         <p>{{ currentIndex + 1 }}/{{ vacancyGalleries.length }}</p>
@@ -60,7 +60,7 @@
       </div>
     </div>
     <button class="view-vacancies-button" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-            routerLink="/vacancy-list" routerLinkActive="active">{{ "View vacancies"|translate }}
+            routerLink="/vacancy-list">{{ 'buttons.viewVacancies' | translate }}
     </button>
   </div>
 </div>

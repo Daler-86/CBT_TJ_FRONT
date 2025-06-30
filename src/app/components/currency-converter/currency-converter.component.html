@@ -1,37 +1,38 @@
 <div class="currency-converter-container"> 
   <div class="calculator-tabs">
     <button *ngFor="let mode of getModes()"
-    (click)="selectMode(mode)"
-    [class.active]="selectedMode === mode">
-{{ getReadableMode(mode) }}
-</button>
-
+            (click)="selectMode(mode)"
+            [class.active]="selectedMode === mode">
+      <!-- ВАЖНО: Эта функция должна использовать TranslateService в TS-файле. См. ниже -->
+      {{ getReadableMode(mode) }}
+    </button>
   </div>
 
   <div class="div">
     <div class="exchange-rates">
-      <h3>{{ "Currency rates" | translate }}</h3>
+      <h3>{{ 'currencyConverter.ratesTable.title' | translate }}</h3>
       <table>
         <thead>
           <tr>
-            <th>{{ "Currency" | translate }}</th>
+            <th>{{ 'currencyConverter.ratesTable.headers.currency' | translate }}</th>
             <ng-container *ngIf="selectedMode === 'CB_RATE'">
-              <th>{{ "Accounting course" | translate }}</th>
+              <th>{{ 'currencyConverter.ratesTable.headers.accounting' | translate }}</th>
             </ng-container>
             <ng-container *ngIf="selectedMode !== 'CB_RATE'">
-              <th>{{"Purchase" | translate }}</th>
-              <th>{{"Sale" | translate }}</th>
+              <th>{{ 'currencyConverter.ratesTable.headers.purchase' | translate }}</th>
+              <th>{{ 'currencyConverter.ratesTable.headers.sale' | translate }}</th>
             </ng-container>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let rate of exchangeRatesByMode[selectedMode] | slice:0:(showMore ? exchangeRatesByMode[selectedMode].length : 3)">
             <td class="flag">
-              <img [src]="rate.flag" alt="{{ rate.currency }}">
+              <!-- Alt-текст теперь описывает флаг -->
+              <img [src]="rate.flag" [alt]="rate.currency + ' flag'">
               <p>{{ rate.currency }}</p>
             </td>
             <ng-container *ngIf="selectedMode === 'CB_RATE'">
-              <td>{{ rate.buy | number: '1.4-4' }}</td> <!-- Используем курс покупки как учетный -->
+              <td>{{ rate.buy | number: '1.4-4' }}</td>
             </ng-container>
             <ng-container *ngIf="selectedMode !== 'CB_RATE'">
               <td>{{ rate.buy | number: '1.4-4' }}</td>
@@ -42,41 +43,27 @@
       </table>
       
       <div class="more">
-        <p>{{ "Current as of" | translate }} {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}</p>
-      
-        <!-- Кнопка для показа большего количества валют -->
+        <p>{{ 'currencyConverter.ratesTable.updatedLabel' | translate }} {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}</p>
         <button *ngIf="exchangeRatesByMode && exchangeRatesByMode[selectedMode] && exchangeRatesByMode[selectedMode].length > 3" (click)="toggleShowMore()">
-          {{ showMore ? "Collapse" :"Show more" | translate }}
+          <!-- Правильное использование тернарного оператора с пайпом -->
+          {{ (showMore ? 'buttons.collapse' : 'buttons.showMore') | translate }}
         </button>
       </div>
-      
-  </div>
+    </div>
 
     <div class="currency-converter" [ngClass]="{'sell-active': transactionType === 'sell'}">
       <div class="switch-container" (click)="toggleTransaction()">
-        <!-- SVG анимация -->
         <svg class="switch-buttons" viewBox="0 0 400 50" preserveAspectRatio="none">
-          <!-- Двигающийся фон -->
-          <rect class="switch-rect" [class.buy]="transactionType === 'buy'" [class.sell]="transactionType === 'sell'" 
-          y="0" width="200" height="100%" fill="#00B06C" rx="12" ry="12">
-      <animate attributeName="x"
-               [attr.from]="transactionType === 'buy' ? 200 : 0"
-               [attr.to]="transactionType === 'buy' ? 0 : 200"
-               dur="0.3s"
-               fill="freeze"
-               begin="indefinite"
-               #anim />
-    </rect>
-          <!-- Тексты кнопок -->
-          <text x="50" y="30" [attr.fill]="transactionType === 'buy' ? 'white' : 'black'" style="cursor: pointer;">{{"Buy"|translate}}</text>
-          <text x="250" y="30" [attr.fill]="transactionType === 'sell' ? 'white' : 'black'" style="cursor: pointer;">{{"Sell"|translate}}</text>
+          <rect class="switch-rect" [class.buy]="transactionType === 'buy'" [class.sell]="transactionType === 'sell'" y="0" width="200" height="100%" fill="#00B06C" rx="12" ry="12">
+            <animate attributeName="x" [attr.from]="transactionType === 'buy' ? 200 : 0" [attr.to]="transactionType === 'buy' ? 0 : 200" dur="0.3s" fill="freeze" begin="indefinite" #anim />
+          </rect>
+          <text x="50" y="30" [attr.fill]="transactionType === 'buy' ? 'white' : 'black'" style="cursor: pointer;">{{ 'buttons.buy' | translate }}</text>
+          <text x="250" y="30" [attr.fill]="transactionType === 'sell' ? 'white' : 'black'" style="cursor: pointer;">{{ 'buttons.sell' | translate }}</text>
         </svg>
       </div>
       
-      
-      
       <div class="converter-inputs">
-        <label>{{ "I have:" | translate }}</label><br>
+        <label>{{ 'currencyConverter.converter.haveLabel' | translate }}</label><br>
         <div class="a">
           <input class="inp" type="number" [(ngModel)]="amount" (ngModelChange)="convertCurrency()" />
           <select [(ngModel)]="fromCurrency" (change)="updateCurrencies()">
@@ -87,29 +74,24 @@
       </div>
       
       <div class="converter-inputs">
-        <label>{{ "I will receive:" | translate }}</label><br>
+        <label>{{ 'currencyConverter.converter.receiveLabel' | translate }}</label><br>
         <div class="a">
           <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
           <select [(ngModel)]="toCurrency" (change)="convertCurrency()">
             <ng-container *ngIf="fromCurrency === 'TJS'">
-              <!-- Если у нас есть сомони, показываем все валюты -->
               <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency">{{ rate.currency }}</option>
             </ng-container>
             <ng-container *ngIf="fromCurrency !== 'TJS'">
-              <!-- Если у нас есть иностранная валюта, показываем только сомони -->
               <option value="TJS">TJS</option>
             </ng-container>
           </select>
         </div>
       </div>
       
-
-      <button (click)="sendMoney()">{{ "Send money" | translate }}</button>
+      <button (click)="sendMoney()">{{ 'buttons.sendMoney' | translate }}</button>
     </div>
   </div>
 </div>
-
-
 
 
  

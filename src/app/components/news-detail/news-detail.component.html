@@ -1,81 +1,47 @@
 <div class="newsDetail">
   <div class="card-container">
-      <div class="card-info">
-        @if (newDetailData) {
-           <h2 class="card-title">{{ newDetailData.title }}</h2>
-           <p class="card-description">
-             <!-- Используем DatePipe. Если date_time не объект Date, а строка "ДД.ММ.ГГГГ",
-                  и парсинг в TS не делается, DatePipe может выдать ошибку.
-                  В этом случае придется отображать строку напрямую или парсить в TS. -->
-             {{ newDetailData.date_time }}
-           </p>
-      
-        }
-      </div>
+    <div class="card-info">
+      @if (newDetailData) {
+        <h2 class="card-title">{{ newDetailData.title }}</h2>
+        <p class="card-description">
+          {{ newDetailData.date_time }}
+        </p>
+      }
     </div>
+  </div>
 
-    <div class="news-detail-layout">
+  <div class="news-detail-layout">
+    <!-- Основной контент статьи -->
+    <main class="news-main-content">
+      @if (newDetailData) {
+        <!-- Этот контент приходит с бэкенда и не переводится через пайп -->
+        <div class="content article-content" [innerHTML]="newDetailData.description"></div>
+      }
+    </main>
 
-      <!-- Основной контент статьи -->
-      <main class="news-main-content">
-          <!-- Используем [innerHTML] для отображения HTML из описания -->
-          <!-- Передаем строку newDetailData.description в метод getSafeHtml -->
-          @if (newDetailData) {
-             <div class="content  article-content" [innerHTML]="newDetailData.description"></div>
-          }
-
-        <!-- Галерея изображений (если используется - похоже, это отдельная галерея, не из редактора) -->
-        <!-- Если изображения из редактора, они уже будут в newDetailData.description -->
- 
-      </main>
-
-      <!-- Боковая панель -->
-      <aside class="news-sidebar">
-        <div class="sidebar-card">
-          <h4>Поделиться</h4>
-          <div class="social-share-icons">
-            <a 
-               [href]=""
-               target="_blank"
-               rel="noopener noreferrer"
-               class="social-icon"
-          >
-              <i [class]=""></i>
-              <img src="../../../assets/icons/tg.png" alt="">
-            </a>
-            <a 
-            [href]=""
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-icon"
-       >
-           <i [class]=""></i>
-           <img src="../../../assets/icons/whatsapp.png" alt="">
-         </a>
-         <a 
-         [href]=""
-         target="_blank"
-         rel="noopener noreferrer"
-         class="social-icon"
-    >
-        <i [class]=""></i>
-        <img src="../../../assets/icons/insta.png" alt="">
-      </a>
-      <a 
-      [href]=""
-      target="_blank"
-      rel="noopener noreferrer"
-      class="social-icon"
- >
-     <i [class]=""></i>
-     <img src="../../../assets/icons/facebook.png" alt="">
-   </a>
-          </div>
-          <button class="copy-link-button"  type="button">
-            {{ copyButtonText }}
-          </button>
+    <!-- Боковая панель -->
+    <aside class="news-sidebar">
+      <div class="sidebar-card">
+        <h4>{{ 'newsDetails.shareTitle' | translate }}</h4>
+        <div class="social-share-icons">
+          <a [href]="" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <img src="../../../assets/icons/tg.png" [alt]="'alt.telegram' | translate">
+          </a>
+          <a [href]="" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <img src="../../../assets/icons/whatsapp.png" [alt]="'alt.whatsapp' | translate">
+          </a>
+          <a [href]="" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <img src="../../../assets/icons/insta.png" [alt]="'alt.instagram' | translate">
+          </a>
+          <a [href]="" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <img src="../../../assets/icons/facebook.png" [alt]="'alt.facebook' | translate">
+          </a>
         </div>
-      </aside>
-
-</div>
+        <!-- Текст для этой кнопки управляется из компонента, но сами значения берутся из JSON -->
+        <button class="copy-link-button" type="button">
+          {{ copyButtonText }}
+        </button>
+      </div>
+    </aside>
+  </div>
 </div>

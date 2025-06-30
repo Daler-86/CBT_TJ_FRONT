@@ -119,14 +119,490 @@
   "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.": "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.",
   "strach": "Insurance",
   "vklad": "Deposits",
-    "all": "All",
-    "offices": "Offices",
-    "atm": "ATMs",
-    "terminals": "Terminals",
-    "24h": "24 Hours",
-    "now": "Open Now",
-
-    "qr": "QR Code",
-    "nfc": "NFC Contactless"
+  "all": "All",
+  "offices": "Offices",
+  "atm": "ATMs",
+  "terminals": "Terminals",
+  "24h": "24 Hours",
+  "now": "Open Now",
+  "qr": "QR Code",
+  "nfc": "NFC Contactless",
+  "vacancies": {
+    "title": "Vacancies",
+    "filters": {
+      "title": "Filters",
+      "directionLabel": "Direction:",
+      "allDirections": "All directions",
+      "cityLabel": "City:",
+      "allCities": "All cities"
+    },
+    "list": {
+      "total": "Total",
+      "vacanciesLabel": "vacancies",
+      "locationIconAlt": "Location icon",
+      "arrowIconAlt": "Arrow icon"
+    },
+    "promoCard": {
+      "imageAlt": "Visa Gold Card"
+    },
+    "whyWorkHere": {
+      "title": "It's great to work here, and here's why"
+    },
+    "ourOffices": {
+      "title": "Our cozy offices",
+      "imageAlt": "Office photo"
+    }
+  },
+  "alt": {
+    "location": "Location icon",
+    "calendar": "Calendar icon",
+    "pdfIcon": "PDF icon",
+    "fileIcon": "File icon",
+    "officeIcon": "Office icon",
+    "atmIcon": "ATM icon",
+    "terminalIcon": "Terminal icon",
+    "telegram": "Telegram icon",
+    "whatsapp": "WhatsApp icon",
+    "instagram": "Instagram icon",
+    "facebook": "Facebook icon",
+    "arrowForward": "Arrow forward icon",
+    "phoneIcon": "Phone icon",
+    "mapPointIcon": "Map point icon",
+    "globalIcon": "Language selection icon",
+    "arrowDown": "Arrow down icon",
+    "tickIcon": "Selected choice icon",
+    "mainLogo": "Bank main logo",
+    "loginIcon": "Login icon",
+    "mapIllustration": "Map and location illustration",
+    "vacanciesIllustration": "Illustration for vacancies section",
+    "supportIllustration": "Illustration for support section",
+    "mainLogoBlack": "Bank logo (black)",
+    "youtube": "YouTube icon",
+    "googlePlay": "Get it on Google Play",
+    "appStore": "Download on the App Store",
+    "favriAppMockup": "Favri mobile application mockup",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "infoIcon": "Information icon",
+    "bookIcon": "Book icon",
+    "missionIcon": "Mission icon",
+    "goalIcon": "Goal icon",
+    "visionIcon": "Vision icon",
+    "historyImage1": "Historical photo of the bank building",
+    "historyImage2": "Photo of the bank's operational hall",
+    "historyImage3": "Photo of the bank's modern office"
+  },
+  "vacancyDetails": {
+    "sections": {
+      "education": "Education and qualifications:",
+      "experience": "Experience:",
+      "skills": "Skills and knowledge:",
+      "qualities": "Personal qualities:",
+      "conditions": "Conditions:"
+    },
+    "form": {
+      "title": "Apply for a vacancy",
+      "subtitle": "Tell us about yourself and we will definitely contact you",
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "phone": "Phone",
+      "email": "Email",
+      "dragOr": "Drag or",
+      "supportedFormats": "Supported formats: PDF, Doc, JPG (Max 5Mb)"
+    }
+  },
+  "buttons": {
+    "applyForVacancy": "Apply for a vacancy",
+    "uploadCV": "Upload your CV",
+    "send": "Send",
+    "viewVacancies": "View vacancies",
+    "allTariffs": "All tariffs",
+    "viewOnMap": "View on map",
+    "moreDetails": "More details",
+    "openDeposit": "Open deposit",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied!",
+    "applyForCard": "Apply for a card",
+    "applyForDeposit": "Apply for a deposit",
+    "showMore": "Show more",
+    "collapse": "Collapse",
+    "buy": "Buy",
+    "sell": "Sell",
+    "sendMoney": "Send money",
+    "getLoan": "Get a loan",
+    "applyForLoan": "Apply for a loan"
+  },
+  "notifications": {
+    "submitSuccess": "Data sent successfully! We will contact you shortly.",
+    "submitError": "❌ An error occurred while sending data. Please try again."
+  },
+  "transfers": {
+    "details": {
+      "conditionsTitle": "Conditions",
+      "swiftInfo": "To receive or send money via SWIFT, you need to open a current account. It's free.",
+      "viewAllTariffsText": "View all tariffs",
+      "documentsAndTariffsTitle": "Documents and tariffs",
+      "moreInfoOnSite": "Detailed information on the website:"
+    },
+    "pageTitle": "Money Transfers"
+  },
+  "common": {
+    "officesAndAtms": "Offices and ATMs",
+    "toggleMenu": "Toggle navigation menu",
+    "tariffsAndConditions": "Tariffs and conditions",
+    "fieldIsRequired": "This field is required",
+    "faqTitle": "Frequently Asked Questions",
+    "consent": {
+      "prefix": "By clicking 'Get', you agree to",
+      "linkText": "processing of personal data"
+    },
+    "pagination": {
+      "firstPage": "Go to first page",
+      "previousPage": "Go to previous page",
+      "nextPage": "Go to next page",
+      "lastPage": "Go to last page"
+    }
+  },
+  "map": {
+    "tagline": "We are closer than you think",
+    "filters": {
+      "typesTitle": "Object types"
+    },
+    "card": {
+      "workingHours": "Working hours",
+      "workingHours24": "24 hours"
+    },
+    "noDataMessage": "No data to display."
+  },
+  "tenderDetails": {
+    "documentationLink": "Tender documentation",
+    "meta": {
+      "startDate": "Competition start date",
+      "endDate": "Competition end date",
+      "responsiblePerson": "Responsible person",
+      "phoneNumber": "Phone number",
+      "emailAddress": "Email address",
+      "statusLabel": "Status"
+    },
+    "status": {
+      "open": "Open",
+      "closed": "Completed"
+    }
+  },
+  "tendersList": {
+    "title": "Tenders",
+    "description": "Current information about ongoing tenders",
+    "table": {
+      "headerTender": "Tender",
+      "headerStartDate": "Start date",
+      "headerEndDate": "End date",
+      "headerStatus": "Status",
+      "noData": "No data to display"
+    }
+  },
+  "depositDetails": {
+    "advantagesTitle": "Advantages",
+    "conditionsTitle": "Conditions",
+    "calculator": {
+      "title": "Calculate your deposit",
+      "amountLabel": "Deposit amount",
+      "termLabel": "Deposit term",
+      "disclaimer": "All calculations are preliminary and may differ from those actually received.",
+      "results": {
+        "title": "Our offer",
+        "productLabel": "Deposit product",
+        "productExample": "Term deposit",
+        "interestRateLabel": "Interest rate",
+        "incomeLabel": "Deposit income",
+        "finalAmountLabel": "Amount at the end of the term"
+      }
+    },
+    "applicationForm": {
+      "title": "Leave an application",
+      "subtitle": "We will contact you shortly.",
+      "phonePlaceholder": "Mobile phone",
+      "namePlaceholder": "Full Name",
+      "officePlaceholder": "Select an office"
+    }
+  },
+  "rko": {
+    "pageTitle": "Settlement and Cash Services",
+    "pageDescription": "Reliable banking operations for your business — fast, convenient, secure."
+  },
+  "reporting": {
+    "pageTitle": "Reporting",
+    "filter": {
+      "currentYear": "Current year"
+    },
+    "stats": {
+      "deviationLabel": "Deviation (+, -)"
+    },
+    "documents": {
+      "noData": "No documents available."
+    }
+  },
+  "newsDetails": {
+    "shareTitle": "Share"
+  },
+  "news": {
+    "sectionTitle": "News"
+  },
+  "links": {
+    "allNews": "All news"
+  },
+  "newsPage": {
+    "title": "News",
+    "subtitle": "Stay up to date with the latest news",
+    "noNewsMessage": "There are no news at the moment. Please check back later."
+  },
+  "merchantsPage": {
+    "title": "Partners and Discounts",
+    "subtitle": "Find offers and cashbacks from our partners",
+    "filters": {
+      "title": "Filters",
+      "searchPlaceholder": "Search by name...",
+      "allRegions": "All regions",
+      "allCategories": "All categories",
+      "cashbacks": "Cashbacks"
+    }
+  },
+  "mapPage": {
+    "title": "Offices, ATMs, and Terminals",
+    "tabs": {
+      "onMap": "On the map",
+      "asList": "As a list"
+    },
+    "filters": {
+      "mainButtonLabel": "Filter",
+      "objectTypes": "Object types",
+      "availability": "Availability",
+      "additional": "Additional",
+      "regionPlaceholder": "City"
+    },
+    "infoWindow": {
+      "terminalLabel": "Terminal",
+      "atmLabel": "ATM",
+      "officeLabel": "Office",
+      "addressLabel": "Address"
+    }
+  },
+  "header": {
+    "top": {
+      "officesAndAtms": "Offices and ATMs"
+    },
+    "nav": {
+      "loginButton": "Login"
+    }
+  },
+  "home": {
+    "tagline": "Choose the best",
+    "joinTeam": {
+      "subtitle": "Join the team Commerzbank"
+    },
+    "support": {
+      "title": "Support",
+      "subtitle": "We will resolve"
+    }
+  },
+  "footer": {
+    "contacts": {
+      "forIndividuals": "For private individuals"
+    },
+    "nav": {
+      "creditCards": "Credit cards",
+      "debitCards": "Debit cards",
+      "scsRko": "Cash Services",
+      "merchants": "Partners",
+      "aboutBank": "About the bank",
+      "vacancies": "Vacancies",
+      "officesAndAtms": "Offices and ATMs",
+      "contacts": "Contacts",
+      "bankDetails": "Bank Details",
+      "financialReporting": "Financial Reporting",
+      "tenders": "Tenders",
+      "news": "News"
+    },
+    "workingHours": {
+      "title": "Working hours",
+      "daysLabel": "Working days:",
+      "weekdays": "from Monday to Friday",
+      "weekdaysTime": "from 08:00 to 17:00",
+      "saturday": "Saturday: from 09:00 to 12:00"
+    },
+    "copyright": {
+      "main": "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license",
+      "license": "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017."
+    }
+  },
+  "favriApp": {
+    "title": "Favri mobile application",
+    "subtitle": "Check your balance, pay for services, get help in chat 24/7"
+  },
+  "deposits": {
+    "pageTitle": "Deposits"
+  },
+  "currencyConverter": {
+    "rateModes": {
+      "cash": "Cash",
+      "nonCash": "Non-cash",
+      "cbRate": "NBT Rate"
+    },
+    "ratesTable": {
+      "title": "Currency rates",
+      "headers": {
+        "currency": "Currency",
+        "accounting": "Accounting course",
+        "purchase": "Purchase",
+        "sale": "Sale"
+      },
+      "updatedLabel": "Current as of"
+    },
+    "converter": {
+      "haveLabel": "I have:",
+      "receiveLabel": "I will receive:"
+    }
+  },
+  "creditsPage": {
+    "title": "Loans",
+    "filters": {
+      "all": "All",
+      "credit": "Consumer loans",
+      "autoLoan": "Car loan",
+      "constructionLoan": "Construction loan"
+    },
+    "card": {
+      "applyButton": "Submit an application",
+      "detailsButton": "More details"
+    }
+  },
+  "creditDetails": {
+    "sections": {
+      "tariffsAndConditions": "Tariffs and conditions",
+      "requiredDocuments": "List of required documents",
+      "onlineApplication": "Online loan application"
+    },
+    "applicationForm": {
+      "amountLabel": "Loan amount",
+      "termLabel": "Loan term",
+      "preliminaryCalcDisclaimer": "All calculations are preliminary and may differ from those actually received.",
+      "noWorkplaceDisclaimer": "If you do not have a permanent place of work, you can leave the field blank.",
+      "fullNamePlaceholder": "Full Name",
+      "phonePlaceholder": "Mobile phone",
+      "purposePlaceholder": "Purpose of the loan",
+      "workplacePlaceholder": "Place of work and address",
+      "officePlaceholder": "Select an office"
+    },
+    "results": {
+      "monthlyPaymentLabel": "Monthly payment",
+      "interestRateLabel": "Interest rate",
+      "onlineApplicationInfo": "Online applications are accepted and reviewed on weekdays from 8:00 to 17:00."
+    }
+  },
+  "contactsPage": {
+    "title": "Contacts",
+    "subtitle": "Contact us — we are always online and ready to help.",
+    "infoWindow": {
+      "phoneLabel": "Phone"
+    }
+  },
+  "aboutUs": {
+    "mainTitle": "OJSC 'Commerzbank of Tajikistan' — one of the most reliable and dynamically developing banks in the country",
+    "cards": {
+      "mission": {
+        "title": "Our Mission",
+        "text": "We provide reliable, accessible, and modern financial solutions..."
+      },
+      "goal": {
+        "title": "Our Goal",
+        "text": "Our goal is to be a reliable partner for everyone who strives for financial stability..."
+      },
+      "vision": {
+        "title": "Our Vision",
+        "text": "To be a driver of financial innovation and a reliable partner for clients..."
+      }
+    },
+    "history": {
+      "title": "Our History",
+      "p1": "The formation and development of the Open Joint-Stock Company 'Commerzbank of Tajikistan' as a universal credit organization took place in the conditions of many years of activity in a competitive environment in the domestic banking services market.",
+      "p2": "It began in 2006, when the Limited Liability Company 'Muzaffariyat' was formed, organizing banking activities in the form of a micro-loan organization based on license No. 001-2519 'A' from the National Bank of Tajikistan.",
+      "p3": "In May 2016, the updated team of LLC MDO 'Muzaffariyat' rebranded, renaming the credit organization to LLC MDO 'Fardo'. A month later, the license from the National Bank of Tajikistan for banking operations was updated under number BMT No. 0000062.",
+      "p4": "In October 2017, the credit organization, operating as a limited liability company, was transformed into a joint-stock company, replenishing its charter capital with the help of shareholders (a new shareholder) to a level that allows it to continue its activities as a bank. MDO 'Fardo' was transformed into OJSC 'Commerzbank of Tajikistan', which was granted license No. BMT 0000085 by the National Bank of Tajikistan.",
+      "p5": "The bank's development strategy for the near future is aimed at expanding the scope of non-cash payment systems, improving the technological platform, and introducing innovative products. For example, the 'FAVRI' technological platform allows individuals and legal entities to use a wide range of banking services remotely. By becoming participants in e-commerce, they gained the ability to pay for purchased goods and services via QR code, as well as to carry out many other operations outside the Bank's office.",
+      "p6": "A new and innovative product was the mobile application 'Favri Intiqol', which currently has no analogue in the financial market of Tajikistan. It, being a unified addition to the 'Sberbank Online' application, has no user restrictions: holders of any cards issued by Russian banks can make instant money transfers to the Republic of Tajikistan through it. The development of this innovative technological solution became possible thanks to the bilateral project 'One Gateway - All Russia', which allowed mobile banking to become even more functional, universal, and convenient. Its unique novelty lies in the fact that it can be used by users of any cards of the Russian national payment system, as well as international payment systems.",
+      "p7": "From the first days of its establishment in the credit organizations market, the bank has strived to provide high-quality and accessible financial services to the population, thereby supporting the development of small and medium-sized businesses in the country's regions.",
+      "p8": "Commerzbank, as a socially active bank, today keeps pace with innovative technologies, applying standardized procedures for access to microfinance in its relationships with clients, which helps to minimize possible credit risks.",
+      "p9": "To date, 63 Banking Service Centers and 11 branches operate in the country. In the future, it is planned to open new Banking Service Centers and branches, which will make the Bank even more accessible at the regional level."
+    }
+  },
+  "cardsPage": {
+    "title": "Bank cards"
+  },
+  "cardDetails": {
+    "tabs": {
+      "services": "Services",
+      "limits": "Limits",
+      "operations": "Operations",
+      "documents": "Useful documents"
+    },
+    "accounts": {
+      "tjs": "TJS account",
+      "rub": "RUB account",
+      "usd": "USD account"
+    },
+    "applicationForm": {
+      "title": "Application for a card",
+      "subtitle": "Leave your contacts and we will definitely contact you",
+      "phonePlaceholder": "Mobile phone",
+      "namePlaceholder": "Full Name",
+      "officePlaceholder": "Select an office"
+    }
+  },
+  "calculator": {
+    "tabs": {
+      "credit": "Credit",
+      "deposit": "Deposit",
+      "carPurchase": "Buying a car"
+    },
+    "common": {
+      "disclaimer": "Preliminary calculation. Not a public offer",
+      "ourOffer": "Our offer",
+      "interestRateLabel": "Interest rate"
+    },
+    "credit": {
+      "title": "Calculate your loan",
+      "loanAmountLabel": "Loan amount",
+      "loanTermLabel": "Loan term",
+      "productLabel": "Loan product",
+      "productName": "Consumer loan",
+      "monthlyPaymentLabel": "Monthly payment",
+      "applyButton": "Apply for a loan"
+    },
+    "deposit": {
+      "title": "Calculate your deposit",
+      "depositAmountLabel": "Deposit amount",
+      "depositTermLabel": "Deposit term",
+      "productLabel": "Deposit product",
+      "productName": "Term deposit",
+      "incomeLabel": "Deposit income",
+      "finalAmountLabel": "Amount at the end of the term",
+      "applyButton": "Apply for a deposit"
+    }
+  },
+  "currency": {
+    "somoni": "TJS"
+  },
+  "bankDetails": {
+    "pageTitle": "Bank Details",
+    "pageSubtitle": "Bank requisites for financial operations",
+    "labels": {
+      "bankName": "Bank Name",
+      "legalAddress": "Legal Address",
+      "inn": "TIN",
+      "kpp": "KPP",
+      "corrAccount": "Correspondent Account",
+      "bik": "BIK",
+      "swift": "SWIFT"
+    }
   }
+}
 

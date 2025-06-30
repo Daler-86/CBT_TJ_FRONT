@@ -34,6 +34,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { value: '3', label: 'English' }
   ];
 
+  public getDisplayLanguage(): string {
+    switch (this.selectedLanguage) {
+      case '1': return 'Тоҷ';
+      case '2': return 'Рус';
+      case '3': return 'En';
+      default: return '';
+    }
+  }
+  private getLangCode(langValue: string): string {
+    switch (langValue) {
+      case '1': return 'tj';
+      case '2': return 'ru';
+      case '3': return 'en';
+      default: return 'tj'; // Язык по умолчанию на случай ошибки
+    }
+  }
+
   constructor(
     private elementRef: ElementRef,
     private router: Router,

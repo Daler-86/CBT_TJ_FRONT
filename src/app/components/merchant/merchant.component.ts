@@ -6,10 +6,11 @@ import { RegionService } from '../../api/region.service'; // Используе�
 import { Merchant, MerchantCategory } from '../../models/merchant.model';
 import { regionList } from '../../models/region.model'; // Используем существующую модель
 import { environment } from '../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-merchant',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './merchant.component.html',
   styleUrl: './merchant.component.scss'
 })
