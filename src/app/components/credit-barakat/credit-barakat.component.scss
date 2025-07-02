@@ -230,8 +230,8 @@ box-sizing: border-box;
      }
      .box{
         display: flex;
-        justify-content: space-between;
-        // gap: 2%; 
+        // justify-content: space-between;
+        gap: 2%; 
          flex-wrap: wrap;
         .box-details{
             width: 23%;
