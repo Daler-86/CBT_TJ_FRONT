@@ -1,0 +1,205 @@
+// Переменные для удобства
+$font-size-h4: 24px;
+$line-height-h4: 32px;
+$font-size-h2: 36px;
+$line-height-h2: 44px;
+$font-size-h5: 20px;
+$line-height-h5: 28px;
+$font-size-body-large: 16px;
+$line-height-body-large: 24px;
+$font-size-body-medium: 14px;
+$line-height-body-medium: 20px;
+
+.deposit-calculator {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+  border-radius: 16px;
+  margin: 20px 0;
+  @media (max-width: 1000px) { flex-wrap: wrap; }
+}
+
+.calculator-form {
+  width: 55%;
+  padding: 40px 62px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    font-size: $font-size-h4;
+    line-height: $line-height-h4;
+    font-weight: 700;
+    margin: 0 0 32px 0;
+  }
+
+  label {
+    margin: 25px 0 10px;
+    font-size: $font-size-body-large;
+    line-height: $line-height-body-large;
+    font-weight: 500;
+    display: block;
+  }
+  
+  select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #dde2e9;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+
+  .currency-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    button {
+      flex: 1;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid #dde2e9;
+      background-color: #F1F5F9;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s, color 0.2s;
+      &.active {
+        background-color: #00B06C;
+        color: white;
+        border-color: #00B06C;
+      }
+    }
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    transition: opacity 0.3s;
+    &[disabled] {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  .input-slider-container {
+    position: relative;
+    .deposit-input {
+      width: 100%;
+      padding: 19px;
+      font-size: $font-size-h5;
+      line-height: $line-height-h5;
+      font-weight: 700;
+      box-sizing: border-box;
+      margin: 0;
+      text-align: center;
+      border: 1px solid #BAC0CC;
+      border-radius: 8px 8px 0 0;
+      border-bottom: none;
+      color: #333;
+    }
+    .deposit-slider {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+   
+      height: 4px;
+      border-radius: 0 0 8px 8px;
+      border: 1px solid #dde2e9;
+      border-top: none;
+      outline: none;
+      background: linear-gradient(
+        to right,
+        #00B06C 0%,
+        #00B06C var(--range-percent),
+        #e0e6ee var(--range-percent),
+        #e0e6ee 100%
+      );
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: white;
+        margin-top: 14px;
+        border: 4px solid #00B06C;
+        border-radius: 50%;
+        cursor: pointer;
+        transform: translateY(-45%);
+      }
+    }
+  }
+  
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+    margin: 10px 0 30px 0;
+    font-size: 14px;
+    color: #66788F;
+    @media (max-width: 1024px) { display: none; }
+  }
+
+  p {
+    color: #66788F;
+    font-size: $font-size-body-medium;
+    line-height: $line-height-body-medium;
+    font-weight: 500;
+    margin-top: 20px;
+  }
+}
+
+.calculator-result {
+  width: 40%;
+  padding: 46px 62px;
+  box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
+  border-radius: 16px;
+  background-color: white;
+  box-sizing: border-box;
+  align-self: flex-start;
+  @media (max-width: 1024px) { width: 100%; }
+
+  h2 { font-size: $font-size-h4; line-height: $line-height-h4; font-weight: 700; margin: 0 0 30px 0; }
+  p { color: #141A20; margin: 20px 0 5px; font-size: $font-size-body-large; line-height: $line-height-body-large; font-weight: 500; }
+  .deposit-product { color: #00B06C; font-weight: bold; }
+  h3 { font-weight: 700; font-size: $font-size-h2; line-height: $line-height-h2; color: #00B06C; margin: 0 0 20px 0; }
+  
+  button {
+    width: 100%;
+    background-color: #00B06C;
+    color: white;
+    padding: 20px;
+    border: none;
+    font-size: $font-size-body-large;
+    line-height: $line-height-body-large;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s, opacity 0.2s;
+    &:disabled {
+      background-color: #a5d8c6;
+      cursor: not-allowed;
+    }
+  }
+
+  .error-message {
+    color: #dc3545;
+    font-weight: 500;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+  }
+}

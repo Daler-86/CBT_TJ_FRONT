@@ -65,3 +65,61 @@ export interface Deposit {
         description:string;
         sort_id:number;
       }
+
+
+      // src/app/models/deposit.model.ts
+
+export interface RateTier {
+  minMonths: number;
+  rate: number;
+}
+
+// export interface CurrencyDetails {
+//   minAmount: number;
+//   rates: RateTier[];
+// }
+
+export interface DepositProduct {
+  name: string;
+  currencies: {
+    TJS: CurrencyDetails | null;
+    USD: CurrencyDetails | null;
+  };
+}
+
+export interface DepositProducts {
+  [key: string]: DepositProduct;
+}
+
+// Модель для параметров расчета
+export interface CalculationParams {
+  productId: string;
+  currency: 'TJS' | 'USD';
+  amount: number;
+  termMonths: number;
+}
+
+// Модель для результатов расчета
+export interface CalculationResult {
+  productName: string;
+  rate: number;
+  income: number;
+  totalAmount: number;
+  error?: string; // Поле для вывода ошибок
+}
+export interface CurrencyDetails {
+  // Настройки для слайдера СУММЫ
+  minAmount: number;
+  maxAmount: number;
+  stepAmount: number;
+  amountLabels: string[];
+
+  // Настройки для слайдера СРОКА
+  minTerm: number;
+  maxTerm: number;
+  stepTerm: number;
+  termLabels: string[];
+
+  // Ставки для расчета
+  rates: RateTier[];
+}

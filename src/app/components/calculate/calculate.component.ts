@@ -2,12 +2,16 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { DepositCalculatorComponent } from "../deposit-calculate/deposit-calculate.component";
+import { InstallmentCalculateComponent } from "../installment-calculate/installment-calculate.component";
+import { CarLoanCalculateComponent } from "../car-loan-calculate/car-loan-calculate.component";
+import { LoanCalculatorComponent } from "../loan-calculator/loan-calculator.component";
 
 
 @Component({
   selector: 'app-calculate',
   standalone: true,
-  imports: [TranslateModule, NgFor, NgIf, FormsModule],
+  imports: [TranslateModule, NgFor, NgIf, FormsModule, DepositCalculatorComponent, InstallmentCalculateComponent, CarLoanCalculateComponent, LoanCalculatorComponent],
   templateUrl: './calculate.component.html',
   styleUrl: './calculate.component.scss'
 })

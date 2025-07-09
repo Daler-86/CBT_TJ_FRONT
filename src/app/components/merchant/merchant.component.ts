@@ -79,7 +79,7 @@ loadMerchants(): void {
     },
     // Блок для обработки ошибок
     error: (err) => {
-      debugger
+      
       console.error('Произошла ошибка в запросе getMerchants!', err); // <-- 3. ЛОВИМ ОШИБКУ ЗДЕСЬ
 
     }

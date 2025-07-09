@@ -19,7 +19,7 @@
   
   .content-wrapper {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 400px 1fr;
     gap: 30px;
     
     @media (max-width: 1024px) {
@@ -101,7 +101,8 @@
     align-items: center;
   
     .card-logo-wrapper {
-     
+     width: 150px;
+     height: 150px;
       margin-bottom: 16px;
       display: flex; 
       align-items: center; 

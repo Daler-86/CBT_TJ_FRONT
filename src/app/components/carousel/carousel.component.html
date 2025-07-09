@@ -1,3 +1,4 @@
+<!-- <div class="carousel" [ngStyle]="{'background-image': 'url(' +imageUrl+ galleries[currentSlide].background_file + ')'}"> -->
 <div class="carousel">
   <div *ngIf="galleries.length > 0" class="carousel-slides" [style.transform]="getTransform()">
     <div class="carousel-item" *ngFor="let slide of galleries">
@@ -6,7 +7,7 @@
         <h2>{{ slide.title }}</h2>
         <p>{{ slide.description }}</p>
         <!-- Используем уже существующий ключ для единообразия -->
-        <button *ngIf="slide.show_button" (click)="onLearnMore()">{{ 'buttons.moreDetails' | translate }}</button>
+        <button *ngIf="slide.show_button" (click)="onLearnMore(slide.route)" [routerLink]="[slide.route]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{ 'buttons.moreDetails' | translate }}</button>
       </div>
       <!-- ВАЖНО: alt-текст теперь динамический, что улучшает доступность -->
       <img [src]="imageUrl + slide.upload_file" [alt]="slide.title" />

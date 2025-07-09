@@ -93,7 +93,7 @@ export class ReportComponent implements OnInit {
      this.reportService.getReportData(yearValue).subscribe({
       
        next: (response) => {
-        debugger
+      
          const newReportsData = response.data.reports;
          this.reportData = { ...newReportsData };
 

@@ -50,7 +50,7 @@ export class CurrencyConverterComponent implements OnInit {
         // Просто присваиваем готовые данные свойствам компонента
         this.exchangeRatesByMode = processedData.ratesByMode;
         this.lastUpdated = processedData.lastUpdated;
-debugger
+
         // Устанавливаем режим по умолчанию после получения данных
         const modes = this.getModes();
         if (modes.length > 0) {
@@ -59,7 +59,7 @@ debugger
         }
       },
       error: (err) => {
-        debugger
+     
         console.error('Error fetching and processing exchange rates:', err);
       }
     });

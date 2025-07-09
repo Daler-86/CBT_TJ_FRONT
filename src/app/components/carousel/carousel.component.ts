@@ -1,9 +1,10 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MenuService } from '../../api/menu.service';
 import { mainGalleries } from '../../models/menu.model';
 import {environment} from "../../../environments/environment";
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 interface Slide {
   title: string;
@@ -13,7 +14,7 @@ interface Slide {
 
 @Component({
   selector: 'app-carousel',
-  imports:[NgFor,NgIf,TranslateModule],
+  imports:[NgFor,NgIf,TranslateModule, RouterLink, RouterLinkActive, NgStyle],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   standalone:true,
@@ -35,7 +36,7 @@ export class CarouselComponent {
   // ];
   galleries:mainGalleries[]=[]
   imageUrl: string = environment.IMAGE_URL;
-  constructor(private menuService:MenuService){}
+  constructor(private menuService:MenuService,private router:Router){}
   ngOnInit():void{
     this.menuService.getMainGalleries().subscribe(
       (response) => {
@@ -65,7 +66,9 @@ export class CarouselComponent {
     this.currentSlide = index;
   }
 
-  onLearnMore(): void {
+  onLearnMore(route:string): void {
+    this.router.navigate([route], { queryParams: { scrollToForm: true } });
+    debugger
     console.log('Подробнее нажато');
   }
 }

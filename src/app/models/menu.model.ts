@@ -4,8 +4,11 @@ export interface mainGalleries{
     description:string;
     route:string;
     upload_file:string;
+    background_file:string;
     sort_id:number;
     show_button:boolean
+
+ 
 }
 export interface MainGalleries{
  status:string;

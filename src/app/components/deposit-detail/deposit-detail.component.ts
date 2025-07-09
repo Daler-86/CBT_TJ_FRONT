@@ -11,11 +11,12 @@ import { depositDetail } from '../../models/deposit.model';
 import { RegionService } from '../../api/region.service';
 import { officeList } from '../../models/region.model';
 import {environment} from "../../../environments/environment";
+import { DepositCalculatorComponent } from "../deposit-calculate/deposit-calculate.component";
 
 @Component({
   selector: 'app-deposit-detail',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink, RouterOutlet],
+  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink, RouterOutlet, DepositCalculatorComponent],
   templateUrl: './deposit-detail.component.html',
   styleUrl: './deposit-detail.component.scss'
 })

@@ -15,41 +15,8 @@
 
   <!-- Блок 2: Калькулятор вклада -->
   <div class="deposit-calculator">
-    <div class="calculator-form">
-      <h2>{{ 'depositDetails.calculator.title' | translate }}</h2>
-      <div class="currency-tabs">
-        <button *ngFor="let currency of currencies" (click)="selectCurrency(currency)" [class.active]="selectedCurrency === currency">{{ currency }}</button>
-      </div>
-      
-      <label for="depositAmount">{{ 'depositDetails.calculator.amountLabel' | translate }}</label>
-      <div class="input-slider-container">
-        <input type="text" [ngModel]="formattedDepositAmount" (ngModelChange)="onDepositAmountChange($event)" class="deposit-input"/>
-        <input class="range deposit-slider" type="range" min="10000" max="100000" step="5000" [(ngModel)]="depositAmount" (input)="updateFormattedDepositAmount(); updateDepositSliderBackground('depositAmount')" [style.--range-percent]="depositAmountPercent">
-      </div>
-      <div class="range-labels"><span *ngFor="let value of depositAmountLabels">{{ value }}</span></div>
-      
-      <label>{{ 'depositDetails.calculator.termLabel' | translate }}</label>
-      <div class="input-slider-container">
-        <input type="text" [ngModel]="formattedDepositTerm" class="deposit-input" readonly/>
-        <input class="range deposit-slider" type="range" min="3" max="36" step="3" [(ngModel)]="depositTerm" (input)="updateFormattedDepositTerm(); updateDepositSliderBackground('depositTerm')" [style.--range-percent]="depositTermPercent">
-      </div>
-      <div class="range-labels"><span *ngFor="let value of depositTermLabels">{{ value }}</span></div>
-      
-      <p>{{ 'depositDetails.calculator.disclaimer' | translate }}</p>
-    </div>
-
-    <div class="calculator-result">
-      <h2>{{ 'depositDetails.calculator.results.title' | translate }}</h2>
-      <p>{{ 'depositDetails.calculator.results.productLabel' | translate }}</p>
-      <h3 class="deposit-product">{{ 'depositDetails.calculator.results.productExample' | translate }}</h3>
-      <p>{{ 'depositDetails.calculator.results.interestRateLabel' | translate }}</p>
-      <h3>{{ interestRate }}%</h3>
-      <p>{{ 'depositDetails.calculator.results.incomeLabel' | translate }}</p>
-      <h3>{{ calculateDepositIncome() }} {{ 'currency.somoni' | translate }}</h3>
-      <p>{{ 'depositDetails.calculator.results.finalAmountLabel' | translate }}</p>
-      <h3>{{ calculateFinalAmount() }} {{ 'currency.somoni' | translate }}</h3>
-      <button (click)="applyForDeposit()">{{ 'buttons.applyForDeposit' | translate }}</button>
-    </div>
+  
+    <app-deposit-calculator [productId]="depositData.id"></app-deposit-calculator>
   </div>
 
   <!-- Блок 3: Тарифы и условия -->

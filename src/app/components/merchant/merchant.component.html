@@ -54,7 +54,7 @@
         <div class="card-logo-wrapper">
           <img [src]="imageUrl+merchant.upload_file" [alt]="merchant.name" class="card-logo" />
         </div>
-        <h3 class="card-name">{{ merchant.name }}</h3>
+        <h3 class="card-name">{{ merchant?.name }}</h3>
         <p class="card-phone">{{ merchant.phone }}</p>
         <p class="card-address">{{ merchant.address }}</p>
       </div>

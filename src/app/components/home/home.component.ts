@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { CarouselComponent } from '../carousel/carousel.component';
+// import { CarouselComponent } from '../carousel/carousel.component';
 import {  CalculateComponent } from "../calculate/calculate.component";
 import { NgFor, NgIf } from '@angular/common';
 import { CurrencyConverterComponent } from '../currency-converter/currency-converter.component';
@@ -12,6 +12,8 @@ import { HttpClient } from '@angular/common/http';
 import { LanguagesService } from '../../languages.service';
 import {environment} from "../../../environments/environment";
 import { NewsBoxComponent } from "../news-box/news-box.component";
+import { CarouselComponent } from "../carousel/carousel.component";
+
 
 interface News{
   image:string;
@@ -23,7 +25,7 @@ interface News{
 @Component({
   selector: 'app-home',
   standalone:true,
-  imports: [RouterModule, RouterLink, CarouselComponent, TranslateModule, CalculateComponent, CurrencyConverterComponent, NgFor, FavriComponent, NgIf, NewsBoxComponent],
+  imports: [RouterModule, RouterLink, TranslateModule, CalculateComponent, CurrencyConverterComponent, NgFor, FavriComponent, NgIf, NewsBoxComponent, CarouselComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -41,7 +43,7 @@ export class HomeComponent {
 
   }
   ngOnInit(): void {
-    this.loadMenu();
+        this.loadMenu();
   }
   imageUrl: string = environment.IMAGE_URL;
   menus: any[] = [];
