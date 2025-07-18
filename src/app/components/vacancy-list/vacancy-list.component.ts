@@ -55,11 +55,11 @@ export class VacancyListComponent {
 vacancyCount:number=0
   loadAllVacancies() {
 
-    this.vacanciesService.getVacancyList(2,this.currentPage,+this.selectedCategory,+this.selectedRegion).subscribe(
+    this.vacanciesService.getVacancyList(6,this.currentPage,+this.selectedCategory,+this.selectedRegion).subscribe(
       (response) => {
         this.vacancyList = response.data.vacancies;
      
-        this.totalPages=Math.round(response.data.total_count/2)
+        this.totalPages=Math.round(response.data.total_count/6)
         this.vacancyCount=response.data.total_count
         this.updatePages(); 
       },

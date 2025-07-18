@@ -1,3 +1,5 @@
+import { CalculatorData } from "./calculate.model";
+
 export interface CreditList {
     status: string;
     status_code: string;
@@ -56,6 +58,7 @@ export interface creditData{
   description:string;
   sort_id:number;
   upload_file:string
+  credit_calculator_data:CalculatorData[]
 }
 export interface CreditData {
   status: string;

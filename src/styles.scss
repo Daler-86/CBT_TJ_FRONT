@@ -10,5 +10,8 @@ body{
     padding: 0px;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    
+    scroll-behavior: smooth;
 }
+.cdk-overlay-dark-backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }

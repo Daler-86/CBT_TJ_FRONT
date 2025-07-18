@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet } from '
 import { tenderDetail } from '../../models/tender.model';
 import { CommonModule, NgFor } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-tender-details',
   standalone: true,
@@ -13,7 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './tender-details.component.scss'
 })
 export class TenderDetailsComponent {
-
+  imageUrl: string = environment.IMAGE_URL;
   constructor(
     private route: ActivatedRoute,
     private tenderService: TenderService,

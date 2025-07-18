@@ -212,6 +212,7 @@ export class CardsService {
   submitCardByBrand(cardData: any): Observable<any> {
     return this.languageService.language$.pipe(
       switchMap(lang => {
+        debugger
         const headers = new HttpHeaders({
           'Accept': 'application/json',
           'Language': lang  // Динамическая установка языкового заголовка

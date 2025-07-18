@@ -17,7 +17,7 @@ interface Marker {
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [GoogleMapsModule, RouterLink, RouterModule, TranslateModule, NgIf, NgFor, CommonModule, OfficeListComponent],
+  imports: [GoogleMapsModule,  RouterModule, TranslateModule, NgIf, NgFor, CommonModule, OfficeListComponent],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
@@ -308,7 +308,7 @@ export class MapComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (response) => {
-          console.log('Filtered data received:', response);
+          // console.log('Filtered data received:', response);
           this.terminals = response.data.terminals || [];
           this.atms = response.data.atms || [];
           this.offices = response.data.offices || [];
@@ -445,7 +445,7 @@ export class MapComponent implements OnInit, OnDestroy {
     // Проверяем, существует ли свойство
     if (inputElement && variableName in this) {
       (this as any)[variableName] = inputElement.checked;
-      console.log(`${variableName} changed to:`, (this as any)[variableName]);
+      // console.log(`${variableName} changed to:`, (this as any)[variableName]);
       this.sendFilteredData();
     }
   }

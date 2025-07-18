@@ -28,8 +28,8 @@
         </div>
         <div class="card-buttons">
           <!-- Используем существующие ключи для кнопок -->
-          <button class="btn-primary" (click)="navigateToCardDetailsAndForm(card.id)">{{ 'buttons.applyForCard' | translate }}</button>
-          <button (click)="onCardClick(card.id)" class="btn-secondary" [routerLink]="['/card-details',card.id]">{{ 'buttons.moreDetails' | translate }}</button>
+          <button class="btn-primary" [routerLink]="['/card-details',card.id]" [queryParams]="{ scrollTo: 'application-form' }">{{ 'buttons.applyForCard' | translate }}</button>
+          <button (click)="onCardClick(card.id)" class="btn-secondary" [routerLink]="['/card-details',card.id]" >{{ 'buttons.moreDetails' | translate }}</button>
         </div>
       </div>
       <div class="card-image">

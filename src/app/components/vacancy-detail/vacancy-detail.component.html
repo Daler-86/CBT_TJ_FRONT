@@ -13,6 +13,7 @@
         </div>
       </div>
       <div class="">
+        <button [scrollTo]="'application-form'">Откликнуться на вакансию</button>
         <!-- Кнопка теперь находится внутри формы ниже, для лучшей семантики -->
       </div>
     </div>
@@ -54,18 +55,37 @@
     </div>
   </div>
 
-  <form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id='application-form'>
     <h2>{{ 'vacancyDetails.form.title' | translate }}</h2>
     <p>{{ 'vacancyDetails.form.subtitle' | translate }}</p>
-
+  
     <div class="form-row">
-      <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'"/>
-      <input formControlName="firstName" [placeholder]="('vacancyDetails.form.firstName' | translate) + '*'"/>
+      <div class="full">
+        <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'"/>
+        <div *ngIf="lastName?.invalid && lastName?.touched" class="error-message">Фамилия обязательна.</div>
+      </div>
+      <div class="full">
+        <input formControlName="firstName" [placeholder]="('vacancyDetails.form.firstName' | translate) + '*'"/>
+        <div *ngIf="firstName?.invalid && firstName?.touched" class="error-message">Имя обязательно.</div>
+      </div>
     </div>
     
     <div class="form-row">
-      <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'"/>
-      <input formControlName="email" [placeholder]="('vacancyDetails.form.email' | translate) + '*'"/>
+      <div class="full">
+        <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'"/>
+        <div *ngIf="phone?.invalid && phone?.touched" class="error-message">
+          <span *ngIf="phone?.errors?.['required']">Телефон обязателен.</span>
+          <span *ngIf="phone?.errors?.['pattern']">Неверный формат.</span>
+        </div>
+        </div>
+      <div class="full">
+        <input formControlName="email" [placeholder]="('vacancyDetails.form.email' | translate) + '*'"/>
+        <div *ngIf="email?.invalid && email?.touched" class="error-message">
+          <span *ngIf="email?.errors?.['required']">Email обязателен.</span>
+          <span *ngIf="email?.errors?.['email']">Неверный формат email.</span>
+        </div>
+    
+      </div>
     </div>
 
     <!-- Зона перетаскивания файла -->

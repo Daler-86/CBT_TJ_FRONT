@@ -69,7 +69,7 @@ loadMerchants(): void {
   ).subscribe({
     // Блок для успешного ответа
     next: (res) => {
-      console.log('Успешно получил данные:', res); // <-- 2. Проверяем, что пришел ответ
+      // console.log('Успешно получил данные:', res); // <-- 2. Проверяем, что пришел ответ
 
       this.merchants = res.data.merchants;
       

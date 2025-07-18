@@ -13,7 +13,7 @@ import { scs, scsDetail } from '../../models/rko.model';
 @Component({
   selector: 'app-rko-details',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink, RouterOutlet],
+  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule],
   templateUrl: './rko-details.component.html',
   styleUrl: './rko-details.component.scss'
 })

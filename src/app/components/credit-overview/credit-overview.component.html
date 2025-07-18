@@ -1,12 +1,5 @@
 <div class="credit">
     <h1>{{'creditsPage.title' | translate}}</h1>
-    <!-- <div class="btnCards">
-        <button (click)="selectTab('all')" [class.active]="selectedTab === 'all'">{{'creditsPage.filters.all' | translate}}</button>
-        <button (click)="selectTab('credit')" [class.active]="selectedTab === 'credit'">{{'creditsPage.filters.credit' | translate}}</button>
-        <button (click)="selectTab('auto credit')" [class.active]="selectedTab === 'auto credit'">{{'creditsPage.filters.autoLoan' | translate}}</button>
-        <button (click)="selectTab('credit stroy')" [class.active]="selectedTab === 'credit stroy'">{{'creditsPage.filters.constructionLoan' | translate}}</button>
-    </div> -->
-    <!-- <div *ngIf="selectedTab==='all'" class="content"> -->
 
 
           <div class="card-container" *ngFor="let credit of credits ">
@@ -23,8 +16,8 @@
                 </div>
               </div>
               <div class="card-buttons">
-                <button class="btn-primary">{{'creditsPage.card.applyButton' | translate}}</button>
-                <button class="btn-secondary"  (click)="onCreditClick(credit)" [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <button class="btn-primary" [routerLink]="['/credits', credit.id]" [queryParams]="{ scrollTo: 'application-form' }">{{'creditsPage.card.applyButton' | translate}}</button>
+                <button class="btn-secondary"   [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                   {{'creditsPage.card.detailsButton' | translate}}
                 </button>
 
@@ -35,10 +28,6 @@
 
             </div>
           </div>
-    <!-- </div> -->
-    <!-- <div *ngIf="selectedTab==='credit'" class="content"></div>
-    <div *ngIf="selectedTab==='auto credit'" class="content"></div>
-    <div *ngIf="selectedTab==='credit stroy'" class="content"></div> -->
-
+    
     </div>
  <router-outlet></router-outlet>

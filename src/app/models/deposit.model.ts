@@ -28,7 +28,7 @@ export interface Deposit {
   
   }
    export interface depositDetail{
-        id?:number;
+        id:number;
         title?:string;
         description?:string;
         upload_icon_file?:string;

@@ -39,7 +39,7 @@ export class BreadcrumbService {
       // Continue building breadcrumbs for the next child
       this.createBreadcrumbs(child, url, breadcrumbs);
     }
-console.log(breadcrumbs)
+// console.log(breadcrumbs)
     return breadcrumbs;
   }
 }

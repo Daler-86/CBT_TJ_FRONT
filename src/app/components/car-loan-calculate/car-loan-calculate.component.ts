@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-car-loan-calculate',
   standalone: true,
-  imports: [CommonModule, FormsModule, CurrencyPipe, PercentPipe],
+  imports: [CommonModule, FormsModule,  PercentPipe],
   templateUrl: './car-loan-calculate.component.html',
   styleUrl: './car-loan-calculate.component.scss'
 })

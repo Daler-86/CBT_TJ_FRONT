@@ -132,7 +132,7 @@ export class VacancyService {
   // Метод для выбора вакансии
   selectVacancy(vacancy: Vacancy) {
     this.selectedVacancy.next(vacancy);
-    console.log(vacancy);
+    // console.log(vacancy);
   }
 
   // Метод для получения Observable выбранной вакансии

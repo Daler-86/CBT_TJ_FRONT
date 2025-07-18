@@ -38,7 +38,7 @@ export class BankDetailComponent implements OnInit, OnDestroy {
         this.bankdetailList = response.data.bank_details;
       },
       error: (error) => {
-        console.error(`Ошибка при загрузке реквизитов для таба ${tabId}`, error);
+        // console.error(`Ошибка при загрузке реквизитов для таба ${tabId}`, error);
       }
     });
     this.subscriptions.add(sub);
@@ -60,7 +60,7 @@ export class BankDetailComponent implements OnInit, OnDestroy {
         // --- КОНЕЦ НОВОЙ ЛОГИКИ ---
       },
       error: (error) => {
-        console.error('Ошибка при загрузке валют', error);
+        // console.error('Ошибка при загрузке валют', error);
       }
     });
     this.subscriptions.add(sub);

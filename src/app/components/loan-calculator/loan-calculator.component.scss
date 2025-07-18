@@ -4,7 +4,12 @@ $text-primary: #212529;
 $text-secondary: #6c757d;
 $background-light: #ffffff;
 $border-color: #dee2e6;
-
+$primary-color: #00B06C;
+$text-primary: #212529;
+$text-secondary: #6c757d;
+$border-color: #dee2e6;
+$font-size-h5: 20px;
+$line-height-h5: 28px;
 // Миксин
 @mixin card-style {
   background-color: $background-light;
@@ -27,7 +32,7 @@ $border-color: #dee2e6;
   @include card-style;
   h2 { font-size: 28px; font-weight: 700; color: $text-primary; margin: 0 0 30px; }
   .form-group {
-    margin-bottom: 25px;
+
     label { display: block; font-size: 16px; font-weight: 500; color: $text-secondary; margin-bottom: 12px; }
     select {
         width: 100%;
@@ -49,9 +54,58 @@ $border-color: #dee2e6;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    margin-bottom: 25px;
   }
-
-  .currency-tabs {
+  .dual-control {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: flex-end; // Выравниваем по низу для красоты
+  }
+  
+  .control-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  // Контейнер для поля ввода ставки и знака %
+  .rate-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 0 12px;
+    background-color: #f1f3f5;
+    
+    // Поле для ввода процентов
+    .rate-input {
+      width: 100%;
+      border: none;
+      background: none;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 12px 0;
+      text-align: center;
+      
+      &:focus {
+        outline: none;
+      }
+      // Убираем стрелочки у input[type=number]
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      -moz-appearance: textfield;
+    }
+    
+    span {
+      font-size: 16px;
+      font-weight: 600;
+      color: #6c757d;
+    }
+  }
+     .currency-tabs {
     display: flex;
     button {
       flex: 1;
@@ -70,6 +124,84 @@ $border-color: #dee2e6;
       }
     }
   }
+  // Общий контейнер для поля ввода и слайдера
+  .input-slider-container {
+    position: relative;
+    margin-top: 10px;
+
+    // Поле ввода над слайдером
+    .loan-input {
+      width: 100%;
+      padding: 19px;
+      font-size: $font-size-h5;
+      line-height: $line-height-h5;
+      font-weight: 700;
+      box-sizing: border-box;
+      margin: 0;
+      text-align: center;
+      border: 1px solid #BAC0CC;
+      border-radius: 8px 8px 0 0;
+      border-bottom: none;
+      color: #333;
+
+      &:focus {
+        outline: none;
+        color: $primary-color;
+      }
+    }
+
+    // Слайдер под полем ввода
+    .loan-slider {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+      height: 4px;
+      border-radius: 0 0 8px 8px;
+      border: 1px solid $border-color;
+      border-top: none;
+      outline: none;
+      background: linear-gradient(
+        to right,
+        $primary-color 0%,
+        $primary-color var(--range-percent),
+        #e0e6ee var(--range-percent),
+        #e0e6ee 100%
+      );
+
+      // Ползунок слайдера
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border: 4px solid $primary-color;
+        border-radius: 50%;
+        cursor: pointer;
+        // Центрируем ползунок относительно трека
+        margin-top: -8px; 
+      }
+      &::-moz-range-thumb { // Для Firefox
+        width: 12px;
+        height: 12px;
+        background: white;
+        border: 4px solid $primary-color;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+  }
+
+  // Подписи под слайдером
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 2px 25px;
+    font-size: 14px;
+    color: $text-secondary;
+  }
+
 
   .slider-group {
     margin-top: 40px;
@@ -88,8 +220,38 @@ $border-color: #dee2e6;
         font-weight: 700;
         text-align: right;
       }
+      .slider-value-input {
+        font-size: 24px;
+        font-weight: 700;
+        text-align: right;
+        border: none;
+        background-color: transparent;
+        width: auto;
+        padding: 0;
+        color: #212529;
+      
+        &:focus {
+          outline: none;
+          color: #00B06C; // Цвет при фокусе
+        }
+      }
+      
+      .currency-indicator {
+          font-size: 24px;
+          font-weight: 700;
+          margin-left: 5px;
+      }
+    }
+    .input-error {
+      border: 1px solid #e53935 !important; /* Красный цвет бордера */
+      box-shadow: 0 0 0 0.2rem rgba(229, 57, 53, 0.25) !important; /* Легкая тень при ошибке */
     }
     
+    .calculator-result .error-message {
+      color: #e53935;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
     .slider-container {
       position: relative;
       height: 22px; // Высота равна высоте ползунка для центрирования
@@ -160,6 +322,7 @@ $border-color: #dee2e6;
       padding-top: 5px;
     }
   }
+  
 }
 
 // Правая колонка (без изменений)

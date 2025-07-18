@@ -14,7 +14,7 @@ interface Slide {
 
 @Component({
   selector: 'app-carousel',
-  imports:[NgFor,NgIf,TranslateModule, RouterLink, RouterLinkActive, NgStyle],
+  imports:[NgFor,NgIf,TranslateModule, RouterLink, RouterLinkActive],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   standalone:true,
@@ -68,8 +68,8 @@ export class CarouselComponent {
 
   onLearnMore(route:string): void {
     this.router.navigate([route], { queryParams: { scrollToForm: true } });
-    debugger
-    console.log('Подробнее нажато');
+  
+    // console.log('Подробнее нажато');
   }
 }
 

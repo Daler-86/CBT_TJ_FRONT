@@ -19,7 +19,7 @@ export class LanguagesService {
     }
   
     setLanguage(lang: string) {
-      console.log(lang);
+  
       this.language.next(lang); // Update the current language
       localStorage.setItem('appLanguage', lang); // Save the language to localStorage
     }

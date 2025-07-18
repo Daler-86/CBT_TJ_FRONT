@@ -2,7 +2,7 @@ import { Component ,HostListener, ElementRef, OnInit, ViewChild,} from '@angular
 import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Card, CardList, cardDetail, cardFaqs, cardLimits, cardOperations, helpfulDocument } from '../../models/cards.model';
 import { RegionService } from '../../api/region.service';
 import { officeList } from '../../models/region.model';
@@ -10,88 +10,74 @@ import { MenuService } from '../../api/menu.service';
 import { BehaviorSubject } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import {environment} from "../../../environments/environment";
+import { ModalService } from '../../services/modal.service';
+import { ScrollToDirective } from '../../directives/scroll-to.directive';
+import { ScrollService } from '../../services/scroll.service';
+
 @Component({
   selector: 'app-card-details',
   standalone: true,
-  imports: [NgFor, NgIf,FormsModule, TranslateModule],
+  imports: [NgFor, NgIf,FormsModule, TranslateModule, ReactiveFormsModule, ScrollToDirective],
   templateUrl: './card-details.component.html',
   styleUrl: './card-details.component.scss'
 })
 export class CardDetailsComponent implements OnInit {
   imageUrl: string = environment.IMAGE_URL;
-  cardId: number=0;
-  cardContent: any; // Замените any на ваш тип данных
+  cardId: number = 0;
+  cardData: any = {};
+  cardContent: any;
   services: any;
-  limits: cardLimits[]=[];
-  operations: cardOperations[]=[];
-  documents: helpfulDocument[]=[];
-  faqs:cardFaqs[]=[]
-offices:officeList[]=[]
-select:any
-officeName:string='Выберите отделение банка'
-  model = {
-    card_id: 0,
-    client_name: '',
-    office_id: 0,
-    phone: ''
-  };
-  cardData:any={}
-  personTypeId: number = 1;
-    selectedFaqIndex: number | null = null;
-  dropdownOpen:boolean=false;
+  limits: cardLimits[] = [];
+  operations: cardOperations[] = [];
+  documents: helpfulDocument[] = [];
+  faqs: cardFaqs[] = [];
+  offices: officeList[] = [];
+
+  // Свойства для UI
   selectedTab: string = 'services';
-  selectedBrandId = new BehaviorSubject<number>(1);
-  selectedBrandId$ = this.selectedBrandId.asObservable();
+  selectedFaqIndex: number | null = null;
+  dropdownOpen: boolean = false;
+  officeName: string = 'Выберите отделение банка';
+
+  // Реактивная форма
+  public applicationForm: FormGroup;
+  @ViewChild('formElement') formElementRef!: ElementRef;
+
   constructor(
     private route: ActivatedRoute,
     private cardsService: CardsService,
-    private regionService:RegionService,
-    private elementRef: ElementRef,
-    private menuService: MenuService
-  ) { }
-
-
-  selectTab(tab: string): void {
-    this.selectedTab = tab;
-    this.loadTabData(tab,this.cardId);
+    private regionService: RegionService,
+    private notificationService: ModalService,
+    private scrollService:ScrollService,
+    private fb: FormBuilder // Внедряем FormBuilder
+  ) {
+    // Инициализируем форму в конструкторе
+    this.applicationForm = this.fb.group({
+      client_name: ['', [Validators.required, Validators.minLength(2)]],
+      phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9\\s()-]*$')]], // Паттерн для телефонов
+      office_id: [null, [Validators.required]]
+    });
   }
-    toggleFaq(index: number) {
-      this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
-    }
-    @ViewChild('applicationForm') applicationForm!: ElementRef;
-    scrollToFormFlag = false;
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam !== null) {
-      this.cardId= +idParam;  // Преобразование строки в число
-    } else {
-      console.error('ID is missing in the route parameters.');
-      // Здесь может быть код для обработки ситуации отсутствия ID
+    if (idParam) {
+      this.cardId = +idParam;
+      // Загружаем все данные для страницы
+      this.loadCards(this.cardId);
+      this.loadCardDetails(this.cardId);
+      this.loadCardFaqs(this.cardId);
+      this.loadTabData(this.selectedTab, this.cardId);
+      this.loadOffice();
     }
-    this.loadCards(this.cardId);
-    this.loadCardDetails(this.cardId);
-    this.loadCardFaqs(this.cardId)
-    this.loadTabData(this.selectedTab, this.cardId);
-    this.loadOffice()
-
-  }
-
-  ngAfterViewInit(): void {
-    // Проверяем, нужно ли прокручивать к форме
-    this.route.queryParams.subscribe((params) => {
-      if (params['scrollToForm'] === 'true') {
-        this.scrollToForm();
+    this.route.queryParams.subscribe(params => {
+      const anchor = params['scrollTo']; // Ищем параметр 'scrollTo' в URL
+      if (anchor) {
+        // Если параметр есть, вызываем наш сервис
+        this.scrollService.scrollToAnchor(anchor);
       }
     });
-  }
-
-  scrollToForm(): void {
-    const element = this.applicationForm.nativeElement;
-    const headerHeight = document.querySelector('.header')?.clientHeight || 0; // Учитываем фиксированный заголовок
-    const offsetTop = element.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
   }
   loadCards(id:number):void {
     this.cardsService.getCardData(id).subscribe(
@@ -103,6 +89,82 @@ officeName:string='Выберите отделение банка'
       }
     );
   }
+  scrollToForm(): void {
+    // Используем новое имя переменной
+    const element = this.formElementRef.nativeElement;
+    const headerHeight = document.querySelector('.header')?.clientHeight || 0;
+    const offsetTop = element.getBoundingClientRect().top + window.scrollY - headerHeight;
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  }
+  // Метод выбора офиса
+  selectOption(item: officeList): void {
+    this.officeName = item.name;
+    this.applicationForm.get('office_id')?.setValue(item.id);
+    this.dropdownOpen = false;
+  }
+  
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  // Метод отправки формы
+  submitApplication(): void {
+    this.applicationForm.markAllAsTouched(); // Помечаем все поля как "тронутые" для показа ошибок
+
+    if (this.applicationForm.invalid) {
+      this.notificationService.show('Пожалуйста, заполните все поля корректно.', 'error');
+      return;
+    }
+
+    const dataToSend = {
+      card_id: this.cardId,
+      ...this.applicationForm.value // Берем все значения из формы
+    };
+
+    console.log('Отправка данных на сервер:', dataToSend);
+
+    this.cardsService.submitCardByBrand(dataToSend).subscribe({
+      next: (response) => {
+        this.notificationService.show('Ваша заявка успешно принята!', 'success');
+        this.applicationForm.reset(); // Сбрасываем форму
+        this.officeName = 'Выберите отделение банка';
+      },
+      error: (err) => {
+        const errorMessage = err.error?.message || 'Не удалось отправить заявку. Попробуйте позже.';
+        this.notificationService.show(errorMessage, 'error');
+      }
+    });
+  }
+
+  // Геттеры для удобного доступа к контролам в шаблоне
+  get client_name() { return this.applicationForm.get('client_name'); }
+  get phone() { return this.applicationForm.get('phone'); }
+  get office_id() { return this.applicationForm.get('office_id'); }
+  
+
+
+  
+  selectedBrandId = new BehaviorSubject<number>(1);
+  selectedBrandId$ = this.selectedBrandId.asObservable();
+  
+
+
+
+  selectTab(tab: string): void {
+    this.selectedTab = tab;
+    this.loadTabData(tab,this.cardId);
+  }
+    toggleFaq(index: number) {
+      this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
+    }
+
+    scrollToFormFlag = false;
+
+ 
+
+
+
+ 
   loadTabData(tab: string,id:number): void {
     switch (tab) {
       case 'services':
@@ -160,31 +222,6 @@ officeName:string='Выберите отделение банка'
       }
     );
   }
-  submitApplication() {
 
-    if (this.model.phone && this.model.client_name && this.model.office_id) {
-      console.log(this.model)
-      this.model.card_id=this.cardId
-      this.cardsService.submitCardByBrand(this.model).subscribe(resp =>{
-        console.log(resp);
-
-      },(err =>{
-        console.log(err);
-      }));
-  }
-}
-toggleDropdown(event: Event) {
-  this.dropdownOpen = !this.dropdownOpen;
-  event.stopPropagation(); // Останавливаем распространение события
-}
-@HostListener('document:click', ['$event'])
-
-selectOption( event: Event,item:officeList) {
-  this.officeName = item?.name; // Обновляем имя для отображения
-  this.model.office_id = item?.id;
-  event.stopPropagation();
-  this.dropdownOpen = false;
-
-}
 
 }

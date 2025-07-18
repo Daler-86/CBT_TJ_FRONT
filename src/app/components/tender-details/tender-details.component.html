@@ -21,7 +21,7 @@
       <!-- Карточка с документацией (под основной) -->
       <div class="tender-card tender-document-card">
         <img src="../../../assets/icons/файл.png" [alt]="'alt.pdfIcon' | translate" class="pdf-icon">
-        <a [href]="tenderDetailData.upload_file" class="document-link">{{ 'tenderDetails.documentationLink' | translate }}</a>
+        <a [href]="imageUrl+tenderDetailData.upload_file" class="document-link">{{ 'tenderDetails.documentationLink' | translate }}</a>
       </div>
     </div>
   

@@ -11,7 +11,7 @@ import {  Input, Output, EventEmitter, OnInit } from '@angular/core';
 @Component({
   selector: 'app-office-list',
   standalone: true,
-  imports: [GoogleMapsModule,RouterLink, RouterModule, TranslateModule, NgIf, NgFor,CommonModule,],
+  imports: [GoogleMapsModule, RouterModule, TranslateModule, NgIf, NgFor,CommonModule,],
   templateUrl: './office-list.component.html',
   styleUrl: './office-list.component.scss'
 })
@@ -100,7 +100,7 @@ this.updatePages();
   sendFilteredData(): void {
     this.filterService.getFilteredByRegion(this.atmsSelected, this.officesSelected, this.terminalsSelected,this.regionSelected,8,this.currentPage).subscribe({
       next: (response) => {
-      console.log('Filtered data received:', response); 
+      // console.log('Filtered data received:', response); 
       this.combinedData=response.data.list_data
       this.totalPages=Math.ceil(response.data.total_count/8)
       this.updatePages();

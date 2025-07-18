@@ -1,9 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { LoanCalculationResult } from '../../models/calculate.model';
+import { Component, OnInit, inject,OnChanges, Input , SimpleChanges  } from '@angular/core';
+import { CalculatorData, LoanCalculationResult } from '../../models/calculate.model';
 import { LoanService } from '../../services/loan.service';
 import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+type Currency = 'tjs' | 'usd';
 @Component({
   selector: 'app-loan-calculator',
   standalone: true,
@@ -11,83 +12,107 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './loan-calculator.component.html',
   styleUrl: './loan-calculator.component.scss'
 })
-export class LoanCalculatorComponent implements OnInit{
-
-  private loanService = inject(LoanService);
-
-  // --- Состояние формы ---
-  loanAmount = 10000;
-  loanTerm = 12;
-  selectedProductId = 'barakat';
-  selectedCurrency: 'TJS' | 'USD' = 'TJS';
-  selectedClientType = 'Новый клиент';
+export class LoanCalculatorComponent implements OnChanges{
+   
+  // @Input ожидает массив с условиями
+  @Input() conditionsData: CalculatorData[] = [];
   
-  // --- UI-настройки ---
+  // Состояние формы
+  loanAmount: any = 0;
+  loanTerm: number = 0;
+  interestRatePercent: number = 0;
+  
+  // UI-настройки
+  selectedCurrency: Currency = 'tjs';
+  currentConditions: CalculatorData | null = null;
+  availableCurrencies: Currency[] = [];
+  
   minAmount = 0; maxAmount = 0; stepAmount = 100;
   minTerm = 0; maxTerm = 0; stepTerm = 1;
-  amountLabels: string[] = []; termLabels: string[] = [];
-  loanAmountPercent = '0%';
-  loanTermPercent = '0%'; 
-  // --- Данные для выбора ---
-  products: any;
-  productKeys: string[] = [];
-  availableCurrencies: ('TJS' | 'USD')[] = [];
-  availableClientTypes: string[] = [];
+  minRate = 0; maxRate = 0;
   
-  // --- Результат расчета ---
+  amountLabels: string[] = [];
+  termLabels: string[] = [];
+  rateLabels: string[] = [];
+  
+  loanAmountPercent = '0%';
+  loanTermPercent = '0%';
+  ratePercent = '0%';
+
   calculationResult: LoanCalculationResult | null = null;
   
-  constructor() {
-    this.products = this.loanService.getProducts();
-    this.productKeys = Object.keys(this.products);
+  // Срабатывает, когда родитель передает [conditionsData]
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['conditionsData'] && this.conditionsData?.length > 0) {
+      this.availableCurrencies = this.conditionsData.map(c => c.currency);
+      this.selectCurrency(this.availableCurrencies[0] || 'tjs');
+    }
   }
 
-  ngOnInit(): void {
-    this.onProductChange();
-  }
-  
-  onProductChange(): void {
-    const product = this.products[this.selectedProductId];
-    this.availableCurrencies = Object.keys(product.currencies) as ('TJS' | 'USD')[];
-    
-    if (!this.availableCurrencies.includes(this.selectedCurrency)) {
-      this.selectedCurrency = this.availableCurrencies[0];
-    }
-    
-    this.availableClientTypes = product.clientTypes || [];
-    if (this.availableClientTypes.length > 0 && !this.availableClientTypes.includes(this.selectedClientType)) {
-      this.selectedClientType = this.availableClientTypes[0];
-    }
-    
-    this.onSettingsChange();
+  // Вызывается по клику на кнопку валюты
+  selectCurrency(currency: Currency): void {
+    this.selectedCurrency = currency;
+    this.currentConditions = this.conditionsData.find(c => c.currency === currency) || null;
+    this.initializeCalculator();
   }
 
-  onSettingsChange(): void {
-    const conditions = this.loanService.getConditions(this.selectedProductId, this.selectedCurrency, this.selectedClientType);
-    if(conditions) {
-      this.minAmount = conditions.minAmount;
-      this.maxAmount = conditions.maxAmount;
-      this.minTerm = conditions.minTerm;
-      this.maxTerm = conditions.maxTerm;
+  // Настраивает все лимиты и начальные значения
+  initializeCalculator(): void {
+    if (!this.currentConditions) return;
+    
+    this.minAmount = this.currentConditions.min_amount;
+    this.maxAmount = this.currentConditions.max_amount;
+    this.stepAmount = Math.round((this.maxAmount - this.minAmount) / 100);
+    
+    this.minTerm = this.currentConditions.min_month;
+    this.maxTerm = this.currentConditions.max_month;
+    
+    this.minRate = this.currentConditions.min_percentage;
+    this.maxRate = this.currentConditions.max_percentage;
 
-      this.amountLabels = [`${this.minAmount/1000} тыс.`, `${this.maxAmount/1000} тыс.`];
-      this.termLabels = [`${this.minTerm} мес.`, `${this.maxTerm} мес.`];
+    this.loanAmount = this.minAmount;
+    this.loanTerm = this.minTerm;
+    this.interestRatePercent = this.minRate;
 
-      this.loanAmount = Math.max(this.minAmount, Math.min(this.loanAmount, this.maxAmount));
-      this.loanTerm = Math.max(this.minTerm, Math.min(this.loanTerm, this.maxTerm));
-    }
+    this.amountLabels = [`${this.minAmount}`, `${this.maxAmount}`];
+    this.termLabels = [`${this.minTerm} мес.`, `${this.maxTerm} мес.`];
+    this.rateLabels = [`${this.minRate}%`, `${this.maxRate}%`];
     this.recalculate();
   }
 
+  // Центральный метод для расчетов и валидации
   recalculate(): void {
-    this.calculationResult = this.loanService.calculate({
-      productId: this.selectedProductId,
-      currency: this.selectedCurrency,
-      clientType: this.selectedClientType,
-      amount: this.loanAmount,
-      term: this.loanTerm,
-    });
-    this.loanAmountPercent = `${((this.loanAmount - this.minAmount) / (this.maxAmount - this.minAmount)) * 100}%`;
-this.loanTermPercent = `${((this.loanTerm - this.minTerm) / (this.maxTerm - this.minTerm)) * 100}%`;
+    if (!this.currentConditions) return;
+
+    let numericAmount = parseInt(String(this.loanAmount).replace(/\D/g, ''));
+    if (isNaN(numericAmount) || numericAmount < this.minAmount) { numericAmount = this.minAmount; }
+    if (numericAmount > this.maxAmount) { numericAmount = this.maxAmount; }
+    this.loanAmount = numericAmount;
+
+    this.loanTerm = Math.max(this.minTerm, Math.min(this.loanTerm, this.maxTerm));
+    this.interestRatePercent = Math.max(this.minRate, Math.min(this.interestRatePercent, this.maxRate));
+
+    const annualRate = this.interestRatePercent / 100;
+    const monthlyRate = annualRate / 12;
+
+    if (this.loanAmount > 0 && this.loanTerm > 0 && monthlyRate > 0) {
+        const monthlyPayment = this.loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, this.loanTerm)) / (Math.pow(1 + monthlyRate, this.loanTerm) - 1);
+        const totalPayment = monthlyPayment * this.loanTerm;
+        this.calculationResult = {
+            monthlyPayment: Math.round(monthlyPayment),
+            totalPayment: Math.round(totalPayment),
+            totalOverpayment: Math.round(totalPayment - this.loanAmount),
+            interestRate: annualRate,
+        };
+    } else {
+        this.calculationResult = null;
+    }
+    this.updateVisuals();
+  }
+  
+  updateVisuals(): void {
+    this.loanAmountPercent = (this.maxAmount > this.minAmount) ? `${((this.loanAmount - this.minAmount) / (this.maxAmount - this.minAmount)) * 100}%` : '0%';
+    this.loanTermPercent = (this.maxTerm > this.minTerm) ? `${((this.loanTerm - this.minTerm) / (this.maxTerm - this.minTerm)) * 100}%` : '0%';
+    this.ratePercent = (this.maxRate > this.minRate) ? `${((this.interestRatePercent - this.minRate) / (this.maxRate - this.minRate)) * 100}%` : '0%';
   }
 }

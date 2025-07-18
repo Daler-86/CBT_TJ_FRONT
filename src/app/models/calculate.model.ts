@@ -75,13 +75,12 @@ export interface LoanConditions {
     };
   }
   
-  // Параметры для расчета
+ 
+
   export interface LoanCalculationParams {
-    productId: string;
-    currency: 'TJS' | 'USD';
-    clientType: string;
     amount: number;
     term: number;
+    annualRate: number; // Годовая ставка в десятичном формате (например, 0.16)
   }
   
   // Результаты расчета
@@ -89,6 +88,16 @@ export interface LoanConditions {
     monthlyPayment: number;
     totalPayment: number;
     totalOverpayment: number;
-    interestRate: number;
-    error?: string;
+    interestRate: number; // Фактическая ставка для данного расчета
+  }
+  export interface CalculatorData {
+    id: number;
+    credit_id: number;
+    currency: 'tjs' | 'usd';
+    min_percentage: number;
+    max_percentage: number;
+    min_amount: number;
+    max_amount: number;
+    min_month: number;
+    max_month: number;
   }

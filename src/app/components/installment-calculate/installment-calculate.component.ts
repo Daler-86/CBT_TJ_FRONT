@@ -13,7 +13,7 @@ interface InstallmentCalculationResult {
 @Component({
   selector: 'app-installment-calculate',
   standalone: true,
-  imports: [CommonModule, FormsModule, CurrencyPipe, PercentPipe],
+  imports: [CommonModule, FormsModule,  PercentPipe],
   templateUrl: './installment-calculate.component.html',
   styleUrl: './installment-calculate.component.scss'
 })
@@ -79,11 +79,11 @@ export class InstallmentCalculateComponent {
   }
   
   applyForInstallment(): void {
-    console.log('Заявка на рассрочку:', {
-      amount: this.loanAmount,
-      term: this.loanTerm,
-      ...this.calculationResult,
-    });
+    // console.log('Заявка на рассрочку:', {
+    //   amount: this.loanAmount,
+    //   term: this.loanTerm,
+    //   ...this.calculationResult,
+    // });
     alert('Ваша заявка на рассрочку отправлена!');
   }
 }

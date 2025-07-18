@@ -1,19 +1,20 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CardsService } from '../../api/cards.service';
-import { Card, CardBrand } from '../../models/cards.model';
+
 import { MenuService } from '../../api/menu.service';
-import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {environment} from "../../../environments/environment";
+
 @Component({
   selector: 'app-cards',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgIf, NgFor,CommonModule],
+  imports: [RouterLink, RouterModule, TranslateModule, NgFor,CommonModule],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.scss'
 })
@@ -44,7 +45,7 @@ export class CardsComponent implements OnInit {
     this.cardsService.getCardList(this.personTypeId, this.selectedBrandId.getValue()).subscribe(
       (response) => {
         this.cardList = response.data.cards;
-        console.log('cardList updated:', this.cardList);
+        // console.log('cardList updated:', this.cardList);
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
@@ -76,7 +77,7 @@ export class CardsComponent implements OnInit {
     this.cardsService.getCardListAll(this.personTypeId).subscribe(
       (response) => {
         this.cardList = response.data.cards;
-        console.log('All cards loaded:', this.cardList);
+        // console.log('All cards loaded:', this.cardList);
       },
       (error) => {
         console.error('Ошибка при загрузке всех карт', error);
@@ -96,7 +97,7 @@ export class CardsComponent implements OnInit {
     this.cardsService.getCardContentItem(cardId).subscribe(
       (details) => {
         this.contentItem = details.data.card_content_items;
-        console.log(details);
+        // console.log(details);
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);

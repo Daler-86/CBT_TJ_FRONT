@@ -1,9 +1,8 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { CreditBarakatComponent } from '../credit-barakat/credit-barakat.component';
-import { AutocreditComponent } from '../autocredit/autocredit.component';
+
 import { CreditService } from '../../api/credit.service';
 import { creditList } from '../../models/credit.model';
 import { MenuService } from '../../api/menu.service';
@@ -11,7 +10,7 @@ import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-credit-overview',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgIf, NgFor, CreditBarakatComponent,AutocreditComponent],
+  imports: [RouterLink, RouterModule, TranslateModule, NgFor],
   templateUrl: './credit-overview.component.html',
   styleUrl: './credit-overview.component.scss'
 })
@@ -44,15 +43,5 @@ constructor(  private creditService: CreditService, private menuService: MenuSer
       }
     );
   }
-  onCreditClick(credit:creditList ) {
-    // this.cardsService.getCardContentItem(cardId).subscribe(
-    //   (details) => {
-    //     this.contentItem = details.data.card_content_items;
-    //     console.log(details);
-    //   },
-    //   (error) => {
-    //     console.error('Ошибка при получении деталей карты', error);
-    //   }
-    // );
-  }
+
 }

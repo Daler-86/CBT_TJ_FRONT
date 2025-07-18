@@ -1,11 +1,11 @@
 <div class="milli-card">
-  <!-- Блок 1: Промо -->
-  <div class="card-container">
+   <!-- Блок 1: Промо -->
+   <div class="card-container" *ngIf="cardData">
     <div class="card-info">
       <h2 class="card-title">{{ cardData.title }}</h2>
       <p class="card-description">{{ cardData.description }}</p>
       <div class="card-buttons">
-        <button class="btn-primary">{{ 'buttons.applyForCard' | translate }}</button>
+        <button class="btn-primary" [scrollTo]="'application-form'">{{ 'buttons.applyForCard' | translate }}</button>
       </div>
     </div>
     <div class="card-image">
@@ -14,9 +14,9 @@
   </div>
 
   <!-- Блок 2: Преимущества -->
-  <div class="features-container" [class]="{'type1': cardContent?.length%3==0, 'type2': cardContent?.length%2==0}">
+  <div class="features-container" *ngIf="cardContent" [class]="{'type1': cardContent?.length%3==0, 'type2': cardContent?.length%2==0}">
     <div class="feature-card" *ngFor="let detail of cardContent">
-      <div class="">
+      <div>
         <h3>{{ detail.title }}</h3>
         <p>{{ detail.description }}</p>
       </div>
@@ -64,30 +64,59 @@
   </div>
 
   <!-- Блок 4: Форма заявки -->
-  <div class="application-form-container" #applicationForm>
+  <div class="application-form-container" #formElement id='application-form'>
     <h2 class="form-title">{{ 'cardDetails.applicationForm.title' | translate }}</h2>
     <p class="form-subtitle">{{ 'cardDetails.applicationForm.subtitle' | translate }}</p>
     <div class="form">
-      <form (ngSubmit)="submitApplication()" #form="ngForm">
+      <!-- Привязываем форму к FormGroup -->
+      <form [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
+        
+        <!-- Поле "Телефон" -->
         <div class="form-group">
-          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">{{ 'common.fieldIsRequired' | translate }}</div>
-          <input type="text" id="phone" [placeholder]="'cardDetails.applicationForm.phonePlaceholder' | translate" class="form-control" required [(ngModel)]="model.phone" name="phone" #phone="ngModel">
+          <input type="text" id="phone" [placeholder]="('cardDetails.applicationForm.phonePlaceholder' | translate) + ' *'" 
+                 class="form-control" formControlName="phone">
+          <div *ngIf="phone?.invalid && phone?.touched" class="error">
+            <span *ngIf="phone?.errors?.['required']">{{ 'common.fieldIsRequired' | translate }}</span>
+            <span *ngIf="phone?.errors?.['pattern']">Неверный формат телефона</span>
+          </div>
         </div>
+        
+        <!-- Поле "Имя" -->
         <div class="form-group">
-          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">{{ 'common.fieldIsRequired' | translate }}</div>
-          <input type="text" id="name" [placeholder]="'cardDetails.applicationForm.namePlaceholder' | translate" class="form-control" required [(ngModel)]="model.client_name" name="name" #name="ngModel">
+          <input type="text" id="name" [placeholder]="('cardDetails.applicationForm.namePlaceholder' | translate) + ' *'" 
+                 class="form-control" formControlName="client_name">
+          <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
+            {{ 'common.fieldIsRequired' | translate }}
+          </div>
         </div>
-        <div class="custom-dropdown">
-          <div class="dropdown-selected"><div class="form-group"><div class="dropdown-selected form-control" (click)="toggleDropdown($event)">{{ officeName }}</div></div></div>
-          <div class="dropdown-options" *ngIf="dropdownOpen"><div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption($event, item)"><p>{{ item.name }}</p></div></div>
-        </div>
+        
+        <!-- Кастомный селектор для офиса -->
         <div class="form-group">
-          <button type="submit" class="btn-primary" [disabled]="form.invalid">{{ 'buttons.applyForCard' | translate }}</button>
+          <div class="custom-dropdown">
+            <div class="dropdown-selected form-control" (click)="toggleDropdown()"
+                 [class.is-invalid]="office_id?.invalid && office_id?.touched">
+              {{ officeName }}
+            </div>
+            <div class="dropdown-options" *ngIf="dropdownOpen">
+              <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption(item)">
+                <p>{{ item.name }}</p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="office_id?.invalid && office_id?.touched" class="error">
+            Пожалуйста, выберите офис
+          </div>
+        </div>
+        
+        <!-- Кнопка отправки -->
+        <div class="form-group">
+          <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">{{ 'buttons.applyForCard' | translate }}</button>
         </div>
       </form>
       <p class="form-disclaimer">{{ 'common.consent.prefix' | translate }} <a href="#">{{ 'common.consent.linkText' | translate }}</a>.</p>
     </div>
   </div>
+
 
   <!-- Блок 5: FAQ -->
   <div class="faq-container">
