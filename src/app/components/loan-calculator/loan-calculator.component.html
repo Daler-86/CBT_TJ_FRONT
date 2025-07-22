@@ -1,16 +1,14 @@
-<!-- Контейнер появляется, только если есть данные -->
-<div class="calculator-wrapper" *ngIf="currentConditions">
-  <!-- Левая колонка -->
+<div class="calculator-wrapper">
   <div class="calculator-form">
     <h2>Кредитный калькулятор</h2>
 
-    <!-- Переключатель валют (появляется, если их больше одной) -->
-    <div class="form-group" *ngIf="availableCurrencies.length > 1">
+    <!-- Переключатель валют -->
+    <div class="form-group">
       <label>Валюта</label>
       <div class="currency-tabs">
         <button *ngFor="let currency of availableCurrencies"
                 [class.active]="selectedCurrency === currency"
-                (click)="selectCurrency(currency)">
+                (click)="onCurrencyChange(currency)">
           {{ currency.toUpperCase() }}
         </button>
       </div>
@@ -20,9 +18,20 @@
     <div class="form-group">
       <label>Сумма кредита</label>
       <div class="input-slider-container">
-        <input type="text" class="loan-input" [(ngModel)]="loanAmount" (input)="recalculate()">
-        <input class="range loan-slider" type="range"
-              [min]="minAmount" [max]="maxAmount" [step]="stepAmount"
+        <div *ngIf="!isEditingAmount" class="input-display" (click)="startEditing()">
+          {{ loanAmount | number:'1.0-0':'ru-RU' }}
+        </div>
+        <input *ngIf="isEditingAmount" 
+        type="number" 
+        class="loan-input" 
+        [(ngModel)]="loanAmount" 
+        (input)="recalculate()"
+        (blur)="stopEditing()"
+        (keydown.enter)="stopEditing()"
+        autofocus>
+               
+        <input class="range-slider" type="range"
+              [min]="minAmount" [max]="maxAmount"
               [(ngModel)]="loanAmount" (input)="recalculate()"
               [style.--range-percent]="loanAmountPercent">
       </div>
@@ -36,9 +45,9 @@
     <div class="form-group">
       <label>Срок кредита</label>
       <div class="input-slider-container">
-        <input type="text" class="loan-input" readonly [value]="loanTerm + ' мес.'">
-        <input class="range loan-slider" type="range"
-              [min]="minTerm" [max]="maxTerm" [step]="stepTerm"
+        <div class="input-display">{{ loanTerm }} мес.</div>
+        <input class="range-slider" type="range"
+              [min]="minTerm" [max]="maxTerm" step="1"
               [(ngModel)]="loanTerm" (input)="recalculate()"
               [style.--range-percent]="loanTermPercent">
       </div>
@@ -52,8 +61,8 @@
     <div class="form-group">
       <label>Процентная ставка</label>
       <div class="input-slider-container">
-        <input type="text" class="loan-input" readonly [value]="interestRatePercent + '%'">
-        <input class="range loan-slider" type="range"
+        <div class="input-display">{{ interestRatePercent }}%</div>
+        <input class="range-slider" type="range"
               [min]="minRate" [max]="maxRate" step="1"
               [(ngModel)]="interestRatePercent" (input)="recalculate()"
               [style.--range-percent]="ratePercent">
@@ -66,29 +75,24 @@
   </div>
 
   <!-- Правая колонка -->
-  <div class="calculator-result">
-    <!-- <h2>Ваше предложение</h2> -->
-    <div *ngIf="calculationResult">
+  <div class="result-wrapper">
+    <div class="result-card" *ngIf="calculationResult">
+      <h2>Ваш расчет</h2>
       <div class="result-item">
         <p>Процентная ставка</p>
         <h3>{{ calculationResult.interestRate | percent:'1.0-0' }}</h3>
       </div>
       <div class="result-item">
         <p>Ежемесячный платёж</p>
-        <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.monthlyPayment  }} c.</h3>
-        <h3 *ngIf="selectedCurrency === 'usd'">{{ calculationResult.monthlyPayment+"  $"   }}</h3>
+        <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.monthlyPayment | number:'1.0-0':'ru-RU' }} c.</h3>
+        <h3 *ngIf="selectedCurrency === 'usd'">{{ calculationResult.monthlyPayment | currency:'USD':'$':'1.0-0':'ru-RU' }}</h3>
       </div>
       <div class="result-item">
         <p>Сумма переплаты</p>
-        <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.totalOverpayment  }} c.</h3>
-        <h3 *ngIf="selectedCurrency === 'usd'">{{ calculationResult.totalOverpayment+"  $"   }}</h3>
+        <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.totalOverpayment | number:'1.0-0':'ru-RU' }} c.</h3>
+        <h3 *ngIf="selectedCurrency === 'usd'">{{ calculationResult.totalOverpayment | currency:'USD':'$':'1.0-0':'ru-RU' }}</h3>
       </div>
-      <div class="result-item">
-        <p>Общая выплата</p>
-        <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.totalPayment  }} c.</h3>
-        <h3 *ngIf="selectedCurrency === 'usd'">{{ calculationResult.totalPayment+"  $"  }}</h3>
-      </div>
-      <button>Оформить заявку</button>
+      <button class="apply-button">Оформить заявку</button>
     </div>
   </div>
 </div>

@@ -15,7 +15,7 @@ import { DepositCalculateService } from '../../services/deposit-calculate.servic
   imports: [
     CommonModule,
     ReactiveFormsModule, // Важно для работы с формами
-    CurrencyPipe,      // Пайп для форматирования валюты
+  
     PercentPipe,
     FormsModule
     // NgModel        // Пайп для форматирования процентов
@@ -24,74 +24,76 @@ import { DepositCalculateService } from '../../services/deposit-calculate.servic
   styleUrls: ['./deposit-calculate.component.scss']
 })
 export class DepositCalculatorComponent implements OnInit {
-    // @Input() будет принимать ID извне. Если он не передан, калькулятор покажет выпадающий список.
-    @Input() productId?: string | number;
+  @Input() productId?: string | number;
 
-    // Свойство для управления выбором в выпадающем списке
-    // selectedProductId: string = '';
-
-  depositAmount: number = 20000;
-  depositTerm: number = 12;
+  depositAmount: number = 0;
+  depositTerm: number = 0;
   selectedCurrency: 'TJS' | 'USD' = 'TJS';
-  selectedProductId: string = 'favri';
+  selectedProductId: string = '1'; // ID продукта по умолчанию
 
-  minAmount: number = 0; maxAmount: number = 0; stepAmount: number = 1; amountLabels: string[] = [];
-  minTerm: number = 0; maxTerm: number = 0; stepTerm: number = 1; termLabels: string[] = [];
+  minAmount = 0; maxAmount = 0; stepAmount = 100;
+  minTerm = 0; maxTerm = 0; stepTerm = 1;
   
-  formattedDepositAmount: string = '';
-  formattedDepositTerm: string = '';
-  depositAmountPercent: string = '0%';
-  depositTermPercent: string = '0%';
+  amountLabels: string[] = [];
+  termLabels: string[] = [];
+  
+  depositAmountPercent = '0%';
+  depositTermPercent = '0%';
   
   productsData: DepositProducts;
   productKeys: string[];
   calculationResult: CalculationResult | null = null;
   isProductAvailable: boolean = true;
-  readonly availableCurrencies: ('TJS' | 'USD')[] = ['TJS', 'USD'];
+  availableCurrencies: ('TJS' | 'USD')[] = [];
+  
+  // Флаг для "умного" инпута
+  isEditingAmount: boolean = false;
+  
   constructor(private depositService: DepositCalculateService) {
     this.productsData = this.depositService.getProductsData();
     this.productKeys = Object.keys(this.productsData);
   }
 
   ngOnInit(): void {
-    // this.onSettingsChange();
-    this.setupCalculator();
+    if (this.productId === undefined) {
+      this.setupCalculator();
+    }
   }
+
   ngOnChanges(changes: SimpleChanges): void {
-    // Если родительский компонент изменил productId, перезапускаем калькулятор
     if (changes['productId']) {
       this.setupCalculator();
     }
   }
+
+  setupCalculator(): void {
+    const externalId = this.productId ? String(this.productId) : undefined;
+    this.selectedProductId = (externalId && this.productsData[externalId]) ? externalId : this.productKeys[0];
+    
+    // Обновляем список доступных валют для выбранного продукта
+    const product = this.productsData[this.selectedProductId];
+    if(product) {
+      this.availableCurrencies = Object.keys(product.currencies).filter(c => product.currencies[c as 'TJS' | 'USD'] !== null) as ('TJS'|'USD')[];
+      // Если текущая валюта недоступна, переключаемся на первую доступную
+      if (!this.availableCurrencies.includes(this.selectedCurrency)) {
+        this.selectedCurrency = this.availableCurrencies[0];
+      }
+    }
+    
+    this.onSettingsChange();
+  }
+  
   onSettingsChange(): void {
     this.updateUIForSelectedProduct();
     this.recalculate();
   }
 
-  setupCalculator(): void {
-    // Если productId передан через @Input, используем его.
-    // Иначе, используем первый продукт из списка как значение по умолчанию для выпадающего списка.
-    const externalId = this.productId ? String(this.productId) : undefined;
-    this.selectedProductId = (externalId && this.productsData[externalId]) ? externalId : this.productKeys[0];
-    this.onSettingsChange();
-  }
-  onSliderChange(): void {
-    this.recalculate();
-  }
-
-  onDepositAmountChange(value: string): void {
-    const numericValue = parseInt(value.replace(/\s/g, ''), 10);
-    if (!isNaN(numericValue)) {
-      this.depositAmount = numericValue;
-      this.recalculate();
-    }
-  }
   selectCurrency(currency: 'TJS' | 'USD'): void {
     this.selectedCurrency = currency;
     this.onSettingsChange();
   }
+
   updateUIForSelectedProduct(): void {
-    // Всегда используем this.selectedProductId для получения условий
     const conditions = this.depositService.getProductConditions(this.selectedProductId, this.selectedCurrency);
     if (conditions) {
       this.isProductAvailable = true;
@@ -102,8 +104,13 @@ export class DepositCalculatorComponent implements OnInit {
       this.minTerm = conditions.minTerm;
       this.maxTerm = conditions.maxTerm;
       this.stepTerm = conditions.stepTerm;
-      this.termLabels = conditions.termLabels;
-
+      // this.termLabels = conditions.termLabels;
+      const midTerm = Math.round((this.minTerm + this.maxTerm) / 2);
+      this.termLabels = [
+        `${this.minTerm} мес.`,
+        `${midTerm} мес.`,
+        `${this.maxTerm} мес.`
+      ];
       this.depositAmount = Math.max(this.minAmount, Math.min(this.depositAmount, this.maxAmount));
       this.depositTerm = Math.max(this.minTerm, Math.min(this.depositTerm, this.maxTerm));
     } else {
@@ -112,6 +119,15 @@ export class DepositCalculatorComponent implements OnInit {
   }
   
   recalculate(): void {
+    let numericAmount = parseInt(String(this.depositAmount).replace(/\D/g, ''));
+    if (isNaN(numericAmount)) numericAmount = this.minAmount;
+
+    if (!this.isEditingAmount) {
+      if (numericAmount > this.maxAmount) numericAmount = this.maxAmount;
+      if (numericAmount < this.minAmount) numericAmount = this.minAmount;
+    }
+    this.depositAmount = numericAmount;
+
     this.calculationResult = this.depositService.calculateDeposit({
       productId: this.selectedProductId,
       amount: this.depositAmount,
@@ -121,18 +137,17 @@ export class DepositCalculatorComponent implements OnInit {
     this.updateVisuals();
   }
 
-
- 
-
-  updateVisuals(): void {
-    this.formattedDepositAmount = new Intl.NumberFormat('ru-RU').format(this.depositAmount);
-    this.formattedDepositTerm = `${this.depositTerm} мес.`;
-    this.depositAmountPercent = `${((this.depositAmount - this.minAmount) / (this.maxAmount - this.minAmount)) * 100}%`;
-    this.depositTermPercent = `${((this.depositTerm - this.minTerm) / (this.maxTerm - this.minTerm)) * 100}%`;
+  startEditing(): void {
+    this.isEditingAmount = true;
   }
 
-  applyForDeposit(): void {
-    console.log('Заявка на вклад:', this.calculationResult);
-    alert('Ваша заявка отправлена!');
+  stopEditing(): void {
+    this.isEditingAmount = false;
+    this.recalculate();
+  }
+
+  updateVisuals(): void {
+    this.depositAmountPercent = (this.maxAmount > this.minAmount) ? `${((this.depositAmount - this.minAmount) / (this.maxAmount - this.minAmount)) * 100}%` : '0%';
+    this.depositTermPercent = (this.maxTerm > this.minTerm) ? `${((this.depositTerm - this.minTerm) / (this.maxTerm - this.minTerm)) * 100}%` : '0%';
   }
 }

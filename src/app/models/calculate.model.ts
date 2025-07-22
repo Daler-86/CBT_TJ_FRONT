@@ -43,6 +43,7 @@ export interface CarLoanConditions {
     downPayment: number;
     term: number;
     currency: 'TJS' | 'USD';
+    annualRate: number; 
   }
   
   // Результаты расчета
@@ -101,3 +102,45 @@ export interface LoanConditions {
     min_month: number;
     max_month: number;
   }
+  export interface AutoLoanConditions {
+    min_amount: number;
+    max_amount: number;
+    min_month: number;
+    max_month: number;
+    min_percentage: number;
+    max_percentage: number;
+    min_down_payment_percent: number; // Например, 0.2 для 20%
+  }
+  
+  // Параметры для расчета
+  export interface AutoLoanParams {
+    carCost: number;
+    downPayment: number;
+    term: number;
+    annualRate: number; // в десятичном формате
+  }
+  
+  // Результат расчета
+  export interface AutoLoanResult {
+    monthlyPayment: number;
+    totalOverpayment: number;
+    financingAmount: number;
+  }
+  export interface LoanConditionsData {
+    currency: 'tjs' | 'usd';
+    min_percentage: number;
+    max_percentage: number;
+    min_amount: number;
+    max_amount: number;
+    min_month: number;
+    max_month: number;
+  }
+  
+  // Описывает результат расчета
+  export interface LoanCalculationResult {
+    monthlyPayment: number;
+    totalPayment: number;
+    totalOverpayment: number;
+    interestRate: number; // Ставка в десятичном формате
+  }
+  

@@ -6,12 +6,13 @@ import { DepositCalculatorComponent } from "../deposit-calculate/deposit-calcula
 import { InstallmentCalculateComponent } from "../installment-calculate/installment-calculate.component";
 import { CarLoanCalculateComponent } from "../car-loan-calculate/car-loan-calculate.component";
 import { LoanCalculatorComponent } from "../loan-calculator/loan-calculator.component";
+import { CalculatorData } from '../../models/calculate.model';
 
 
 @Component({
   selector: 'app-calculate',
   standalone: true,
-  imports: [TranslateModule, NgFor, NgIf, FormsModule, DepositCalculatorComponent, InstallmentCalculateComponent, CarLoanCalculateComponent, LoanCalculatorComponent],
+  imports: [TranslateModule, NgIf, FormsModule, DepositCalculatorComponent, InstallmentCalculateComponent, CarLoanCalculateComponent, LoanCalculatorComponent],
   templateUrl: './calculate.component.html',
   styleUrl: './calculate.component.scss'
 })
@@ -113,6 +114,31 @@ export class CalculateComponent {
     
   }
   
+  public mainPageCalculatorData: CalculatorData[] = [
+    {
+      currency: 'tjs',
+      min_amount: 1000,
+      max_amount: 100000,
+      min_month: 3,
+      max_month: 36,
+      min_percentage: 16, // <-- Твоя ставка
+      max_percentage: 30, // <-- Твоя ставка
+      // Остальные поля можно добавить, если они нужны
+      id: 0,
+      credit_id: 0
+    },
+    {
+      currency: 'usd',
+      min_amount: 100,
+      max_amount: 10000,
+      min_month: 3,
+      max_month: 36,
+      min_percentage: 12, // Для примера, другие ставки для USD
+      max_percentage: 22,
+      id: 0,
+      credit_id: 0
+    }
+  ];
 
   updateFormattedLoanTerm() {
       this.formattedLoanTerm = this.formatTerm(this.loanTerm);

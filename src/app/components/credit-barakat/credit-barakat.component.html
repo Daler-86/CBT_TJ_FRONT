@@ -44,8 +44,11 @@
   <!-- Блок 4: Онлайн-заявка и калькулятор -->
 
 
-  <div *ngIf="calculatorDataForChild" class="container-4">
+  <div *ngIf="calculatorDataForChild && creditData.id!==7" class="container-4">
     <app-loan-calculator [conditionsData]="calculatorDataForChild"></app-loan-calculator>
+  </div> 
+  <div *ngIf="calculatorDataForChild  && creditData.id==7" class="container-4">
+    <app-car-loan-calculate></app-car-loan-calculate>
   </div> 
    <div class="container-3" id='application-form'>
     <h1>{{ 'creditDetails.sections.onlineApplication' | translate }}</h1>

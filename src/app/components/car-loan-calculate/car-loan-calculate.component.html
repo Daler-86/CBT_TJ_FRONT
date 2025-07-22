@@ -1,83 +1,116 @@
-<div class="car-loan-container">
-    <!-- Левая колонка -->
-    <div class="calculator-form">
-      <h2>Покупка авто</h2>
-  
+<div class="calculator-wrapper">
+  <!-- Левая колонка -->
+  <div class="calculator-form">
+    <h2>Покупка авто</h2>
+    
+    <!-- Валюта и Ставка -->
+    <div class="top-controls">
       <div class="form-group">
-        <label>Валюта:</label>
+        <label>Валюта</label>
         <div class="currency-selector">
-          <div class="radio-option">
-            <input type="radio" id="tjs" name="currency" value="TJS" [(ngModel)]="selectedCurrency" (ngModelChange)="onSettingsChange()">
-            <label for="tjs">Сомони (TJS)</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" id="usd" name="currency" value="USD" [(ngModel)]="selectedCurrency" (ngModelChange)="onSettingsChange()">
-            <label for="usd">Доллар (USA)</label>
-          </div>
+            <div class="radio-option">
+              <input type="radio" id="tjs-auto" name="currency-auto" value="tjs" 
+                     [(ngModel)]="selectedCurrency" (ngModelChange)="selectCurrency($event)">
+              <label for="tjs-auto">Сомони</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="usd-auto" name="currency-auto" value="usd" 
+                     [(ngModel)]="selectedCurrency" (ngModelChange)="selectCurrency($event)">
+              <label for="usd-auto">Доллары США</label>
+            </div>
         </div>
       </div>
-  
       <div class="form-group">
-        <label>Стоимость авто</label>
-        <div class="input-slider-container">
-          <div class="input-display">{{ formattedCarCost }}</div>
-          <input class="range-slider" type="range"
-                [min]="minCarCost" [max]="maxCarCost" [step]="stepCarCost"
-                [(ngModel)]="carCost" (input)="updateDownPaymentAndRecalculate()"
-                [style.--range-percent]="carCostPercent">
-          <div class="range-labels">
-            <span *ngFor="let label of costLabels">{{ label }}</span>
-          </div>
+        <label>Годовая ставка</label>
+        <div class="rate-input-wrapper">
+          <input type="number" class="rate-input"
+                 [min]="minRate" [max]="maxRate"
+                 [(ngModel)]="interestRate" (ngModelChange)="recalculate()">
+          <span>%</span>
         </div>
       </div>
-  
-      <div class="form-group">
-        <label>Предоплата</label>
-        <div class="input-slider-container">
-          <div class="input-display">{{ formattedDownPayment }}</div>
-          <input class="range-slider" type="range"
-                [min]="minDownPayment" [max]="maxDownPayment" [step]="stepDownPayment"
-                [(ngModel)]="downPayment" (input)="recalculate()"
-                [style.--range-percent]="downPaymentPercent">
-          <!-- ИСПРАВЛЕНИЕ ЗДЕСЬ: Добавлены подписи для предоплаты -->
-          <div class="range-labels">
-            <span *ngFor="let label of downPaymentLabels">{{ label }}</span>
-          </div>
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label>Срок кредита</label>
-        <div class="input-slider-container">
-          <div class="input-display">{{ formattedLoanTerm }}</div>
-          <input class="range-slider" type="range"
-                [min]="minTerm" [max]="maxTerm" [step]="stepTerm"
-                [(ngModel)]="loanTerm" (input)="recalculate()"
-                [style.--range-percent]="loanTermPercent">
-          <div class="range-labels">
-            <span *ngFor="let label of termLabels">{{ label }}</span>
-          </div>
-        </div>
-      </div>
-      
-      <p class="disclaimer">Все расчеты являются предварительными и могут отличаться от фактически полученных</p>
     </div>
-  
-    <!-- Правая колонка -->
-    <div class="calculator-result">
-      <h2>Наше предложение</h2>
-      <div class="result-item">
-        <p>Процентная ставка</p>
-        <h3>{{ calculationResult?.interestRate | percent:'1.0-0' }}</h3>
+
+    <!-- Стоимость авто -->
+    <div class="form-group">
+      <label>Стоимость авто</label>
+      <div class="smart-input-container">
+        <div *ngIf="!isEditingCarCost" class="display-value" (click)="startEditing('carCost')">
+          {{ carCost  }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+        </div>
+        <input *ngIf="isEditingCarCost" type="number" class="edit-input"
+               [(ngModel)]="carCost" (blur)="stopEditing()" (keydown.enter)="stopEditing()"
+               autofocus>
+        <input type="range" class="range-slider"
+               [min]="minCarCost" [max]="maxCarCost"
+               [(ngModel)]="carCost" (input)="recalculate()" [style.--range-percent]="carCostPercent">
+
+               <div class="range-labels">
+                <span>{{ costLabels[0] }}</span>
+                <span>{{ costLabels[1] }}</span>
+              </div>
       </div>
-      <div class="result-item">
-        <p>Сумма переплаты</p>
-        <h3>{{ calculationResult?.totalOverpayment  }}</h3>
+    </div>
+    
+    <!-- Предоплата -->
+    <div class="form-group">
+      <label>Предоплата</label>
+      <div class="smart-input-container">
+        <div *ngIf="!isEditingDownPayment" class="display-value" (click)="startEditing('downPayment')">
+          {{ downPayment  }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+        </div>
+        <input *ngIf="isEditingDownPayment" type="number" class="edit-input"
+               [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent" [max]="carCost"
+               [(ngModel)]="downPayment" (blur)="stopEditing()" (keydown.enter)="stopEditing()"
+               autofocus>
+        <input type="range" class="range-slider"
+               [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent" [max]="carCost"
+               [(ngModel)]="downPayment" (input)="recalculate()" [style.--range-percent]="downPaymentPercent">
+               <div class="range-labels">
+                <span>{{ downPaymentLabels[0] }}</span>
+                <span>{{ downPaymentLabels[1] }}</span>
+              </div>
+     
+              </div>
+    </div>
+
+    <!-- Сумма финансирования -->
+    <div class="form-group">
+      <label>Сумма финансирования</label>
+      <div class="display-value static">
+        {{ financingAmount  }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
       </div>
-      <div class="result-item">
-        <p>Ежемесячный платёж</p>
-        <h3>{{ calculationResult?.monthlyPayment}}</h3>
+    </div>
+
+    <!-- Срок -->
+    <div class="form-group">
+      <label>Срок финансирования в месяцах</label>
+      <div class="term-buttons">
+        <button *ngFor="let term of availableTerms"
+                (click)="loanTerm = term; recalculate()"
+                [class.active]="loanTerm === term">
+          {{ term }} мес.
+        </button>
       </div>
-      <button (click)="applyForLoan()">Оставить заявку</button>
     </div>
   </div>
+
+  <!-- Правая колонка -->
+  <div class="result-wrapper">
+    <div class="result-card" *ngIf="calculationResult">
+      <h2>Ваш расчет</h2>
+      <p>Фактическая переплата</p>
+     
+      <!-- === ФОРМАТИРУЕМ С 2 ЗНАКАМИ ПОСЛЕ ЗАПЯТОЙ === -->
+      <h3>
+        {{ calculationResult.totalOverpayment | number:'1.2-2':'ru-RU' }}
+        {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+      </h3>
+      <p>Ежемесячный платеж</p>
+      <h3>{{ calculationResult.monthlyPayment | number:'1.2-2':'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}</h3>
+      <p>Годовая ставка</p>
+      <h3>{{ interestRate }}%</h3>
+      <button class="apply-button">Оставить заявку</button>
+    </div>
+  </div>
+</div>

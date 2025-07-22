@@ -10,7 +10,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { provideTranslation } from './config/translate-loader.config';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { MapComponent } from './app/components/map/map.component';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
 
+registerLocaleData(localeRu, 'ru-RU');
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),

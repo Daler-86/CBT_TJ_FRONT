@@ -162,3 +162,21 @@ $background-light: #f8f9fa;
     font-size: 14px;
   }
 }
+// Импортируем общие стили
+@import '../../../styles/calculate';
+
+// Добавляем стили для "умного" инпута, если их нет в общем файле
+.input-slider-container .input-display {
+  cursor: pointer;
+
+  input {
+    font-size: 24px;
+    font-weight: 700;
+    color: $primary-color;
+    text-align: center;
+    border: none;
+    width: 100%;
+    background: none;
+    &:focus { outline: none; }
+  }
+}

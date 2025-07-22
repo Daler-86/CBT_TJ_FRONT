@@ -17,10 +17,11 @@ import { CalculatorData } from '../../models/calculate.model';
 import { LoanCalculatorComponent } from "../loan-calculator/loan-calculator.component";
 import { ModalService } from '../../services/modal.service';
 import { ScrollService } from '../../services/scroll.service';
+import { CarLoanCalculateComponent } from "../car-loan-calculate/car-loan-calculate.component";
 @Component({
   selector: 'app-credit-barakat',
   standalone: true,
-  imports: [TranslateModule, NgFor, NgIf, FormsModule, FavriComponent,  LoanCalculatorComponent, ScrollToDirective],
+  imports: [TranslateModule, NgFor, NgIf, FormsModule, FavriComponent, LoanCalculatorComponent, ScrollToDirective, CarLoanCalculateComponent],
   templateUrl: './credit-barakat.component.html',
   styleUrl: './credit-barakat.component.scss'
 })

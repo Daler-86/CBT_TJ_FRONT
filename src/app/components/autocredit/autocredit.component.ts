@@ -7,7 +7,7 @@ import { FavriComponent } from "../favri/favri.component";
 @Component({
   selector: 'app-autocredit',
   standalone: true,
-  imports: [TranslateModule, NgFor, NgIf, FormsModule, FavriComponent,FormsModule],
+  imports: [TranslateModule, NgFor,  FormsModule, FormsModule],
   templateUrl: './autocredit.component.html',
   styleUrl: './autocredit.component.scss'
 })

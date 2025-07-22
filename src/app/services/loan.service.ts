@@ -1,69 +1,41 @@
 import { Injectable } from '@angular/core';
 import { LoanCalculationParams, LoanCalculationResult, LoanConditions, LoanProduct } from '../models/calculate.model';
-interface LoanCurrencyConditions {
-  minAmount: number;
-  maxAmount: number;
-  stepAmount: number;
-  minTerm: number;
-  maxTerm: number;
+export interface DefaultLoanConditions {
+  minAmount: number; maxAmount: number;
+  minTerm: number; maxTerm: number;
+  minRate: number; maxRate: number;
 }
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoanService {
+  private readonly conditions: { [key in 'TJS' | 'USD']: DefaultLoanConditions } = {
+    'TJS': { minAmount: 1000, maxAmount: 100000, minTerm: 3, maxTerm: 36, minRate: 16, maxRate: 30 },
+    'USD': { minAmount: 100, maxAmount: 10000, minTerm: 3, maxTerm: 36, minRate: 12, maxRate: 22 }
+  };
 
- // --- Условия для калькулятора, зависящие от валюты ---
- private readonly conditions: { [currency: string]: LoanCurrencyConditions } = {
-  'TJS': {
-    minAmount: 1000,
-    maxAmount: 100000,
-    stepAmount: 1000,
-    minTerm: 3,
-    maxTerm: 36,
-  },
-  'USD': {
-    minAmount: 100,
-    maxAmount: 10000,
-    stepAmount: 100,
-    minTerm: 3,
-    maxTerm: 36,
+  getConditions(currency: 'TJS' | 'USD'): DefaultLoanConditions {
+    return this.conditions[currency];
   }
-};
 
-constructor() { }
+  calculate(params: { amount: number, term: number, annualRate: number }): LoanCalculationResult {
+    const loanAmount = params.amount;
+    const monthlyRate = params.annualRate / 12;
+    const numberOfPayments = params.term;
 
-// Метод для получения условий (лимитов) для выбранной валюты
-getConditions(currency: 'TJS' | 'USD'): LoanCurrencyConditions {
-  return this.conditions[currency];
-}
+    if (loanAmount <= 0 || numberOfPayments <= 0 || monthlyRate <= 0) {
+      return { monthlyPayment: 0, totalPayment: loanAmount, totalOverpayment: 0, interestRate: params.annualRate };
+    }
 
-// Метод для выполнения расчетов
-calculate(params: LoanCalculationParams): LoanCalculationResult {
-  const loanAmount = params.amount;
-  const monthlyRate = params.annualRate / 12;
-  const numberOfPayments = params.term;
-
-  if (monthlyRate === 0) {
-    const monthlyPayment = loanAmount > 0 && numberOfPayments > 0 ? loanAmount / numberOfPayments : 0;
+    const payment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    const totalPayment = payment * numberOfPayments;
+    
     return {
-      monthlyPayment: Math.round(monthlyPayment),
-      totalPayment: loanAmount,
-      totalOverpayment: 0,
-      interestRate: 0,
+      monthlyPayment: Math.round(payment),
+      totalPayment: Math.round(totalPayment),
+      totalOverpayment: Math.round(totalPayment - loanAmount),
+      interestRate: params.annualRate,
     };
   }
-
-  const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
-  const totalPayment = monthlyPayment * numberOfPayments;
-  const totalOverpayment = totalPayment - loanAmount;
-
-  return {
-    monthlyPayment: Math.round(monthlyPayment),
-    totalPayment: Math.round(totalPayment),
-    totalOverpayment: Math.round(totalOverpayment),
-    interestRate: params.annualRate,
-  };
-}
 }

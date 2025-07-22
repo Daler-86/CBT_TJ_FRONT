@@ -38,7 +38,7 @@
     </div>
 </div> -->
 <div *ngIf="selectedTab === 'credit'">
-    <app-loan-calculator></app-loan-calculator>
+    <app-loan-calculator  [conditionsData]="mainPageCalculatorData"></app-loan-calculator>
 </div>
 
 <!-- <div class="deposit-calculator" *ngIf="selectedTab === 'deposit'"> 

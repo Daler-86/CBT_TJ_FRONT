@@ -1,82 +1,100 @@
-<div class="deposit-calculator">
-    <div class="calculator-form">
-      <h2>Рассчитайте свой вклад</h2>
-  
-      <!-- <label for="product-select">Депозитный продукт</label>
-      <select id="product-select" [(ngModel)]="selectedProductId" (ngModelChange)="onSettingsChange()">
+<div class="calculator-wrapper">
+  <!-- Левая колонка -->
+  <div class="calculator-form">
+    <h2>Рассчитайте свой вклад</h2>
+    
+    <!-- Выбор продукта (если калькулятор на главной странице) -->
+    <div class="form-group" *ngIf="!productId">
+      <label>Депозитный продукт</label>
+      <select class="product-select" [(ngModel)]="selectedProductId" (ngModelChange)="setupCalculator()">
         <option *ngFor="let key of productKeys" [value]="key">
           {{ productsData[key].name }}
         </option>
-      </select> -->
-      
-      <div class="form-group" *ngIf="!productId">
-        <label>Депозитный продукт</label>
-        <select [(ngModel)]="selectedProductId" (ngModelChange)="onSettingsChange()">
-          <option *ngFor="let key of productKeys" [value]="key">
-            {{ productsData[key].name }}
-          </option>
-        </select>
-      </div>
-  
-      <!-- Если калькулятор используется в режиме "Фиксированный", показываем название продукта -->
-      <h2 *ngIf="productId">{{ productsData[selectedProductId]?.name }}</h2>
-  
-      <!-- Остальной HTML остается без изменений -->
-      <div class="currency-tabs">
-        <button *ngFor="let currency of availableCurrencies"
-                (click)="selectCurrency(currency)"
-                [class.active]="selectedCurrency === currency">
-          {{ currency }}
-        </button>
-      </div>
-  
-      <fieldset [disabled]="!isProductAvailable">
-        <label for="depositAmount">Сумма вклада</label>
+      </select>
+    </div>
+
+    <!-- Заголовок (если калькулятор на странице продукта) -->
+    <h2 class="product-title-fixed" *ngIf="productId">{{ productsData[selectedProductId].name }}</h2>
+    
+    <!-- Переключатель валют -->
+    <div class="currency-tabs">
+      <button *ngFor="let currency of availableCurrencies"
+              (click)="selectCurrency(currency)"
+              [class.active]="selectedCurrency === currency">
+        {{ currency.toUpperCase() }}
+      </button>
+    </div>
+
+    <!-- Поля и слайдеры показываются только если продукт доступен в выбранной валюте -->
+    <fieldset [disabled]="!isProductAvailable" style="border: none;">
+      <!-- Сумма вклада -->
+      <div class="form-group">
+        <label>Сумма вклада</label>
         <div class="input-slider-container">
-          <input type="text"
-                [ngModel]="formattedDepositAmount"
-                (ngModelChange)="onDepositAmountChange($event)"
-                class="deposit-input" />
-          <input class="range deposit-slider" type="range"
-                [min]="minAmount" [max]="maxAmount" [step]="stepAmount"
-                [(ngModel)]="depositAmount" (input)="onSliderChange()"
-                [style.--range-percent]="depositAmountPercent">
+          <div *ngIf="!isEditingAmount" class="input-display" (click)="startEditing()">
+            {{ depositAmount | number:'1.0-0':'ru-RU' }}
+          </div>
+          <input *ngIf="isEditingAmount" type="text" class="loan-input"
+                 [(ngModel)]="depositAmount" 
+                 (input)="recalculate()"
+                 (blur)="stopEditing()"
+                 (keydown.enter)="stopEditing()"
+                 autofocus>
+          <input class="range-slider" type="range"
+                 [min]="minAmount" [max]="maxAmount" [step]="stepAmount"
+                 [(ngModel)]="depositAmount" (input)="recalculate()"
+                 [style.--range-percent]="depositAmountPercent">
         </div>
         <div class="range-labels">
           <span *ngFor="let label of amountLabels">{{ label }}</span>
         </div>
-  
+      </div>
+
+      <!-- Срок вклада -->
+      <div class="form-group">
         <label>Срок вклада</label>
         <div class="input-slider-container">
-          <input type="text" [ngModel]="formattedDepositTerm" class="deposit-input" readonly />
-          <input class="range deposit-slider" type="range"
-                [min]="minTerm" [max]="maxTerm" [step]="stepTerm"
-                [(ngModel)]="depositTerm" (input)="onSliderChange()"
-                [style.--range-percent]="depositTermPercent">
+          <div class="input-display">{{ depositTerm }} мес.</div>
+          <input class="range-slider" type="range"
+                 [min]="minTerm" [max]="maxTerm" [step]="stepTerm"
+                 [(ngModel)]="depositTerm" (input)="recalculate()"
+                 [style.--range-percent]="depositTermPercent">
         </div>
         <div class="range-labels">
           <span *ngFor="let label of termLabels">{{ label }}</span>
         </div>
-      </fieldset>
-  
-      <p>Все расчеты являются предварительными.</p>
-    </div>
-  
-    <div class="calculator-result" *ngIf="calculationResult">
-      <h2>Наше предложение</h2>
-      <p>Депозитный продукт</p>
-      <h3 class="deposit-product">{{ calculationResult.productName }}</h3>
-      <p>Процентная ставка</p>
-      <h3>{{ calculationResult.rate | percent:'1.0-2' }}</h3>
-      <p>Доход по вкладу</p>
-      <h3>{{calculationResult.income}}</h3>
-      <!-- <h3>{{ calculationResult.income | currency:selectedCurrency:'symbol':'1.2-2':'ru' }}</h3> -->
-      <p>Сумма в конце срока</p>
-      <h3>{{calculationResult.totalAmount}}</h3>
-      <!-- <h3>{{ calculationResult.totalAmount | currency:selectedCurrency:'symbol':'1.2-2':'ru' }}</h3> -->
-      <div *ngIf="calculationResult.error" class="error-message">
-          {{ calculationResult.error }}
       </div>
-      <button (click)="applyForDeposit()" [disabled]="!isProductAvailable">Оставить заявку</button>
+    </fieldset>
+    
+    <p class="disclaimer">Все расчеты являются предварительными.</p>
+  </div>
+
+  <!-- Правая колонка -->
+  <div class="result-wrapper">
+    <div class="result-card" *ngIf="calculationResult && !calculationResult.error">
+      <h2>Ваш расчет</h2>
+      <div class="result-item">
+        <p>Депозитный продукт</p>
+        <h3>{{ calculationResult.productName }}</h3>
+      </div>
+      <div class="result-item">
+        <p>Процентная ставка</p>
+        <h3>{{ calculationResult.rate | percent:'1.0-2' }}</h3>
+      </div>
+      <div class="result-item">
+        <p>Доход по вкладу</p>
+        <h3>{{ calculationResult.income | number:'1.0-0':'ru-RU' }} {{ selectedCurrency === 'TJS' ? 'c.' : '$' }}</h3>
+      </div>
+      <div class="result-item">
+        <p>Сумма в конце срока</p>
+        <h3>{{ calculationResult.totalAmount | number:'1.0-0':'ru-RU' }} {{ selectedCurrency === 'TJS' ? 'c.' : '$' }}</h3>
+      </div>
+      <button class="apply-button">Оставить заявку</button>
+    </div>
+    <!-- Показываем сообщение об ошибке -->
+    <div class="result-card" *ngIf="calculationResult?.error">
+      <h2>Внимание</h2>
+      <p class="error-message">{{ calculationResult }}</p>
     </div>
   </div>
+</div>
