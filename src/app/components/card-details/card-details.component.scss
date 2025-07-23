@@ -299,7 +299,7 @@ box-sizing: border-box;
     .custom-dropdown {
     position: relative;
     width:100%;
-    font-family: Arial, sans-serif; 
+  
      .dropdown-selected {
     border-radius: 4px;
     // background-color: #ed3636;
@@ -323,9 +323,9 @@ box-sizing: border-box;
   
   .dropdown-options {
     position: absolute;
-    top: 80%;
-    left: 25%;
-    width: 50%;
+    top: 105%;
+    // left: 25%;
+    width: 100%;
 
     background-color:#fff ;
     border: 1px solid #CBD5E1;

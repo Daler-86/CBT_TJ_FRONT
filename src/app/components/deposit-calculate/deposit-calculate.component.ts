@@ -1,13 +1,12 @@
 import { Component, Input, OnInit, SimpleChanges, inject } from '@angular/core';
 import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 
 
 import { CalculationResult, DepositProducts } from '../../models/deposit.model';
-import { DepositsService } from '../../api/deposit.service';
+
 import { DepositCalculateService } from '../../services/deposit-calculate.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-deposit-calculator',
@@ -15,7 +14,7 @@ import { DepositCalculateService } from '../../services/deposit-calculate.servic
   imports: [
     CommonModule,
     ReactiveFormsModule, // Важно для работы с формами
-  
+    RouterLink,
     PercentPipe,
     FormsModule
     // NgModel        // Пайп для форматирования процентов
@@ -25,7 +24,7 @@ import { DepositCalculateService } from '../../services/deposit-calculate.servic
 })
 export class DepositCalculatorComponent implements OnInit {
   @Input() productId?: string | number;
-
+  @Input() showApplyButton: boolean = false;
   depositAmount: number = 0;
   depositTerm: number = 0;
   selectedCurrency: 'TJS' | 'USD' = 'TJS';
@@ -40,6 +39,9 @@ export class DepositCalculatorComponent implements OnInit {
   depositAmountPercent = '0%';
   depositTermPercent = '0%';
   
+  public productName: string = ''; // Для отображения названия выбранного продукта
+  public dropdownOpen: boolean = false;
+
   productsData: DepositProducts;
   productKeys: string[];
   calculationResult: CalculationResult | null = null;
@@ -67,8 +69,21 @@ export class DepositCalculatorComponent implements OnInit {
 
   setupCalculator(): void {
     const externalId = this.productId ? String(this.productId) : undefined;
-    this.selectedProductId = (externalId && this.productsData[externalId]) ? externalId : this.productKeys[0];
-    
+  
+    // --- ИЗМЕНЕННАЯ ЛОГИКА ---
+    // Устанавливаем ID продукта, только если он пришел извне (@Input)
+    // или если это самая первая загрузка (selectedProductId еще не установлен).
+    if (externalId && this.productsData[externalId]) {
+      this.selectedProductId = externalId;
+    } else if (!this.selectedProductId) { // Если еще никакой продукт не выбран
+      this.selectedProductId = this.productKeys[0];
+    }
+    // Теперь this.selectedProductId содержит правильное значение,
+    // будь то выбор пользователя или начальная установка.
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+  
+    // Остальной код метода остается без изменений, так как теперь он будет работать с правильным ID
+    this.productName = this.productsData[this.selectedProductId]?.name || 'Выберите продукт';
     const product = this.productsData[this.selectedProductId];
     if(product) {
       this.availableCurrencies = Object.keys(product.currencies).filter(c => product.currencies[c as 'TJS' | 'USD'] !== null) as ('TJS'|'USD')[];
@@ -78,7 +93,7 @@ export class DepositCalculatorComponent implements OnInit {
     }
     
     this.updateUIForSelectedProduct();
-    this.recalculate(); // <-- Вызываем recalculate после основной настройки
+    this.recalculate();
   }
   
   // Этот метод больше не нужен, его логика перенесена
@@ -88,6 +103,16 @@ export class DepositCalculatorComponent implements OnInit {
     this.selectedCurrency = currency;
     this.updateUIForSelectedProduct();
     this.recalculate(); // <-- Вызываем recalculate после смены валюты
+  }
+  selectProduct(productId: string): void {
+    this.selectedProductId = productId;
+    this.productName = this.productsData[productId].name; // Обновляем имя для отображения
+    this.dropdownOpen = false; // Закрываем список
+    this.setupCalculator(); // Перенастраиваем калькулятор для нового продукта
+  }
+
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
   }
 
   updateUIForSelectedProduct(): void {

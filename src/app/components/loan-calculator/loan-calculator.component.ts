@@ -3,18 +3,19 @@ import { CalculatorData, LoanCalculationResult, LoanConditionsData } from '../..
 import { LoanService } from '../../services/loan.service';
 import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ScrollToDirective } from '../../directives/scroll-to.directive';
+import { ScrollService } from '../../services/scroll.service';
 type Currency = 'tjs' | 'usd';
 @Component({
   selector: 'app-loan-calculator',
   standalone: true,
-  imports:  [CommonModule, FormsModule, CurrencyPipe, PercentPipe],
+  imports:  [CommonModule, FormsModule, CurrencyPipe, PercentPipe,ScrollToDirective],
   templateUrl: './loan-calculator.component.html',
   styleUrl: './loan-calculator.component.scss'
 })
 export class LoanCalculatorComponent implements OnChanges{
   @Input() conditionsData?: LoanConditionsData[];
-  
+  @Input() showApplyButton: boolean = false;
   loanAmount: any = 0;
   loanTerm: number = 0;
   interestRatePercent: number = 0;
@@ -37,7 +38,7 @@ export class LoanCalculatorComponent implements OnChanges{
   calculationResult: LoanCalculationResult | null = null;
   isEditingAmount: boolean = false;
   
-  constructor(private loanService: LoanService) {}
+  constructor(private loanService: LoanService, private scrollService:ScrollService) {}
 
   ngOnInit(): void {
     if (!this.conditionsData) {
@@ -65,6 +66,7 @@ export class LoanCalculatorComponent implements OnChanges{
       this.maxTerm = conditions.max_month;
       this.minRate = conditions.min_percentage;
       this.maxRate = conditions.max_percentage;
+      
     } else {
       // РЕЖИМ ПО УМОЛЧАНИЮ
       this.availableCurrencies = ['tjs', 'usd'];
@@ -75,6 +77,7 @@ export class LoanCalculatorComponent implements OnChanges{
       this.maxTerm = conditions.maxTerm;
       this.minRate = conditions.minRate;
       this.maxRate = conditions.maxRate;
+    
     }
 
     this.loanAmount = this.minAmount;

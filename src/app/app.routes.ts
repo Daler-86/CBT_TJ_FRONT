@@ -27,6 +27,7 @@ import { RkoComponent } from './components/rko/rko.component';
 import { RkoDetailsComponent } from './components/rko-details/rko-details.component';
 import { MerchantComponent } from './components/merchant/merchant.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { InsuranceInfoComponent } from './components/insurance-info/insurance-info.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -74,6 +75,7 @@ export const routes: Routes = [
    { path: 'scs-details/:id', component: RkoDetailsComponent },
    { path: 'merchant', component: MerchantComponent },
    { path: 'contact', component: ContactComponent },
+   {path:"insurance-info", component:InsuranceInfoComponent}
 ];
 
  

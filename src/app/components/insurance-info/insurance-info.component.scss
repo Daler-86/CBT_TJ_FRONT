@@ -1,0 +1,188 @@
+// Переменные
+// Переменные
+$primary-color: #00B06C;
+$text-primary: #333; // Сделаем текст чуть мягче
+$text-secondary: #555;
+$border-color: #e0e0e0;
+
+.info-page-container {
+width: 90%;
+  margin: auto;
+  // padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+   
+  .header {
+    text-align: start;
+    margin: 20px 0 45px;
+    padding: 63px 43px;
+    background-color: #00B06C;
+   
+  background-image: url(../../../assets/icons/Vector.png);
+  background-position-x: right;
+  background-repeat: no-repeat;
+   border-radius: 42px;
+   @media (max-width: 1034px) {
+  padding: 41px 26px;
+  }
+    h1 {
+  width: 90%;
+font-weight: 700;
+font-size: 56px;
+line-height: 61.6px;
+letter-spacing: -1%;
+color: #fff;
+@media (max-width: 1034px) {
+  font-size: 38px;
+}
+@media (max-width: 768px) {
+  font-size: 28px;
+  line-height: 45px;
+}
+
+    }
+
+  }
+  .main-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+}
+
+.info-section {
+  margin-bottom: 40px;
+  
+  // Заголовок секции (напр., "Опыт работы:")
+  .section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 20px 0;
+  }
+  
+  // Контент внутри секции
+  .section-content {
+    border-top: 1px dotted $border-color;
+    padding-top: 20px;
+
+    p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: $text-secondary;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+// Стилизованный список с зелеными "тире"
+.styled-list {
+  list-style: none;
+  padding: 0;
+  
+  li {
+    position: relative;
+    padding-left: 25px; // Место для тире
+    font-size: 16px;
+    line-height: 1.8;
+    color: $text-secondary;
+    margin-bottom: 10px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px; // Выравниваем по центру строки
+      width: 15px; // Длина тире
+      height: 3px; // Толщина тире
+      background-color: $primary-color;
+      border-radius: 2px;
+    }
+  }
+}
+  
+  // Сетка для карточек
+  .contact-grid {
+    display: grid;
+    // По дизайну у вас 3-4 колонки, сделаем их адаптивными
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .contact-card {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e9ecef;
+  
+      .card-icon {
+        width: 38px;
+        height: 38px;
+      }
+  
+      h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 0;
+      }
+    }
+  
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
+    
+    .item-icon {
+      width: 20px;
+      height: 20px;
+      margin-top: 4px; // Для лучшего выравнивания
+    }
+  
+    .item-title {
+      font-size: 14px;
+      color: #6c757d;
+      margin: 0;
+    }
+    .item-description {
+      font-size: 16px;
+      font-weight: 500;
+      color: #212529;
+      margin: 0;
+    }
+  }
+  
+// Блоки для "Информации для вкладчиков"
+.step-item {
+  margin-bottom: 20px;
+  .step-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 8px 0;
+  }
+  .step-content {
+    margin: 0;
+    color: $text-secondary;
+  }
+
+  
+}

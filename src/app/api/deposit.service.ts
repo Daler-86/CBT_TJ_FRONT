@@ -91,6 +91,7 @@ export class DepositsService {
   }
 
   submitDeposit(cardData: any): Observable<any> {
+  debugger
     return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({

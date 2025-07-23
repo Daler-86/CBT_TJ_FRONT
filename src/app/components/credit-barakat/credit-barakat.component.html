@@ -45,7 +45,10 @@
 
 
   <div *ngIf="calculatorDataForChild && creditData.id!==7" class="container-4">
-    <app-loan-calculator [conditionsData]="calculatorDataForChild"></app-loan-calculator>
+    <app-loan-calculator  
+    [conditionsData]="calculatorDataForChild"
+    [showApplyButton]="true"
+    ></app-loan-calculator>
   </div> 
   <div *ngIf="calculatorDataForChild  && creditData.id==7" class="container-4">
     <app-car-loan-calculate></app-car-loan-calculate>

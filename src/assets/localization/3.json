@@ -603,6 +603,95 @@
       "bik": "BIK",
       "swift": "SWIFT"
     }
+  },
+    "insurancePage": {
+      "mainTitle": "Insurance of Individual Deposits",
+      "whatIsIt": {
+        "title": "What is the individual deposit insurance system?",
+        "p1": "The individual deposit insurance system is a set of measures to protect the rights and legal interests of depositors by paying insurance compensation to depositors upon the occurrence of an insured event in credit institutions that are members of the Individual Deposit Insurance Fund.",
+        "p2": "The goal of the system is to ensure the financial stability of the Republic of Tajikistan, including maintaining public confidence in the banking system.",
+        "p3": "The legal basis for the system is regulated by the Law of the Republic of Tajikistan \"On Insurance of Individual Deposits\". The Individual Deposit Insurance Fund (hereinafter - the Fund) operates to ensure the effectiveness of the system. The Fund pays insurance compensation, maintains a register of member credit institutions, and manages the collection of contributions."
+      },
+      "fundGoals": {
+        "title": "The goals of the Fund are:",
+        "items": [
+          "To protect the rights and legal interests of depositors by paying insurance compensation;",
+          "To strengthen public confidence in the banking system of the Republic of Tajikistan;"
+        ]
+      },
+      "contactInfo": {
+        "title": "Contact Information:",
+        "address": "Address: 77/2 Mayakovsky St, Dushanbe, 734025, Republic of Tajikistan",
+        "website": "Fund Website: www.idif.tj",
+        "phone": "Contact Phone: +992 44 600-32-45",
+        "email": "Email: info@idif.tj"
+      },
+      "coverage": {
+        "title": "Level and Coverage of the Fund's Insurance Compensation",
+        "p1": "Individual deposits are automatically insured and do not require a separate insurance contract from the depositor. The object of insurance is individual deposits in national and foreign currencies, confirmed by bank deposit agreements, salary and pension card accounts, and/or savings books."
+      },
+      "notCovered": {
+        "title": "Upon the occurrence of an insured event, compensation for the following deposits is not paid:",
+        "items": [
+          "deposits against which the credit institution has a right of set-off for counterclaims;",
+          "pledged deposits;",
+          "deposits obtained through criminal means or seized by a court;",
+          "deposits that have worsened the financial condition of the credit institution, according to the National Bank of Tajikistan;",
+          "deposits of affiliated persons of the credit institution;",
+          "deposits of partners of the audit firm engaged as the auditor;",
+          "deposits of individuals holding more than five percent of the credit institution's shares;",
+          "deposits placed in foreign branches of the credit institution;",
+          "deposits equal to any amount of the depositor's outstanding debt to the credit institution;",
+          "deposits of less than 10 somoni;"
+        ]
+      },
+      "compensation": {
+        "title": "Insurance Compensation",
+        "p1": "An insured event is the compulsory liquidation of a credit institution by a court decision, which creates an obligation for the Fund to pay insurance compensation.",
+        "p2": "Upon the occurrence of an insured event, according to the Law, the amount of compensation for deposits is as follows:",
+        "limits": [
+          "in national currency, not more than 500 (five hundred) calculation indicators;",
+          "in foreign currency, not more than 350 (three hundred and fifty) calculation indicators;"
+        ],
+        "p3": "Deposits in national currency are compensated in national currency. Deposits in foreign currency are compensated in national currency at the official exchange rate of the National Bank of Tajikistan on the day of the insured event. Interest on deposits is not compensated by the Fund."
+      },
+      "paymentProcess": {
+        "title": "Payment of Insurance Compensation",
+        "p1": "After an insured event, the Fund publishes an announcement in the media about the agent bank, location, time, and procedure for accepting claims. The announcement is also posted at the entrance of the agent bank and on the Fund's official website, www.idif.tj.",
+        "p2": "Payments begin no later than 14 calendar days after the insured event. Payments are made through an agent bank based on the depositor's application, in cash or non-cash form.",
+        "p3": "To receive compensation, a depositor must apply to the agent bank within one year from the date of the insured event and provide the following documents:",
+        "documents": [
+          "Application in the prescribed form (provided at the agent bank);",
+          "Document proving the depositor's identity;",
+          "Bank deposit agreement;",
+          "Power of attorney, if a legal representative is applying on behalf of the depositor."
+        ]
+      },
+      "forDepositors": {
+        "title": "Information for Depositors",
+        "slides": [
+          {
+            "title": "1. Research the Institution",
+            "content": "Ensure that the bank where you want to place a deposit is a member of the insurance system and has a Certificate of Membership from the Fund."
+          },
+          {
+            "title": "2. Check Your Contract",
+            "content": "Carefully check that your full name, passport details, address, and phone number are correct in the deposit agreement, and always inform the bank of any changes."
+          },
+          {
+            "title": "3. Remember What Is Not Insured",
+            "content": "Pledged deposits, deposits obtained criminally, or deposits from affiliated persons are not subject to compensation. A full list is provided above."
+          },
+          {
+            "title": "4. Don't Worry and Act Calmly",
+            "content": "You have one year to claim your compensation. Avoid rushing on the first day to prevent long queues. The Fund may extend the application period for valid reasons (illness, emergencies)."
+          }
+        ]
+      },
+      "certificate": {
+        "text": "Certificate of JSC \"Commerbank of Tajikistan\" on membership in the fund",
+        "linkText": "Certificate"
+      }
+    }
   }
-}
 

@@ -115,7 +115,7 @@
       <h3>{{ calculationResult.monthlyPayment | number:'1.2-2':'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}</h3>
       <p>Годовая ставка</p>
       <h3>{{ interestRate }}%</h3>
-      <button class="apply-button">Оставить заявку</button>
+      <button class="apply-button" [routerLink]="['/credits',7]" [queryParams]="{ scrollTo: 'application-form' }">Оставить заявку</button>
     </div>
   </div>
 </div>

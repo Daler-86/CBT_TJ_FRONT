@@ -92,7 +92,9 @@
         <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.totalOverpayment | number:'1.0-0':'ru-RU' }} c.</h3>
         <h3 *ngIf="selectedCurrency === 'usd'">{{ calculationResult.totalOverpayment | currency:'USD':'$':'1.0-0':'ru-RU' }}</h3>
       </div>
-      <button class="apply-button">Оформить заявку</button>
+      <button *ngIf="showApplyButton" 
+      class="apply-button" 
+      [scrollTo]="'application-form'">Оформить заявку</button>
     </div>
   </div>
 </div>
