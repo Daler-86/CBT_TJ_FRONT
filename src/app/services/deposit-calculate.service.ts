@@ -10,12 +10,12 @@ export class DepositCalculateService {
         name: "Пасандози ҷамъшаванда «ФАВРИ»",
         currencies: {
             "TJS": { 
-                minAmount: 1000, maxAmount: Infinity, stepAmount: 1000, amountLabels: ['1 тыс.', '25 тыс.', '50 тыс.', '75 тыс.', '∞'],
+                minAmount: 1000, maxAmount: 10000000, stepAmount: 1000, amountLabels: ['1 тыс.', '25 тыс.', '50 тыс.', '75 тыс.', '∞'],
                 minTerm: 6, maxTerm: 48, stepTerm: 1, termLabels: ['6 мес.', '18 мес.', '36 мес.', '48 мес.'],
                 rates: [{ minMonths: 13, rate: 0.11 }, { minMonths: 12, rate: 0.09 }, { minMonths: 9, rate: 0.07 }, { minMonths: 6, rate: 0.05 }] 
             },
             "USD": {
-                minAmount: 100, maxAmount: Infinity, stepAmount: 100, amountLabels: ['$100', '$2.5k', '$5k', '$7.5k', '∞' ],
+                minAmount: 100, maxAmount: 10000000, stepAmount: 100, amountLabels: ['$100', '$2.5k', '$5k', '$7.5k', '∞' ],
                 minTerm: 6, maxTerm: 48, stepTerm: 1, termLabels: ['6 мес.', '18 мес.', '36 мес.', '48 мес.'],
                 rates: [{ minMonths: 13, rate: 0.05 }, { minMonths: 12, rate: 0.04 }, { minMonths: 9, rate: 0.02 }, { minMonths: 6, rate: 0.01 }] 
             }
@@ -26,12 +26,12 @@ export class DepositCalculateService {
 
         currencies: {
             "TJS": {
-                minAmount: 500, maxAmount: Infinity, stepAmount: 500, amountLabels: ['500', '10 тыс.', '25 тыс.', '∞'],
+                minAmount: 500, maxAmount: 10000000, stepAmount: 500, amountLabels: ['500', '10 тыс.', '25 тыс.', '∞'],
                 minTerm: 12, maxTerm: 72, stepTerm: 1, termLabels: ['1 год', '3 года', '5 лет', '6 лет'],
                 rates: [{ minMonths: 25, rate: 0.11 }, { minMonths: 24, rate: 0.10 }, { minMonths: 12, rate: 0.09 }]
             },
             "USD": {
-                minAmount: 50, maxAmount: Infinity, stepAmount: 50, amountLabels: ['$50', '$1k', '$2.5k', '∞'],
+                minAmount: 50, maxAmount: 10000000, stepAmount: 50, amountLabels: ['$50', '$1k', '$2.5k', '∞'],
                 minTerm: 12, maxTerm: 72, stepTerm: 1, termLabels: ['1 год', '3 года', '5 лет', '6 лет'],
                 rates: [{ minMonths: 25, rate: 0.07 }, { minMonths: 24, rate: 0.05 }, { minMonths: 12, rate: 0.04 }]
             }
@@ -41,7 +41,7 @@ export class DepositCalculateService {
         name: "Пасандози муҳлатноки «Орзу»",
         currencies: {
             "TJS": {
-                minAmount: 1000, maxAmount: Infinity, stepAmount: 500, amountLabels: ['1 тыс.', '10 тыс.', '25 тыс.', '∞'],
+                minAmount: 1000, maxAmount: 10000000, stepAmount: 500, amountLabels: ['1 тыс.', '10 тыс.', '25 тыс.', '∞'],
                 minTerm: 6, maxTerm: 12, stepTerm: 1, termLabels: ['6 мес.', '9 мес.', '12 мес.'],
                 rates: [{ minMonths: 12, rate: 0.09 }, { minMonths: 9, rate: 0.06 }, { minMonths: 6, rate: 0.04 }]
             },
@@ -52,12 +52,12 @@ export class DepositCalculateService {
         name: "Пасандози муҳлатнок «V.I.P»",
         currencies: {
             "TJS": {
-                minAmount: 500000, maxAmount: Infinity, stepAmount: 10000, amountLabels: ['500 тыс.', '1.5 млн', '3 млн', '∞'],
+                minAmount: 500000, maxAmount: 10000000, stepAmount: 10000, amountLabels: ['500 тыс.', '1.5 млн', '3 млн', '∞'],
                 minTerm: 12, maxTerm: 60, stepTerm: 1, termLabels: ['1 год', '2 года', '3 года', '5 лет'],
                 rates: [{ minMonths: 37, rate: 0.12 }, { minMonths: 24, rate: 0.11 }, { minMonths: 12, rate: 0.10 }]
             },
             "USD": {
-                minAmount: 100000, maxAmount: Infinity, stepAmount: 5000, amountLabels: ['$100k', '$250k', '$500k', '∞'],
+                minAmount: 100000, maxAmount: 10000000, stepAmount: 5000, amountLabels: ['$100k', '$250k', '$500k', '∞'],
                 minTerm: 12, maxTerm: 60, stepTerm: 1, termLabels: ['1 год', '2 года', '3 года', '5 лет'],
                 rates: [{ minMonths: 37, rate: 0.08 }, { minMonths: 24, rate: 0.07 }, { minMonths: 12, rate: 0.06 }]
             }
@@ -67,12 +67,12 @@ export class DepositCalculateService {
         name: "Пасандози муҳлатнок «АВФ»",
         currencies: {
             "TJS": {
-                minAmount: 1000, maxAmount: Infinity, stepAmount: 1000, amountLabels: ['1 тыс.', '250 тыс.', '500 тыс.', '∞'],
+                minAmount: 1000, maxAmount:10000000, stepAmount: 1000, amountLabels: ['1 тыс.', '250 тыс.', '500 тыс.', '∞'],
                 minTerm: 12, maxTerm: 36, stepTerm: 1, termLabels: ['1 год', '1.5 года', '2.5 года', '3 года'],
                 rates: [{ minMonths: 24, rate: 0.11 }, { minMonths: 12, rate: 0.10 }]
             },
             "USD": {
-                minAmount: 100, maxAmount: Infinity, stepAmount: 100, amountLabels: ['$100', '$25k', '$50k', '∞'],
+                minAmount: 100, maxAmount:10000000, stepAmount: 100, amountLabels: ['$100', '$25k', '$50k', '∞'],
                 minTerm: 12, maxTerm: 36, stepTerm: 1, termLabels: ['1 год', '1.5 года', '2.5 года', '3 года'],
                 rates: [{ minMonths: 24, rate: 0.07 }, { minMonths: 12, rate: 0.06 }]
             }

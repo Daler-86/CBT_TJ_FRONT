@@ -31,16 +31,15 @@
       <div class="form-group">
         <label>Сумма вклада</label>
         <div class="input-slider-container">
-          <div *ngIf="!isEditingAmount" class="input-display" (click)="startEditing()">
+          <div *ngIf="!isEditingAmount" class="input-display display-value" (click)="startEditing()">
             {{ depositAmount | number:'1.0-0':'ru-RU' }}
           </div>
-          <input *ngIf="isEditingAmount" type="text" class="loan-input"
+          <input *ngIf="isEditingAmount" type="number" class="loan-input edit-input"
                  [(ngModel)]="depositAmount" 
-                 (input)="recalculate()"
                  (blur)="stopEditing()"
                  (keydown.enter)="stopEditing()"
                  autofocus>
-          <input class="range-slider" type="range"
+          <input class="range-slider " type="range"
                  [min]="minAmount" [max]="maxAmount" [step]="stepAmount"
                  [(ngModel)]="depositAmount" (input)="recalculate()"
                  [style.--range-percent]="depositAmountPercent">

@@ -37,22 +37,18 @@ export class DepositDetailComponent implements OnInit {
   selectedFaqIndex: number | null = null;
   selectedTab: string = '';
 
-  // --- Свойства для формы заявки ---
-  offices: officeList[] = [];
-  dropdownOpen: boolean = false;
-  officeName: string = 'Выберите отделение банка';
+
   
   // Модель только для полей формы
   model = {
     client_name: '',
     phone: '',
-    office_id: null as number | null
   };
 
   constructor(
     private route: ActivatedRoute,
     private depositService: DepositsService,
-    private regionService: RegionService,
+   
     private notificationService: ModalService,
     private translateService: TranslateService // Если он используется
   ) { }
@@ -63,7 +59,7 @@ export class DepositDetailComponent implements OnInit {
     if (idParam) {
       this.depositId = +idParam;
       this.loadDepositData(this.depositId);
-      this.loadOffice();
+      
     }
   }
 
@@ -80,18 +76,11 @@ export class DepositDetailComponent implements OnInit {
     });
   }
 
-  loadOffice(): void {
-    this.regionService.getOfficeList().subscribe({
-      next: (response) => {
-        this.offices = response.data.offices;
-      },
-      error: (error) => console.error('Ошибка при запросе данных', error)
-    });
-  }
+  
   
   // Метод для отправки формы
   submitApplication(form: NgForm): void {
-    if (form.invalid || !this.model.office_id) {
+    if (form.invalid ) {
       this.notificationService.show('Пожалуйста, заполните все обязательные поля.', 'error');
       Object.values(form.controls).forEach(control => {
         control.markAsTouched();
@@ -107,11 +96,13 @@ export class DepositDetailComponent implements OnInit {
     // console.log('Отправка заявки на вклад:', dataToSend);
 
     this.depositService.submitDeposit(dataToSend).subscribe({
+    
       next: (resp) => {
         this.notificationService.show('Ваша заявка успешно принята!', 'success');
+       
         form.reset();
-        this.model.office_id = null;
-        this.officeName = 'Выберите отделение банка';
+        
+      
       },
       error: (err) => {
         this.notificationService.show('Не удалось отправить заявку. Попробуйте позже.', 'error');
@@ -129,14 +120,5 @@ export class DepositDetailComponent implements OnInit {
     this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
   }
 
-  toggleDropdown(event: Event): void {
-    this.dropdownOpen = !this.dropdownOpen;
-    event.stopPropagation();
-  }
-
-  selectOption(item: officeList): void {
-    this.officeName = item.name;
-    this.model.office_id = item.id;
-    this.dropdownOpen = false;
-  }
+ 
 }

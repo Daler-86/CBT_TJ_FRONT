@@ -48,7 +48,7 @@
   </div>
 
   <!-- Блок 4: Форма заявки -->
-  <!-- Используем твою оригинальную структуру .application-form-container -->
+ 
   <div class="application-form-container" #applicationForm id='application-form'>
     <div class="form">
       <div class="text">
@@ -73,19 +73,7 @@
             {{ 'common.fieldIsRequired' | translate }}
           </div>
         </div>
-        <div class="custom-dropdown">
-          <!-- Твоя сложная верстка для dropdown остается без изменений -->
-          <div class="dropdown-selected">
-            <div class="form-group">
-              <div class="dropdown-selected form-control" (click)="toggleDropdown($event)">{{ officeName }}</div>
-            </div>
-          </div>
-          <div class="dropdown-options" *ngIf="dropdownOpen">
-            <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption(item)"><p>{{ item.name }}</p></div>
-          </div>
-          <!-- Добавляем только невидимый input для валидации -->
-          <input type="hidden" name="office_id" [(ngModel)]="model.office_id" required>
-        </div>
+     
         <div class="form-group">
           <button type="submit" class="btn-primary" [disabled]="form.invalid">{{ 'buttons.applyForCard' | translate }}</button>
         </div>
@@ -95,7 +83,7 @@
   </div>
 
   <!-- Блок 5: FAQ -->
-  <!-- Эта часть остается абсолютно без изменений -->
+ 
   <div class="faq-container" *ngIf="depositData?.faqs">
     <h2 class="faq-title">{{ 'common.faqTitle' | translate }}</h2>
     <div *ngFor="let faq of depositData.faqs; let i = index" class="faq-item">

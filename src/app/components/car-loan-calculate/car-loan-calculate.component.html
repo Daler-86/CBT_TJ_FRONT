@@ -39,11 +39,16 @@
           {{ carCost  }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
         </div>
         <input *ngIf="isEditingCarCost" type="number" class="edit-input"
-               [(ngModel)]="carCost" (blur)="stopEditing()" (keydown.enter)="stopEditing()"
+               [(ngModel)]="carCost" 
+               (blur)="stopEditing()" 
+               
+               (keydown.enter)="stopEditing()"
                autofocus>
         <input type="range" class="range-slider"
                [min]="minCarCost" [max]="maxCarCost"
-               [(ngModel)]="carCost" (input)="recalculate()" [style.--range-percent]="carCostPercent">
+               [(ngModel)]="carCost" 
+               (input)="recalculate()" 
+               [style.--range-percent]="carCostPercent">
 
                <div class="range-labels">
                 <span>{{ costLabels[0] }}</span>

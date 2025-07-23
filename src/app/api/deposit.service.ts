@@ -98,7 +98,7 @@ export class DepositsService {
           'Language': lang  // Динамическая установка языкового заголовка
         });
 
-         return this.http.post(this.baseUrl+'/card/order/save', cardData, { headers });
+         return this.http.post(this.baseUrl+'/deposit/order/save', cardData, { headers });
       })
     );
   }
