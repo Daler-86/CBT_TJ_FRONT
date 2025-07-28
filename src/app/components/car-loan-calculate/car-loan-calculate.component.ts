@@ -4,12 +4,13 @@ import { CarLoanService } from '../../services/car-loan.service';
 import { CommonModule, CurrencyPipe, DecimalPipe, PercentPipe } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 type Currency = 'tjs' | 'usd';
 
 @Component({
   selector: 'app-car-loan-calculate',
   standalone: true,
-  imports: [CommonModule, FormsModule,  DecimalPipe,RouterLink  ],
+  imports: [CommonModule, FormsModule,  DecimalPipe,RouterLink , TranslateModule, CurrencyPipe ],
   templateUrl: './car-loan-calculate.component.html',
   styleUrl: './car-loan-calculate.component.scss'
 })

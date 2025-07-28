@@ -7,6 +7,7 @@ import { CalculationResult, DepositProducts } from '../../models/deposit.model';
 
 import { DepositCalculateService } from '../../services/deposit-calculate.service';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-deposit-calculator',
@@ -16,7 +17,8 @@ import { RouterLink } from '@angular/router';
     ReactiveFormsModule, // Важно для работы с формами
     RouterLink,
     PercentPipe,
-    FormsModule
+    FormsModule,
+    TranslateModule
     // NgModel        // Пайп для форматирования процентов
   ],
   templateUrl: './deposit-calculate.component.html',

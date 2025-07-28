@@ -1,10 +1,11 @@
 <div class="calculator-wrapper">
+  <!-- Левая колонка -->
   <div class="calculator-form">
-    <h2>Кредитный калькулятор</h2>
+    <h2>{{ 'calculators.loan.title' | translate }}</h2>
 
     <!-- Переключатель валют -->
     <div class="form-group">
-      <label>Валюта</label>
+      <label>{{ 'calculators.common.currency' | translate }}</label>
       <div class="currency-tabs">
         <button *ngFor="let currency of availableCurrencies"
                 [class.active]="selectedCurrency === currency"
@@ -16,19 +17,19 @@
     
     <!-- Слайдер Суммы -->
     <div class="form-group">
-      <label>Сумма кредита</label>
+      <label>{{ 'calculators.loan.amount' | translate }}</label>
       <div class="input-slider-container">
         <div *ngIf="!isEditingAmount" class="input-display" (click)="startEditing()">
           {{ loanAmount | number:'1.0-0':'ru-RU' }}
         </div>
         <input *ngIf="isEditingAmount" 
-        type="number" 
-        class="loan-input" 
-        [(ngModel)]="loanAmount" 
-        (input)="recalculate()"
-        (blur)="stopEditing()"
-        (keydown.enter)="stopEditing()"
-        autofocus>
+               type="number" 
+               class="loan-input" 
+               [(ngModel)]="loanAmount" 
+               (input)="recalculate()"
+               (blur)="stopEditing()"
+               (keydown.enter)="stopEditing()"
+               autofocus>
                
         <input class="range-slider" type="range"
               [min]="minAmount" [max]="maxAmount"
@@ -43,9 +44,9 @@
 
     <!-- Слайдер Срока -->
     <div class="form-group">
-      <label>Срок кредита</label>
+      <label>{{ 'calculators.loan.term' | translate }}</label>
       <div class="input-slider-container">
-        <div class="input-display">{{ loanTerm }} мес.</div>
+        <div class="input-display">{{ loanTerm }} {{ 'calculators.common.months' | translate }}</div>
         <input class="range-slider" type="range"
               [min]="minTerm" [max]="maxTerm" step="1"
               [(ngModel)]="loanTerm" (input)="recalculate()"
@@ -59,7 +60,7 @@
 
     <!-- Слайдер Процентной ставки -->
     <div class="form-group">
-      <label>Процентная ставка</label>
+      <label>{{ 'calculators.common.interestRate' | translate }}</label>
       <div class="input-slider-container">
         <div class="input-display">{{ interestRatePercent }}%</div>
         <input class="range-slider" type="range"
@@ -77,24 +78,26 @@
   <!-- Правая колонка -->
   <div class="result-wrapper">
     <div class="result-card" *ngIf="calculationResult">
-      <h2>Ваш расчет</h2>
+      <h2>{{ 'calculators.common.yourOffer' | translate }}</h2>
       <div class="result-item">
-        <p>Процентная ставка</p>
+        <p>{{ 'calculators.common.interestRate' | translate }}</p>
         <h3>{{ calculationResult.interestRate | percent:'1.0-0' }}</h3>
       </div>
       <div class="result-item">
-        <p>Ежемесячный платёж</p>
-        <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.monthlyPayment | number:'1.0-0':'ru-RU' }} c.</h3>
+        <p>{{ 'calculators.common.monthlyPayment' | translate }}</p>
+        <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.monthlyPayment | number:'1.0-0':'ru-RU' }} {{ 'calculators.common.currencySymbol.tjs' | translate }}</h3>
         <h3 *ngIf="selectedCurrency === 'usd'">{{ calculationResult.monthlyPayment | currency:'USD':'$':'1.0-0':'ru-RU' }}</h3>
       </div>
       <div class="result-item">
-        <p>Сумма переплаты</p>
-        <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.totalOverpayment | number:'1.0-0':'ru-RU' }} c.</h3>
+        <p>{{ 'calculators.loan.overpayment' | translate }}</p>
+        <h3 *ngIf="selectedCurrency === 'tjs'">{{ calculationResult.totalOverpayment | number:'1.0-0':'ru-RU' }} {{ 'calculators.common.currencySymbol.tjs' | translate }}</h3>
         <h3 *ngIf="selectedCurrency === 'usd'">{{ calculationResult.totalOverpayment | currency:'USD':'$':'1.0-0':'ru-RU' }}</h3>
       </div>
       <button *ngIf="showApplyButton" 
-      class="apply-button" 
-      [scrollTo]="'application-form'">Оформить заявку</button>
+              class="apply-button" 
+              [scrollTo]="'application-form'">
+        {{ 'calculators.common.applyButton' | translate }}
+      </button>
     </div>
   </div>
 </div>

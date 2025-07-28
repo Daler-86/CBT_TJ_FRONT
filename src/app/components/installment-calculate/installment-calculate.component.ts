@@ -3,6 +3,7 @@ import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InstallmentResult } from '../../models/calculate.model';
 import { InstallmentService } from '../../services/installment.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Модель для результатов расчета
 interface InstallmentCalculationResult {
@@ -13,7 +14,7 @@ interface InstallmentCalculationResult {
 @Component({
   selector: 'app-installment-calculate',
   standalone: true,
-  imports: [CommonModule, FormsModule,  PercentPipe],
+  imports: [CommonModule, FormsModule,  PercentPipe, TranslateModule],
   templateUrl: './installment-calculate.component.html',
   styleUrl: './installment-calculate.component.scss'
 })

@@ -28,6 +28,8 @@ import { RkoDetailsComponent } from './components/rko-details/rko-details.compon
 import { MerchantComponent } from './components/merchant/merchant.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { InsuranceInfoComponent } from './components/insurance-info/insurance-info.component';
+import { SalaryProjectPageComponent } from './components/salary-project-page/salary-project-page.component';
+import { AcquiringPageComponent } from './components/acquiring-page/acquiring-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -75,7 +77,11 @@ export const routes: Routes = [
    { path: 'scs-details/:id', component: RkoDetailsComponent },
    { path: 'merchant', component: MerchantComponent },
    { path: 'contact', component: ContactComponent },
-   {path:"insurance-info", component:InsuranceInfoComponent}
+   {path:"insurance-info", component:InsuranceInfoComponent},
+   {path:"salary-project", component:SalaryProjectPageComponent},
+   {
+    path:"acquiring", component:AcquiringPageComponent
+   }
 ];
 
  

@@ -1,16 +1,15 @@
 <div class="calculator-wrapper">
   <!-- Левая колонка с формой -->
   <div class="calculator-form">
-    <h2>Калькулятор рассрочки</h2>
+    <h2>{{ 'calculators.installment.title' | translate }}</h2>
   
     <div class="form-group">
-      <label>Сумма</label>
+      <label>{{ 'calculators.installment.amount' | translate }}</label>
       <div class="input-slider-container">
         
-        <!-- === ИЗМЕНЕНИЯ ЗДЕСЬ: "УМНЫЙ" ИНПУТ === -->
         <div class="input-display">
           <div *ngIf="!isEditingAmount" (click)="startEditing()">
-            {{ loanAmount | number:'1.0-0':'ru-RU' }} сомони
+            {{ loanAmount | number:'1.0-0':'ru-RU' }} {{ 'calculators.common.currencySymbol.tjs' | translate }}
           </div>
           <input *ngIf="isEditingAmount" type="number" 
                  [(ngModel)]="loanAmount" 
@@ -31,12 +30,12 @@
     </div>
   
     <div class="form-group">
-      <label>Срок</label>
+      <label>{{ 'calculators.installment.term' | translate }}</label>
       <div class="term-buttons">
         <button *ngFor="let term of availableTerms"
                 (click)="loanTerm = term; onValueChange()"
                 [class.active]="loanTerm === term">
-          {{ term }} мес.
+          {{ term }} {{ 'calculators.common.months' | translate }}
         </button>
       </div>
     </div>
@@ -44,27 +43,27 @@
   
   <!-- Правая колонка с результатами -->
   <div class="calculator-result">
-    <h2>Ваш расчет</h2>
+    <h2>{{ 'calculators.common.yourOffer' | translate }}</h2>
     <div *ngIf="calculationResult; else noRate">
       <div class="result-item">
-        <p>Ежемесячный платеж</p>
+        <p>{{ 'calculators.common.monthlyPayment' | translate }}</p>
         <h3>{{ calculationResult.monthlyPayment | number:'1.0-0':'ru-RU' }}</h3>
       </div>
       <div class="result-item">
-        <p>Процентная ставка</p>
+        <p>{{ 'calculators.common.interestRate' | translate }}</p>
         <h3>{{ calculationResult.interestRate | percent:'1.0-0' }}</h3>
       </div>
       <div class="result-item">
-        <p>Общая сумма выплаты</p>
+        <p>{{ 'calculators.installment.totalPayment' | translate }}</p>
         <h3>{{ calculationResult.totalPayment | number:'1.0-0':'ru-RU' }}</h3>
       </div>
     </div>
     <ng-template #noRate>
-      <p class="error-message">Выберите срок из предложенных, чтобы увидеть расчет.</p>
+      <p class="error-message">{{ 'calculators.installment.selectTermError' | translate }}</p>
     </ng-template>
   
-    <!-- <button (click)="applyForInstallment()" [disabled]="!calculationResult">
-      Оформить рассрочку
-    </button> -->
+    <button class="apply-button">
+      {{ 'calculators.installment.applyButton' | translate }}
+    </button>
   </div>
 </div>

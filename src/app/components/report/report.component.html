@@ -44,7 +44,7 @@
         </ng-container>
       </div>
     </div>
-    
+    <div class="line"></div>
     <div class="documents-section" *ngIf="reportFile.length > 0">
       <div class="document-card" *ngFor="let doc of reportFile; trackBy: trackByDocumentId">
         <img src="../../../assets/icons/файл.png" [alt]="'alt.fileIcon' | translate" class="pdf-icon">
@@ -52,7 +52,7 @@
       </div>
       
       <!-- Пагинация -->
-      <div class="pagination" *ngIf="totalPages > 1">
+      <!-- <div class="pagination" *ngIf="totalPages > 1">
           <button class="btn" (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
           <button class="btn" (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
         
@@ -66,7 +66,7 @@
         
           <button class="btn" (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
           <button class="btn" (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
-      </div>
+      </div> -->
     </div>
     
     <!-- Сообщение, если документов нет -->

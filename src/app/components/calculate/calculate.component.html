@@ -3,7 +3,7 @@
     <button (click)="selectTab('credit')" [class.active]="selectedTab === 'credit'">{{ 'calculator.tabs.credit' | translate }}</button>
     <button (click)="selectTab('deposit')" [class.active]="selectedTab === 'deposit'">{{ 'calculator.tabs.deposit' | translate }}</button>
     <button (click)="selectTab('car')" [class.active]="selectedTab === 'car'">{{ 'calculator.tabs.carPurchase' | translate }}</button>
-    <button (click)="selectTab('installment')" [class.active]="selectedTab === 'installment'">Рассрочка</button>
+    <button (click)="selectTab('installment')" [class.active]="selectedTab === 'installment'">{{'calculator.tabs.rassrochka'|translate}}</button>
   </div>
 
 <div *ngIf="selectedTab === 'credit'">

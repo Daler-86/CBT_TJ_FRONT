@@ -1,0 +1,137 @@
+// Переменные
+$primary-color: #00B06C;
+$text-primary: #212529;
+$text-secondary: #555;
+$background-light: #f8f9fa;
+$white-color: #ffffff;
+$border-color: #e9ecef;
+
+.page-container {
+//   max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: $text-primary;
+//   text-align: center;
+  margin: 40px 0;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: $text-secondary;
+  text-align: start;
+  max-width: 600px;
+  margin: 20px 0;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 14px 28px;
+  background-color: $primary-color;
+  color: $white-color;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  &:hover { background-color: darken($primary-color, 5%); }
+}
+
+// Hero Section
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+  background-color: $primary-color;
+  color: $white-color;
+  padding: 60px;
+  border-radius: 24px;
+  margin-bottom: 60px;
+  h1, .subtitle, .text { color: $white-color; }
+  h1 { font-size: 48px; margin: 0; }
+  .subtitle { font-size: 48px; font-weight: 100; margin: 0 0 15px; }
+  .text { font-size: 20px; opacity: 0.9; margin-bottom: 30px; }
+  .cta-button { background-color: $white-color; color: $primary-color; }
+  .hero-image img { max-width: 100%; }
+}
+
+// Benefits Section
+.benefits-grid, .help-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.benefit-card, .help-card {
+  background-color: $background-light;
+  padding: 25px;
+  border-radius: 16px;
+  h3 { font-size: 20px; margin: 0 0 10px; }
+  p { margin: 0; color: $text-secondary; }
+}
+
+// AMA POS Section
+.ama-pos-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background-color: $primary-color;
+  color: $white-color;
+  border-radius: 24px;
+  margin: 60px 0;
+  .ama-pos-content { padding: 60px; }
+  h2 { font-size: 48px; font-weight: 700; color: $white-color; }
+  p { color: $white-color; opacity: 0.9; }
+  .ama-pos-image img { max-width: 100%; border-radius: 0 24px 24px 0; }
+}
+
+// Tabs Section
+.tabs-section {
+  background-color: $background-light;
+  padding: 40px;
+  border-radius: 16px;
+  margin: 60px 0;
+
+  .tabs-nav {
+    display: flex;
+    // justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    button {
+      padding: 10px 20px; border-radius: 8px; border: none;
+      background-color: #fff; font-weight: 500; cursor: pointer;
+      &.active { background-color: $primary-color; color: $white-color; }
+    }
+  }
+  .tab-content-wrapper {
+    .tab-content {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 30px;
+      background-color: $white-color;
+      padding: 30px;
+      border-radius: 12px;
+      ul { padding-left: 20px; li { margin: 20px 0; }}
+    }
+  }
+}
+
+// Documents Section
+.documents-section {
+//   border: 2px solid $primary-color;
+  border-radius: 16px;
+  padding: 30px;
+  .documents-header { border-bottom: 1px dotted $primary-color; padding-bottom: 15px; margin-bottom: 20px; }
+  .documents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    .document-card { text-align: center; }
+  }
+}

@@ -1,65 +1,121 @@
-.favri{
-    display: flex;
-    margin: 30px 0;
-    background-color: white;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 5% 0 ;
-    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-    border-radius: 16px;
-    @media (max-width: 768px) {
-        flex-direction: column;
-        padding: 25px 35px 0 35px;
-        justify-content: center;
+// :host - специальный селектор Angular для инкапсуляции
+:host {
+    // Контейнер, который держит наш блок
+    .container_3 {
+        // Добавляем немного отступов сверху и снизу для воздуха
+        padding: 40px 15px;
     }
-   div{
-        width: 60%;
-     @media (max-width: 768px) {
-            width: 100%;
-            
+
+    // Основной блок с эффектом "стекла"
+    .favri {
+        display: flex;
+        gap: 30px; // Пространство между текстом и телефоном
+        align-items: center;
+        padding: 40px; // Внутренние отступы со всех сторон
+        border-radius: 24px; // Увеличенное скругление для эффекта стекла
+background-color: white;
+        backdrop-filter: blur(15px);          // Размытие фона
+        -webkit-backdrop-filter: blur(15px);  // Для поддержки Safari
+        border: 1px solid rgba(255, 255, 255, 0.2); // Тонкая светлая граница
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); // Мягкая тень
+
+        // Адаптивность для мобильных
+        @media (max-width: 768px) {
+            flex-direction: column;
+            padding: 30px 20px 0; // На мобильных убираем нижний паддинг, т.к. телефон и так отступает
+            text-align: center;
         }
-    }}
-   
-        h2{
-            font-size: 32px;
-            font-weight: 700;
-            padding: 10px 0;
-      
-        }
-        p{
-            color: #64748B;
-            font-size: 20px;
-            font-weight: 500;
-        }
-        .google{
-            margin: 20px 0;
+    }
+
+    // Левая часть с информацией
+    .favri-info {
+        flex: 1 1 50%;     // Занимает половину места, гибкий
+        min-width: 300px;  // Минимальная ширина, чтобы текст не слипался
+        position: relative;
+        z-index: 2;        // Текст всегда сверху
+
+        h2, p { /* Ваши стили для текста */ }
+
+        .google {
             display: flex;
             gap: 20px;
-            @media (max-width: 1034px) {
-              display: block;
-                
-              }
-            img{
-                cursor: pointer;
+            margin-top: 20px;
+            @media (max-width: 768px) {
+                justify-content: center; // Центрируем кнопки на мобильных
             }
         }
-   
-    .phone{
-        width: 100%;
+    }
+
+    // Правая часть с телефоном
+    .phone {
+        flex: 1 1 50%;
         display: flex;
-        justify-content: end;
-        @media (max-width: 1024px) {
-           justify-content: center;
-            
-         }
-        img{
-            width:520px;
-            justify-self: end;
-             @media (max-width: 1024px) {
-           justify-self: center;
-           width: 420px;
-            
-          }
-            
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .phone-mockup {
+        max-width: 100%;
+        width: 520px;
+        height: auto;
+        position: relative;
+        z-index: 1; // Телефон под иконками
+
+        @media (max-width: 1024px) { width: 420px; }
+        @media (max-width: 768px) { width: 320px; }
+    }
+
+    // --- Стили и анимация иконок ---
+    .floating-icons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1px;
+        height: 1px;
+        pointer-events: none;
+        z-index: 2; // Иконки над телефоном
+    }
+
+    .icon-bubble {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.8); // Фон иконок тоже полупрозрачный
+        border-radius: 16px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        img { width: 32px; height: 32px; }
+    }
+
+    // Состояние при наведении
+    .favri:hover .floating-icons {
+        .icon-bubble {
+             opacity: 1;
+        }
+        
+        .icon-1 {
+            transform: translate(-140px, -60px) scale(1) rotate(-15deg);
+            transition-delay: 0s;
+        }
+        .icon-2 {
+            transform: translate(120px, -90px) scale(1) rotate(20deg);
+            transition-delay: 0.1s;
+        }
+        .icon-3 {
+            transform: translate(-100px, 110px) scale(1) rotate(10deg);
+            transition-delay: 0.15s;
+        }
+        .icon-4 {
+            transform: translate(130px, 80px) scale(1) rotate(-25deg);
+            transition-delay: 0.05s;
         }
     }
+}

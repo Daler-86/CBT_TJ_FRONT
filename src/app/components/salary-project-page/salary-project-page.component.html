@@ -1,0 +1,35 @@
+<div class="info-page-container">
+    <div class="section-header">
+        <h1>{{ 'salaryProjectPage.mainTitle'| translate }}</h1>
+        <p class="subtitle">{{ 'salaryProjectPage.intro.subtitle'  | translate }}</p>
+      </div>
+    <!-- <h1 class="main-title">{{ 'salaryProjectPage.mainTitle' | translate }}</h1> -->
+  
+    <!-- Вступительный блок -->
+    <div class="intro-section">
+      <!-- <p class="subtitle">{{ 'salaryProjectPage.intro.subtitle' | translate }}</p> -->
+      <p>{{ 'salaryProjectPage.intro.p1' | translate }}</p>
+      <p>{{ 'salaryProjectPage.intro.p2' | translate }}</p>
+    </div>
+  
+    <!-- Блок "Преимущества для организации" -->
+    <div class="info-section">
+      <h2 class="section-title">{{ 'salaryProjectPage.benefitsForCompany.title' | translate }}</h2>
+      <div class="section-content">
+        <ul class="styled-list">
+          <li *ngFor="let item of 'salaryProjectPage.benefitsForCompany.items' | translate">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Блок "Преимущества для сотрудников" -->
+    <div class="info-section">
+      <h2 class="section-title">{{ 'salaryProjectPage.benefitsForEmployees.title' | translate }}</h2>
+      <div class="section-content">
+        <ul class="styled-list">
+          <li *ngFor="let item of 'salaryProjectPage.benefitsForEmployees.items' | translate">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>

@@ -286,6 +286,8 @@ img{
         border-radius: 16px;
     
         padding: 50px 60px;
+     
+
         h3{
             color: #141A20;
             padding: 5px 0;
@@ -313,7 +315,12 @@ img{
             border-radius: 6px;
             border: 0;
             cursor: pointer;
+            &:hover{
+                background-color: #f1f5f99d;
+                // color: #141A209d;
+            }
         }
+
     }
     .d{
         width: 43%;
@@ -330,7 +337,17 @@ img{
             box-shadow: 0px 4px 20px 0px #AFAFAF2E;
        gap: 30px;
        cursor: pointer;
-
+       img{
+        transition: transform 0.5s ease; /* Анимация будет длиться 0.5 секунды */
+        transform: scale(1);
+      
+    }  
+    &:hover{
+        img{
+            transform: scale(1.1);
+        } 
+        }
+    
             h3{
                 color: $color-text;
                 padding: 5px 0;

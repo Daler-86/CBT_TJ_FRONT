@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReportComponent } from './report.component';
+import { AcquiringPageComponent } from './acquiring-page.component';
 
-describe('ReportComponent', () => {
-  let component: ReportComponent;
-  let fixture: ComponentFixture<ReportComponent>;
+describe('AcquiringPageComponent', () => {
+  let component: AcquiringPageComponent;
+  let fixture: ComponentFixture<AcquiringPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReportComponent]
+      imports: [AcquiringPageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ReportComponent);
+    fixture = TestBed.createComponent(AcquiringPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

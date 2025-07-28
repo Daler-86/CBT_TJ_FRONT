@@ -1,27 +1,27 @@
 <div class="calculator-wrapper">
   <!-- Левая колонка -->
   <div class="calculator-form">
-    <h2>Покупка авто</h2>
+    <h2>{{"calculators.autoLoan.title"|translate}}</h2>
     
     <!-- Валюта и Ставка -->
     <div class="top-controls">
       <div class="form-group">
-        <label>Валюта</label>
+        <label>{{"calculators.common.currency"|translate}}</label>
         <div class="currency-selector">
             <div class="radio-option">
               <input type="radio" id="tjs-auto" name="currency-auto" value="tjs" 
                      [(ngModel)]="selectedCurrency" (ngModelChange)="selectCurrency($event)">
-              <label for="tjs-auto">Сомони</label>
+              <label for="tjs-auto">{{"calculators.common.tjs"|translate}}</label>
             </div>
             <div class="radio-option">
               <input type="radio" id="usd-auto" name="currency-auto" value="usd" 
                      [(ngModel)]="selectedCurrency" (ngModelChange)="selectCurrency($event)">
-              <label for="usd-auto">Доллары США</label>
+              <label for="usd-auto">{{"calculators.common.usd"|translate}}</label>
             </div>
         </div>
       </div>
       <div class="form-group">
-        <label>Годовая ставка</label>
+        <label>{{"calculators.common.annualRate"|translate}}</label>
         <div class="rate-input-wrapper">
           <input type="number" class="rate-input"
                  [min]="minRate" [max]="maxRate"
@@ -33,10 +33,10 @@
 
     <!-- Стоимость авто -->
     <div class="form-group">
-      <label>Стоимость авто</label>
+      <label>{{"calculators.autoLoan.carCost"|translate}}</label>
       <div class="smart-input-container">
         <div *ngIf="!isEditingCarCost" class="display-value" (click)="startEditing('carCost')">
-          {{ carCost  }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+          {{ carCost | number:'1.2-2':'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
         </div>
         <input *ngIf="isEditingCarCost" type="number" class="edit-input"
                [(ngModel)]="carCost" 
@@ -59,10 +59,10 @@
     
     <!-- Предоплата -->
     <div class="form-group">
-      <label>Предоплата</label>
+      <label>{{"calculators.autoLoan.downPayment"|translate}}</label>
       <div class="smart-input-container">
         <div *ngIf="!isEditingDownPayment" class="display-value" (click)="startEditing('downPayment')">
-          {{ downPayment  }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+          {{ downPayment | number:'1.2-2':'ru-RU'  }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
         </div>
         <input *ngIf="isEditingDownPayment" type="number" class="edit-input"
                [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent" [max]="carCost"
@@ -81,7 +81,7 @@
 
     <!-- Сумма финансирования -->
     <div class="form-group">
-      <label>Сумма финансирования</label>
+      <label>{{"calculators.autoLoan.financingAmount"|translate}}</label>
       <div class="display-value static">
         {{ financingAmount  }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
       </div>
@@ -89,12 +89,12 @@
 
     <!-- Срок -->
     <div class="form-group">
-      <label>Срок финансирования в месяцах</label>
+      <label>{{"calculators.autoLoan.term"|translate}}</label>
       <div class="term-buttons">
         <button *ngFor="let term of availableTerms"
                 (click)="loanTerm = term; recalculate()"
                 [class.active]="loanTerm === term">
-          {{ term }} мес.
+          {{ term }} {{"calculators.common.months"|translate}}
         </button>
       </div>
     </div>
@@ -103,19 +103,19 @@
   <!-- Правая колонка -->
   <div class="result-wrapper">
     <div class="result-card" *ngIf="calculationResult">
-      <h2>Ваш расчет</h2>
-      <p>Фактическая переплата</p>
+      <h2>{{"calculators.common.yourOffer"|translate}}</h2>
+      <p>{{"calculators.autoLoan.actualOverpayment"|translate}}</p>
      
       <!-- === ФОРМАТИРУЕМ С 2 ЗНАКАМИ ПОСЛЕ ЗАПЯТОЙ === -->
       <h3>
         {{ calculationResult.totalOverpayment | number:'1.2-2':'ru-RU' }}
         {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
       </h3>
-      <p>Ежемесячный платеж</p>
+      <p>{{"calculators.common.monthlyPayment"|translate}}</p>
       <h3>{{ calculationResult.monthlyPayment | number:'1.2-2':'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}</h3>
-      <p>Годовая ставка</p>
+      <p>{{"calculators.common.annualRate"|translate}}</p>
       <h3>{{ interestRate }}%</h3>
-      <button class="apply-button" [routerLink]="['/credits',7]" [queryParams]="{ scrollTo: 'application-form' }">Оставить заявку</button>
+      <button class="apply-button" [routerLink]="['/credits',7]" [queryParams]="{ scrollTo: 'application-form' }">{{"calculators.common.applyButton"|translate}}</button>
     </div>
   </div>
 </div>

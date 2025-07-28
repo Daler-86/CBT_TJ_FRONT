@@ -7,7 +7,7 @@ import { CalculationParams, CalculationResult, DepositProducts } from '../models
 export class DepositCalculateService {
   private readonly DEPOSIT_PRODUCTS: DepositProducts = {
     "2": {
-        name: "Пасандози ҷамъшаванда «ФАВРИ»",
+        name: "depositProducts.favri",
         currencies: {
             "TJS": { 
                 minAmount: 1000, maxAmount: 10000000, stepAmount: 1000, amountLabels: ['1 тыс.', '25 тыс.', '50 тыс.', '75 тыс.', '∞'],
@@ -22,7 +22,7 @@ export class DepositCalculateService {
         }
     },
     "1": {
-        name: "Пасандози кӯдаконаи «Дурахшон»",
+        name: "depositProducts.durakhshon",
 
         currencies: {
             "TJS": {
@@ -38,7 +38,7 @@ export class DepositCalculateService {
         }
     },
     "4": {
-        name: "Пасандози муҳлатноки «Орзу»",
+        name: "depositProducts.orzu",
         currencies: {
             "TJS": {
                 minAmount: 1000, maxAmount: 10000000, stepAmount: 500, amountLabels: ['1 тыс.', '10 тыс.', '25 тыс.', '∞'],
@@ -49,7 +49,7 @@ export class DepositCalculateService {
         }
     },
     "3": {
-        name: "Пасандози муҳлатнок «V.I.P»",
+        name: "depositProducts.vip",
         currencies: {
             "TJS": {
                 minAmount: 500000, maxAmount: 10000000, stepAmount: 10000, amountLabels: ['500 тыс.', '1.5 млн', '3 млн', '∞'],
@@ -64,7 +64,7 @@ export class DepositCalculateService {
         }
     },
     "5": {
-        name: "Пасандози муҳлатнок «АВФ»",
+        name: "depositProducts.avf",
         currencies: {
             "TJS": {
                 minAmount: 1000, maxAmount:10000000, stepAmount: 1000, amountLabels: ['1 тыс.', '250 тыс.', '500 тыс.', '∞'],

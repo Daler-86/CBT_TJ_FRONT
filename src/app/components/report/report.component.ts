@@ -120,7 +120,7 @@ export class ReportComponent implements OnInit {
   trackByCardId(index: number, item: any): number { return item.id; }
   trackByDocumentId(index: number, item: reportFile): number { return item.id; }
   loadReportFile() {
-    this.reportService.getReportFile(2, this.currentPage).subscribe({
+    this.reportService.getReportFile(5, this.currentPage).subscribe({
       next: (response) => {
         this.reportFile = response.data.report_files;
         this.totalPages = Math.ceil(response.data.total_count / 2);
