@@ -420,7 +420,10 @@
       "bankDetails": "Реквизитҳо",
       "financialReporting": "Ҳисоботи молиявӣ",
       "tenders": "Тендерҳо",
-      "news": "Ахбор"
+      "news": "Ахбор",
+      "insurance": "Суғурта",
+      "salaryProject": "Лоиҳаи маош",
+      "acquiring": "Эквайринг"
     },
     "workingHours": {
       "title": "Соатҳои корӣ",
@@ -761,6 +764,221 @@
           "Маҳфуз будани маблағ дар суратҳисоби кортӣ ҳангоми гум шудани корт",
           "Гирифтани музди меҳнат тавассути банкоматҳо 24 соат дар як шабонарӯз",
           "Таъмини махфияти иттилоот оид ба суратҳисоб"
+        ]
+      }
+    },
+    "acquiringPage": {
+      "hero": {
+        "title": "ЭКВАЙРИНГ",
+        "subtitle": "БАРОИ БИЗНЕСИ ШУМО",
+        "text": "ОСОН ВА СОДА!",
+        "button": "Дархост гузоштан"
+      },
+      "benefitsTitle": "Афзалиятҳои эквайринг аз Коммерсбонки Тоҷикистон",
+      "paymentMethods": {
+        "title": "Қабули пардохтҳои ғайринақдӣ имконпазир аст",
+        "qr": {
+          "title": "Тавассути QR-коди замимаи «Фаврӣ»",
+          "text": "Зиёда аз 150 000 истифодабарандагони «Фаврӣ» метавонанд пардохтҳоро, аз ҷумла тавассути қарз-насия анҷом диҳанд. Маблағҳо ба таври фаврӣ ба суратҳисоби мағоза/нуқтаи савдо гузаронида мешаванд."
+        },
+        "kortiMilli": {
+          "title": "Тавассути кортҳои «Корти миллӣ»",
+          "text": "ПОС-терминал метавонад пардохтҳоро аз рӯи ҳамаи кортҳои «Корти миллӣ» қабул кунад. Маблағҳо ба суратҳисоби мағоза/нуқтаи савдо дар рӯзи кории оянда гузаронида мешаванд."
+        }
+      },
+      "bankHelp": {
+        "title": "Бонк ба шумо дар пешбурди хизматрасониҳо ва беҳбуди бизнеси шумо кӯмак хоҳад кард",
+        "cards": [
+          {
+            "title": "Кушодани суратҳисоби савдо ройгон",
+            "text": "Барои бизнеси шумо суратҳисоби савдоро ройгон мекушоем"
+          },
+          {
+            "title": "Маблағҳо — зуд",
+            "text": "Гузаронидан — дар рӯзи оянда то соати 12:00. Бо маблағи умумӣ ё қисмҳо"
+          },
+          {
+            "title": "Дастгирии 24/7",
+            "text": "Дар давоми 30 сония тавассути телефон ҷавоб медиҳем. Иваз кардани терминал — дар давоми 48 соат"
+          },
+          {
+            "title": "Идоракунии онлайн",
+            "text": "Пайваст намудани хизматрасониҳо ва нуқтаҳои иловагии савдо тавассути интернет-бонки «Favri Tijorat»"
+          }
+        ]
+      },
+      "amaPos": {
+        "subtitle": "Мошини назоратӣ-хазинавӣ",
+        "title": "«АМА ПОС»",
+        "text": "техникаи намунаи нав",
+        "slogan": "МУВАФФАҚИЯТИ БИЗНЕСИ ШУМО!"
+      },
+      "smallBusiness": {
+        "title": "Эквайринг барои бизнеси хурд",
+        "tabs": [
+          {
+            "id": "pos",
+            "title": "Нуқтаи савдо",
+            "contentTitle": "Эквайринги савдо",
+            "description": "Барои мағозаҳо, тарабхонаҳо, фитнес-клубҳо ва сартарошхонаҳо мувофиқ аст",
+            "features": [
+              "Кушодани суратҳисоби савдо ройгон",
+              "Кушодани хати кредитии фоидаовар барои бизнеси шумо",
+              "Пешниҳоди қарзҳои истеъмолии имтиёзнок ба кормандони шумо",
+              "Имконияти гирифтани пардохтҳои эквайринг ба корт ё ҳамёни мобилӣ",
+              "Пешбурди молҳо ва хизматрасониҳои шумо тавассути инфрасохтори Бонк."
+            ]
+          },
+          {
+            "id": "internet",
+            "title": "Интернет-мағоза",
+            "contentTitle": "Интернет-эквайринг",
+            "description": "Барои интернет-мағозаҳо ва фурӯш тавассути шабакаҳои иҷтимоӣ ва мессенҷерҳо",
+            "features": [
+              "Кушодани суратҳисоби савдо ройгон",
+              "Кушодани хати кредитии фоидаовар барои бизнеси шумо",
+              "Пешниҳоди қарзҳои истеъмолии имтиёзнок ба кормандони шумо",
+              "Имконияти гирифтани пардохтҳои эквайринг ба корт ё ҳамёни мобилӣ",
+              "Пешбурди молҳо ва хизматрасониҳои шумо тавассути инфрасохтори Бонк."
+            ]
+          },
+          {
+            "id": "courier",
+            "title": "Барои расонандагон (курерҳо)",
+            "contentTitle": "Қарорҳо барои интиқоли курйерӣ",
+            "description": "Барои хадамоти интиқол, таксӣ, фурӯшандагон-мушовирон, интернет-мағозаҳо",
+            "features": [
+              "Кушодани суратҳисоби савдо ройгон",
+              "Кушодани хати кредитии фоидаовар барои бизнеси шумо",
+              "Пешниҳоди қарзҳои истеъмолии имтиёзнок ба кормандони шумо",
+              "Имконияти гирифтани пардохтҳои эквайринг ба корт ё ҳамёни мобилӣ",
+              "Пешбурди молҳо ва хизматрасониҳои шумо тавассути инфрасохтори Бонк."
+            ]
+          }
+        ],
+        "conditions": {
+          "term": "то 3 рӯз",
+          "termText": "хизматрасонии кассавӣ ройгон",
+          "commission": "аз 1%",
+          "commissionText": "комиссияи фоидаовар барои эквайринг",
+          "cashback": "0%",
+          "cashbackText": "нақдгардонии пардохтҳо аз эквайринг"
+        }
+      },
+      "documents": {
+        "title": "Барои насб кардани ПОС-терминал кадом ҳуҷҷатҳо лозиманд?",
+        "items": [
+          { "title": "Патент ё шаҳодатнома", "description": "дар бораи бақайдгирии давлатӣ (Шаҳодатнома, патент)" },
+          { "title": "Иқтибос аз феҳристи давлатӣ", "description": "(Иқтибос)" },
+          { "title": "Нусхаи шиносномаи Роҳбар", "description": "" },
+          { "title": "РМА (ИНН)", "description": "" }
+        ]
+      }
+    },"acquiringPage": {
+      "hero": {
+        "title": "ACQUIRING",
+        "subtitle": "FOR YOUR BUSINESS",
+        "text": "EASY AND SIMPLE!",
+        "button": "Submit Application"
+      },
+      "benefitsTitle": "Benefits of Acquiring from Commerbank of Tajikistan",
+      "paymentMethods": {
+        "title": "Accept non-cash payments",
+        "qr": {
+          "title": "Via 'Favri' app QR-code",
+          "text": "Over 150,000 'Favri' users can make payments, including via credit-installment. Money is instantly transferred to the merchant's account."
+        },
+        "kortiMilli": {
+          "title": "Via 'Korti milli' cards",
+          "text": "The POS-terminal can accept payments from all 'Korti milli' cards. The money is transferred to the merchant's account the next business day."
+        }
+      },
+      "bankHelp": {
+        "title": "The Bank will help you promote your services and improve your business",
+        "cards": [
+          {
+            "title": "Free merchant account opening",
+            "text": "We will open a merchant account for your business for free"
+          },
+          {
+            "title": "Money — fast",
+            "text": "Crediting — by 12:00 PM the next day. In a lump sum or in parts"
+          },
+          {
+            "title": "24/7 Support",
+            "text": "We answer within 30 seconds by phone. Terminal replacement — within 48 hours"
+          },
+          {
+            "title": "Online management",
+            "text": "Connect services and additional sales points through the 'Favri Tijorat' internet bank"
+          }
+        ]
+      },
+      "amaPos": {
+        "subtitle": "Cash Register Machine",
+        "title": "«AMA POS»",
+        "text": "new generation equipment",
+        "slogan": "THE SUCCESS OF YOUR BUSINESS!"
+      },
+      "smallBusiness": {
+        "title": "Acquiring for small business",
+        "tabs": [
+          {
+            "id": "pos",
+            "title": "Point of Sale",
+            "contentTitle": "Merchant Acquiring",
+            "description": "Suitable for stores, restaurants, fitness clubs, and hairdressers",
+            "features": [
+              "Free merchant account opening",
+              "Opening a favorable credit line for your business",
+              "Providing preferential consumer loans to your employees",
+              "Receiving acquiring payments to a card or mobile wallet",
+              "Promoting your goods and services through the Bank's infrastructure."
+            ]
+          },
+          {
+            "id": "internet",
+            "title": "Online Store",
+            "contentTitle": "Internet Acquiring",
+            "description": "For online stores and sales through social networks and messengers",
+            "features": [
+              "Free merchant account opening",
+              "Opening a favorable credit line for your business",
+              "Providing preferential consumer loans to your employees",
+              "Receiving acquiring payments to a card or mobile wallet",
+              "Promoting your goods and services through the Bank's infrastructure."
+            ]
+          },
+          {
+            "id": "courier",
+            "title": "For Couriers",
+            "contentTitle": "Solutions for courier delivery",
+            "description": "For delivery services, taxis, sales consultants, online stores",
+            "features": [
+              "Free merchant account opening",
+              "Opening a favorable credit line for your business",
+              "Providing preferential consumer loans to your employees",
+              "Receiving acquiring payments to a card or mobile wallet",
+              "Promoting your goods and services through the Bank's infrastructure."
+            ]
+          }
+        ],
+        "conditions": {
+          "term": "up to 3 days",
+          "termText": "cash services free of charge",
+          "commission": "from 1%",
+          "commissionText": "favorable acquiring commission",
+          "cashback": "0%",
+          "cashbackText": "cashing out of acquiring payments"
+        }
+      },
+      "documents": {
+        "title": "What documents are needed to install a POS terminal?",
+        "items": [
+          { "title": "Patent or certificate", "description": "of state registration (Shahodatnoma, patent)" },
+          { "title": "Extract from the state register", "description": "(Iqtibos)" },
+          { "title": "Copy of the Director's passport", "description": "" },
+          { "title": "TIN", "description": "" }
         ]
       }
     }

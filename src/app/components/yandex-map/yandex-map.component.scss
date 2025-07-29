@@ -1,0 +1,110 @@
+/* yandex-map.component.scss */
+
+:host ::ng-deep {
+    .custom-balloon {
+      position: relative;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      font-family: "Inter", sans-serif;
+      min-width: 280px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+      
+      // Сдвиг, чтобы хвост был на месте
+      transform: translate(-50%, calc(-100% - 25px)); 
+    }
+  
+    .custom-balloon__header {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .custom-balloon__icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+    }
+  
+    .custom-balloon__title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+      color: #222;
+    }
+    
+    .custom-balloon__close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background-color: #f0f0f0;
+      color: #888;
+      font-size: 20px;
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+  
+      &:hover {
+        background-color: #e0e0e0;
+        color: #333;
+      }
+    }
+  
+    .custom-balloon__body {
+      padding: 8px 16px 16px;
+    }
+  
+    .custom-balloon__section {
+      margin-top: 12px;
+    }
+  
+    .custom-balloon__label {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+  
+    .custom-balloon__value {
+      font-size: 15px;
+      color: #222;
+      line-height: 1.4;
+    }
+  
+    .custom-balloon__value--status.status--closed {
+      color: #e53935; // Красный цвет для "не работает"
+      font-weight: 500;
+    }
+  
+    .custom-balloon__value--status.status--open {
+      color: #43a047; // Зеленый цвет для "открыто"
+      font-weight: 500;
+    }
+  
+    .custom-balloon__arrow {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 10px;
+      overflow: hidden;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        width: 16px;
+        height: 16px;
+        background-color: white;
+        box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+      }
+    }
+  }

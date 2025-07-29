@@ -68,7 +68,7 @@
   "City:": "Город:",
   "All cities": "Все города",
   "Total": "Всего",
-  "vacancies": " вакансий",
+ 
   "Working hours": "Рабочее время",
   "Working days:": "Рабочие дни:",
   "from Monday to Friday": "с понедельника по пятницу",
@@ -420,7 +420,10 @@
       "bankDetails": "Реквизиты",
       "financialReporting": "Финансовая отчетность",
       "tenders": "Тендеры",
-      "news": "Новости"
+      "news": "Новости",
+      "insurance":"Страхование",
+      "salaryProject":"Зарплатный проект",
+      "acquiring":"Эквайринг"
     },
     "workingHours": {
       "title": "Рабочее время",

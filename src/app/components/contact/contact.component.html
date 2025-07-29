@@ -26,31 +26,19 @@
   </div>
 
   <!-- Контейнер для Google Карты -->
-  <div class="map-wrapper">
-    <div class="map">
-      <google-map
-        height="500px"
-        width="100%"
-        [center]="center"
-        [zoom]="zoom"
-        [options]="{ disableDefaultUI: true, scrollwheel: false }"
-      >
-        <map-marker
-          *ngFor="let marker of markers"
-          [position]="marker.position"
-          [options]="marker.options"
-          (mapClick)="showInfo(marker)"
-        >
-        </map-marker>
-        <map-info-window
-          *ngIf="activeMarkerInfo"
-          [position]="activeMarkerPosition!"
-          (closeclick)="hideInfo()"
-        >
-          <!-- ВАЖНО: Этот контент формируется в TS-файле -->
-          <div [innerHTML]="activeMarkerInfo"></div>
-        </map-info-window>
-      </google-map> 
+
+      <div class="map-wrapper">
+        <!-- 
+          Используем наш переиспользуемый компонент.
+          - [points]: передаем массив с одной точкой.
+          - [center]: можно передать те же координаты, чтобы карта сразу центрировалась на офисе.
+          - [zoom]: можно сделать побольше (например, 16), чтобы сразу видеть офис крупным планом.
+        -->
+        
+        <app-yandex-map 
+          [points]="headOfficePoint"
+          [center]="headOfficePoint.length > 0 ? headOfficePoint[0].geometry : [38.56, 68.77]"
+          [zoom]="16"
+        ></app-yandex-map>
+      </div>
     </div>
-  </div>
-</div>

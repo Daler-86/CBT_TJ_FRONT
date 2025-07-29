@@ -1,0 +1,12 @@
+<!-- yandex-map.component.html -->
+
+<ya-map
+  [center]="center"
+  [zoom]="zoom"
+  style="width: 100%; height: 100%;"
+>
+  <ya-object-manager 
+    [options]="{ clusterize: true, gridSize: 64 }" 
+    (ready)="onObjectManagerReady($event)">
+  </ya-object-manager>
+</ya-map>
