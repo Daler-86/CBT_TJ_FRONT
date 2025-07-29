@@ -15,13 +15,13 @@
     <div class="navbar">
       <div class="">
         <a [routerLink]="'/cards'">{{ 'footer.nav.creditCards' | translate }}</a>
-        <a routerLink="insurance-info" routerLinkActive="active">Страхование</a>
-        <a routerLink="salary-project" routerLinkActive="active">Зарплатный проект</a>
+        <a routerLink="insurance-info" routerLinkActive="active">{{"footer.nav.insurance"|translate}}</a>
+        <a routerLink="salary-project" routerLinkActive="active">{{"footer.nav.salaryProject"|translate}}</a>
         <a routerLink="scs-rko" routerLinkActive="active">{{ 'footer.nav.scsRko' | translate }}</a>
         <a routerLink="merchant" routerLinkActive="active">{{ 'footer.nav.merchants' | translate }}</a>
       </div>
       <div class=""> 
-        <a routerLink="acquiring" routerLinkActive="active">Acquiring</a>
+        <a routerLink="acquiring" routerLinkActive="active">{{"footer.nav.acquiring"|translate}}</a>
         <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ 'footer.nav.aboutBank' | translate }}</a> 
         <a routerLink="vacancies" routerLinkActive="active">{{ 'footer.nav.vacancies' | translate }}</a>
         <a routerLink="map" routerLinkActive="active">{{ 'footer.nav.officesAndAtms' | translate }}</a>

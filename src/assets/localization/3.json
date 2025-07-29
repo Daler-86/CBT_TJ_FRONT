@@ -420,7 +420,10 @@
       "bankDetails": "Bank Details",
       "financialReporting": "Financial Reporting",
       "tenders": "Tenders",
-      "news": "News"
+      "news": "News",
+      "insurance": "Insurance",
+      "salaryProject": "Salary Project",
+      "acquiring": "Acquiring"
     },
     "workingHours": {
       "title": "Working hours",

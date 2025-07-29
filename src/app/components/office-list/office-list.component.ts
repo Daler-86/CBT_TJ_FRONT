@@ -1,6 +1,6 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component,ElementRef,HostListener, ViewChild, } from '@angular/core';
-import { GoogleMapsModule } from '@angular/google-maps';
+
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RegionService } from '../../api/region.service';
@@ -11,7 +11,7 @@ import {  Input, Output, EventEmitter, OnInit } from '@angular/core';
 @Component({
   selector: 'app-office-list',
   standalone: true,
-  imports: [GoogleMapsModule, RouterModule, TranslateModule, NgIf, NgFor,CommonModule,],
+  imports: [RouterModule, TranslateModule, NgIf, NgFor,CommonModule,],
   templateUrl: './office-list.component.html',
   styleUrl: './office-list.component.scss'
 })

@@ -33,14 +33,14 @@ import { AcquiringPageComponent } from './components/acquiring-page/acquiring-pa
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, data: { breadcrumb: 'Главная' } },
-  { path: 'vacancies', component: VacanciesComponent, data: { breadcrumb: 'Вакансии' } },
-  { path: 'cards', component: CardsComponent, data: { breadcrumb: 'Карты' } }, 
-   { path: 'transfers', component: TransfersComponent, data: { breadcrumb: 'Переводы' } },
-  { path: 'deposits', component: DepositsComponent, data: { breadcrumb: 'Вклады' } },
-  { path: 'vacancy-list', component: VacancyListComponent, data: { breadcrumb: 'Список вакансий' } },
-  { path: 'vacancy-list/:id', component: VacancyDetailComponent, data: { breadcrumb: 'Детали вакансии' } },
-  { path: 'card-details/:id', component: CardDetailsComponent, data: { breadcrumb: 'Детали карты' } },
+  { path: 'home', component: HomeComponent },
+  { path: 'vacancies', component: VacanciesComponent },
+  { path: 'cards', component: CardsComponent }, 
+   { path: 'transfers', component: TransfersComponent },
+  { path: 'deposits', component: DepositsComponent },
+  { path: 'vacancy-list', component: VacancyListComponent},
+  { path: 'vacancy-list/:id', component: VacancyDetailComponent },
+  { path: 'card-details/:id', component: CardDetailsComponent },
   {
     path: 'credits',
     component: CreditComponent, 
@@ -48,27 +48,27 @@ export const routes: Routes = [
       {
         path: '',
         component: CreditOverviewComponent, 
-        data: { breadcrumb: 'Кредит' },
+    
         
       },
       {
         path: 'credit-auto',
         component: AutocreditComponent, 
-        data: { breadcrumb: 'Автокредит ' }
+    
       }, 
         {
         path: ':id', // Параметр пути для детального просмотра
         component: CreditBarakatComponent, // Укажите здесь компонент для детального просмотра
-        data: { breadcrumb: 'Детали кредита' }
+   
       }
     ]
   },
-  { path: 'map', component: MapComponent, data: { breadcrumb: 'Карта' } },
-  { path: 'transfers-details/:id', component: TransfersDetailsComponent, data: { breadcrumb: 'Детали карты' } },
-  { path: 'deposit-details/:id', component: DepositDetailComponent, data: { breadcrumb: 'Детали карты' } },
+  { path: 'map', component: MapComponent },
+  { path: 'transfers-details/:id', component: TransfersDetailsComponent },
+  { path: 'deposit-details/:id', component: DepositDetailComponent},
    {path:'about-us',component:AboutUsComponent},
    {path:'tender',component:TenderComponent},
-   { path: 'tender-detail/:id', component: TenderDetailsComponent, data: { breadcrumb: 'Детали карты' } },
+   { path: 'tender-detail/:id', component: TenderDetailsComponent },
    {path:'report',component:ReportComponent},
    {path:'bank-detail',component:BankDetailComponent},
    {path:'news', component:NewsComponent},

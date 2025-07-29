@@ -8,8 +8,9 @@ $border-color: #e9ecef;
 
 .page-container {
 //   max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 20px 5%;
+  box-sizing: border-box
+  // padding: 20px;
 }
 
 .section-title {
@@ -48,6 +49,7 @@ $border-color: #e9ecef;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  justify-content: space-between;
   gap: 30px;
   background-color: $primary-color;
   color: $white-color;
@@ -59,7 +61,7 @@ $border-color: #e9ecef;
   .subtitle { font-size: 48px; font-weight: 100; margin: 0 0 15px; }
   .text { font-size: 20px; opacity: 0.9; margin-bottom: 30px; }
   .cta-button { background-color: $white-color; color: $primary-color; }
-  .hero-image img { max-width: 100%; }
+  .hero-image img { max-width: 70%; }
 }
 
 // Benefits Section
@@ -81,14 +83,18 @@ $border-color: #e9ecef;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  justify-content: space-between;
   background-color: $primary-color;
   color: $white-color;
   border-radius: 24px;
   margin: 60px 0;
   .ama-pos-content { padding: 60px; }
   h2 { font-size: 48px; font-weight: 700; color: $white-color; }
-  p { color: $white-color; opacity: 0.9; }
-  .ama-pos-image img { max-width: 100%; border-radius: 0 24px 24px 0; }
+  p { color: $white-color; opacity: 0.9; padding: 10px 0; }
+  .ama-pos-image img {
+    max-width: 50%;
+ margin-left: 25%;
+    border-radius: 0 24px 24px 0; }
 }
 
 // Tabs Section
@@ -113,10 +119,15 @@ $border-color: #e9ecef;
     .tab-content {
       display: grid;
       grid-template-columns: 0.8fr 1.2fr;
-      gap: 30px;
+      gap: 50px;
       background-color: $white-color;
       padding: 30px;
       border-radius: 12px;
+      .conditions-panel{
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
       ul { padding-left: 20px; li { margin: 20px 0; }}
     }
   }

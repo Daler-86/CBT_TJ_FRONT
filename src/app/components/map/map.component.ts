@@ -1,244 +1,208 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component,ElementRef,HostListener, OnDestroy, OnInit, ViewChild, } from '@angular/core';
-import { GoogleMapsModule } from '@angular/google-maps';
-import { RouterLink, RouterModule } from '@angular/router';
+// src/app/components/map/map.component.ts
+
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
+// --- Модели и Сервисы ---
 import { RegionService } from '../../api/region.service';
-import { Atm, FilteredData, Office, Terminal, officeList, regionList } from '../../models/region.model';
-import { cardFaqs } from '../../models/cards.model';
 import { CardsService } from '../../api/cards.service';
+import { Atm, Office, Terminal } from '../../models/region.model';
+
+// --- Компоненты и Интерфейсы ---
 import { OfficeListComponent } from "../office-list/office-list.component";
-interface Marker {
-  position: google.maps.LatLngLiteral;
-  label: string;
-  info: string;
-  type: 'office' | 'atm' | 'terminal';
-}
+import { YandexMapComponent, IMapPoint } from '../yandex-map/yandex-map.component';
+
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [GoogleMapsModule,  RouterModule, TranslateModule, NgIf, NgFor, CommonModule, OfficeListComponent],
+  imports: [CommonModule, RouterModule, TranslateModule, OfficeListComponent, YandexMapComponent],
   templateUrl: './map.component.html',
-  styleUrl: './map.component.scss'
+  styleUrls: ['./map.component.scss']
 })
-
-
-// export class MapComponent {
-//   constructor(
-//     private filterService: RegionService,
-//     private translateService: TranslateService,
-//     private cardsService: CardsService
-//   ) {}
-
-//   center: google.maps.LatLngLiteral = { lat: 38.5367, lng: 68.7803 };
-//   zoom = 13;
-//   selectedTab: string = 'NaKarte';
-//   markers = [
-//     { position: { lat: 38.5367, lng: 68.7803 }, label: '1', info: 'Точка 1' },
-//     { position: { lat: 38.5377, lng: 68.7853 }, label: '2', info: 'Точка 2' },
-//     { position: { lat: 38.5407, lng: 68.7903 }, label: '3', info: 'Точка 3' },
-//   ];
-
-//   // offices: any[] = [];
-//   filterOptions: {
-//     types: string[];
-//     accessibility: string[];
-//     additional: string[];
-//   } = {
-//     types: [],
-//     accessibility: [],
-//     additional: [],
-//   };
-
-//   allSelected: boolean = false;
-//   terminalsSelected: boolean = false;
-//   officesSelected: boolean = false;
-//   atmsSelected: boolean = false;
-  
-//   is24Selected: boolean = false;
-//   workingNowSelected: boolean = false;
-  
-//   qrCodeSelected: boolean = false;
-//   nfcSelected: boolean = false;
-
-//   dropdownOpen: boolean = false;
-//   dropdownOpen2: boolean = false;
-
-//   regionSelected:number=0
-//   regionList: any[] = [];
-//   faqs: { title: string; description: string }[] = [];
-//   selectedFaqIndex: number | null = null;
-// offices:Office[]=[];
-// atms:Atm[]=[];
-// terminals:Terminal[]=[];
- 
-// data:any[]=[]
-//   @HostListener('document:click', ['$event'])
-//   closeDropdownsManual(event: Event): void {
-//     const target = event.target as HTMLElement;
-//     if (!target.closest('.custom-dropdown')) {
-//       this.dropdownOpen = false;
-//       this.dropdownOpen2 = false;
-//     }
-//   }
-//   selectTab(tab: string) {
-//     this.selectedTab = tab;
-//   }
-//   toggleDropdown(event: Event): void {
-//     this.dropdownOpen = !this.dropdownOpen;
-//     // event.stopPropagation();
-//   }
-
-//   toggleDropdown2(event: Event): void {
-//     this.dropdownOpen2 = !this.dropdownOpen2;
-//     // event.stopPropagation();
-//   }
-
-//   showInfo(markerInfo: string) {
-//     alert(markerInfo);
-//   }
-//   regionSelectedName='Город'
-//   ngOnInit(): void {
-//     document.addEventListener('click', this.closeDropdownsManual.bind(this));
-
-
-//     this.filterService.getRegionList().subscribe(
-//       (response) => {
-//         this.regionList = response.data.regions;
-//       },
-//       (error) => {
-//         console.error('Ошибка при запросе данных', error);
-//       }
-//     );
-//     this.allSelected = true;
-//     this.loadCardFaqs();
-//    this.sendFilteredData();
-//   }
-
-//   loadCardFaqs(): void {
-//     this.filterService.getCardFaqs().subscribe(
-//       (details) => {
-//         this.faqs = details.data.office_faqs;
-//       },
-//       (error) => {
-//         console.error('Ошибка при получении деталей карты', error);
-//       }
-//     );
-//   }
-
-//   toggleFaq(index: number) {
-//     this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
-//   }
-
-
-
-//   ngOnDestroy(): void {
-//     document.removeEventListener('click', this.closeDropdownsManual.bind(this));
-//     this.sendFilteredData()
-//   }
-//   combinedData: any[] = [];
-//   sendFilteredData(): void {
-//     this.filterService.getFilteredData(this.atmsSelected, this.is24Selected, this.officesSelected, this.regionSelected, this.terminalsSelected, this.workingNowSelected).subscribe({
-//       next: (response) => {
-//         console.log('Filtered data received:', response);
-//              this.terminals=response.data.terminals
-//              this.atms=response.data.atms
-//              this.offices=response.data.offices
-//              debugger
-//              this.combinedData = [
-//               ...(response.data.terminals || []),
-//               ...(response.data.atms || []),
-//               ...(response.data.offices || [])
-//             ];
-//       },
-//       error: (err) => {
-//         console.error('Error fetching filtered data:', err);
-//       }
-//     });
-//   }
-//   onCheckboxChange(variableName: string, event: Event): void {
-//     const inputElement = event.target as HTMLInputElement;
-  
-//     // Проверяем, существует ли свойство
-//     if (inputElement && variableName in this) {
-//       (this as any)[variableName] = inputElement.checked;
-//       console.log(`${variableName} changed to:`, (this as any)[variableName]);
-//       this.sendFilteredData()
-//     }
-//   }
-
-//   onRegionChange(obj:any){
-//     this.regionSelected=obj.id
-//     this.regionSelectedName=obj.name
-//     this.sendFilteredData()
-//     this.dropdownOpen2=false
-//   }
-// }
-
-
 export class MapComponent implements OnInit, OnDestroy {
-  constructor(
-    private filterService: RegionService,
-    private translateService: TranslateService,
-    private cardsService: CardsService
-  ) {}
 
-  // Центр карты
-  center: google.maps.LatLngLiteral = { lat: 38.5367, lng: 68.7803 };
-  // Уровень масштабирования
-  zoom = 13;
-  // Выбранная вкладка
+  // --- Свойства для UI ---
   selectedTab: string = 'NaKarte';
+  dropdownOpen: boolean = false;
+  dropdownOpen2: boolean = false;
+  regionList: any[] = [];
+  regionSelectedName: string = '';
+  faqs: { title: string; description: string }[] = [];
+  selectedFaqIndex: number | null = null;
+  
+  // --- Свойства для карты ---
+  mapPoints: IMapPoint[] = [];
 
-  // Пути к иконкам для разных типов маркеров
-  ATM_ICON = '../../../assets/icons/atms.svg';
-  TERMINAL_ICON = '../../../assets/icons/terminals.svg';
-  OFFICE_ICON = '../../../assets/icons/offices.svg';
-
-  // Фильтры (можно настроить по необходимости)
-  filterOptions: {
-    types: string[];
-    accessibility: string[];
-    additional: string[];
-  } = {
-    types: [],
-    accessibility: [],
-    additional: [],
-  };
-
-  // Флаги для фильтров
-  allSelected: boolean = false;
+  // --- Свойства для фильтров ---
+  allSelected: boolean = true;
   terminalsSelected: boolean = false;
   officesSelected: boolean = false;
   atmsSelected: boolean = false;
-
   is24Selected: boolean = false;
   workingNowSelected: boolean = false;
-
-  qrCodeSelected: boolean = false;
-  nfcSelected: boolean = false;
-
-  dropdownOpen: boolean = false;
-  dropdownOpen2: boolean = false;
-
   regionSelected: number = 0;
-  regionList: any[] = [];
-  faqs: { title: string; description: string }[] = [];
-  selectedFaqIndex: number | null = null;
-  regionSelectedName: string = '';
-  // Массивы данных
-  offices: Office[] = [];
-  atms: Atm[] = [];
-  terminals: Terminal[] = [];
+  // nfcSelected и qrCodeSelected пока не используются в getFilteredData, но оставим их
+  nfcSelected: boolean = false;
+  qrCodeSelected: boolean = false;
 
-  // Массив маркеров
-  markers: Marker[] = [];
-  // Активный маркер для InfoWindow
-  activeMarker: Marker | null = null;
+  constructor(
+    private filterService: RegionService,
+    private translateService: TranslateService,
+    private cardsService: CardsService // cardsService используется? Если нет, можно удалить.
+  ) {}
 
-  // Имя выбранного региона
-  // regionSelectedName: string = 'Город';
+  ngOnInit(): void {
+    document.addEventListener('click', this.closeDropdownsManual.bind(this));
+    this.loadRegionList();
+    this.translateService.get('mapPage.filters.regionPlaceholder').subscribe(translation => {
+      this.regionSelectedName = translation;
+    });
+    this.loadCardFaqs();
+    this.sendFilteredData();
+  }
 
+  ngOnDestroy(): void {
+    document.removeEventListener('click', this.closeDropdownsManual.bind(this));
+  }
+
+  // --- Методы для загрузки данных ---
+
+  loadRegionList(): void {
+    this.filterService.getRegionList().subscribe({
+      next: (response) => this.regionList = response.data.regions,
+      error: (err) => console.error('Ошибка при загрузке регионов', err)
+    });
+  }
+
+  loadCardFaqs(): void {
+    this.filterService.getCardFaqs().subscribe({
+      next: (details) => this.faqs = details.data.office_faqs,
+      error: (err) => console.error('Ошибка при загрузке FAQ', err)
+    });
+  }
+
+  // --- ГЛАВНЫЙ МЕТОД: Фильтрация и подготовка данных для карты ---
+
+  sendFilteredData(): void {
+    this.filterService.getFilteredData(
+      this.atmsSelected || this.allSelected,
+      this.is24Selected,
+      this.officesSelected || this.allSelected,
+      this.regionSelected,
+      this.terminalsSelected || this.allSelected,
+      this.workingNowSelected
+    ).subscribe({
+      next: (response) => {
+        const offices = response.data.offices || [];
+        const atms = response.data.atms || [];
+        const terminals = response.data.terminals || [];
+
+        const officePoints = this.parseData(offices, 'office', 'mapPage.infoWindow.officeLabel');
+        const atmPoints = this.parseData(atms, 'atm', 'mapPage.infoWindow.atmLabel');
+        const terminalPoints = this.parseData(terminals, 'terminal', 'mapPage.infoWindow.terminalLabel');
+        
+        this.mapPoints = [...officePoints, ...atmPoints, ...terminalPoints];
+      },
+      error: (err) => {
+        console.error('Ошибка при загрузке отфильтрованных данных:', err);
+        this.mapPoints = [];
+      }
+    });
+  }
+
+  // --- УНИВЕРСАЛЬНЫЙ ПАРСЕР ДАННЫХ ---
+
+  private parseData(items: (Office | Atm | Terminal)[], type: 'office' | 'atm' | 'terminal', titleKey: string): IMapPoint[] {
+    const landmarkLabel = this.translateService.instant('mapPage.infoWindow.landmarkLabel'); // Предполагаем, что есть такой ключ перевода
+    const iconPaths = {
+      office: 'assets/icons/offices.svg',
+      atm: 'assets/icons/atms.svg',
+      terminal: 'assets/icons/terminals.svg'
+    };
+
+    return items.map((item): IMapPoint | null => {
+      const coords = this.getCoordinates(item.latitude, item.longitude);
+      if (!coords) return null;
+
+      // TODO: Реализовать реальную логику проверки времени работы
+      const isWorkingNow = item.is_24_time || false;
+      const workHoursText = item.is_24_time 
+          ? this.translateService.instant('mapPage.infoWindow.working24h') 
+          : this.translateService.instant('mapPage.infoWindow.workingNowClosed');
+      const statusClass = isWorkingNow ? 'status--open' : 'status--closed';
+      
+      return {
+        id: item.id,
+        geometry: coords,
+        properties: {
+          type: type,
+          title: item.name,
+          address: item.address,
+          landmark: (item as any).landmark || '', // Убедитесь, что `landmark` есть в данных
+          workHours: workHoursText,
+          statusClass: statusClass,
+          iconSrc: iconPaths[type],
+          // Для обратной совместимости и простоты
+          hintContent: item.name,
+          balloonContent: '' // Не используется
+        }
+      };
+    }).filter(Boolean) as IMapPoint[];
+  }
+
+  private getCoordinates(latStr: string, lngStr: string): [number, number] | null {
+    const lat = parseFloat(latStr);
+    const lng = parseFloat(lngStr);
+    if (isNaN(lat) || isNaN(lng)) {
+      console.warn('Некорректные координаты:', { latStr, lngStr });
+      return null;
+    }
+    return [lat, lng];
+  }
+
+  // --- Методы для UI (остаются без изменений) ---
+
+  toggleFaq(index: number): void {
+    this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
+  }
+  
+  onCheckboxChange(variableName: string, event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    if (variableName in this) {
+      (this as any)[variableName] = inputElement.checked;
+      
+      // Логика для чекбокса "Все"
+      if (variableName === 'allSelected' && inputElement.checked) {
+        this.officesSelected = false;
+        this.atmsSelected = false;
+        this.terminalsSelected = false;
+      } else if (['officesSelected', 'atmsSelected', 'terminalsSelected'].includes(variableName) && inputElement.checked) {
+        this.allSelected = false;
+      }
+    }
+    this.sendFilteredData();
+  }
+
+  onRegionChange(option: any): void {
+    if (option === 0) {
+      this.regionSelected = 0;
+      this.translateService.get('mapPage.filters.regionPlaceholder').subscribe(translation => {
+        this.regionSelectedName = translation;
+      });
+    } else {
+      this.regionSelected = option.id;
+      this.regionSelectedName = option.name;
+    }
+    this.sendFilteredData();
+    this.dropdownOpen2 = false;
+  }
+  
+  selectTab(tab: string): void {
+    this.selectedTab = tab;
+  }
+  
   @HostListener('document:click', ['$event'])
   closeDropdownsManual(event: Event): void {
     const target = event.target as HTMLElement;
@@ -248,233 +212,17 @@ export class MapComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit(): void {
-    document.addEventListener('click', this.closeDropdownsManual.bind(this));
-
-    // Загрузка списка регионов
-    this.filterService.getRegionList().subscribe(
-      (response) => {
-        this.regionList = response.data.regions;
-      },
-      (error) => {
-        console.error('Ошибка при запросе данных', error);
-      }
-    );
-
-    this.translateService.get('mapPage.filters.regionPlaceholder').subscribe(translation => {
-      this.regionSelectedName = translation;
-    });
-    // Установка флага "Все выбраны"
-    this.allSelected = true;
-
-    // Загрузка FAQ для карты
-    this.loadCardFaqs();
-
-    // Загрузка и отображение данных на карте
-    this.sendFilteredData();
-  }
-
-  ngOnDestroy(): void {
-    document.removeEventListener('click', this.closeDropdownsManual.bind(this));
-  }
-
-  // Загрузка FAQ для карты
-  loadCardFaqs(): void {
-    this.filterService.getCardFaqs().subscribe(
-      (details) => {
-        this.faqs = details.data.office_faqs;
-      },
-      (error) => {
-        console.error('Ошибка при получении деталей карты', error);
-      }
-    );
-  }
-
-  // Переключение FAQ
-  toggleFaq(index: number) {
-    this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
-  }
-
-  // Отправка фильтрованных данных и формирование маркеров
-  sendFilteredData(): void {
-    this.filterService
-      .getFilteredData(
-        this.atmsSelected,
-        this.is24Selected,
-        this.officesSelected,
-        this.regionSelected,
-        this.terminalsSelected,
-        this.workingNowSelected
-      )
-      .subscribe({
-        next: (response) => {
-          // console.log('Filtered data received:', response);
-          this.terminals = response.data.terminals || [];
-          this.atms = response.data.atms || [];
-          this.offices = response.data.offices || [];
-
-          // Формируем markers с типом
-          this.markers = [
-            ...this.parseTerminals(this.terminals),
-            ...this.parseAtms(this.atms),
-            ...this.parseOffices(this.offices),
-          ];
-          
-        },
-        error: (err) => {
-          console.error('Error fetching filtered data:', err);
-        },
-      });
-  }
-
-  parseTerminals(terminals: Terminal[]): Marker[] {
-    const terminalLabel = this.translateService.instant('mapPage.infoWindow.terminalLabel');
-    const addressLabel = this.translateService.instant('mapPage.infoWindow.addressLabel');
-
-    return terminals
-      .map((terminal) => {
-        const lat = this.extractLatitude(terminal.latitude);
-        const lng = this.extractLongitude(terminal.longitude);
-
-        if (lat !== null && lng !== null) {
-          return {
-            position: { lat, lng },
-            label: terminal.name,
-            // Строка формируется с переведенными метками
-            info: `<strong>${terminalLabel}:</strong> ${terminal.name}<br><strong>${addressLabel}:</strong> ${terminal.address}`,
-            type: 'terminal',
-          } as Marker;
-        }
-        console.warn('Некорректные координаты терминала:', terminal);
-        return null;
-      })
-      .filter((marker): marker is Marker => marker !== null);
-  }
-
-  // ИЗМЕНЕНО: Метод теперь использует translateService.instant()
-  parseAtms(atms: Atm[]): Marker[] {
-    const atmLabel = this.translateService.instant('mapPage.infoWindow.atmLabel');
-    const addressLabel = this.translateService.instant('mapPage.infoWindow.addressLabel');
-
-    return atms
-      .map((atm) => {
-        const lat = this.extractLatitude(atm.latitude);
-        const lng = this.extractLongitude(atm.longitude);
-
-        if (lat !== null && lng !== null) {
-          return {
-            position: { lat, lng },
-            label: atm.name,
-            // Строка формируется с переведенными метками
-            info: `<strong>${atmLabel}:</strong> ${atm.name}<br><strong>${addressLabel}:</strong> ${atm.address}`,
-            type: 'atm',
-          } as Marker;
-        }
-        console.warn('Некорректные координаты банкомата:', atm);
-        return null;
-      })
-      .filter((marker): marker is Marker => marker !== null);
-  }
-
-  // ИЗМЕНЕНО: Метод теперь использует translateService.instant()
-  parseOffices(offices: Office[]): Marker[] {
-    const officeLabel = this.translateService.instant('mapPage.infoWindow.officeLabel');
-    const addressLabel = this.translateService.instant('mapPage.infoWindow.addressLabel');
-
-    return offices
-      .map((office) => {
-        const lat = this.extractLatitude(office.latitude);
-        const lng = this.extractLongitude(office.longitude);
-
-        if (lat !== null && lng !== null) {
-          return {
-            position: { lat, lng },
-            label: office.name,
-            // Строка формируется с переведенными метками
-            info: `<strong>${officeLabel}:</strong> ${office.name}<br><strong>${addressLabel}:</strong> ${office.address}`,
-            type: 'office',
-          } as Marker;
-        }
-        console.warn('Некорректные координаты офиса:', office);
-        return null;
-      })
-      .filter((marker): marker is Marker => marker !== null);
-  }
-  // Извлечение широты из строки
-  extractLatitude(latStr: string): number | null {
-    const parts = latStr.split(',');
-    const lat = parseFloat(parts[0].trim());
-    return isNaN(lat) ? null : lat;
-  }
-
-  // Извлечение долготы из строки
-  extractLongitude(lngStr: string): number | null {
-    const parts = lngStr.split(',');
-    const lng = parseFloat(parts[0].trim());
-    return isNaN(lng) ? null : lng;
-  }
-
-  // Получение иконки в зависимости от типа маркера
-  getMarkerIcon(type: 'atm' | 'office' | 'terminal'): string {
-    switch (type) {
-      case 'atm':
-        return this.ATM_ICON;
-      case 'terminal':
-        return this.TERMINAL_ICON;
-      case 'office':
-        return this.OFFICE_ICON;
-      default:
-        return '';
-    }
-  }
-
-  // Отображение информационного окна
-  showInfo(marker: Marker): void {
-    this.activeMarker = marker;
-  }
-
-  // Скрытие информационного окна
-  hideInfo(): void {
-    this.activeMarker = null;
-  }
-
-  // Обработка изменений чекбоксов фильтров
-  onCheckboxChange(variableName: string, event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-
-    // Проверяем, существует ли свойство
-    if (inputElement && variableName in this) {
-      (this as any)[variableName] = inputElement.checked;
-      // console.log(`${variableName} changed to:`, (this as any)[variableName]);
-      this.sendFilteredData();
-    }
-  }
-
-  // Обработка изменения региона
-  onRegionChange(obj: any) {
-    this.regionSelected = obj.id;
-    this.regionSelectedName = obj.name;
-    this.sendFilteredData();
-    this.dropdownOpen2 = false;
-  }
-
-  // Переключение вкладки
-  selectTab(tab: string) {
-    this.selectedTab = tab;
-  }
-
-  // Переключение выпадающего меню 1
   toggleDropdown(event: Event): void {
     this.dropdownOpen = !this.dropdownOpen;
-    // event.stopPropagation();
+    this.dropdownOpen2 = false;
+    event.stopPropagation();
   }
-
-  // Переключение выпадающего меню 2
+  
   toggleDropdown2(event: Event): void {
     this.dropdownOpen2 = !this.dropdownOpen2;
-    // event.stopPropagation();
+    this.dropdownOpen = false;
+    event.stopPropagation();
   }
 }
-
 
 

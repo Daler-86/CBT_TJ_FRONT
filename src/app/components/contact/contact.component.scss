@@ -87,22 +87,10 @@
   
   // Обертка для карты
   .map-wrapper {
-    .map{
-border-radius: 24px;
-overflow: hidden;
-    }
-    border-radius: 24px;
-    padding: 20px;
-    background-color:white;
-    overflow: hidden; // Скрываем углы карты, чтобы они были скругленными
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    
-    // Убираем лишние элементы управления и копирайты Яндекса (если нужно)
-    [class*="ymaps-2-1-79-ground-pane"] {
-      filter: grayscale(1); // Можно сделать карту черно-белой для стилизации
-    }
-    [class*="copyrights-pane"] {
-      display: none;
-    }
-
+    width: 100%;
+    height: 450px; /* Задайте нужную вам высоту */
+    margin-top: 40px;
+    border-radius: 16px;
+    overflow: hidden; // Важно, чтобы скругленные углы работали
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }

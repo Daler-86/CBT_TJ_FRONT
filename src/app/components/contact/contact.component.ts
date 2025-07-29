@@ -2,16 +2,17 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GoogleMapsModule } from '@angular/google-maps'; // Убедись, что импорт есть
+// import { GoogleMapsModule } from '@angular/google-maps'; // Убедись, что импорт есть
 import { ContactService } from '../../api/contact.service';
 import { ContactBlock } from '../../models/contact.model';
 import { environment } from '../../../environments/environment';
 import { TranslateModule } from '@ngx-translate/core';
+import { IMapPoint, YandexMapComponent } from '../yandex-map/yandex-map.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, GoogleMapsModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, YandexMapComponent],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
@@ -22,28 +23,13 @@ export class ContactComponent implements OnInit {
 
   // 1. Центр карты (широта, долгота)
   // ЗАМЕНИ НА СВОИ РЕАЛЬНЫЕ КООРДИНАТЫ
-  center: google.maps.LatLngLiteral = { lat: 38.56, lng: 68.77 };
+  // center: google.maps.LatLngLiteral = { lat: 38.56, lng: 68.77 };
 
   // 2. Уровень приближения
   zoom = 16;
+  public headOfficePoint: IMapPoint[] = [];
 
-  // 3. Массив с маркерами. В нашем случае - всего один маркер.
-  markers: any[] = [
-    {
-      position: { lat: 38.56, lng: 68.77 }, // ЗАМЕНИ НА СВОИ КООРДИНАТЫ
-      options: {
-        // Опции для кастомной иконки
-        icon: {
-          url: '../../../assets/icons/Map Point.svg', // ЗАМЕНИ НА ПУТЬ К ТВОЕЙ ИКОНКЕ
-          scaledSize: new google.maps.Size(50, 50)
-        }
-      }
-    }
-  ];
 
-  // Переменная для хранения информации об активном маркере (для info-window)
-  activeMarkerInfo: string | null = null;
-  activeMarkerPosition: google.maps.LatLngLiteral | null = null;
 
   constructor(private contactService: ContactService) {}
 
@@ -51,29 +37,43 @@ export class ContactComponent implements OnInit {
     this.contactService.getContacts().subscribe(res => {
       this.contactBlocks = res.data.contacts;
       
-      // Здесь можно было бы брать координаты из API, если бы они там были.
-      // Например:
-      // const addressBlock = res.data.contacts.find(b => b.id === 2);
-      // if (addressBlock) {
-      //   this.center = this.parseCoordinates(addressBlock.data[0].coordinates);
-      //   this.markers[0].position = this.center;
-      // }
+  
     });
+
+    this.createHeadOfficeMapPoint();
   }
 
-  // Показать информационное окно (info-window)
-  showInfo(marker: any): void {
-    // В нашем случае информация статична, т.к. маркер один
-    this.activeMarkerInfo = `
-      <strong>Головной офис</strong><br>
-      ул. Бохтар 37/1
-    `;
-    this.activeMarkerPosition = marker.position;
+  private createHeadOfficeMapPoint(): void {
+    // Здесь вы можете взять данные из вашего API или задать их статически
+    const headOfficeData = {
+      id: 1,
+      name: 'Головной офис CBT Банк',
+      address: 'г. Душанбе, проспект Рудаки, 105',
+      // Точные координаты вашего головного офиса
+      latitude: '38.575678', 
+      longitude: '68.782045'
+    };
+    
+    // Преобразуем данные в формат IMapPoint
+    this.headOfficePoint = [
+      {
+        id: headOfficeData.id,
+        geometry: [parseFloat(headOfficeData.latitude), parseFloat(headOfficeData.longitude)],
+        properties: {
+          type: 'office', // Тип для правильной иконки
+          title: headOfficeData.name,
+          address: headOfficeData.address,
+          // Остальные поля можно оставить пустыми или заполнить, если нужно
+          landmark: '',
+          workHours: 'Пн-Пт: 09:00 - 18:00',
+          statusClass: 'status--open',
+          iconSrc: 'assets/icons/office.svg', // Путь к иконке для балуна
+          hintContent: headOfficeData.name,
+          balloonContent: '' // Не используется
+        }
+      }
+    ];
   }
+ 
 
-  // Скрыть информационное окно
-  hideInfo(): void {
-    this.activeMarkerInfo = null;
-    this.activeMarkerPosition = null;
-  }
 }
