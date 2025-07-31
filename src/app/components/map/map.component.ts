@@ -117,9 +117,9 @@ export class MapComponent implements OnInit, OnDestroy {
   private parseData(items: (Office | Atm | Terminal)[], type: 'office' | 'atm' | 'terminal', titleKey: string): IMapPoint[] {
     const landmarkLabel = this.translateService.instant('mapPage.infoWindow.landmarkLabel'); // Предполагаем, что есть такой ключ перевода
     const iconPaths = {
-      office: 'assets/icons/offices.svg',
-      atm: 'assets/icons/atms.svg',
-      terminal: 'assets/icons/terminals.svg'
+      office: '../../../assets/icons/offices.svg',
+      atm: '../../../assets/icons/atms.svg',
+      terminal: '../../../assets/icons/terminals.svg'
     };
 
     return items.map((item): IMapPoint | null => {
@@ -128,7 +128,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
       // TODO: Реализовать реальную логику проверки времени работы
       const isWorkingNow = item.is_24_time || false;
-      const workHoursText = item.is_24_time 
+      const workHoursText = item.is_24_time
           ? this.translateService.instant('mapPage.infoWindow.working24h') 
           : this.translateService.instant('mapPage.infoWindow.workingNowClosed');
       const statusClass = isWorkingNow ? 'status--open' : 'status--closed';
@@ -145,7 +145,7 @@ export class MapComponent implements OnInit, OnDestroy {
           statusClass: statusClass,
           iconSrc: iconPaths[type],
           // Для обратной совместимости и простоты
-          hintContent: item.name,
+        
           balloonContent: '' // Не используется
         }
       };

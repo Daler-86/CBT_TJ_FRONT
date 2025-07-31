@@ -10,7 +10,7 @@
   "Car loan": "Қарзи автомобилӣ",
   "Deposits": "Амонатҳо",
   "About the bank": "Дар бораи бонк",
-  "News": "Ахбор",
+  "News": "Хабар",
   "Offices and ATMs": "Идораҳо ва банкоматҳо",
   "Questions and answers": "Саволҳо ва ҷавобҳо",
   "Contact the bank": "Бо бонк тамос гиред",
@@ -36,7 +36,7 @@
   "Favri mobile application": "Барномаи мобилии Favri",
   "Check your balance, pay for services, get help in chat 24/7": "Балансро санҷед, барои хизматрасониҳо пардохт кунед, дар сӯҳбат 24/7 кӯмак гиред",
   "Choose the best": "Беҳтаринро интихоб кунед",
-  "Join the team Commerzbank": "Ба дастаи Коммерцбанк ҳамроҳ шавед",
+  "Join the team Commerzbank": "Ба дастаи Коммерсбонк ҳамроҳ шавед",
   "Support": "Дастгирӣ",
   "We will resolve": "Ҳама масъалаҳоро ҳал мекунем",
   "Currency rates": "Меъёри асъор",
@@ -115,7 +115,7 @@
   "Currency converter": "Мутобиқсозии асъор",
   "Current as of": "Навсозӣ шудааст",
   "Simple and convenient registration, reliable and secure transfers": "Бақайдгирии содда ва қулай, интиқоли боэътимод ва бехатар",
-  "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license": "© 2017 - 2024 ОАО 'Коммерцбанк Таджикистана', сомонаи расмӣ.",
+  "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license": "© 2017 - 2024 ОАО 'Коммерсбонки Тоҷикистон', сомонаи расмӣ.",
   "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.": "Иҷозати Бонки Миллии Тоҷикистон №0000085 аз 10 октябри соли 2017.",
   "strach": "Суғурта",
   "vklad": "Амонатҳо",
@@ -226,7 +226,7 @@
     "applyForDeposit": "Барои амонат дархост гузоред",
     "showMore": "Бештар нишон диҳед",
     "collapse": "Пӯшидан",
-    "buy": "Харидан",
+    "buy": "Харид",
     "sell": "Фурӯш",
     "sendMoney": "Пул фиристед",
     "getLoan": "Қарз гиред",
@@ -247,7 +247,7 @@
     "pageTitle": "Интиқоли пул"
   },
   "common": {
-    "officesAndAtms": "Идораҳо ва банкоматҳо",
+    "officesAndAtms": "Суроғаҳо ва реҷаи корӣ",
     "toggleMenu": "Менюи навигатсияро кушоед/пӯшед",
     "tariffsAndConditions": "Тарифҳо ва шартҳо",
     "fieldIsRequired": "Ин майдон ҳатмист",
@@ -264,7 +264,7 @@
     }
   },
   "map": {
-    "tagline": "Мо аз он чизе, ки шумо фикр мекунед, наздиктарем",
+    "tagline": "Мо боз ҳам наздиктарем",
     "filters": {
       "typesTitle": "Намудҳои объектҳо"
     },
@@ -345,15 +345,15 @@
     "shareTitle": "Мубодила кардан"
   },
   "news": {
-    "sectionTitle": "Ахбор"
+    "sectionTitle": "Хабар"
   },
   "links": {
-    "allNews": "Ҳамаи ахбор"
+    "allNews": "Ҳамаи хабарҳо"
   },
   "newsPage": {
-    "title": "Ахбор",
+    "title": "Хабар",
     "subtitle": "Аз хабарҳои охирин бохабар бошед",
-    "noNewsMessage": "Дар ҳоли ҳозир ахбор нест. Лутфан дертар тафтиш кунед."
+    "noNewsMessage": "Дар ҳоли ҳозир хабар нест. Лутфан дертар тафтиш кунед."
   },
   "merchantsPage": {
     "title": "Шарикон ва тахфифҳо",
@@ -366,7 +366,7 @@
       "cashbacks": "Кэшбекҳо"
     }
   },
-  "mapPage": {
+  "mapPage": { 
     "title": "Идораҳо, банкоматҳо ва терминалҳо",
     "tabs": {
       "onMap": "Дар харита",
@@ -397,7 +397,7 @@
   "home": {
     "tagline": "Беҳтаринро интихоб кунед",
     "joinTeam": {
-      "subtitle": "Ба дастаи Коммерцбанк ҳамроҳ шавед"
+      "subtitle": "Ба дастаи Коммерсбонк ҳамроҳ шавед"
     },
     "support": {
       "title": "Дастгирӣ",
@@ -411,7 +411,7 @@
     "nav": {
       "creditCards": "Кортҳо",
       "debitCards": "Кортҳо",
-      "scsRko": "ХҲК",
+      "scsRko": "Ҳисоббаробаркунии хазинавӣ",
       "merchants": "Шарикон",
       "aboutBank": "Дар бораи бонк",
       "vacancies": "Ҷойҳои кории холӣ",
@@ -420,9 +420,9 @@
       "bankDetails": "Реквизитҳо",
       "financialReporting": "Ҳисоботи молиявӣ",
       "tenders": "Тендерҳо",
-      "news": "Ахбор",
+      "news": "Хабарҳо",
       "insurance": "Суғурта",
-      "salaryProject": "Лоиҳаи маош",
+      "salaryProject": "Лоиҳаи музди меҳнат",
       "acquiring": "Эквайринг"
     },
     "workingHours": {
@@ -433,22 +433,22 @@
       "saturday": "Шанбе: аз 09:00 то 12:00"
     },
     "copyright": {
-      "main": "© 2017 - 2024 ОАО 'Коммерцбанк Таджикистана', сомонаи расмӣ.",
+      "main": "© 2017 - 2024 ОАО 'Коммерcбонки Тоҷикистон', сомонаи расмӣ.",
       "license": "Иҷозати Бонки Миллии Тоҷикистон №0000085 аз 10 октябри соли 2017."
     }
   },
   "favriApp": {
     "title": "Барномаи мобилии Favri",
-    "subtitle": "Балансро санҷед, барои хизматрасониҳо пардохт кунед, дар сӯҳбат 24/7 кӯмак гиред"
+    "subtitle": "Тавозунро санҷед, хизматрасониҳоро ба осонӣ пардохт намоед ва 24/7 ба саволҳоятон ҷавоб гиред."
   },
   "deposits": {
     "pageTitle": "Амонатҳо"
   },
   "currencyConverter": {
     "rateModes": {
-      "cash": "Пули нақд",
-      "nonCash": "Пули ғайринақдӣ",
-      "cbRate": "Қурби БМТ"
+      "cash": "Нақдӣ",
+      "nonCash": "Ғайринақдӣ",
+      "cbRate": "БМТ"
     },
     "ratesTable": {
       "title": "Қурби асъор",
@@ -564,7 +564,8 @@
     "tabs": {
       "credit": "Қарз",
       "deposit": "Амонат",
-      "carPurchase": "Хариди автомобил"
+      "carPurchase": "Хариди автомобил",
+      "rassrochka":"Насия"
     }
   },
   "calculators": {
@@ -662,10 +663,10 @@
         "callCenterNumber": "88 88",
         "whatsappTitle": "Whatsapp",
         "whatsappNumber": "+(992) 44 630 8888",
-        "emailTitle": "Электронный адрес",
+        "emailTitle": "Адрес",
         "emailAddress": "info@cbt.tj",
         "addressTitle": "Адрес",
-        "addressText": "Головной офис Коммерцбанк Таджикистана” 734000 г. Душанбе, ул. Бохтар 37/1",
+        "addressText": "Головной офис Коммерцбанк Таджикистана” 734000 ш. Душанбе, к. Бохтар 37/1",
         "scheduleTitle": "График",
         "scheduleWorkdays": "Пн-пт.",
         "scheduleWorkHours": "с 09:00 до 18:00",
@@ -874,113 +875,7 @@
           { "title": "РМА (ИНН)", "description": "" }
         ]
       }
-    },"acquiringPage": {
-      "hero": {
-        "title": "ACQUIRING",
-        "subtitle": "FOR YOUR BUSINESS",
-        "text": "EASY AND SIMPLE!",
-        "button": "Submit Application"
-      },
-      "benefitsTitle": "Benefits of Acquiring from Commerbank of Tajikistan",
-      "paymentMethods": {
-        "title": "Accept non-cash payments",
-        "qr": {
-          "title": "Via 'Favri' app QR-code",
-          "text": "Over 150,000 'Favri' users can make payments, including via credit-installment. Money is instantly transferred to the merchant's account."
-        },
-        "kortiMilli": {
-          "title": "Via 'Korti milli' cards",
-          "text": "The POS-terminal can accept payments from all 'Korti milli' cards. The money is transferred to the merchant's account the next business day."
-        }
-      },
-      "bankHelp": {
-        "title": "The Bank will help you promote your services and improve your business",
-        "cards": [
-          {
-            "title": "Free merchant account opening",
-            "text": "We will open a merchant account for your business for free"
-          },
-          {
-            "title": "Money — fast",
-            "text": "Crediting — by 12:00 PM the next day. In a lump sum or in parts"
-          },
-          {
-            "title": "24/7 Support",
-            "text": "We answer within 30 seconds by phone. Terminal replacement — within 48 hours"
-          },
-          {
-            "title": "Online management",
-            "text": "Connect services and additional sales points through the 'Favri Tijorat' internet bank"
-          }
-        ]
-      },
-      "amaPos": {
-        "subtitle": "Cash Register Machine",
-        "title": "«AMA POS»",
-        "text": "new generation equipment",
-        "slogan": "THE SUCCESS OF YOUR BUSINESS!"
-      },
-      "smallBusiness": {
-        "title": "Acquiring for small business",
-        "tabs": [
-          {
-            "id": "pos",
-            "title": "Point of Sale",
-            "contentTitle": "Merchant Acquiring",
-            "description": "Suitable for stores, restaurants, fitness clubs, and hairdressers",
-            "features": [
-              "Free merchant account opening",
-              "Opening a favorable credit line for your business",
-              "Providing preferential consumer loans to your employees",
-              "Receiving acquiring payments to a card or mobile wallet",
-              "Promoting your goods and services through the Bank's infrastructure."
-            ]
-          },
-          {
-            "id": "internet",
-            "title": "Online Store",
-            "contentTitle": "Internet Acquiring",
-            "description": "For online stores and sales through social networks and messengers",
-            "features": [
-              "Free merchant account opening",
-              "Opening a favorable credit line for your business",
-              "Providing preferential consumer loans to your employees",
-              "Receiving acquiring payments to a card or mobile wallet",
-              "Promoting your goods and services through the Bank's infrastructure."
-            ]
-          },
-          {
-            "id": "courier",
-            "title": "For Couriers",
-            "contentTitle": "Solutions for courier delivery",
-            "description": "For delivery services, taxis, sales consultants, online stores",
-            "features": [
-              "Free merchant account opening",
-              "Opening a favorable credit line for your business",
-              "Providing preferential consumer loans to your employees",
-              "Receiving acquiring payments to a card or mobile wallet",
-              "Promoting your goods and services through the Bank's infrastructure."
-            ]
-          }
-        ],
-        "conditions": {
-          "term": "up to 3 days",
-          "termText": "cash services free of charge",
-          "commission": "from 1%",
-          "commissionText": "favorable acquiring commission",
-          "cashback": "0%",
-          "cashbackText": "cashing out of acquiring payments"
-        }
-      },
-      "documents": {
-        "title": "What documents are needed to install a POS terminal?",
-        "items": [
-          { "title": "Patent or certificate", "description": "of state registration (Shahodatnoma, patent)" },
-          { "title": "Extract from the state register", "description": "(Iqtibos)" },
-          { "title": "Copy of the Director's passport", "description": "" },
-          { "title": "TIN", "description": "" }
-        ]
-      }
     }
+ 
   }
   
