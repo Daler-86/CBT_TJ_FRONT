@@ -247,11 +247,13 @@
     "pageTitle": "Money Transfers"
   },
   "common": {
-    "officesAndAtms": "Offices and ATMs",
+    "officesAndAtms": "Addresses and Opening Hours",
     "toggleMenu": "Toggle navigation menu",
     "tariffsAndConditions": "Tariffs and conditions",
     "fieldIsRequired": "This field is required",
     "faqTitle": "Frequently Asked Questions",
+    "transfers": "Payments and Transfers",
+    "tagline": "Pay for your usual services and transfer money",
     "consent": {
       "prefix": "By clicking 'Get', you agree to",
       "linkText": "processing of personal data"
@@ -605,7 +607,7 @@
       "carCost": "Car cost",
       "downPayment": "Down payment",
       "financingAmount": "Financing amount",
-      "term": "Financing term in months",
+      "term": "Loan term",
       "actualOverpayment": "Actual overpayment"
     },
     "installment": {
