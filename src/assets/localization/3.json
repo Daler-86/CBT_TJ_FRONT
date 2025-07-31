@@ -564,7 +564,8 @@
     "tabs": {
       "credit": "Credit",
       "deposit": "Deposit",
-      "carPurchase": "Buying a car"
+      "carPurchase": "Buying a car",
+      "rassrochka":"Installments"
     }
   },
   "calculators": {
@@ -767,6 +768,113 @@
     }
   }
 
-
+  ,"acquiringPage": {
+    "hero": {
+      "title": "ACQUIRING",
+      "subtitle": "FOR YOUR BUSINESS",
+      "text": "EASY AND SIMPLE!",
+      "button": "Submit Application"
+    },
+    "benefitsTitle": "Benefits of Acquiring from Commerbank of Tajikistan",
+    "paymentMethods": {
+      "title": "Accept non-cash payments",
+      "qr": {
+        "title": "Via 'Favri' app QR-code",
+        "text": "Over 150,000 'Favri' users can make payments, including via credit-installment. Money is instantly transferred to the merchant's account."
+      },
+      "kortiMilli": {
+        "title": "Via 'Korti milli' cards",
+        "text": "The POS-terminal can accept payments from all 'Korti milli' cards. The money is transferred to the merchant's account the next business day."
+      }
+    },
+    "bankHelp": {
+      "title": "The Bank will help you promote your services and improve your business",
+      "cards": [
+        {
+          "title": "Free merchant account opening",
+          "text": "We will open a merchant account for your business for free"
+        },
+        {
+          "title": "Money — fast",
+          "text": "Crediting — by 12:00 PM the next day. In a lump sum or in parts"
+        },
+        {
+          "title": "24/7 Support",
+          "text": "We answer within 30 seconds by phone. Terminal replacement — within 48 hours"
+        },
+        {
+          "title": "Online management",
+          "text": "Connect services and additional sales points through the 'Favri Tijorat' internet bank"
+        }
+      ]
+    },
+    "amaPos": {
+      "subtitle": "Cash Register Machine",
+      "title": "«AMA POS»",
+      "text": "new generation equipment",
+      "slogan": "THE SUCCESS OF YOUR BUSINESS!"
+    },
+    "smallBusiness": {
+      "title": "Acquiring for small business",
+      "tabs": [
+        {
+          "id": "pos",
+          "title": "Point of Sale",
+          "contentTitle": "Merchant Acquiring",
+          "description": "Suitable for stores, restaurants, fitness clubs, and hairdressers",
+          "features": [
+            "Free merchant account opening",
+            "Opening a favorable credit line for your business",
+            "Providing preferential consumer loans to your employees",
+            "Receiving acquiring payments to a card or mobile wallet",
+            "Promoting your goods and services through the Bank's infrastructure."
+          ]
+        },
+        {
+          "id": "internet",
+          "title": "Online Store",
+          "contentTitle": "Internet Acquiring",
+          "description": "For online stores and sales through social networks and messengers",
+          "features": [
+            "Free merchant account opening",
+            "Opening a favorable credit line for your business",
+            "Providing preferential consumer loans to your employees",
+            "Receiving acquiring payments to a card or mobile wallet",
+            "Promoting your goods and services through the Bank's infrastructure."
+          ]
+        },
+        {
+          "id": "courier",
+          "title": "For Couriers",
+          "contentTitle": "Solutions for courier delivery",
+          "description": "For delivery services, taxis, sales consultants, online stores",
+          "features": [
+            "Free merchant account opening",
+            "Opening a favorable credit line for your business",
+            "Providing preferential consumer loans to your employees",
+            "Receiving acquiring payments to a card or mobile wallet",
+            "Promoting your goods and services through the Bank's infrastructure."
+          ]
+        }
+      ],
+      "conditions": {
+        "term": "up to 3 days",
+        "termText": "cash services free of charge",
+        "commission": "from 1%",
+        "commissionText": "favorable acquiring commission",
+        "cashback": "0%",
+        "cashbackText": "cashing out of acquiring payments"
+      }
+    },
+    "documents": {
+      "title": "What documents are needed to install a POS terminal?",
+      "items": [
+        { "title": "Patent or certificate", "description": "of state registration (Shahodatnoma, patent)" },
+        { "title": "Extract from the state register", "description": "(Iqtibos)" },
+        { "title": "Copy of the Director's passport", "description": "" },
+        { "title": "TIN", "description": "" }
+      ]
+    }
+  }
   }
 

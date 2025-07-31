@@ -67,13 +67,16 @@ export class ContactComponent implements OnInit {
           landmark: '',
           workHours: 'Пн-Пт: 09:00 - 18:00',
           statusClass: 'status--open',
-          iconSrc: 'assets/icons/office.svg', // Путь к иконке для балуна
-          hintContent: headOfficeData.name,
+          iconSrc: '../../../assets/icons/office.svg', // Путь к иконке для балуна
+        
           balloonContent: '' // Не используется
         }
       }
     ];
   }
  
+
+
+
 
 }
