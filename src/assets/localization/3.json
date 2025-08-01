@@ -68,7 +68,7 @@
   "City:": "City:",
   "All cities": "All cities",
   "Total": "Total",
-  "vacancies": "vacancies",
+
   "Working hours": "Working hours",
   "Working days:": "Working days:",
   "from Monday to Friday": "from Monday to Friday",
@@ -127,6 +127,7 @@
   "now": "Open Now",
   "qr": "QR Code",
   "nfc": "NFC Contactless",
+  "changeOffice":"Please, change office",
   "vacancies": {
     "title": "Vacancies",
     "filters": {
@@ -432,11 +433,11 @@
       "title": "Working hours",
       "daysLabel": "Working days:",
       "weekdays": "from Monday to Friday",
-      "weekdaysTime": "from 08:00 to 17:00",
-      "saturday": "Saturday: from 09:00 to 12:00"
+      "weekdaysTime": "mo-fr:from 08:00 to 17:00",
+      "saturday": "sa: from 09:00 to 12:00"
     },
     "copyright": {
-      "main": "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license",
+      "main": "© 2017 - 2024 OJSC «Commerсbank of Tajikistan», official website. National license",
       "license": "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017."
     }
   },
@@ -446,6 +447,11 @@
   },
   "deposits": {
     "pageTitle": "Deposits"
+  },
+  "forms": {
+    "placeholders": {
+      "selectOffice": "Select a bank branch"
+    }
   },
   "currencyConverter": {
     "rateModes": {

@@ -3,7 +3,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FavriComponent } from "../favri/favri.component";
 import { CreditService } from '../../api/credit.service';
 import { creditData, creditDocument, creditList, creditTariff } from '../../models/credit.model';
@@ -33,7 +33,7 @@ tariffs:creditTariff[]=[]
 documents:creditDocument[]=[]
 offices:officeList[]=[]
 dropdownOpen:boolean=false
-officeName:string='Выберите отделение банка'
+officeName:string=''
 creditId: number=0;
 creditData:any={}
 
@@ -78,7 +78,7 @@ model: any = {
         form.resetForm();
         
         // Сбрасываем дополнительные переменные, не связанные с формой
-        this.officeName = 'Выберите отделение банка';
+        this.officeName = '';
         // Инициализируем модель заново, если нужно
         this.model = {
           address: '',
@@ -122,6 +122,8 @@ model: any = {
   // loanAmount: number = 30000; // Начальное значение
   // formattedLoanAmount: string = this.formatCurrency(this.loanAmount); // Отформатированное значение для отображения в поле ввода
   constructor(
+  
+    private translateService: TranslateService,
     private regionService:RegionService,
     private route: ActivatedRoute,
     private creditService: CreditService,
@@ -140,8 +142,14 @@ model: any = {
       // Здесь может быть код для обработки ситуации отсутствия ID
     }
 
-
-  
+    this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
+      // Когда перевод будет готов, присваиваем его нашей переменной
+      this.officeName = translation;
+    });
+   this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
+      // Когда перевод будет готов, присваиваем его нашей переменной
+      this.officeName = translation;
+    });
     this.loadCreditTariff(this.creditId);
     this.loadOffice()
     this.loadCreditDocument(this.creditId)
