@@ -13,7 +13,7 @@ import {environment} from "../../../environments/environment";
 import { ModalService } from '../../services/modal.service';
 import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { ScrollService } from '../../services/scroll.service';
-
+import { TranslateService } from '@ngx-translate/core'; 
 @Component({
   selector: 'app-card-details',
   standalone: true,
@@ -37,7 +37,7 @@ export class CardDetailsComponent implements OnInit {
   selectedTab: string = 'services';
   selectedFaqIndex: number | null = null;
   dropdownOpen: boolean = false;
-  officeName: string = 'Выберите отделение банка';
+  officeName: string = ''; 
 
   // Реактивная форма
   public applicationForm: FormGroup;
@@ -49,6 +49,7 @@ export class CardDetailsComponent implements OnInit {
     private regionService: RegionService,
     private notificationService: ModalService,
     private scrollService:ScrollService,
+    private translateService: TranslateService,
     private fb: FormBuilder // Внедряем FormBuilder
   ) {
     // Инициализируем форму в конструкторе
@@ -77,6 +78,10 @@ export class CardDetailsComponent implements OnInit {
         // Если параметр есть, вызываем наш сервис
         this.scrollService.scrollToAnchor(anchor);
       }
+    });
+    this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
+      // Когда перевод будет готов, присваиваем его нашей переменной
+      this.officeName = translation;
     });
   }
   loadCards(id:number):void {
@@ -121,13 +126,15 @@ export class CardDetailsComponent implements OnInit {
       ...this.applicationForm.value // Берем все значения из формы
     };
 
-    console.log('Отправка данных на сервер:', dataToSend);
+    
 
     this.cardsService.submitCardByBrand(dataToSend).subscribe({
       next: (response) => {
         this.notificationService.show('Ваша заявка успешно принята!', 'success');
         this.applicationForm.reset(); // Сбрасываем форму
-        this.officeName = 'Выберите отделение банка';
+        this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
+          this.officeName = translation;
+        });
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Не удалось отправить заявку. Попробуйте позже.';
