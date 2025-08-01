@@ -121,10 +121,46 @@
     </div>
     
     <!-- Карта -->
-    <div class="map-container">
-      <app-yandex-map [points]="mapPoints"></app-yandex-map>
+  <!-- === ГЛАВНОЕ ИСПРАВЛЕНИЕ: ПРАВИЛЬНАЯ СТРУКТУРА === -->
+  <div class="map-layout-container">
+
+    <!-- 1. Боковая панель -->
+    <div class="info-sidebar" [class.is-visible]="selectedPoint">
+      <ng-container *ngIf="selectedPoint">
+        <button class="info-sidebar__close-btn" (click)="closeSidebar()">×</button>
+        
+        <div class="info-sidebar__header">{{ selectedPoint.properties.title }}</div>
+        
+        <div class="info-sidebar__body">
+          <div class="info-sidebar__status" [ngClass]="selectedPoint.properties.statusClass">
+            {{ selectedPoint.properties.workHours }}
+          </div>
+          <div class="info-sidebar__section">
+            <div class="info-sidebar__label">{{"insurancePage.contactInfo.addressTitle"| translate}}</div>
+            <div class="info-sidebar__value">{{ selectedPoint.properties.address }}</div>
+          </div>
+          <div *ngIf="selectedPoint.properties.landmark" class="info-sidebar__section">
+            <div class="info-sidebar__label">{{"mapPage.landmark"|translate}}</div>
+            <div class="info-sidebar__value">{{ selectedPoint.properties.landmark }}</div>
+          </div>
+        </div>
+      </ng-container>
     </div>
 
+    <!-- 2. Область для рендеринга карты -->
+    <div class="map-render-area">
+      <app-yandex-map
+        [points]="mapPoints"
+        [selectedPointId]="selectedPoint ? selectedPoint.id : null"
+        (pointClick)="onPointSelect($event)"
+        (mapClick)="closeSidebar()">
+      </app-yandex-map>
+    </div>
+    
+  </div>
+  <!-- === КОНЕЦ ИСПРАВЛЕНИЯ === -->
+
+ </div>
     <!-- Часто задаваемые вопросы -->
     <div class="faq-container">
       <h2 class="faq-title">{{ 'common.faqTitle' | translate }}</h2>
@@ -138,7 +174,7 @@
         </div>
       </div>
     </div>
-  </div>
+
   
   <!-- Список терминалов -->
   <div [hidden]="selectedTab !== 'Spiskom'">
