@@ -54,25 +54,25 @@ export class ContactComponent implements OnInit {
       longitude: '68.782045'
     };
     
-    // Преобразуем данные в формат IMapPoint
-    this.headOfficePoint = [
-      {
-        id: headOfficeData.id,
-        geometry: [parseFloat(headOfficeData.latitude), parseFloat(headOfficeData.longitude)],
-        properties: {
-          type: 'office', // Тип для правильной иконки
-          title: headOfficeData.name,
-          address: headOfficeData.address,
-          // Остальные поля можно оставить пустыми или заполнить, если нужно
-          landmark: '',
-          workHours: 'Пн-Пт: 09:00 - 18:00',
-          statusClass: 'status--open',
-          iconSrc: '../../../assets/icons/office.svg', // Путь к иконке для балуна
-        
-          balloonContent: '' // Не используется
-        }
+    this.headOfficePoint = [{
+      id: headOfficeData.id,
+      // --- ГЛАВНОЕ ИСПРАВЛЕНИЕ ---
+      geometry: {
+        type: 'Point',
+        coordinates: [parseFloat(headOfficeData.latitude), parseFloat(headOfficeData.longitude)]
+      },
+      properties: {
+        type: 'office',
+        title: headOfficeData.name,
+        address: headOfficeData.address,
+        landmark: 'Ориентир головного офиса',
+        workHours: 'Пн-Пт: 09:00 - 18:00',
+        statusClass: 'status--open',
+        iconSrc: 'assets/icons/offices.svg',
+        services: []
       }
-    ];
+    }];
+  
   }
  
 

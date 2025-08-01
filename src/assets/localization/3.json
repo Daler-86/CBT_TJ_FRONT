@@ -370,6 +370,7 @@
   },
   "mapPage": {
     "title": "Offices, ATMs, and Terminals",
+    "landmark": "Landmark",
     "tabs": {
       "onMap": "On the map",
       "asList": "As a list"

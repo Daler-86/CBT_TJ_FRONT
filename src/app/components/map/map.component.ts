@@ -31,7 +31,7 @@ export class MapComponent implements OnInit, OnDestroy {
   regionSelectedName: string = '';
   faqs: { title: string; description: string }[] = [];
   selectedFaqIndex: number | null = null;
-  
+  public selectedPoint: IMapPoint | null = null;
   // --- Свойства для карты ---
   mapPoints: IMapPoint[] = [];
 
@@ -68,6 +68,16 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   // --- Методы для загрузки данных ---
+  public onPointSelect(point: IMapPoint): void {
+    this.selectedPoint = point;
+    
+    // Здесь мы могли бы центрировать карту, но YandexMapComponent уже делает это
+    // при клике на кластер, а для одиночной метки это не так критично.
+    // Если нужно, можно будет добавить.
+  }
+  public closeSidebar(): void {
+    this.selectedPoint = null;
+  }
 
   loadRegionList(): void {
     this.filterService.getRegionList().subscribe({
@@ -99,9 +109,9 @@ export class MapComponent implements OnInit, OnDestroy {
         const atms = response.data.atms || [];
         const terminals = response.data.terminals || [];
 
-        const officePoints = this.parseData(offices, 'office', 'mapPage.infoWindow.officeLabel');
-        const atmPoints = this.parseData(atms, 'atm', 'mapPage.infoWindow.atmLabel');
-        const terminalPoints = this.parseData(terminals, 'terminal', 'mapPage.infoWindow.terminalLabel');
+        const officePoints = this.parseData(offices, 'office');
+        const atmPoints = this.parseData(atms, 'atm');
+        const terminalPoints = this.parseData(terminals, 'terminal');
         
         this.mapPoints = [...officePoints, ...atmPoints, ...terminalPoints];
       },
@@ -114,7 +124,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   // --- УНИВЕРСАЛЬНЫЙ ПАРСЕР ДАННЫХ ---
 
-  private parseData(items: (Office | Atm | Terminal)[], type: 'office' | 'atm' | 'terminal', titleKey: string): IMapPoint[] {
+  private parseData(items: (Office | Atm | Terminal)[], type: 'office' | 'atm' | 'terminal'): IMapPoint[] {
     const landmarkLabel = this.translateService.instant('mapPage.infoWindow.landmarkLabel'); // Предполагаем, что есть такой ключ перевода
     const iconPaths = {
       office: '../../../assets/icons/offices.svg',
@@ -126,31 +136,29 @@ export class MapComponent implements OnInit, OnDestroy {
       const coords = this.getCoordinates(item.latitude, item.longitude);
       if (!coords) return null;
 
-      // TODO: Реализовать реальную логику проверки времени работы
-      const isWorkingNow = item.is_24_time || false;
-      const workHoursText = item.is_24_time
-          ? this.translateService.instant('mapPage.infoWindow.working24h') 
-          : this.translateService.instant('mapPage.infoWindow.workingNowClosed');
-      const statusClass = isWorkingNow ? 'status--open' : 'status--closed';
+      const isWorking = item.is_24_time === true;
+      const workHoursText = isWorking ? 'Круглосуточно' : 'Пн-Пт: 08:00-17:00, Сб: 08:00-12:00'; // Задаем реальный график
+      const statusClass = isWorking ? 'status--open' : 'status--closed'; // Здесь нужна логика проверки текущего времени
       
       return {
         id: item.id,
-        geometry: coords,
+        // --- ГЛАВНОЕ ИСПРАВЛЕНИЕ ---
+        geometry: { type: 'Point', coordinates: coords },
         properties: {
           type: type,
           title: item.name,
           address: item.address,
-          landmark: (item as any).landmark || '', // Убедитесь, что `landmark` есть в данных
+          landmark: (item as any).landmark || '',
           workHours: workHoursText,
           statusClass: statusClass,
           iconSrc: iconPaths[type],
-          // Для обратной совместимости и простоты
-        
-          balloonContent: '' // Не используется
+          // Добавим поле для боковой панели
+          services: (item as any).services || [] // Предполагаем, что с бэка приходят услуги
         }
       };
     }).filter(Boolean) as IMapPoint[];
   }
+  
 
   private getCoordinates(latStr: string, lngStr: string): [number, number] | null {
     const lat = parseFloat(latStr);

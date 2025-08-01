@@ -1,6 +1,6 @@
 // src/app/yandex-map/yandex-map.component.ts
 
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularYandexMapsModule, YaReadyEvent } from 'angular8-yandex-maps';
 
@@ -8,18 +8,8 @@ declare const ymaps: any;
 
 export interface IMapPoint {
   id: number | string;
-  geometry: number[];
-  properties: {
-    type: 'atm' | 'office' | 'terminal';
-    title: string;
-    address: string;
-    landmark: string;
-    workHours: string;
-    statusClass: string;
-    iconSrc: string;
- 
-    balloonContent: string;
-  };
+  geometry: { type: 'Point'; coordinates: number[] };
+  properties: any;
 }
 
 @Component({
@@ -33,200 +23,113 @@ export class YandexMapComponent implements OnChanges {
   @Input() points: IMapPoint[] = [];
   @Input() center: number[] = [38.561133, 68.773892];
   @Input() zoom: number = 12;
+  @Input() selectedPointId: number | string | null = null;
+  // --- СОБЫТИЯ ДЛЯ РОДИТЕЛЯ ---
+  @Output() pointClick = new EventEmitter<IMapPoint>();
+  @Output() mapClick = new EventEmitter<void>();
 
+  private mapInstance?: ymaps.Map;
   private objectManager?: ymaps.ObjectManager;
+  private readonly iconSize = { width: 36, height: 36 };
 
-  private readonly iconPaths = {
-    atm: '../../../assets/icons/atms.svg',
-    terminal: '../../../assets/icons/terminals.svg',
-    office: '../../../assets/icons/offices.svg'
-  };
+  onMapReady(mapComponent: any): void {
+    this.mapInstance = mapComponent.map;
+    // Отключаем кликабельность стандартных POI Яндекса
+    this.mapInstance?.options.set('suppressMapOpenBlock', true);
+  }
 
-  async onObjectManagerReady({ target }: YaReadyEvent<ymaps.ObjectManager>) {
+  onObjectManagerReady({ target }: YaReadyEvent<ymaps.ObjectManager>): void {
     this.objectManager = target;
-
-    // остальные настройки
     this.objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
-    this.createCustomBalloonLayout();
-    this.createCustomIconLayouts();
 
-    this.objectManager.objects.options.set('balloonLayout', 'my#customBalloonLayout');
-    this.objectManager.objects.options.set('balloonPanelMaxMapArea', 0);
-    this.objectManager.objects.options.set('cursor', 'pointer');
-
-
-
-
-    // ✅ клик по точке
+    // --- ИСПРАВЛЕННАЯ ЛОГИКА КЛИКОВ ---
+    // Клик по отдельному объекту
     this.objectManager.objects.events.add('click', (e: any) => {
+      e.stopImmediatePropagation(); // Предотвращаем "проваливание" клика на карту
       const objectId = e.get('objectId');
-      console.log('Клик по точке:', objectId);
-      const objectData = this.objectManager?.objects.getById(objectId);
-      console.log('Найден объект:', objectData);
+      const pointData = this.points.find(p => p.id === objectId);
+      if (pointData) {
+        this.pointClick.emit(pointData);
+      }
     });
 
-    await this.loadOfficePoints();
+    // Клик по кластеру (приближаем карту)
+    this.objectManager.clusters.events.add('click', (e: any) => {
+      e.stopImmediatePropagation();
+      const cluster = e.get('target');
+      if (this.mapInstance) {
+               // panTo не возвращает Promise, поэтому делаем последовательные вызовы
+               this.mapInstance.panTo(cluster.geometry.getCoordinates(), { duration: 500 });
+               // Используем setTimeout, чтобы зум сработал после завершения panTo
+               setTimeout(() => {
+                   if (this.mapInstance) {
+                       this.mapInstance.setZoom(this.mapInstance.getZoom() + 1, { duration: 500 });
+                   }
+               }, 500);
+       
+      }
+    });
+    
+    // Клик по самой карте (чтобы закрыть боковую панель)
+    this.mapInstance?.events.add('click', () => {
+        this.mapClick.emit();
+    });
+
+    this.createIconLayouts();
+    this.updateMapPoints();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['points'] && this.objectManager) {
       this.updateMapPoints();
     }
-  }
-  private createCustomBalloonLayout(): void {
-    const balloonLayoutKey = 'my#customBalloonLayout';
 
-    const CustomBalloonLayout = ymaps.templateLayoutFactory.createClass(
-      `
-      <div class="custom-balloon">
-        <button class="custom-balloon__close-btn" title="Закрыть">×</button>
-        <div class="custom-balloon__header">
-          <h3 class="custom-balloon__title">$[properties.type]</h3>
-        </div>
-        <div class="custom-balloon__body">
-          <div class="custom-balloon__section">
-            <div class="custom-balloon__label">Адрес</div>
-            <div class="custom-balloon__value">$[properties.fullAddress]</div>
-          </div>
-
-        
-
-          <div class="custom-balloon__section">
-            <div class="custom-balloon__label">Время работы</div>
-            <div class="custom-balloon__value">
-               ${'$[properties.workHours]'}<br> 
-
-            </div>
-          </div>
-
-    
-        </div>
-        <div class="custom-balloon__arrow"></div>
-      </div>
-      `,
-      {
-        build: function () {
-          (this as any).constructor.superclass.build.call(this);
-          const closeBtn = (this as any).getElement().querySelector('.custom-balloon__close-btn');
-          const balloon = (this as any)._data.balloon;
-          if(closeBtn) {
-            closeBtn.addEventListener('click', () => balloon.close());
-          }
-        },
-        clear: function () {
-          const closeBtn = (this as any).getElement().querySelector('.custom-balloon__close-btn');
-          if (closeBtn) {
-            const newBtn = closeBtn.cloneNode(true);
-            closeBtn.parentNode.replaceChild(newBtn, closeBtn);
-          }
-          (this as any).constructor.superclass.clear.call(this);
-        }
+    if (changes['selectedPointId'] && this.mapInstance) {
+      const currentPoint = this.points.find(p => p.id === this.selectedPointId);
+      if (currentPoint) {
+        const coords = currentPoint.geometry.coordinates;
+        this.mapInstance.panTo(coords, { duration: 500, flying: true });
       }
-    );
-
-    ymaps.layout.storage.add(balloonLayoutKey, CustomBalloonLayout);
-  }
-  private createCustomIconLayouts(): void {
-    const iconWidth = 42;
-    const iconHeight = 42;
-
-    Object.entries(this.iconPaths).forEach(([type, path]) => {
-      const layoutKey = `my#${type.replace(/\s+/g, '')}IconLayout`;
-      ymaps.layout.storage.add(layoutKey, ymaps.templateLayoutFactory.createClass(
-        `<div style="
-      width: ${iconWidth}px;
-      height: ${iconHeight}px;
-      background: url(${path}) no-repeat center center / contain;
-      transform: translate(-21px, -21px);
-      cursor: pointer;
-      pointer-events: auto;
-    "></div>`
-      ));
-
-    });
-  }
-  private async loadOfficePoints() {
-    if (!this.objectManager) return;
-    for (let i = 0; i < this.points.length; i++) {
-    
-      const office = this.points[i];
-      const fullAddress = `${office.properties.address}`;
-
-      try {
-        const res = await ymaps.geocode(fullAddress);
-        const geoObject = res.geoObjects.get(0);
-
-        if (!geoObject || !geoObject.geometry) {
-          console.warn('Адрес не найден:', fullAddress);
-          continue;
-        }
-
-        const coords = geoObject.geometry.getCoordinates();
-        const iconType = office.properties.type 
-debugger
-        // Создаем HTML-содержимое для балуна
-        const balloonContent =
-       ` <div>
-        <strong>${office.properties.type}</strong><br>
-        <b>Адрес:</b> ${fullAddress}<br>
-        <b>Телефон:</b> ${office.properties.address || 'не указан'}<br>
-        <b>Режим работы:</b><br>
-        Пн-Пт: ${office.properties.landmark}<br>
-        Сб: ${office.properties.workHours|| 'выходной'}
-      </div>
-    `;
-
-      this.objectManager.add({
-        type: 'Feature',
-        id: i,
-        geometry: {
-          type: 'Point',
-          coordinates: coords,
-        },
-        properties: {
-          type: office.properties.type,
-          fullAddress: fullAddress,
-          phone: office.properties.title,
-          workingHours: office.properties.workHours,
-          balloonContent: balloonContent,
-        },
-        options: {
-          iconLayout: `my#${iconType}IconLayout`,
-          balloonContentLayout: 'my#customBalloonLayout',
-          hideIconOnBalloonOpen: false,
-          balloonCloseButton: false,
-          cursor: 'pointer',
-          zIndex: 9999,
-          iconShape: {
-            type: 'Circle',
-            coordinates:  [0, 0],
-            radius: 21,
-          }
-        }
-      });
-    } catch (error) {
-      console.warn('Ошибка геокодирования:', fullAddress, error);
     }
-    
   }
-    // ymaps.layout.storage.add(balloonLayoutKey, CustomBalloonLayout);
+
+  private createIconLayouts(): void {
+    const iconPaths = {
+      atm: 'assets/icons/atms.svg',
+      terminal: 'assets/icons/terminals.svg',
+      office: 'assets/icons/offices.svg',
+      office_inactive: 'assets/icons/office_inactive.svg', // Иконка для неактивного офиса
+    };
+    Object.entries(iconPaths).forEach(([type, path]) => {
+      const layoutKey = `my#${type}IconLayout`;
+      const template = `<img src="${path}" width="${this.iconSize.width}" height="${this.iconSize.height}" style="transform: translate(-${this.iconSize.width / 2}px, -${this.iconSize.height / 2}px);">`;
+      ymaps.layout.storage.add(layoutKey, ymaps.templateLayoutFactory.createClass(template));
+    });
   }
 
   private updateMapPoints(): void {
     if (!this.objectManager) return;
     this.objectManager.removeAll();
+    
     const features = this.points.map(point => ({
       type: 'Feature',
       id: point.id,
-      geometry: { type: 'Point', coordinates: point.geometry },
-   
+      geometry: point.geometry,
       properties: point.properties,
       options: {
-        iconLayout:`my#${point.properties.type}IconLayout`
-      },
-      balloonLayout: 'my#customBalloonLayout',
-      balloonPanelMaxMapArea: 0 
+        iconLayout: `my#${point.properties.type}IconLayout`, // Здесь можно добавить логику для неактивных иконок
+        iconShape: {
+          type: 'Rectangle',
+          coordinates: [
+            [-this.iconSize.width / 2, -this.iconSize.height / 2],
+            [this.iconSize.width / 2, this.iconSize.height / 2]
+          ]
+        },
+        // --- ОТКЛЮЧАЕМ БАЛУНЫ ПОЛНОСТЬЮ ---
+        hasBalloon: false
+      }
     }));
+
     this.objectManager.add({ type: 'FeatureCollection', features: features });
   }
 }

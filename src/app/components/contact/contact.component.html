@@ -37,7 +37,7 @@
         
         <app-yandex-map 
           [points]="headOfficePoint"
-          [center]="headOfficePoint.length > 0 ? headOfficePoint[0].geometry : [38.56, 68.77]"
+          [center]="headOfficePoint.length > 0 ? headOfficePoint[0].geometry.coordinates : [38.56, 68.77]"
           [zoom]="16"
         ></app-yandex-map>
       </div>
