@@ -160,7 +160,11 @@
   </div>
   <!-- === КОНЕЦ ИСПРАВЛЕНИЯ === -->
 
- </div>
+ </div> 
+  <!-- Список терминалов -->
+  <div [hidden]="selectedTab !== 'Spiskom'">
+    <app-office-list></app-office-list>
+  </div>
     <!-- Часто задаваемые вопросы -->
     <div class="faq-container">
       <h2 class="faq-title">{{ 'common.faqTitle' | translate }}</h2>
@@ -176,8 +180,5 @@
     </div>
 
   
-  <!-- Список терминалов -->
-  <div [hidden]="selectedTab !== 'Spiskom'">
-    <app-office-list></app-office-list>
-  </div>
+
 </div>

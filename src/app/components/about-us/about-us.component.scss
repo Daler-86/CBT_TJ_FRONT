@@ -63,7 +63,7 @@ color: #fff;
     p {
         margin: 16px 0;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 24px;
         letter-spacing: 0%;
         color: var(--Neutral-Neutral-600, #666F8D);
@@ -106,7 +106,7 @@ padding: 10px 0;
   .about{
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 28px;
     align-items: center;
 
     @media (max-width: 1234px) {

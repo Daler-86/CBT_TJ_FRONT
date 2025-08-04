@@ -1,7 +1,7 @@
 
 
 import { NgFor, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, HostListener,ElementRef, inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FavriComponent } from "../favri/favri.component";
@@ -18,6 +18,7 @@ import { LoanCalculatorComponent } from "../loan-calculator/loan-calculator.comp
 import { ModalService } from '../../services/modal.service';
 import { ScrollService } from '../../services/scroll.service';
 import { CarLoanCalculateComponent } from "../car-loan-calculate/car-loan-calculate.component";
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-credit-barakat',
   standalone: true,
@@ -25,7 +26,7 @@ import { CarLoanCalculateComponent } from "../car-loan-calculate/car-loan-calcul
   templateUrl: './credit-barakat.component.html',
   styleUrl: './credit-barakat.component.scss'
 })
-export class CreditBarakatComponent {
+export class CreditBarakatComponent implements OnInit, OnDestroy {
   
   imageUrl: string = environment.IMAGE_URL;
   selectedTab: string = 'credit';
@@ -36,9 +37,9 @@ dropdownOpen:boolean=false
 officeName:string=''
 creditId: number=0;
 creditData:any={}
-
+@ViewChild('customDropdown') dropdownRef!: ElementRef;
 public calculatorDataForChild: CalculatorData[] | null = null;
-
+private langChangeSubscription: Subscription | undefined;
 model: any = {
   address:'',
   client_name: "",
@@ -54,6 +55,73 @@ model: any = {
   }
 
 
+
+
+
+
+  constructor(
+    private elementRef: ElementRef,
+    private translateService: TranslateService,
+    private regionService:RegionService,
+    private route: ActivatedRoute,
+    private creditService: CreditService,
+    private notificationService: ModalService,
+    private scrollService: ScrollService,
+  ) { }
+ 
+  ngOnInit() {
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam !== null) {
+
+      this.creditId= +idParam;  // Преобразование строки в число
+
+    } else {
+      console.error('ID is missing in the route parameters.');
+      // Здесь может быть код для обработки ситуации отсутствия ID
+    }
+    this.updateOfficePlaceholder();
+
+    // === ПОДПИСЫВАЕМСЯ НА СОБЫТИЕ СМЕНЫ ЯЗЫКА ===
+    this.langChangeSubscription = this.translateService.onLangChange.subscribe(() => {
+      // При каждой смене языка вызываем наш метод
+      this.updateOfficePlaceholder();
+    });
+    this.loadCreditTariff(this.creditId);
+    this.loadOffice()
+    this.loadCreditDocument(this.creditId)
+
+this.loadCreditData(this.creditId)
+
+this.route.queryParams.subscribe(params => {
+  const anchor = params['scrollTo']; // Ищем параметр 'scrollTo' в URL
+  if (anchor) {
+    // Если параметр есть, вызываем наш сервис
+    this.scrollService.scrollToAnchor(anchor);
+  }
+});
+  }
+
+  ngOnDestroy(): void {
+    if (this.langChangeSubscription) {
+      this.langChangeSubscription.unsubscribe();
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    // Проверяем, открыт ли список и был ли клик СНАРУЖИ нашего селектора
+    if (this.dropdownOpen && !this.dropdownRef.nativeElement.contains(event.target)) {
+      this.dropdownOpen = false; // Если да, то закрываем
+    }
+  }
+  updateOfficePlaceholder(): void {
+    // Обновляем плейсхолдер только если офис еще не выбран
+    if (!this.model.office_id) {
+      this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
+        this.officeName = translation;
+      });
+    }
+  }
 
   submitApplication(form: NgForm) { // 2. Принимаем форму как аргумент
     // 3. Проверяем валидность через form.invalid
@@ -88,83 +156,13 @@ model: any = {
           phone: "",
           purpose: ""
         };
+        this.updateOfficePlaceholder();
       },
       error: (err) => {
         this.notificationService.show('Не удалось отправить заявку.', 'error');
       }
     });
   }
-  // submitApplication() {
-
-  //   if (this.model.phone && this.model.client_name && this.model.office_id) {
-
-  //     this.creditService.submitCredit(this.model).subscribe(resp =>{
-       
-  //       this.notificationService.show('Ваша заявка успешно принята!', 'success');
-  //       this.model = {
-  //         address: '',
-  //         client_name: "",
-  //         credit_id: this.creditId, // Сохраняем ID кредита, если нужно
-  //         office_id: 0,
-  //         phone: "",
-  //         purpose: ""
-  //       };
-
-  //     },(err =>{
-  //       this.notificationService.show('Не удалось отправить заявку.', 'error');
-  //     }));
-  //   } else {
-  //     // Можно добавить сообщение для пользователя, что нужно заполнить все поля
-  //     this.notificationService.show('Пожалуйста, заполните все обязательные поля.','error');
-  //   }
-
-  // }
-  // loanAmount: number = 30000; // Начальное значение
-  // formattedLoanAmount: string = this.formatCurrency(this.loanAmount); // Отформатированное значение для отображения в поле ввода
-  constructor(
-  
-    private translateService: TranslateService,
-    private regionService:RegionService,
-    private route: ActivatedRoute,
-    private creditService: CreditService,
-    private notificationService: ModalService,
-    private scrollService: ScrollService,
-  ) { }
-
-  ngOnInit() {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam !== null) {
-
-      this.creditId= +idParam;  // Преобразование строки в число
-
-    } else {
-      console.error('ID is missing in the route parameters.');
-      // Здесь может быть код для обработки ситуации отсутствия ID
-    }
-
-    this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
-      // Когда перевод будет готов, присваиваем его нашей переменной
-      this.officeName = translation;
-    });
-   this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
-      // Когда перевод будет готов, присваиваем его нашей переменной
-      this.officeName = translation;
-    });
-    this.loadCreditTariff(this.creditId);
-    this.loadOffice()
-    this.loadCreditDocument(this.creditId)
-
-this.loadCreditData(this.creditId)
-
-this.route.queryParams.subscribe(params => {
-  const anchor = params['scrollTo']; // Ищем параметр 'scrollTo' в URL
-  if (anchor) {
-    // Если параметр есть, вызываем наш сервис
-    this.scrollService.scrollToAnchor(anchor);
-  }
-});
-  }
-
   loadOffice(): void {
     this.regionService.getOfficeList().subscribe(
       (response) => {

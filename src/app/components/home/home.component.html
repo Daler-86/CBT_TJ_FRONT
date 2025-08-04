@@ -51,7 +51,7 @@
           </div>
           <img src="../../../assets/icons/im2.svg" [alt]="'alt.vacanciesIllustration' | translate">
         </div>
-        <div class="box">
+        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/contact">
           <div class="details">
             <h3>{{ 'home.support.title' | translate }}</h3>
             <p>{{ 'home.support.subtitle' | translate }}</p>

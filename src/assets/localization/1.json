@@ -79,7 +79,7 @@
   "Construction loan": "Қарз барои сохтмон",
   "Submit an application": "Дархостро равон кунед",
   "Get a loan": "Қарз гиред",
-  "Tariffs and conditions": "Тарифҳо ва шартҳо",
+  "Tariffs and conditions": "Тарофаҳо ва шартҳо",
   "List of required documents": "Ҳуҷҷатҳои зарурӣ",
   "Online loan application": "Дархости онлайнии қарз",
   "All calculations are preliminary and may differ from those actually received.": "Ҳама ҳисобҳо пешакӣ мебошанд ва метавонанд аз натиҷаҳои воқеӣ фарқ кунанд.",
@@ -88,7 +88,7 @@
   "Online applications are accepted and reviewed on weekdays from 8:00 to 17:00.": "Дархостҳои онлайнӣ дар рӯзҳои корӣ аз соати 8:00 то 17:00 қабул ва баррасӣ мешаванд.",
   "Apply for a card": "Дархости корт",
   "Frequently Asked Questions": "Ҷавоб ба саволҳои муҳим",
-  "By clicking 'Get', you agree to": "Бо пахши 'Гиред', шумо розӣ мешавед ба",
+  
   "processing of personal data": "коркарди маълумоти шахсӣ",
   "Services": "Хизматрасониҳо",
   "Limits": "Маҳдудиятҳо",
@@ -115,7 +115,7 @@
   "Currency converter": "Мутобиқсозии асъор",
   "Current as of": "Навсозӣ шудааст",
   "Simple and convenient registration, reliable and secure transfers": "Бақайдгирии содда ва қулай, интиқоли боэътимод ва бехатар",
-  "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license": "© 2017 - 2024 ҶСК «Коммерсбонк Тоҷикистон», сомонаи расмӣ.",
+  "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license": "© 2017 - 2024 ҶСК «Коммерсбонки Тоҷикистон», сомонаи расмӣ.",
   "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.": "Иҷозати Бонки Миллии Тоҷикистон №0000085 аз 10 октябри соли 2017.",
   "strach": "Суғурта",
   "vklad": "Амонатҳо",
@@ -208,7 +208,7 @@
       "firstName": "Ном",
       "phone": "Телефон",
       "email": "Email",
-      "dragOr": "Кашида партоед ё",
+      "dragOr": "Гирифта монед ё",
       "supportedFormats": "Форматҳои қабулшаванда:: PDF, Doc, JPG (Max 5Mb)"
     }
   },
@@ -217,14 +217,14 @@
     "uploadCV": "Резюмеро илова кунед",
     "send": "Равон кардан",
     "viewVacancies": "Ҷойҳои кории холиро бинед",
-    "allTariffs": "Ҳама тарифҳо",
+    "allTariffs": "Ҳама тарофаҳо",
     "viewOnMap": "Дар харита бинед",
     "moreDetails": "Маълумоти бештар",
     "openDeposit": "Амонат кушоед",
     "copyLink": "Нусхабардории истинод",
     "linkCopied": "Истинод нусхабардорӣ шуд!",
     "applyForCard": "Дархости корт",
-    "applyForDeposit": "Барои амонат дархост гузоред",
+    "applyForDeposit": "Дархост гузоштан",
     "showMore": "Бештар нишон диҳед",
     "collapse": "Пӯшидан",
     "buy": "Харид",
@@ -241,8 +241,8 @@
     "details": {
       "conditionsTitle": "Шартҳо",
       "swiftInfo": "Барои гирифтан ё фиристодани пул тавассути SWIFT, шумо бояд суратҳисоби ҷорӣ кушоед. Ин ройгон аст",
-      "viewAllTariffsText": "Ҳама тарифҳоро бинед",
-      "documentsAndTariffsTitle": "Ҳуҷҷатҳо ва тарифҳо",
+      "viewAllTariffsText": "Ҳама тарофаҳоро бинед",
+      "documentsAndTariffsTitle": "Ҳуҷҷатҳо ва тарофаҳо",
       "moreInfoOnSite": "Маълумоти муфассал дар сомона:"
     },
     "pageTitle": "Интиқоли пул"
@@ -250,14 +250,16 @@
   "common": {
     "officesAndAtms": "Суроғаҳо ва реҷаи корӣ",
     "toggleMenu": "Менюи навигатсияро кушоед/пӯшед",
-    "tariffsAndConditions": "Тарифҳо ва шартҳо",
+    "tariffsAndConditions": "Тарофаҳо ва шартҳо",
     "fieldIsRequired": "Ин майдон ҳатмист",
     "faqTitle": "Ҷавоб ба саволҳои муҳим",
     "transfers": "Пардохтҳо ва интиқолҳо",
     "tagline": "Барои хизматрасониҳои маъмулӣ пардохт кунед ва маблағ интиқол диҳед",
     "consent": {
-      "prefix": "Бо пахши 'Гиред', шумо розӣ мешавед ба",
-      "linkText": "коркарди маълумоти шахсӣ"
+      "prefix": "Бо пахши «Дархости корт», шумо ба",
+      "prefix2": "Бо пахши «Дархост гузоштан», шумо ба",
+      "linkText": "коркарди маълумоти шахсӣ ",
+      "linkText2":"розӣ мешавед."
     },
     "pagination": {
       "firstPage": "Ба саҳифаи аввал гузаред",
@@ -321,8 +323,8 @@
       }
     },
     "applicationForm": {
-      "title": "Дархост гузоред",
-      "subtitle": "Мо ба зудӣ бо шумо тамос хоҳем гирифт.",
+      "title": "Дархост гузоштан",
+      "subtitle": "Мо ба зудӣ бо шумо тамос мегирем.",
       "phonePlaceholder": "Телефони мобилӣ",
       "namePlaceholder": "Ному насаб",
       "officePlaceholder": "Офисро интихоб кунед"
@@ -348,13 +350,13 @@
     "shareTitle": "Мубодила кардан"
   },
   "news": {
-    "sectionTitle": "Хабар"
+    "sectionTitle": "Хабарҳо"
   },
   "links": {
     "allNews": "Ҳамаи хабарҳо"
   },
   "newsPage": {
-    "title": "Хабар",
+    "title": "Хабарҳо",
     "subtitle": "Аз хабарҳои охирин бохабар бошед",
     "noNewsMessage": "Дар ҳоли ҳозир хабар нест. Лутфан дертар тафтиш кунед."
   },
@@ -410,7 +412,8 @@
   },
   "footer": {
     "contacts": {
-      "forIndividuals": "Ба шахсони воқеӣ"
+      "forIndividuals": "Ба шахсони воқеӣ",
+      "forIndividuals2": "Рақами кутоҳ"
     },
     "nav": {
       "creditCards": "Кортҳо",
@@ -437,7 +440,7 @@
       "saturday": "Шн: аз 08:00 то 14:00"
     },
     "copyright": {
-      "main": "© 2017 - 2024 ҶСК «Коммерсбонк Тоҷикистон», сомонаи расмӣ.",
+      "main": "ҶСК «Коммерсбонки Тоҷикистон», сомонаи расмӣ.",
       "license": "Иҷозати Бонки Миллии Тоҷикистон №0000085 аз 10 октябри соли 2017."
     }
   },
@@ -484,9 +487,9 @@
   },
   "creditDetails": {
     "sections": {
-      "tariffsAndConditions": "Тарифҳо ва шартҳо",
+      "tariffsAndConditions": "Тарофаҳо ва шартҳо",
       "requiredDocuments": "Ҳуҷҷатҳои зарурӣ",
-      "onlineApplication": "Дархости онлайнии қарз"
+      "onlineApplication": "Онлайн-дархости қарз"
     },
     "applicationForm": {
       "amountLabel": "Маблағи қарз",
@@ -883,7 +886,14 @@
     },
     "forms": {
       "placeholders": {
-        "selectOffice": "Шӯъбаи бонкро интихоб кунед"
+        "fullName": "Ному насаб",
+        "phone": "Телефони мобилӣ",
+        "creditPurpose": "Мақсади қарз",
+        "workplace": "Ҷои кор ва суроға",
+        "selectOffice": "Шуъбаи бонкро интихоб кунед"
+      },
+      "errors": {
+        "required": "Ин майдон бояд ҳатман пур карда шавад."
       }
     }
  

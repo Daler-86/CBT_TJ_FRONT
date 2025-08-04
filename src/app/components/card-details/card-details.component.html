@@ -35,7 +35,12 @@
     </div>
     
     <div *ngIf="selectedTab==='services'" class="content">
-      <div class="info-container"><div class="info-box" *ngFor="let service of services"><div class="info-title-1">{{ service.name }}</div><div class="info-title">{{ service.title }}<div class="info-detail">{{ service.description }}</div></div></div></div>
+      <div class="info-container">
+        <div class="info-box" *ngFor="let service of services">
+          <div class="info-title-1">{{ service.name }}</div>
+          <div class="info-title">{{ service.title }}
+            <div class="info-detail">{{ service.description }}</div>
+          </div></div></div>
     </div>
 
     <div *ngIf="selectedTab==='limits'" class="content">
@@ -43,7 +48,7 @@
         <div class="info-box-limits" *ngFor="let limit of limits">
           <div class="info-title-1">{{ limit.name }}</div>
           <div class="info-title"><div class="info-detail">{{ 'cardDetails.accounts.tjs' | translate }}</div>{{ limit.tjs }}</div>
-          <div class="info-title"><div class="info-detail">{{ 'cardDetails.accounts.rub' | translate }}</div>{{ limit.rub }}</div>
+          <!-- <div class="info-title"><div class="info-detail">{{ 'cardDetails.accounts.rub' | translate }}</div>{{ limit.rub }}</div> -->
           <div class="info-title"><div class="info-detail">{{ 'cardDetails.accounts.usd' | translate }}</div>{{ limit.usd }}</div>
         </div>
       </div>
@@ -92,7 +97,7 @@
         
         <!-- Кастомный селектор для офиса -->
         <div class="form-group">
-          <div class="custom-dropdown">
+          <div class="custom-dropdown" #customDropdown>
             <div class="dropdown-selected form-control" (click)="toggleDropdown()"
                  [class.is-invalid]="office_id?.invalid && office_id?.touched">
               {{ officeName }}
@@ -113,7 +118,10 @@
           <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">{{ 'buttons.applyForCard' | translate }}</button>
         </div>
       </form>
-      <p class="form-disclaimer">{{ 'common.consent.prefix' | translate }} <a href="#">{{ 'common.consent.linkText' | translate }}</a>.</p>
+      <p class="form-disclaimer">{{ 'common.consent.prefix' | translate }} 
+        <a href="#">{{ 'common.consent.linkText' | translate }}</a>
+       {{ 'common.consent.linkText2' | translate }}
+        </p>
     </div>
   </div>
 

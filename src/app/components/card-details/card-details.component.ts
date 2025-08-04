@@ -1,4 +1,4 @@
-import { Component ,HostListener, ElementRef, OnInit, ViewChild,} from '@angular/core';
+import { Component ,HostListener, ElementRef, OnInit, ViewChild, OnDestroy,} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
@@ -7,7 +7,7 @@ import { Card, CardList, cardDetail, cardFaqs, cardLimits, cardOperations, helpf
 import { RegionService } from '../../api/region.service';
 import { officeList } from '../../models/region.model';
 import { MenuService } from '../../api/menu.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import {environment} from "../../../environments/environment";
 import { ModalService } from '../../services/modal.service';
@@ -21,7 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './card-details.component.html',
   styleUrl: './card-details.component.scss'
 })
-export class CardDetailsComponent implements OnInit {
+export class CardDetailsComponent implements OnInit, OnDestroy {
   imageUrl: string = environment.IMAGE_URL;
   cardId: number = 0;
   cardData: any = {};
@@ -32,7 +32,7 @@ export class CardDetailsComponent implements OnInit {
   documents: helpfulDocument[] = [];
   faqs: cardFaqs[] = [];
   offices: officeList[] = [];
-
+  private langChangeSubscription: Subscription | undefined;
   // Свойства для UI
   selectedTab: string = 'services';
   selectedFaqIndex: number | null = null;
@@ -42,7 +42,7 @@ export class CardDetailsComponent implements OnInit {
   // Реактивная форма
   public applicationForm: FormGroup;
   @ViewChild('formElement') formElementRef!: ElementRef;
-
+  @ViewChild('customDropdown') dropdownRef!: ElementRef;
   constructor(
     private route: ActivatedRoute,
     private cardsService: CardsService,
@@ -79,10 +79,38 @@ export class CardDetailsComponent implements OnInit {
         this.scrollService.scrollToAnchor(anchor);
       }
     });
+    this.updateOfficePlaceholder();
+
+    // === 6. ПОДПИСЫВАЕМСЯ НА СОБЫТИЕ СМЕНЫ ЯЗЫКА ===
+    this.langChangeSubscription = this.translateService.onLangChange.subscribe(() => {
+      // Этот код будет выполняться КАЖДЫЙ РАЗ, когда меняется язык
+      this.updateOfficePlaceholder();
+    });
     this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
       // Когда перевод будет готов, присваиваем его нашей переменной
       this.officeName = translation;
     });
+  }
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    // Проверяем, что клик был сделан НЕ внутри нашего кастомного селектора
+    // и что селектор в данный момент открыт
+    if (this.dropdownOpen && !this.dropdownRef.nativeElement.contains(event.target)) {
+      this.dropdownOpen = false; // Закрываем его
+    }
+  }
+  updateOfficePlaceholder(): void {
+    // Если офис еще не выбран, обновляем плейсхолдер
+    if (!this.applicationForm.get('office_id')?.value) {
+      this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
+        this.officeName = translation;
+      });
+    }
+  }
+  ngOnDestroy(): void {
+    if (this.langChangeSubscription) {
+      this.langChangeSubscription.unsubscribe();
+    }
   }
   loadCards(id:number):void {
     this.cardsService.getCardData(id).subscribe(
@@ -132,9 +160,7 @@ export class CardDetailsComponent implements OnInit {
       next: (response) => {
         this.notificationService.show('Ваша заявка успешно принята!', 'success');
         this.applicationForm.reset(); // Сбрасываем форму
-        this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
-          this.officeName = translation;
-        });
+        this.updateOfficePlaceholder();
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Не удалось отправить заявку. Попробуйте позже.';

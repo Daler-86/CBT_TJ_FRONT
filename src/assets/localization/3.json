@@ -256,9 +256,12 @@
     "transfers": "Payments and Transfers",
     "tagline": "Pay for your usual services and transfer money",
     "consent": {
-      "prefix": "By clicking 'Get', you agree to",
-      "linkText": "processing of personal data"
+      "prefix": "By clicking «Apply for a card», you agree to",
+      "prefix2":"By clicking «Apply for a deposit», you agree to",
+      "linkText": "processing of personal data",
+      "linkText2":"."
     },
+
     "pagination": {
       "firstPage": "Go to first page",
       "previousPage": "Go to previous page",
@@ -410,7 +413,8 @@
   },
   "footer": {
     "contacts": {
-      "forIndividuals": "For private individuals"
+      "forIndividuals": "For private individuals",
+      "forIndividuals2": "Short number"
     },
     "nav": {
       "creditCards": "Cards",
@@ -437,7 +441,7 @@
       "saturday": "sa: from 09:00 to 12:00"
     },
     "copyright": {
-      "main": "© 2017 - 2024 OJSC «Commerсbank of Tajikistan», official website. National license",
+      "main": "OJSC «Commerсbank of Tajikistan», official website. National license",
       "license": "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017."
     }
   },
@@ -450,13 +454,20 @@
   },
   "forms": {
     "placeholders": {
+      "fullName": "Full Name",
+      "phone": "Mobile Phone",
+      "creditPurpose": "Purpose of the loan",
+      "workplace": "Place of work and address",
       "selectOffice": "Select a bank branch"
+    },
+    "errors": {
+      "required": "This field is required."
     }
   },
   "currencyConverter": {
     "rateModes": {
       "cash": "Cash",
-      "nonCash": "Non-cash",
+      "nonCash": "Money transfer",
       "cbRate": "NBT Rate"
     },
     "ratesTable": {

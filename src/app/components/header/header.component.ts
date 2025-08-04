@@ -42,14 +42,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       default: return '';
     }
   }
-  private getLangCode(langValue: string): string {
-    switch (langValue) {
-      case '1': return 'tj';
-      case '2': return 'ru';
-      case '3': return 'en';
-      default: return 'tj'; // Язык по умолчанию на случай ошибки
-    }
-  }
+  logoSrc: string = '../../../assets/icons/лого точ.png';
 
   constructor(
     private elementRef: ElementRef,
@@ -64,8 +57,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const langSub = this.languageService.language$.subscribe(lang => {
       this.selectedLanguage = lang;
       this.translateService.use(lang);
+       this.updateLogo(lang); 
     });
-
+   
     const menuSub = this.menuService.getMenu().subscribe(
       (response) => { 
         this.menus = response.data.menus;
@@ -78,7 +72,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.add(langSub);
     this.subscriptions.add(menuSub);
   }
-
+  private updateLogo(languageId: string): void {
+    switch (languageId) {
+      case '1': // Тоҷикӣ
+        this.logoSrc = '../../../assets/icons/лого точ.png'; 
+        break;
+      case '2': // Русский
+        this.logoSrc = './../assets/icons/logoblack.svg';
+        break;
+      case '3': // English
+        this.logoSrc = 'assets/icons/logo_en.svg';
+        break;
+      default:
+        this.logoSrc = '../../../assets/icons/лого точ.png'; // Фолбэк на русский
+    }
+  }
   selectLanguage(option: { value: string; label: string }) {
     this.dropdownOpen = false;
     this.languageService.setLanguage(option.value);

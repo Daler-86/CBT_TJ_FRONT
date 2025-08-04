@@ -553,6 +553,7 @@ box-sizing: border-box;
         margin: auto;
      
          .dropdown-selected {
+          cursor: pointer;
         border-radius: 4px;
         // background-color: #ed3636;
         font-size: 16px;
@@ -583,6 +584,23 @@ box-sizing: border-box;
         border-radius: 12px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.15);
         z-index: 100;
+        max-height: 240px; // 1. Устанавливаем максимальную высоту
+        overflow-y: auto; 
+        &::-webkit-scrollbar {
+          width: 6px;
+      
+        }
+        &::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+          background: #aaa;
+        }
     
       .dropdown-option {
         padding: 14px 18px;

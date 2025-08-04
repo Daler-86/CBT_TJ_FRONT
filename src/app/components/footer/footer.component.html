@@ -5,10 +5,16 @@
        <img src="../../../assets/icons/logoblack.svg" [alt]="'alt.mainLogoBlack' | translate">
      </a>
       <div class="contact">
+         <div class="">
+          <h4>22-00</h4>
+          <p>{{ 'footer.contacts.forIndividuals2' | translate }}</p>
+        </div>
+
         <div class="">
           <h4>+(992) 44 630 8888</h4>
           <p>{{ 'footer.contacts.forIndividuals' | translate }}</p>
         </div>
+       
       </div>
   </div>
   <div class="box_2">
@@ -42,14 +48,29 @@
       </div>
     </div>
     <div class="sotset">
-      <img src="../../../assets/icons/insta.svg" [alt]="'alt.instagram' | translate">
-      <img src="../../../assets/icons/facebook.svg" [alt]="'alt.facebook' | translate">
-      <img src="../../../assets/icons/telegram.svg" [alt]="'alt.telegram' | translate">
-      <img src="../../../assets/icons/youtube.svg" [alt]="'alt.youtube' | translate">
+      <!-- Ссылка для Instagram -->
+      <a href="https://www.instagram.com/commercebank.tj" target="_blank" rel="noopener noreferrer">
+        <img src="../../../assets/icons/insta.svg" [alt]="'alt.instagram' | translate">
+      </a>
+    
+      <!-- Ссылка для Facebook -->
+      <a href="https://www.facebook.com/commercebank.tj" target="_blank" rel="noopener noreferrer">
+        <img src="../../../assets/icons/facebook.svg" [alt]="'alt.facebook' | translate">
+      </a>
+    
+      <!-- Ссылка для Telegram -->
+      <a href="https://t.me/your_channel" target="_blank" rel="noopener noreferrer">
+        <img src="../../../assets/icons/telegram.svg" [alt]="'alt.telegram' | translate">
+      </a>
+    
+      <!-- Ссылка для YouTube -->
+      <!-- <a href="https://www.youtube.com/your_channel" target="_blank" rel="noopener noreferrer">
+        <img src="../../../assets/icons/youtube.svg" [alt]="'alt.youtube' | translate">
+      </a> -->
     </div>
   </div>
   <div class="box_3">
-    <p>{{ 'footer.copyright.main' | translate }}</p>
+    <p>© 2017 - {{ currentYear }} {{ 'footer.copyright.main' | translate }}</p>
     <p>{{ 'footer.copyright.license' | translate }}</p>
   </div>
 </div>
