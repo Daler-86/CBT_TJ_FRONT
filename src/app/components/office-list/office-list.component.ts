@@ -1,13 +1,21 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component,ElementRef,HostListener, ViewChild, } from '@angular/core';
-
+import { Subscription } from 'rxjs'; // Важно для отписки
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RegionService } from '../../api/region.service';
 import { Atm, FilteredData, Office, Terminal, officeList, regionList } from '../../models/region.model';
 import { cardFaqs } from '../../models/cards.model';
 import { CardsService } from '../../api/cards.service';
-import {  Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {  Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+export interface regionList1 {
+  id: number;
+  name_ru: string;
+  name_en: string;
+  name_tj: string;
+  // Можно оставить и общее `name`, если оно где-то используется, сделав его опциональным
+  name?: string; 
+}
 @Component({
   selector: 'app-office-list',
   standalone: true,
@@ -15,36 +23,201 @@ import {  Input, Output, EventEmitter, OnInit } from '@angular/core';
   templateUrl: './office-list.component.html',
   styleUrl: './office-list.component.scss'
 })
-export class OfficeListComponent {
+export class OfficeListComponent implements OnInit, OnDestroy {
+  // --- Входы/Выходы для пагинации ---
+  @Input() totalPages: number = 0;
+  @Input() currentPage: number = 1;
+  @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+  
+  // --- Состояние фильтров ---
+  public selectedObjectType: 'offices' | 'terminals' | 'atms' = 'offices';
+  public regionSelected: number = 0; // 0 - для "Все регионы"
+  
+  // --- Состояние UI ---
+  public dropdownOpen: boolean = false;
+  public dropdownOpen2: boolean = false;
+  
+  // --- Данные ---
+  public regionList: regionList[] = [];
+  public combinedData: any[] = [];
+  
+  // --- Свойства для отображения ---
+  public selectedObjectTypeName: string = '';
+  
+  // --- Служебные свойства ---
+  private langChangeSubscription!: Subscription;
+
   constructor(
     private filterService: RegionService,
-    private translateService: TranslateService,
-    private cardsService: CardsService
+    public translateService: TranslateService // Public для использования в шаблоне
   ) {}
 
+  // --- GETTERS для динамического отображения ---
 
-  @Input() totalPages: number = 0; // Общее количество страниц
-  @Input() currentPage: number = 1; // Текущая страница
-  @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+  /**
+   * ✅ ВОТ СВОЙСТВО, КОТОРОЕ ИЩЕТ ВАШ HTML.
+   * Возвращает переведенное имя выбранного региона.
+   */
+  public get selectedRegionDisplayName(): string {
+    if (this.regionSelected === 0) {
+      return this.translateService.instant('mapPage.filters.allRegions');
+    }
+    const region = this.regionList.find(r => r.id === this.regionSelected);
+    // Проверяем, есть ли регион, чтобы избежать ошибок
+    return region ? region.name : this.translateService.instant('mapPage.filters.allRegions');
+  }
 
+  // --- ЖИЗНЕННЫЙ ЦИКЛ КОМПОНЕНТА ---
 
-  // offices: any[] = [];
- 
+  ngOnInit(): void {
+    document.addEventListener('click', this.closeDropdownsManual.bind(this));
+    
+    this.langChangeSubscription = this.translateService.onLangChange.subscribe(() => {
+      this.loadRegionList(); // Перезагружаем регионы при смене языка
+      this.updateSelectedObjectTypeName();
+    });
 
- 
-  terminalsSelected: boolean = false;
-  officesSelected: boolean = false;
-  atmsSelected: boolean = false;
-  
+    this.loadRegionList(); 
+    this.updateSelectedObjectTypeName();
+    this.sendFilteredData();
+  }
 
-  dropdownOpen: boolean = false;
-  dropdownOpen2: boolean = false;
+  ngOnDestroy(): void {
+    document.removeEventListener('click', this.closeDropdownsManual.bind(this));
+    if (this.langChangeSubscription) {
+      this.langChangeSubscription.unsubscribe();
+    }
+  }
 
-  regionSelected:any=0
-  regionList: any[] = [];
+  // --- МЕТОДЫ ЗАГРУЗКИ И ОБРАБОТКИ ДАННЫХ ---
 
- 
-data:any[]=[]
+  private loadRegionList(): void {
+    this.filterService.getRegionList().subscribe({
+      next: (response) => {
+        this.regionList = response.data.regions;
+      },
+      error: (err) => console.error('Ошибка при загрузке регионов', err)
+    });
+  }
+
+  // public sendFilteredData(isInitialLoad: boolean = false): void {
+  //   if (!isInitialLoad) {
+  //       this.currentPage = 1;
+  //   }
+    
+  //   this.filterService.getFilteredByRegion(
+  //     this.selectedObjectType === 'atms', 
+  //     this.selectedObjectType === 'offices', 
+  //     this.selectedObjectType === 'terminals', 
+  //     this.regionSelected, 
+  //     3, 
+  //     this.currentPage
+  //   ).subscribe({
+  //     next: (response) => {
+  //       this.combinedData = response.data.list_data;
+  //       this.totalPages = Math.ceil(response.data.total_count / 3);
+  //       this.updatePages();
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching filtered data:', err);
+  //       this.combinedData = [];
+  //       this.totalPages = 0;
+  //       this.updatePages();
+  //     }
+  //   });
+  // }
+  public sendFilteredData(): void {
+    this.filterService.getFilteredByRegion(
+      this.selectedObjectType === 'atms', 
+      this.selectedObjectType === 'offices', 
+      this.selectedObjectType === 'terminals', 
+      this.regionSelected, 
+      7, 
+      this.currentPage
+    ).subscribe({
+      next: (response) => {
+        this.combinedData = response.data.list_data;
+        this.totalPages = Math.ceil(response.data.total_count / 7);
+        this.updatePages();
+      },
+      error: (err) => console.error('Error fetching filtered data:', err)
+    });
+  }
+  // --- ОБРАБОТЧИКИ СОБЫТИЙ UI ---
+
+  // public onObjectTypeChange(type: 'offices' | 'terminals' | 'atms'): void {
+  //   this.selectedObjectType = type;
+  //   this.updateSelectedObjectTypeName();
+  //   this.sendFilteredData();
+  //   this.dropdownOpen = false;
+  // }
+  public onObjectTypeChange(type: 'offices' | 'terminals' | 'atms'): void {
+    this.selectedObjectType = type;
+    this.updateSelectedObjectTypeName();
+    this.currentPage = 1; // Сброс на первую страницу
+    this.sendFilteredData();
+    this.dropdownOpen = false;
+  }
+  // public onRegionChange(region: regionList | 0): void {
+  //   this.regionSelected = (region === 0) ? 0 : region.id;
+  //   this.sendFilteredData();
+  //   this.dropdownOpen2 = false;
+  // }
+  public onRegionChange(region: regionList | 0): void {
+    this.regionSelected = (region === 0) ? 0 : region.id;
+    this.currentPage = 1; // Сброс на первую страницу
+    this.sendFilteredData();
+    this.dropdownOpen2 = false;
+  }
+  private updateSelectedObjectTypeName(): void {
+    const key = `mapPage.filters.${this.selectedObjectType}`;
+    this.selectedObjectTypeName = this.translateService.instant(key);
+  }
+  // --- ПАГИНАЦИЯ (полный код) ---
+  public pages: number[] = [];
+
+  private updatePages(): void {
+    this.pages = [];
+    if (this.totalPages <= 1) return;
+
+    const visiblePages = 3;
+    let startPage = Math.max(1, this.currentPage - 1);
+    let endPage = Math.min(this.totalPages, this.currentPage + 1);
+    
+    if (this.currentPage === 1) endPage = Math.min(this.totalPages, visiblePages);
+    if (this.currentPage === this.totalPages) startPage = Math.max(1, this.totalPages - visiblePages + 1);
+
+    if (startPage > 1) {
+      this.pages.push(1);
+      if (startPage > 2) this.pages.push(-1);
+    }
+    for (let i = startPage; i <= endPage; i++) this.pages.push(i);
+    if (endPage < this.totalPages) {
+      if (endPage < this.totalPages - 1) this.pages.push(-1);
+      this.pages.push(this.totalPages);
+    }
+  }
+  public selectPage(page: number): void {
+    if (page === -1 || page === this.currentPage) return;
+    this.currentPage = page;
+    this.pageChange.emit(this.currentPage);
+    this.sendFilteredData(); // Запрашиваем данные для НОВОЙ страницы
+    this.scrollToTop();
+  }
+
+  public nextPage(): void {
+    if (this.currentPage < this.totalPages) this.selectPage(this.currentPage + 1);
+  }
+
+  public prevPage(): void {
+    if (this.currentPage > 1) this.selectPage(this.currentPage - 1);
+  }
+
+  private scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // --- УПРАВЛЕНИЕ ВЫПАДАЮЩИМИ СПИСКАМИ (полный код) ---
   @HostListener('document:click', ['$event'])
   closeDropdownsManual(event: Event): void {
     const target = event.target as HTMLElement;
@@ -54,168 +227,15 @@ data:any[]=[]
     }
   }
 
-  toggleDropdown(event: Event): void {
+  public toggleDropdown(event: Event): void {
+    event.stopPropagation();
     this.dropdownOpen = !this.dropdownOpen;
-    // event.stopPropagation();
-  }
-
-  toggleDropdown2(event: Event): void {
-    this.dropdownOpen2 = !this.dropdownOpen2;
-    // event.stopPropagation();
-  }
-
-  showInfo(markerInfo: string) {
-    alert(markerInfo);
-  }
-  regionSelectedName='Город'
-  ngOnInit(): void {
-    document.addEventListener('click', this.closeDropdownsManual.bind(this));
-
-
-    this.filterService.getRegionList().subscribe(
-      (response) => {
-        this.regionList = response.data.regions;
-      },
-      (error) => {
-        console.error('Ошибка при запросе данных', error);
-      }
-    );
-  this.officesSelected=true
-this.sendFilteredData();  
-this.updatePages();
-   
-  }
-
-
-
- 
-
-
-
-  ngOnDestroy(): void {
-    document.removeEventListener('click', this.closeDropdownsManual.bind(this));
-    this.sendFilteredData()
-  }
-  combinedData: any[] = [];
-  sendFilteredData(): void {
-    this.filterService.getFilteredByRegion(this.atmsSelected, this.officesSelected, this.terminalsSelected,this.regionSelected,8,this.currentPage).subscribe({
-      next: (response) => {
-      // console.log('Filtered data received:', response); 
-      this.combinedData=response.data.list_data
-      this.totalPages=Math.ceil(response.data.total_count/8)
-      this.updatePages();
-      },
-      error: (err) => {
-        console.error('Error fetching filtered data:', err);
-      }
-    });
-  }
-  inputvalue="Фильтр"
-
-  onCheckboxChange(variableName: string, event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-
-    // Установить только одну переменную в true, остальные в false
-    this.terminalsSelected = false;
-    this.officesSelected = false;
-    this.atmsSelected = false;
-
-    if (inputElement && variableName in this) {
-      (this as any)[variableName] = inputElement.checked;
-      this.inputvalue=variableName=='officesSelected'?"Офисы":variableName=='terminalsSelected'?"Терминалы":"Банкоматы"
-    }
-
-    this.sendFilteredData();
-    this.dropdownOpen=false
-  }
-
-  onRegionChange(obj: any) {
-    if (obj && obj.id) {
-      // Если выбран конкретный регион
-      this.regionSelected = obj.id;
-      this.regionSelectedName = obj.name;
-    } else {
-      // Если выбран "Все"
-      this.regionSelected = '';
-      this.regionSelectedName = "Все";
-    }
-  
-    // Отправляем данные фильтрации
-    this.sendFilteredData();
-  
-    // Закрываем выпадающий список
     this.dropdownOpen2 = false;
   }
-  pages: number[] = []; // Массив для отображения номеров страниц
 
-
-  ngOnChanges() {
-    this.updatePages();
-  }
-
-  updatePages() {
-    this.pages = [];
-    const visiblePages = 3; // Количество видимых страниц до/после текущей
-    const rangeStart = Math.max(1, this.currentPage - 1);
-    const rangeEnd = Math.min(this.totalPages, this.currentPage + visiblePages - 1);
-
-    // Добавляем страницы перед ...
-    if (rangeStart > 2) {
-      this.pages.push(1);
-      if (rangeStart > 3) {
-        this.pages.push(-1); // Индикатор для ...
-      }
-    }
-
-    // Добавляем текущие видимые страницы
-    for (let i = rangeStart; i <= rangeEnd; i++) {
-      this.pages.push(i);
-    }
-
-    // Добавляем страницы после ...
-    if (rangeEnd < this.totalPages - 1) {
-      if (rangeEnd < this.totalPages - 2) {
-        this.pages.push(-1); // Индикатор для ...
-      }
-      this.pages.push(this.totalPages);
-    }
-
-  }
-  scrollToTop(): void {
-    const listElement = document.querySelector('.list-container'); // Замените '.list-container' на ваш селектор списка
-    if (listElement) {
-      listElement.scrollTo({
-        top: 0,
-        behavior: 'smooth' // Плавная прокрутка
-      });
-    } else {
-      // Если контейнер не найден, прокручиваем всю страницу
-      window.scrollTo({
-        top: 1,
-        behavior: 'smooth' // Плавная прокрутка
-      });
-    }
-  }
-  selectPage(page: number) {
-    if (page === -1) return; // Игнорируем "..."
-    this.currentPage = page;
-    this.updatePages();
-    this.pageChange.emit(this.currentPage);
-    this.scrollToTop(); 
-    this.sendFilteredData()
-  }
-
-  nextPage() { 
-    if (this.currentPage < this.totalPages) {
-      this.selectPage(this.currentPage + 1);
-      this.scrollToTop();
-    }
-  }
-
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.selectPage(this.currentPage - 1);
-      this.scrollToTop();
-    }
+  public toggleDropdown2(event: Event): void {
+    event.stopPropagation();
+    this.dropdownOpen2 = !this.dropdownOpen2;
+    this.dropdownOpen = false;
   }
 }

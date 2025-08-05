@@ -7,14 +7,16 @@ import { Merchant, MerchantCategory } from '../../models/merchant.model';
 import { regionList } from '../../models/region.model'; // Используем существующую модель
 import { environment } from '../../../environments/environment';
 import { TranslateModule } from '@ngx-translate/core';
+import { SimpleApplicationFormComponent } from "../simple-application-form/simple-application-form.component";
 @Component({
   selector: 'app-merchant',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule],
+  imports: [CommonModule, FormsModule, TranslateModule, SimpleApplicationFormComponent],
   templateUrl: './merchant.component.html',
   styleUrl: './merchant.component.scss'
 })
 export class MerchantComponent {
+  public readonly merchantApiUrl = '/order/merchant/save'
   imageUrl: string = environment.IMAGE_URL;
   merchants: Merchant[] = [];
   categories: MerchantCategory[] = [];

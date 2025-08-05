@@ -198,7 +198,7 @@
       "education": "Образование и квалификация:",
       "experience": "Опыт работы:",
       "skills": "Навыки и знания:",
-      "qualities": "Личные качества:",
+      "qualities": "Обязанности:",
       "conditions": "Условия:"
     },
     "form": {
@@ -332,17 +332,36 @@
     }
   },
   "forms": {
+    "titles": {
+      "acquiring": "Заявка на эквайринг",
+      "merchant": "Заявка на мерчант",
+      "salaryProject": "Заявка на зарплатный проект",
+      "default": "Оставить заявку"
+    },
+    "subtitles": {
+      "default": "Наш менеджер скоро свяжется с вами."
+    },
     "placeholders": {
       "fullName": "Полное имя",
       "phone": "Мобильный телефон",
       "creditPurpose": "Цель кредита",
       "workplace": "Место работы и адрес",
-      "selectOffice": "Выберите отделение банка"
-
+      "selectOffice": "Выберите отделение банка",
+"selectSubject": "Выберите тему обращения",
+      "question": "Ваш вопрос"
     },
+
+    "contact": {
+      "title": "Свяжитесь с нами",
+      "subtitle": "Мы готовы ответить на любые ваши вопросы."
+    },
+
     "errors": {
-      "required": "Это поле обязательно для заполнения."
+      "selectSubject": "Пожалуйста, выберите тему.",
+      "minLength": "Минимальная длина {{min}} символов.",
+     "required": "Это поле обязательно для заполнения." 
     }
+   
   },
   "rko": {
     "pageTitle": "Расчетно-кассовое обслуживание",
@@ -375,7 +394,7 @@
     "noNewsMessage": "На данный момент новостей нет. Загляните позже."
   },
   "merchantsPage": {
-    "title": "Партнеры и скидки",
+    "title": "Мерчанты и скидки",
     "subtitle": "Найдите предложения и кэшбеки от наших партнеров",
     "filters": {
       "title": "Фильтры",
@@ -397,7 +416,17 @@
       "objectTypes": "Типы объектов",
       "availability": "Доступность",
       "additional": "Дополнительно",
-      "regionPlaceholder": "Город"
+      "regionPlaceholder": "Город",
+    
+      "offices": "Офисы",
+      "terminals": "Терминалы",
+      "atms": "Банкоматы",
+      "allRegions": "Все регионы",
+     
+      "availabilityOptions": {
+        "24h": "24/7",
+        "now": "Работает сейчас"
+      }
     },
     "infoWindow": {
       "terminalLabel": "Терминал",
@@ -433,7 +462,7 @@
       "creditCards": "Карты",
       "debitCards": "Карты",
       "scsRko": "РКО",
-      "merchants": "Партнеры",
+      "merchants": "Мерчанты",
       "aboutBank": "О банке",
       "vacancies": "Вакансии",
       "officesAndAtms": "Офисы и банкоматы",

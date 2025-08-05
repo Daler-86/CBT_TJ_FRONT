@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { LanguagesService } from '../languages.service';
 import { environment } from '../../environments/environment';
-import { ContactResponse, ContactBlock } from '../models/contact.model';
+import { ContactResponse, ContactBlock, ContactPayload } from '../models/contact.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +37,20 @@ export class ContactService {
       })
     );
   }
+  submitContactForm(formData: ContactPayload): Observable<any> {
+  
+    return this.languageService.language$.pipe(
+      switchMap(lang => {
+        const headers = new HttpHeaders({
+          'Accept': 'application/json',
+          'Language': lang
+        });
+
+        // 3. Укажите правильный URL для вашего API
+        const apiUrl = this.baseUrl + '/contact/help/save'; // <-- ЗАМЕНИТЕ НА ВАШ URL!
+
+        return this.http.post(apiUrl, formData, { headers });
+      })
+    );
+}
 }

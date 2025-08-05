@@ -37,3 +37,9 @@ export interface InfoItem {
     title:string,
     sort_id:number
   }
+
+
+  export interface SimpleApplicationPayload {
+    client_name: string;
+    phone: string;
+  }

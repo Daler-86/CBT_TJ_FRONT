@@ -192,14 +192,15 @@
     "historyImage1": "Акси таърихии бинои бонк",
     "historyImage2": "Акси толори амалиётии бонк",
     "historyImage3": "Акси офиси муосири бонк"
+
   },
   "vacancyDetails": {
     "sections": {
       "education": "Маълумот ва тахассус:",
       "experience": "Таҷриба:",
       "skills": "Малакаҳо ва донишҳо:",
-      "qualities": "Хусусиятҳои шахсӣ:",
-      "conditions": "Шартҳо:"
+      "qualities": "Ӯҳдадориҳо:",
+      "conditions": "Шароити корӣ:"
     },
     "form": {
       "title": "Барои ҷойи кор муроҷиат кунед",
@@ -381,16 +382,30 @@
     "filters": {
       "mainButtonLabel": "Филтр",
       "objectTypes": "Намудҳои объектҳо",
-      "availability": "Дастрасӣ",
+      "offices": "Филиалҳо",
+      "terminals": "Терминалҳо",
+      "atms": "Банкоматҳо",
       "additional": "Иловагӣ",
-      "regionPlaceholder": "Шаҳр"
+      "allRegions": "Ҳамаи минтақаҳо",
+      "availability": "Дастрасӣ",
+      "regionPlaceholder": "Шаҳрҳо",
+      "availabilityOptions": {
+        "24h": "24 соат",
+        "now": "Ҳозир кор мекунад"
+      }
     },
-    "infoWindow": {
-      "terminalLabel": "Терминал",
+    "sidebar": {
+      "addressLabel": "Суроға",
+      "landmarkLabel": "Нишонӣ"
+    },
+    "infoWindow": { "terminalLabel": "Терминал",
       "atmLabel": "Банкомат",
       "officeLabel": "Офис",
-      "addressLabel": "Суроға"
+      "addressLabel": "Суроға",
+      "working24h": "Шабонарӯзӣ",
+      "workingNowClosed": "Соатҳои кориро санҷед"
     }
+
   },
   "header": {
     "top": {
@@ -400,6 +415,9 @@
       "loginButton": "Даромадан"
     }
   },
+ 
+
+
   "home": {
     "tagline": "Беҳтаринро интихоб кунед",
     "joinTeam": {
@@ -884,18 +902,38 @@
         ]
       }
     },
-    "forms": {
-      "placeholders": {
-        "fullName": "Ному насаб",
-        "phone": "Телефони мобилӣ",
-        "creditPurpose": "Мақсади қарз",
-        "workplace": "Ҷои кор ва суроға",
-        "selectOffice": "Шуъбаи бонкро интихоб кунед"
-      },
-      "errors": {
-        "required": "Ин майдон бояд ҳатман пур карда шавад."
+    
+      "forms": {
+        "titles": {
+          "acquiring": "Дархост барои эквайринг",
+          "salaryProject": "Дархост барои лоиҳаи маош",
+          "merchant": "Дархост барои мерчант",
+          "default": "Дархост гузоштан"
+        },
+        "subtitles": {
+          "default": "Менеҷери мо ба наздикӣ бо шумо дар тамос хоҳад шуд."
+        },
+        "placeholders": {
+          "fullName": "Ному насаб",
+          "phone": "Телефони мобилӣ",
+          "creditPurpose": "Мақсади қарз",
+          "workplace": "Ҷои кор ва суроға",
+          "selectOffice": "Шӯъбаи бонкро интихоб кунед",
+          "selectSubject": "Мавзӯи муроҷиатро интихоб кунед",
+          "question": "Саволи шумо"
+        },
+        "contact": {
+          "title": "Бо мо дар тамос шавед",
+          "subtitle": "Мо омодаем ба ҳама саволҳои шумо ҷавоб диҳем."
+        },
+        "errors": {
+          "selectSubject": "Лутфан, мавзӯъро интихоб кунед.",
+          "minLength": "Дарозии минималӣ {{min}} аломат.",
+          "required": "Ин майдон бояд ҳатман пур карда шавад."
+        }
       }
+ 
     }
  
-  }
+  
   

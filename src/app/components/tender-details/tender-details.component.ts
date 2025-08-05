@@ -6,10 +6,11 @@ import { tenderDetail } from '../../models/tender.model';
 import { CommonModule, NgFor } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
+import { SplitByDashPipe } from '../../pipes/split-by-dash.pipe';
 @Component({
   selector: 'app-tender-details',
   standalone: true,
-  imports: [NgFor, CommonModule, TranslateModule],
+  imports: [NgFor, CommonModule, TranslateModule, SplitByDashPipe],
   templateUrl: './tender-details.component.html',
   styleUrl: './tender-details.component.scss'
 })

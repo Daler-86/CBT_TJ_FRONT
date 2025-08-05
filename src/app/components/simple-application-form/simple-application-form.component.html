@@ -1,0 +1,32 @@
+<div class="form-container">
+    <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
+        <h2>{{ titleKey | translate }}</h2>
+        <p>{{ subtitleKey | translate }}</p>
+  
+      <!-- Имя -->
+      <div class="form-group">
+        <input type="text" class="form-control" 
+               [placeholder]="('forms.placeholders.fullName' | translate) + ' *'"
+               formControlName="client_name">
+        <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
+          {{ 'forms.errors.required' | translate }}
+        </div>
+      </div>
+  
+      <!-- Телефон -->
+      <div class="form-group">
+        <input type="text" class="form-control" 
+               [placeholder]="('forms.placeholders.phone' | translate) + ' *'"
+               formControlName="phone">
+        <div *ngIf="phone?.invalid && phone?.touched" class="error">
+          {{ 'forms.errors.required' | translate }}
+        </div>
+      </div>
+  
+      <!-- Кнопка отправки -->
+      <button type="submit" class="submit-button" [disabled]="applicationForm.invalid || isSubmitting">
+        <span *ngIf="!isSubmitting">{{ 'buttons.send' | translate }}</span>
+        <span *ngIf="isSubmitting">{{ 'buttons.sending' | translate }}...</span>
+      </button>
+    </form>
+  </div>

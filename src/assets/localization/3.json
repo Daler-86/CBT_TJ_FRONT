@@ -198,7 +198,7 @@
       "education": "Education and qualifications:",
       "experience": "Experience:",
       "skills": "Skills and knowledge:",
-      "qualities": "Personal qualities:",
+      "qualities": "Responsibilities",
       "conditions": "Conditions:"
     },
     "form": {
@@ -362,7 +362,7 @@
     "noNewsMessage": "There are no news at the moment. Please check back later."
   },
   "merchantsPage": {
-    "title": "Partners and Discounts",
+    "title": "Merchants and Discounts",
     "subtitle": "Find offers and cashbacks from our partners",
     "filters": {
       "title": "Filters",
@@ -384,7 +384,17 @@
       "objectTypes": "Object types",
       "availability": "Availability",
       "additional": "Additional",
-      "regionPlaceholder": "City"
+      "regionPlaceholder": "City",
+   
+      "offices": "Branches",
+      "terminals": "Terminals",
+      "atms": "ATMs",
+      "allRegions": "All Regions",
+     
+      "availabilityOptions": {
+        "24h": "24/7",
+        "now": "Open now"
+      }
     },
     "infoWindow": {
       "terminalLabel": "Terminal",
@@ -420,7 +430,7 @@
       "creditCards": "Cards",
       "debitCards": "Сards",
       "scsRko": "Cash Services",
-      "merchants": "Partners",
+      "merchants": "Merchants",
       "aboutBank": "About the bank",
       "vacancies": "Vacancies",
       "officesAndAtms": "Offices and ATMs",
@@ -453,14 +463,31 @@
     "pageTitle": "Deposits"
   },
   "forms": {
+    "titles": {
+      "acquiring": "Acquiring Application",
+      "merchant": "Merchant Application",
+      "salaryProject": "Salary Project Application",
+      "default": "Submit Application"
+    },
+    "subtitles": {
+      "default": "Our manager will contact you shortly."
+    },
     "placeholders": {
       "fullName": "Full Name",
       "phone": "Mobile Phone",
       "creditPurpose": "Purpose of the loan",
       "workplace": "Place of work and address",
-      "selectOffice": "Select a bank branch"
+      "selectOffice": "Select a bank branch",
+      "selectSubject": "Select a subject",
+      "question": "Your question"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "We are ready to answer any of your questions."
     },
     "errors": {
+      "selectSubject": "Please select a subject.",
+      "minLength": "Minimum length is {{min}} characters.",
       "required": "This field is required."
     }
   },

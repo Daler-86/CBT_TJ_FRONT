@@ -14,7 +14,10 @@
       <div class="tender-card tender-description-card">
         <div class="" *ngFor="let item of tenderDetailData.information">
           <h2>{{item.title}}</h2>
-          <p class="subtitle">{{item.description}}</p>
+          <div *ngFor="let paragraph of item.description | splitByDash" class="description-paragraph subtitle">
+            — {{ paragraph }}
+          </div>
+          <!-- <div class="subtitle" [innerHTML]="item.description | splitByDash"></div> -->
         </div>
       </div>
   
@@ -30,13 +33,13 @@
       <div class="tender-card tender-metadata-card">
         <div class="metadata-item">
           <span class="label">{{ 'tenderDetails.meta.startDate' | translate }}</span>
-          <span class="value">{{tenderDetailData.start_date}}</span>
+          <span class="value" >{{tenderDetailData.start_date}}</span>
         </div>
         <div class="metadata-item">
           <span class="label">{{ 'tenderDetails.meta.endDate' | translate }}</span>
           <span class="value">{{tenderDetailData.end_date}}</span>
         </div>
-        <div class="metadata-item">
+        <div class="metadata-item" *ngIf="tenderDetailData.responsible_person?.length!=0">
           <span class="label">{{ 'tenderDetails.meta.responsiblePerson' | translate }}</span>
           <span class="value">{{tenderDetailData.responsible_person}}</span>
         </div>

@@ -41,4 +41,67 @@
           [zoom]="16"
         ></app-yandex-map>
       </div>
+      <div class="form-container">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <h2>{{ 'forms.contact.title' | translate }}</h2>
+          <p>{{ 'forms.contact.subtitle' | translate }}</p>
+      
+          <!-- Имя -->
+          <div class="form-group">
+            <input type="text" class="form-control" 
+                   [placeholder]="('forms.placeholders.fullName' | translate) + ' *'"
+                   formControlName="client_name">
+            <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
+              {{ 'forms.errors.required' | translate }}
+            </div>
+          </div>
+      
+          <!-- Телефон -->
+          <div class="form-group">
+            <input type="text" class="form-control" 
+                   [placeholder]="('forms.placeholders.phone' | translate) + ' *'"
+                   formControlName="phone">
+            <div *ngIf="phone?.invalid && phone?.touched" class="error">
+              {{ 'forms.errors.required' | translate }}
+            </div>
+          </div>
+          
+          <!-- Кастомный селектор для темы -->
+          <div class="form-group">
+            <div class="custom-dropdown" #customDropdown>
+              <div class="dropdown-selected form-control" 
+                   (click)="toggleDropdown($event)"
+                   [class.is-invalid]="contact_subject_id?.invalid && contact_subject_id?.touched">
+                {{ selectedSubjectName }}
+              </div>
+              <div class="dropdown-options" *ngIf="dropdownOpen">
+                <div class="dropdown-option" *ngFor="let subject of subjects" (click)="selectSubject(subject)">
+                  <p>{{ subject.name }}</p> <!-- Предполагаем, что имя приходит на нужном языке -->
+                </div>
+              </div>
+            </div>
+            <div *ngIf="contact_subject_id?.invalid && contact_subject_id?.touched" class="error">
+              {{ 'forms.errors.selectSubject' | translate }}
+            </div>
+          </div>
+      
+          <!-- Текстовое поле для вопроса -->
+          <div class="form-group">
+            <textarea class="form-control" 
+                      [placeholder]="('forms.placeholders.question' | translate) + ' *'"
+                      rows="5"
+                      formControlName="question"></textarea>
+            <div *ngIf="question?.invalid && question?.touched" class="error">
+              <span *ngIf="question?.errors?.['required']">{{ 'forms.errors.required' | translate }}</span>
+              <span *ngIf="question?.errors?.['minlength']">{{ 'forms.errors.minLength' | translate:{ min: 10 } }}</span>
+            </div>
+          </div>
+      
+          <!-- Кнопка отправки -->
+          <button type="submit" class="submit-button" [disabled]="contactForm.invalid || isSubmitting">
+            <span *ngIf="!isSubmitting">{{ 'buttons.send' | translate }}</span>
+            <span *ngIf="isSubmitting">{{ 'buttons.sending' | translate }}...</span>
+          </button>
+        </form>
+      </div>
     </div>

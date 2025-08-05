@@ -61,12 +61,13 @@ tenders:tender[]=[]
   tenderCount:number=0
   loadData(): void {
     
-    this.tenderService.getTenderList(2,this.currentPage).subscribe(
+    this.tenderService.getTenderList(5,this.currentPage).subscribe(
       (response) => {
         this.tenders = response.data.tenders;
-        this.totalPages=Math.round(response.data.total_count/2)
+        debugger
+        this.totalPages=Math.round(response.data.total_count/5)
         this.tenderCount=response.data.total_count
-        this.updatePages();;
+        this.updatePages();
       },
       (error) => {
         console.error('Ошибка при загрузке всех карт', error);

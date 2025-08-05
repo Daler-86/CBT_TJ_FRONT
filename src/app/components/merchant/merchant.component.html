@@ -76,4 +76,9 @@
     <button (click)="nextPage()" [disabled]="currentPage === totalPages" [title]="'common.pagination.nextPage' | translate">›</button>
     <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages" [title]="'common.pagination.lastPage' | translate">»</button>
   </div>
+
+  <app-simple-application-form 
+  [apiUrl]="merchantApiUrl"
+  [titleKey]="'forms.titles.merchant'">
+</app-simple-application-form>
 </div>

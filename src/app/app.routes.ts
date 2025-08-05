@@ -73,7 +73,7 @@ export const routes: Routes = [
    {path:'bank-detail',component:BankDetailComponent},
    {path:'news', component:NewsComponent},
    {path:'news-detail/:id', component:NewsDetailComponent},
-   { path: 'scss', component: RkoComponent },
+   { path: 'rko', component: RkoComponent },
    { path: 'scs-details/:id', component: RkoDetailsComponent },
    { path: 'merchant', component: MerchantComponent },
    { path: 'contact', component: ContactComponent },
