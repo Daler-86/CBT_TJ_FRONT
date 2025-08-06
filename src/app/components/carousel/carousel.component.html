@@ -1,18 +1,17 @@
 <!-- <div class="carousel" [ngStyle]="{'background-image': 'url(' +imageUrl+ galleries[currentSlide].background_file + ')'}"> -->
+<!-- Изменений в структуре нет, только небольшая правка в src и alt для единообразия -->
 <div class="carousel">
   <div *ngIf="galleries.length > 0" class="carousel-slides" [style.transform]="getTransform()">
     <div class="carousel-item" *ngFor="let slide of galleries">
       <div class="carousel-content">
-        <!-- Динамический контент, перевод не требуется -->
         <h2>{{ slide.title }}</h2>
         <p>{{ slide.description }}</p>
-        <!-- Используем уже существующий ключ для единообразия -->
         <button *ngIf="slide.show_button" (click)="onLearnMore(slide.route)" [routerLink]="[slide.route]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{ 'buttons.moreDetails' | translate }}</button>
       </div>
-      <!-- ВАЖНО: alt-текст теперь динамический, что улучшает доступность -->
       <img [src]="imageUrl + slide.upload_file" [alt]="slide.title" />
     </div>
   </div>
+
   <div class="carousel-indicators">
     <span
       *ngFor="let slide of galleries; let i = index"
@@ -21,9 +20,10 @@
       (click)="goToSlide(i)"
     ></span>
   </div>
-  <!-- Добавлены alt-теги для кнопок управления -->
+
+  <!-- Используем одну и ту же иконку, но для .prev она будет повернута через CSS -->
   <button class="carousel-control prev" (click)="prevSlide()">
-    <img src="../../../assets/icons/arrow-rightt.svg" [alt]="'alt.previousSlide' | translate">
+    <img src="../../../assets/icons/arrow-right.svg" [alt]="'alt.previousSlide' | translate">
   </button>
   <button class="carousel-control next" (click)="nextSlide()">
     <img src="../../../assets/icons/arrow-right.svg" [alt]="'alt.nextSlide' | translate">

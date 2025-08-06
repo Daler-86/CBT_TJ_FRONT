@@ -171,12 +171,13 @@ $news-text-color: #353E5C; // Темно-серый для текста ново
 
 
 // --- Адаптивность ---
-@media (max-width: 991.98px) {
+@media (max-width: 1024px) {
     .news-card {
+ 
         // Можно оставить как есть или сделать картинку чуть меньше
         .news-image-content {
-            flex-basis: 35%;
-            max-width: 35%;
+            // flex-basis: 35%;
+          
         }
     }
      .section-header h1 {
@@ -185,10 +186,11 @@ $news-text-color: #353E5C; // Темно-серый для текста ново
 }
 
 
-@media (max-width: 767.98px) {
+@media (max-width: 1024px) {
   .news-card {
+    gap: 5px;
     flex-direction: column; // Ставим колонки друг под другом
-    padding: 20px; // Уменьшаем паддинги карточки
+    padding: 35px 45px; // Уменьшаем паддинги карточки
   }
 
   .news-text-content {
@@ -199,7 +201,8 @@ $news-text-color: #353E5C; // Темно-серый для текста ново
 
   .news-image-content {
     flex-basis: auto; // Сбрасываем flex-basis
-    width: 100%; // Картинка на всю ширину
+    width: 80%; // Картинка на всю ширину
+    margin: auto;
     max-width: 100%;
     margin-bottom: 20px; // Отступ снизу картинки
     order: 1; // Картинка идет первой
@@ -214,13 +217,13 @@ $news-text-color: #353E5C; // Темно-серый для текста ново
   }
 
    .section-header h1 {
-       font-size: 1.8rem;
+       font-size: 2rem;
    }
     .section-header .subtitle {
-       font-size: 1rem;
+       font-size: 1.2rem;
     }
     .news-text-content h2 {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
     }
 
     

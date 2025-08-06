@@ -13,7 +13,7 @@
  display: flex;
  justify-content: space-between;
  align-items: center;
- @media (max-width: 768px) {
+ @media (max-width: 1024px) {
      display: block;
      padding: 29px 50px;
   }
@@ -46,7 +46,7 @@
     width: 40%;
     margin: 62px 76px 62px 0px;
 border-radius: 22px;
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     width: 80%;
     margin: auto;
 }

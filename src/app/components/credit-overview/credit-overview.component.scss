@@ -1,5 +1,5 @@
 .credit{
-    margin: none;
+    margin: 0;
     padding:3% 5% ;
     background-color: #f8f9fa;
      h1{
@@ -45,15 +45,23 @@
  justify-content: space-between;
  align-items: center;
  @media (max-width: 1024px) {
-     display: block;
-     padding: 29px 50px;
-  }
+  // 1. Включаем Flexbox и меняем порядок элементов на вертикальный
+  display: flex;
+  flex-direction: column;
+  padding: 29px 30px;
+}
      .card-info {
        width: 60%;
        padding: 62px 76px;
        @media (max-width: 1024px) {
-         width: 100%;
-         padding: 0;
+        width: 100%;
+        padding: 0;
+        // Этот блок теперь будет вторым
+        order: 2;
+        // 2. Добавляем единый отступ между всеми дочерними элементами
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
       }
    
        .card-title {
@@ -103,12 +111,14 @@
          gap: 15px;
         margin-top: 25px;
         @media (max-width: 1024px) {
-        display: block;
-      }
+          // Делаем кнопки тоже вертикальными для лучшего вида
+          flex-direction: column; 
+          gap: 25px;
+        }
       button{
          @media (max-width: 1024px) {
              width: 100%;
-             margin-bottom: 30px;
+           
            }
  
       }
@@ -138,10 +148,16 @@
        padding: 0 76px;
        align-self: flex-end; 
        @media (max-width: 1024px) {
-         width: 100%;
-       }
+        width: 100%;
+        padding: 0; // Сбрасываем лишние отступы
+        // Этот блок теперь будет первым
+        order: 1;
+        // Добавляем отступ снизу, чтобы отделить картинку от текста
+        margin-bottom: 25px; 
+      }
        img{
          width: 100%;
+        
        }
      }
    }

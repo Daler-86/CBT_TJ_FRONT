@@ -17,8 +17,8 @@
     margin-bottom: 25px;
     
     // Планшеты и меньше
-    @media (max-width: $breakpoint-md) {
-      font-size: 36px;
+    @media (max-width: 1024px) {
+      font-size: 46px;
       // padding лучше применять к родительскому элементу, а не к заголовку
     }
   }
@@ -37,7 +37,7 @@
   align-items: center;
 
   // Планшеты и меньше: карточка становится вертикальной
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: 1024px) {
     flex-direction: column; // Вместо display: block, чтобы сохранить flex-свойства
     padding: 20px; // Добавим общий внутренний отступ для мобильных
   }
@@ -49,13 +49,13 @@
     // padding: 40px 50px; // Уменьшим отступы для большей универсальности
 
     // Планшеты в альбомной ориентации
-    @media (max-width: $breakpoint-lg) {
+    @media (max-width: 1024px) {
       padding: 30px 40px;
       flex-basis: 55%;
     }
     
     // Планшеты и меньше
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: 1024px) {
       width: 100%; // Занимает всю ширину родителя
       padding: 15px; // Небольшой отступ
       order: 2; // Текст будет идти после картинки
@@ -84,7 +84,7 @@
       margin: 45px 0;
 
       // Планшеты и меньше: детали становятся в один столбец
-      @media (max-width: $breakpoint-md) {
+      @media (max-width: 1024px) {
         grid-template-columns: 1fr; // Все в одну колонку
         margin: 30px 0;
       }
@@ -112,7 +112,7 @@
       justify-content: flex-start; // Явно указываем выравнивание
 
       // Планшеты и меньше
-      @media (max-width: $breakpoint-md) {
+      @media (max-width: 1024px) {
         flex-direction: column; // Кнопки в столбец
         align-items: center; // Центрируем их
       }
@@ -126,7 +126,7 @@
         border: 2px solid transparent; // Добавим рамку для лучшего вида при hover/focus
         transition: background-color 0.3s, color 0.3s; // Плавный переход
 
-        @media (max-width: $breakpoint-md) {
+        @media (max-width: 1024px) {
           width: 100%; // Кнопки на всю ширину
           max-width: 300px; // Но не слишком широкие
         }
@@ -154,13 +154,13 @@
     align-items: center;
     justify-content: center;
 
-    @media (max-width: $breakpoint-lg) {
+    @media (max-width: 1024px) {
         flex-basis: 45%;
         padding: 20px;
     }
     
     // Планшеты и меньше
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: 768px) {
       width: 80%;
       order: 1; // Картинка будет идти первой
       padding: 0; // Убираем лишние отступы

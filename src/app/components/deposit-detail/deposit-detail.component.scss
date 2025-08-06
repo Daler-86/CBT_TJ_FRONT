@@ -13,7 +13,7 @@
  display: flex;
  justify-content: space-between;
  align-items: center;
- @media (max-width: 900px) {
+ @media (max-width: 1024px) {
      display: block;
      padding: 29px 50px;
   }
@@ -22,8 +22,9 @@
        padding: 62px 76px;
        @media (max-width: 1024px) {
          width:80%;
+        text-align: center;
          margin: auto;
-        //  padding: 0;
+         padding: 0;
       }
    
        .card-title {
@@ -65,7 +66,7 @@
     justify-content: center;
     margin: 62px 76px 62px 0px;
 border-radius: 22px;
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     width: 80%;
     margin: auto;
 }
@@ -229,10 +230,10 @@ border-radius: 22px;
          
      
        @media (max-width: 1024px) {
-        font-size: 38px;
+        font-size: 36px;
        }
        @media (max-width: 768px) {
-        font-size: 34px;
+        font-size: 32px;
        }
  
      }
@@ -255,13 +256,18 @@ border-radius: 22px;
     margin: 62px 0;
     justify-content: space-between;
     box-sizing: border-box;
-  
-    flex-wrap: wrap;
+ 
+    @media (max-width: 1024px) {
+      padding: 30px;
+      flex-direction: column;
+      margin: 45px 0;
+     }
     .text{
       // width: 34%; 
        margin:0 auto;
       @media (max-width: 1024px) {
         width: 70%;
+        text-align: center;
        }
        @media (max-width: 768px) {
         width: 90%;
@@ -345,10 +351,10 @@ border-radius: 22px;
       
         width: 70%;
         @media (max-width: 1024px) {
-         width: 70%;
+         width: 80%;
         }
         @media (max-width: 768px) {
-         width: 90%;
+         width: 100%;
         }
         margin: auto;
        .form-control {
@@ -396,6 +402,10 @@ border-radius: 22px;
        a {
          color: #00B06C;
          text-decoration: none;
+       }
+       @media (max-width: 1024px) {
+        width: 100%;
+        font-size: 16px;
        }
      }
    }

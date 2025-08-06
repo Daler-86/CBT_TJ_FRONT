@@ -10,87 +10,62 @@
     padding: 20px 5%;
 }
 .container_1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 15px auto;
-    padding: 15px 5%;
-}
+    // Контейнер можно немного упростить
+    width: 90%; // Используем проценты для лучшей адаптивности
 
-.box_1 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.box_1 > div {
-    flex: 1 1 calc(16.66% - 20px); /* 6 элементов на строку по умолчанию */
-    max-width: calc(16.66% - 20px);
+    margin: 35px auto;
+  }
+  
+  .box_1 {
+    display: grid; // 1. Включаем Grid Layout
+    gap: 24px; // 2. Задаем одинаковый отступ между всеми карточками
+  
+    // 3. Главная магия: создаем адаптивные колонки
+    // - repeat: повторять шаблон
+    // - auto-fill: заполнять доступное пространство колонками
+    // - minmax(160px, 1fr): каждая колонка будет минимум 160px, но сможет растягиваться,
+    //   чтобы занять равную долю (1fr) свободного места.
+    // Это заменяет ВСЕ ваши медиа-запросы для колонок!
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  // Стили для самой карточки
+  .box_1 > div { // или .card-item
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 35px 24px;
+    justify-content: flex-end; // Прижимаем контент к низу для единой линии текста
+    padding: 24px;
     background-color: #F1F5F9;
     border-radius: 16px;
     cursor: pointer;
     box-sizing: border-box;
-img{
-    transition: transform 0.5s ease; /* Анимация будет длиться 0.5 секунды */
-    transform: scale(1);
+    text-align: center;
+    min-height: 180px; // Задаем минимальную высоту для выравнивания
   
-}  
-&:hover{
-    img{
+    // Ваши стили для анимации сохранены
+    img {
+      transition: transform 0.3s ease;
+      transform: scale(1);
+      margin-bottom: 20px; // Отступ между картинкой и текстом
+      max-width: 150px; // Ограничиваем размер иконки
+    }
+  
+    &:hover {
+      img {
         transform: scale(1.1);
-    } 
+      }
     }
-}
-
-/* Медиа-запросы для адаптации под различные экраны */
-@media (max-width: 1264px) {
-    .box_1 > div {
-        flex: 1 1 calc(20% - 20px); /* 5 элементов на строку */
-        max-width: calc(20% - 20px);
+  
+    p {
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 500;
+      color: #020617;
+      // Убираем margin-top, так как позиционирование теперь через flex
+      margin: 0; 
     }
-}
-
-@media (max-width: 1024px) {
-    .box_1 > div {
-        flex: 1 1 calc(25% - 20px); /* 4 элемента на строку */
-        max-width: calc(25% - 20px);
-    }
-}
-
-@media (max-width: 768px) {
-    .box_1 > div {
-        flex: 1 1 calc(33.33% - 20px); /* 3 элемента на строку */
-        max-width: calc(33.33% - 20px);
-    }
-}
-
-@media (max-width: 576px) {
-    .box_1 > div {
-        flex: 1 1 calc(50% - 20px); /* 2 элемента на строку */
-        max-width: calc(50% - 20px);
-    }
-}
-
-@media (max-width: 375px) {
-    .box_1 > div {
-        flex: 1 1 100%; /* 1 элемент на строку */
-        max-width: 100%;
-    }
-}
-
-.box_1 p {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-top: 15px;
-    font-weight: 500;
-}
+  }
 
 .container_2{
     width: 90%;
@@ -264,7 +239,7 @@ img{
     align-items: stretch;
     // box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     gap: 2%;
-    @media (max-width: 1034px) {
+    @media (max-width: 1024px) {
         display: block;
       }
     .location{
@@ -272,7 +247,7 @@ img{
         flex: 1;
         box-shadow: 0px 4px 20px 0px #AFAFAF2E;
 
-        @media (max-width: 1034px) {
+        @media (max-width: 1024px) {
             width: 100%;
             box-sizing: border-box;
             margin-bottom: 20px;
@@ -327,6 +302,10 @@ img{
       display: grid;
       grid-template-columns: 1fr;
       gap: 4%;
+      @media (max-width: 1024px) {
+        width: 100%;
+        margin-bottom: 5%;
+      }
         .box{
             display: flex;
             justify-content: space-between;

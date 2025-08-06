@@ -17,7 +17,12 @@ nav{
  a{
   text-decoration: none;
  }
-   .contact{
+ .cont{
+  width: 36%;
+  display: flex;
+  justify-content: flex-end;
+gap: 4%;
+  .contact{
     display: flex;
     gap: 5px;
     img{
@@ -37,7 +42,7 @@ nav{
        }
    }
    
-  
+ }
    .custom-dropdown {
     position: relative;
 width: 150px;
@@ -200,14 +205,17 @@ border: none;
 
 @media (max-width: 1200px) {
  .adress{
-    
+    .cont{
+      width: 450px;
    .contact{
     justify-content: space-between;
     p{
       font-size: 12px;
     }
    }
+   
  }
+}
     .men{
       grid-template-columns: 1fr;
       .menu{
@@ -237,4 +245,50 @@ border: none;
       }
     }
    }
+
+   @media (max-width: 700px) {
+    .adress{
+       .cont{
+        display: block;
+         width: 450px;
+      .contact{
+        gap: 10px;
+       justify-content:flex-end;
+       p{
+         font-size: 12px;
+       }
+      }
+      
+    }
+   }
+       .men{
+         grid-template-columns: 1fr;
+         .menu{
+           display: none; /* скрыть меню на мобильных */
+         }
+     
+         .menu.active {
+           display: flex;
+           z-index: 1;
+           flex-direction: column;
+           background-color: #fff;
+           position: absolute;
+           top: 130px;
+           left: 10%;
+           width: 80%;
+           padding: 10px;
+           li{
+            select{
+              flex: 1;
+            }
+           }
+         }
+     
+         .burger {
+           display: block;
+           cursor: pointer;
+         }
+       }
+      }
+
 }

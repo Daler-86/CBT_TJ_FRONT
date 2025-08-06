@@ -39,10 +39,10 @@
           <span class="label">{{ 'tenderDetails.meta.endDate' | translate }}</span>
           <span class="value">{{tenderDetailData.end_date}}</span>
         </div>
-        <div class="metadata-item" *ngIf="tenderDetailData.responsible_person?.length!=0">
+        <!-- <div class="metadata-item" *ngIf="tenderDetailData.responsible_person">
           <span class="label">{{ 'tenderDetails.meta.responsiblePerson' | translate }}</span>
           <span class="value">{{tenderDetailData.responsible_person}}</span>
-        </div>
+        </div> -->
         <div class="metadata-item">
           <span class="label">{{ 'tenderDetails.meta.phoneNumber' | translate }}</span>
           <a [href]="'tel:'+tenderDetailData.phone_number" class="value">{{tenderDetailData.phone_number}}</a>

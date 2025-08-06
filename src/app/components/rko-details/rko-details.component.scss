@@ -13,8 +13,9 @@
  display: flex;
  justify-content: space-between;
  align-items: center;
- @media (max-width: 900px) {
-     display: block;
+ @media (max-width: 1024px) {
+     flex-direction: column;
+     justify-content: center;
      padding: 29px 50px;
   }
      .card-info {
@@ -23,7 +24,8 @@
        @media (max-width: 1024px) {
          width:80%;
          margin: auto;
-        //  padding: 0;
+         padding: 0;
+         padding-top: 62px;
       }
    
        .card-title {

@@ -198,7 +198,7 @@ $copy-button-copied-color: #fff;
 
 
 // --- Адаптивность ---
-@media (max-width: 991.98px) {
+@media (max-width: 1024px) {
   .news-detail-layout {
     flex-direction: column; // Колонки друг под другом
     gap: 25px;
@@ -206,7 +206,7 @@ $copy-button-copied-color: #fff;
   .news-main-content {
      max-width: none; // Убираем ограничение ширины текста
      flex-basis: auto;
-     width: 100%;
+    //  width: 100%;
   }
   .news-sidebar {
     flex-basis: auto;

@@ -5,9 +5,8 @@
 
     <div class="container_1">
       <div class="box_1" *ngFor="let menu of menus">
-        <!-- Динамический контент -->
-        <div [routerLinkActiveOptions]="{exact: true}" *ngFor="let favorite of menu.favorites" class="" [routerLink]="favorite.route" routerLinkActive="active">
-          <!-- ВАЖНО: alt-текст берется из названия элемента для лучшей доступности -->
+        <!-- Динамический контент, все хорошо -->
+        <div [routerLinkActiveOptions]="{exact: true}" *ngFor="let favorite of menu.favorites" class="card-item" [routerLink]="favorite.route" routerLinkActive="active">
           <img [src]="imageUrl + favorite?.upload_file" [alt]="favorite?.name">
           <p>{{ favorite?.name }}</p>
         </div>

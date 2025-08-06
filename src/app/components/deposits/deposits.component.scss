@@ -1,6 +1,6 @@
 @import '../../../styles/variables.scss';
 .cards{
-    margin: none;
+    margin: 0;
    padding:3% 5% ;
    background-color: #f8f9fa;
     h1{
@@ -15,6 +15,7 @@
 
 .card-container {
 width: 100%;
+box-sizing: border-box;
     // position: relative;
              margin: 30px 0 0;
          box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
@@ -23,51 +24,60 @@ width: 100%;
          border-radius: 24px;
  display: flex;
  justify-content: space-between;
+ gap: 40px;
  align-items: center;
- @media (max-width: 1024px) {
-     display: block;
-     padding: 29px 50px;
-  }
-     .card-info {
-       width: 60%;
-       padding: 62px 76px;
-       @media (max-width: 1024px) {
-         width: 100%;
-         padding: 0;
-      }
-   
-       .card-title {
-         font-size: 30px;
-         font-weight: bold;
-         margin-bottom: 10px;
-       }
-   
-   .box-description{
-    display: flex;
-    gap:24px ;
-    flex-wrap: wrap;
+ padding: 40px; // Добавим общие отступы
 
-    .detail{
-        width: 22%;
-        p{
-            color: #475569;
-            font-size: 16px;
-        }
-        h3{
-            font-size: 22px;
-            font-weight: 700;
-        }
-    } 
-       @media (max-width: 1024px) {
-      .detail{
-        width: 45%;
+ // --- Адаптация основного контейнера ---
+ @media (max-width: 1024px) {
+   flex-direction: column;
+   padding: 30px;
+   gap: 20px;
+ }
+ .card-info {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; // Единый отступ между заголовком, деталями и кнопкой
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    align-items: center; // Центрируем контент на мобильных
+    text-align: center;
+  }
+
+  .card-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0; // Убираем, так как теперь есть gap
+  }
+
+  .box-description {
+    // --- 2. Исправление сетки с деталями ---
+    // Используем Grid для идеального контроля колонок
+    display: grid;
+    // Создаем 4 равные колонки для десктопа
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; // Отступ между ячейками
+
+    .detail {
+      width: auto; // Убираем процентную ширину, Grid сам все сделает
+      p {
+        color: #475569;
+        font-size: 16px;
+      }
+      h3 {
+        font-size: 22px;
+        font-weight: 700;
       }
     }
- 
-   }
-   
+    @media (max-width: 1024px) {
+      // На мобильных перестраиваемся в 2 колонки
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
    .card-buttons {
-      margin-top: 25px;
+      // margin-top: 25px;
         @media (max-width: 1024px) {
         display: block;
       }
@@ -98,21 +108,29 @@ width: 100%;
          }
        }
      }
-   .card-image{
-  
-    margin: 62px 0 62px 76px;
-border-radius: 22px;
-  
- background-color: #f8f9fa;
-    padding: 2px 102px;
-    @media (max-width: 768px) {
-      width: 80%;
-      margin: 15px auto;
-    }
-    .transfers_img{
+     .card-image {
+      // --- 1. Центрирование изображения ---
+      // Превращаем серый блок в flex-контейнер для центрирования
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      width: 35%; // Задаем ширину для десктопа
+      background-color: #f8f9fa;
+      border-radius: 22px;
+      padding: 40px; // Равномерный отступ для создания "рамки"
       
-    margin: auto;
-     }
-}
+      img.card {
+        // Картинка не должна быть больше своего контейнера
+        max-width: 100%;
+        height: auto;
+      }
+    
+      @media (max-width: 1024px) {
+        width: 100%; // На мобильных занимает всю ширину
+        max-width: 300px; // Но не более 300px, чтобы не была огромной
+        padding: 30px;
+      }
+    }
     }
 }

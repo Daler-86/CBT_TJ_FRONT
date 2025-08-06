@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       default: return '';
     }
   }
-  logoSrc: string = '../../../assets/icons/лого точ.png';
+  logoSrc: string = '../../../assets/icons/logo_tj_big.png';
 
   constructor(
     private elementRef: ElementRef,
@@ -75,16 +75,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private updateLogo(languageId: string): void {
     switch (languageId) {
       case '1': // Тоҷикӣ
-        this.logoSrc = '../../../assets/icons/лого точ.png'; 
+        this.logoSrc = '../../../assets/icons/logo_tj_big.png'; 
         break;
       case '2': // Русский
-        this.logoSrc = './../assets/icons/logoblack.svg';
+        this.logoSrc = '../../../assets/icons/logo_ru_big.png';
         break;
       case '3': // English
-        this.logoSrc = 'assets/icons/logo_en.svg';
+        this.logoSrc = '../../../assets/icons/logo_en_big.png';
         break;
       default:
-        this.logoSrc = '../../../assets/icons/лого точ.png'; // Фолбэк на русский
+        this.logoSrc = '../../../assets/icons/logo_tj_big.png'; // Фолбэк на русский
     }
   }
   selectLanguage(option: { value: string; label: string }) {
