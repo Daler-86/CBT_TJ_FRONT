@@ -8,11 +8,12 @@
     line-height: 30px;
     .box_1{
         display: flex;
-        flex-wrap: wrap;
+     
         justify-content: space-between;
         align-items: center;
+        
         .contact{
-            width: 40%;
+           
             display: flex;
             gap: 60px;
             justify-content: end;
@@ -27,12 +28,36 @@
                         line-height: $line-height-body-large;
                         color: #64748B;
                        }
-            @media (max-width: 1034px) {
-              width: 100%;
+            @media (max-width: 1024px) {
+             
+              h4{
+                font-size: $font-size-body-large;
+              }
+              p{
+                font-size: $font-size-body-medium;
+              }
          
               
             }
+            @media (max-width: 768px) {
+                flex-wrap: wrap;
+                justify-content: center;
+                
+            }
+
+          
         }
+          @media (max-width: 768px) {
+            flex-wrap: wrap;
+                // flex-direction: column;
+              gap: 20px;
+                justify-content: center;
+           a{
+            img{
+                width: 200px;
+            }
+           }
+            }
     }
     .box_2{
         padding: 20px 0 ;
@@ -41,6 +66,7 @@
         border-left: 0px;
         display: flex;
         flex-wrap: wrap;
+        gap: 20px;
         justify-content: space-between;
         align-items: first baseline;
         .navbar{
@@ -49,7 +75,8 @@
             justify-content: space-between;
             gap: 20px;
             @media (max-width: 1024px) {
-               flex-wrap: wrap;
+            //    flex-wrap: wrap;
+               display: contents;
             }
             div{
                 display: flex;

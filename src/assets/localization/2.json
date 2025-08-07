@@ -433,7 +433,11 @@
       "atmLabel": "Банкомат",
       "officeLabel": "Офис",
       "addressLabel": "Адрес"
+    },
+    "sidebar":{
+      "servicesLabel":"Услуги"
     }
+
   },
   "header": {
     "top": {

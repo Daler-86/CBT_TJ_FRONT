@@ -5,7 +5,7 @@
         <h1>{{ 'acquiringPage.hero.title' | translate }}</h1>
         <p class="subtitle">{{ 'acquiringPage.hero.subtitle' | translate }}</p>
         <p class="text">{{ 'acquiringPage.hero.text' | translate }}</p>
-        <button class="cta-button">{{ 'acquiringPage.hero.button' | translate }}</button>
+        <button class="cta-button" [scrollTo]="'application-form'">{{ 'acquiringPage.hero.button' | translate }}</button>
       </div>
       <div class="hero-image">
         <img src="../../../assets/icons/img_1.png" alt="Эквайринг">
@@ -76,7 +76,7 @@
               <p>{{ ('acquiringPage.smallBusiness.conditions.commissionText' | translate) }}</p>
               <h3>{{ ('acquiringPage.smallBusiness.conditions.cashback' | translate) }}</h3>
               <p>{{ ('acquiringPage.smallBusiness.conditions.cashbackText' | translate) }}</p>
-              <button class="cta-button">{{ 'acquiringPage.hero.button' | translate }}</button>
+              <button  [scrollTo]="'application-form'" class="cta-button">{{ 'acquiringPage.hero.button' | translate }}</button>
             </div>
             <div class="features-panel">
               <h4>{{ tab.contentTitle }}</h4>
@@ -105,6 +105,7 @@
     </section>
 
     <app-simple-application-form 
+    id="application-form"
   [apiUrl]="acquiringApiUrl"
   [titleKey]="'forms.titles.acquiring'">
 </app-simple-application-form>

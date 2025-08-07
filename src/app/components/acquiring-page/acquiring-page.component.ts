@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SimpleApplicationFormComponent } from "../simple-application-form/simple-application-form.component";
-
+import { ScrollToDirective } from '../../directives/scroll-to.directive';
 @Component({
   selector: 'app-acquiring-page',
   standalone: true,
-  imports: [CommonModule, TranslateModule, SimpleApplicationFormComponent],
+  imports: [CommonModule, TranslateModule, SimpleApplicationFormComponent, ScrollToDirective],
   templateUrl: './acquiring-page.component.html',
   styleUrl: './acquiring-page.component.scss'
 })

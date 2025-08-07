@@ -62,7 +62,12 @@
         border: 1px solid #CBD5E1;
         background-color: #F1F5F9;
         border-radius: 6px;
-
+        @media (max-width: 1024px) {
+          width: 50%;
+          .dropdown-selected {
+            padding: 15px;
+          }
+        }
         .dropdown-selected {
           text-align: start;
           border-radius: 4px;
@@ -143,14 +148,18 @@
 .map-layout-container {
   position: relative;
   display: flex;
-  height: 650px; // Задайте высоту для всего блока карты
+  height: 70vh; // Задайте высоту для всего блока карты
   width: 100%;
   border-radius: 20px;
   overflow: hidden; // Очень важно для скругления углов и скрытия панели
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   margin-top: 30px;
-  background-color: #f8f9fa; // Фоновый цвет, пока карта грузится
+  background-color: #f8f9fa;
+  @media (max-width: 1024px) {
+height: 50vh;
 }
+}
+
 
 // 2. Стили боковой панели
 .info-sidebar {
@@ -210,10 +219,23 @@
 }
 
 .info-sidebar__header {
-  font-size: 20px;
+display: flex;
+// justify-content: space-between;
+align-items:normal;
+margin: 10px 0;
+gap: 4px;
+img{
+  width: 32px;
+  height: 32px;
+}
+  h1{
+    width: 80%;
+  font-size: 18px;
+  line-height:24px;
   font-weight: 600;
   margin-bottom: 15px;
-  padding-right: 30px; // Чтобы текст не залезал под кнопку "Х"
+  
+   } 
 }
 
 .info-sidebar__status {
@@ -234,7 +256,7 @@
 }
 
 .info-sidebar__section {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .info-sidebar__label {
@@ -246,6 +268,22 @@
 .info-sidebar__value {
   font-size: 16px;
   color: #333;
+}
+.info-sidebar__service-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-size: 15px;
+    color: #333;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
 
 // --- Стили для FAQ (без изменений) ---

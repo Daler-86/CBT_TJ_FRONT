@@ -129,19 +129,39 @@
       <ng-container *ngIf="selectedPoint">
         <button class="info-sidebar__close-btn" (click)="closeSidebar()">×</button>
         
-        <div class="info-sidebar__header">{{ selectedPoint.properties.title }}</div>
+        <div class="info-sidebar__header">    
+              <img [src]="selectedPoint.properties.iconSrc" alt="">
+         <h1> {{ selectedPoint.properties.title }}</h1>
+
+        </div>
         
         <div class="info-sidebar__body">
-          <div class="info-sidebar__status" [ngClass]="selectedPoint.properties.statusClass">
-            {{ selectedPoint.properties.workHours }}
-          </div>
+       
           <div class="info-sidebar__section">
             <div class="info-sidebar__label">{{"insurancePage.contactInfo.addressTitle"| translate}}</div>
             <div class="info-sidebar__value">{{ selectedPoint.properties.address }}</div>
           </div>
-          <div *ngIf="selectedPoint.properties.landmark" class="info-sidebar__section">
-            <div class="info-sidebar__label">{{"mapPage.landmark"|translate}}</div>
-            <div class="info-sidebar__value">{{ selectedPoint.properties.landmark }}</div>
+       
+
+          <div *ngIf="selectedPoint.properties.items.length > 0" class="info-sidebar__section">
+            <!-- Заголовок для этого блока, если нужен -->
+            <!-- <div class="info-sidebar__label">Дополнительная информация</div> -->
+            <div *ngFor="let item of selectedPoint.properties.items" class="info-sidebar__item">
+              
+              <div class="info-sidebar__label">{{ item.title }}</div>
+              <div class="info-sidebar__value"> {{ item.description }}</div>
+             
+            </div>
+          </div>
+    
+          <!-- === НОВЫЙ БЛОК ДЛЯ 'SERVICES' === -->
+          <div *ngIf="selectedPoint.properties.services.length > 0" class="info-sidebar__section">
+            <div class="info-sidebar__label">{{ 'mapPage.sidebar.servicesLabel' | translate }}</div>
+            <ul class="info-sidebar__service-list">
+              <li *ngFor="let service of selectedPoint.properties.services">
+                {{ service.name }} <!-- Предполагаем, что у сервиса есть поле `name` -->
+              </li>
+            </ul>
           </div>
         </div>
       </ng-container>

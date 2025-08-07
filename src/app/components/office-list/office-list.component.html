@@ -78,6 +78,7 @@
           <p>{{ item.address }}</p>
         </div>
       </div>
+     
       <!-- Дополнительная информация, если есть -->
       <div class="item" *ngIf="item.items && item.items.length > 0">
         <div *ngFor="let detail of item.items">
@@ -85,9 +86,9 @@
           <p>{{ detail.description }}</p>
         </div>
       </div>
-    </div>
+    
   </div>
-
+</div>
   <!-- Сообщение, если данных нет -->
   <ng-template #noData>
     <div class="no-data-container">

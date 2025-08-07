@@ -10,6 +10,7 @@ export interface IMapPoint {
   id: number | string;
   geometry: { type: 'Point'; coordinates: number[] };
   properties: any;
+  
 }
 
 @Component({

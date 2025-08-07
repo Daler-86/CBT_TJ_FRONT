@@ -10,6 +10,7 @@ export interface CardContent {
     title: string;
     description: string;
     upload_icon_file_id: string;
+    link:string;
     upload_tariff_file_id:string;
     sort_id:number;
   }
@@ -48,6 +49,7 @@ export interface CardContent {
     description?: string;
     upload_icon_file_id?: string;
     upload_tariff_file_id?: string;
+    link?:string;
     sort_id?: number;
     conditions?: cond[];
     documents?: doc[];

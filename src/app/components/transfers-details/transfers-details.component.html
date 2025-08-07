@@ -49,7 +49,7 @@
               <div class="details">
                   <h3>{{ 'transfers.details.moreInfoOnSite' | translate }}</h3>
                   <!-- Динамический контент, перевод не требуется -->
-                  <p>{{transferData.title}}</p>
+               <a [href]="transferData.link"><p>{{transferData.title}}</p></a>   
               </div>
           </div>
       </div>

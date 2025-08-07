@@ -5,13 +5,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { TransfersService } from '../../api/transfer.service';
 import { MenuService } from '../../api/menu.service';
-import { TransferDetail, transferDetail } from '../../models/transfers.model';
+import { Transfer, TransferDetail, transferDetail } from '../../models/transfers.model';
 import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-transfers-details',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink, RouterOutlet],
+  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink],
   templateUrl: './transfers-details.component.html',
   styleUrl: './transfers-details.component.scss'
 })

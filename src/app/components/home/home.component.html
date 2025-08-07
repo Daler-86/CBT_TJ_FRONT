@@ -36,7 +36,7 @@
         <button [routerLink]="'/map'">{{ 'buttons.viewOnMap' | translate }}</button>
       </div>
       <div class="d">
-        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/map">
+        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/transfers" >
           <div class="details">
             <h3>{{ 'common.transfers' | translate }}</h3>
             <p>{{ 'common.tagline' | translate }}</p>
@@ -50,7 +50,7 @@
           </div>
           <img src="../../../assets/icons/im2.svg" [alt]="'alt.vacanciesIllustration' | translate">
         </div>
-        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/contact">
+        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/contact" [queryParams]="{ scrollTo: 'application-form' }">
           <div class="details">
             <h3>{{ 'home.support.title' | translate }}</h3>
             <p>{{ 'home.support.subtitle' | translate }}</p>

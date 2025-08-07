@@ -136,7 +136,9 @@ export class MapComponent implements OnInit, OnDestroy {
       const coords = this.getCoordinates(item.latitude, item.longitude);
       if (!coords) return null;
 
+      
       const isWorking = item.is_24_time === true;
+      const services=item.is_24_time
       const workHoursText = isWorking ? 'Круглосуточно' : 'Пн-Пт: 08:00-17:00, Сб: 08:00-12:00'; // Задаем реальный график
       const statusClass = isWorking ? 'status--open' : 'status--closed'; // Здесь нужна логика проверки текущего времени
       
@@ -148,12 +150,12 @@ export class MapComponent implements OnInit, OnDestroy {
           type: type,
           title: item.name,
           address: item.address,
-          landmark: (item as any).landmark || '',
           workHours: workHoursText,
           statusClass: statusClass,
           iconSrc: iconPaths[type],
           // Добавим поле для боковой панели
-          services: (item as any).services || [] // Предполагаем, что с бэка приходят услуги
+          items: (item as any).items || [],
+           services: (item as any).services || [] // Предполагаем, что с бэка приходят услуги
         }
       };
     }).filter(Boolean) as IMapPoint[];

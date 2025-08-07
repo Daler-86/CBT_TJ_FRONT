@@ -41,7 +41,7 @@
           [zoom]="16"
         ></app-yandex-map>
       </div>
-      <div class="form-container">
+      <div class="form-container" id='application-form'>
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <h2>{{ 'forms.contact.title' | translate }}</h2>
           <p>{{ 'forms.contact.subtitle' | translate }}</p>

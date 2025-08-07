@@ -13,8 +13,8 @@ export class SplitByDashPipe implements PipeTransform {
     }
 
     // "Разрезаем" строку по дефису на массив
-    const parts = value.split(' — ');
-debugger
+    const parts = value.split('—');
+
     // Убираем пустые элементы и возвращаем готовый массив
     return parts.filter(part => part.trim() !== '');
   }

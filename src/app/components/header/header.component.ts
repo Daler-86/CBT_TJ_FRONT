@@ -135,5 +135,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   toggleMenu() {
     this.menuActive = !this.menuActive;
+    // --- ДОБАВЛЯЕМ ЭТУ ЛОГИКУ ---
+    document.body.style.overflow = this.menuActive ? 'hidden' : 'auto';
   }
 }

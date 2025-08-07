@@ -13,6 +13,9 @@ import { Subject } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { Subscription } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
+import { ScrollToDirective } from '../../directives/scroll-to.directive';
+import { ScrollService } from '../../services/scroll.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -38,9 +41,10 @@ export class ContactComponent implements OnInit {
   constructor(private contactService: ContactService,
     private fb: FormBuilder,
     private notificationService: ModalService,
-   
+    private scrollService: ScrollService,
     private translateService: TranslateService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private route: ActivatedRoute,
     ) {
 
       this.contactForm = this.fb.group({
@@ -68,6 +72,13 @@ export class ContactComponent implements OnInit {
 
 
     this.createHeadOfficeMapPoint();
+    this.route.queryParams.subscribe(params => {
+      const anchor = params['scrollTo']; // Ищем параметр 'scrollTo' в URL
+      if (anchor) {
+        // Если параметр есть, вызываем наш сервис
+        this.scrollService.scrollToAnchor(anchor);
+      }
+    });
   }
   ngOnDestroy(): void {
     if (this.langChangeSubscription) {

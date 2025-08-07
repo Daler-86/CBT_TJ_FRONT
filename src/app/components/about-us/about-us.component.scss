@@ -14,7 +14,7 @@
   background-position-x: right;
   background-repeat: no-repeat;
    border-radius: 42px;
-   @media (max-width: 1034px) {
+   @media (max-width: 1024px) {
   padding: 41px 26px;
   }
     h1 {
@@ -85,6 +85,9 @@ color: #fff;
   }
   
 .box1{
+  @media (max-width: 1024px) {
+margin-bottom: 30px;
+  }
   h1{
     font-weight: 700;
     font-size: 40px;

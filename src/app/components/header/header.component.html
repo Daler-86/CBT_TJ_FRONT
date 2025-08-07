@@ -1,5 +1,6 @@
 <nav>
-  <div class="adress">
+  <!-- Блок 1: Верхняя панель с контактами и языком (только для десктопа) -->
+  <div class="adress desktop-only">
     <div class="cont">
     <div class="contact">
       <img src="../../../assets/icons/phonegrey.svg" [alt]="'alt.phoneIcon' | translate">
@@ -15,7 +16,6 @@
     <div class="custom-dropdown"> 
       <div class="dropdown-selected contact" (click)="toggleDropdown1($event)">
         <img src="../../../assets/icons/Global.svg" [alt]="'alt.globalIcon' | translate">   
-        <!-- Вызываем функцию из TS для отображения короткого названия языка -->
         <p class="p" id="body-medium">{{ getDisplayLanguage() }}</p> 
         <img src="../../../assets/icons/arrow-down.png" [alt]="'alt.arrowDown' | translate">
       </div>
@@ -28,42 +28,99 @@
     </div>
   </div>
       
+  <!-- Блок 2: Основная панель навигации -->
   <div class="men">
-    <a routerLink="/" href="">
+    <!-- Логотип -->
+    <a routerLink="/" href="" class="logo-link">
       <div class="logo">
         <img width="200px" [src]="logoSrc" [alt]="'alt.mainLogo' | translate">
       </div>
     </a>
      
-    <ul class="menu" [class.active]="menuActive">
+    <!-- Десктопное меню -->
+    <ul class="menu desktop-only">
       <li *ngFor="let menu of menus; let i = index">
-        <!-- Меню с подпунктами -->
         <div *ngIf="menu.items && menu.items.length > 0" class="custom-dropdown" (mouseenter)="toggleDropdown(i, $event)" (mouseleave)="closeDropdown(i)">
           <div class="dropdown-selected contact">
             <a id="body-medium">{{ menu.name | translate }}</a>
           </div> 
           <div class="dropdown-options" *ngIf="dropdownOpenMap[i]">
-            <!-- Пайп translate для подпунктов -->
-            <div class="dropdown-option" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let item of menu.items" [routerLink]="item.route" (click)="selectOption(item, i, $event, menu)">
+            <div class="dropdown-option" *ngFor="let item of menu.items" [routerLink]="item.route" (click)="selectOption(item, i, $event, menu)">
               <p id="body-medium">{{ item.name | translate }}</p>
             </div>
           </div> 
         </div>
-      
-        <!-- Меню без подпунктов -->
-        <a class="a" *ngIf="menu.items.length === 0" [routerLink]="menu.route">{{ menu.name | translate }}</a>
+        <a class="a" *ngIf="!menu.items || menu.items.length === 0" [routerLink]="menu.route">{{ menu.name | translate }}</a>
       </li>
     </ul>
 
-    <div class="burger" (click)="toggleMenu()" [title]="'common.toggleMenu' | translate">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <path d="M3 6h18c.552 0 1-.448 1-1s-.448-1-1-1H3C2.448 4 2 4.448 2 5s.448 1 1 1zm0 5h18c.552 0 1-.448 1-1s-.448-1-1-1H3c-.552 0-1 .448-1 1s.448 1 1 1zm0 5h18c.552 0 1-.448 1-1s-.448-1-1-1H3c-.552 0-1 .448-1 1s.448 1 1 1z"/>
-      </svg>
+    <!-- Бургер-иконка (только для мобильных) -->
+    <div class="burger mobile-only" (click)="toggleMenu()" [class.active]="menuActive">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-
-    <!-- <button class="btnSignIn">
-      <img src="../../../assets/icons/login.svg" [alt]="'alt.loginIcon' | translate">
-      <p id="body-medium">{{ 'header.nav.loginButton' | translate }}</p>
-    </button> -->
   </div>
 </nav>
+
+<!-- Мобильный оверлей (полностью отделен от основной навигации) -->
+<div class="mobile-overlay" [class.active]="menuActive">
+  <div class="mobile-menu-header">
+    <a routerLink="/" (click)="toggleMenu()">
+      <img width="200px" [src]="logoSrc" [alt]="'alt.mainLogo' | translate">
+    </a>
+  </div>
+  <div class="adress">
+    <div class="cont">
+  
+    <a href="" routerLink="map" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> 
+      <div class="contact"> 
+        <img src="../../../assets/icons/Map Point.svg" [alt]="'alt.mapPointIcon' | translate">
+        <p class="p" id="body-medium">{{ 'header.top.officesAndAtms' | translate }}</p> 
+      </div>
+    </a>
+  </div>
+    <div class="custom-dropdown"> 
+      <div class="dropdown-selected contact" (click)="toggleDropdown1($event)">
+        <img src="../../../assets/icons/Global.svg" [alt]="'alt.globalIcon' | translate">   
+        <p class="p" id="body-medium">{{ getDisplayLanguage() }}</p> 
+        <img src="../../../assets/icons/arrow-down.png" [alt]="'alt.arrowDown' | translate">
+      </div>
+      <div class="dropdown-options" *ngIf="dropdownOpen">
+        <div class="dropdown-option" *ngFor="let option of languageOptions" (click)="selectLanguage(option)">
+          <p id="body-medium">{{ option.label }}</p>
+          <img *ngIf="option.value === selectedLanguage" src="../../../assets/icons/tick-circle.svg" [alt]="'alt.tickIcon' | translate">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="mobile-menu-list">
+    <li *ngFor="let menu of menus; let i = index">
+      <div class="menu-item" (click)="toggleDropdown(i, $event)" [class.open]="dropdownOpenMap[i]">
+        <a>{{ menu.name | translate }}</a>
+        <img *ngIf="menu.items && menu.items.length > 0" src="../../../assets/icons/arrow-down.png" alt="arrow" class="submenu-arrow">
+      </div>
+      <div class="submenu" *ngIf="menu.items && menu.items.length > 0 && dropdownOpenMap[i]">
+        <div class="submenu-option" *ngFor="let item of menu.items" [routerLink]="item.route" (click)="selectOption(item, i, $event, menu)">
+          <p>{{ item.name | translate }}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="mobile-menu-footer">
+    <div class="contact">
+      <img src="../../../assets/icons/phonegrey.svg" [alt]="'alt.phoneIcon' | translate">
+      <p class="p" id="body-medium">+(992) 44 630 8888</p>
+    </div>
+    <!-- <div class="footer-lang-switcher">
+      <span>Выберите язык</span>
+      <div class="lang-buttons">
+        <button [class.active]="selectedLanguage === '1'" (click)="selectLanguage({value: '1', label: 'Тоҷикӣ'})">TJ</button>
+        <button [class.active]="selectedLanguage === '2'" (click)="selectLanguage({value: '2', label: 'Русский'})">RU</button>
+        <button [class.active]="selectedLanguage === '3'" (click)="selectLanguage({value: '3', 'label': 'English'})">EN</button>
+      </div>
+    </div> -->
+  </div>
+</div>
