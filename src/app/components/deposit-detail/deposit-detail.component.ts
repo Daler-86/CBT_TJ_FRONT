@@ -1,6 +1,6 @@
 // src/app/pages/deposit-detail/deposit-detail.component.ts
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -17,6 +17,7 @@ import { DepositCalculatorComponent } from '../deposit-calculate/deposit-calcula
 import { DepositsService } from '../../api/deposit.service';
 import { ModalService } from '../../services/modal.service';
 import { ScrollToDirective } from '../../directives/scroll-to.directive';
+import { PageTitleService } from '../../services/page-title.service';
 
 // Импортируем компонент калькулятора, чтобы страница знала о нем
 // import { DepositCalculatorComponent } from '../../components/deposit-calculator/deposit-calculator.component';
@@ -44,7 +45,7 @@ export class DepositDetailComponent implements OnInit {
     client_name: '',
     phone: '',
   };
-
+  private pageTitleService = inject(PageTitleService);
   constructor(
     private route: ActivatedRoute,
     private depositService: DepositsService,
@@ -70,6 +71,10 @@ export class DepositDetailComponent implements OnInit {
         // Устанавливаем первый таб по умолчанию
         if (this.depositData?.currency) {
           this.selectedTab = this.depositData.currency[0].code;
+        }
+        if (this.depositData && this.depositData.title) {
+          // ...передаем уже готовое, переведенное название в сервис заголовков.
+          this.pageTitleService.setCustomTitle(this.depositData.title);
         }
       },
       error: (error) => console.error('Ошибка при запросе данных', error)

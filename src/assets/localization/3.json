@@ -817,9 +817,9 @@
 
   ,"acquiringPage": {
     "hero": {
-      "title": "ACQUIRING",
+      "title": "Online-acquiring",
       "subtitle": "FOR YOUR BUSINESS",
-      "text": "EASY AND SIMPLE!",
+      "text": "Accept online payments with Favri — convenient for you, simple for your customers.",
       "button": "Submit Application"
     },
     "benefitsTitle": "Benefits of Acquiring from Commerbank of Tajikistan",
@@ -922,6 +922,49 @@
         { "title": "TIN", "description": "" }
       ]
     }
+  },
+  "titles": {
+    "siteName": "JSC Commercebank of Tajikistan",
+    "default": "Home",
+    "cards": "Commerce Bank cards",
+    "credits": "Loan programs and terms",
+    "transfers": "Money transfers and terms",
+    "deposits": "Deposits",
+    "vacancies": "Vacancies",
+    "vacancyList": "List of vacancies",
+    "tenders": "Tenders",
+    "rko": "Settlement and cash services for business",
+    "news": "News",
+    "map": "Branches and ATMs locations",
+    "aboutUs": "Bank history, mission, and values",
+    "report": "Financial and annual reports",
+    "bankDetail": "Bank details",
+    "merchant": "Information for merchants",
+    "contact": "Contact the bank",
+    "insurance": "Insurance programs",
+    "salaryProject": "Payroll services for corporate clients",
+    "acquiring": "Acquiring and card payment acceptance"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "cards": "Cards",
+    "credits": "Credits",
+    "transfers": "Transfers",
+    "deposits": "Deposits",
+    "vacancies": "Vacancies",
+    "vacancyList": "List of vacancies",
+    "tenders": "Tenders",
+    "rko": "Cash services",
+    "news": "News",
+    "map": "Branches and ATMs",
+    "aboutUs": "About us",
+    "report": "Reports",
+    "bankDetail": "Bank details",
+    "merchant": "Internet acquiring",
+    "contact": "Contacts",
+    "insurance": "Insurance",
+    "salaryProject": "Salary project",
+    "acquiring": "Acquiring"
   }
   }
 

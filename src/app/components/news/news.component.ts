@@ -31,7 +31,7 @@ export class NewsComponent {
     return item.id;
   }
   navigateToCardDetailsAndForm(cardId: number): void {
-    this.router.navigate(['/news-detail', cardId], { queryParams: { scrollToForm: true } });
+    this.router.navigate(['/news', cardId], { queryParams: { scrollToForm: true } });
   }
 
   news:new_news[]=[]

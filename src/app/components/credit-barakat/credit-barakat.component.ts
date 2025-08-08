@@ -19,6 +19,7 @@ import { ModalService } from '../../services/modal.service';
 import { ScrollService } from '../../services/scroll.service';
 import { CarLoanCalculateComponent } from "../car-loan-calculate/car-loan-calculate.component";
 import { Subscription } from 'rxjs';
+import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-credit-barakat',
   standalone: true,
@@ -55,7 +56,7 @@ model: any = {
   }
 
 
-
+  private pageTitleService = inject(PageTitleService);
 
 
 
@@ -202,6 +203,10 @@ this.route.queryParams.subscribe(params => {
       (details) => {
         this.creditData=details.data.credit_data
         this.calculatorDataForChild = details.data.credit_data.credit_calculator_data;
+        if (this.creditData && this.creditData.title) {
+          // ...передаем уже готовое, переведенное название в сервис заголовков.
+          this.pageTitleService.setCustomTitle(this.creditData.title);
+        }
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);

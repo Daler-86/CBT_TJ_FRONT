@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, ElementRef } from '@angular/core';
+import { Component,inject, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
@@ -7,6 +7,7 @@ import { TransfersService } from '../../api/transfer.service';
 import { MenuService } from '../../api/menu.service';
 import { Transfer, TransferDetail, transferDetail } from '../../models/transfers.model';
 import {environment} from "../../../environments/environment";
+import { PageTitleService } from '../../services/page-title.service';
 
 @Component({
   selector: 'app-transfers-details',
@@ -27,7 +28,7 @@ export class TransfersDetailsComponent {
   cardId: number=0;
   imageUrl: string = environment.IMAGE_URL;
   transferData:transferDetail={}
-
+  private pageTitleService = inject(PageTitleService);
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -45,6 +46,10 @@ export class TransfersDetailsComponent {
       (response) => {
 
         this.transferData = response.data.transfer_data;
+        if (this.transferData && this.transferData.title) {
+          // ...передаем уже готовое, переведенное название в сервис заголовков.
+          this.pageTitleService.setCustomTitle(this.transferData.title);
+        }
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);

@@ -1,4 +1,4 @@
-import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit , ViewChild, ElementRef, inject} from '@angular/core';
 
 import { NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ModalService } from '../../services/modal.service';
 
 import { ScrollToDirective } from '../../directives/scroll-to.directive';
+import { PageTitleService } from '../../services/page-title.service';
 
 @Component({
   selector: 'app-vacancy-detail',
@@ -38,7 +39,8 @@ export class VacancyDetailComponent implements OnInit {
   isSubmitted: boolean = false;
   isError:boolean=false
   vacancyData:any={}
-
+  
+  private pageTitleService = inject(PageTitleService);
   constructor(private fb: FormBuilder,private vacanciesService: VacanciesService,    private route: ActivatedRoute, private notificationService:ModalService) {
     this.applyForm = this.fb.group({
       lastName: ['', Validators.required],
@@ -100,6 +102,10 @@ export class VacancyDetailComponent implements OnInit {
     this.vacanciesService.getVacancyData(this.id).subscribe(
       (details) => {
         this.vacancyData=details.data.vacancy_data
+        if (this.vacancyData && this.vacancyData.name) {
+          // ...передаем уже готовое, переведенное название в сервис заголовков.
+          this.pageTitleService.setCustomTitle(this.vacancyData.name);
+        }
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);

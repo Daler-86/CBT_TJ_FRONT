@@ -1,4 +1,4 @@
-import { Component ,HostListener, ElementRef, OnInit, ViewChild, OnDestroy,} from '@angular/core';
+import { Component ,HostListener, ElementRef, OnInit, ViewChild, OnDestroy, inject,} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
@@ -14,6 +14,7 @@ import { ModalService } from '../../services/modal.service';
 import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { ScrollService } from '../../services/scroll.service';
 import { TranslateService } from '@ngx-translate/core'; 
+import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-card-details',
   standalone: true,
@@ -38,7 +39,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
   selectedFaqIndex: number | null = null;
   dropdownOpen: boolean = false;
   officeName: string = ''; 
-
+  private pageTitleService = inject(PageTitleService);
   // Реактивная форма
   public applicationForm: FormGroup;
   @ViewChild('formElement') formElementRef!: ElementRef;
@@ -116,6 +117,9 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
     this.cardsService.getCardData(id).subscribe(
       (response) => {
         this.cardData = response.data.card_data;
+        if (this.cardData && this.cardData.title) {
+          this.pageTitleService.setCustomTitle(this.cardData.title);
+        }
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);

@@ -1,112 +1,77 @@
 <div class="page-container">
-    <!-- Блок 1: Главный баннер (Hero) -->
-    <section class="hero-section">
-      <div class="hero-content">
-        <h1>{{ 'acquiringPage.hero.title' | translate }}</h1>
-        <p class="subtitle">{{ 'acquiringPage.hero.subtitle' | translate }}</p>
-        <p class="text">{{ 'acquiringPage.hero.text' | translate }}</p>
-        <button class="cta-button" [scrollTo]="'application-form'">{{ 'acquiringPage.hero.button' | translate }}</button>
-      </div>
-      <div class="hero-image">
-        <img src="../../../assets/icons/img_1.png" alt="Эквайринг">
-      </div>
-    </section>
   
-    <!-- Блок 2: Плюсы эквайринга -->
-    <section class="benefits-section">
-      <h2 class="section-title">{{ 'acquiringPage.benefitsTitle' | translate }}</h2>
-      <p class="section-subtitle">{{ 'acquiringPage.paymentMethods.title' | translate }}</p>
-      <div class="benefits-grid">
-        <div class="benefit-card">
-          <!-- <img src="assets/icons/qr-code.svg" alt="QR" class="icon"> -->
-          <h3>{{ 'acquiringPage.paymentMethods.qr.title' | translate }}</h3>
-          <p>{{ 'acquiringPage.paymentMethods.qr.text' | translate }}</p>
-        </div>
-        <div class="benefit-card">
-          <!-- <img src="assets/icons/korti-milli.svg" alt="Korti Milli" class="icon"> -->
-          <h3>{{ 'acquiringPage.paymentMethods.kortiMilli.title' | translate }}</h3>
-          <p>{{ 'acquiringPage.paymentMethods.kortiMilli.text' | translate }}</p>
-        </div>
+  <!-- Блок 1: Главный баннер (оставляем как есть, он красивый) -->
+  <div class="card-container">
+    <div class="card-info">
+      <h2 class="card-title">{{ 'acquiringPage.hero.title' | translate }}</h2>
+      <p class="card-description">{{ 'acquiringPage.hero.text' | translate }}</p>
+      <div class="card-buttons">
+        <button class="btn-primary" [scrollTo]="'application-form'">{{ 'acquiringPage.hero.button' | translate }}</button>
       </div>
-    </section>
-  
-    <!-- Блок 3: Как банк помогает -->
-    <section class="help-section">
-      <h2 class="section-title">{{ 'acquiringPage.bankHelp.title' | translate }}</h2>
-      <div class="help-grid">
-        <div class="help-card" *ngFor="let card of 'acquiringPage.bankHelp.cards' | translate">
-          <!-- <img src="assets/icons/..." alt="" class="icon"> -->
-          <h3>{{ card.title }}</h3>
-          <p>{{ card.text }}</p>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Блок 4: АМА ПОС -->
-    <section class="ama-pos-section">
-      <div class="ama-pos-content">
-        <p class="subtitle">{{ 'acquiringPage.amaPos.subtitle' | translate }}</p>
-        <h2>{{ 'acquiringPage.amaPos.title' | translate }}</h2>
-        <p class="text">{{ 'acquiringPage.amaPos.text' | translate }}</p>
-        <p class="slogan">{{ 'acquiringPage.amaPos.slogan' | translate }}</p>
-      </div>
-      <div class="ama-pos-image">
-        <img src="../../../assets/icons/ama_pos.png" alt="АМА ПОС">
-      </div>
-    </section>
-  
-    <!-- Блок 5: Эквайринг для малого бизнеса (с табами) -->
-    <section class="tabs-section">
-      <h2 class="section-title">{{ 'acquiringPage.smallBusiness.title' | translate }}</h2>
-      <div class="tabs-nav">
-        <button *ngFor="let tab of 'acquiringPage.smallBusiness.tabs' | translate"
-                (click)="selectTab(tab.id)"
-                [class.active]="activeTab === tab.id">
-          {{ tab.title }}
-        </button>
-      </div>
-  
-      <div class="tab-content-wrapper">
-        <ng-container *ngFor="let tab of 'acquiringPage.smallBusiness.tabs' | translate">
-          <div class="tab-content" *ngIf="activeTab === tab.id">
-            <div class="conditions-panel">
-              <h3>{{ ('acquiringPage.smallBusiness.conditions.term' | translate) }}</h3>
-              <p>{{ ('acquiringPage.smallBusiness.conditions.termText' | translate) }}</p>
-              <h3>{{ ('acquiringPage.smallBusiness.conditions.commission' | translate) }}</h3>
-              <p>{{ ('acquiringPage.smallBusiness.conditions.commissionText' | translate) }}</p>
-              <h3>{{ ('acquiringPage.smallBusiness.conditions.cashback' | translate) }}</h3>
-              <p>{{ ('acquiringPage.smallBusiness.conditions.cashbackText' | translate) }}</p>
-              <button  [scrollTo]="'application-form'" class="cta-button">{{ 'acquiringPage.hero.button' | translate }}</button>
-            </div>
-            <div class="features-panel">
-              <h4>{{ tab.contentTitle }}</h4>
-              <p>{{ tab.description }}</p>
-              <ul>
-                <li *ngFor="let feature of tab.features">{{ feature }}</li>
-              </ul>
-            </div>
-          </div>
-        </ng-container>
-      </div>
-    </section>
-    
-    <!-- Блок 6: Документы -->
-    <section class="documents-section">
-      <div class="documents-header">
-        <h2>{{ 'acquiringPage.documents.title' | translate }}</h2>
-      </div>
-      <div class="documents-grid">
-        <div class="document-card" *ngFor="let doc of 'acquiringPage.documents.items' | translate">
-          <!-- <img src="assets/icons/document.svg" alt="" class="icon"> -->
-          <h4>{{ doc.title }}</h4>
-          <p *ngIf="doc.description">{{ doc.description }}</p>
-        </div>
-      </div>
-    </section>
-
-    <app-simple-application-form 
-    id="application-form"
-  [apiUrl]="acquiringApiUrl"
-  [titleKey]="'forms.titles.acquiring'">
-</app-simple-application-form>
+    </div>
+    <div class="card-image">
+      <img class="card" src="../../../assets/icons/эквайринг.png" [alt]="'acquiringPage.hero.title' | translate"/>
+    </div>
   </div>
+
+  <!-- Блок 2: Плюсы эквайринга (упрощаем до списка) -->
+  <div class="info-section">
+    <h2 class="section-title">{{ 'acquiringPage.benefitsTitle' | translate }}</h2>
+    <div class="section-content">
+      <ul class="styled-list">
+        <!-- Объединяем плюсы в один список -->
+        <li>{{ 'acquiringPage.paymentMethods.qr.text' | translate }}</li>
+        <li>{{ 'acquiringPage.paymentMethods.kortiMilli.text' | translate }}</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Блок 3: Как банк помогает (упрощаем до списка) -->
+  <div class="info-section">
+    <h2 class="section-title">{{ 'acquiringPage.bankHelp.title' | translate }}</h2>
+    <div class="section-content">
+      <ul class="styled-list">
+        <!-- Используем *ngFor, как и раньше, но со стилем .styled-list -->
+        <li *ngFor="let card of 'acquiringPage.bankHelp.cards' | translate">
+          <strong>{{ card.title }}:</strong> {{ card.text }}
+        </li>
+      </ul>
+    </div>
+  </div>
+    
+  <!-- Блок 4: Эквайринг для малого бизнеса (упрощаем, убираем табы) -->
+  <div class="info-section">
+    <h2 class="section-title">{{ 'acquiringPage.smallBusiness.title' | translate }}</h2>
+    <div class="section-content">
+      <!-- Просто выводим контент первого таба как основной -->
+      <p>{{ ('acquiringPage.smallBusiness.tabs' | translate)[0].description }}</p>
+      <ul class="styled-list">
+        <li *ngFor="let feature of ('acquiringPage.smallBusiness.tabs' | translate)[0].features">{{ feature }}</li>
+      </ul>
+      <!-- Можно добавить и условия -->
+      <p class="conditions-summary">
+        {{ 'acquiringPage.smallBusiness.conditions.term' | translate }}: {{ 'acquiringPage.smallBusiness.conditions.termText' | translate }}.
+        {{ 'acquiringPage.smallBusiness.conditions.commission' | translate }}: {{ 'acquiringPage.smallBusiness.conditions.commissionText' | translate }}.
+      </p>
+    </div>
+  </div>
+    
+  <!-- Блок 5: Документы (упрощаем до списка) -->
+  <div class="info-section">
+    <h2 class="section-title">{{ 'acquiringPage.documents.title' | translate }}</h2>
+    <div class="section-content">
+      <ul class="styled-list">
+        <li *ngFor="let doc of 'acquiringPage.documents.items' | translate">
+          {{ doc.title }} <span *ngIf="doc.description">({{ doc.description }})</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Блок 6: Форма заявки (остается без изменений) -->
+  <app-simple-application-form 
+    id="application-form"
+    [apiUrl]="acquiringApiUrl"
+    [titleKey]="'forms.titles.acquiring'">
+  </app-simple-application-form>
+</div>

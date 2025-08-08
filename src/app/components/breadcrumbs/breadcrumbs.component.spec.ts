@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OfficeListComponent } from './office-list.component';
+import { BreadcrumbsComponent } from './breadcrumbs.component';
 
-describe('OfficeListComponent', () => {
-  let component: OfficeListComponent;
-  let fixture: ComponentFixture<OfficeListComponent>;
+describe('BreadcrumbsComponent', () => {
+  let component: BreadcrumbsComponent;
+  let fixture: ComponentFixture<BreadcrumbsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OfficeListComponent]
+      imports: [BreadcrumbsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(OfficeListComponent);
+    fixture = TestBed.createComponent(BreadcrumbsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

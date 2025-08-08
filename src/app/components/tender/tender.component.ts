@@ -148,7 +148,7 @@ tenders:tender[]=[]
 }
 
 navigateToCardDetailsAndForm(cardId: number): void {
-  this.router.navigate(['/tender-detail', cardId], { queryParams: { scrollToForm: true } });
+  this.router.navigate(['/tender', cardId], { queryParams: { scrollToForm: true } });
 }
 
 

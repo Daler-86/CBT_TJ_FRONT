@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { MenuService } from '../../api/menu.service';
 import { RegionService } from '../../api/region.service';
 import { environment } from '../../../environments/environment';
 import { scs, scsDetail } from '../../models/rko.model';
+import { PageTitleService } from '../../services/page-title.service';
 
 @Component({
   selector: 'app-rko-details',
@@ -32,6 +33,7 @@ export class RkoDetailsComponent {
   selectedFaqIndex: number | null = null;
   cardId: number=0;
   scsData:scsDetail={}
+  private pageTitleService = inject(PageTitleService);
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -57,7 +59,10 @@ export class RkoDetailsComponent {
       (response) => {
 
         this.scsData = response.data;
-
+        if (this.scsData && this.scsData.title) {
+          // ...передаем уже готовое, переведенное название в сервис заголовков.
+          this.pageTitleService.setCustomTitle(this.scsData.title);
+        }
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);

@@ -22,7 +22,7 @@
     <div class="vacancy-items">
       <p>{{ 'vacancies.list.total' | translate }} {{ vacancyCount }} {{ 'vacancies.list.vacanciesLabel' | translate }}</p>
       <div *ngFor="let vacancy of vacancyList" class="vacancy-item">
-        <a [routerLink]="['/vacancy-list', vacancy.id]">
+        <a [routerLink]="['/vacancies/list',vacancy.id]">
           {{ vacancy.name }}
         </a>
         <div class="city">
@@ -30,7 +30,7 @@
             <img src="../../../assets/icons/Layer 2.svg" [alt]="'vacancies.list.locationIconAlt' | translate">
             <p>{{ vacancy.region_name }}</p>
           </div>
-          <a [routerLink]="['/vacancy-list', vacancy.id]">
+          <a [routerLink]="[ vacancy.id]">
             <img src="../../../assets/icons/strel.svg" [alt]="'vacancies.list.arrowIconAlt' | translate">
           </a>
         </div>
@@ -52,3 +52,4 @@
     </div>
   </div>
 </div>
+

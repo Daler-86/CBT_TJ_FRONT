@@ -1,7 +1,7 @@
 import { Component,Output, OnInit, Input,EventEmitter, } from '@angular/core';
 import { Vacancy, VacancyService, Category, City } from '../../services/vacancy.service';
 import { NgForOf } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { VacanciesService } from '../../api/vacancies.service';
 import { vacancyCategory, vacancyList } from '../../models/vacancies.model';
@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-vacancy-list',
   standalone: true,
-  imports: [NgForOf, RouterLink,  FormsModule,TranslateModule],
+  imports: [NgForOf, RouterLink,  FormsModule,TranslateModule, RouterOutlet],
   templateUrl: './vacancy-list.component.html',
   styleUrls: ['./vacancy-list.component.scss']
 })

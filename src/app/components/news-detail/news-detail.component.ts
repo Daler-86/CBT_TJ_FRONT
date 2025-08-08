@@ -1,11 +1,12 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { NewsDetailData, news } from '../../models/news.model';
 import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../api/news.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; // <-- Все еще нужен для SafeHtml
-import { inject } from '@angular/core/testing';
+
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { PageTitleService } from '../../services/page-title.service';
 interface SocialLink {
   type: string;
   url: string;
@@ -27,7 +28,7 @@ export class NewsDetailComponent {
    'assets/images/news-detail-2.jpg',
    'assets/images/news-detail-3.jpg'
  ];
-
+ private pageTitleService = inject(PageTitleService);
  // --- Данные для блока "Поделиться" ---
  socialLinks: SocialLink[] = [];
  pageUrl: string = '';
@@ -64,6 +65,9 @@ newDetailData:any={}
       (response) => {
 
         this.newDetailData = response.data.news;
+        if (this.newDetailData && this.newDetailData.title) {
+          this.pageTitleService.setCustomTitle(this.newDetailData.title);
+        }
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
