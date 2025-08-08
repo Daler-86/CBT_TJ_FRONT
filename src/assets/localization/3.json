@@ -379,6 +379,9 @@
       "onMap": "On the map",
       "asList": "As a list"
     },
+    "sidebar":{
+      "servicesLabel":"Services"
+    },
     "filters": {
       "mainButtonLabel": "Filter",
       "objectTypes": "Object types",
@@ -414,7 +417,7 @@
   "home": {
     "tagline": "Choose the best",
     "joinTeam": {
-      "subtitle": "Join the team Commerzbank"
+      "subtitle": "Join the team Commerce Bank"
     },
     "support": {
       "title": "Support",
@@ -556,7 +559,7 @@
     }
   },
   "aboutUs": {
-    "mainTitle": "OJSC 'Commerzbank of Tajikistan' — one of the most reliable and dynamically developing banks in the country",
+    "mainTitle": "OJSC Commerce Bank of Tajikistan— one of the most reliable and dynamically developing banks in the country",
     "cards": {
       "mission": {
         "title": "Our Mission",
@@ -573,14 +576,14 @@
     },
     "history": {
       "title": "Our History",
-      "p1": "The formation and development of the Open Joint-Stock Company 'Commerzbank of Tajikistan' as a universal credit organization took place in the conditions of many years of activity in a competitive environment in the domestic banking services market.",
+      "p1": "The formation and development of the Open Joint-Stock Company Commerce Bank of Tajikistan as a universal credit organization took place in the conditions of many years of activity in a competitive environment in the domestic banking services market.",
       "p2": "It began in 2006, when the Limited Liability Company 'Muzaffariyat' was formed, organizing banking activities in the form of a micro-loan organization based on license No. 001-2519 'A' from the National Bank of Tajikistan.",
       "p3": "In May 2016, the updated team of LLC MDO 'Muzaffariyat' rebranded, renaming the credit organization to LLC MDO 'Fardo'. A month later, the license from the National Bank of Tajikistan for banking operations was updated under number BMT No. 0000062.",
-      "p4": "In October 2017, the credit organization, operating as a limited liability company, was transformed into a joint-stock company, replenishing its charter capital with the help of shareholders (a new shareholder) to a level that allows it to continue its activities as a bank. MDO 'Fardo' was transformed into OJSC 'Commerzbank of Tajikistan', which was granted license No. BMT 0000085 by the National Bank of Tajikistan.",
+      "p4": "In October 2017, the credit organization, operating as a limited liability company, was transformed into a joint-stock company, replenishing its charter capital with the help of shareholders (a new shareholder) to a level that allows it to continue its activities as a bank. MDO 'Fardo' was transformed into OJSC Commerce Bank of Tajikistan, which was granted license No. BMT 0000085 by the National Bank of Tajikistan.",
       "p5": "The bank's development strategy for the near future is aimed at expanding the scope of non-cash payment systems, improving the technological platform, and introducing innovative products. For example, the 'FAVRI' technological platform allows individuals and legal entities to use a wide range of banking services remotely. By becoming participants in e-commerce, they gained the ability to pay for purchased goods and services via QR code, as well as to carry out many other operations outside the Bank's office.",
       "p6": "A new and innovative product was the mobile application 'Favri Intiqol', which currently has no analogue in the financial market of Tajikistan. It, being a unified addition to the 'Sberbank Online' application, has no user restrictions: holders of any cards issued by Russian banks can make instant money transfers to the Republic of Tajikistan through it. The development of this innovative technological solution became possible thanks to the bilateral project 'One Gateway - All Russia', which allowed mobile banking to become even more functional, universal, and convenient. Its unique novelty lies in the fact that it can be used by users of any cards of the Russian national payment system, as well as international payment systems.",
       "p7": "From the first days of its establishment in the credit organizations market, the bank has strived to provide high-quality and accessible financial services to the population, thereby supporting the development of small and medium-sized businesses in the country's regions.",
-      "p8": "Commerzbank, as a socially active bank, today keeps pace with innovative technologies, applying standardized procedures for access to microfinance in its relationships with clients, which helps to minimize possible credit risks.",
+      "p8": "Commerce Bank, as a socially active bank, today keeps pace with innovative technologies, applying standardized procedures for access to microfinance in its relationships with clients, which helps to minimize possible credit risks.",
       "p9": "To date, 63 Banking Service Centers and 11 branches operate in the country. In the future, it is planned to open new Banking Service Centers and branches, which will make the Bank even more accessible at the regional level."
     }
   },
@@ -711,7 +714,7 @@
       "emailTitle": "Email address",
       "emailAddress": "info@cbt.tj",
       "addressTitle": "Address",
-      "addressText": "Head office of Commerbank of Tajikistan, 734000, Dushanbe, 37/1 Bokhtar St.",
+      "addressText": "Head office of Commerce Bank of Tajikistan, 734000, Dushanbe, 37/1 Bokhtar St.",
       "scheduleTitle": "Working Hours",
       "scheduleWorkdays": "Mon-Fri",
       "scheduleWorkHours": "from 09:00 to 18:00",
@@ -781,14 +784,14 @@
       ]
     },
     "certificate": {
-      "text": "Certificate of JSC \"Commerbank of Tajikistan\" on membership in the fund",
+      "text": "Certificate of JSC Commerce Bank of Tajikistan on membership in the fund",
       "linkText": "Certificate"
     }
   },
   "salaryProjectPage": {
     "mainTitle": "Salary Project",
     "intro": {
-      "subtitle": "JSC \"Commerbank of Tajikistan\": A privileged position for employees benefits the entire company.",
+      "subtitle": "JSC Commerce Bank of Tajikistan: A privileged position for employees benefits the entire company.",
       "p1": "The salary project will free your organization from the need to withdraw cash from the account, count it, and disburse salaries to each employee in cash. In addition to saving time, this also ensures security – a very important aspect when delivering cash to the organization's office.",
       "p2": "As for employee convenience, your staff will be able to receive their salaries through any ATM using payment cards 24 hours a day, 365 days a year, as well as make non-cash payments for goods/services through the 'Mobile Bank' and POS terminals installed at various retail and service points."
     },
@@ -822,7 +825,7 @@
       "text": "Accept online payments with Favri — convenient for you, simple for your customers.",
       "button": "Submit Application"
     },
-    "benefitsTitle": "Benefits of Acquiring from Commerbank of Tajikistan",
+    "benefitsTitle": "Benefits of Acquiring from Commerce Bank of Tajikistan",
     "paymentMethods": {
       "title": "Accept non-cash payments",
       "qr": {
@@ -924,7 +927,7 @@
     }
   },
   "titles": {
-    "siteName": "JSC Commercebank of Tajikistan",
+    "siteName": "JSC Commerce Bank of Tajikistan",
     "default": "Home",
     "cards": "Commerce Bank cards",
     "credits": "Loan programs and terms",
