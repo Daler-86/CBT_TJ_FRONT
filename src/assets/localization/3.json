@@ -239,7 +239,7 @@
   },
   "transfers": {
     "details": {
-      "conditionsTitle": "Conditions",
+      "conditionsTitle": "Tariffs and conditions",
       "swiftInfo": "To receive or send money via SWIFT, you need to open a current account. It's free.",
       "viewAllTariffsText": "View all tariffs",
       "documentsAndTariffsTitle": "Documents and tariffs",

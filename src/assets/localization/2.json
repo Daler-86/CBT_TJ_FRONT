@@ -239,7 +239,7 @@
   },
   "transfers": {
     "details": {
-      "conditionsTitle": "Условия",
+      "conditionsTitle": "Тарифы и условия",
       "swiftInfo": "Чтобы получать или отправлять деньги по SWIFT, нужно открыть расчётный счёт. Это бесплатно",
       "viewAllTariffsText": "Посмотреть все тарифы",
       "documentsAndTariffsTitle": "Документы и тарифы",

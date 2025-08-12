@@ -240,7 +240,7 @@
   },
   "transfers": {
     "details": {
-      "conditionsTitle": "Шартҳо",
+      "conditionsTitle": "Тарофаҳо ва шартҳо",
       "swiftInfo": "Барои гирифтан ё фиристодани пул тавассути SWIFT, шумо бояд суратҳисоби ҷорӣ кушоед. Ин ройгон аст",
       "viewAllTariffsText": "Ҳама тарофаҳоро бинед",
       "documentsAndTariffsTitle": "Ҳуҷҷатҳо ва тарофаҳо",

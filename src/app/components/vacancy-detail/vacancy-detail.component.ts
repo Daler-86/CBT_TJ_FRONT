@@ -191,11 +191,14 @@ export class VacancyDetailComponent implements OnInit {
       this.notificationService.show('Пожалуйста, загрузите ваше резюме.', 'error');
       return;
     }
-
+    const formValue = this.applyForm.value;
     const formData = {
-      ...this.applyForm.value,
+      last_name: formValue.lastName,     // <--- ИЗМЕНЕНИЕ: сопоставляем lastName -> last_name
+      first_name: formValue.firstName,   // <--- ИЗМЕНЕНИЕ: сопоставляем firstName -> first_name
+      email: formValue.email,
+      phone: formValue.phone,
       upload_file_id: this.uploadFileId,
-      vacancy_id: this.id // Используем ID текущей вакансии
+      vacancy_id: this.id 
     };
 
     this.vacanciesService.submitFormData(formData).subscribe({
