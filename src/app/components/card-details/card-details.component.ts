@@ -51,6 +51,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
     private notificationService: ModalService,
     private scrollService:ScrollService,
     private translateService: TranslateService,
+    private translate: TranslateService, 
     private fb: FormBuilder // Внедряем FormBuilder
   ) {
     // Инициализируем форму в конструкторе
@@ -160,7 +161,31 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
 
     
 
-    this.cardsService.submitCardByBrand(dataToSend).subscribe({
+   // ... (внутри вашего компонента)
+
+this.cardsService.submitCardByBrand(dataToSend).subscribe({
+  next: (response) => {
+    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+    // Получаем переведенное сообщение
+    this.translate.get('notifications.applicationSuccessMessage').subscribe((message: string) => {
+      this.notificationService.show(message, 'success');
+    });
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+
+    this.applicationForm.reset();
+    this.updateOfficePlaceholder();
+  },
+  error: (err) => {
+    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+    // Получаем перевод для стандартной ошибки
+    this.translate.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+      // Пытаемся получить ошибку с бэкенда, если ее нет - используем стандартную
+      const errorMessage = err.error?.message || message;
+      this.notificationService.show(errorMessage, 'error');
+    });
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+  }
+}); this.cardsService.submitCardByBrand(dataToSend).subscribe({
       next: (response) => {
         this.notificationService.show('Ваша заявка успешно принята!', 'success');
         this.applicationForm.reset(); // Сбрасываем форму

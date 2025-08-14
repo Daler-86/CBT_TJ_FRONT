@@ -124,46 +124,56 @@ this.route.queryParams.subscribe(params => {
     }
   }
 
-  submitApplication(form: NgForm) { // 2. Принимаем форму как аргумент
-    // 3. Проверяем валидность через form.invalid
-    if (form.invalid || !this.model.office_id) {
-      this.notificationService.show('Пожалуйста, заполните все обязательные поля.', 'error');
-      // Помечаем все контролы как "тронутые", чтобы показать все ошибки
-      Object.values(form.controls).forEach(control => {
-        control.markAsTouched();
-      });
-      return;
-    }
-    
-    // Добавляем ID кредита в модель перед отправкой
-    this.model.credit_id = this.creditId;
+// ... (внутри вашего компонента)
 
-    this.creditService.submitCredit(this.model).subscribe({
-      next: (resp) => {
-        this.notificationService.show('Ваша заявка успешно принята!', 'success');
-        
-        // === 4. ПРАВИЛЬНЫЙ СПОСОБ ОЧИСТКИ ФОРМЫ ===
-        // Метод resetForm() сбрасывает и значения, и состояние валидации (touched, dirty и т.д.)
-        form.resetForm();
-        
-        // Сбрасываем дополнительные переменные, не связанные с формой
-        this.officeName = '';
-        // Инициализируем модель заново, если нужно
-        this.model = {
-          address: '',
-          client_name: "",
-          credit_id: 0,
-          office_id: 0,
-          phone: "",
-          purpose: ""
-        };
-        this.updateOfficePlaceholder();
-      },
-      error: (err) => {
-        this.notificationService.show('Не удалось отправить заявку.', 'error');
-      }
+submitApplication(form: NgForm) {
+  if (form.invalid || !this.model.office_id) {
+    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+    this.translateService.get('notifications.fillAllRequiredFieldsWarning').subscribe((message: string) => {
+      this.notificationService.show(message, 'error');
     });
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+    
+    Object.values(form.controls).forEach(control => {
+      control.markAsTouched();
+    });
+    return;
   }
+  
+  this.model.credit_id = this.creditId;
+
+  this.creditService.submitCredit(this.model).subscribe({
+    next: (resp) => {
+      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+      // Используем ключ, который у нас уже есть
+      this.translateService.get('notifications.applicationSuccessMessage').subscribe((message: string) => {
+        this.notificationService.show(message, 'success');
+      });
+      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      
+      form.resetForm();
+      
+      this.officeName = '';
+      this.model = {
+        address: '',
+        client_name: "",
+        credit_id: 0,
+        office_id: 0,
+        phone: "",
+        purpose: ""
+      };
+      this.updateOfficePlaceholder();
+    },
+    error: (err) => {
+      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+      // Используем ключ, который у нас уже есть
+      this.translateService.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+        this.notificationService.show(message, 'error');
+      });
+      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+    }
+  });
+}
   loadOffice(): void {
     this.regionService.getOfficeList().subscribe(
       (response) => {

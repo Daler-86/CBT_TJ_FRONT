@@ -235,7 +235,16 @@
   },
   "notifications": {
     "submitSuccess": "Data sent successfully! We will contact you shortly.",
-    "submitError": "❌ An error occurred while sending data. Please try again."
+    "submitError": "❌ An error occurred while sending data. Please try again.",
+    "applicationSuccessMessage": "Your application has been successfully accepted!",
+  "applicationErrorMessage": "Failed to submit the application. Please try again later.",
+  "fillAllFieldsWarning": "Please fill in all fields.",
+  "fillAllRequiredFieldsWarning": "Please fill in all required fields.",
+  "messageSentSuccess": "Your message has been sent successfully!",
+  "messageSentError": "Failed to send the message. Please try again later.",
+  "configError": "Configuration error: Submission URL is not specified.",
+  "applicationSentSuccess": "Your application has been sent successfully!",
+  "uploadResumeWarning": "Please upload your resume."
   },
   "transfers": {
     "details": {
@@ -968,6 +977,11 @@
     "insurance": "Insurance",
     "salaryProject": "Salary project",
     "acquiring": "Acquiring"
+  },
+  "workInProgress": {
+    "title": "Page Under Construction",
+    "message": "This page is coming soon.",
+    "homeLink": "Back to Home"
   }
   }
 

@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { VacanciesService } from '../../api/vacancies.service';
 import { personalQuality, vacancyCondition, vacancyEducation, vacancyExperience, vacancySkill } from '../../models/vacancies.model';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalService } from '../../services/modal.service';
 
 import { ScrollToDirective } from '../../directives/scroll-to.directive';
@@ -41,7 +41,11 @@ export class VacancyDetailComponent implements OnInit {
   vacancyData:any={}
   
   private pageTitleService = inject(PageTitleService);
-  constructor(private fb: FormBuilder,private vacanciesService: VacanciesService,    private route: ActivatedRoute, private notificationService:ModalService) {
+  constructor(private fb: FormBuilder,
+    private vacanciesService: VacanciesService,
+    
+    private translate: TranslateService,
+    private route: ActivatedRoute, private notificationService:ModalService) {
     this.applyForm = this.fb.group({
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -180,47 +184,64 @@ export class VacancyDetailComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.applyForm.markAllAsTouched(); // Помечаем все поля как "тронутые" для показа ошибок
+// ... (внутри вашего компонента)
 
-    if (this.applyForm.invalid) {
-      this.notificationService.show('Пожалуйста, заполните все обязательные поля.', 'error');
-      return;
-    }
-    if (this.uploadFileId === null) {
-      this.notificationService.show('Пожалуйста, загрузите ваше резюме.', 'error');
-      return;
-    }
-    const formValue = this.applyForm.value;
-    const formData = {
-      last_name: formValue.lastName,     // <--- ИЗМЕНЕНИЕ: сопоставляем lastName -> last_name
-      first_name: formValue.firstName,   // <--- ИЗМЕНЕНИЕ: сопоставляем firstName -> first_name
-      email: formValue.email,
-      phone: formValue.phone,
-      upload_file_id: this.uploadFileId,
-      vacancy_id: this.id 
-    };
+onSubmit() {
+  this.applyForm.markAllAsTouched();
 
-    this.vacanciesService.submitFormData(formData).subscribe({
-      next: (response) => {
-        // console.log('Form submitted successfully:', response);
-        // Показываем уведомление об успехе
-        this.notificationService.show('Ваша заявка успешно отправлена!', 'success');
-        
-        // Очищаем форму и сбрасываем состояние файла
-        this.applyForm.reset();
-        this.fileName = '';
-        this.uploadFileId = null;
-      },
-      error: (error) => {
-        console.error('Form submission failed:', error);
-        // Показываем уведомление об ошибке
-        this.notificationService.show('Не удалось отправить заявку. Попробуйте позже.', 'error');
-      }
+  if (this.applyForm.invalid) {
+    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+    // Используем существующий ключ
+    this.translate.get('notifications.fillAllRequiredFieldsWarning').subscribe((message: string) => {
+      this.notificationService.show(message, 'error');
     });
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+    return;
   }
-  
-  // Геттеры для удобного доступа к контролам в шаблоне
+  if (this.uploadFileId === null) {
+    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+    // Новый ключ
+    this.translate.get('notifications.uploadResumeWarning').subscribe((message: string) => {
+      this.notificationService.show(message, 'error');
+    });
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+    return;
+  }
+
+  const formValue = this.applyForm.value;
+  const formData = {
+    last_name: formValue.lastName,
+    first_name: formValue.firstName,
+    email: formValue.email,
+    phone: formValue.phone,
+    upload_file_id: this.uploadFileId,
+    vacancy_id: this.id 
+  };
+
+  this.vacanciesService.submitFormData(formData).subscribe({
+    next: (response) => {
+      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+      // Используем существующий ключ
+      this.translate.get('notifications.applicationSentSuccess').subscribe((message: string) => {
+        this.notificationService.show(message, 'success');
+      });
+      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      
+      this.applyForm.reset();
+      this.fileName = '';
+      this.uploadFileId = null;
+    },
+    error: (error) => {
+      console.error('Form submission failed:', error);
+      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+      // Используем существующий ключ
+      this.translate.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+        this.notificationService.show(message, 'error');
+      });
+      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+    }
+  });
+}  // Геттеры для удобного доступа к контролам в шаблоне
   get lastName() { return this.applyForm.get('lastName'); }
   get firstName() { return this.applyForm.get('firstName'); }
   get phone() { return this.applyForm.get('phone'); }

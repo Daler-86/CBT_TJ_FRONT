@@ -84,36 +84,45 @@ export class DepositDetailComponent implements OnInit {
   
   
   // Метод для отправки формы
-  submitApplication(form: NgForm): void {
-    if (form.invalid ) {
-      this.notificationService.show('Пожалуйста, заполните все обязательные поля.', 'error');
-      Object.values(form.controls).forEach(control => {
-        control.markAsTouched();
-      });
-      return;
-    }
 
-    const dataToSend = {
-      deposit_id: this.depositId,
-      ...this.model
-    };
+submitApplication(form: NgForm): void {
+  if (form.invalid) {
 
-    // console.log('Отправка заявки на вклад:', dataToSend);
-
-    this.depositService.submitDeposit(dataToSend).subscribe({
-    
-      next: (resp) => {
-        this.notificationService.show('Ваша заявка успешно принята!', 'success');
-       
-        form.reset();
-        
-      
-      },
-      error: (err) => {
-        this.notificationService.show('Не удалось отправить заявку. Попробуйте позже.', 'error');
-      }
+    this.translateService.get('notifications.fillAllRequiredFieldsWarning').subscribe((message: string) => {
+      this.notificationService.show(message, 'error');
     });
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+    
+    Object.values(form.controls).forEach(control => {
+      control.markAsTouched();
+    });
+    return;
   }
+
+  const dataToSend = {
+    deposit_id: this.depositId,
+    ...this.model
+  };
+
+  this.depositService.submitDeposit(dataToSend).subscribe({
+    next: (resp) => {
+    
+      this.translateService.get('notifications.applicationSuccessMessage').subscribe((message: string) => {
+        this.notificationService.show(message, 'success');
+   
+       });
+  
+      form.reset();
+    },
+    error: (err) => {
+   
+      this.translateService.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+        this.notificationService.show(message, 'error');
+      });
+     
+    }
+  });
+}
 
   // --- Вспомогательные методы для UI ---
   

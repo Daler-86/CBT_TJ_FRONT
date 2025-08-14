@@ -23,6 +23,7 @@ export interface Menu {
     route: string;
     person_type_id: number;
     sort_id: number;
+    is_new_tab: boolean;
     items: MenuItem[];
     favorites: FavoriteItem[];
   }
@@ -31,6 +32,7 @@ export interface Menu {
     id: number;
     name: string;
     route: string;
+    is_new_tab: boolean;
     sort_id: number;
   }
   
@@ -39,6 +41,7 @@ export interface Menu {
     name: string;
     route: string;
     sort_id: number;
+    is_new_tab: boolean;
     upload_file: string;
   }
   

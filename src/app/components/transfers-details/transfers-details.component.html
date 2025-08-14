@@ -13,7 +13,7 @@
   </div>
 
   <!-- Заголовок и текст для блока условий -->
-  <h1 *ngIf="transferData.upload_tariff_file_id">{{ 'transfers.details.conditionsTitle' | translate }}</h1>
+  <h1 *ngIf="transferData.upload_tariff_file_id!==''">{{ 'transfers.details.conditionsTitle' | translate }}</h1>
   <!-- <p *ngIf="transferData.upload_tariff_file_id">{{ 'transfers.details.swiftInfo' | translate }}</p> -->
 
   <div class="section2">
@@ -25,7 +25,7 @@
       </div>
 
       <!-- Блок для кнопки тарифов -->
-      <div class="box" *ngIf="transferData.upload_tariff_file_id">
+      <div class="box" *ngIf="transferData.upload_tariff_file_id!==''">
           <p>{{ 'transfers.details.viewAllTariffsText' | translate }}</p>
           <button class="btn-secondary">{{ 'buttons.allTariffs' | translate }}</button>
       </div>

@@ -2,7 +2,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 // import { NotificationService } from '../../services/notification.service';
 import { ApplicationService } from '../../api/application.service';
@@ -29,7 +29,8 @@ export class SimpleApplicationFormComponent {
   constructor(
     private fb: FormBuilder,
     private notificationService: ModalService,
-    private applicationService: ApplicationService
+    private applicationService: ApplicationService,
+    private translate:TranslateService
   ) {
     this.applicationForm = this.fb.group({
       client_name: ['', Validators.required],
@@ -37,33 +38,56 @@ export class SimpleApplicationFormComponent {
     });
   }
 
-  onSubmit(): void {
-    this.applicationForm.markAllAsTouched();
-    if (this.applicationForm.invalid) {
-      this.notificationService.show('Пожалуйста, заполните все поля.', 'error');
-      return;
-    }
-    // Проверяем, что URL был передан
-    if (!this.apiUrl) {
-      this.notificationService.show('Ошибка конфигурации: не указан URL для отправки.', 'error');
-      return;
-    }
+// ... (внутри вашего компонента)
 
-    this.isSubmitting = true;
-    const formData = this.applicationForm.value;
-
-    this.applicationService.submitForm(this.apiUrl, formData).subscribe({
-      next: () => {
-        this.notificationService.show('Ваша заявка успешно отправлена!', 'success');
-        this.applicationForm.reset();
-        this.isSubmitting = false;
-      },
-      error: () => {
-        this.notificationService.show('Не удалось отправить заявку. Попробуйте позже.', 'error');
-        this.isSubmitting = false;
-      }
+onSubmit(): void {
+  this.applicationForm.markAllAsTouched();
+  if (this.applicationForm.invalid) {
+    // --- НАЧАло ИЗМЕНЕНИЙ ---
+    // Используем существующий ключ
+    this.translate.get('notifications.fillAllFieldsWarning').subscribe((message: string) => {
+      this.notificationService.show(message, 'error');
     });
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+    return;
   }
+  
+  if (!this.apiUrl) {
+    // --- НАЧАло ИЗМЕНЕНИЙ ---
+    // Это сообщение для разработчика, его можно не переводить,
+    // но если хотите, можно создать ключ notifications.configError
+    this.translate.get('notifications.configError').subscribe((message: string) => {
+      this.notificationService.show(message, 'error');
+    });
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+    return;
+  }
+
+  this.isSubmitting = true;
+  const formData = this.applicationForm.value;
+
+  this.applicationService.submitForm(this.apiUrl, formData).subscribe({
+    next: () => {
+      // --- НАЧАло ИЗМЕНЕНИЙ ---
+      // Немного другой текст, нужен новый ключ
+      this.translate.get('notifications.applicationSentSuccess').subscribe((message: string) => {
+        this.notificationService.show(message, 'success');
+      });
+      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      this.applicationForm.reset();
+      this.isSubmitting = false;
+    },
+    error: () => {
+      // --- НАЧАло ИЗМЕНЕНИЙ ---
+      // Используем существующий ключ
+      this.translate.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+        this.notificationService.show(message, 'error');
+      });
+      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      this.isSubmitting = false;
+    }
+  });
+}
 
   get client_name() { return this.applicationForm.get('client_name'); }
   get phone() { return this.applicationForm.get('phone'); }

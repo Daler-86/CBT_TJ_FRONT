@@ -112,30 +112,43 @@ export class ContactComponent implements OnInit {
   }
 
   // --- Метод отправки формы ---
+// ... (внутри вашего компонента)
 
-  onSubmit(): void {
-    this.contactForm.markAllAsTouched();
-    if (this.contactForm.invalid) {
-      this.notificationService.show('Пожалуйста, заполните все поля.', 'error');
-      return;
-    }
-
-    this.isSubmitting = true;
-    const formData: ContactFormPayload = this.contactForm.value;
-
-    this.contactService.submitContactForm(formData).subscribe({
-      next: (response) => {
-        this.notificationService.show('Ваше сообщение успешно отправлено!', 'success');
-        this.contactForm.reset();
-        this.updateSubjectPlaceholder(); // Восстанавливаем плейсхолдер
-        this.isSubmitting = false;
-      },
-      error: (error) => {
-        this.notificationService.show('Не удалось отправить сообщение. Попробуйте позже.', 'error');
-        this.isSubmitting = false;
-      }
+onSubmit(): void {
+  this.contactForm.markAllAsTouched();
+  if (this.contactForm.invalid) {
+    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+    this.translateService.get('notifications.fillAllFieldsWarning').subscribe((message: string) => {
+      this.notificationService.show(message, 'error');
     });
+    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+    return;
   }
+
+  this.isSubmitting = true;
+  const formData: ContactFormPayload = this.contactForm.value;
+
+  this.contactService.submitContactForm(formData).subscribe({
+    next: (response) => {
+      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+      this.translateService.get('notifications.messageSentSuccess').subscribe((message: string) => {
+        this.notificationService.show(message, 'success');
+      });
+      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      this.contactForm.reset();
+      this.updateSubjectPlaceholder();
+      this.isSubmitting = false;
+    },
+    error: (error) => {
+      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+      this.translateService.get('notifications.messageSentError').subscribe((message: string) => {
+        this.notificationService.show(message, 'error');
+      });
+      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      this.isSubmitting = false;
+    }
+  });
+}
 
   // Геттеры для удобной валидации в HTML
   get client_name() { return this.contactForm.get('client_name'); }
