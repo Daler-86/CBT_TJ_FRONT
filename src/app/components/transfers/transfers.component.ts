@@ -48,7 +48,6 @@ export class TransfersComponent {
     // this.c.getCardContentItem(cardId).subscribe(
     //   (details) => {
     //     this.contentItem = details.data.card_content_items;
-    //     console.log(details);
     //   },
     //   (error) => {
     //     console.error('Ошибка при получении деталей карты', error);
