@@ -37,7 +37,6 @@ export class NewsComponent {
   news:new_news[]=[]
   ngOnInit(): void {
     // Здесь позже будет логика получения данных с бэкенда
-    // console.log('Tender list initialized with mock data.');
     this.loadData()
   }
 

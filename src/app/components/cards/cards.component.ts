@@ -45,7 +45,6 @@ export class CardsComponent implements OnInit {
     this.cardsService.getCardList(this.personTypeId, this.selectedBrandId.getValue()).subscribe(
       (response) => {
         this.cardList = response.data.cards;
-        // console.log('cardList updated:', this.cardList);
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);

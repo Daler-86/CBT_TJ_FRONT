@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 // import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { transition } from '@angular/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalComponent } from "./components/modal/modal.component";
@@ -11,6 +10,7 @@ import { filter } from 'rxjs/operators'; // Импортируем операт�
 import { PageTitleService } from './services/page-title.service';
 import { BreadcrumbService } from './services/breadcrumb.service';
 import { BreadcrumbsComponent } from "./components/breadcrumbs/breadcrumbs.component";
+import { Languages } from './shared/enums/languages.enum';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -44,8 +44,8 @@ let savedLanguage = localStorage.getItem('appLanguage');
       this.pageTitleService.init();
     }
     else{
-       this.translate.setDefaultLang('1');
-      this.translate.use('1');
+       this.translate.setDefaultLang(Languages.Tj);
+      this.translate.use(Languages.Tj);
     }
 }
   
