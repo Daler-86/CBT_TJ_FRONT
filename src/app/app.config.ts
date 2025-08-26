@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom,LOCALE_ID } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core'; 
+import { TranslateModule } from '@ngx-translate/core';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import { routes } from './app.routes';
@@ -14,10 +14,10 @@ import { YaConfig,AngularYandexMapsModule } from 'angular8-yandex-maps';
 
 registerLocaleData(localeRu);
 export const config$ = new BehaviorSubject<YaConfig>({
-  apikey: 'cffa96ad-c08f-4eed-85b7-41d311f064c6',
+  apikey: 'bcce0b1c-0648-4d55-88bd-b9fdd5230427',
 });
 export const appConfig: ApplicationConfig = {
-  
+
 
   providers: [
     provideRouter(routes,
