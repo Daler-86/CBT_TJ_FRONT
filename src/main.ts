@@ -17,7 +17,7 @@ import { BehaviorSubject } from 'rxjs';
 
 registerLocaleData(localeRu, 'ru-RU');
 export const config$ = new BehaviorSubject<YaConfig>({
-  apikey: 'cffa96ad-c08f-4eed-85b7-41d311f064c6',
+  apikey: 'bcce0b1c-0648-4d55-88bd-b9fdd5230427',
 });
 bootstrapApplication(AppComponent, {
   providers: [
