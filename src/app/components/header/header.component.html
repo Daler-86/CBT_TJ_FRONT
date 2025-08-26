@@ -104,7 +104,7 @@
   <!-- Кнопка "Офисы и банкоматы" -->
   <a routerLink="map" class="mobile-menu-map-button" (click)="toggleMenu()">
     <p>{{ 'header.top.officesAndAtms' | translate }}</p>
-    <img src="../../../assets/icons/pointer-map-pointer-svgrepo-com (4).svg" [alt]="'alt.mapPointIcon' | translate">
+    <img src="../../../assets/icons/map-icons.svg" [alt]="'alt.mapPointIcon' | translate">
   </a>
 
   <!-- Список меню (аккордеон) -->
@@ -156,12 +156,12 @@
     <div class="footer-lang-switcher">
       <span>Выберите язык</span>
       <div class="lang-buttons">
-        <button [class.active]="selectedLanguage === '1'"
-          (click)="selectLanguage({value: '1', label: 'Тоҷикӣ'})">TJ</button>
-        <button [class.active]="selectedLanguage === '2'"
-          (click)="selectLanguage({value: '2', label: 'Русский'})">RU</button>
-        <button [class.active]="selectedLanguage === '3'"
-          (click)="selectLanguage({value: '3', 'label': 'English'})">EN</button>
+        <button [class.active]="selectedLanguage === lang.Tj"
+          (click)="selectLanguage({value: lang.Tj, label: 'Тоҷикӣ'})">TJ</button>
+        <button [class.active]="selectedLanguage === lang.Ru"
+          (click)="selectLanguage({value: lang.Ru, label: 'Русский'})">RU</button>
+        <button [class.active]="selectedLanguage === lang.En"
+          (click)="selectLanguage({value: lang.En, 'label': 'English'})">EN</button>
       </div>
     </div>
   </div>

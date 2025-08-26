@@ -50,7 +50,7 @@ export class HomeComponent {
   loadMenu(): void {
     this.menuService.getMenu().subscribe(
       (response) => {
-        this.menus = response.data.menus;
+      this.menus = response.data.menus;
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);

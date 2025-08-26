@@ -11,35 +11,49 @@ import { MenuService } from '../../api/menu.service';
 import { LanguagesService } from '../../languages.service';
 import { Menu } from '../../models/menu.model';
 import { DropdownService } from '../../services/dropdown.service';
+import { Languages } from '../../shared/enums/languages.enum';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink, RouterOutlet],
+  imports: [
+    NgFor,
+    NgIf,
+    FormsModule,
+    RouterModule,
+    TranslateModule,
+    RouterLink,
+    RouterOutlet,
+  ],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  lang = Languages;
   menus: Menu[] = [];
   dropdownOpenMap: { [key: number]: boolean } = {};
   dropdownOpen = false;
-  selectedLanguage: string = '1';
+  selectedLanguage: string = this.lang.Tj;
   menuActive = false;
-  
+
   private subscriptions = new Subscription();
 
   languageOptions = [
-    { value: '1', label: 'Тоҷикӣ' },
-    { value: '2', label: 'Русский' },
-    { value: '3', label: 'English' }
+    { value: this.lang.Tj, label: 'Тоҷикӣ' },
+    { value: this.lang.Ru, label: 'Русский' },
+    { value: this.lang.En, label: 'English' },
   ];
 
   public getDisplayLanguage(): string {
     switch (this.selectedLanguage) {
-      case '1': return 'Тоҷ';
-      case '2': return 'Рус';
-      case '3': return 'En';
-      default: return '';
+      case this.lang.Tj:
+        return 'Тоҷ';
+      case this.lang.Ru:
+        return 'Рус';
+      case this.lang.En:
+        return 'En';
+      default:
+        return this.lang.Tj;
     }
   }
   logoSrc: string = '../../../assets/icons/logo_tj_big.png';
@@ -54,14 +68,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const langSub = this.languageService.language$.subscribe(lang => {
+    const langSub = this.languageService.language$.subscribe((lang) => {
       this.selectedLanguage = lang;
       this.translateService.use(lang);
-       this.updateLogo(lang); 
+      this.updateLogo(lang);
     });
-   
+
     const menuSub = this.menuService.getMenu().subscribe(
-      (response) => { 
+      (response) => {
         this.menus = response.data.menus;
       },
       (error) => {
@@ -72,22 +86,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.add(langSub);
     this.subscriptions.add(menuSub);
   }
-  private updateLogo(languageId: string): void {
-    switch (languageId) {
-      case '1': // Тоҷикӣ
-        this.logoSrc = '../../../assets/icons/logo_tj_big.png'; 
+  private updateLogo(language: Languages): void {
+    switch (language) {
+      case this.lang.Tj: // Тоҷикӣ
+        this.logoSrc = '../../../assets/icons/logo_tj_big.png';
         break;
-      case '2': // Русский
+      case this.lang.Ru: // Русский
         this.logoSrc = '../../../assets/icons/logo_ru_big.png';
         break;
-      case '3': // English
+      case this.lang.En: // English
         this.logoSrc = '../../../assets/icons/logo_en_big.png';
         break;
       default:
         this.logoSrc = '../../../assets/icons/logo_tj_big.png'; // Фолбэк на русский
     }
   }
-  selectLanguage(option: { value: string; label: string }) {
+  selectLanguage(option: { value: Languages; label: string }) {
     this.dropdownOpen = false;
     this.languageService.setLanguage(option.value);
   }
@@ -102,17 +116,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.dropdownOpen = !this.dropdownOpen;
     event.stopPropagation();
   }
-  
+
   toggleDropdown(index: number, event: Event) {
     this.dropdownOpenMap[index] = !this.dropdownOpenMap[index];
     event.stopPropagation();
   }
 
-  selectOption(option: any, index: number, event: Event, menuItem: any) {  
+  selectOption(option: any, index: number, event: Event, menuItem: any) {
     event.stopPropagation();
     this.dropdownOpenMap[index] = false;
     if (option.route) {
-      this.menuService.changePersonTypeId(menuItem.person_type_id)
+      this.menuService.changePersonTypeId(menuItem.person_type_id);
       this.router.navigate([option.route]);
     }
     window.scrollTo(0, 0);

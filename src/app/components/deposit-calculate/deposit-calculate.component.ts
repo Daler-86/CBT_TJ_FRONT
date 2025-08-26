@@ -4,10 +4,10 @@ import { FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Vali
 
 
 import { CalculationResult, DepositProducts } from '../../models/deposit.model';
-
 import { DepositCalculateService } from '../../services/deposit-calculate.service';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Languages } from '../../shared/enums/languages.enum';
 
 @Component({
   selector: 'app-deposit-calculator',
@@ -30,7 +30,7 @@ export class DepositCalculatorComponent implements OnInit {
   depositAmount: number = 0;
   depositTerm: number = 0;
   selectedCurrency: 'TJS' | 'USD' = 'TJS';
-  selectedProductId: string = '1';
+  selectedProductId: string = Languages.Tj;
 
   minAmount = 0; maxAmount = 0; stepAmount = 100;
   minTerm = 0; maxTerm = 0; stepTerm = 1;

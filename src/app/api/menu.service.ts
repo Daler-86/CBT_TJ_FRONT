@@ -35,6 +35,7 @@ currentPersonTypeId = this.personTypeIdSource.asObservable();
           'Language': lang
         });
         return this.http.get<MenusResponse>(`${this.baseUrl}/menu/list`, { headers });
+        return this.http.get<MenusResponse>(`${this.baseUrl}/menu/list`);
       }),
       map(response => {
         // Сортируем `menus` и вложенные элементы `items` и `favorites` по `sort_id`
@@ -54,14 +55,13 @@ currentPersonTypeId = this.personTypeIdSource.asObservable();
     );
   }
   getMainGalleries(): Observable<MainGalleries> {
-  
-    return this.languageService.language$.pipe(
+   return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
-          'accept': 'application/json',
+          // 'accept': 'application/json',
           'Language': lang
         });
-        return this.http.get<MainGalleries>(`${this.baseUrl}/main-gallery/list`, { headers });
+        return this.http.get<MainGalleries>(`${this.baseUrl}/main-gallery/list`, {headers});
       }),
       map(response => {
         if (response.data.main_galleries && Array.isArray(response.data.main_galleries)) {
