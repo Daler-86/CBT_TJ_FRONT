@@ -5,10 +5,9 @@ import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import { routes } from './app.routes';
 import { provideTranslation } from '../config/translate-loader.config';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { provideRouter, withInMemoryScrolling, withHashLocation } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { YaConfig,AngularYandexMapsModule } from 'angular8-yandex-maps';
 
@@ -16,9 +15,8 @@ registerLocaleData(localeRu);
 export const config$ = new BehaviorSubject<YaConfig>({
   apikey: 'bcce0b1c-0648-4d55-88bd-b9fdd5230427',
 });
+
 export const appConfig: ApplicationConfig = {
-
-
   providers: [
     provideRouter(routes,
         withInMemoryScrolling({
@@ -26,7 +24,7 @@ export const appConfig: ApplicationConfig = {
       anchorScrolling: 'enabled',
     })
     ),
-    provideHttpClient(), // подключение HttpClientModule
+    provideHttpClient(),
     importProvidersFrom(TranslateModule.forRoot(provideTranslation())),
     provideAnimations() ,
     importProvidersFrom(ReactiveFormsModule),
