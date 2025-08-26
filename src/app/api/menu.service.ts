@@ -54,8 +54,7 @@ currentPersonTypeId = this.personTypeIdSource.asObservable();
     );
   }
   getMainGalleries(): Observable<MainGalleries> {
-  
-    return this.languageService.language$.pipe(
+   return this.languageService.language$.pipe(
       switchMap(lang => {
         const headers = new HttpHeaders({
           'accept': 'application/json',

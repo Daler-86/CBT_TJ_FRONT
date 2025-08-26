@@ -2,6 +2,23 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
+
+## NVM
+
+nvm: using multiple node packages
+download link: https://github.com/coreybutler/nvm-windows/releases
+
+check command: nvm ls
+
+## Used node and angula-cli versions
+
+node: nvm isntall 18
+
+run this: nvm use 18
+
+angular cli: npm i -g @angular/cli@17
+NOTE: we need global angular cli per node package
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

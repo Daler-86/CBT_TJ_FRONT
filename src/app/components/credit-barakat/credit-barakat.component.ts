@@ -178,7 +178,6 @@ submitApplication(form: NgForm) {
     this.regionService.getOfficeList().subscribe(
       (response) => {
         this.offices = response.data.offices;
-        // console.log(this.offices)
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
