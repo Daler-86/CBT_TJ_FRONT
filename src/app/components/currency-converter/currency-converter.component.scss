@@ -7,7 +7,7 @@
     flex-wrap: wrap;
 
     button {
-      padding: 14px 42px;
+      padding: 14px 28px;
       margin-bottom: 20px ;
       border-radius: 50px;
       border: none;
@@ -16,7 +16,7 @@
       color: #141A20;
       font-size: $font-size-body-large;
       line-height: $line-height-body-large;
-      font-weight: 500;
+      font-weight: 400;
       box-shadow: 0px 4px 20px 0px #AFAFAF2E;
 
       &.active {
