@@ -10,31 +10,31 @@
       min-width: 280px;
 
       filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
-      
+
       // Сдвиг, чтобы хвост был на месте
-      transform: translate(-50%, calc(-100% - 25px)); 
+      transform: translate(-50%, calc(-100% - 25px));
     }
-  
+
     .custom-balloon__header {
       display: flex;
       align-items: center;
       padding: 16px;
       border-bottom: 1px solid #f0f0f0;
     }
-    
+
     .custom-balloon__icon {
       width: 24px;
       height: 24px;
       margin-right: 12px;
     }
-  
+
     .custom-balloon__title {
       font-size: 16px;
       font-weight: 600;
       margin: 0;
       color: #222;
     }
-    
+
     .custom-balloon__close-btn {
       position: absolute;
       top: 10px;
@@ -50,43 +50,43 @@
       text-align: center;
       cursor: pointer;
       transition: background-color 0.2s, color 0.2s;
-  
+
       &:hover {
         background-color: #e0e0e0;
         color: #333;
       }
     }
-  
+
     .custom-balloon__body {
       padding: 8px 16px 16px;
     }
-  
+
     .custom-balloon__section {
       margin-top: 12px;
     }
-  
+
     .custom-balloon__label {
       font-size: 13px;
       color: #666;
       margin-bottom: 4px;
     }
-  
+
     .custom-balloon__value {
       font-size: 15px;
       color: #222;
       line-height: 1.4;
     }
-  
+
     .custom-balloon__value--status.status--closed {
       color: #e53935; // Красный цвет для "не работает"
       font-weight: 500;
     }
-  
+
     .custom-balloon__value--status.status--open {
       color: #43a047; // Зеленый цвет для "открыто"
       font-weight: 500;
     }
-  
+
     .custom-balloon__arrow {
       position: absolute;
       bottom: -10px;
@@ -95,7 +95,7 @@
       width: 20px;
       height: 10px;
       overflow: hidden;
-      
+
       &::after {
         content: '';
         position: absolute;
@@ -109,3 +109,15 @@
       }
     }
   }
+
+::ng-deep {
+  .ymaps-2-1-79-search,
+  .ymaps-2-1-79-search__input,
+  .ymaps-2-1-79-search__button {
+    display: none !important;
+  }
+
+  .ymaps-2-1-79-searchbox {
+    display: none !important;
+  }
+}
