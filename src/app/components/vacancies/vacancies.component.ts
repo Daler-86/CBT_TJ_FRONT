@@ -1,19 +1,19 @@
-import {Component} from '@angular/core';
-import {RouterLink, RouterModule, RouterOutlet} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {RouterLink, RouterModule} from '@angular/router';
 import {VacanciesService} from '../../api/vacancies.service';
 import {vacancyContent, vacancyGallery, vacancyItem, vacancyStatistic} from '../../models/vacancies.model';
-import {NgFor, NgIf} from '@angular/common';
+import {NgFor} from '@angular/common';
 import {TranslateModule} from '@ngx-translate/core';
 import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-vacancies',
   standalone: true,
-  imports: [RouterLink, RouterModule, RouterOutlet, NgFor, TranslateModule],
+  imports: [RouterLink, RouterModule, NgFor, TranslateModule],
   templateUrl: './vacancies.component.html',
   styleUrl: './vacancies.component.scss'
 })
-export class VacanciesComponent {
+export class VacanciesComponent implements  OnInit {
   imageUrl: string = environment.IMAGE_URL;
   currentIndex: number = 0;
   vacancyContent: vacancyContent[] = []
