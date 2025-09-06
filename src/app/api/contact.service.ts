@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import { LanguagesService } from '../languages.service';
 import { environment } from '../../environments/environment';
 import { ContactResponse, ContactBlock, ContactPayload } from '../models/contact.model';
@@ -40,6 +40,7 @@ export class ContactService {
   submitContactForm(formData: ContactPayload): Observable<any> {
   
     return this.languageService.language$.pipe(
+      take(1),
       switchMap(lang => {
         const headers = new HttpHeaders({
           'Accept': 'application/json',

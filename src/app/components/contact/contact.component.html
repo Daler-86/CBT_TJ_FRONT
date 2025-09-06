@@ -58,13 +58,14 @@
       
           <!-- Телефон -->
           <div class="form-group">
-            <input type="text" class="form-control" 
-                   [placeholder]="('forms.placeholders.phone' | translate) + ' *'"
-                   formControlName="phone">
+            <input type="text" class="form-control" [placeholder]="('forms.placeholders.phone' | translate) + ' *'"
+              formControlName="phone">
             <div *ngIf="phone?.invalid && phone?.touched" class="error">
-              {{ 'forms.errors.required' | translate }}
+              <span *ngIf="phone?.errors?.['required']">{{ 'forms.errors.required' | translate }}</span>
+              <span *ngIf="phone?.errors?.['pattern']">{{ 'forms.errors.onlyDigits' | translate }}</span>
             </div>
           </div>
+          
           
           <!-- Кастомный селектор для темы -->
           <div class="form-group">
