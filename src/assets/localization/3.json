@@ -500,7 +500,8 @@
     "errors": {
       "selectSubject": "Please select a subject.",
       "minLength": "Minimum length is {{min}} characters.",
-      "required": "This field is required."
+      "required": "This field is required.",
+      "onlyDigits": "Only digits are allowed"
     }
   },
   "currencyConverter": {

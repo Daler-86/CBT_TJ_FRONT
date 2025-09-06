@@ -49,7 +49,13 @@ export class ContactComponent implements OnInit {
 
       this.contactForm = this.fb.group({
         client_name: ['', [Validators.required, Validators.minLength(2)]],
-        phone: ['', [Validators.required]],
+        phone: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^\d+$/) // ✅ только цифры разрешены
+          ]
+        ],
         contact_subject_id: [null, [Validators.required]],
         question: ['', [Validators.required, Validators.minLength(10)]]
       });
