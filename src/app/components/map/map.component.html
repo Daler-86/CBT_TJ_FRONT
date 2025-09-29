@@ -12,7 +12,7 @@
   <div [hidden]="selectedTab !== 'NaKarte'">
     <div class="application-form-container">
       <div class="form">
-        <!-- Выпадающий список фильтров -->
+     
         <div class="custom-dropdown">
           <div class="dropdown-selected" (click)="toggleDropdown($event)">
             {{ 'mapPage.filters.mainButtonLabel' | translate }}
@@ -93,7 +93,7 @@
           </div>
         </div>
         
-        <!-- Второй выпадающий список для региона -->
+      
         <div class="custom-dropdown">
           <div class="dropdown-selected" (click)="toggleDropdown2($event)">
            {{regionSelectedName}}
@@ -119,9 +119,7 @@
         </div>
       </div>
     </div>
-    
-    <!-- Карта -->
-  <!-- === ГЛАВНОЕ ИСПРАВЛЕНИЕ: ПРАВИЛЬНАЯ СТРУКТУРА === -->
+
   <div class="map-layout-container">
 
     <!-- 1. Боковая панель -->
@@ -154,7 +152,7 @@
             </div>
           </div>
     
-          <!-- === НОВЫЙ БЛОК ДЛЯ 'SERVICES' === -->
+        
           <div *ngIf="selectedPoint.properties.services.length > 0" class="info-sidebar__section">
             <div class="info-sidebar__label">{{ 'mapPage.sidebar.servicesLabel' | translate }}</div>
             <ul class="info-sidebar__service-list">
@@ -166,7 +164,7 @@
         </div>
       </ng-container>
     </div>
-
+ 
     <!-- 2. Область для рендеринга карты -->
     <div class="map-render-area">
       <app-yandex-map
@@ -178,7 +176,7 @@
     </div>
     
   </div>
-  <!-- === КОНЕЦ ИСПРАВЛЕНИЯ === -->
+  
 
  </div> 
   <!-- Список терминалов -->

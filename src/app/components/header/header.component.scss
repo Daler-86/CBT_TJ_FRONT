@@ -103,9 +103,13 @@ display: flex;
 gap: 25px;
 align-items: center;
 justify-content: space-between;
+padding-top: 5px;
 border-top: 1px solid #E6EAEE;
 box-sizing: border-box; 
-
+@media (max-width: 1024px) {
+  margin-top: 20px;
+  border-top: none;
+}
 .custom-dropdown {
   position: relative;
 

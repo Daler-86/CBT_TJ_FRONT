@@ -1,144 +1,129 @@
-// Переменные (в идеале, они должны быть в общем файле и импортироваться)
 $primary-color: #00B06C;
 $text-primary: #212529;
-$text-secondary: #6c757d;
-$border-color: #dee2e6;
-$background-light: #f8f9fa;
+$text-secondary: #6c757d; // For subtitles and secondary text
+$light-grey-border: #E0E0E0; // A lighter border color like in the first image
 $error-color: #dc3545;
+$button-disabled-bg: #E0E0E0; // Lighter grey for disabled button
+$button-disabled-text: #A0A0A0; // Darker grey for disabled button text
+
+// Overall page background (if applicable, not in form-container)
+
 
 // Общий контейнер формы
 .form-container {
-  max-width: 900px; // Сделаем немного шире для удобства
+  // max-width: 600px; // Adjusted max-width to match the first image's narrower look
   margin: 40px auto;
-  padding: 40px;
+  padding: 50px 60px; // More padding inside the form
   background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  border-radius: 12px; // Slightly less rounded corners than current, matching first image
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); // Softer, more subtle shadow
+  // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; // More common system font stack
 }
 
 // Заголовки
 h2 {
-  font-size: 28px;
+  font-size: 32px; // Larger font size for the main heading
   font-weight: 700;
-  text-align: center;
+  text-align: left; // Changed to left alignment
   margin: 0 0 10px;
   color: $text-primary;
 }
 
 p {
-  text-align: center;
+  text-align: left; // Changed to left alignment
   color: $text-secondary;
-  margin: 0 0 30px;
+  font-size: 16px; // Slightly larger font for subtitle
+  margin: 0 0 35px; // More space below subtitle
 }
 
 // Контейнер для одного поля (label + input)
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 25px; // More space between form groups
+}
+form{
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  justify-content: space-between;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 // Стили для полей ввода и textarea
 .form-control {
   width: 100%;
-  padding: 14px 16px;
-  font-size: 16px;
-  border: 1px solid $border-color;
+  padding: 16px 20px; // Increased padding for a taller input field
+  font-size: 17px; // Slightly larger font inside input
+  border: 1px solid $light-grey-border; // Lighter border color
   border-radius: 8px;
-  background-color: $background-light;
+  background-color: #ffffff; // Ensure background is white
   box-sizing: border-box;
   transition: border-color 0.2s, box-shadow 0.2s;
+  color: $text-primary; // Default text color in input
+
+  &::placeholder { // Style for placeholders
+    color: $text-secondary; // Lighter placeholder text
+  }
 
   &:focus {
     outline: none;
-    // border-color: $primary-color;
-    box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    border-color: $primary-color; // Primary color border on focus
+    box-shadow: 0 0 0 1px $primary-color; // A thin shadow matching the border
   }
 }
 
-textarea.form-control {
-  resize: vertical;
-  min-height: 120px;
-  font-family: inherit; // Чтобы textarea наследовала шрифт
-}
-
-// Стили для кастомного селектора
-.custom-dropdown {
-  position: relative;
-
-  .dropdown-selected {
-    cursor: pointer;
-    // Добавляем стрелку вниз
-    &::after {
-      content: '▼';
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 12px;
-      color: $text-secondary;
-    }
-    // Стиль для подсветки ошибки
-    &.is-invalid {
-      border-color: $error-color;
-    }
-  }
-
-  .dropdown-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid $border-color;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 1000;
-    margin-top: 5px;
-    max-height: 240px;
-    overflow-y: auto;
-  }
-
-  .dropdown-option {
-    padding: 12px 15px;
-    cursor: pointer;
-    p {
-      text-align: left;
-      margin: 0;
-    }
-    &:hover {
-      background-color: $background-light;
-    }
-  }
-}
-
-// Сообщение об ошибке
+// Error messages
 .error {
   color: $error-color;
-  font-size: 14px;
-  margin-top: 5px;
+  font-size: 13px; // Slightly smaller error text
+  margin-top: 8px; // More space above error text
   text-align: left;
 }
 
-// Кнопка отправки
+// Submit button
 .submit-button {
   width: 100%;
-  padding: 16px;
+  padding: 18px; // More vertical padding for a taller button
   background-color: $primary-color;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px; // Slightly more rounded button
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 25px; // Space before the privacy text
 
   &:hover:not(:disabled) {
-    background-color: darken($primary-color, 5%);
+    background-color: darken($primary-color, 8%); // Darken on hover
+    box-shadow: 0 4px 12px rgba($primary-color, 0.3); // Subtle shadow on hover
   }
 
   &:disabled {
-    color: #212529;
-    background-color: lighten(#b8b5b5, 20%);
+    background-color: $button-disabled-bg; // Light grey background for disabled
+    color: $button-disabled-text; // Darker grey text for disabled
     cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+// Privacy policy text
+.privacy-policy {
+  font-size: 14px;
+  color: $text-secondary;
+  text-align: left; // Left alignment for this text
+  line-height: 1.5;
+
+  a {
+    color: $primary-color; // Primary color for links
+    text-decoration: none; // No underline by default
+    font-weight: 500; // Slightly bolder links
+    transition: color 0.2s;
+
+    &:hover {
+      text-decoration: underline; // Underline on hover
+      color: darken($primary-color, 10%);
+    }
   }
 }

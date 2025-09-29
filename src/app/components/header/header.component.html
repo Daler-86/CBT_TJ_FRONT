@@ -38,27 +38,25 @@
       </div>
     </a>
 
-    <!-- Десктопное меню -->
-    <!-- Десктопное меню -->
     <ul class="menu desktop-only">
       <li *ngFor="let menu of menus; let i = index">
 
-        <!-- === Меню С подпунктами (дропдаун) === -->
+      
         <div *ngIf="menu.items && menu.items.length > 0" class="custom-dropdown"
           (mouseenter)="toggleDropdown(i, $event)" (mouseleave)="closeDropdown(i)">
           <div class="dropdown-selected contact">
             <a id="body-medium">{{ menu.name | translate }}</a>
           </div>
           <div class="dropdown-options" *ngIf="dropdownOpenMap[i]">
-            <!-- Итерируемся по подпунктам -->
+            
             <div class="dropdown-option" *ngFor="let item of menu.items" (click)="selectOption(item, i, $event, menu)">
 
-              <!-- Если is_new_tab === true (внешняя ссылка) -->
+             
               <a *ngIf="item.is_new_tab" [href]="item.route" target="_blank" rel="noopener noreferrer">
                 <p id="body-medium">{{ item.name | translate }}</p>
               </a>
 
-              <!-- Если is_new_tab === false (внутренняя ссылка) -->
+              
               <a *ngIf="!item.is_new_tab" [routerLink]="item.route">
                 <p id="body-medium">{{ item.name | translate }}</p>
               </a>
@@ -66,15 +64,15 @@
           </div>
         </div>
 
-        <!-- === Меню БЕЗ подпунктов (одна ссылка) === -->
+     
         <ng-container *ngIf="!menu.items || menu.items.length === 0">
 
-          <!-- Если is_new_tab === true (внешняя ссылка) -->
+        
           <a *ngIf="menu.is_new_tab" class="a" [href]="menu.route" target="_blank" rel="noopener noreferrer">
             {{ menu.name | translate }}
           </a>
 
-          <!-- Если is_new_tab === false (внутренняя ссылка) -->
+        
           <a *ngIf="!menu.is_new_tab" class="a" [routerLink]="menu.route">
             {{ menu.name | translate }}
           </a>
@@ -82,7 +80,7 @@
       </li>
     </ul>
 
-    <!-- Бургер-иконка (только для мобильных) -->
+  
     <div class="burger mobile-only" (click)="toggleMenu()" [class.active]="menuActive">
       <div></div>
       <div></div>
@@ -91,27 +89,26 @@
   </div>
 </nav>
 
-<!-- Мобильный оверлей (полностью отделен от основной навигации) -->
+
 <div class="mobile-overlay" [class.active]="menuActive">
 
-  <!-- Шапка оверлея -->
+
   <div class="mobile-menu-header">
     <a routerLink="/" (click)="toggleMenu()">
       <img width="160px" [src]="logoSrc" [alt]="'alt.mainLogo' | translate">
     </a>
   </div>
 
-  <!-- Кнопка "Офисы и банкоматы" -->
+
   <a routerLink="map" class="mobile-menu-map-button" (click)="toggleMenu()">
     <p>{{ 'header.top.officesAndAtms' | translate }}</p>
     <img src="../../../assets/icons/map-icons.svg" [alt]="'alt.mapPointIcon' | translate">
   </a>
 
-  <!-- Список меню (аккордеон) -->
+
   <ul class="mobile-menu-list">
     <li *ngFor="let menu of menus; let i = index">
 
-      <!-- Если у меню есть подпункты -->
       <ng-container *ngIf="menu.items && menu.items.length > 0">
         <div class="menu-item" (click)="toggleDropdown(i, $event)" [class.open]="dropdownOpenMap[i]">
           <a>{{ menu.name | translate }}</a>
@@ -119,12 +116,12 @@
         </div>
         <div class="submenu" *ngIf="dropdownOpenMap[i]">
           <div class="submenu-option" *ngFor="let item of menu.items">
-            <!-- Если is_new_tab === true (внешняя ссылка) -->
+
             <a *ngIf="item.is_new_tab" [href]="item.route" target="_blank" rel="noopener noreferrer"
               (click)="selectOption(item, i, $event, menu)">
               <p>{{ item.name | translate }}</p>
             </a>
-            <!-- Если is_new_tab === false (внутренняя ссылка) -->
+           
             <a *ngIf="!item.is_new_tab" [routerLink]="item.route" (click)="selectOption(item, i, $event, menu)">
               <p>{{ item.name | translate }}</p>
             </a>
@@ -132,14 +129,14 @@
         </div>
       </ng-container>
 
-      <!-- Если у меню НЕТ подпунктов (простая ссылка) -->
+    
       <ng-container *ngIf="!menu.items || menu.items.length === 0">
-        <!-- Если is_new_tab === true (внешняя ссылка) -->
+   
         <a *ngIf="menu.is_new_tab" class="menu-item single-link" [href]="menu.route" target="_blank"
           rel="noopener noreferrer" (click)="toggleMenu()">
           {{ menu.name | translate }}
         </a>
-        <!-- Если is_new_tab === false (внутренняя ссылка) -->
+   
         <a *ngIf="!menu.is_new_tab" class="menu-item single-link" [routerLink]="menu.route" (click)="toggleMenu()">
           {{ menu.name | translate }}
         </a>
@@ -147,7 +144,7 @@
     </li>
   </ul>
 
-  <!-- Футер оверлея -->
+
   <div class="mobile-menu-footer">
     <div class="footer-contacts">
       <p>+(992) 44 630 8888</p>

@@ -5,139 +5,458 @@ $text-secondary: #555;
 $background-light: #f8f9fa;
 $border-color: #e9ecef;
 
-// --- Общий контейнер страницы ---
-.page-container {
+
+.info-page-container {
+  background-color: #F7F8FA;
   padding: 3% 5%;
-  background-color: #f8f9fa; // Делаем фон белым для чистоты
-}
 
-// --- Блок 1: Главный баннер (стили сохранены) ---
-.card-container {
-  margin: 30px 0 60px; // Увеличим нижний отступ
-  background-color:white; // Фон как в примере
-  border-radius: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
+  @media (max-width: 768px) {
+    padding: 2% 3%;
+  }
 
-  .card-info {
-    padding: 60px 70px;
-    width: 55%;
+  .section-1 {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 24px;
+    align-items: center;
 
-    .card-title {
-      font-size: 42px;
+    @media (max-width: 992px) {
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 20px 0px;
+    }
+
+    .box1 {
+      padding: 115px 80px;
+
+      @media (max-width: 992px) {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-weight: 700;
+        font-size: 42px;
+
+        @media (max-width: 768px) {
+          font-size: 32px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 28px;
+        }
+      }
+
+      p {
+        font-size: 18px;
+        padding: 18px 0 40px;
+        color: #475569;
+
+        @media (max-width: 768px) {
+          font-size: 16px;
+          padding: 15px 0 30px;
+        }
+      }
+
+      button {
+        background-color: #00B06C;
+        padding: 19px 50px;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 18px;
+        font-weight: 400;
+
+        @media (max-width: 768px) {
+          padding: 15px 30px;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .box2 {
+      display: flex;
+      align-items: flex-end;
+      align-self: flex-end;
+
+      @media (max-width: 992px) {
+        align-self: center;
+        margin-top: 30px;
+      }
+
+      img {
+        padding: 20px 0 0;
+        max-width: 100%; // Ensures image scales down
+        height: auto;
+      }
+    }
+  }
+
+  .section-3 {
+    h2 {
+      margin-top: 40px;
+      font-size: 32px;
+      color: #020617;
       font-weight: 700;
-      color: $text-primary;
-      margin-bottom: 15px;
+
+      @media (max-width: 768px) {
+        font-size: 26px;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 22px;
+      }
     }
 
-    .card-description {
-      font-size: 18px;
-      color: $text-secondary;
-      line-height: 1.6;
-      margin-bottom: 30px;
+    .details-1 {
+      margin: 40px 0;
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 992px) {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .box1 {
+        width: 48%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+        border-radius: 24px;
+
+        @media (max-width: 992px) {
+          width: 100%;
+          padding: 30px;
+        }
+
+        @media (max-width: 480px) {
+          padding: 20px;
+        }
+
+        h3 {
+          font-weight: 700;
+          font-size: 24px;
+          padding: 40px 0 12px;
+          color: #020617;
+
+          @media (max-width: 768px) {
+            font-size: 20px;
+            padding: 20px 0 10px;
+          }
+        }
+
+        p {
+          color: #666F8D;
+          font-size: 20px;
+
+          @media (max-width: 768px) {
+            font-size: 16px;
+          }
+        }
+
+        img {
+          align-self: flex-start;
+          max-width: 100px; // Пример, можно настроить
+          height: auto;
+        }
+      }
     }
-    
-    .btn-primary {
-      background-color: $primary-color;
-      color: #fff;
-      border: none;
-      padding: 16px 45px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
+
+    .details-2 {
+      margin: 40px 0;
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 992px) {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .box1 {
+        width: 32%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 40px 20px;
+        border-radius: 24px;
+
+        @media (max-width: 992px) {
+          width: 100%;
+          padding: 30px;
+        }
+
+        @media (max-width: 480px) {
+          padding: 20px;
+        }
+
+        h3 {
+          font-weight: 700;
+          font-size: 24px;
+          padding: 40px 0 12px;
+          color: #020617;
+
+          @media (max-width: 768px) {
+            font-size: 20px;
+            padding: 20px 0 10px;
+          }
+        }
+
+        p {
+          color: #666F8D;
+          font-size: 20px;
+
+          @media (max-width: 768px) {
+            font-size: 16px;
+          }
+        }
+
+        img {
+          align-self: flex-start;
+          max-width: 100px; // Пример, можно настроить
+          height: auto;
+        }
+      }
     }
-  }
 
-  .card-image {
-    width: 45%;
-    align-self: flex-end;
-    img { width: 100%; display: block; }
-  }
-}
+    .btnCards {
+      margin: 40px 0;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
 
-// --- НОВЫЕ СТИЛИ для всех остальных секций ---
-.info-section {
-  margin-bottom: 50px;
-  padding: 30px 50px;
-  border-radius: 16px;
-  background-color: #fff;
-  .section-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: $text-primary;
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px dotted $border-color;
-  }
-}
+      @media (max-width: 768px) {
+        margin: 30px 0;
+        justify-content: center;
+      }
 
-.styled-list {
-  list-style: none;
-  padding-left: 0;
-  
-  li {
-    position: relative;
-    padding-left: 30px;
-    font-size: 16px;
-    line-height: 1.8;
-    color: $text-secondary;
-    margin-bottom: 15px;
+      button {
+        border-radius: 53px;
+        padding: 14px 28px;
+        background-color: white;
+        border: none;
+        cursor: pointer;
+        color: #141A20;
+        font-size: 17px;
+        font-weight: 500;
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 10px;
-      width: 15px;
-      height: 3px;
-      background-color: $primary-color;
-      border-radius: 2px;
+        @media (max-width: 1024px) {
+          padding: 10px 20px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 15px;
+          padding: 8px 15px;
+        }
+
+        &.active {
+          background-color: #00B06C;
+          color: white;
+        }
+      }
     }
-    
-    strong {
-      color: $text-primary;
-      font-weight: 600;
+
+    .content {
+      .info-container {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 40px;
+
+        @media (max-width: 768px) {
+          margin-bottom: 20px;
+        }
+      }
+
+      .info-box,
+      .info-box-limits,
+      .info-box-documents {
+        align-items: center;
+        padding: 0px 30px;
+        margin: 15px 0;
+        height: 90px;
+
+        @media (max-width: 1024px) {
+          height: 130px;
+          padding: 0px 20px;
+        }
+
+        @media (max-width: 768px) {
+          height: auto; // Allow height to adjust
+          min-height: 90px;
+          padding: 15px 20px;
+        }
+
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .info-title {
+          width: 70%;
+          font-weight: bold;
+          color: #141A20;
+          font-size: 18px;
+
+          @media (max-width: 768px) {
+            width: 100%; // Takes full width on smaller screens
+            font-size: 16px;
+            text-align: left;
+          }
+        }
+
+        .info-title-1 {
+          font-size: 18px;
+          color: #475569;
+          font-weight: 500;
+
+          @media (max-width: 768px) {
+            font-size: 16px;
+            text-align: left;
+          }
+        }
+
+        .info-detail {
+          width: 70%;
+          color: #475569;
+          font-size: 14px;
+          flex-grow: 1;
+
+          @media (max-width: 768px) {
+            width: 100%; // Takes full width on smaller screens
+            text-align: left;
+          }
+        }
+      }
+
+      .info-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr; // Stack columns on small screens
+          gap: 5px; // Add some space between stacked items
+        }
+      }
+
+      .info-box-limits {
+        display: grid;
+        grid-template-columns: 3fr 1fr 1fr 1fr;
+
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr; // Stack columns on small screens
+          gap: 5px;
+        }
+      }
+
+      .info-box-documents {
+        display: flex;
+        gap: 35px;
+
+        @media (max-width: 768px) {
+          flex-direction: column; // Stack items on small screens
+          gap: 15px;
+        }
+      }
     }
-  }
-}
 
-// Стиль для текстового абзаца в секции
-.info-section p {
-  font-size: 16px;
-  line-height: 1.8;
-  color: $text-secondary;
-}
+    .details-3 {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 40px 0;
 
-.conditions-summary {
-  margin-top: 20px;
-  font-style: italic;
-  color: #777;
-}
+      @media (max-width: 768px) {
+        margin: 30px 0;
+        gap: 10px;
+      }
 
+      .box {
+        padding: 32px 42px;
+        display: flex;
+        gap: 5px;
+        background-color: white;
+        border-radius: 12px;
+        align-items: center;
 
-// --- Адаптивность ---
-@media (max-width: 900px) {
-  .card-container {
-    flex-direction: column;
-    text-align: center;
-    padding: 30px;
-    margin-bottom: 40px;
-    .card-info, .card-image {
-      width: 100%;
-      padding: 0;
+        @media (max-width: 768px) {
+          padding: 20px 25px;
+          flex-direction: row; // Keep icon and text side-by-side
+          align-items: flex-start; // Align text to top if multiline
+          gap: 10px;
+        }
+
+        img {
+          flex-shrink: 0; // Prevent icon from shrinking
+          width: 24px; // Adjust icon size if needed
+          height: 24px;
+        }
+
+        p {
+          color: #475569;
+          font-size: 18px;
+
+          @media (max-width: 768px) {
+            font-size: 16px;
+          }
+        }
+      }
     }
-    .card-image {
-      order: -1; // Картинка сверху
-      margin-bottom: 20px;
-      img { max-width: 250px; margin: auto; }
-    }
-    .card-title { font-size: 32px; }
-  }
 
-  .info-section .section-title {
-    font-size: 26px;
+    .details-4 {
+      margin: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap; // Allow items to wrap to the next line
+
+      @media (max-width: 992px) {
+        gap: 20px;
+      }
+
+      @media (max-width: 768px) {
+        flex-direction: column; // Stack items on small screens
+      }
+
+      .box1 {
+        width: 24%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+        border-radius: 24px;
+
+        @media (max-width: 992px) {
+          width: 48%; // Two columns on medium screens
+          padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+          width: 100%; // Full width on small screens
+          padding: 20px;
+        }
+
+        p {
+          color: #666F8D;
+          padding-top: 80px;
+          font-size: 20px;
+          text-align: center; // Center text for better readability
+
+          @media (max-width: 768px) {
+            padding-top: 30px; // Reduce padding on small screens
+            font-size: 16px;
+          }
+        }
+
+        img {
+          align-self: center; // Center image
+          max-width: 80px; // Adjust image size
+          height: auto;
+        }
+      }
+    }
   }
 }

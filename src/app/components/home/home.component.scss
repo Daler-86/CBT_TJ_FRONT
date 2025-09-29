@@ -17,15 +17,8 @@
   }
   
   .box_1 {
-    display: grid; // 1. Включаем Grid Layout
-    gap: 24px; // 2. Задаем одинаковый отступ между всеми карточками
-  
-    // 3. Главная магия: создаем адаптивные колонки
-    // - repeat: повторять шаблон
-    // - auto-fill: заполнять доступное пространство колонками
-    // - minmax(160px, 1fr): каждая колонка будет минимум 160px, но сможет растягиваться,
-    //   чтобы занять равную долю (1fr) свободного места.
-    // Это заменяет ВСЕ ваши медиа-запросы для колонок!
+    display: grid; 
+    gap: 24px; 
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
   
@@ -62,7 +55,7 @@
       line-height: 24px;
       font-weight: 500;
       color: #020617;
-      // Убираем margin-top, так как позиционирование теперь через flex
+      
       margin: 0; 
     }
   }
@@ -111,7 +104,7 @@
     box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
 
 }
-    width: 90%;
+    // width: 90%;
     padding: 2% 5%;
     background-color: #f8f9fa;
     .favri{
@@ -233,11 +226,11 @@
 }
 .container_5{
     display: flex;
-    padding: 30px 5% ;
+    padding: 30px 5% 55px ;
     justify-content: space-between; 
     background-color:  #f8f9fa;
     align-items: stretch;
-    // box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+  
     gap: 2%;
     @media (max-width: 1024px) {
         display: block;
@@ -342,6 +335,117 @@
         }
     }
 }
+.statistics-section {
+
+
+padding: 2% 5%;
+background-color: #F7F8FA;
+    @media (max-width: 768px) {
+      padding: 2% 3%;
+    }
+  .statistic{
+    background-color: white;
+    padding: 48px;
+    border-radius: 24px;
+    .statistics-header {
+      margin-bottom: 40px;
+      h2 {
+        font-size: 32px;
+        color: #020617;
+        font-weight: 700;
+  
+        @media (max-width: 768px) {
+          font-size: 26px;
+        }
+        @media (max-width: 480px) {
+          font-size: 22px;
+        }
+      }
+    }
+  
+    .statistics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); // 4 колонки
+      gap: 24px;
+  
+      @media (max-width: 992px) {
+        grid-template-columns: repeat(2, 1fr); // 2 колонки на планшетах
+      }
+  
+      @media (max-width: 576px) {
+        grid-template-columns: 1fr; // 1 колонка на мобильных
+      }
+  
+      .statistic-item {
+        background-color: #F7F8FA;
+        border-radius: 24px;
+        padding: 40px 25px;
+        // text-align: center;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+  
+        h3 {
+          font-size: 20px;
+          font-weight: 600;
+          color: #333;
+          margin-top: 20px; // Отступ от круга
+        }
+  
+        p {
+          font-size: 15px;
+          color: #666;
+          margin-top: 10px;
+          line-height: 1.5;
+        }
+  
+        .progress-circle {
+          position: relative;
+          width: 88px; // Размер контейнера для SVG
+          height: 88px;
+          margin-bottom: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+  
+          .circular-chart {
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+            max-height: 100%;
+            background-color: white;
+            border-radius: 100px;
+          }
+  
+          .circle-bg {
+            fill: none;
+            // stroke: #eee; // Цвет фона круга
+            stroke-width: 3.8;
+          }
+  
+          .circle {
+            fill: none;
+            stroke: #00B06C; // Цвет заполнения
+            stroke-width: 2.8;
+            stroke-linecap: round;
+            transition: stroke-dasharray .8s ease-out; // Анимация заполнения
+            transform: rotate(-90deg); // Начало сверху
+            transform-origin: 50% 50%;
+          }
+  
+          .percentage-value {
+            position: absolute;
+            font-size: 24px;
+            font-weight: 700;
+            color: #020617;
+            line-height: 1; // Убираем лишнее пространство
+          }
+        }
+      }
+    }
+
+  }
+  }
 
 }}
 

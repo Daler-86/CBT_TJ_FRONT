@@ -12,10 +12,15 @@ import { ScrollToDirective } from '../../directives/scroll-to.directive';
 })
 export class AcquiringPageComponent {
  // Переменная для хранения ID активного таба
- public activeTab: string = 'pos';
+ public activeTab: string = 'pos'; 
+ selectedTab: string = 'all';
  public readonly acquiringApiUrl = '/order/acquiring/save'
  // Метод для смены таба
- selectTab(tabId: string): void {
+ selectTab1(tabId: string): void {
    this.activeTab = tabId;
  }
+ selectTab(tab: string) {
+  this.selectedTab = tab;
+}
+
 }

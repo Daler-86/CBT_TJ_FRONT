@@ -98,7 +98,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.logoSrc = '../../../assets/icons/logo_en_big.png';
         break;
       default:
-        this.logoSrc = '../../../assets/icons/logo_tj_big.png'; // Фолбэк на русский
+        this.logoSrc = '../../../assets/icons/logo_tj_big.png'; 
     }
   }
   selectLanguage(option: { value: Languages; label: string }) {
@@ -110,7 +110,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  // --- Остальные методы управления UI ---
 
   toggleDropdown1(event: Event) {
     this.dropdownOpen = !this.dropdownOpen;
@@ -141,11 +140,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ==== ВОТ ИСПРАВЛЕНИЕ: ВОЗВРАЩАЕМ НЕДОСТАЮЩИЙ МЕТОД ====
+
   closeDropdown(index: number) {
     this.dropdownOpenMap[index] = false;
   }
-  // =======================================================
+ 
 
   toggleMenu() {
     this.menuActive = !this.menuActive;
