@@ -28,7 +28,7 @@
       <!-- Карточка с документацией (под основной) -->
       <div class="tender-card tender-document-card">
         <img src="../../../assets/icons/файл.png" [alt]="'alt.pdfIcon' | translate" class="pdf-icon">
-        <a [href]="imageUrl+tenderDetailData.upload_file" class="document-link">{{ 'tenderDetails.documentationLink' | translate }}</a>
+        <a [href]="imageUrl+tenderDetailData.upload_file" class="document-link">{{ 'TENDER_DETAILS.DOCUMENTATION_LINK' | translate }}</a>
       </div>
     </div>
   
@@ -36,11 +36,11 @@
     <div class="tender-sidebar-column">
       <div class="tender-card tender-metadata-card">
         <div class="metadata-item">
-          <span class="label">{{ 'tenderDetails.meta.startDate' | translate }}</span>
+          <span class="label">{{ 'TENDER_DETAILS.META.START_DATE' | translate }}</span>
           <span class="value" >{{tenderDetailData.start_date}}</span>
         </div>
         <div class="metadata-item">
-          <span class="label">{{ 'tenderDetails.meta.endDate' | translate }}</span>
+          <span class="label">{{ 'TENDER_DETAILS.META.END_DATE' | translate }}</span>
           <span class="value">{{tenderDetailData.end_date}}</span>
         </div>
         <!-- <div class="metadata-item" *ngIf="tenderDetailData.responsible_person">
@@ -48,22 +48,22 @@
           <span class="value">{{tenderDetailData.responsible_person}}</span>
         </div> -->
         <div class="metadata-item">
-          <span class="label">{{ 'tenderDetails.meta.phoneNumber' | translate }}</span>
+          <span class="label">{{ 'TENDER_DETAILS.META.PHONE_NUMBER' | translate }}</span>
           <a [href]="'tel:'+tenderDetailData.phone_number" class="value">{{tenderDetailData.phone_number}}</a>
         </div>
         <div class="metadata-item">
-          <span class="label">{{ 'tenderDetails.meta.emailAddress' | translate }}</span>
+          <span class="label">{{ 'TENDER_DETAILS.META.EMAIL_ADDRESS' | translate }}</span>
           <a [href]="'mailto:'+ tenderDetailData.email " class="value">{{tenderDetailData.email}}</a>
         </div>
         <div class="metadata-item">
-          <span class="label">{{ 'tenderDetails.meta.statusLabel' | translate }}</span>
+          <span class="label">{{ 'TENDER_DETAILS.META.STATUS_LABEL' | translate }}</span>
           <span class="value">
             <span class="status-badge"
                   [ngClass]="{
                     'status-open': tenderDetailData.status === 'open',
                     'status-completed': tenderDetailData.status === 'close'
                   }">
-              {{ tenderDetailData.status === 'open' ? ('tenderDetails.status.open' | translate) : ('tenderDetails.status.closed' | translate) }}
+              {{ tenderDetailData.status === 'open' ? ('TENDER_DETAILS.STATUS.OPEN' | translate) : ('TENDER_DETAILS.STATUS.CLOSED' | translate) }}
             </span>
           </span>
         </div>
