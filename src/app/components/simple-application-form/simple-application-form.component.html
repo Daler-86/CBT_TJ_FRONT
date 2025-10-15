@@ -1,38 +1,38 @@
 <div class="form-container">
   <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
-     <div class="">
-    <h2>{{ titleKey | translate }}</h2>
-    <p>{{ subtitleKey | translate }}</p>
-</div>
     <div class="">
-    <div class="form-group">
-      <input type="text" class="form-control" 
-             [placeholder]="('forms.placeholders.fullName' | translate) + ' *'"
-             formControlName="client_name">
-      <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
-        {{ 'forms.errors.required' | translate }}
-      </div>
+      <h2>{{ titleKey | translate }}</h2>
+      <p>{{ subtitleKey | translate }}</p>
     </div>
 
-   
-    <div class="form-group">
-      <input type="text" class="form-control" 
-             [placeholder]="('forms.placeholders.phone' | translate) + ' *'"
-             formControlName="phone">
-      <div *ngIf="phone?.invalid && phone?.touched" class="error">
-        {{ 'forms.errors.required' | translate }}
+    <div class="">
+      <div class="form-group">
+        <input type="text" class="form-control" 
+               [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
+               formControlName="client_name">
+        <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
+          {{ 'FORMS.ERRORS.REQUIRED' | translate }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" 
+               [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
+               formControlName="phone">
+        <div *ngIf="phone?.invalid && phone?.touched" class="error">
+          {{ 'FORMS.ERRORS.REQUIRED' | translate }}
+        </div>
+      </div>
+
+      <button type="submit" class="submit-button" [disabled]="applicationForm.invalid || isSubmitting">
+        <span *ngIf="!isSubmitting">{{ 'BUTTONS.SEND' | translate }}</span>
+        <span *ngIf="isSubmitting">{{ 'BUTTONS.SENDING' | translate }}...</span>
+      </button>
+
+      <div class="privacy-policy">
+        {{ 'FORMS.PRIVACY_POLICY_PREFIX' | translate }} 
+        <a href="#" target="_blank">{{ 'FORMS.PRIVACY_POLICY_LINK' | translate }}</a>
       </div>
     </div>
-
-    
-    <button type="submit" class="submit-button" [disabled]="applicationForm.invalid || isSubmitting">
-      <span *ngIf="!isSubmitting">{{ 'buttons.send' | translate }}</span>
-      <span *ngIf="isSubmitting">{{ 'buttons.sending' | translate }}...</span>
-    </button>
-    <div class="privacy-policy">
-      {{ 'forms.privacyPolicyPrefix' | translate }} 
-      <a href="#" target="_blank">{{ 'forms.privacyPolicyLink' | translate }}</a>
-    </div>
-  </div>
   </form>
 </div>

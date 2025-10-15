@@ -13,7 +13,7 @@
   </div>
 
   <!-- Заголовок и текст для блока условий -->
-  <h1 *ngIf="transferData.upload_tariff_file_id!==''">{{ 'transfers.details.conditionsTitle' | translate }}</h1>
+  <h1 *ngIf="transferData.upload_tariff_file_id!==''">{{ 'TRANSFERS.DETAILS.CONDITIONS_TITLE' | translate }}</h1>
   <!-- <p *ngIf="transferData.upload_tariff_file_id">{{ 'transfers.details.swiftInfo' | translate }}</p> -->
 
   <div class="section2">
@@ -26,8 +26,8 @@
 
       <!-- Блок для кнопки тарифов -->
       <div class="box" *ngIf="transferData.upload_tariff_file_id!==''">
-          <p>{{ 'transfers.details.viewAllTariffsText' | translate }}</p>
-          <button class="btn-secondary">{{ 'buttons.allTariffs' | translate }}</button>
+          <p>{{ 'TRANSFERS.DETAILS.VIEW_ALL_TARIFFS_TEXT' | translate }}</p>
+          <button class="btn-secondary">{{ 'BUTTONS.ALL_TARIFFS' | translate }}</button>
       </div>
   </div>
 
@@ -47,17 +47,17 @@
       <div class="d">
           <div class="box">
               <div class="details">
-                  <h3>{{ 'transfers.details.moreInfoOnSite' | translate }}</h3>
+                  <h3>{{ 'TRANSFERS.DETAILS.MORE_INFO_ON_SITE' | translate }}</h3>
                   <!-- Динамический контент, перевод не требуется -->
                <a [href]="transferData.link"><p>{{transferData.title}}</p></a>   
               </div>
           </div>
       </div>
       <div class="location">
-          <h3>{{ 'common.officesAndAtms' | translate }}</h3>
-          <p>{{ 'map.tagline' | translate }}</p>
+          <h3>{{ 'COMMON.OFFICES_AND_ATMS' | translate }}</h3>
+          <p>{{ 'MAP.TAGLINE' | translate }}</p>
           <div class=""></div>
-          <button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/map">{{ 'buttons.viewOnMap' | translate }}</button>
+          <button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/map">{{ 'BUTTONS.VIEW_ON_MAP' | translate }}</button>
       </div>
   </div>
 </div>

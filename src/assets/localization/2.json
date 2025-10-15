@@ -1,752 +1,614 @@
 {
-  "For private individuals": "Частным лицам",
-  "Business": "Бизнесу",
-  "Mobile banking": "Мобильный банкинг",
-  "Vacancies": "Вакансии",
-  "More": "Еще",
-  "Credit cards": "Кредитные карты",
-  "Debit cards": "Дебетовые карты",
-  "Overdraft": "Овердрафт",
-  "Car loan": "Автокредит",
-  "Deposits": "Вклады",
-  "About the bank": "О банке",
-  "News": "Новости",
-  "Offices and ATMs": "Офисы и банкоматы",
-  "Questions and answers": "Вопросы и ответы",
-  "Contact the bank": "Связаться с банком",
-  "Tenders": "Тендеры",
-  "Money transfers around the world": "Денежные переводы по всему миру",
-  "Login": "Войти",
-  "Mortgage": "Ипотека",
-  "Cards": "Карты",
-  "Loans": "Кредиты",
-  "Transfers": "Переводы",
-  "Credit": "Кредит",
-  "Contribution": "Вклад",
-  "Buying a car": "Покупка авто",
-  "Calculate your loan": "Рассчитайте свой кредит",
-  "Loan amount": "Сумма кредита",
-  "Monthly payment": "Ежемесячный платёж",
-  "Our offer": "Наше предложение",
-  "Payments cards": "Платежные карты",
-  "Interest rate": "Процентная ставка",
-  "Apply for a loan": "Оформить кредит",
-  "Loan term": "Срок кредита",
-  "Preliminary calculation. Not a public offer": "Предварительный расчет. Не является публичной офертой",
-  "Favri mobile application": "Мобильное приложение Favri",
-  "Check your balance, pay for services, get help in chat 24/7": "Проверяйте баланс, оплачивайте услуги, получайте помощь в чате 24/7",
-  "Choose the best": "Выбирайте лучшее",
-  "Join the team Commerzbank": "Присоединяйтесь к команде Коммерцбанка Таджикистана и воплощайте идеи в жизнь.",
-  "Support": "Поддержка",
-  "We will resolve": "Любой вопрос решим по телефону или в чате",
-  "Currency rates": "Курсы валют",
-  "Currency": "Валюта",
-  "Accounting course": "Учетный курс",
-  "Collapse": "Свернуть",
-  "Show more": "Показать еще",
-  "Buy": "Купить",
-  "Sell": "Продать",
-  "It's great to work here, and here's why": "У нас классно работать, и вот почему",
-  "Our cozy offices": "Наши уютные офисы",
-  "View vacancies": "Смотреть вакансии",
-  "Apply for a vacancy": "Откликнуться на вакансию",
-  "Education and qualifications:": "Образование и квалификация:",
-  "Experience:": "Опыт работы:",
-  "Skills and knowledge:": "Навыки и знания:",
-  "Personal qualities:": "Личные качества:",
-  "Conditions:": "Условия:",
-  "Tell us about yourself and we will definitely contact you": "Расскажите нам о себе, и мы обязательно свяжемся с вами",
-  "Drag or": "Перетащите или",
-  "Supported formats: PDF, Doc, JPG (Max 5Mb)": "Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)",
-  "Upload your CV": "Загрузите CV",
-  "Send": "Отправить",
-  "Data sent successfully! We will contact you shortly.": "Данные успешно отправлены! Мы свяжемся с вами в ближайшее время.",
-  "❌ An error occurred while sending data. Please try again.": "❌ Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.",
-  "Filters": "Фильтры",
-  "Direction:": "Направление:",
-  "All directions": "Все направления",
-  "City:": "Город:",
-  "All cities": "Все города",
-  "Total": "Всего",
- 
-  "Working hours": "Рабочее время",
-  "Working days:": "Рабочие дни:",
-  "from Monday to Friday": "с понедельника по пятницу",
-  "from 08:00 to 17:00": "с 08:00 до 17:00",
-  "Saturday: from 09:00 to 12:00": "Суббота: с 09:00 до 12:00",
-  "Consumer loans": "Потребительские кредиты",
-  "All": "Все",
-  "Construction loan": "Кредит на строительство",
-  "Submit an application": "Оформить заявку",
-  "Get a loan": "Получить кредит",
-  "Tariffs and conditions": "Тарифы и условия",
-  "List of required documents": "Перечень необходимых документов",
-  "Online loan application": "Онлайн заявка на кредит",
-  "All calculations are preliminary and may differ from those actually received.": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
-  "This field is required": "Это поле обязательно для заполнения",
-  "If you do not have a permanent place of work, you can leave the field blank.": "Если у вас нет постоянного места работы, то можете оставить поле пустым.",
-  "Online applications are accepted and reviewed on weekdays from 8:00 to 17:00.": "Онлайн заявки принимаются и рассматриваются в будние дни с 8:00 до 17:00.",
-  "Apply for a card": "Оформить карту",
-  "Frequently Asked Questions": "Часто задаваемые вопросы",
-  "By clicking 'Get', you agree to": "Нажимая «Оформить карту», вы соглашаетесь на",
-  "processing of personal data": "обработку персональных данных",
-  "Services": "Услуги",
-  "Limits": "Лимиты",
-  "Operations": "Операции",
-  "Useful documents": "Полезные документы",
-  "TJS account": "Счёт TJS",
-  "RUB account": "Счёт RUB",
-  "USD account": "Счёт USD",
-  "Application for a card": "Заявка на карту",
-  "Leave your contacts and we will definitely contact you": "Оставьте свои контакты, и мы обязательно с вами свяжемся",
-  "Bank cards": "Банковские карты",
-  "More details": "Подробнее",
-  "Acquiring": "",
-  "Read": "Читать",
-  "Stay up to date with the latest news": "Будьте в курсе последних новостей",
-  "Exchange rates": "Курсы валют",
-  "Sale": "Продажа",
-  "Purchase": "Покупка",
-  "I have:": "Сумма к обмену",
-  "I will receive:": "Сумма к получению",
-  "Send money": "Отправить деньги",
-  "View on map": "Посмотреть на карте",
-  "We are closer than you think": "Мы ближе, чем вам кажется",
-  "Currency converter": "Конвертер валют",
-  "Current as of": "Актуально на",
-  "Simple and convenient registration, reliable and secure transfers": "Простая и удобная регистрация, надежные и безопасные переводы",
-  "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license": "© 2017 — 2024 ОАО 'Коммерцбанк Таджикистана', официальный сайт.",
-  "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.": "Лицензия Национального Банка Таджикистана на осуществление банковских операций, №0000085 от 10 октября 2017 года.",
-  "strach": "Страхование",
-  "vklad": "Вклады",
-  "all": "Все",
-  "offices": "Офисы",
-  "atm": "Банкоматы",
-  "terminals": "Терминалы",
-  "24h": "Круглосуточно",
-  "now": "Работает сейчас",
-  "qr": "QR-код",
-  "nfc": "NFC-бесконтактно",
-  "changeOffice":" Пожалуйста, выберите офис",
-  "vacancies": {
-    "title": "Вакансии",
-    "filters": {
-      "title": "Фильтры",
-      "directionLabel": "Направление:",
-      "allDirections": "Все направления",
-      "cityLabel": "Город:",
-      "allCities": "Все города"
+  "VACANCIES": {
+    "TITLE": "Вакансии",
+    "FILTERS": {
+      "TITLE": "Фильтры",
+      "DIRECTION_LABEL": "Направление:",
+      "ALL_DIRECTIONS": "Все направления",
+      "CITY_LABEL": "Город:",
+      "ALL_CITIES": "Все города"
     },
-    "list": {
-      "total": "Всего",
-      "vacanciesLabel": "вакансий",
-      "locationIconAlt": "Иконка местоположения",
-      "arrowIconAlt": "Иконка стрелки"
+    "LIST": {
+      "TOTAL": "Всего",
+      "VACANCIES_LABEL": "вакансий",
+      "LOCATION_ICON_ALT": "Иконка местоположения",
+      "ARROW_ICON_ALT": "Иконка стрелки"
     },
-    "promoCard": {
-      "imageAlt": "Карта Visa Gold"
+    "PROMO_CARD": {
+      "IMAGE_ALT": "Карта Visa Gold"
     },
-    "whyWorkHere": {
-      "title": "У нас классно работать, и вот почему"
+    "WHY_WORK_HERE": {
+      "TITLE": "У нас классно работать, и вот почему"
     },
-    "ourOffices": {
-      "title": "Начните работу в Коммерцбанке",
-      "imageAlt": "Фотография офиса"
+    "OUR_OFFICES": {
+      "TITLE": "Начните работу в Коммерцбанке",
+      "IMAGE_ALT": "Фотография офиса"
     }
   },
-  "alt": {
-    "location": "Иконка местоположения",
-    "calendar": "Иконка календаря",
-    "pdfIcon": "Иконка PDF",
-    "fileIcon": "Иконка файла",
-    "officeIcon": "Иконка офиса",
-    "atmIcon": "Иконка банкомата",
-    "terminalIcon": "Иконка терминала",
-    "telegram": "Иконка Телеграм",
-    "whatsapp": "Иконка WhatsApp",
-    "instagram": "Иконка Instagram",
-    "facebook": "Иконка Facebook",
-    "arrowForward": "Иконка-стрелка вперед",
-    "phoneIcon": "Иконка телефона",
-    "mapPointIcon": "Иконка точки на карте",
-    "globalIcon": "Иконка выбора языка",
-    "arrowDown": "Иконка-стрелка вниз",
-    "tickIcon": "Иконка выбранного пункта",
-    "mainLogo": "Главный логотип банка",
-    "loginIcon": "Иконка входа",
-    "mapIllustration": "Иллюстрация карты и местоположения",
-    "vacanciesIllustration": "Иллюстрация для раздела вакансий",
-    "supportIllustration": "Иллюстрация для раздела поддержки",
-    "mainLogoBlack": "Логотип банка (черный)",
-    "youtube": "Иконка YouTube",
-    "googlePlay": "Перейти в Google Play",
-    "appStore": "Перейти в App Store",
-    "favriAppMockup": "Макет приложения Favri",
-    "previousSlide": "Предыдущий слайд",
-    "nextSlide": "Следующий слайд",
-    "infoIcon": "Иконка информации",
-    "bookIcon": "Иконка книги",
-    "missionIcon": "Иконка миссии",
-    "goalIcon": "Иконка цели",
-    "visionIcon": "Иконка видения",
-    "historyImage1": "Историческое фото здания банка",
-    "historyImage2": "Фото операционного зала банка",
-    "historyImage3": "Фото современного офиса банка"
+  "ALT": {
+    "LOCATION": "Иконка местоположения",
+    "CALENDAR": "Иконка календаря",
+    "PDF_ICON": "Иконка PDF",
+    "FILE_ICON": "Иконка файла",
+    "OFFICE_ICON": "Иконка офиса",
+    "ATM_ICON": "Иконка банкомата",
+    "TERMINAL_ICON": "Иконка терминала",
+    "TELEGRAM": "Иконка Телеграм",
+    "WHATSAPP": "Иконка WhatsApp",
+    "INSTAGRAM": "Иконка Instagram",
+    "FACEBOOK": "Иконка Facebook",
+    "ARROW_FORWARD": "Иконка-стрелка вперед",
+    "PHONE_ICON": "Иконка телефона",
+    "MAP_POINT_ICON": "Иконка точки на карте",
+    "GLOBAL_ICON": "Иконка выбора языка",
+    "ARROW_DOWN": "Иконка-стрелка вниз",
+    "TICK_ICON": "Иконка выбранного пункта",
+    "MAIN_LOGO": "Главный логотип банка",
+    "LOGIN_ICON": "Иконка входа",
+    "MAP_ILLUSTRATION": "Иллюстрация карты и местоположения",
+    "VACANCIES_ILLUSTRATION": "Иллюстрация для раздела вакансий",
+    "SUPPORT_ILLUSTRATION": "Иллюстрация для раздела поддержки",
+    "MAIN_LOGO_BLACK": "Логотип банка (черный)",
+    "YOUTUBE": "Иконка YouTube",
+    "GOOGLE_PLAY": "Перейти в Google Play",
+    "APP_STORE": "Перейти в App Store",
+    "FAVRI_APP_MOCKUP": "Макет приложения Favri",
+    "PREVIOUS_SLIDE": "Предыдущий слайд",
+    "NEXT_SLIDE": "Следующий слайд",
+    "INFO_ICON": "Иконка информации",
+    "BOOK_ICON": "Иконка книги",
+    "MISSION_ICON": "Иконка миссии",
+    "GOAL_ICON": "Иконка цели",
+    "VISION_ICON": "Иконка видения",
+    "HISTORY_IMAGE1": "Историческое фото здания банка",
+    "HISTORY_IMAGE2": "Фото операционного зала банка",
+    "HISTORY_IMAGE3": "Фото современного офиса банка"
   },
-  "vacancyDetails": {
-    "sections": {
-      "education": "Образование и квалификация:",
-      "experience": "Опыт работы:",
-      "skills": "Навыки и знания:",
-      "qualities": "Обязанности:",
-      "conditions": "Условия:"
+  "VACANCY_DETAILS": {
+    "SECTIONS": {
+      "EDUCATION": "Образование и квалификация:",
+      "EXPERIENCE": "Опыт работы:",
+      "SKILLS": "Навыки и знания:",
+      "QUALITIES": "Обязанности:",
+      "CONDITIONS": "Условия:"
     },
-    "form": {
-      "title": "Откликнуться на вакансию",
-      "subtitle": "Расскажите нам о себе, и мы обязательно свяжемся с вами",
-      "lastName": "Фамилия",
-      "firstName": "Имя",
-      "phone": "Телефон",
-      "email": "Email",
-      "dragOr": "Перетащите или",
-      "supportedFormats": "Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)"
+    "FORM": {
+      "TITLE": "Откликнуться на вакансию",
+      "SUBTITLE": "Расскажите нам о себе, и мы обязательно свяжемся с вами",
+      "LAST_NAME": "Фамилия",
+      "FIRST_NAME": "Имя",
+      "PHONE": "Телефон",
+      "EMAIL": "Email",
+      "DRAG_OR": "Перетащите или",
+      "SUPPORTED_FORMATS": "Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)"
     }
   },
-  "buttons": {
-    "applyForVacancy": "Откликнуться на вакансию",
-    "uploadCV": "Загрузите CV",
-    "send": "Отправить",
-    "viewVacancies": "Смотреть вакансии",
-    "allTariffs": "Все тарифы",
-    "viewOnMap": "Посмотреть на карте",
-    "moreDetails": "Подробнее",
-    "openDeposit": "Открыть вклад",
-    "copyLink": "Копировать ссылку",
-    "linkCopied": "Ссылка скопирована!",
-    "applyForCard": "Оформить карту",
-    "applyForDeposit": "Оставить заявку на вклад",
-    "showMore": "Показать еще",
-    "collapse": "Свернуть",
-    "buy": "Купить",
-    "sell": "Продать",
-    "sendMoney": "Отправить деньги",
-    "getLoan": "Получить кредит",
-    "applyForLoan": "Оформить кредит"
+  "BUTTONS": {
+    "APPLY_FOR_VACANCY": "Откликнуться на вакансию",
+    "UPLOAD_CV": "Загрузите CV",
+    "SEND": "Отправить",
+    "VIEW_VACANCIES": "Смотреть вакансии",
+    "ALL_TARIFFS": "Все тарифы",
+    "VIEW_ON_MAP": "Посмотреть на карте",
+    "MORE_DETAILS": "Подробнее",
+    "OPEN_DEPOSIT": "Открыть вклад",
+    "COPY_LINK": "Копировать ссылку",
+    "LINK_COPIED": "Ссылка скопирована!",
+    "APPLY_FOR_CARD": "Оформить карту",
+    "APPLY_FOR_DEPOSIT": "Оставить заявку на вклад",
+    "SHOW_MORE": "Показать еще",
+    "COLLAPSE": "Свернуть",
+    "BUY": "Купить",
+    "SELL": "Продать",
+    "SEND_MONEY": "Отправить деньги",
+    "GET_LOAN": "Получить кредит",
+    "APPLY_FOR_LOAN": "Оформить кредит",
+    "ALL": "Все"
   },
-  "notifications": {
-    "submitSuccess": "Данные успешно отправлены! Мы свяжемся с вами в ближайшее время.",
-    "submitError": "❌ Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.",
-    "applicationSuccessMessage": "Ваша заявка успешно принята!",
-    "applicationErrorMessage": "Не удалось отправить заявку. Попробуйте позже.",
-    "fillAllFieldsWarning": "Пожалуйста, заполните все поля.",
-    "fillAllRequiredFieldsWarning": "Пожалуйста, заполните все обязательные поля.",
-    "messageSentSuccess": "Ваше сообщение успешно отправлено!",
-    "messageSentError": "Не удалось отправить сообщение. Попробуйте позже.",
-    "configError": "Ошибка конфигурации: не указан URL для отправки.",
-    "applicationSentSuccess": "Ваша заявка успешно отправлена!",
-    "uploadResumeWarning": "Пожалуйста, загрузите ваше резюме."
-  
+  "NOTIFICATIONS": {
+    "SUBMIT_SUCCESS": "Данные успешно отправлены! Мы свяжемся с вами в ближайшее время.",
+    "SUBMIT_ERROR": "❌ Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.",
+    "APPLICATION_SUCCESS_MESSAGE": "Ваша заявка успешно принята!",
+    "APPLICATION_ERROR_MESSAGE": "Не удалось отправить заявку. Попробуйте позже.",
+    "FILL_ALL_FIELDS_WARNING": "Пожалуйста, заполните все поля.",
+    "FILL_ALL_REQUIRED_FIELDS_WARNING": "Пожалуйста, заполните все обязательные поля.",
+    "MESSAGE_SENT_SUCCESS": "Ваше сообщение успешно отправлено!",
+    "MESSAGE_SENT_ERROR": "Не удалось отправить сообщение. Попробуйте позже.",
+    "CONFIG_ERROR": "Ошибка конфигурации: не указан URL для отправки.",
+    "APPLICATION_SENT_SUCCESS": "Ваша заявка успешно отправлена!",
+    "UPLOAD_RESUME_WARNING": "Пожалуйста, загрузите ваше резюме."
   },
-  "transfers": {
-    "details": {
-      "conditionsTitle": "Тарифы и условия",
-      "swiftInfo": "Чтобы получать или отправлять деньги по SWIFT, нужно открыть расчётный счёт. Это бесплатно",
-      "viewAllTariffsText": "Посмотреть все тарифы",
-      "documentsAndTariffsTitle": "Документы и тарифы",
-      "moreInfoOnSite": "Подробная информация на сайте:"
+  "TRANSFERS": {
+    "DETAILS": {
+      "CONDITIONS_TITLE": "Тарифы и условия",
+      "SWIFT_INFO": "Чтобы получать или отправлять деньги по SWIFT, нужно открыть расчётный счёт. Это бесплатно",
+      "VIEW_ALL_TARIFFS_TEXT": "Посмотреть все тарифы",
+      "DOCUMENTS_AND_TARIFFS_TITLE": "Документы и тарифы",
+      "MORE_INFO_ON_SITE": "Подробная информация на сайте:"
     },
-    "pageTitle": "Денежные переводы"
+    "PAGE_TITLE": "Денежные переводы"
   },
-  "common": {
-    "officesAndAtms": "Адреса и режим работы",
-    "toggleMenu": "Переключить навигационное меню",
-    "tariffsAndConditions": "Тарифы и условия",
-    "fieldIsRequired": "Это поле обязательно для заполнения",
-    "faqTitle": "Часто задаваемые вопросы",
-    "transfers":"Платежи и переводы",
-    "tagline":"Оплачивайте привычные услуги и переводите деньги",
-    "consent": {
-      "prefix": "Нажимая «Оформить карту», вы соглашаетесь на",
-      "prefix2": "Нажимая «Оставить заявку на вклад», вы соглашаетесь на",
-      "linkText": "обработку персональных данных",
-      "linkText2":"."
+  "COMMON": {
+    "OFFICES_AND_ATMS": "Адреса и режим работы",
+    "TOGGLE_MENU": "Переключить навигационное меню",
+    "TARIFFS_AND_CONDITIONS": "Тарифы и условия",
+    "FIELD_IS_REQUIRED": "Это поле обязательно для заполнения",
+    "FAQ_TITLE": "Часто задаваемые вопросы",
+    "TRANSFERS": "Платежи и переводы",
+    "TAGLINE": "Оплачивайте привычные услуги и переводите деньги",
+    "CONSENT": {
+      "PREFIX": "Нажимая «Оформить карту», вы соглашаетесь на",
+      "PREFIX2": "Нажимая «Оставить заявку на вклад», вы соглашаетесь на",
+      "LINK_TEXT": "обработку персональных данных",
+      "LINK_TEXT2": "."
     },
-
-    "pagination": {
-      "firstPage": "Перейти на первую страницу",
-      "previousPage": "Перейти на предыдущую страницу",
-      "nextPage": "Перейти на следующую страницу",
-      "lastPage": "Перейти на последнюю страницу"
+    "PAGINATION": {
+      "FIRST_PAGE": "Перейти на первую страницу",
+      "PREVIOUS_PAGE": "Перейти на предыдущую страницу",
+      "NEXT_PAGE": "Перейти на следующую страницу",
+      "LAST_PAGE": "Перейти на последнюю страницу"
     }
   },
-  "map": {
-    "tagline": "Мы ближе, чем вам кажется",
-    "filters": {
-      "typesTitle": "Типы объектов"
+  "MAP": {
+    "TAGLINE": "Мы ближе, чем вам кажется",
+    "FILTERS": {
+      "TYPES_TITLE": "Типы объектов"
     },
-    "card": {
-      "workingHours": "Время работы",
-      "workingHours24": "24 часа"
+    "CARD": {
+      "WORKING_HOURS": "Время работы",
+      "WORKING_HOURS24": "24 часа"
     },
-    "noDataMessage": "Нет данных для отображения."
+    "NO_DATA_MESSAGE": "Нет данных для отображения."
   },
-  "tenderDetails": {
-    "documentationLink": "Тендерная документация",
-    "meta": {
-      "startDate": "Дата начало конкурса",
-      "endDate": "Дата завершения конкурса",
-      "responsiblePerson": "Ответственное лицо",
-      "phoneNumber": "Номер телефона",
-      "emailAddress": "Адрес электронной почты",
-      "statusLabel": "Статус"
+  "TENDER_DETAILS": {
+    "DOCUMENTATION_LINK": "Тендерная документация",
+    "META": {
+      "START_DATE": "Дата начало конкурса",
+      "END_DATE": "Дата завершения конкурса",
+      "RESPONSIBLE_PERSON": "Ответственное лицо",
+      "PHONE_NUMBER": "Номер телефона",
+      "EMAIL_ADDRESS": "Адрес электронной почты",
+      "STATUS_LABEL": "Статус"
     },
-    "status": {
-      "open": "Открытый",
-      "closed": "Завершенный"
+    "STATUS": {
+      "OPEN": "Открытый",
+      "CLOSED": "Завершенный"
     }
   },
-  "tendersList": {
-    "title": "Тендеры",
-    "description": "Актуальные Информация о проводимых тендерах",
-    "table": {
-      "headerTender": "Тендер",
-      "headerStartDate": "Дата начала",
-      "headerEndDate": "Дата завершения",
-      "headerStatus": "Статус",
-      "noData": "Нет данных для отображения"
+  "TENDERS_LIST": {
+    "TITLE": "Тендеры",
+    "DESCRIPTION": "Актуальные Информация о проводимых тендерах",
+    "TABLE": {
+      "HEADER_TENDER": "Тендер",
+      "HEADER_START_DATE": "Дата начала",
+      "HEADER_END_DATE": "Дата завершения",
+      "HEADER_STATUS": "Статус",
+      "NO_DATA": "Нет данных для отображения"
     }
   },
-  "depositDetails": {
-    "advantagesTitle": "Преимущества",
-    "conditionsTitle": "Условия",
-    "calculator": {
-      "title": "Рассчитайте свой вклад",
-      "amountLabel": "Сумма вклада",
-      "termLabel": "Срок вклада",
-      "disclaimer": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
-      "results": {
-        "title": "Наше предложение",
-        "productLabel": "Депозитный продукт",
-        "productExample": "Срочный депозит",
-        "interestRateLabel": "Процентная ставка",
-        "incomeLabel": "Доход по вкладу",
-        "finalAmountLabel": "Сумма в конце срока"
+  "DEPOSIT_DETAILS": {
+    "ADVANTAGES_TITLE": "Преимущества",
+    "CONDITIONS_TITLE": "Условия",
+    "CALCULATOR": {
+      "TITLE": "Рассчитайте свой вклад",
+      "AMOUNT_LABEL": "Сумма вклада",
+      "TERM_LABEL": "Срок вклада",
+      "DISCLAIMER": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
+      "RESULTS": {
+        "TITLE": "Наше предложение",
+        "PRODUCT_LABEL": "Депозитный продукт",
+        "PRODUCT_EXAMPLE": "Срочный депозит",
+        "INTEREST_RATE_LABEL": "Процентная ставка",
+        "INCOME_LABEL": "Доход по вкладу",
+        "FINAL_AMOUNT_LABEL": "Сумма в конце срока"
       }
     },
-    "applicationForm": {
-      "title": "Оставьте заявку",
-      "subtitle": "Мы свяжемся с вами в ближайшее время.",
-      "phonePlaceholder": "Мобильный телефон",
-      "namePlaceholder": "ФИО",
-      "officePlaceholder": "Выберите офис"
+    "APPLICATION_FORM": {
+      "TITLE": "Оставьте заявку",
+      "SUBTITLE": "Мы свяжемся с вами в ближайшее время.",
+      "PHONE_PLACEHOLDER": "Мобильный телефон",
+      "NAME_PLACEHOLDER": "ФИО",
+      "OFFICE_PLACEHOLDER": "Выберите офис"
     }
   },
-  "forms": {
-    "titles": {
-      "acquiring": "Заявка на эквайринг",
-      "merchant": "Заявка на мерчант",
-      "salaryProject": "Заявка на зарплатный проект",
-      "default": "Оставить заявку"
+  "FORMS": {
+    "TITLES": {
+      "ACQUIRING": "Заявка на эквайринг",
+      "MERCHANT": "Заявка на мерчант",
+      "SALARY_PROJECT": "Заявка на зарплатный проект",
+      "DEFAULT": "Оставить заявку"
     },
-    "subtitles": {
-      "default": "Наш менеджер скоро свяжется с вами."
+    "SUBTITLES": {
+      "DEFAULT": "Наш менеджер скоро свяжется с вами."
     },
-    "placeholders": {
-      "fullName": "Полное имя",
-      "phone": "Мобильный телефон",
-      "creditPurpose": "Цель кредита",
-      "workplace": "Место работы и адрес",
-      "selectOffice": "Выберите отделение банка",
-"selectSubject": "Выберите тему обращения",
-      "question": "Ваш вопрос"
+    "PLACEHOLDERS": {
+      "FULL_NAME": "Полное имя",
+      "PHONE": "Мобильный телефон",
+      "CREDIT_PURPOSE": "Цель кредита",
+      "WORKPLACE": "Место работы и адрес",
+      "SELECT_OFFICE": "Выберите отделение банка",
+      "SELECT_SUBJECT": "Выберите тему обращения",
+      "QUESTION": "Ваш вопрос"
     },
-
-    "contact": {
-      "title": "Свяжитесь с нами",
-      "subtitle": "Мы готовы ответить на любые ваши вопросы."
+    "CONTACT": {
+      "TITLE": "Свяжитесь с нами",
+      "SUBTITLE": "Мы готовы ответить на любые ваши вопросы."
     },
-
-    "errors": {
-      "selectSubject": "Пожалуйста, выберите тему.",
-      "minLength": "Минимальная длина {{min}} символов.",
-      "required": "Это поле обязательно для заполнения.",
-      "onlyDigits": "Разрешены только цифры"
-    }
-   
-  },
-  "rko": {
-    "pageTitle": "Расчетно-кассовое обслуживание",
-    "pageDescription": "Надежные банковские операции для вашего бизнеса — быстро, удобно, безопасно."
-  },
-  "reporting": {
-    "pageTitle": "Отчетность",
-    "filter": {
-      "currentYear": "Текущий год"
+    "ERRORS": {
+      "SELECT_SUBJECT": "Пожалуйста, выберите тему.",
+      "MIN_LENGTH": "Минимальная длина {{min}} символов.",
+      "REQUIRED": "Это поле обязательно для заполнения.",
+      "ONLY_DIGITS": "Разрешены только цифры"
     },
-    "stats": {
-      "deviationLabel": "Отклонение (+, -)"
+    "PRIVACY_POLICY_PREFIX": "Отправляя форму, вы соглашаетесь с",
+    "PRIVACY_POLICY_LINK": "политикой конфиденциальности"
+  },
+  "RKO": {
+    "PAGE_TITLE": "Расчетно-кассовое обслуживание",
+    "PAGE_DESCRIPTION": "Надежные банковские операции для вашего бизнеса — быстро, удобно, безопасно."
+  },
+  "REPORTING": {
+    "PAGE_TITLE": "Отчетность",
+    "FILTER": {
+      "CURRENT_YEAR": "Текущий год"
     },
-    "documents": {
-      "noData": "Нет доступных документов."
-    }
-  },
-  "newsDetails": {
-    "shareTitle": "Поделиться"
-  },
-  "news": {
-    "sectionTitle": "Новости"
-  },
-  "links": {
-    "allNews": "Все новости"
-  },
-  "newsPage": {
-    "title": "Новости",
-    "subtitle": "Будьте в курсе последних новостей",
-    "noNewsMessage": "На данный момент новостей нет. Загляните позже."
-  },
-  "merchantsPage": {
-    "title": "Мерчанты и скидки",
-    "subtitle": "Найдите предложения и кэшбеки от наших партнеров",
-    "filters": {
-      "title": "Фильтры",
-      "searchPlaceholder": "Поиск по названию...",
-      "allRegions": "Все регионы",
-      "allCategories": "Все категории",
-      "cashbacks": "Кэшбеки"
+    "STATS": {
+      "DEVIATION_LABEL": "Отклонение (+, -)"
+    },
+    "DOCUMENTS": {
+      "NO_DATA": "Нет доступных документов."
     }
   },
-  "mapPage": {
-    "title": "Офисы, банкоматы и терминалы",
-    "landmark": "Ориентир",
-    "tabs": {
-      "onMap": "На карте",
-      "asList": "Списком"
+  "NEWS_DETAILS": {
+    "SHARE_TITLE": "Поделиться"
+  },
+  "NEWS": {
+    "SECTION_TITLE": "Новости"
+  },
+  "LINKS": {
+    "ALL_NEWS": "Все новости"
+  },
+  "NEWS_PAGE": {
+    "TITLE": "Новости",
+    "SUBTITLE": "Будьте в курсе последних новостей",
+    "NO_NEWS_MESSAGE": "На данный момент новостей нет. Загляните позже."
+  },
+  "MERCHANTS_PAGE": {
+    "TITLE": "Мерчанты и скидки",
+    "SUBTITLE": "Найдите предложения и кэшбеки от наших партнеров",
+    "FILTERS": {
+      "TITLE": "Фильтры",
+      "SEARCH_PLACEHOLDER": "Поиск по названию...",
+      "ALL_REGIONS": "Все регионы",
+      "ALL_CATEGORIES": "Все категории",
+      "CASHBACKS": "Кэшбеки"
+    }
+  },
+  "MAP_PAGE": {
+    "TITLE": "Офисы, банкоматы и терминалы",
+    "LANDMARK": "Ориентир",
+    "TABS": {
+      "ON_MAP": "На карте",
+      "AS_LIST": "Списком"
     },
-    "filters": {
-      "mainButtonLabel": "Фильтр",
-      "objectTypes": "Типы объектов",
-      "availability": "Доступность",
-      "additional": "Дополнительно",
-      "regionPlaceholder": "Город",
-    
-      "offices": "Офисы",
-      "terminals": "Терминалы",
-      "atms": "Банкоматы",
-      "allRegions": "Все регионы",
-     
-      "availabilityOptions": {
-        "24h": "24/7",
-        "now": "Работает сейчас"
+    "FILTERS": {
+      "MAIN_BUTTON_LABEL": "Фильтр",
+      "OBJECT_TYPES": "Типы объектов",
+      "AVAILABILITY": "Доступность",
+      "ADDITIONAL": "Дополнительно",
+      "REGION_PLACEHOLDER": "Город",
+      "OFFICES": "Офисы",
+      "TERMINALS": "Терминалы",
+      "ATMS": "Банкоматы",
+      "ALL_REGIONS": "Все регионы",
+      "AVAILABILITY_OPTIONS": {
+        "24H": "24/7",
+        "NOW": "Работает сейчас"
       }
     },
-    "infoWindow": {
-      "terminalLabel": "Терминал",
-      "atmLabel": "Банкомат",
-      "officeLabel": "Офис",
-      "addressLabel": "Адрес"
+    "INFO_WINDOW": {
+      "TERMINAL_LABEL": "Терминал",
+      "ATM_LABEL": "Банкомат",
+      "OFFICE_LABEL": "Офис",
+      "ADDRESS_LABEL": "Адрес"
     },
-    "sidebar":{
-      "servicesLabel":"Услуги"
-    }
-
-  },
-  "header": {
-    "top": {
-      "officesAndAtms": "Офисы и банкоматы"
-    },
-    "nav": {
-      "loginButton": "Войти"
+    "SIDEBAR": {
+      "SERVICES_LABEL": "Услуги"
     }
   },
-  "home": {
-    "tagline": "Выбирайте лучшее",
-    "joinTeam": {
-      "subtitle": "Присоединяйтесь к команде Коммерцбанка"
+  "HEADER": {
+    "TOP": {
+      "OFFICES_AND_ATMS": "Офисы и банкоматы"
     },
-    "support": {
-      "title": "Поддержка",
-      "subtitle": "Любой вопрос решим"
+    "NAV": {
+      "LOGIN_BUTTON": "Войти"
     }
   },
-  "footer": {
-    "contacts": {
-      "forIndividuals": "Частным лицам",
-      "forIndividuals2": "Короткий номер"
+  "HOME": {
+    "TAGLINE": "Выбирайте лучшее",
+    "JOIN_TEAM": {
+      "SUBTITLE": "Присоединяйтесь к команде Коммерцбанка"
     },
-    "nav": {
-      "creditCards": "Карты",
-      "debitCards": "Карты",
-      "scsRko": "РКО",
-      "merchants": "Мерчанты",
-      "aboutBank": "О банке",
-      "vacancies": "Вакансии",
-      "officesAndAtms": "Офисы и банкоматы",
-      "contacts": "Контакты",
-      "bankDetails": "Реквизиты",
-      "financialReporting": "Финансовая отчетность",
-      "tenders": "Тендеры",
-      "news": "Новости",
-      "insurance":"Страхование",
-      "salaryProject":"Зарплатный проект",
-      "acquiring":"Эквайринг"
-    },
-    "workingHours": {
-      "title": "Рабочее время",
-      "daysLabel": "Рабочие дни:",
-      "weekdays": "пн-пт",
-      "weekdaysTime": "пн-пт: с 08:00 до 17:00",
-      "saturday": "Сб: с 08:00 до 14:00"
-    },
-    "copyright": {
-      "main": "ОАО «Коммерцбанк Таджикистана», официальный сайт.",
-      "license": "Лицензия Национального Банка Таджикистана на осуществление банковских операций, №0000085 от 10 октября 2017 года."
+    "SUPPORT": {
+      "TITLE": "Поддержка",
+      "SUBTITLE": "Любой вопрос решим"
     }
   },
-  "favriApp": {
-    "title": "Мобильное приложение Favri",
-    "subtitle": "Проверяйте баланс, оплачивайте услуги, получайте помощь в чате 24/7"
-  },
-  "deposits": {
-    "pageTitle": "Депозиты"
-  },
-  "currencyConverter": {
-    "rateModes": {
-      "cash": "Наличными",
-      "nonCash": "Перевод денег",
-      "cbRate": "Курс НБТ"
+  "FOOTER": {
+    "CONTACTS": {
+      "FOR_INDIVIDUALS": "Частным лицам",
+      "FOR_INDIVIDUALS2": "Короткий номер"
     },
-    "ratesTable": {
-      "title": "Курсы валют",
-      "headers": {
-        "currency": "Валюта",
-        "accounting": "Учетный курс",
-        "purchase": "Покупка",
-        "sale": "Продажа"
+    "NAV": {
+      "CREDIT_CARDS": "Карты",
+      "DEBIT_CARDS": "Карты",
+      "SCS_RKO": "РКО",
+      "MERCHANTS": "Мерчанты",
+      "ABOUT_BANK": "О банке",
+      "VACANCIES": "Вакансии",
+      "OFFICES_AND_ATMS": "Офисы и банкоматы",
+      "CONTACTS": "Контакты",
+      "BANK_DETAILS": "Реквизиты",
+      "FINANCIAL_REPORTING": "Финансовая отчетность",
+      "TENDERS": "Тендеры",
+      "NEWS": "Новости",
+      "INSURANCE": "Страхование",
+      "SALARY_PROJECT": "Зарплатный проект",
+      "ACQUIRING": "Эквайринг"
+    },
+    "WORKING_HOURS": {
+      "TITLE": "Рабочее время",
+      "DAYS_LABEL": "Рабочие дни:",
+      "WEEKDAYS": "пн-пт",
+      "WEEKDAYS_TIME": "пн-пт: с 08:00 до 17:00",
+      "SATURDAY": "Сб: с 08:00 до 14:00"
+    },
+    "COPYRIGHT": {
+      "MAIN": "ОАО «Коммерцбанк Таджикистана», официальный сайт.",
+      "LICENSE": "Лицензия Национального Банка Таджикистана на осуществление банковских операций, №0000085 от 10 октября 2017 года."
+    }
+  },
+  "FAVRI_APP": {
+    "TITLE": "Мобильное приложение Favri",
+    "SUBTITLE": "Проверяйте баланс, оплачивайте услуги, получайте помощь в чате 24/7"
+  },
+  "DEPOSITS": {
+    "PAGE_TITLE": "Депозиты"
+  },
+  "CURRENCY_CONVERTER": {
+    "RATE_MODES": {
+      "CASH": "Наличными",
+      "NON_CASH": "Перевод денег",
+      "CB_RATE": "Курс НБТ"
+    },
+    "RATES_TABLE": {
+      "TITLE": "Курсы валют",
+      "HEADERS": {
+        "CURRENCY": "Валюта",
+        "ACCOUNTING": "Учетный курс",
+        "PURCHASE": "Покупка",
+        "SALE": "Продажа"
       },
-      "updatedLabel": "Актуально на"
+      "UPDATED_LABEL": "Актуально на"
     },
-    "converter": {
-      "haveLabel": "У меня есть:",
-      "receiveLabel": "Я получу:"
+    "CONVERTER": {
+      "HAVE_LABEL": "У меня есть:",
+      "RECEIVE_LABEL": "Я получу:"
     }
   },
-  "creditsPage": {
-    "title": "Кредиты",
-    "filters": {
-      "all": "Все",
-      "credit": "Потребительские кредиты",
-      "autoLoan": "Автокредит",
-      "constructionLoan": "Кредит на строительство"
+  "CREDITS_PAGE": {
+    "TITLE": "Кредиты",
+    "FILTERS": {
+      "ALL": "Все",
+      "CREDIT": "Потребительские кредиты",
+      "AUTO_LOAN": "Автокредит",
+      "CONSTRUCTION_LOAN": "Кредит на строительство"
     },
-    "card": {
-      "applyButton": "Оформить заявку",
-      "detailsButton": "Подробнее"
+    "CARD": {
+      "APPLY_BUTTON": "Оформить заявку",
+      "DETAILS_BUTTON": "Подробнее"
     }
   },
-  "creditDetails": {
-    "sections": {
-      "tariffsAndConditions": "Тарифы и условия",
-      "requiredDocuments": "Перечень необходимых документов",
-      "onlineApplication": "Онлайн заявка на кредит"
+  "CREDIT_DETAILS": {
+    "SECTIONS": {
+      "TARIFFS_AND_CONDITIONS": "Тарифы и условия",
+      "REQUIRED_DOCUMENTS": "Перечень необходимых документов",
+      "ONLINE_APPLICATION": "Онлайн заявка на кредит"
     },
-    "applicationForm": {
-      "amountLabel": "Сумма кредита",
-      "termLabel": "Срок кредита",
-      "preliminaryCalcDisclaimer": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
-      "noWorkplaceDisclaimer": "Если у вас нет постоянного места работы, то можете оставить поле пустым.",
-      "fullNamePlaceholder": "Полное имя",
-      "phonePlaceholder": "Мобильный телефон",
-      "purposePlaceholder": "Цель кредита",
-      "workplacePlaceholder": "Место работы и адрес",
-      "officePlaceholder": "Выберите офис"
+    "APPLICATION_FORM": {
+      "AMOUNT_LABEL": "Сумма кредита",
+      "TERM_LABEL": "Срок кредита",
+      "PRELIMINARY_CALC_DISCLAIMER": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
+      "NO_WORKPLACE_DISCLAIMER": "Если у вас нет постоянного места работы, то можете оставить поле пустым.",
+      "FULL_NAME_PLACEHOLDER": "Полное имя",
+      "PHONE_PLACEHOLDER": "Мобильный телефон",
+      "PURPOSE_PLACEHOLDER": "Цель кредита",
+      "WORKPLACE_PLACEHOLDER": "Место работы и адрес",
+      "OFFICE_PLACEHOLDER": "Выберите офис"
     },
-    "results": {
-      "monthlyPaymentLabel": "Ежемесячный платёж",
-      "interestRateLabel": "Процентная ставка",
-      "onlineApplicationInfo": "Онлайн заявки принимаются и рассматриваются в будние дни с 8:00 до 17:00."
+    "RESULTS": {
+      "MONTHLY_PAYMENT_LABEL": "Ежемесячный платёж",
+      "INTEREST_RATE_LABEL": "Процентная ставка",
+      "ONLINE_APPLICATION_INFO": "Онлайн заявки принимаются и рассматриваются в будние дни с 8:00 до 17:00."
     }
   },
-  "contactsPage": {
-    "title": "Контакты",
-    "subtitle": "Свяжитесь с нами — мы всегда на связи и готовы помочь.",
-    "infoWindow": {
-      "phoneLabel": "Телефон"
+  "CONTACTS_PAGE": {
+    "TITLE": "Контакты",
+    "SUBTITLE": "Свяжитесь с нами — мы всегда на связи и готовы помочь.",
+    "INFO_WINDOW": {
+      "PHONE_LABEL": "Телефон"
     }
   },
-  "aboutUs": {
-    "mainTitle": "ОАО «Коммерцбанк Таджикистана» — один из самых надежных и динамично развивающихся банков страны",
-    "cards": {
-      "mission": {
-        "title": "Наша миссия",
-        "text": "Мы обеспечиваем надежные, доступные и современные финансовые решения..."
+  "ABOUT_US": {
+    "MAIN_TITLE": "ОАО «Коммерцбанк Таджикистана» — один из самых надежных и динамично развивающихся банков страны",
+    "CARDS": {
+      "MISSION": {
+        "TITLE": "Наша миссия",
+        "TEXT": "Мы обеспечиваем надежные, доступные и современные финансовые решения..."
       },
-      "goal": {
-        "title": "Наша цель",
-        "text": "Наша цель — быть надежным партнером для каждого, кто стремится к финансовой стабильности..."
+      "GOAL": {
+        "TITLE": "Наша цель",
+        "TEXT": "Наша цель — быть надежным партнером для каждого, кто стремится к финансовой стабильности..."
       },
-      "vision": {
-        "title": "Наше видение",
-        "text": "Быть драйвером финансовых инноваций и надежным партнером для клиентов..."
+      "VISION": {
+        "TITLE": "Наше видение",
+        "TEXT": "Быть драйвером финансовых инноваций и надежным партнером для клиентов..."
       }
     },
-    "history": {
-      "title": "Наша история",
-      "p1": "Становление и развитие Открытого акционерного общества «Коммерцбанк Таджикистана», как универсальной кредитной организации, происходило в условиях многолетней деятельности в конкурентной среде на отечественном рынке банковских услуг.",
-      "p2": "Начало было положено в 2006 году, когда было образовано Общество с ограниченной ответственностью «Музаффарият», организовавшего банковскую деятельность в форме микрозаёмной организации на основании лицензии Национального банка Таджикистана за номером №001-2519 «А».",
-      "p3": "В мае 2016 года обновлённая команда ООО МДО «Музаффарият» провела ребрендинг, переименовав кредитную организацию в ООО МДО «Фардо». Месяцем спустя была обновлена лицензия Национального банка Таджикистана для осуществления банковских операций за номером БМТ №0000062.",
-      "p4": "В октябре 2017 года кредитная организация, функционирующая в форме общества с ограниченной ответственностью, преобразовалась в акционерное общество, пополнив за счет акционеров (нового акционера) уставный капитал до уровня, позволяющего продолжить деятельность уже в статуте банка. МДО «Фардо» было преобразовано в ОАО «Коммерцбанк Таджикистана», которому со стороны Национального банка Таджикистана была предоставлена лицензия за номером БМТ №0000085.",
-      "p5": "Реализуемая стратегия развития Банка на ближайшую перспективу направлена на расширение сферы применения системы безналичных платежей, совершенствование технологической платформы и внедрение инновационных продуктов. К примеру, технологическая платформа «ФАВРИ» позволяет физическим и юридическим лицам пользоваться широким спектром банковских услуг дистанционно. Став участниками электронной коммерции, они получили возможность производить оплату за приобретаемые товары и услуги посредством QR-кода, а также осуществлять вне офиса Банка множество других операций.",
-      "p6": "Новым и инновационным продуктом стало мобильное приложение «Фаври интикол», которое к настоящему времени не имеет аналога на финансовом рынке Таджикистана. Оно, являясь унифицированным дополнением к приложению «Сбербанк онлайн», не имеет ограничений по пользователям: держатели любых карт, выпущенных российскими банками, могут совершать по нему мгновенные денежные переводы в Республику Таджикистан. Разработка инновационного технологического решения стала возможной благодаря двустороннему проекту «Один шлюз – вся Россия», позволившему мобильному банкингу стать еще более функциональным, универсальным и удобным. Его уникальная новизна заключается в том, что им могут воспользоваться пользователи любых карт российской национальной платежной системы, а также международных платежных систем.",
-      "p7": "С первых дней своего образования на рынке кредитных организаций, банк стремится предоставлять качественные и доступные финансовые услуги населению, поддерживая тем самым развитие малого и среднего бизнеса в регионах страны.",
-      "p8": "Коммерцбанк как социально-активный банк на сегодняшний день шагает в ногу с инновационными технологиями, применяя во взаимоотношениях с клиентами стандартизированные процедуры доступа к микрофинансированию, что позволяет минимизировать возможные кредитные риски.",
-      "p9": "На сегодняшний день на территории страны функционируют 63 Центров банковского обслуживания и 11 филиалов. В будущем планируется открытие новых Центров банковского обслуживания и филиалов, что сделает Банк еще более доступным на региональном уровне."
+    "HISTORY": {
+      "TITLE": "Наша история",
+      "P1": "Становление и развитие Открытого акционерного общества «Коммерцбанк Таджикистана», как универсальной кредитной организации, происходило в условиях многолетней деятельности в конкурентной среде на отечественном рынке банковских услуг.",
+      "P2": "Начало было положено в 2006 году, когда было образовано Общество с ограниченной ответственностью «Музаффарият», организовавшего банковскую деятельность в форме микрозаёмной организации на основании лицензии Национального банка Таджикистана за номером №001-2519 «А».",
+      "P3": "В мае 2016 года обновлённая команда ООО МДО «Музаффарият» провела ребрендинг, переименовав кредитную организацию в ООО МДО «Фардо». Месяцем спустя была обновлена лицензия Национального банка Таджикистана для осуществления банковских операций за номером БМТ №0000062.",
+      "P4": "В октябре 2017 года кредитная организация, функционирующая в форме общества с ограниченной ответственностью, преобразовалась в акционерное общество, пополнив за счет акционеров (нового акционера) уставный капитал до уровня, позволяющего продолжить деятельность уже в статуте банка. МДО «Фардо» было преобразовано в ОАО «Коммерцбанк Таджикистана», которому со стороны Национального банка Таджикистана была предоставлена лицензия за номером БМТ №0000085.",
+      "P5": "Реализуемая стратегия развития Банка на ближайшую перспективу направлена на расширение сферы применения системы безналичных платежей, совершенствование технологической платформы и внедрение инновационных продуктов. К примеру, технологическая платформа «ФАВРИ» позволяет физическим и юридическим лицам пользоваться широким спектром банковских услуг дистанционно. Став участниками электронной коммерции, они получили возможность производить оплату за приобретаемые товары и услуги посредством QR-кода, а также осуществлять вне офиса Банка множество других операций.",
+      "P6": "Новым и инновационным продуктом стало мобильное приложение «Фаври интикол», которое к настоящему времени не имеет аналога на финансовом рынке Таджикистана. Оно, являясь унифицированным дополнением к приложению «Сбербанк онлайн», не имеет ограничений по пользователям: держатели любых карт, выпущенных российскими банками, могут совершать по нему мгновенные денежные переводы в Республику Таджикистан. Разработка инновационного технологического решения стала возможной благодаря двустороннему проекту «Один шлюз – вся Россия», позволившему мобильному банкингу стать еще более функциональным, универсальным и удобным. Его уникальная новизна заключается в том, что им могут воспользоваться пользователи любых карт российской национальной платежной системы, а также международных платежных систем.",
+      "P7": "С первых дней своего образования на рынке кредитных организаций, банк стремится предоставлять качественные и доступные финансовые услуги населению, поддерживая тем самым развитие малого и среднего бизнеса в регионах страны.",
+      "P8": "Коммерцбанк как социально-активный банк на сегодняшний день шагает в ногу с инновационными технологиями, применяя во взаимоотношениях с клиентами стандартизированные процедуры доступа к микрофинансированию, что позволяет минимизировать возможные кредитные риски.",
+      "P9": "На сегодняшний день на территории страны функционируют 63 Центров банковского обслуживания и 11 филиалов. В будущем планируется открытие новых Центров банковского обслуживания и филиалов, что сделает Банк еще более доступным на региональном уровне."
     }
   },
-  "cardsPage": {
-    "title": "Банковские карты"
+  "CARDS_PAGE": {
+    "TITLE": "Банковские карты"
   },
-  "cardDetails": {
-    "tabs": {
-      "services": "Услуги",
-      "limits": "Лимиты",
-      "operations": "Операции",
-      "documents": "Полезные документы"
+  "CARD_DETAILS": {
+    "TABS": {
+      "SERVICES": "Услуги",
+      "LIMITS": "Лимиты",
+      "OPERATIONS": "Операции",
+      "DOCUMENTS": "Полезные документы"
     },
-    "accounts": {
-      "tjs": "Счёт TJS",
-      "rub": "Счёт RUB",
-      "usd": "Счёт USD"
+    "ACCOUNTS": {
+      "TJS": "Счёт TJS",
+      "RUB": "Счёт RUB",
+      "USD": "Счёт USD"
     },
-    "applicationForm": {
-      "title": "Заявка на карту",
-      "subtitle": "Оставьте свои контакты, и мы обязательно с вами свяжемся",
-      "phonePlaceholder": "Мобильный телефон",
-      "namePlaceholder": "ФИО",
-      "officePlaceholder": "Выберите офис"
+    "APPLICATION_FORM": {
+      "TITLE": "Заявка на карту",
+      "SUBTITLE": "Оставьте свои контакты, и мы обязательно с вами свяжемся",
+      "PHONE_PLACEHOLDER": "Мобильный телефон",
+      "NAME_PLACEHOLDER": "ФИО",
+      "OFFICE_PLACEHOLDER": "Выберите офис"
     }
   },
-  "calculator": {
-    "tabs": {
-      "credit": "Кредит",
-      "deposit": "Вклад",
-      "carPurchase": "Покупка авто",
-      "rassrochka":"Рассрочка"
-
+  "CALCULATOR": {
+    "TABS": {
+      "CREDIT": "Кредит",
+      "DEPOSIT": "Вклад",
+      "CAR_PURCHASE": "Покупка авто",
+      "RASSROCHKA": "Рассрочка"
     }
   },
-  "depositProducts": {
-    "durakhshon": "Детский вклад «Дурахшон»",
-    "favri": "Накопительный вклад «ФАВРИ»",
-    "vip": "Депозит «V.I.P»",
-    "orzu": "Депозит «Орзу»",
-    "avf": "Депозит «АВФ»"
+  "DEPOSIT_PRODUCTS": {
+    "DURAKHSHON": "Детский вклад «Дурахшон»",
+    "FAVRI": "Накопительный вклад «ФАВРИ»",
+    "VIP": "Депозит «V.I.P»",
+    "ORZU": "Депозит «Орзу»",
+    "AVF": "Депозит «АВФ»"
   },
-    "calculators": {
-      
-      "common": {
-        "currency": "Валюта",
-        "tjs": "Сомони",
-        "usd": "Доллары США",
-        "annualRate": "Годовая ставка",
-        "interestRate": "Процентная ставка",
-        "months": "мес.",
-        "yourOffer": "Наше предложение",
-        "monthlyPayment": "Ежемесячный платёж",
-        "applyButton": "Оставить заявку",
-        "disclaimer": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
-        "attention": "Внимание",
-        "currencySymbol": {
-          "tjs": "с.",
-          "usd": "$"
-        }
-      },
-      "loan": {
-        "title": "Кредитный калькулятор",
-        "amount": "Сумма кредита",
-        "term": "Срок кредита",
-        "overpayment": "Сумма переплаты"
-      },
-      "deposit": {
-        "title": "Рассчитайте свой вклад",
-        "product": "Депозитный продукт",
-        "amount": "Сумма вклада",
-        "term": "Срок вклада",
-        "income": "Доход по вкладу",
-        "finalAmount": "Сумма в конце срока"
-      },
-      "autoLoan": {
-        "title": "Покупка авто",
-        "carCost": "Стоимость авто",
-        "downPayment": "Предоплата",
-        "financingAmount": "Сумма финансирования",
-        "term": "Срок кредита",
-        "actualOverpayment": "Фактическая переплата"
-      },
-      "installment": {
-        "title": "Калькулятор рассрочки",
-        "amount": "Сумма",
-        "term": "Срок",
-        "totalPayment": "Общая сумма выплаты",
-        "selectTermError": "Выберите срок из предложенных, чтобы увидеть расчет.",
-        "applyButton": "Оформить рассрочку"
+  "CALCULATORS": {
+    "COMMON": {
+      "CURRENCY": "Валюта",
+      "TJS": "Сомони",
+      "USD": "Доллары США",
+      "ANNUAL_RATE": "Годовая ставка",
+      "INTEREST_RATE": "Процентная ставка",
+      "MONTHS": "мес.",
+      "YOUR_OFFER": "Наше предложение",
+      "MONTHLY_PAYMENT": "Ежемесячный платёж",
+      "APPLY_BUTTON": "Оставить заявку",
+      "DISCLAIMER": "Все расчеты являются предварительными и могут отличаться от фактически полученных.",
+      "ATTENTION": "Внимание",
+      "CURRENCY_SYMBOL": {
+        "TJS": "с.",
+        "USD": "$"
       }
     },
-  
-  "currency": {
-    "somoni": "с."
-  },
-  "bankDetails": {
-    "pageTitle": "Реквизиты",
-    "pageSubtitle": "Банковские реквизиты для финансовых операций",
-    "labels": {
-      "bankName": "Наименование банка",
-      "legalAddress": "Юридический адрес",
-      "inn": "ИНН",
-      "kpp": "КПП",
-      "corrAccount": "Корр. счёт",
-      "bik": "БИК",
-      "swift": "SWIFT"
+    "LOAN": {
+      "TITLE": "Кредитный калькулятор",
+      "AMOUNT": "Сумма кредита",
+      "TERM": "Срок кредита",
+      "OVERPAYMENT": "Сумма переплаты"
+    },
+    "DEPOSIT": {
+      "TITLE": "Рассчитайте свой вклад",
+      "PRODUCT": "Депозитный продукт",
+      "AMOUNT": "Сумма вклада",
+      "TERM": "Срок вклада",
+      "INCOME": "Доход по вкладу",
+      "FINAL_AMOUNT": "Сумма в конце срока"
+    },
+    "AUTO_LOAN": {
+      "TITLE": "Покупка авто",
+      "CAR_COST": "Стоимость авто",
+      "DOWN_PAYMENT": "Предоплата",
+      "FINANCING_AMOUNT": "Сумма финансирования",
+      "TERM": "Срок кредита",
+      "ACTUAL_OVERPAYMENT": "Фактическая переплата"
+    },
+    "INSTALLMENT": {
+      "TITLE": "Калькулятор рассрочки",
+      "AMOUNT": "Сумма",
+      "TERM": "Срок",
+      "TOTAL_PAYMENT": "Общая сумма выплаты",
+      "SELECT_TERM_ERROR": "Выберите срок из предложенных, чтобы увидеть расчет.",
+      "APPLY_BUTTON": "Оформить рассрочку"
     }
   },
-
-  "insurancePage": {
-    "mainTitle": "Страхование вкладов физических лиц",
-    "whatIsIt": {
-      "title": "Что такое система страхования вкладов физических лиц?",
-      "p1": "Система страхования вкладов физических лиц — это комплекс мер по защите прав и законных интересов вкладчиков путем выплаты страхового возмещения вкладчикам при наступлении страхового случая в кредитных организациях, являющихся членами Фонда страхования вкладов физических лиц.",
-      "p2": "Целью системы страхования вкладов физических лиц является обеспечение финансовой стабильности Республики Таджикистан, включая поддержание доверия населения к банковской системе.",
-      "p3": "Основы деятельности системы страхования вкладов физических лиц регулируются Законом Республики Таджикистан «О страховании вкладов физических лиц». С целью обеспечения эффективности системы действует Фонд страхования вкладов физических лиц (далее – Фонд). Фонд производит выплату страхового возмещения вкладчикам при наступлении страхового случая, ведет реестр кредитных организаций-членов системы страхования, а также осуществляет учет и сбор взносов от кредитных организаций."
+  "CURRENCY": {
+    "SOMONI": "с."
+  },
+  "BANK_DETAILS": {
+    "PAGE_TITLE": "Реквизиты",
+    "PAGE_SUBTITLE": "Банковские реквизиты для финансовых операций",
+    "LABELS": {
+      "BANK_NAME": "Наименование банка",
+      "LEGAL_ADDRESS": "Юридический адрес",
+      "INN": "ИНН",
+      "KPP": "КПП",
+      "CORR_ACCOUNT": "Корр. счёт",
+      "BIK": "БИК",
+      "SWIFT": "SWIFT"
+    }
+  },
+  "INSURANCE_PAGE": {
+    "MAIN_TITLE": "Страхование вкладов физических лиц",
+    "WHAT_IS_IT": {
+      "TITLE": "Что такое система страхования вкладов физических лиц?",
+      "P1": "Система страхования вкладов физических лиц — это комплекс мер по защите прав и законных интересов вкладчиков путем выплаты страхового возмещения вкладчикам при наступлении страхового случая в кредитных организациях, являющихся членами Фонда страхования вкладов физических лиц.",
+      "P2": "Целью системы страхования вкладов физических лиц является обеспечение финансовой стабильности Республики Таджикистан, включая поддержание доверия населения к банковской системе.",
+      "P3": "Основы деятельности системы страхования вкладов физических лиц регулируются Законом Республики Таджикистан «О страховании вкладов физических лиц». С целью обеспечения эффективности системы действует Фонд страхования вкладов физических лиц (далее – Фонд). Фонд производит выплату страхового возмещения вкладчикам при наступлении страхового случая, ведет реестр кредитных организаций-членов системы страхования, а также осуществляет учет и сбор взносов от кредитных организаций."
     },
-    "fundGoals": {
-      "title": "Целями Фонда являются:",
-      "items": [
+    "FUND_GOALS": {
+      "TITLE": "Целями Фонда являются:",
+      "ITEMS": [
         "Защита прав и законных интересов вкладчиков путем выплаты страхового возмещения;",
         "Укрепление доверия населения к банковской системе Республики Таджикистан;"
       ]
     },
-    "contactInfo": {
-      "title": "Контактная информация",
-      "callCenterTitle": "Колл-центр",
-      "callCenterNumber": "88 88",
-      "whatsappTitle": "Whatsapp",
-      "whatsappNumber": "+(992) 44 630 8888",
-      "emailTitle": "Электронный адрес",
-      "emailAddress": "info@cbt.tj",
-      "addressTitle": "Адрес",
-      "addressText": "Головной офис Коммерцбанк Таджикистана, 734000, г. Душанбе, ул. Бохтар 37/1",
-      "scheduleTitle": "График",
-      "scheduleWorkdays": "Пн-пт.",
-      "scheduleWorkHours": "с 09:00 до 18:00",
-      "scheduleWeekends": "Сб-вс.",
-      "scheduleWeekendHours": "Выходной"
+    "CONTACT_INFO": {
+      "TITLE": "Контактная информация",
+      "CALL_CENTER_TITLE": "Колл-центр",
+      "CALL_CENTER_NUMBER": "88 88",
+      "WHATSAPP_TITLE": "Whatsapp",
+      "WHATSAPP_NUMBER": "+(992) 44 630 8888",
+      "EMAIL_TITLE": "Электронный адрес",
+      "EMAIL_ADDRESS": "info@cbt.tj",
+      "ADDRESS_TITLE": "Адрес",
+      "ADDRESS_TEXT": "Головной офис Коммерцбанк Таджикистана, 734000, г. Душанбе, ул. Бохтар 37/1",
+      "SCHEDULE_TITLE": "График",
+      "SCHEDULE_WORKDAYS": "Пн-пт.",
+      "SCHEDULE_WORK_HOURS": "с 09:00 до 18:00",
+      "SCHEDULE_WEEKENDS": "Сб-вс.",
+      "SCHEDULE_WEEKEND_HOURS": "Выходной"
     },
-    "coverage": {
-      "title": "Уровень и покрытие страхового возмещения Фонда",
-      "p1": "Вклады физических лиц страхуются автоматически и не требуют от вкладчика заключения договора страхования. Объектом страхования являются вклады физических лиц в национальной и иностранной валюте, подтвержденные договорами банковского вклада и/или банковскими счетами зарплатных и пенсионных карт и/или сберегательными книжками."
+    "COVERAGE": {
+      "TITLE": "Уровень и покрытие страхового возмещения Фонда",
+      "P1": "Вклады физических лиц страхуются автоматически и не требуют от вкладчика заключения договора страхования. Объектом страхования являются вклады физических лиц в национальной и иностранной валюте, подтвержденные договорами банковского вклада и/или банковскими счетами зарплатных и пенсионных карт и/или сберегательными книжками."
     },
-    "notCovered": {
-      "title": "При наступлении страхового случая возмещение по следующим вкладам физических лиц не выплачивается:",
-      "items": [
+    "NOT_COVERED": {
+      "TITLE": "При наступлении страхового случая возмещение по следующим вкладам физических лиц не выплачивается:",
+      "ITEMS": [
         "вклады, по которым кредитная организация имеет право зачета для погашения задолженности вкладчика;",
         "вклады, находящиеся в залоге;",
         "вклады, полученные преступным путем, или вклады, арестованные судом;",
@@ -759,65 +621,64 @@
         "вклады на сумму менее 10 сомони;"
       ]
     },
-    "compensation": {
-      "title": "Страховое возмещение",
-      "p1": "Страховой случай – принудительная ликвидация кредитной организации по решению суда, которая порождает обязательство Фонда по выплате страхового возмещения.",
-      "p2": "При наступлении страхового случая размер возмещения по вкладам составляет:",
-      "limits": [
+    "COMPENSATION": {
+      "TITLE": "Страховое возмещение",
+      "P1": "Страховой случай – принудительная ликвидация кредитной организации по решению суда, которая порождает обязательство Фонда по выплате страхового возмещения.",
+      "P2": "При наступлении страхового случая размер возмещения по вкладам составляет:",
+      "LIMITS": [
         "в национальной валюте не более 500 расчетных показателей;",
         "в иностранной валюте не более 350 расчетных показателей;"
       ],
-      "p3": "Вклады в национальной валюте возмещаются в национальной валюте. Вклады в иностранной валюте возмещаются в национальной валюте по официальному курсу Национального банка Таджикистана на день наступления страхового случая. Проценты по вкладам Фондом не возмещаются."
+      "P3": "Вклады в национальной валюте возмещаются в национальной валюте. Вклады в иностранной валюте возмещаются в национальной валюте по официальному курсу Национального банка Таджикистана на день наступления страхового случая. Проценты по вкладам Фондом не возмещаются."
     },
-    "paymentProcess": {
-      "title": "Выплата страхового возмещения",
-      "p1": "После наступления страхового случая Фонд публикует в СМИ объявление о банке-агенте, месте, времени и порядке приема заявлений. Объявление также размещается у входа в банк-агент и на официальном сайте Фонда www.idif.tj.",
-      "p2": "Выплаты начинаются не позднее 14 календарных дней после наступления страхового случая и осуществляются через банк-агент в наличной или безналичной форме.",
-      "p3": "Для получения возмещения вкладчик должен в течение одного года обратиться в банк-агент и предоставить следующие документы:",
-      "documents": [
+    "PAYMENT_PROCESS": {
+      "TITLE": "Выплата страхового возмещения",
+      "P1": "После наступления страхового случая Фонд публикует в СМИ объявление о банке-агенте, месте, времени и порядке приема заявлений. Объявление также размещается у входа в банк-агент и на официальном сайте Фонда www.idif.tj.",
+      "P2": "Выплаты начинаются не позднее 14 календарных дней после наступления страхового случая и осуществляются через банк-агент в наличной или безналичной форме.",
+      "P3": "Для получения возмещения вкладчик должен в течение одного года обратиться в банк-агент и предоставить следующие документы:",
+      "DOCUMENTS": [
         "Заявление установленной формы;",
         "Документ, удостоверяющий личность;",
         "Договор банковского вклада;",
         "Доверенность (при необходимости)."
       ]
     },
-    "forDepositors": {
-      "title": "Информация для вкладчиков",
-      "slides": [
+    "FOR_DEPOSITORS": {
+      "TITLE": "Информация для вкладчиков",
+      "SLIDES": [
         {
-          "title": "1. Изучите кредитную организацию",
-          "content": "Убедитесь, что выбранная вами организация является членом системы страхования вкладов и имеет Свидетельство о членстве."
+          "TITLE": "1. Изучите кредитную организацию",
+          "CONTENT": "Убедитесь, что выбранная вами организация является членом системы страхования вкладов и имеет Свидетельство о членстве."
         },
         {
-          "title": "2. Проверьте договор вклада",
-          "content": "Внимательно проверьте свои личные данные в договоре и своевременно сообщайте банку о любых изменениях."
+          "TITLE": "2. Проверьте договор вклада",
+          "CONTENT": "Внимательно проверьте свои личные данные в договоре и своевременно сообщайте банку о любых изменениях."
         },
         {
-          "title": "3. Помните, какие вклады не возмещаются",
-          "content": "Вклады, находящиеся в залоге, полученные преступным путем, или вклады связанных с банком лиц не возмещаются."
+          "TITLE": "3. Помните, какие вклады не возмещаются",
+          "CONTENT": "Вклады, находящиеся в залоге, полученные преступным путем, или вклады связанных с банком лиц не возмещаются."
         },
         {
-          "title": "4. Не беспокойтесь и помните",
-          "content": "У вас есть один год для получения возмещения. Не спешите в первый день, чтобы избежать очередей. Фонд может продлить срок обращения при наличии уважительных причин."
+          "TITLE": "4. Не беспокойтесь и помните",
+          "CONTENT": "У вас есть один год для получения возмещения. Не спешите в первый день, чтобы избежать очередей. Фонд может продлить срок обращения при наличии уважительных причин."
         }
       ]
     },
-    "certificate": {
-      "text": "Свидетельство ОАО «Коммерцбанк Таджикистана» о членстве в фонде",
-      "linkText": "Свидетельство"
+    "CERTIFICATE": {
+      "TEXT": "Свидетельство ОАО «Коммерцбанк Таджикистана» о членстве в фонде",
+      "LINK_TEXT": "Свидетельство"
     }
   },
-
-  "salaryProjectPage": {
-    "mainTitle": "Зарплатный проект",
-    "intro": {
-      "subtitle": "ОАО «Коммерцбанк Таджикистана»: Привилегированное положение сотрудников полезно для всей компании.",
-      "p1": "Зарплатный проект освободит вашу организацию от необходимости снимать наличные денежные средства со счета, производить пересчет и выдавать каждому сотруднику заработную плату наличными. Кроме экономии времени – это еще и безопасность – очень важный момент при доставке наличных денежных средств в офис организации.",
-      "p2": "Что касается удобства для сотрудников, то Ваши сотрудники смогут получать заработную плату через любые банкоматы при помощи платежных карт 24 часа в сутки, 365 дней в году, а также производить оплату безналичным путем за товары/услуги через «Мобильный Банк» и пос-терминалы, установленные в различных торговых и сервисных точках."
+  "SALARY_PROJECT_PAGE": {
+    "MAIN_TITLE": "Зарплатный проект",
+    "INTRO": {
+      "SUBTITLE": "ОАО «Коммерцбанк Таджикистана»: Привилегированное положение сотрудников полезно для всей компании.",
+      "P1": "Зарплатный проект освободит вашу организацию от необходимости снимать наличные денежные средства со счета, производить пересчет и выдавать каждому сотруднику заработную плату наличными. Кроме экономии времени – это еще и безопасность – очень важный момент при доставке наличных денежных средств в офис организации.",
+      "P2": "Что касается удобства для сотрудников, то Ваши сотрудники смогут получать заработную плату через любые банкоматы при помощи платежных карт 24 часа в сутки, 365 дней в году, а также производить оплату безналичным путем за товары/услуги через «Мобильный Банк» и пос-терминалы, установленные в различных торговых и сервисных точках."
     },
-    "benefitsForCompany": {
-      "title": "Преимущества зарплатного проекта для Вашей организации",
-      "items": [
+    "BENEFITS_FOR_COMPANY": {
+      "TITLE": "Преимущества зарплатного проекта для Вашей организации",
+      "ITEMS": [
         "Снижение рисков получения, хранения и транспортировки наличных, предназначенных к выплате сотрудникам",
         "Сокращение количества занятых в бухгалтерии и кассе работников",
         "Избавление от очереди за заработной платой",
@@ -825,9 +686,9 @@
         "Обеспечение конфиденциальности информации по индивидуальной заработной плате"
       ]
     },
-    "benefitsForEmployees": {
-      "title": "Преимущества зарплатного проекта для сотрудников Вашей организации",
-      "items": [
+    "BENEFITS_FOR_EMPLOYEES": {
+      "TITLE": "Преимущества зарплатного проекта для сотрудников Вашей организации",
+      "ITEMS": [
         "Круглосуточный доступ к счету",
         "Оплата безналичным путем за товары/услуги через пос-терминалы, установленные в различных торговых и сервисных точках",
         "Онлайн-контроль карты, переводы, оплата услуг в мобильном приложении «Мобильного Банка» и на сайте банка",
@@ -837,61 +698,61 @@
       ]
     }
   },
-  "acquiringPage": {
-    "hero": {
-      "title": "Онлайн-эквайринг",
-      "subtitle": "ДЛЯ ВАШЕГО БИЗНЕСА",
-      "text": "Принимайте платежи онлайн через Favri — удобно для вас, просто для клиентов.",
-      "button": "Оставить заявку"
+  "ACQUIRING_PAGE": {
+    "HERO": {
+      "TITLE": "Онлайн-эквайринг",
+      "SUBTITLE": "ДЛЯ ВАШЕГО БИЗНЕСА",
+      "TEXT": "Принимайте платежи онлайн через Favri — удобно для вас, просто для клиентов.",
+      "BUTTON": "Оставить заявку"
     },
-    "benefitsTitle": "Плюсы эквайринга от «Коммецбанка Таджикистан»",
-    "paymentMethods": {
-      "title": "Можно принимать безналичную оплату",
-      "qr": {
-        "title": "Через QR-код приложения «Фаври»",
-        "text": "Более 150 000 пользователей «Фаври» смогут оплачивать, в том числе через кредит-рассрочку. Деньги моментально переходят на счет магазина/торговой точки."
+    "BENEFITS_TITLE": "Плюсы эквайринга от «Коммецбанка Таджикистан»",
+    "PAYMENT_METHODS": {
+      "TITLE": "Можно принимать безналичную оплату",
+      "QR": {
+        "TITLE": "Через QR-код приложения «Фаври»",
+        "TEXT": "Более 150 000 пользователей «Фаври» смогут оплачивать, в том числе через кредит-рассрочку. Деньги моментально переходят на счет магазина/торговой точки."
       },
-      "kortiMilli": {
-        "title": "Через карты «Корти милли»",
-        "text": "ПОС-терминал может принимать оплату по всем картам «Корти милли». Деньги переходят на счет магазина/торговой точки на следующий рабочий день."
+      "KORTI_MILLI": {
+        "TITLE": "Через карты «Корти милли»",
+        "TEXT": "ПОС-терминал может принимать оплату по всем картам «Корти милли». Деньги переходят на счет магазина/торговой точки на следующий рабочий день."
       }
     },
-    "bankHelp": {
-      "title": "Банк будет помогать вам в продвижении ваших услуг и улучшении вашего бизнеса",
-      "cards": [
+    "BANK_HELP": {
+      "TITLE": "Банк будет помогать вам в продвижении ваших услуг и улучшении вашего бизнеса",
+      "CARDS": [
         {
-          "title": "Открытие торгового счета бесплатно",
-          "text": "Бесплатно откроем для вашего бизнеса торговый счет"
+          "TITLE": "Открытие торгового счета бесплатно",
+          "TEXT": "Бесплатно откроем для вашего бизнеса торговый счет"
         },
         {
-          "title": "Деньги — быстро",
-          "text": "Зачисление — на следующий день до 12:00. Единой суммой или частями"
+          "TITLE": "Деньги — быстро",
+          "TEXT": "Зачисление — на следующий день до 12:00. Единой суммой или частями"
         },
         {
-          "title": "Поддержка 24/7",
-          "text": "Отвечаем в течение 30 секунд по телефону. Замена терминала — в течение 48 часов"
+          "TITLE": "Поддержка 24/7",
+          "TEXT": "Отвечаем в течение 30 секунд по телефону. Замена терминала — в течение 48 часов"
         },
         {
-          "title": "Управление онлайн",
-          "text": "Подключение услуг и дополнительных торговых точек через интернет-банк «Favri Tijorat»"
+          "TITLE": "Управление онлайн",
+          "TEXT": "Подключение услуг и дополнительных торговых точек через интернет-банк «Favri Tijorat»"
         }
       ]
     },
-    "amaPos": {
-      "subtitle": "Контрольно - кассовая машина",
-      "title": "«АМА ПОС»",
-      "text": "техника нового образца",
-      "slogan": "УСПЕХ ВАШЕГО БИЗНЕСА!"
+    "AMA_POS": {
+      "SUBTITLE": "Контрольно - кассовая машина",
+      "TITLE": "«АМА ПОС»",
+      "TEXT": "техника нового образца",
+      "SLOGAN": "УСПЕХ ВАШЕГО БИЗНЕСА!"
     },
-    "smallBusiness": {
-      "title": "Эквайринг для малого бизнеса",
-      "tabs": [
+    "SMALL_BUSINESS": {
+      "TITLE": "Эквайринг для малого бизнеса",
+      "TABS": [
         {
-          "id": "pos",
-          "title": "Торговая точка",
-          "contentTitle": "Торговый эквайринг",
-          "description": "Подходит для магазинов, ресторанов, фитнес-клубов и парикмахерских",
-          "features": [
+          "ID": "pos",
+          "TITLE": "Торговая точка",
+          "CONTENT_TITLE": "Торговый эквайринг",
+          "DESCRIPTION": "Подходит для магазинов, ресторанов, фитнес-клубов и парикмахерских",
+          "FEATURES": [
             "Открытие торгового счета бесплатно",
             "Открытие выгодной кредитной линии для вашего бизнеса",
             "Предоставим льготные потребительские кредиты вашим сотрудникам",
@@ -900,11 +761,11 @@
           ]
         },
         {
-          "id": "internet",
-          "title": "Интернет-магазин",
-          "contentTitle": "Интернет-эквайринг",
-          "description": "Для интернет-магазинов и продаж через соцсети и мессенджеры",
-          "features": [
+          "ID": "internet",
+          "TITLE": "Интернет-магазин",
+          "CONTENT_TITLE": "Интернет-эквайринг",
+          "DESCRIPTION": "Для интернет-магазинов и продаж через соцсети и мессенджеры",
+          "FEATURES": [
             "Открытие торгового счета бесплатно",
             "Открытие выгодной кредитной линии для вашего бизнеса",
             "Предоставим льготные потребительские кредиты вашим сотрудникам",
@@ -913,11 +774,11 @@
           ]
         },
         {
-          "id": "courier",
-          "title": "Для курьеров",
-          "contentTitle": "Решения для курьерской доставки",
-          "description": "Для служб доставки, такси, продавцов-консультантов, интернет-магазинов",
-          "features": [
+          "ID": "courier",
+          "TITLE": "Для курьеров",
+          "CONTENT_TITLE": "Решения для курьерской доставки",
+          "DESCRIPTION": "Для служб доставки, такси, продавцов-консультантов, интернет-магазинов",
+          "FEATURES": [
             "Открытие торгового счета бесплатно",
             "Открытие выгодной кредитной линии для вашего бизнеса",
             "Предоставим льготные потребительские кредиты вашим сотрудникам",
@@ -926,72 +787,83 @@
           ]
         }
       ],
-      "conditions": {
-        "term": "до 3-х дней",
-        "termText": "кассовое обслуживание бесплатно",
-        "commission": "от 1%",
-        "commissionText": "выгодная комиссия на эквайринг",
-        "cashback": "0%",
-        "cashbackText": "обналичивание платежей от эквайринга"
+      "CONDITIONS": {
+        "TERM": "до 3-х дней",
+        "TERM_TEXT": "кассовое обслуживание бесплатно",
+        "COMMISSION": "от 1%",
+        "COMMISSION_TEXT": "выгодная комиссия на эквайринг",
+        "CASHBACK": "0%",
+        "CASHBACK_TEXT": "обналичивание платежей от эквайринга"
       }
     },
-    "documents": {
-      "title": "Какие документы нужны для установки ПОС терминала?",
-      "items": [
-        { "title": "Патент или свидетельство", "description": "о государственной регистрации (Шаходатном, патент)" },
-        { "title": "Выписка из гос. реестра", "description": "(Иқтибос)" },
-        { "title": "Копия паспорта Руководителя", "description": "" },
-        { "title": "ИНН", "description": "" }
+    "DOCUMENTS": {
+      "TITLE": "Какие документы нужны для установки ПОС терминала?",
+      "ITEMS": [
+        {
+          "TITLE": "Патент или свидетельство",
+          "DESCRIPTION": "о государственной регистрации (Шаходатном, патент)"
+        },
+        {
+          "TITLE": "Выписка из гос. реестра",
+          "DESCRIPTION": "(Иқтибос)"
+        },
+        {
+          "TITLE": "Копия паспорта Руководителя",
+          "DESCRIPTION": ""
+        },
+        {
+          "TITLE": "ИНН",
+          "DESCRIPTION": ""
+        }
       ]
     }
   },
-  "titles": {
-    "siteName": "ОАО «Коммерцбанк Таджикистана»",
-    "default": "Главная",
-    "cards": "Банковские карты",
-    "credits": "Кредитные программы и условия",
-    "transfers": "Денежные переводы и условия",
-    "deposits": "Депозиты",
-    "vacancies": "Вакансии",
-    "vacancyList": "Список вакансий",
-    "tenders": "Тендеры",
-    "rko": "Услуги РКО для бизнеса",
-    "news": "Новости",
-    "map": "Адреса отделений и банкоматов",
-    "aboutUs": "История, миссия и ценности банка",
-    "report": "Финансовые и годовые отчёты",
-    "bankDetail": "Банковские реквизиты",
-    "merchant": "Информация для торговых точек",
-    "contact": "Связаться с банком",
-    "insurance": "Программы страхования",
-    "salaryProject": "Услуги по выплате зарплаты",
-    "acquiring": "Эквайринг и приём платежей по картам"
+  "TITLES": {
+    "SITE_NAME": "ОАО «Коммерцбанк Таджикистана»",
+    "DEFAULT": "Главная",
+    "CARDS": "Банковские карты",
+    "CREDITS": "Кредитные программы и условия",
+    "TRANSFERS": "Денежные переводы и условия",
+    "DEPOSITS": "Депозиты",
+    "VACANCIES": "Вакансии",
+    "VACANCY_LIST": "Список вакансий",
+    "TENDERS": "Тендеры",
+    "RKO": "Услуги РКО для бизнеса",
+    "NEWS": "Новости",
+    "MAP": "Адреса отделений и банкоматов",
+    "ABOUT_US": "История, миссия и ценности банка",
+    "REPORT": "Финансовые и годовые отчёты",
+    "BANK_DETAIL": "Банковские реквизиты",
+    "MERCHANT": "Информация для торговых точек",
+    "CONTACT": "Связаться с банком",
+    "INSURANCE": "Программы страхования",
+    "SALARY_PROJECT": "Услуги по выплате зарплаты",
+    "ACQUIRING": "Эквайринг и приём платежей по картам"
   },
-  "breadcrumbs": {
-    "home": "Главная",
-    "cards": "Карты",
-    "credits": "Кредиты",
-    "transfers": "Переводы",
-    "deposits": "Депозиты",
-    "vacancies": "Вакансии",
-    "vacancyList": "Список вакансий",
-    "tenders": "Тендеры",
-    "rko": "РКО",
-    "news": "Новости",
-    "map": "Офисы и банкоматы",
-    "aboutUs": "О нас",
-    "report": "Отчетность",
-    "bankDetail": "Реквизиты",
-    "merchant": "Мерчанты",
-    "contact": "Контакты",
-    "insurance": "Страхование",
-    "salaryProject": "Зарплатный проект",
-    "acquiring": "Эквайринг"
+  "BREADCRUMBS": {
+    "HOME": "Главная",
+    "CARDS": "Карты",
+    "CREDITS": "Кредиты",
+    "TRANSFERS": "Переводы",
+    "DEPOSITS": "Депозиты",
+    "VACANCIES": "Вакансии",
+    "VACANCY_LIST": "Список вакансий",
+    "TENDERS": "Тендеры",
+    "RKO": "РКО",
+    "NEWS": "Новости",
+    "MAP": "Офисы и банкоматы",
+    "ABOUT_US": "О нас",
+    "REPORT": "Отчетность",
+    "BANK_DETAIL": "Реквизиты",
+    "MERCHANT": "Мерчанты",
+    "CONTACT": "Контакты",
+    "INSURANCE": "Страхование",
+    "SALARY_PROJECT": "Зарплатный проект",
+    "ACQUIRING": "Эквайринг"
   },
-  "workInProgress": {
-    "title": "Страница в разработке",
-    "message": "Эта страница скоро появится.",
-    "homeLink": "Вернуться на главную"
+  "WORK_IN_PROGRESS": {
+    "TITLE": "Страница в разработке",
+    "MESSAGE": "Эта страница скоро появится.",
+    "HOME_LINK": "Вернуться на главную"
   }
 }
-  

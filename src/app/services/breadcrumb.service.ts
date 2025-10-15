@@ -61,7 +61,7 @@ export class BreadcrumbService {
     
     if (!isHomePage && breadcrumbs.length > 0) {
       const homeCrumb: Breadcrumb = {
-        label: this.translate.instant('breadcrumbs.home'),
+        label: this.translate.instant('BREADCRUMBS.HOME'),
         url: '/'
       };
       breadcrumbs.unshift(homeCrumb);

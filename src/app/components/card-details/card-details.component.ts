@@ -88,7 +88,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
       // Этот код будет выполняться КАЖДЫЙ РАЗ, когда меняется язык
       this.updateOfficePlaceholder();
     });
-    this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
+    this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE').subscribe(translation => {
       // Когда перевод будет готов, присваиваем его нашей переменной
       this.officeName = translation;
     });

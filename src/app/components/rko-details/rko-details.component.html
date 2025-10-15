@@ -6,7 +6,7 @@
         {{ scsData.description }}
       </p>
       <div class="card-buttons">
-        <button class="btn-primary">{{ 'buttons.openDeposit' | translate }}</button>
+        <button class="btn-primary">{{ 'BUTTONS.OPEN_DEPOSIT' | translate }}</button>
       </div>
     </div>
     <div class="card-image">
@@ -15,7 +15,7 @@
   </div>
 
   <div class="container">
-    <h2>{{ 'depositDetails.advantagesTitle' | translate }}</h2>
+    <h2>{{ 'DEPOSIT_DETAILS.ADVANTAGES_TITLE' | translate }}</h2>
     <div class="advantages">
       <!-- Динамический контент -->
       <div class="item" *ngFor="let a of scsData.advantages">
@@ -26,7 +26,7 @@
   </div>
 
   <div class="faq-container">
-    <h2 class="faq-title">{{ 'depositDetails.conditionsTitle' | translate }}</h2>
+    <h2 class="faq-title">{{ 'DEPOSIT_DETAILS.CONDITIONS_TITLE' | translate }}</h2>
     <div *ngFor="let faq of scsData.conditions; let i = index" class="faq-item">
       <div class="faq-question" (click)="toggleFaq(i)">
         <!-- Динамический контент -->

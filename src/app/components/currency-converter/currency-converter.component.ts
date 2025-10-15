@@ -76,11 +76,11 @@ export class CurrencyConverterComponent implements OnInit {
     // Используем translate.instant() для синхронного получения перевода
     switch (mode) {
       case 'CASH':
-        return this.translate.instant('currencyConverter.rateModes.cash');
+        return this.translate.instant('CURRENCY_CONVERTER.RATE_MODES.CASH');
       case 'REMITTANCE_RATE':
-        return this.translate.instant('currencyConverter.rateModes.nonCash');
+        return this.translate.instant('CURRENCY_CONVERTER.RATE_MODES.NON_CASH');
       case 'CB_RATE':
-        return this.translate.instant('currencyConverter.rateModes.cbRate');
+        return this.translate.instant('CURRENCY_CONVERTER.RATE_MODES.CB_RATE');
       default:
         return mode; // На случай, если появится новый режим
     }

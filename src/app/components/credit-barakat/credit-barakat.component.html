@@ -5,7 +5,7 @@
       <h2 class="card-title">{{ creditData.title }}</h2>
       <p class="card-description">{{ creditData.description }}</p>
       <div class="card-buttons">
-        <button class="btn-primary" [scrollTo]="'application-form'">{{ 'buttons.getLoan' | translate }}</button>
+        <button class="btn-primary" [scrollTo]="'application-form'">{{ 'BUTTONS.GET_LOAN' | translate }}</button>
       </div>
     </div>
     <div class="card-image">
@@ -15,7 +15,7 @@
 
   <!-- Блок 2: Тарифы и условия -->
   <div class="container">
-    <h1>{{ 'creditDetails.sections.tariffsAndConditions' | translate }}</h1>
+    <h1>{{ 'CREDIT_DETAILS.SECTIONS.TARIFFS_AND_CONDITIONS' | translate }}</h1>
     <div class="content">
       <div class="info-container">
         <div class="info-box-limits" *ngFor="let tariff of tariffs">
@@ -31,7 +31,7 @@
 
   <!-- Блок 3: Список документов -->
   <div class="container-2">
-    <h1>{{ 'creditDetails.sections.requiredDocuments' | translate }}</h1>
+    <h1>{{ 'CREDIT_DETAILS.SECTIONS.REQUIRED_DOCUMENTS' | translate }}</h1>
     <div class="box">
       <div class="box-details" *ngFor="let document of documents">
         <!-- ВАЖНО: Добавлен динамический alt-текст -->
@@ -54,23 +54,24 @@
     <app-car-loan-calculate></app-car-loan-calculate>
   </div> 
 
-
+ 
   <div class="container-3" id='application-form'>
-    <h1>{{ 'creditDetails.sections.onlineApplication' | translate }}</h1>
+   
+    <h1>{{ 'CREDIT_DETAILS.SECTIONS.ONLINE_APPLICATION' | translate }}</h1>
     <div class="application-form-container">
       <form class="form" #applicationForm="ngForm" (ngSubmit)="submitApplication(applicationForm)">
         <!-- Имя -->
         <div class="form-group">
           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">{{ 'forms.errors.required' | translate }}</div>
           <!-- ИЗМЕНЕНИЕ 1: Добавляем пайп translate -->
-          <input type="text" id="fullName" [placeholder]="('forms.placeholders.fullName' | translate) + ' *'" class="form-control" 
+          <input type="text" id="fullName" [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'" class="form-control" 
                  required [(ngModel)]="model.client_name" name="fullName" #name="ngModel">
         </div>
         
         <!-- Телефон -->
         <div class="form-group">
           <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">{{ 'forms.errors.required' | translate }}</div>
-          <input type="text" id="phone" [placeholder]="('forms.placeholders.phone' | translate) + ' *'" class="form-control" 
+          <input type="text" id="phone" [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'" class="form-control" 
                  required [(ngModel)]="model.phone" name="phone" #phone="ngModel">
         </div>
   
@@ -106,7 +107,7 @@
                  [(ngModel)]="model.address" name="workplace">
         </div> -->
   
-        <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">{{ 'buttons.send' | translate }}</button>
+        <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">{{ 'BUTTONS.SEND' | translate }}</button>
       </form>
     </div>
   </div>

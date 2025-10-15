@@ -9,26 +9,26 @@
         </div>
         <div class="dropdown-options" *ngIf="dropdownOpen">
           <div class="dropdown-section">
-            <h4>{{ 'mapPage.filters.objectTypes' | translate }}</h4>
+            <h4>{{ 'MAP_PAGE.FILTERS.OBJECT_TYPES' | translate }}</h4>
             <div class="dropdown-option">
               <label class="custom-checkbox">
                 <input type="radio" name="objectType" [checked]="selectedObjectType === 'offices'" (change)="onObjectTypeChange('offices')"/>
                 <span class="checkbox"></span>
-                {{ 'mapPage.filters.offices' | translate }}
+                {{ 'MAP_PAGE.FILTERS.OFFICES' | translate }}
               </label>
             </div>
             <div class="dropdown-option">
               <label class="custom-checkbox">
                 <input type="radio" name="objectType" [checked]="selectedObjectType === 'terminals'" (change)="onObjectTypeChange('terminals')"/>
                 <span class="checkbox"></span>
-                {{ 'mapPage.filters.terminals' | translate }}
+                {{ 'MAP_PAGE.FILTERS.TERMINALS' | translate }}
               </label>
             </div>
             <div class="dropdown-option">
               <label class="custom-checkbox">
                 <input type="radio" name="objectType" [checked]="selectedObjectType === 'atms'" (change)="onObjectTypeChange('atms')"/>
                 <span class="checkbox"></span>
-                {{ 'mapPage.filters.atms' | translate }}
+                {{ 'MAP_PAGE.FILTERS.ATMS' | translate }}
               </label>
             </div>
           </div>
@@ -46,7 +46,7 @@
               <label class="custom-checkbox">
                 <input type="radio" name="region" [checked]="regionSelected === 0" (change)="onRegionChange(0)"/>
                 <span class="checkbox"></span>
-                {{ 'mapPage.filters.allRegions' | translate }}
+                {{ 'MAP_PAGE.FILTERS.ALL_REGIONS' | translate }}
               </label>
             </div>
             <div *ngFor="let option of regionList" class="dropdown-option">

@@ -1,743 +1,614 @@
 {
-  "For private individuals": "For private individuals",
-  "Business": "Business",
-  "Mobile banking": "Mobile banking",
-  "Vacancies": "Vacancies",
-  "More": "More",
-  "Credit cards": "Credit cards",
-  "Debit cards": "Debit cards",
-  "Overdraft": "Overdraft",
-  "Car loan": "Car loan",
-  "Deposits": "Deposits",
-  "About the bank": "About the bank",
-  "News": "News",
-  "Offices and ATMs": "Offices and ATMs",
-  "Questions and answers": "Questions and answers",
-  "Contact the bank": "Contact the bank",
-  "Tenders": "Tenders",
-  "Money transfers around the world": "Money transfers around the world",
-  "Login": "Login",
-  "Mortgage": "Mortgage",
-  "Cards": "Cards",
-  "Loans": "Loans",
-  "Transfers": "Transfers",
-  "Credit": "Credit",
-  "Contribution": "Contribution",
-  "Buying a car": "Buying a car",
-  "Calculate your loan": "Calculate your loan",
-  "Loan amount": "Loan amount",
-  "Monthly payment": "Monthly payment",
-  "Our offer": "Our offer",
-  "Payments cards": "Payments cards",
-  "Interest rate": "Interest rate",
-  "Apply for a loan": "Apply for a loan",
-  "Loan term": "Loan term",
-  "Preliminary calculation. Not a public offer": "Preliminary calculation. Not a public offer",
-  "Favri mobile application": "Favri mobile application",
-  "Check your balance, pay for services, get help in chat 24/7": "Check your balance, pay for services, get help in chat 24/7",
-  "Choose the best": "Choose the best",
-  "Join the team Commerzbank": "Join the team Commerzbank",
-  "Support": "Support",
-  "We will resolve": "We will resolve",
-  "Currency rates": "Currency rates",
-  "Currency": "Currency",
-  "Accounting course": "Accounting course",
-  "Collapse": "Collapse",
-  "Show more": "Show more",
-  "Buy": "Buy",
-  "Sell": "Sell",
-  "It's great to work here, and here's why": "It's great to work here, and here's why",
-  "Our cozy offices": "Our cozy offices",
-  "View vacancies": "View vacancies",
-  "Apply for a vacancy": "Apply for a vacancy",
-  "Education and qualifications:": "Education and qualifications:",
-  "Experience:": "Experience:",
-  "Skills and knowledge:": "Skills and knowledge:",
-  "Personal qualities:": "Personal qualities:",
-  "Conditions:": "Conditions:",
-  "Tell us about yourself and we will definitely contact you": "Tell us about yourself and we will definitely contact you",
-  "Drag or": "Drag or",
-  "Supported formats: PDF, Doc, JPG (Max 5Mb)": "Supported formats: PDF, Doc, JPG (Max 5Mb)",
-  "Upload your CV": "Upload your CV",
-  "Send": "Send",
-  "Data sent successfully! We will contact you shortly.": "Data sent successfully! We will contact you shortly.",
-  "❌ An error occurred while sending data. Please try again.": "❌ An error occurred while sending data. Please try again.",
-  "Filters": "Filters",
-  "Direction:": "Direction:",
-  "All directions": "All directions",
-  "City:": "City:",
-  "All cities": "All cities",
-  "Total": "Total",
-
-  "Working hours": "Working hours",
-  "Working days:": "Working days:",
-  "from Monday to Friday": "from Monday to Friday",
-  "from 08:00 to 17:00": "from 08:00 to 17:00",
-  "Saturday: from 09:00 to 12:00": "Saturday: from 09:00 to 12:00",
-  "Consumer loans": "Consumer loans",
-  "All": "All",
-  "Construction loan": "Construction loan",
-  "Submit an application": "Submit an application",
-  "Get a loan": "Get a loan",
-  "Tariffs and conditions": "Tariffs and conditions",
-  "List of required documents": "List of required documents",
-  "Online loan application": "Online loan application",
-  "All calculations are preliminary and may differ from those actually received.": "All calculations are preliminary and may differ from those actually received.",
-  "This field is required": "This field is required",
-  "If you do not have a permanent place of work, you can leave the field blank.": "If you do not have a permanent place of work, you can leave the field blank.",
-  "Online applications are accepted and reviewed on weekdays from 8:00 to 17:00.": "Online applications are accepted and reviewed on weekdays from 8:00 to 17:00.",
-  "Apply for a card": "Apply for a card",
-  "Frequently Asked Questions": "Frequently Asked Questions",
-  "By clicking 'Get', you agree to": "By clicking 'Get', you agree to",
-  "processing of personal data": "processing of personal data",
-  "Services": "Services",
-  "Limits": "Limits",
-  "Operations": "Operations",
-  "Useful documents": "Useful documents",
-  "TJS account": "TJS account",
-  "RUB account": "RUB account",
-  "USD account": "USD account",
-  "Application for a card": "Application for a card",
-  "Leave your contacts and we will definitely contact you": "Leave your contacts and we will definitely contact you",
-  "Bank cards": "Bank cards",
-  "More details": "More details",
-  "Acquiring": "Acquiring",
-  "Read": "Read",
-  "Stay up to date with the latest news": "Stay up to date with the latest news",
-  "Exchange rates": "Exchange rates",
-  "Sale": "Sale",
-  "Purchase": "Purchase",
-  "I have:": "I have:",
-  "I will receive:": "I will receive:",
-  "Send money": "Send money",
-  "View on map": "View on map",
-  "We are closer than you think": "We are closer than you think",
-  "Currency converter": "Currency converter",
-  "Current as of": "Current as of",
-  "Simple and convenient registration, reliable and secure transfers": "Simple and convenient registration, reliable and secure transfers",
-  "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license": "© 2017 - 2024 OJSC 'Commerzbank of Tajikistan', official website. National license",
-  "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.": "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017.",
-  "strach": "Insurance",
-  "vklad": "Deposits",
-  "all": "All",
-  "offices": "Offices",
-  "atm": "ATMs",
-  "terminals": "Terminals",
-  "24h": "24 Hours",
-  "now": "Open Now",
-  "qr": "QR Code",
-  "nfc": "NFC Contactless",
-  "changeOffice":"Please, change office",
-  "vacancies": {
-    "title": "Vacancies",
-    "filters": {
-      "title": "Filters",
-      "directionLabel": "Direction:",
-      "allDirections": "All directions",
-      "cityLabel": "City:",
-      "allCities": "All cities"
+  "VACANCIES": {
+    "TITLE": "Vacancies",
+    "FILTERS": {
+      "TITLE": "Filters",
+      "DIRECTION_LABEL": "Direction:",
+      "ALL_DIRECTIONS": "All directions",
+      "CITY_LABEL": "City:",
+      "ALL_CITIES": "All cities"
     },
-    "list": {
-      "total": "Total",
-      "vacanciesLabel": "vacancies",
-      "locationIconAlt": "Location icon",
-      "arrowIconAlt": "Arrow icon"
+    "LIST": {
+      "TOTAL": "Total",
+      "VACANCIES_LABEL": "vacancies",
+      "LOCATION_ICON_ALT": "Location icon",
+      "ARROW_ICON_ALT": "Arrow icon"
     },
-    "promoCard": {
-      "imageAlt": "Visa Gold Card"
+    "PROMO_CARD": {
+      "IMAGE_ALT": "Visa Gold Card"
     },
-    "whyWorkHere": {
-      "title": "It's great to work here, and here's why"
+    "WHY_WORK_HERE": {
+      "TITLE": "It's great to work here, and here's why"
     },
-    "ourOffices": {
-      "title": "Start working at Commerce Bank",
-      "imageAlt": "Office photo"
+    "OUR_OFFICES": {
+      "TITLE": "Start working at Commerce Bank",
+      "IMAGE_ALT": "Office photo"
     }
   },
-  "alt": {
-    "location": "Location icon",
-    "calendar": "Calendar icon",
-    "pdfIcon": "PDF icon",
-    "fileIcon": "File icon",
-    "officeIcon": "Office icon",
-    "atmIcon": "ATM icon",
-    "terminalIcon": "Terminal icon",
-    "telegram": "Telegram icon",
-    "whatsapp": "WhatsApp icon",
-    "instagram": "Instagram icon",
-    "facebook": "Facebook icon",
-    "arrowForward": "Arrow forward icon",
-    "phoneIcon": "Phone icon",
-    "mapPointIcon": "Map point icon",
-    "globalIcon": "Language selection icon",
-    "arrowDown": "Arrow down icon",
-    "tickIcon": "Selected choice icon",
-    "mainLogo": "Bank main logo",
-    "loginIcon": "Login icon",
-    "mapIllustration": "Map and location illustration",
-    "vacanciesIllustration": "Illustration for vacancies section",
-    "supportIllustration": "Illustration for support section",
-    "mainLogoBlack": "Bank logo (black)",
-    "youtube": "YouTube icon",
-    "googlePlay": "Get it on Google Play",
-    "appStore": "Download on the App Store",
-    "favriAppMockup": "Favri mobile application mockup",
-    "previousSlide": "Previous slide",
-    "nextSlide": "Next slide",
-    "infoIcon": "Information icon",
-    "bookIcon": "Book icon",
-    "missionIcon": "Mission icon",
-    "goalIcon": "Goal icon",
-    "visionIcon": "Vision icon",
-    "historyImage1": "Historical photo of the bank building",
-    "historyImage2": "Photo of the bank's operational hall",
-    "historyImage3": "Photo of the bank's modern office"
+  "ALT": {
+    "LOCATION": "Location icon",
+    "CALENDAR": "Calendar icon",
+    "PDF_ICON": "PDF icon",
+    "FILE_ICON": "File icon",
+    "OFFICE_ICON": "Office icon",
+    "ATM_ICON": "ATM icon",
+    "TERMINAL_ICON": "Terminal icon",
+    "TELEGRAM": "Telegram icon",
+    "WHATSAPP": "WhatsApp icon",
+    "INSTAGRAM": "Instagram icon",
+    "FACEBOOK": "Facebook icon",
+    "ARROW_FORWARD": "Arrow forward icon",
+    "PHONE_ICON": "Phone icon",
+    "MAP_POINT_ICON": "Map point icon",
+    "GLOBAL_ICON": "Language selection icon",
+    "ARROW_DOWN": "Arrow down icon",
+    "TICK_ICON": "Selected choice icon",
+    "MAIN_LOGO": "Bank main logo",
+    "LOGIN_ICON": "Login icon",
+    "MAP_ILLUSTRATION": "Map and location illustration",
+    "VACANCIES_ILLUSTRATION": "Illustration for vacancies section",
+    "SUPPORT_ILLUSTRATION": "Illustration for support section",
+    "MAIN_LOGO_BLACK": "Bank logo (black)",
+    "YOUTUBE": "YouTube icon",
+    "GOOGLE_PLAY": "Get it on Google Play",
+    "APP_STORE": "Download on the App Store",
+    "FAVRI_APP_MOCKUP": "Favri mobile application mockup",
+    "PREVIOUS_SLIDE": "Previous slide",
+    "NEXT_SLIDE": "Next slide",
+    "INFO_ICON": "Information icon",
+    "BOOK_ICON": "Book icon",
+    "MISSION_ICON": "Mission icon",
+    "GOAL_ICON": "Goal icon",
+    "VISION_ICON": "Vision icon",
+    "HISTORY_IMAGE1": "Historical photo of the bank building",
+    "HISTORY_IMAGE2": "Photo of the bank's operational hall",
+    "HISTORY_IMAGE3": "Photo of the bank's modern office"
   },
-  "vacancyDetails": {
-    "sections": {
-      "education": "Education and qualifications:",
-      "experience": "Experience:",
-      "skills": "Skills and knowledge:",
-      "qualities": "Responsibilities",
-      "conditions": "Conditions:"
+  "VACANCY_DETAILS": {
+    "SECTIONS": {
+      "EDUCATION": "Education and qualifications:",
+      "EXPERIENCE": "Experience:",
+      "SKILLS": "Skills and knowledge:",
+      "QUALITIES": "Responsibilities",
+      "CONDITIONS": "Conditions:"
     },
-    "form": {
-      "title": "Apply for a vacancy",
-      "subtitle": "Tell us about yourself and we will definitely contact you",
-      "lastName": "Last Name",
-      "firstName": "First Name",
-      "phone": "Phone",
-      "email": "Email",
-      "dragOr": "Drag or",
-      "supportedFormats": "Supported formats: PDF, Doc, JPG (Max 5Mb)"
+    "FORM": {
+      "TITLE": "Apply for a vacancy",
+      "SUBTITLE": "Tell us about yourself and we will definitely contact you",
+      "LAST_NAME": "Last Name",
+      "FIRST_NAME": "First Name",
+      "PHONE": "Phone",
+      "EMAIL": "Email",
+      "DRAG_OR": "Drag or",
+      "SUPPORTED_FORMATS": "Supported formats: PDF, Doc, JPG (Max 5Mb)"
     }
   },
-  "buttons": {
-    "applyForVacancy": "Apply for a vacancy",
-    "uploadCV": "Upload your CV",
-    "send": "Send",
-    "viewVacancies": "View vacancies",
-    "allTariffs": "All tariffs",
-    "viewOnMap": "View on map",
-    "moreDetails": "More details",
-    "openDeposit": "Open deposit",
-    "copyLink": "Copy link",
-    "linkCopied": "Link copied!",
-    "applyForCard": "Apply for a card",
-    "applyForDeposit": "Apply for a deposit",
-    "showMore": "Show more",
-    "collapse": "Collapse",
-    "buy": "Buy",
-    "sell": "Sell",
-    "sendMoney": "Send money",
-    "getLoan": "Get a loan",
-    "applyForLoan": "Apply for a loan"
+  "BUTTONS": {
+    "APPLY_FOR_VACANCY": "Apply for a vacancy",
+    "UPLOAD_CV": "Upload your CV",
+    "SEND": "Send",
+    "VIEW_VACANCIES": "View vacancies",
+    "ALL_TARIFFS": "All tariffs",
+    "VIEW_ON_MAP": "View on map",
+    "MORE_DETAILS": "More details",
+    "OPEN_DEPOSIT": "Open deposit",
+    "COPY_LINK": "Copy link",
+    "LINK_COPIED": "Link copied!",
+    "APPLY_FOR_CARD": "Apply for a card",
+    "APPLY_FOR_DEPOSIT": "Apply for a deposit",
+    "SHOW_MORE": "Show more",
+    "COLLAPSE": "Collapse",
+    "BUY": "Buy",
+    "SELL": "Sell",
+    "SEND_MONEY": "Send money",
+    "GET_LOAN": "Get a loan",
+    "APPLY_FOR_LOAN": "Apply for a loan",
+    "ALL": "All"
   },
-  "notifications": {
-    "submitSuccess": "Data sent successfully! We will contact you shortly.",
-    "submitError": "❌ An error occurred while sending data. Please try again.",
-    "applicationSuccessMessage": "Your application has been successfully accepted!",
-  "applicationErrorMessage": "Failed to submit the application. Please try again later.",
-  "fillAllFieldsWarning": "Please fill in all fields.",
-  "fillAllRequiredFieldsWarning": "Please fill in all required fields.",
-  "messageSentSuccess": "Your message has been sent successfully!",
-  "messageSentError": "Failed to send the message. Please try again later.",
-  "configError": "Configuration error: Submission URL is not specified.",
-  "applicationSentSuccess": "Your application has been sent successfully!",
-  "uploadResumeWarning": "Please upload your resume."
+  "NOTIFICATIONS": {
+    "SUBMIT_SUCCESS": "Data sent successfully! We will contact you shortly.",
+    "SUBMIT_ERROR": "❌ An error occurred while sending data. Please try again.",
+    "APPLICATION_SUCCESS_MESSAGE": "Your application has been successfully accepted!",
+    "APPLICATION_ERROR_MESSAGE": "Failed to submit the application. Please try again later.",
+    "FILL_ALL_FIELDS_WARNING": "Please fill in all fields.",
+    "FILL_ALL_REQUIRED_FIELDS_WARNING": "Please fill in all required fields.",
+    "MESSAGE_SENT_SUCCESS": "Your message has been sent successfully!",
+    "MESSAGE_SENT_ERROR": "Failed to send the message. Please try again later.",
+    "CONFIG_ERROR": "Configuration error: Submission URL is not specified.",
+    "APPLICATION_SENT_SUCCESS": "Your application has been sent successfully!",
+    "UPLOAD_RESUME_WARNING": "Please upload your resume."
   },
-  "transfers": {
-    "details": {
-      "conditionsTitle": "Tariffs and conditions",
-      "swiftInfo": "To receive or send money via SWIFT, you need to open a current account. It's free.",
-      "viewAllTariffsText": "View all tariffs",
-      "documentsAndTariffsTitle": "Documents and tariffs",
-      "moreInfoOnSite": "Detailed information on the website:"
+  "TRANSFERS": {
+    "DETAILS": {
+      "CONDITIONS_TITLE": "Tariffs and conditions",
+      "SWIFT_INFO": "To receive or send money via SWIFT, you need to open a current account. It's free.",
+      "VIEW_ALL_TARIFFS_TEXT": "View all tariffs",
+      "DOCUMENTS_AND_TARIFFS_TITLE": "Documents and tariffs",
+      "MORE_INFO_ON_SITE": "Detailed information on the website:"
     },
-    "pageTitle": "Money Transfers"
+    "PAGE_TITLE": "Money Transfers"
   },
-  "common": {
-    "officesAndAtms": "Addresses and Opening Hours",
-    "toggleMenu": "Toggle navigation menu",
-    "tariffsAndConditions": "Tariffs and conditions",
-    "fieldIsRequired": "This field is required",
-    "faqTitle": "Frequently Asked Questions",
-    "transfers": "Payments and Transfers",
-    "tagline": "Pay for your usual services and transfer money",
-    "consent": {
-      "prefix": "By clicking «Apply for a card», you agree to",
-      "prefix2":"By clicking «Apply for a deposit», you agree to",
-      "linkText": "processing of personal data",
-      "linkText2":"."
+  "COMMON": {
+    "OFFICES_AND_ATMS": "Addresses and Opening Hours",
+    "TOGGLE_MENU": "Toggle navigation menu",
+    "TARIFFS_AND_CONDITIONS": "Tariffs and conditions",
+    "FIELD_IS_REQUIRED": "This field is required",
+    "FAQ_TITLE": "Frequently Asked Questions",
+    "TRANSFERS": "Payments and Transfers",
+    "TAGLINE": "Pay for your usual services and transfer money",
+    "CONSENT": {
+      "PREFIX": "By clicking «Apply for a card», you agree to",
+      "PREFIX2": "By clicking «Apply for a deposit», you agree to",
+      "LINK_TEXT": "processing of personal data",
+      "LINK_TEXT2": "."
     },
-
-    "pagination": {
-      "firstPage": "Go to first page",
-      "previousPage": "Go to previous page",
-      "nextPage": "Go to next page",
-      "lastPage": "Go to last page"
+    "PAGINATION": {
+      "FIRST_PAGE": "Go to first page",
+      "PREVIOUS_PAGE": "Go to previous page",
+      "NEXT_PAGE": "Go to next page",
+      "LAST_PAGE": "Go to last page"
     }
   },
-  "map": {
-    "tagline": "We are closer than you think",
-    "filters": {
-      "typesTitle": "Object types"
+  "MAP": {
+    "TAGLINE": "We are closer than you think",
+    "FILTERS": {
+      "TYPES_TITLE": "Object types"
     },
-    "card": {
-      "workingHours": "Working hours",
-      "workingHours24": "24 hours"
+    "CARD": {
+      "WORKING_HOURS": "Working hours",
+      "WORKING_HOURS24": "24 hours"
     },
-    "noDataMessage": "No data to display."
+    "NO_DATA_MESSAGE": "No data to display."
   },
-  "tenderDetails": {
-    "documentationLink": "Tender documentation",
-    "meta": {
-      "startDate": "Competition start date",
-      "endDate": "Competition end date",
-      "responsiblePerson": "Responsible person",
-      "phoneNumber": "Phone number",
-      "emailAddress": "Email address",
-      "statusLabel": "Status"
+  "TENDER_DETAILS": {
+    "DOCUMENTATION_LINK": "Tender documentation",
+    "META": {
+      "START_DATE": "Competition start date",
+      "END_DATE": "Competition end date",
+      "RESPONSIBLE_PERSON": "Responsible person",
+      "PHONE_NUMBER": "Phone number",
+      "EMAIL_ADDRESS": "Email address",
+      "STATUS_LABEL": "Status"
     },
-    "status": {
-      "open": "Open",
-      "closed": "Completed"
+    "STATUS": {
+      "OPEN": "Open",
+      "CLOSED": "Completed"
     }
   },
-  "tendersList": {
-    "title": "Tenders",
-    "description": "Current information about ongoing tenders",
-    "table": {
-      "headerTender": "Tender",
-      "headerStartDate": "Start date",
-      "headerEndDate": "End date",
-      "headerStatus": "Status",
-      "noData": "No data to display"
+  "TENDERS_LIST": {
+    "TITLE": "Tenders",
+    "DESCRIPTION": "Current information about ongoing tenders",
+    "TABLE": {
+      "HEADER_TENDER": "Tender",
+      "HEADER_START_DATE": "Start date",
+      "HEADER_END_DATE": "End date",
+      "HEADER_STATUS": "Status",
+      "NO_DATA": "No data to display"
     }
   },
-  "depositDetails": {
-    "advantagesTitle": "Advantages",
-    "conditionsTitle": "Conditions",
-    "calculator": {
-      "title": "Calculate your deposit",
-      "amountLabel": "Deposit amount",
-      "termLabel": "Deposit term",
-      "disclaimer": "All calculations are preliminary and may differ from those actually received.",
-      "results": {
-        "title": "Our offer",
-        "productLabel": "Deposit product",
-        "productExample": "Term deposit",
-        "interestRateLabel": "Interest rate",
-        "incomeLabel": "Deposit income",
-        "finalAmountLabel": "Amount at the end of the term"
+  "DEPOSIT_DETAILS": {
+    "ADVANTAGES_TITLE": "Advantages",
+    "CONDITIONS_TITLE": "Conditions",
+    "CALCULATOR": {
+      "TITLE": "Calculate your deposit",
+      "AMOUNT_LABEL": "Deposit amount",
+      "TERM_LABEL": "Deposit term",
+      "DISCLAIMER": "All calculations are preliminary and may differ from those actually received.",
+      "RESULTS": {
+        "TITLE": "Our offer",
+        "PRODUCT_LABEL": "Deposit product",
+        "PRODUCT_EXAMPLE": "Term deposit",
+        "INTEREST_RATE_LABEL": "Interest rate",
+        "INCOME_LABEL": "Deposit income",
+        "FINAL_AMOUNT_LABEL": "Amount at the end of the term"
       }
     },
-    "applicationForm": {
-      "title": "Leave an application",
-      "subtitle": "We will contact you shortly.",
-      "phonePlaceholder": "Mobile phone",
-      "namePlaceholder": "Full Name",
-      "officePlaceholder": "Select an office"
+    "APPLICATION_FORM": {
+      "TITLE": "Leave an application",
+      "SUBTITLE": "We will contact you shortly.",
+      "PHONE_PLACEHOLDER": "Mobile phone",
+      "NAME_PLACEHOLDER": "Full Name",
+      "OFFICE_PLACEHOLDER": "Select an office"
     }
   },
-  "rko": {
-    "pageTitle": "Settlement and Cash Services",
-    "pageDescription": "Reliable banking operations for your business — fast, convenient, secure."
+  "RKO": {
+    "PAGE_TITLE": "Settlement and Cash Services",
+    "PAGE_DESCRIPTION": "Reliable banking operations for your business — fast, convenient, secure."
   },
-  "reporting": {
-    "pageTitle": "Reporting",
-    "filter": {
-      "currentYear": "Current year"
+  "REPORTING": {
+    "PAGE_TITLE": "Reporting",
+    "FILTER": {
+      "CURRENT_YEAR": "Current year"
     },
-    "stats": {
-      "deviationLabel": "Deviation (+, -)"
+    "STATS": {
+      "DEVIATION_LABEL": "Deviation (+, -)"
     },
-    "documents": {
-      "noData": "No documents available."
+    "DOCUMENTS": {
+      "NO_DATA": "No documents available."
     }
   },
-  "newsDetails": {
-    "shareTitle": "Share"
+  "NEWS_DETAILS": {
+    "SHARE_TITLE": "Share"
   },
-  "news": {
-    "sectionTitle": "News"
+  "NEWS": {
+    "SECTION_TITLE": "News"
   },
-  "links": {
-    "allNews": "All news"
+  "LINKS": {
+    "ALL_NEWS": "All news"
   },
-  "newsPage": {
-    "title": "News",
-    "subtitle": "Stay up to date with the latest news",
-    "noNewsMessage": "There are no news at the moment. Please check back later."
+  "NEWS_PAGE": {
+    "TITLE": "News",
+    "SUBTITLE": "Stay up to date with the latest news",
+    "NO_NEWS_MESSAGE": "There are no news at the moment. Please check back later."
   },
-  "merchantsPage": {
-    "title": "Merchants and Discounts",
-    "subtitle": "Find offers and cashbacks from our partners",
-    "filters": {
-      "title": "Filters",
-      "searchPlaceholder": "Search by name...",
-      "allRegions": "All regions",
-      "allCategories": "All categories",
-      "cashbacks": "Cashbacks"
+  "MERCHANTS_PAGE": {
+    "TITLE": "Merchants and Discounts",
+    "SUBTITLE": "Find offers and cashbacks from our partners",
+    "FILTERS": {
+      "TITLE": "Filters",
+      "SEARCH_PLACEHOLDER": "Search by name...",
+      "ALL_REGIONS": "All regions",
+      "ALL_CATEGORIES": "All categories",
+      "CASHBACKS": "Cashbacks"
     }
   },
-  "mapPage": {
-    "title": "Offices, ATMs, and Terminals",
-    "landmark": "Landmark",
-    "tabs": {
-      "onMap": "On the map",
-      "asList": "As a list"
+  "MAP_PAGE": {
+    "TITLE": "Offices, ATMs, and Terminals",
+    "LANDMARK": "Landmark",
+    "TABS": {
+      "ON_MAP": "On the map",
+      "AS_LIST": "As a list"
     },
-    "sidebar":{
-      "servicesLabel":"Services"
+    "SIDEBAR": {
+      "SERVICES_LABEL": "Services"
     },
-    "filters": {
-      "mainButtonLabel": "Filter",
-      "objectTypes": "Object types",
-      "availability": "Availability",
-      "additional": "Additional",
-      "regionPlaceholder": "City",
-   
-      "offices": "Branches",
-      "terminals": "Terminals",
-      "atms": "ATMs",
-      "allRegions": "All Regions",
-     
-      "availabilityOptions": {
-        "24h": "24/7",
-        "now": "Open now"
+    "FILTERS": {
+      "MAIN_BUTTON_LABEL": "Filter",
+      "OBJECT_TYPES": "Object types",
+      "AVAILABILITY": "Availability",
+      "ADDITIONAL": "Additional",
+      "REGION_PLACEHOLDER": "City",
+      "OFFICES": "Branches",
+      "TERMINALS": "Terminals",
+      "ATMS": "ATMs",
+      "ALL_REGIONS": "All Regions",
+      "AVAILABILITY_OPTIONS": {
+        "24H": "24/7",
+        "NOW": "Open now"
       }
     },
-    "infoWindow": {
-      "terminalLabel": "Terminal",
-      "atmLabel": "ATM",
-      "officeLabel": "Office",
-      "addressLabel": "Address"
+    "INFO_WINDOW": {
+      "TERMINAL_LABEL": "Terminal",
+      "ATM_LABEL": "ATM",
+      "OFFICE_LABEL": "Office",
+      "ADDRESS_LABEL": "Address"
     }
   },
-  "header": {
-    "top": {
-      "officesAndAtms": "Offices and ATMs"
+  "HEADER": {
+    "TOP": {
+      "OFFICES_AND_ATMS": "Offices and ATMs"
     },
-    "nav": {
-      "loginButton": "Login"
+    "NAV": {
+      "LOGIN_BUTTON": "Login"
     }
   },
-  "home": {
-    "tagline": "Choose the best",
-    "joinTeam": {
-      "subtitle": "Join the team Commerce Bank"
+  "HOME": {
+    "TAGLINE": "Choose the best",
+    "JOIN_TEAM": {
+      "SUBTITLE": "Join the team Commerce Bank"
     },
-    "support": {
-      "title": "Support",
-      "subtitle": "We will resolve"
+    "SUPPORT": {
+      "TITLE": "Support",
+      "SUBTITLE": "We will resolve"
     }
   },
-  "footer": {
-    "contacts": {
-      "forIndividuals": "For private individuals",
-      "forIndividuals2": "Short number"
+  "FOOTER": {
+    "CONTACTS": {
+      "FOR_INDIVIDUALS": "For private individuals",
+      "FOR_INDIVIDUALS2": "Short number"
     },
-    "nav": {
-      "creditCards": "Cards",
-      "debitCards": "Сards",
-      "scsRko": "Cash Services",
-      "merchants": "Merchants",
-      "aboutBank": "About the bank",
-      "vacancies": "Vacancies",
-      "officesAndAtms": "Offices and ATMs",
-      "contacts": "Contacts",
-      "bankDetails": "Bank Details",
-      "financialReporting": "Financial Reporting",
-      "tenders": "Tenders",
-      "news": "News",
-      "insurance": "Insurance",
-      "salaryProject": "Salary Project",
-      "acquiring": "Acquiring"
+    "NAV": {
+      "CREDIT_CARDS": "Cards",
+      "DEBIT_CARDS": "Сards",
+      "SCS_RKO": "Cash Services",
+      "MERCHANTS": "Merchants",
+      "ABOUT_BANK": "About the bank",
+      "VACANCIES": "Vacancies",
+      "OFFICES_AND_ATMS": "Offices and ATMs",
+      "CONTACTS": "Contacts",
+      "BANK_DETAILS": "Bank Details",
+      "FINANCIAL_REPORTING": "Financial Reporting",
+      "TENDERS": "Tenders",
+      "NEWS": "News",
+      "INSURANCE": "Insurance",
+      "SALARY_PROJECT": "Salary Project",
+      "ACQUIRING": "Acquiring"
     },
-    "workingHours": {
-      "title": "Working hours",
-      "daysLabel": "Working days:",
-      "weekdays": "from Monday to Friday",
-      "weekdaysTime": "mon-fri: from 08:00 to 17:00 ",
-      "saturday": "sat: from 08:00 to 14:00"
+    "WORKING_HOURS": {
+      "TITLE": "Working hours",
+      "DAYS_LABEL": "Working days:",
+      "WEEKDAYS": "from Monday to Friday",
+      "WEEKDAYS_TIME": "mon-fri: from 08:00 to 17:00 ",
+      "SATURDAY": "sat: from 08:00 to 14:00"
     },
-    "copyright": {
-      "main": "OJSC Commerce Bank of Tajikistan, official website. National license",
-      "license": "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017."
+    "COPYRIGHT": {
+      "MAIN": "OJSC Commerce Bank of Tajikistan, official website. National license",
+      "LICENSE": "Bank of Tajikistan for banking operations, No. 0000085 dated October 10, 2017."
     }
   },
-  "favriApp": {
-    "title": "Favri mobile application",
-    "subtitle": "Check your balance, pay for services, get help in chat 24/7"
+  "FAVRI_APP": {
+    "TITLE": "Favri mobile application",
+    "SUBTITLE": "Check your balance, pay for services, get help in chat 24/7"
   },
-  "deposits": {
-    "pageTitle": "Deposits"
+  "DEPOSITS": {
+    "PAGE_TITLE": "Deposits"
   },
-  "forms": {
-    "titles": {
-      "acquiring": "Acquiring Application",
-      "merchant": "Merchant Application",
-      "salaryProject": "Salary Project Application",
-      "default": "Submit Application"
+  "FORMS": {
+    "TITLES": {
+      "ACQUIRING": "Acquiring Application",
+      "MERCHANT": "Merchant Application",
+      "SALARY_PROJECT": "Salary Project Application",
+      "DEFAULT": "Submit Application"
     },
-    "subtitles": {
-      "default": "Our manager will contact you shortly."
+    "SUBTITLES": {
+      "DEFAULT": "Our manager will contact you shortly."
     },
-    "placeholders": {
-      "fullName": "Full Name",
-      "phone": "Mobile Phone",
-      "creditPurpose": "Purpose of the loan",
-      "workplace": "Place of work and address",
-      "selectOffice": "Select a bank branch",
-      "selectSubject": "Select a subject",
-      "question": "Your question"
+    "PLACEHOLDERS": {
+      "FULL_NAME": "Full Name",
+      "PHONE": "Mobile Phone",
+      "CREDIT_PURPOSE": "Purpose of the loan",
+      "WORKPLACE": "Place of work and address",
+      "SELECT_OFFICE": "Select a bank branch",
+      "SELECT_SUBJECT": "Select a subject",
+      "QUESTION": "Your question"
     },
-    "contact": {
-      "title": "Contact Us",
-      "subtitle": "We are ready to answer any of your questions."
+    "CONTACT": {
+      "TITLE": "Contact Us",
+      "SUBTITLE": "We are ready to answer any of your questions."
     },
-    "errors": {
-      "selectSubject": "Please select a subject.",
-      "minLength": "Minimum length is {{min}} characters.",
-      "required": "This field is required.",
-      "onlyDigits": "Only digits are allowed"
-    }
+    "ERRORS": {
+      "SELECT_SUBJECT": "Please select a subject.",
+      "MIN_LENGTH": "Minimum length is {{min}} characters.",
+      "REQUIRED": "This field is required.",
+      "ONLY_DIGITS": "Only digits are allowed"
+    },
+    "PRIVACY_POLICY_PREFIX": "By submitting this form, you agree to our",
+    "PRIVACY_POLICY_LINK": "privacy policy"
   },
-  "currencyConverter": {
-    "rateModes": {
-      "cash": "Cash",
-      "nonCash": "Money transfer",
-      "cbRate": "NBT Rate"
+  "CURRENCY_CONVERTER": {
+    "RATE_MODES": {
+      "CASH": "Cash",
+      "NON_CASH": "Money transfer",
+      "CB_RATE": "NBT Rate"
     },
-    "ratesTable": {
-      "title": "Currency rates",
-      "headers": {
-        "currency": "Currency",
-        "accounting": "Accounting course",
-        "purchase": "Purchase",
-        "sale": "Sale"
+    "RATES_TABLE": {
+      "TITLE": "Currency rates",
+      "HEADERS": {
+        "CURRENCY": "Currency",
+        "ACCOUNTING": "Accounting course",
+        "PURCHASE": "Purchase",
+        "SALE": "Sale"
       },
-      "updatedLabel": "Current as of"
+      "UPDATED_LABEL": "Current as of"
     },
-    "converter": {
-      "haveLabel": "I have:",
-      "receiveLabel": "I will receive:"
+    "CONVERTER": {
+      "HAVE_LABEL": "I have:",
+      "RECEIVE_LABEL": "I will receive:"
     }
   },
-  "creditsPage": {
-    "title": "Loans",
-    "filters": {
-      "all": "All",
-      "credit": "Consumer loans",
-      "autoLoan": "Car loan",
-      "constructionLoan": "Construction loan"
+  "CREDITS_PAGE": {
+    "TITLE": "Loans",
+    "FILTERS": {
+      "ALL": "All",
+      "CREDIT": "Consumer loans",
+      "AUTO_LOAN": "Car loan",
+      "CONSTRUCTION_LOAN": "Construction loan"
     },
-    "card": {
-      "applyButton": "Submit an application",
-      "detailsButton": "More details"
+    "CARD": {
+      "APPLY_BUTTON": "Submit an application",
+      "DETAILS_BUTTON": "More details"
     }
   },
-  "creditDetails": {
-    "sections": {
-      "tariffsAndConditions": "Tariffs and conditions",
-      "requiredDocuments": "List of required documents",
-      "onlineApplication": "Online loan application"
+  "CREDIT_DETAILS": {
+    "SECTIONS": {
+      "TARIFFS_AND_CONDITIONS": "Tariffs and conditions",
+      "REQUIRED_DOCUMENTS": "List of required documents",
+      "ONLINE_APPLICATION": "Online loan application"
     },
-    "applicationForm": {
-      "amountLabel": "Loan amount",
-      "termLabel": "Loan term",
-      "preliminaryCalcDisclaimer": "All calculations are preliminary and may differ from those actually received.",
-      "noWorkplaceDisclaimer": "If you do not have a permanent place of work, you can leave the field blank.",
-      "fullNamePlaceholder": "Full Name",
-      "phonePlaceholder": "Mobile phone",
-      "purposePlaceholder": "Purpose of the loan",
-      "workplacePlaceholder": "Place of work and address",
-      "officePlaceholder": "Select an office"
+    "APPLICATION_FORM": {
+      "AMOUNT_LABEL": "Loan amount",
+      "TERM_LABEL": "Loan term",
+      "PRELIMINARY_CALC_DISCLAIMER": "All calculations are preliminary and may differ from those actually received.",
+      "NO_WORKPLACE_DISCLAIMER": "If you do not have a permanent place of work, you can leave the field blank.",
+      "FULL_NAME_PLACEHOLDER": "Full Name",
+      "PHONE_PLACEHOLDER": "Mobile phone",
+      "PURPOSE_PLACEHOLDER": "Purpose of the loan",
+      "WORKPLACE_PLACEHOLDER": "Place of work and address",
+      "OFFICE_PLACEHOLDER": "Select an office"
     },
-    "results": {
-      "monthlyPaymentLabel": "Monthly payment",
-      "interestRateLabel": "Interest rate",
-      "onlineApplicationInfo": "Online applications are accepted and reviewed on weekdays from 8:00 to 17:00."
+    "RESULTS": {
+      "MONTHLY_PAYMENT_LABEL": "Monthly payment",
+      "INTEREST_RATE_LABEL": "Interest rate",
+      "ONLINE_APPLICATION_INFO": "Online applications are accepted and reviewed on weekdays from 8:00 to 17:00."
     }
   },
-  "contactsPage": {
-    "title": "Contacts",
-    "subtitle": "Contact us — we are always online and ready to help.",
-    "infoWindow": {
-      "phoneLabel": "Phone"
+  "CONTACTS_PAGE": {
+    "TITLE": "Contacts",
+    "SUBTITLE": "Contact us — we are always online and ready to help.",
+    "INFO_WINDOW": {
+      "PHONE_LABEL": "Phone"
     }
   },
-  "aboutUs": {
-    "mainTitle": "OJSC Commerce Bank of Tajikistan— one of the most reliable and dynamically developing banks in the country",
-    "cards": {
-      "mission": {
-        "title": "Our Mission",
-        "text": "We provide reliable, accessible, and modern financial solutions..."
+  "ABOUT_US": {
+    "MAIN_TITLE": "OJSC Commerce Bank of Tajikistan— one of the most reliable and dynamically developing banks in the country",
+    "CARDS": {
+      "MISSION": {
+        "TITLE": "Our Mission",
+        "TEXT": "We provide reliable, accessible, and modern financial solutions..."
       },
-      "goal": {
-        "title": "Our Goal",
-        "text": "Our goal is to be a reliable partner for everyone who strives for financial stability..."
+      "GOAL": {
+        "TITLE": "Our Goal",
+        "TEXT": "Our goal is to be a reliable partner for everyone who strives for financial stability..."
       },
-      "vision": {
-        "title": "Our Vision",
-        "text": "To be a driver of financial innovation and a reliable partner for clients..."
+      "VISION": {
+        "TITLE": "Our Vision",
+        "TEXT": "To be a driver of financial innovation and a reliable partner for clients..."
       }
     },
-    "history": {
-      "title": "Our History",
-      "p1": "The formation and development of the Open Joint-Stock Company Commerce Bank of Tajikistan as a universal credit organization took place in the conditions of many years of activity in a competitive environment in the domestic banking services market.",
-      "p2": "It began in 2006, when the Limited Liability Company 'Muzaffariyat' was formed, organizing banking activities in the form of a micro-loan organization based on license No. 001-2519 'A' from the National Bank of Tajikistan.",
-      "p3": "In May 2016, the updated team of LLC MDO 'Muzaffariyat' rebranded, renaming the credit organization to LLC MDO 'Fardo'. A month later, the license from the National Bank of Tajikistan for banking operations was updated under number BMT No. 0000062.",
-      "p4": "In October 2017, the credit organization, operating as a limited liability company, was transformed into a joint-stock company, replenishing its charter capital with the help of shareholders (a new shareholder) to a level that allows it to continue its activities as a bank. MDO 'Fardo' was transformed into OJSC Commerce Bank of Tajikistan, which was granted license No. BMT 0000085 by the National Bank of Tajikistan.",
-      "p5": "The bank's development strategy for the near future is aimed at expanding the scope of non-cash payment systems, improving the technological platform, and introducing innovative products. For example, the 'FAVRI' technological platform allows individuals and legal entities to use a wide range of banking services remotely. By becoming participants in e-commerce, they gained the ability to pay for purchased goods and services via QR code, as well as to carry out many other operations outside the Bank's office.",
-      "p6": "A new and innovative product was the mobile application 'Favri Intiqol', which currently has no analogue in the financial market of Tajikistan. It, being a unified addition to the 'Sberbank Online' application, has no user restrictions: holders of any cards issued by Russian banks can make instant money transfers to the Republic of Tajikistan through it. The development of this innovative technological solution became possible thanks to the bilateral project 'One Gateway - All Russia', which allowed mobile banking to become even more functional, universal, and convenient. Its unique novelty lies in the fact that it can be used by users of any cards of the Russian national payment system, as well as international payment systems.",
-      "p7": "From the first days of its establishment in the credit organizations market, the bank has strived to provide high-quality and accessible financial services to the population, thereby supporting the development of small and medium-sized businesses in the country's regions.",
-      "p8": "Commerce Bank, as a socially active bank, today keeps pace with innovative technologies, applying standardized procedures for access to microfinance in its relationships with clients, which helps to minimize possible credit risks.",
-      "p9": "To date, 63 Banking Service Centers and 11 branches operate in the country. In the future, it is planned to open new Banking Service Centers and branches, which will make the Bank even more accessible at the regional level."
+    "HISTORY": {
+      "TITLE": "Our History",
+      "P1": "The formation and development of the Open Joint-Stock Company Commerce Bank of Tajikistan as a universal credit organization took place in the conditions of many years of activity in a competitive environment in the domestic banking services market.",
+      "P2": "It began in 2006, when the Limited Liability Company 'Muzaffariyat' was formed, organizing banking activities in the form of a micro-loan organization based on license No. 001-2519 'A' from the National Bank of Tajikistan.",
+      "P3": "In May 2016, the updated team of LLC MDO 'Muzaffariyat' rebranded, renaming the credit organization to LLC MDO 'Fardo'. A month later, the license from the National Bank of Tajikistan for banking operations was updated under number BMT No. 0000062.",
+      "P4": "In October 2017, the credit organization, operating as a limited liability company, was transformed into a joint-stock company, replenishing its charter capital with the help of shareholders (a new shareholder) to a level that allows it to continue its activities as a bank. MDO 'Fardo' was transformed into OJSC Commerce Bank of Tajikistan, which was granted license No. BMT 0000085 by the National Bank of Tajikistan.",
+      "P5": "The bank's development strategy for the near future is aimed at expanding the scope of non-cash payment systems, improving the technological platform, and introducing innovative products. For example, the 'FAVRI' technological platform allows individuals and legal entities to use a wide range of banking services remotely. By becoming participants in e-commerce, they gained the ability to pay for purchased goods and services via QR code, as well as to carry out many other operations outside the Bank's office.",
+      "P6": "A new and innovative product was the mobile application 'Favri Intiqol', which currently has no analogue in the financial market of Tajikistan. It, being a unified addition to the 'Sberbank Online' application, has no user restrictions: holders of any cards issued by Russian banks can make instant money transfers to the Republic of Tajikistan through it. The development of this innovative technological solution became possible thanks to the bilateral project 'One Gateway - All Russia', which allowed mobile banking to become even more functional, universal, and convenient. Its unique novelty lies in the fact that it can be used by users of any cards of the Russian national payment system, as well as international payment systems.",
+      "P7": "From the first days of its establishment in the credit organizations market, the bank has strived to provide high-quality and accessible financial services to the population, thereby supporting the development of small and medium-sized businesses in the country's regions.",
+      "P8": "Commerce Bank, as a socially active bank, today keeps pace with innovative technologies, applying standardized procedures for access to microfinance in its relationships with clients, which helps to minimize possible credit risks.",
+      "P9": "To date, 63 Banking Service Centers and 11 branches operate in the country. In the future, it is planned to open new Banking Service Centers and branches, which will make the Bank even more accessible at the regional level."
     }
   },
-  "cardsPage": {
-    "title": "Bank cards"
+  "CARDS_PAGE": {
+    "TITLE": "Bank cards"
   },
-  "cardDetails": {
-    "tabs": {
-      "services": "Services",
-      "limits": "Limits",
-      "operations": "Operations",
-      "documents": "Useful documents"
+  "CARD_DETAILS": {
+    "TABS": {
+      "SERVICES": "Services",
+      "LIMITS": "Limits",
+      "OPERATIONS": "Operations",
+      "DOCUMENTS": "Useful documents"
     },
-    "accounts": {
-      "tjs": "TJS account",
-      "rub": "RUB account",
-      "usd": "USD account"
+    "ACCOUNTS": {
+      "TJS": "TJS account",
+      "RUB": "RUB account",
+      "USD": "USD account"
     },
-    "applicationForm": {
-      "title": "Application for a card",
-      "subtitle": "Leave your contacts and we will definitely contact you",
-      "phonePlaceholder": "Mobile phone",
-      "namePlaceholder": "Full Name",
-      "officePlaceholder": "Select an office"
+    "APPLICATION_FORM": {
+      "TITLE": "Application for a card",
+      "SUBTITLE": "Leave your contacts and we will definitely contact you",
+      "PHONE_PLACEHOLDER": "Mobile phone",
+      "NAME_PLACEHOLDER": "Full Name",
+      "OFFICE_PLACEHOLDER": "Select an office"
     }
   },
-  "calculator": {
-    "tabs": {
-      "credit": "Credit",
-      "deposit": "Deposit",
-      "carPurchase": "Buying a car",
-      "rassrochka":"Installments"
+  "CALCULATOR": {
+    "TABS": {
+      "CREDIT": "Credit",
+      "DEPOSIT": "Deposit",
+      "CAR_PURCHASE": "Buying a car",
+      "RASSROCHKA": "Installments"
     }
   },
-  "calculators": {
-    "common": {
-      "currency": "Currency",
-      "tjs": "Somoni",
-      "usd": "US Dollar",
-      "annualRate": "Annual rate",
-      "interestRate": "Interest rate",
-      "months": "months",
-      "yourOffer": "Our offer",
-      "monthlyPayment": "Monthly payment",
-      "applyButton": "Submit application",
-      "disclaimer": "All calculations are preliminary and may differ from the actual ones.",
-      "attention": "Attention",
-      "currencySymbol": {
-        "tjs": "TJS",
-        "usd": "$"
+  "CALCULATORS": {
+    "COMMON": {
+      "CURRENCY": "Currency",
+      "TJS": "Somoni",
+      "USD": "US Dollar",
+      "ANNUAL_RATE": "Annual rate",
+      "INTEREST_RATE": "Interest rate",
+      "MONTHS": "months",
+      "YOUR_OFFER": "Our offer",
+      "MONTHLY_PAYMENT": "Monthly payment",
+      "APPLY_BUTTON": "Submit application",
+      "DISCLAIMER": "All calculations are preliminary and may differ from the actual ones.",
+      "ATTENTION": "Attention",
+      "CURRENCY_SYMBOL": {
+        "TJS": "TJS",
+        "USD": "$"
       }
     },
-    "loan": {
-      "title": "Loan Calculator",
-      "amount": "Loan amount",
-      "term": "Loan term",
-      "overpayment": "Overpayment amount"
+    "LOAN": {
+      "TITLE": "Loan Calculator",
+      "AMOUNT": "Loan amount",
+      "TERM": "Loan term",
+      "OVERPAYMENT": "Overpayment amount"
     },
-    "deposit": {
-      "title": "Calculate your deposit",
-      "product": "Deposit product",
-      "amount": "Deposit amount",
-      "term": "Deposit term",
-      "income": "Income on deposit",
-      "finalAmount": "Amount at the end of the term"
+    "DEPOSIT": {
+      "TITLE": "Calculate your deposit",
+      "PRODUCT": "Deposit product",
+      "AMOUNT": "Deposit amount",
+      "TERM": "Deposit term",
+      "INCOME": "Income on deposit",
+      "FINAL_AMOUNT": "Amount at the end of the term"
     },
-    "autoLoan": {
-      "title": "Car purchase",
-      "carCost": "Car cost",
-      "downPayment": "Down payment",
-      "financingAmount": "Financing amount",
-      "term": "Loan term",
-      "actualOverpayment": "Actual overpayment"
+    "AUTO_LOAN": {
+      "TITLE": "Car purchase",
+      "CAR_COST": "Car cost",
+      "DOWN_PAYMENT": "Down payment",
+      "FINANCING_AMOUNT": "Financing amount",
+      "TERM": "Loan term",
+      "ACTUAL_OVERPAYMENT": "Actual overpayment"
     },
-    "installment": {
-      "title": "Installment Calculator",
-      "amount": "Amount",
-      "term": "Term",
-      "totalPayment": "Total payment amount",
-      "selectTermError": "Select a term from the list to see the calculation.",
-      "applyButton": "Apply for installment"
+    "INSTALLMENT": {
+      "TITLE": "Installment Calculator",
+      "AMOUNT": "Amount",
+      "TERM": "Term",
+      "TOTAL_PAYMENT": "Total payment amount",
+      "SELECT_TERM_ERROR": "Select a term from the list to see the calculation.",
+      "APPLY_BUTTON": "Apply for installment"
     }
   },
-  "depositProducts": {
-    "durakhshon": "Children's Deposit «Durakhshon»",
-    "favri": "Accumulative Deposit «FAVRI»",
-    "vip": "Term Deposit «V.I.P»",
-    "orzu": "Term Deposit «Orzu»",
-    "avf": "Term Deposit «AVF»"
+  "DEPOSIT_PRODUCTS": {
+    "DURAKHSHON": "Children's Deposit «Durakhshon»",
+    "FAVRI": "Accumulative Deposit «FAVRI»",
+    "VIP": "Term Deposit «V.I.P»",
+    "ORZU": "Term Deposit «Orzu»",
+    "AVF": "Term Deposit «AVF»"
   },
-  "currency": {
-    "somoni": "TJS"
+  "CURRENCY": {
+    "SOMONI": "TJS"
   },
-  "bankDetails": {
-    "pageTitle": "Bank Details",
-    "pageSubtitle": "Bank requisites for financial operations",
-    "labels": {
-      "bankName": "Bank Name",
-      "legalAddress": "Legal Address",
-      "inn": "TIN",
-      "kpp": "KPP",
-      "corrAccount": "Correspondent Account",
-      "bik": "BIK",
-      "swift": "SWIFT"
+  "BANK_DETAILS": {
+    "PAGE_TITLE": "Bank Details",
+    "PAGE_SUBTITLE": "Bank requisites for financial operations",
+    "LABELS": {
+      "BANK_NAME": "Bank Name",
+      "LEGAL_ADDRESS": "Legal Address",
+      "INN": "TIN",
+      "KPP": "KPP",
+      "CORR_ACCOUNT": "Correspondent Account",
+      "BIK": "BIK",
+      "SWIFT": "SWIFT"
     }
   },
-  "insurancePage": {
-    "mainTitle": "Insurance of Individual Deposits",
-    "whatIsIt": {
-      "title": "What is the individual deposit insurance system?",
-      "p1": "The individual deposit insurance system is a set of measures aimed at protecting the rights and legal interests of depositors by paying insurance compensation upon the occurrence of an insured event at credit institutions that are members of the Individual Deposit Insurance Fund.",
-      "p2": "The goal of the individual deposit insurance system is to ensure the financial stability of the Republic of Tajikistan, including maintaining public confidence in the banking system.",
-      "p3": "The activities of the individual deposit insurance system are regulated by the Law of the Republic of Tajikistan \"On Insurance of Individual Deposits\". To ensure the effectiveness of the system, the Individual Deposit Insurance Fund (hereinafter - the Fund) operates. The Fund pays insurance compensation to depositors upon the occurrence of an insured event, maintains a register of member credit institutions, and manages the accounting and collection of payments from credit institutions."
+  "INSURANCE_PAGE": {
+    "MAIN_TITLE": "Insurance of Individual Deposits",
+    "WHAT_IS_IT": {
+      "TITLE": "What is the individual deposit insurance system?",
+      "P1": "The individual deposit insurance system is a set of measures aimed at protecting the rights and legal interests of depositors by paying insurance compensation upon the occurrence of an insured event at credit institutions that are members of the Individual Deposit Insurance Fund.",
+      "P2": "The goal of the individual deposit insurance system is to ensure the financial stability of the Republic of Tajikistan, including maintaining public confidence in the banking system.",
+      "P3": "The activities of the individual deposit insurance system are regulated by the Law of the Republic of Tajikistan \"On Insurance of Individual Deposits\". To ensure the effectiveness of the system, the Individual Deposit Insurance Fund (hereinafter - the Fund) operates. The Fund pays insurance compensation to depositors upon the occurrence of an insured event, maintains a register of member credit institutions, and manages the accounting and collection of payments from credit institutions."
     },
-    "fundGoals": {
-      "title": "The goals of the Fund are:",
-      "items": [
+    "FUND_GOALS": {
+      "TITLE": "The goals of the Fund are:",
+      "ITEMS": [
         "To protect the rights and legal interests of depositors by paying insurance compensation;",
         "To strengthen public confidence in the banking system of the Republic of Tajikistan;"
       ]
     },
-    "contactInfo": {
-      "title": "Contact Information",
-      "callCenterTitle": "Call Center",
-      "callCenterNumber": "88 88",
-      "whatsappTitle": "Whatsapp",
-      "whatsappNumber": "+(992) 44 630 8888",
-      "emailTitle": "Email address",
-      "emailAddress": "info@cbt.tj",
-      "addressTitle": "Address",
-      "addressText": "Head office of Commerce Bank of Tajikistan, 734000, Dushanbe, 37/1 Bokhtar St.",
-      "scheduleTitle": "Working Hours",
-      "scheduleWorkdays": "Mon-Fri",
-      "scheduleWorkHours": "from 09:00 to 18:00",
-      "scheduleWeekends": "Sat-Sun",
-      "scheduleWeekendHours": "Closed"
+    "CONTACT_INFO": {
+      "TITLE": "Contact Information",
+      "CALL_CENTER_TITLE": "Call Center",
+      "CALL_CENTER_NUMBER": "88 88",
+      "WHATSAPP_TITLE": "Whatsapp",
+      "WHATSAPP_NUMBER": "+(992) 44 630 8888",
+      "EMAIL_TITLE": "Email address",
+      "EMAIL_ADDRESS": "info@cbt.tj",
+      "ADDRESS_TITLE": "Address",
+      "ADDRESS_TEXT": "Head office of Commerce Bank of Tajikistan, 734000, Dushanbe, 37/1 Bokhtar St.",
+      "SCHEDULE_TITLE": "Working Hours",
+      "SCHEDULE_WORKDAYS": "Mon-Fri",
+      "SCHEDULE_WORK_HOURS": "from 09:00 to 18:00",
+      "SCHEDULE_WEEKENDS": "Sat-Sun",
+      "SCHEDULE_WEEKEND_HOURS": "Closed"
     },
-    "coverage": {
-      "title": "Level and Coverage of the Fund's Insurance Compensation",
-      "p1": "Individual deposits are insured automatically and do not require the depositor to sign an insurance contract. The object of insurance is individual deposits in national and foreign currency, confirmed by bank deposit agreements and/or bank accounts of salary and pension cards and/or savings books."
+    "COVERAGE": {
+      "TITLE": "Level and Coverage of the Fund's Insurance Compensation",
+      "P1": "Individual deposits are insured automatically and do not require the depositor to sign an insurance contract. The object of insurance is individual deposits in national and foreign currency, confirmed by bank deposit agreements and/or bank accounts of salary and pension cards and/or savings books."
     },
-    "notCovered": {
-      "title": "Upon the occurrence of an insured event, compensation for the following individual deposits is not paid:",
-      "items": [
+    "NOT_COVERED": {
+      "TITLE": "Upon the occurrence of an insured event, compensation for the following individual deposits is not paid:",
+      "ITEMS": [
         "deposits for which the credit institution has the right to offset against the depositor's debts;",
         "deposits that are pledged as collateral;",
         "deposits obtained through criminal means or seized by a court;",
@@ -750,64 +621,64 @@
         "deposits of less than 10 somoni;"
       ]
     },
-    "compensation": {
-      "title": "Insurance Compensation",
-      "p1": "An insured event is the compulsory liquidation of a credit institution by a court decision, which creates an obligation for the Fund to pay insurance compensation.",
-      "p2": "Upon the occurrence of an insured event, the amount of compensation for deposits is as follows:",
-      "limits": [
+    "COMPENSATION": {
+      "TITLE": "Insurance Compensation",
+      "P1": "An insured event is the compulsory liquidation of a credit institution by a court decision, which creates an obligation for the Fund to pay insurance compensation.",
+      "P2": "Upon the occurrence of an insured event, the amount of compensation for deposits is as follows:",
+      "LIMITS": [
         "in national currency, no more than 500 calculation indicators;",
         "in foreign currency, no more than 350 calculation indicators;"
       ],
-      "p3": "Deposits in national currency are compensated in national currency. Deposits in foreign currency are compensated in national currency at the official exchange rate of the National Bank of Tajikistan on the day of the insured event. Interest on deposits is not compensated by the Fund."
+      "P3": "Deposits in national currency are compensated in national currency. Deposits in foreign currency are compensated in national currency at the official exchange rate of the National Bank of Tajikistan on the day of the insured event. Interest on deposits is not compensated by the Fund."
     },
-    "paymentProcess": {
-      "title": "Payment of Insurance Compensation",
-      "p1": "After an insured event occurs, the Fund publishes an announcement in the media about the agent bank, the place, time, and procedure for accepting applications for deposit compensation. The announcement is also posted at the entrance of the agent bank and on the Fund's official website, www.idif.tj.",
-      "p2": "Compensation payments begin no later than 14 calendar days after the insured event and are made through the agent bank in cash or non-cash form.",
-      "p3": "To receive compensation, the depositor must apply to the agent bank within one year from the date of the insured event and provide the following documents:",
-      "documents": [
+    "PAYMENT_PROCESS": {
+      "TITLE": "Payment of Insurance Compensation",
+      "P1": "After an insured event occurs, the Fund publishes an announcement in the media about the agent bank, the place, time, and procedure for accepting applications for deposit compensation. The announcement is also posted at the entrance of the agent bank and on the Fund's official website, www.idif.tj.",
+      "P2": "Compensation payments begin no later than 14 calendar days after the insured event and are made through the agent bank in cash or non-cash form.",
+      "P3": "To receive compensation, the depositor must apply to the agent bank within one year from the date of the insured event and provide the following documents:",
+      "DOCUMENTS": [
         "Application in the prescribed form;",
         "Identity document;",
         "Bank deposit agreement;",
         "Power of attorney (if necessary)."
       ]
     },
-    "forDepositors": {
-      "title": "Information for Depositors",
-      "slides": [
+    "FOR_DEPOSITORS": {
+      "TITLE": "Information for Depositors",
+      "SLIDES": [
         {
-          "title": "1. Research the Credit Institution",
-          "content": "Make sure that the institution where you want to place a deposit is a member of the individual deposit insurance system and has a Certificate of Membership."
+          "TITLE": "1. Research the Credit Institution",
+          "CONTENT": "Make sure that the institution where you want to place a deposit is a member of the individual deposit insurance system and has a Certificate of Membership."
         },
         {
-          "title": "2. Review the Deposit Agreement",
-          "content": "Carefully check that your name, passport details, address, and phone number are correctly stated in the agreement and always inform the institution of any changes."
+          "TITLE": "2. Review the Deposit Agreement",
+          "CONTENT": "Carefully check that your name, passport details, address, and phone number are correctly stated in the agreement and always inform the institution of any changes."
         },
         {
-          "title": "3. Remember which deposits are not compensated",
-          "content": "Pledged deposits, deposits obtained through criminal means, or deposits of affiliated persons are not compensated."
+          "TITLE": "3. Remember which deposits are not compensated",
+          "CONTENT": "Pledged deposits, deposits obtained through criminal means, or deposits of affiliated persons are not compensated."
         },
         {
-          "title": "4. Don't worry and be patient",
-          "content": "You have one year to receive compensation. Do not rush on the first day to avoid queues. The Fund may extend the application period for valid reasons."
+          "TITLE": "4. Don't worry and be patient",
+          "CONTENT": "You have one year to receive compensation. Do not rush on the first day to avoid queues. The Fund may extend the application period for valid reasons."
         }
       ]
     },
-    "certificate": {
-      "text": "Certificate of JSC Commerce Bank of Tajikistan on membership in the fund",
-      "linkText": "Certificate"
+    "CERTIFICATE": {
+      "TEXT": "Certificate of JSC Commerce Bank of Tajikistan on membership in the fund",
+      "LINK_TEXT": "Certificate"
     }
   },
-  "salaryProjectPage": {
-    "mainTitle": "Salary Project",
-    "intro": {
-      "subtitle": "JSC Commerce Bank of Tajikistan: A privileged position for employees benefits the entire company.",
-      "p1": "The salary project will free your organization from the need to withdraw cash from the account, count it, and disburse salaries to each employee in cash. In addition to saving time, this also ensures security – a very important aspect when delivering cash to the organization's office.",
-      "p2": "As for employee convenience, your staff will be able to receive their salaries through any ATM using payment cards 24 hours a day, 365 days a year, as well as make non-cash payments for goods/services through the 'Mobile Bank' and POS terminals installed at various retail and service points."
+  "SALARY_PROJECT_PAGE": {
+    "MAIN_TITLE": "Salary Project",
+    "INTRO": {
+      "SUBTITLE": "JSC Commerce Bank of Tajikistan: A privileged position for employees benefits the entire company.",
+      "P1": "The salary project will free your organization from the need to withdraw cash from the account, count it, and disburse salaries to each employee in cash. In addition to saving time, this also ensures security – a very important aspect when delivering cash to the organization's office.",
+      "P2": "As for employee convenience, your staff will be able to receive their salaries through any ATM using payment cards 24 hours a day, 365 days a year, as well as make non-cash payments for goods/services through the 'Mobile Bank' and POS terminals installed at various retail and service points."
     },
-    "benefitsForCompany": {
-      "title": "Advantages of the Salary Project for Your Organization",
-      "items": [
+    "BENEFITS_FOR_COMPANY": {
+      "TITLE": "Advantages of the Salary Project for Your Organization",
+      "ITEMS": [
         "Reduction of risks associated with receiving, storing, and transporting cash intended for employee payments",
         "Reduction in the number of employees in the accounting and cashier departments",
         "Elimination of salary queues",
@@ -815,9 +686,9 @@
         "Ensuring the confidentiality of individual salary information"
       ]
     },
-    "benefitsForEmployees": {
-      "title": "Advantages of the Salary Project for Your Employees",
-      "items": [
+    "BENEFITS_FOR_EMPLOYEES": {
+      "TITLE": "Advantages of the Salary Project for Your Employees",
+      "ITEMS": [
         "24/7 access to the account",
         "Non-cash payments for goods/services through POS terminals installed at various retail and service points",
         "Online card control, transfers, and service payments in the 'Mobile Bank' application and on the bank's website",
@@ -826,63 +697,62 @@
         "Ensuring the confidentiality of account information"
       ]
     }
-  }
-
-  ,"acquiringPage": {
-    "hero": {
-      "title": "Online-acquiring",
-      "subtitle": "FOR YOUR BUSINESS",
-      "text": "Accept online payments with Favri — convenient for you, simple for your customers.",
-      "button": "Submit Application"
+  },
+  "ACQUIRING_PAGE": {
+    "HERO": {
+      "TITLE": "Online-acquiring",
+      "SUBTITLE": "FOR YOUR BUSINESS",
+      "TEXT": "Accept online payments with Favri — convenient for you, simple for your customers.",
+      "BUTTON": "Submit Application"
     },
-    "benefitsTitle": "Benefits of Acquiring from Commerce Bank of Tajikistan",
-    "paymentMethods": {
-      "title": "Accept non-cash payments",
-      "qr": {
-        "title": "Via 'Favri' app QR-code",
-        "text": "Over 150,000 'Favri' users can make payments, including via credit-installment. Money is instantly transferred to the merchant's account."
+    "BENEFITS_TITLE": "Benefits of Acquiring from Commerce Bank of Tajikistan",
+    "PAYMENT_METHODS": {
+      "TITLE": "Accept non-cash payments",
+      "QR": {
+        "TITLE": "Via 'Favri' app QR-code",
+        "TEXT": "Over 150,000 'Favri' users can make payments, including via credit-installment. Money is instantly transferred to the merchant's account."
       },
-      "kortiMilli": {
-        "title": "Via 'Korti milli' cards",
-        "text": "The POS-terminal can accept payments from all 'Korti milli' cards. The money is transferred to the merchant's account the next business day."
+      "KORTI_MILLI": {
+        "TITLE": "Via 'Korti milli' cards",
+        "TEXT": "The POS-terminal can accept payments from all 'Korti milli' cards. The money is transferred to the merchant's account the next business day."
       }
     },
-    "bankHelp": {
-      "title": "The Bank will help you promote your services and improve your business",
-      "cards": [
+    "BANK_HELP": {
+      "TITLE": "The Bank will help you promote your services and improve your business",
+      "CARDS": [
         {
-          "title": "Free merchant account opening",
-          "text": "We will open a merchant account for your business for free"
+          "TITLE": "Free merchant account opening",
+          "TEXT": "We will open a merchant account for your business for free"
         },
         {
-          "title": "Money — fast",
-          "text": "Crediting — by 12:00 PM the next day. In a lump sum or in parts"
+          "TITLE": "Money — fast",
+          "TEXT": "Crediting — by 12:00 PM the next day. In a lump sum or in parts"
         },
         {
-          "title": "24/7 Support",
-          "text": "We answer within 30 seconds by phone. Terminal replacement — within 48 hours"
+          "TITLE": "24/7 Support",
+          "TEXT": "We answer within 30 seconds by phone. Terminal replacement — within 48 hours"
         },
         {
-          "title": "Online management",
-          "text": "Connect services and additional sales points through the 'Favri Tijorat' internet bank"
+          "TITLE": "Online management",
+          "TEXT": "Connect services and additional sales points through the 'Favri Tijorat' internet bank"
         }
       ]
     },
-    "amaPos": {
-      "subtitle": "Cash Register Machine",
-      "title": "«AMA POS»",
-      "text": "new generation equipment",
-      "slogan": "THE SUCCESS OF YOUR BUSINESS!"
+    "AMA_POS": {
+      "SUBTITLE": "Cash Register Machine",
+      "TITLE": "«AMA POS»",
+      "TEXT": "new generation equipment",
+      "SLOGAN": "THE SUCCESS OF YOUR BUSINESS!"
     },
-    "smallBusiness": {
-      "title": "Acquiring for small business",
-      "tabs": [
+    "SMALL_BUSINESS": {
+      "TITLE": "Acquiring for small business",
+      "TABS": [
         {
-          "id": "pos",
-          "title": "Point of Sale",
-          "contentTitle": "Merchant Acquiring",
-          "description": "Suitable for stores, restaurants, fitness clubs, and hairdressers",
-          "features": [
+          "ID": "pos",
+          "TITLE": "Point of Sale",
+          "CONTENT_TITLE": "Merchant Acquiring",
+          "DESCRIPTION": "Suitable for stores, restaurants, fitness clubs, and hairdressers",
+          "FEATURES": [
             "Free merchant account opening",
             "Opening a favorable credit line for your business",
             "Providing preferential consumer loans to your employees",
@@ -891,11 +761,11 @@
           ]
         },
         {
-          "id": "internet",
-          "title": "Online Store",
-          "contentTitle": "Internet Acquiring",
-          "description": "For online stores and sales through social networks and messengers",
-          "features": [
+          "ID": "internet",
+          "TITLE": "Online Store",
+          "CONTENT_TITLE": "Internet Acquiring",
+          "DESCRIPTION": "For online stores and sales through social networks and messengers",
+          "FEATURES": [
             "Free merchant account opening",
             "Opening a favorable credit line for your business",
             "Providing preferential consumer loans to your employees",
@@ -904,11 +774,11 @@
           ]
         },
         {
-          "id": "courier",
-          "title": "For Couriers",
-          "contentTitle": "Solutions for courier delivery",
-          "description": "For delivery services, taxis, sales consultants, online stores",
-          "features": [
+          "ID": "courier",
+          "TITLE": "For Couriers",
+          "CONTENT_TITLE": "Solutions for courier delivery",
+          "DESCRIPTION": "For delivery services, taxis, sales consultants, online stores",
+          "FEATURES": [
             "Free merchant account opening",
             "Opening a favorable credit line for your business",
             "Providing preferential consumer loans to your employees",
@@ -917,72 +787,83 @@
           ]
         }
       ],
-      "conditions": {
-        "term": "up to 3 days",
-        "termText": "cash services free of charge",
-        "commission": "from 1%",
-        "commissionText": "favorable acquiring commission",
-        "cashback": "0%",
-        "cashbackText": "cashing out of acquiring payments"
+      "CONDITIONS": {
+        "TERM": "up to 3 days",
+        "TERM_TEXT": "cash services free of charge",
+        "COMMISSION": "from 1%",
+        "COMMISSION_TEXT": "favorable acquiring commission",
+        "CASHBACK": "0%",
+        "CASHBACK_TEXT": "cashing out of acquiring payments"
       }
     },
-    "documents": {
-      "title": "What documents are needed to install a POS terminal?",
-      "items": [
-        { "title": "Patent or certificate", "description": "of state registration (Shahodatnoma, patent)" },
-        { "title": "Extract from the state register", "description": "(Iqtibos)" },
-        { "title": "Copy of the Director's passport", "description": "" },
-        { "title": "TIN", "description": "" }
+    "DOCUMENTS": {
+      "TITLE": "What documents are needed to install a POS terminal?",
+      "ITEMS": [
+        {
+          "TITLE": "Patent or certificate",
+          "DESCRIPTION": "of state registration (Shahodatnoma, patent)"
+        },
+        {
+          "TITLE": "Extract from the state register",
+          "DESCRIPTION": "(Iqtibos)"
+        },
+        {
+          "TITLE": "Copy of the Director's passport",
+          "DESCRIPTION": ""
+        },
+        {
+          "TITLE": "TIN",
+          "DESCRIPTION": ""
+        }
       ]
     }
   },
-  "titles": {
-    "siteName": "JSC Commerce Bank of Tajikistan",
-    "default": "Home",
-    "cards": "Commerce Bank cards",
-    "credits": "Loan programs and terms",
-    "transfers": "Money transfers and terms",
-    "deposits": "Deposits",
-    "vacancies": "Vacancies",
-    "vacancyList": "List of vacancies",
-    "tenders": "Tenders",
-    "rko": "Settlement and cash services for business",
-    "news": "News",
-    "map": "Branches and ATMs locations",
-    "aboutUs": "Bank history, mission, and values",
-    "report": "Financial and annual reports",
-    "bankDetail": "Bank details",
-    "merchant": "Information for merchants",
-    "contact": "Contact the bank",
-    "insurance": "Insurance programs",
-    "salaryProject": "Payroll services for corporate clients",
-    "acquiring": "Acquiring and card payment acceptance"
+  "TITLES": {
+    "SITE_NAME": "JSC Commerce Bank of Tajikistan",
+    "DEFAULT": "Home",
+    "CARDS": "Commerce Bank cards",
+    "CREDITS": "Loan programs and terms",
+    "TRANSFERS": "Money transfers and terms",
+    "DEPOSITS": "Deposits",
+    "VACANCIES": "Vacancies",
+    "VACANCY_LIST": "List of vacancies",
+    "TENDERS": "Tenders",
+    "RKO": "Settlement and cash services for business",
+    "NEWS": "News",
+    "MAP": "Branches and ATMs locations",
+    "ABOUT_US": "Bank history, mission, and values",
+    "REPORT": "Financial and annual reports",
+    "BANK_DETAIL": "Bank details",
+    "MERCHANT": "Information for merchants",
+    "CONTACT": "Contact the bank",
+    "INSURANCE": "Insurance programs",
+    "SALARY_PROJECT": "Payroll services for corporate clients",
+    "ACQUIRING": "Acquiring and card payment acceptance"
   },
-  "breadcrumbs": {
-    "home": "Home",
-    "cards": "Cards",
-    "credits": "Credits",
-    "transfers": "Transfers",
-    "deposits": "Deposits",
-    "vacancies": "Vacancies",
-    "vacancyList": "List of vacancies",
-    "tenders": "Tenders",
-    "rko": "Cash services",
-    "news": "News",
-    "map": "Branches and ATMs",
-    "aboutUs": "About us",
-    "report": "Reports",
-    "bankDetail": "Bank details",
-    "merchant": "Internet acquiring",
-    "contact": "Contacts",
-    "insurance": "Insurance",
-    "salaryProject": "Salary project",
-    "acquiring": "Acquiring"
+  "BREADCRUMBS": {
+    "HOME": "Home",
+    "CARDS": "Cards",
+    "CREDITS": "Credits",
+    "TRANSFERS": "Transfers",
+    "DEPOSITS": "Deposits",
+    "VACANCIES": "Vacancies",
+    "VACANCY_LIST": "List of vacancies",
+    "TENDERS": "Tenders",
+    "RKO": "Cash services",
+    "NEWS": "News",
+    "MAP": "Branches and ATMs",
+    "ABOUT_US": "About us",
+    "REPORT": "Reports",
+    "BANK_DETAIL": "Bank details",
+    "MERCHANT": "Internet acquiring",
+    "CONTACT": "Contacts",
+    "INSURANCE": "Insurance",
+    "SALARY_PROJECT": "Salary project",
+    "ACQUIRING": "Acquiring"
   },
-  "workInProgress": {
-    "title": "Page Under Construction",
-    "message": "This page is coming soon.",
-    "homeLink": "Back to Home"
+  "WORK_IN_PROGRESS": {
+    "TITLE": "Page Under Construction",
+    "MESSAGE": "This page is coming soon.",
+    "HOME_LINK": "Back to Home"
   }
-  }
-
+}

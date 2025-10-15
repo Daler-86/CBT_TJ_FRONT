@@ -21,7 +21,7 @@ export class SimpleApplicationFormComponent {
   @Input() formTitle: string = 'Оставить заявку';
   @Input() formSubtitle: string = 'Наш менеджер скоро свяжется с вами.';
   @Input() titleKey: string = 'forms.titles.default';
-  @Input() subtitleKey: string = 'forms.subtitles.default';
+  @Input() subtitleKey: string = 'FORMS.SUBTITLES.DEFAULT';
   @Input() formType: 'acquiring' | 'salaryProject' | null = null;
   public applicationForm: FormGroup;
   public isSubmitting: boolean = false;

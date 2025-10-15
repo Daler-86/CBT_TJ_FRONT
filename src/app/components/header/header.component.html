@@ -3,27 +3,27 @@
   <div class="adress desktop-only">
     <div class="cont">
       <div class="contact">
-        <img src="../../../assets/icons/phonegrey.svg" [alt]="'alt.phoneIcon' | translate">
+        <img src="../../../assets/icons/phonegrey.svg" [alt]="'ALT.PHONE_ICON' | translate">
         <p class="p" id="body-medium">+(992) 44 630 8888</p>
       </div>
       <a href="" routerLink="map" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <div class="contact">
-          <img src="../../../assets/icons/Map Point.svg" [alt]="'alt.mapPointIcon' | translate">
-          <p class="p" id="body-medium">{{ 'header.top.officesAndAtms' | translate }}</p>
+          <img src="../../../assets/icons/Map Point.svg" [alt]="'ALT.MAP_POINT_ICON' | translate">
+          <p class="p" id="body-medium">{{ 'HEADER.TOP.OFFICES_AND_ATMS' | translate }}</p>
         </div>
       </a>
     </div>
     <div class="custom-dropdown">
       <div class="dropdown-selected contact" (click)="toggleDropdown1($event)">
-        <img src="../../../assets/icons/Global.svg" [alt]="'alt.globalIcon' | translate">
+        <img src="../../../assets/icons/Global.svg" [alt]="'ALT.GLOBAL_ICON' | translate">
         <p class="p" id="body-medium">{{ getDisplayLanguage() }}</p>
-        <img src="../../../assets/icons/arrow-down.png" [alt]="'alt.arrowDown' | translate">
+        <img src="../../../assets/icons/arrow-down.png" [alt]="'ALT.ARROW_DOWN' | translate">
       </div>
       <div class="dropdown-options" *ngIf="dropdownOpen">
         <div class="dropdown-option" *ngFor="let option of languageOptions" (click)="selectLanguage(option)">
           <p id="body-medium">{{ option.label }}</p>
           <img *ngIf="option.value === selectedLanguage" src="../../../assets/icons/tick-circle.svg"
-            [alt]="'alt.tickIcon' | translate">
+            [alt]="'ALT.TICK_ICON' | translate">
         </div>
       </div>
     </div>
@@ -34,29 +34,22 @@
     <!-- Логотип -->
     <a routerLink="/" href="" class="logo-link">
       <div class="logo">
-        <img width="200px" [src]="logoSrc" [alt]="'alt.mainLogo' | translate">
+        <img width="200px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO' | translate">
       </div>
     </a>
 
     <ul class="menu desktop-only">
       <li *ngFor="let menu of menus; let i = index">
-
-      
         <div *ngIf="menu.items && menu.items.length > 0" class="custom-dropdown"
           (mouseenter)="toggleDropdown(i, $event)" (mouseleave)="closeDropdown(i)">
           <div class="dropdown-selected contact">
             <a id="body-medium">{{ menu.name | translate }}</a>
           </div>
           <div class="dropdown-options" *ngIf="dropdownOpenMap[i]">
-            
             <div class="dropdown-option" *ngFor="let item of menu.items" (click)="selectOption(item, i, $event, menu)">
-
-             
               <a *ngIf="item.is_new_tab" [href]="item.route" target="_blank" rel="noopener noreferrer">
                 <p id="body-medium">{{ item.name | translate }}</p>
               </a>
-
-              
               <a *ngIf="!item.is_new_tab" [routerLink]="item.route">
                 <p id="body-medium">{{ item.name | translate }}</p>
               </a>
@@ -64,15 +57,10 @@
           </div>
         </div>
 
-     
         <ng-container *ngIf="!menu.items || menu.items.length === 0">
-
-        
           <a *ngIf="menu.is_new_tab" class="a" [href]="menu.route" target="_blank" rel="noopener noreferrer">
             {{ menu.name | translate }}
           </a>
-
-        
           <a *ngIf="!menu.is_new_tab" class="a" [routerLink]="menu.route">
             {{ menu.name | translate }}
           </a>
@@ -80,7 +68,6 @@
       </li>
     </ul>
 
-  
     <div class="burger mobile-only" (click)="toggleMenu()" [class.active]="menuActive">
       <div></div>
       <div></div>
@@ -89,26 +76,20 @@
   </div>
 </nav>
 
-
 <div class="mobile-overlay" [class.active]="menuActive">
-
-
   <div class="mobile-menu-header">
     <a routerLink="/" (click)="toggleMenu()">
-      <img width="160px" [src]="logoSrc" [alt]="'alt.mainLogo' | translate">
+      <img width="160px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO' | translate">
     </a>
   </div>
 
-
   <a routerLink="map" class="mobile-menu-map-button" (click)="toggleMenu()">
-    <p>{{ 'header.top.officesAndAtms' | translate }}</p>
-    <img src="../../../assets/icons/map-icons.svg" [alt]="'alt.mapPointIcon' | translate">
+    <p>{{ 'HEADER.TOP.OFFICES_AND_ATMS' | translate }}</p>
+    <img src="../../../assets/icons/map-icons.svg" [alt]="'ALT.MAP_POINT_ICON' | translate">
   </a>
-
 
   <ul class="mobile-menu-list">
     <li *ngFor="let menu of menus; let i = index">
-
       <ng-container *ngIf="menu.items && menu.items.length > 0">
         <div class="menu-item" (click)="toggleDropdown(i, $event)" [class.open]="dropdownOpenMap[i]">
           <a>{{ menu.name | translate }}</a>
@@ -116,12 +97,10 @@
         </div>
         <div class="submenu" *ngIf="dropdownOpenMap[i]">
           <div class="submenu-option" *ngFor="let item of menu.items">
-
             <a *ngIf="item.is_new_tab" [href]="item.route" target="_blank" rel="noopener noreferrer"
               (click)="selectOption(item, i, $event, menu)">
               <p>{{ item.name | translate }}</p>
             </a>
-           
             <a *ngIf="!item.is_new_tab" [routerLink]="item.route" (click)="selectOption(item, i, $event, menu)">
               <p>{{ item.name | translate }}</p>
             </a>
@@ -129,14 +108,11 @@
         </div>
       </ng-container>
 
-    
       <ng-container *ngIf="!menu.items || menu.items.length === 0">
-   
         <a *ngIf="menu.is_new_tab" class="menu-item single-link" [href]="menu.route" target="_blank"
           rel="noopener noreferrer" (click)="toggleMenu()">
           {{ menu.name | translate }}
         </a>
-   
         <a *ngIf="!menu.is_new_tab" class="menu-item single-link" [routerLink]="menu.route" (click)="toggleMenu()">
           {{ menu.name | translate }}
         </a>
@@ -144,21 +120,20 @@
     </li>
   </ul>
 
-
   <div class="mobile-menu-footer">
     <div class="footer-contacts">
       <p>+(992) 44 630 8888</p>
-      <span>Для звонков по Таджикистану и из-за рубежа</span>
+      <span>{{ 'FOOTER.CONTACTS.FOR_CALLS' | translate }}</span>
     </div>
     <div class="footer-lang-switcher">
-      <span>Выберите язык</span>
+      <span>{{ 'FOOTER.LANG.CHOOSE_LANGUAGE' | translate }}</span>
       <div class="lang-buttons">
         <button [class.active]="selectedLanguage === lang.Tj"
           (click)="selectLanguage({value: lang.Tj, label: 'Тоҷикӣ'})">TJ</button>
         <button [class.active]="selectedLanguage === lang.Ru"
           (click)="selectLanguage({value: lang.Ru, label: 'Русский'})">RU</button>
         <button [class.active]="selectedLanguage === lang.En"
-          (click)="selectLanguage({value: lang.En, 'label': 'English'})">EN</button>
+          (click)="selectLanguage({value: lang.En, label: 'English'})">EN</button>
       </div>
     </div>
   </div>

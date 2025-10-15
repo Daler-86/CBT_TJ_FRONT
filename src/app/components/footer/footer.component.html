@@ -1,76 +1,65 @@
-
 <div class="footer">
   <div class="box_1">
      <a routerLink="/" href="">
-       <img width="250px" [src]="logoSrc" [alt]="'alt.mainLogoBlack' | translate">
+       <img width="250px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO_BLACK' | translate">
      </a>
       <div class="contact">
          <div class="">
           <h4>22 00</h4>
-          <p>{{ 'footer.contacts.forIndividuals2' | translate }}</p>
+          <p>{{ 'FOOTER.CONTACTS.FOR_INDIVIDUALS2' | translate }}</p>
         </div>
 
         <div class="">
           <h4>+(992) 44 630 8888</h4>
-          <p>{{ 'footer.contacts.forIndividuals' | translate }}</p>
+          <p>{{ 'FOOTER.CONTACTS.FOR_INDIVIDUALS' | translate }}</p>
         </div>
-       
       </div>
   </div>
+
   <div class="box_2">
     <div class="navbar">
       <div class="">
-        <a [routerLink]="'/cards'">{{ 'footer.nav.creditCards' | translate }}</a>
-        <a routerLink="insurance-info" routerLinkActive="active">{{"footer.nav.insurance"|translate}}</a>
-        <a routerLink="salary-project" routerLinkActive="active">{{"footer.nav.salaryProject"|translate}}</a>
-        <a routerLink="rko" routerLinkActive="active">{{ 'footer.nav.scsRko' | translate }}</a>
-        <a routerLink="merchant" routerLinkActive="active">{{ 'footer.nav.merchants' | translate }}</a>
+        <a [routerLink]="'/cards'">{{ 'FOOTER.NAV.CREDIT_CARDS' | translate }}</a>
+        <a routerLink="insurance-info" routerLinkActive="active">{{ 'FOOTER.NAV.INSURANCE' | translate }}</a>
+        <a routerLink="salary-project" routerLinkActive="active">{{ 'FOOTER.NAV.SALARY_PROJECT' | translate }}</a>
+        <a routerLink="rko" routerLinkActive="active">{{ 'FOOTER.NAV.SCS_RKO' | translate }}</a>
+        <a routerLink="merchant" routerLinkActive="active">{{ 'FOOTER.NAV.MERCHANTS' | translate }}</a>
       </div>
       <div class=""> 
-        <a routerLink="acquiring" routerLinkActive="active">{{"footer.nav.acquiring"|translate}}</a>
-        <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ 'footer.nav.aboutBank' | translate }}</a> 
-        <a routerLink="vacancies" routerLinkActive="active">{{ 'footer.nav.vacancies' | translate }}</a>
-        <a routerLink="map" routerLinkActive="active">{{ 'footer.nav.officesAndAtms' | translate }}</a>
-        <a routerLink="contact" routerLinkActive="active">{{ 'footer.nav.contacts' | translate }}</a>
+        <a routerLink="acquiring" routerLinkActive="active">{{ 'FOOTER.NAV.ACQUIRING' | translate }}</a>
+        <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ 'FOOTER.NAV.ABOUT_BANK' | translate }}</a> 
+        <a routerLink="vacancies" routerLinkActive="active">{{ 'FOOTER.NAV.VACANCIES' | translate }}</a>
+        <a routerLink="map" routerLinkActive="active">{{ 'FOOTER.NAV.OFFICES_AND_ATMS' | translate }}</a>
+        <a routerLink="contact" routerLinkActive="active">{{ 'FOOTER.NAV.CONTACTS' | translate }}</a>
       </div>
       <div class="">
-        <a routerLink="bank-detail" routerLinkActive="active">{{ 'footer.nav.bankDetails' | translate }}</a>
-        <a routerLink="report" routerLinkActive="active">{{ 'footer.nav.financialReporting' | translate }}</a>
-        <a routerLink="tender" routerLinkActive="active">{{ 'footer.nav.tenders' | translate }}</a> 
-        <a routerLink="news" routerLinkActive="active">{{ 'footer.nav.news' | translate }}</a>
+        <a routerLink="bank-detail" routerLinkActive="active">{{ 'FOOTER.NAV.BANK_DETAILS' | translate }}</a>
+        <a routerLink="report" routerLinkActive="active">{{ 'FOOTER.NAV.FINANCIAL_REPORTING' | translate }}</a>
+        <a routerLink="tender" routerLinkActive="active">{{ 'FOOTER.NAV.TENDERS' | translate }}</a> 
+        <a routerLink="news" routerLinkActive="active">{{ 'FOOTER.NAV.NEWS' | translate }}</a>
       </div>
       <div class="">
-        <p class="p">{{ 'footer.workingHours.title' | translate }}</p> 
-       
-        <!-- <p>{{ 'footer.workingHours.weekdays' | translate }}</p> -->
-        <p>{{ 'footer.workingHours.weekdaysTime' | translate }}</p>
-        <p>{{ 'footer.workingHours.saturday' | translate }}</p>
+        <p class="p">{{ 'FOOTER.WORKING_HOURS.TITLE' | translate }}</p> 
+        <p>{{ 'FOOTER.WORKING_HOURS.WEEKDAYS_TIME' | translate }}</p>
+        <p>{{ 'FOOTER.WORKING_HOURS.SATURDAY' | translate }}</p>
       </div>
     </div>
+
     <div class="sotset">
-      <!-- Ссылка для Instagram -->
       <a href="https://www.instagram.com/commercebank.tj" target="_blank" rel="noopener noreferrer">
-        <img src="../../../assets/icons/insta.svg" [alt]="'alt.instagram' | translate">
+        <img src="../../../assets/icons/insta.svg" [alt]="'ALT.INSTAGRAM' | translate">
       </a>
-    
-      <!-- Ссылка для Facebook -->
       <a href="https://www.facebook.com/commercebank.tj" target="_blank" rel="noopener noreferrer">
-        <img src="../../../assets/icons/facebook.svg" [alt]="'alt.facebook' | translate">
+        <img src="../../../assets/icons/facebook.svg" [alt]="'ALT.FACEBOOK' | translate">
       </a>
-    
-      <!-- Ссылка для Telegram -->
       <a href="https://t.me/your_channel" target="_blank" rel="noopener noreferrer">
-        <img src="../../../assets/icons/telegram.svg" [alt]="'alt.telegram' | translate">
+        <img src="../../../assets/icons/telegram.svg" [alt]="'ALT.TELEGRAM' | translate">
       </a>
-    
-      <!-- Ссылка для YouTube -->
-      <!-- <a href="https://www.youtube.com/your_channel" target="_blank" rel="noopener noreferrer">
-        <img src="../../../assets/icons/youtube.svg" [alt]="'alt.youtube' | translate">
-      </a> -->
     </div>
   </div>
+
   <div class="box_3">
-    <p>© 2017 - {{ currentYear }} {{ 'footer.copyright.main' | translate }}</p>
-    <p>{{ 'footer.copyright.license' | translate }}</p>
+    <p>© 2017 - {{ currentYear }} {{ 'FOOTER.COPYRIGHT.MAIN' | translate }}</p>
+    <p>{{ 'FOOTER.COPYRIGHT.LICENSE' | translate }}</p>
   </div>
 </div>

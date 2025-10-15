@@ -1,26 +1,26 @@
 <div class="vacancies-container">
-  <h1>{{ 'vacancies.title' | translate }}</h1>
+  <h1>{{ 'VACANCIES.TITLE' | translate }}</h1>
   <div class="vacancies-list">
     <!-- Фильтры для направлений и городов -->
     <div class="vacancy-filter">
-      <p>{{ 'vacancies.filters.title' | translate }}</p>
+      <p>{{ 'VACANCIES.FILTERS.TITLE' | translate }}</p>
       <form>
-        <label for="category">{{ 'vacancies.filters.directionLabel' | translate }}</label><br>
+        <label for="category">{{ 'VACANCIES.FILTERS.DIRECTION_LABEL' | translate }}</label><br>
         <select id="category" [(ngModel)]="selectedCategory" name="category" (change)="loadAllVacancies()">
-          <option value="">{{ 'vacancies.filters.allDirections' | translate }} ({{vacancyCategory.length}})</option>
+          <option value="">{{ 'VACANCIES.FILTERS.ALL_DIRECTIONS' | translate }} ({{vacancyCategory.length}})</option>
           <option *ngFor="let category of vacancyCategory" [value]="category.id">{{ category.name }}</option>
         </select>
         <br>
-        <label for="city">{{ 'vacancies.filters.cityLabel' | translate }}</label><br>
+        <label for="city">{{ 'VACANCIES.FILTERS.CITY_LABEL' | translate }}</label><br>
         <select id="city" [(ngModel)]="selectedRegion" name="city" (change)="loadAllVacancies()">
-          <option value="">{{ 'vacancies.filters.allCities' | translate }} ({{regionList.length}})</option>
+          <option value="">{{ 'VACANCIES.FILTERS.ALL_CITIES' | translate }} ({{regionList.length}})</option>
           <option *ngFor="let city of regionList" [value]="city.id">{{ city.name }}</option>
         </select>
       </form>
     </div>
     <!-- Список вакансий -->
     <div class="vacancy-items">
-      <p>{{ 'vacancies.list.total' | translate }} {{ vacancyCount }} {{ 'vacancies.list.vacanciesLabel' | translate }}</p>
+      <p>{{ 'VACANCIES.LIST.TOTAL' | translate }} {{ vacancyCount }} {{ 'VACANCIES.LIST.VACANCIES_LABEL' | translate }}</p>
       <div *ngFor="let vacancy of vacancyList" class="vacancy-item">
         <a [routerLink]="['/vacancies/list',vacancy.id]">
           {{ vacancy.name }}
@@ -52,4 +52,3 @@
     </div>
   </div>
 </div>
-

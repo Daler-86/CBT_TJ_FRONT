@@ -1,67 +1,100 @@
 <div class="milli-card">
-   <!-- Блок 1: Промо -->
-   <div class="card-container" *ngIf="cardData">
+  <!-- Блок 1: Промо -->
+  <div class="card-container" *ngIf="cardData">
     <div class="card-info">
       <h2 class="card-title">{{ cardData.title }}</h2>
       <p class="card-description">{{ cardData.description }}</p>
       <div class="card-buttons">
-        <button class="btn-primary" [scrollTo]="'application-form'">{{ 'buttons.applyForCard' | translate }}</button>
+        <button class="btn-primary" [scrollTo]="'application-form'">
+          {{ 'BUTTONS.APPLY_FOR_CARD' | translate }}
+        </button>
       </div>
     </div>
     <div class="card-image">
-      <img class="card" [src]="imageUrl + cardData.upload_file" [alt]="cardData.title"/>
+      <img class="card" [src]="imageUrl + cardData.upload_file" [alt]="cardData.title" />
     </div>
   </div>
 
   <!-- Блок 2: Преимущества -->
-  <div class="features-container" *ngIf="cardContent" [class]="{'type1': cardContent?.length%3==0, 'type2': cardContent?.length%2==0}">
+  <div
+    class="features-container"
+    *ngIf="cardContent"
+    [class]="{'type1': cardContent?.length % 3 == 0, 'type2': cardContent?.length % 2 == 0}"
+  >
     <div class="feature-card" *ngFor="let detail of cardContent">
       <div>
         <h3>{{ detail.title }}</h3>
         <p>{{ detail.description }}</p>
       </div>
-      <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="feature-icon">
+      <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="feature-icon" />
     </div>
   </div>
 
   <!-- Блок 3: Тарифы и условия -->
   <div class="container">
-    <h1>{{ 'common.tariffsAndConditions' | translate }}</h1>
+    <h1>{{ 'COMMON.TARIFFS_AND_CONDITIONS' | translate }}</h1>
+
     <div class="btnCards">
-      <button (click)="selectTab('services')" [class.active]="selectedTab === 'services'">{{ 'cardDetails.tabs.services' | translate }}</button>
-      <button (click)="selectTab('limits')" [class.active]="selectedTab === 'limits'">{{ 'cardDetails.tabs.limits' | translate }}</button>
-      <button (click)="selectTab('operations')" [class.active]="selectedTab === 'operations'">{{ 'cardDetails.tabs.operations' | translate }}</button>
-      <button (click)="selectTab('documents')" [class.active]="selectedTab === 'documents'">{{ 'cardDetails.tabs.documents' | translate }}</button>
+      <button (click)="selectTab('services')" [class.active]="selectedTab === 'services'">
+        {{ 'CARD_DETAILS.TABS.SERVICES' | translate }}
+      </button>
+      <button (click)="selectTab('limits')" [class.active]="selectedTab === 'limits'">
+        {{ 'CARD_DETAILS.TABS.LIMITS' | translate }}
+      </button>
+      <button (click)="selectTab('operations')" [class.active]="selectedTab === 'operations'">
+        {{ 'CARD_DETAILS.TABS.OPERATIONS' | translate }}
+      </button>
+      <button (click)="selectTab('documents')" [class.active]="selectedTab === 'documents'">
+        {{ 'CARD_DETAILS.TABS.DOCUMENTS' | translate }}
+      </button>
     </div>
-    
-    <div *ngIf="selectedTab==='services'" class="content">
+
+    <div *ngIf="selectedTab === 'services'" class="content">
       <div class="info-container">
         <div class="info-box" *ngFor="let service of services">
           <div class="info-title-1">{{ service.name }}</div>
-          <div class="info-title">{{ service.title }}
+          <div class="info-title">
+            {{ service.title }}
             <div class="info-detail">{{ service.description }}</div>
-          </div></div></div>
-    </div>
-
-    <div *ngIf="selectedTab==='limits'" class="content">
-      <div class="info-container">
-        <div class="info-box-limits" *ngFor="let limit of limits">
-          <div class="info-title-1">{{ limit.name }}</div>
-          <div class="info-title"><div class="info-detail">{{ 'cardDetails.accounts.tjs' | translate }}</div>{{ limit.tjs }}</div>
-          <!-- <div class="info-title"><div class="info-detail">{{ 'cardDetails.accounts.rub' | translate }}</div>{{ limit.rub }}</div> -->
-          <div class="info-title"><div class="info-detail">{{ 'cardDetails.accounts.usd' | translate }}</div>{{ limit.usd }}</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div *ngIf="selectedTab==='operations'" class="content">
-      <div class="info-container"><div class="info-box" *ngFor="let operation of operations"><div class="info-title=1">{{ operation.name }}</div><div class="info-title">{{ operation.title }}<div class="info-detail">{{ operation.description }}</div></div></div></div>
+    <div *ngIf="selectedTab === 'limits'" class="content">
+      <div class="info-container">
+        <div class="info-box-limits" *ngFor="let limit of limits">
+          <div class="info-title-1">{{ limit.name }}</div>
+          <div class="info-title">
+            <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.TJS' | translate }}</div>
+            {{ limit.tjs }}
+          </div>
+          <div class="info-title">
+            <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.USD' | translate }}</div>
+            {{ limit.usd }}
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div *ngIf="selectedTab==='documents'" class="content">
+    <div *ngIf="selectedTab === 'operations'" class="content">
+      <div class="info-container">
+        <div class="info-box" *ngFor="let operation of operations">
+          <div class="info-title-1">{{ operation.name }}</div>
+          <div class="info-title">
+            {{ operation.title }}
+            <div class="info-detail">{{ operation.description }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedTab === 'documents'" class="content">
       <div class="info-container">
         <div class="info-box-documents" *ngFor="let document of documents">
-          <a [href]="imageUrl+ document.upload_file" target="_blank"><img src="../../../assets/icons/pdficon.png" [alt]="'alt.pdfIcon' | translate"></a>
+          <a [href]="imageUrl + document.upload_file" target="_blank">
+            <img src="../../../assets/icons/pdficon.png" [alt]="'ALT.PDF_ICON' | translate" />
+          </a>
           <p class="info-title">{{ document.name }}</p>
         </div>
       </div>
@@ -69,37 +102,49 @@
   </div>
 
   <!-- Блок 4: Форма заявки -->
-  <div class="application-form-container" #formElement id='application-form'>
-    <h2 class="form-title">{{ 'cardDetails.applicationForm.title' | translate }}</h2>
-    <p class="form-subtitle">{{ 'cardDetails.applicationForm.subtitle' | translate }}</p>
+  <div class="application-form-container" #formElement id="application-form">
+    <h2 class="form-title">{{ 'CARD_DETAILS.APPLICATION_FORM.TITLE' | translate }}</h2>
+    <p class="form-subtitle">{{ 'CARD_DETAILS.APPLICATION_FORM.SUBTITLE' | translate }}</p>
+
     <div class="form">
-      <!-- Привязываем форму к FormGroup -->
       <form [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
-        
-        <!-- Поле "Телефон" -->
+        <!-- Телефон -->
         <div class="form-group">
-          <input type="text" id="phone" [placeholder]="('cardDetails.applicationForm.phonePlaceholder' | translate) + ' *'" 
-                 class="form-control" formControlName="phone">
+          <input
+            type="text"
+            id="phone"
+            [placeholder]="('CARD_DETAILS.APPLICATION_FORM.PHONE_PLACEHOLDER' | translate) + ' *'"
+            class="form-control"
+            formControlName="phone"
+          />
           <div *ngIf="phone?.invalid && phone?.touched" class="error">
-            <span *ngIf="phone?.errors?.['required']">{{ 'common.fieldIsRequired' | translate }}</span>
+            <span *ngIf="phone?.errors?.['required']">{{ 'COMMON.FIELD_IS_REQUIRED' | translate }}</span>
             <span *ngIf="phone?.errors?.['pattern']">Неверный формат телефона</span>
           </div>
         </div>
-        
-        <!-- Поле "Имя" -->
+
+        <!-- Имя -->
         <div class="form-group">
-          <input type="text" id="name" [placeholder]="('cardDetails.applicationForm.namePlaceholder' | translate) + ' *'" 
-                 class="form-control" formControlName="client_name">
+          <input
+            type="text"
+            id="name"
+            [placeholder]="('CARD_DETAILS.APPLICATION_FORM.NAME_PLACEHOLDER' | translate) + ' *'"
+            class="form-control"
+            formControlName="client_name"
+          />
           <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
-            {{ 'common.fieldIsRequired' | translate }}
+            {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
           </div>
         </div>
-        
-        <!-- Кастомный селектор для офиса -->
+
+        <!-- Офис -->
         <div class="form-group">
           <div class="custom-dropdown" #customDropdown>
-            <div class="dropdown-selected form-control" (click)="toggleDropdown()"
-                 [class.is-invalid]="office_id?.invalid && office_id?.touched">
+            <div
+              class="dropdown-selected form-control"
+              (click)="toggleDropdown()"
+              [class.is-invalid]="office_id?.invalid && office_id?.touched"
+            >
               {{ officeName }}
             </div>
             <div class="dropdown-options" *ngIf="dropdownOpen">
@@ -109,28 +154,34 @@
             </div>
           </div>
           <div *ngIf="office_id?.invalid && office_id?.touched" class="error">
-            {{"changeOffice"|translate}}
+            {{ 'CHANGE_OFFICE' | translate }}
           </div>
         </div>
-        
-        <!-- Кнопка отправки -->
+
+        <!-- Кнопка -->
         <div class="form-group">
-          <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">{{ 'buttons.applyForCard' | translate }}</button>
+          <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">
+            {{ 'BUTTONS.APPLY_FOR_CARD' | translate }}
+          </button>
         </div>
       </form>
-      <p class="form-disclaimer">{{ 'common.consent.prefix' | translate }} 
-        <a href="#">{{ 'common.consent.linkText' | translate }}</a>
-       {{ 'common.consent.linkText2' | translate }}
-        </p>
+
+      <p class="form-disclaimer">
+        {{ 'COMMON.CONSENT.PREFIX' | translate }}
+        <a href="#">{{ 'COMMON.CONSENT.LINK_TEXT' | translate }}</a>
+        {{ 'COMMON.CONSENT.LINK_TEXT2' | translate }}
+      </p>
     </div>
   </div>
 
-
   <!-- Блок 5: FAQ -->
   <div class="faq-container">
-    <h2 class="faq-title">{{ 'common.faqTitle' | translate }}</h2>
+    <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
     <div *ngFor="let faq of faqs; let i = index" class="faq-item">
-      <div class="faq-question" (click)="toggleFaq(i)"><span>{{ faq.title }}</span><span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span></div>
+      <div class="faq-question" (click)="toggleFaq(i)">
+        <span>{{ faq.title }}</span>
+        <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+      </div>
       <div *ngIf="selectedFaqIndex === i" class="faq-answer">{{ faq.description }}</div>
     </div>
   </div>
