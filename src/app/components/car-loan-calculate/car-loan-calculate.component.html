@@ -53,15 +53,16 @@
     <div class="form-group">
       <label>{{ 'CALCULATORS.AUTO_LOAN.CAR_COST' | translate }}</label>
       <div class="smart-input-container">
-        <div
-          *ngIf="!isEditingCarCost"
+        @if(!isEditingCarCost) {
+          <div
           class="display-value"
           (click)="startEditing('carCost')"
         >
           {{ carCost | number:'1.2-2':'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
         </div>
-        <input
-          *ngIf="isEditingCarCost"
+        }
+       @if(isEditingCarCost) {
+          <input
           type="number"
           class="edit-input"
           [(ngModel)]="carCost"
@@ -69,6 +70,8 @@
           (keydown.enter)="stopEditing()"
           autofocus
         />
+       }
+        
         <input
           type="range"
           class="range-slider"
@@ -90,15 +93,18 @@
     <div class="form-group">
       <label>{{ 'CALCULATORS.AUTO_LOAN.DOWN_PAYMENT' | translate }}</label>
       <div class="smart-input-container">
-        <div
-          *ngIf="!isEditingDownPayment"
+
+        @if(!isEditingDownPayment) {
+          <div
           class="display-value"
           (click)="startEditing('downPayment')"
         >
           {{ downPayment | number:'1.2-2':'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
         </div>
-        <input
-          *ngIf="isEditingDownPayment"
+        }
+      
+        @if(isEditingDownPayment) {
+          <input
           type="number"
           class="edit-input"
           [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent"
@@ -108,6 +114,8 @@
           (keydown.enter)="stopEditing()"
           autofocus
         />
+        }
+       
         <input
           type="range"
           class="range-slider"
@@ -136,44 +144,49 @@
     <div class="form-group">
       <label>{{ 'CALCULATORS.AUTO_LOAN.TERM' | translate }}</label>
       <div class="term-buttons">
-        <button
-          *ngFor="let term of availableTerms"
+        @for(term of availableTerms; track term ) {
+          <button
           (click)="loanTerm = term; recalculate()"
           [class.active]="loanTerm === term"
         >
           {{ term }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}
         </button>
+        }
+      
       </div>
     </div>
   </div>
 
   <!-- Правая колонка -->
   <div class="result-wrapper">
-    <div class="result-card" *ngIf="calculationResult">
-      <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
-      <p>{{ 'CALCULATORS.AUTO_LOAN.ACTUAL_OVERPAYMENT' | translate }}</p>
-
-      <h3>
-        {{ calculationResult.totalOverpayment | number:'1.2-2':'ru-RU' }}
-        {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
-      </h3>
-
-      <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
-      <h3>
-        {{ calculationResult.monthlyPayment | number:'1.2-2':'ru-RU' }}
-        {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
-      </h3>
-
-      <p>{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</p>
-      <h3>{{ interestRate }}%</h3>
-
-      <button
-        class="apply-button"
-        [routerLink]="['/credits', 7]"
-        [queryParams]="{ scrollTo: 'application-form' }"
-      >
-        {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
-      </button>
-    </div>
+    @if(calculationResult) {
+      <div class="result-card">
+        <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
+        <p>{{ 'CALCULATORS.AUTO_LOAN.ACTUAL_OVERPAYMENT' | translate }}</p>
+  
+        <h3>
+          {{ calculationResult.totalOverpayment | number:'1.2-2':'ru-RU' }}
+          {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+        </h3>
+  
+        <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
+        <h3>
+          {{ calculationResult.monthlyPayment | number:'1.2-2':'ru-RU' }}
+          {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+        </h3>
+  
+        <p>{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</p>
+        <h3>{{ interestRate }}%</h3>
+  
+        <button
+          class="apply-button"
+          [routerLink]="['/credits', 7]"
+          [queryParams]="{ scrollTo: 'application-form' }"
+        >
+          {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
+        </button>
+      </div>
+    }
+   
   </div>
 </div>

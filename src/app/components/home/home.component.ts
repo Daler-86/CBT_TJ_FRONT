@@ -1,11 +1,10 @@
 import { Component, ElementRef } from '@angular/core';
 // import { CarouselComponent } from '../carousel/carousel.component';
 import {  CalculateComponent } from "../calculate/calculate.component";
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { CurrencyConverterComponent } from '../currency-converter/currency-converter.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { CardsComponent } from '../cards/cards.component';
 import { FavriComponent } from "../favri/favri.component";
 import { MenuService } from '../../api/menu.service';
 import { HttpClient } from '@angular/common/http';
@@ -25,7 +24,7 @@ interface News{
 @Component({
   selector: 'app-home',
   standalone:true,
-  imports: [RouterModule, RouterLink, TranslateModule, CalculateComponent, CurrencyConverterComponent, NgFor, FavriComponent, NgIf, NewsBoxComponent, CarouselComponent],
+  imports: [RouterModule, RouterLink, TranslateModule, CalculateComponent, CurrencyConverterComponent, CommonModule, FavriComponent, NewsBoxComponent, CarouselComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

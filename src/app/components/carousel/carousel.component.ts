@@ -1,4 +1,4 @@
-import { NgFor, NgIf, NgStyle } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MenuService } from '../../api/menu.service';
@@ -14,7 +14,7 @@ interface Slide {
 
 @Component({
   selector: 'app-carousel',
-  imports:[NgFor,NgIf,TranslateModule, RouterLink, RouterLinkActive],
+  imports:[CommonModule,TranslateModule, RouterLink, RouterLinkActive],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   standalone:true,

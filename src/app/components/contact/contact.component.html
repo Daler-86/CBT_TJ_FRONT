@@ -8,21 +8,29 @@
   <!-- Сетка с контактными блоками -->
   <div class="contact-grid">
     <!-- Динамический контент, перевод не требуется -->
-    <div class="contact-card" *ngFor="let block of contactBlocks">
-      <div class="card-header"> 
-        <h2>{{ block.title }}</h2>
-        <img [src]="imageUrl+block.upload_file" [alt]="block.title" class="card-icon" />
-      </div>
-      <div class="card-body">
-        <div class="contact-item" *ngFor="let detail of block.data">
-          <img *ngIf="detail.upload_file" [src]="imageUrl+detail.upload_file" [alt]="detail.title" class="item-icon" />
-          <div>
-            <p class="item-title">{{ detail.title }}</p>
-            <p class="item-description">{{ detail.Description }}</p>
-          </div>
+    @for(block of contactBlocks; track block) {
+      <div class="contact-card" >
+        <div class="card-header"> 
+          <h2>{{ block.title }}</h2>
+          <img [src]="imageUrl+block.upload_file" [alt]="block.title" class="card-icon" />
+        </div>
+        <div class="card-body">
+          @for(detail of block.data; track detail) {
+            <div class="contact-item" >
+              @if(detail.upload_file) {
+                <img  [src]="imageUrl+detail.upload_file" [alt]="detail.title" class="item-icon" />
+              }
+              <div>
+                <p class="item-title">{{ detail.title }}</p>
+                <p class="item-description">{{ detail.Description }}</p>
+              </div>
+            </div>
+          }
+          
         </div>
       </div>
-    </div>
+    }
+   
   </div>
 
   <!-- Контейнер для Google Карты -->
@@ -51,19 +59,29 @@
             <input type="text" class="form-control" 
                    [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
                    formControlName="client_name">
-            <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
-              {{ 'FORMS.ERROR.REQUIRED' | translate }}
-            </div>
+                   @if(client_name?.invalid && client_name?.touched) {
+                    <div  class="error">
+                      {{ 'FORMS.ERROR.REQUIRED' | translate }}
+                    </div>
+                   }
+           
           </div>
       
           <!-- Телефон -->
           <div class="form-group">
             <input type="text" class="form-control" [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
               formControlName="phone">
-            <div *ngIf="phone?.invalid && phone?.touched" class="error">
-              <span *ngIf="phone?.errors?.['required']">{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
-              <span *ngIf="phone?.errors?.['pattern']">{{ 'FORMS.ERRORS.ONLYDIGITS' | translate }}</span>
-            </div>
+              @if(phone?.invalid && phone?.touched) {
+                <div  class="error">
+                    @if(phone?.errors?.['required']) {
+                      <span >{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
+                    }
+                    @if(phone?.errors?.['pattern']) {
+                      <span >{{ 'FORMS.ERRORS.ONLYDIGITS' | translate }}</span>
+                    }
+                </div>
+              }
+          
           </div>
           
           
@@ -75,15 +93,24 @@
                    [class.is-invalid]="contact_subject_id?.invalid && contact_subject_id?.touched">
                 {{ selectedSubjectName }}
               </div>
-              <div class="dropdown-options" *ngIf="dropdownOpen">
-                <div class="dropdown-option" *ngFor="let subject of subjects" (click)="selectSubject(subject)">
-                  <p>{{ subject.name }}</p> <!-- Предполагаем, что имя приходит на нужном языке -->
+              @if(dropdownOpen) {
+                <div class="dropdown-options">
+                  @for(subject of subjects; track subject) {
+                    <div class="dropdown-option"  (click)="selectSubject(subject)">
+                      <p>{{ subject.name }}</p> <!-- Предполагаем, что имя приходит на нужном языке -->
+                    </div>
+                  }
+                
                 </div>
+              }
+             
+            </div>
+            @if(contact_subject_id?.invalid && contact_subject_id?.touched) {
+              <div class="error">
+                {{ 'FORMS.ERRORS.SELECTSUBJECT' | translate }}
               </div>
-            </div>
-            <div *ngIf="contact_subject_id?.invalid && contact_subject_id?.touched" class="error">
-              {{ 'FORMS.ERRORS.SELECTSUBJECT' | translate }}
-            </div>
+            }
+            
           </div>
       
           <!-- Текстовое поле для вопроса -->
@@ -92,17 +119,27 @@
                       [placeholder]="('FORMS.PLACEHOLDERS.QUESTION' | translate) + ' *'"
                       rows="5"
                       formControlName="question"></textarea>
-            <div *ngIf="question?.invalid && question?.touched" class="error">
-              <span *ngIf="question?.errors?.['required']">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</span>
-              <span *ngIf="question?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate:{ min: 10 } }}</span>
+            @if(question?.invalid && question?.touched) {
+              <div  class="error">
+                @if(question?.errors?.['required']) {
+                  <span >{{ 'FORMS.ERRORS.REQUIRED' | translate }}</span>
+                }
+                @if(question?.errors?.['minlength']) {
+                  <span >{{ 'FORMS.ERRORS.MINLENGTH' | translate:{ min: 10 } }}</span>
+                }
+              
+              </div>
+            }
             </div>
-          </div>
       
           <!-- Кнопка отправки -->
           <button type="submit" class="submit-button" [disabled]="contactForm.invalid || isSubmitting">
-            <span *ngIf="!isSubmitting">{{ 'BUTTONS.SEND' | translate }}</span>
-            <span *ngIf="isSubmitting">{{ 'BUTTONS.SENDING' | translate }}...</span>
-          </button>
+            @if(!isSubmitting) {
+              <span >{{ 'BUTTONS.SEND' | translate }}</span>
+            } @else {
+              <span >{{ 'BUTTONS.SENDING' | translate }}...</span>
+            }
+            </button>
         </form>
       </div>
     </div>

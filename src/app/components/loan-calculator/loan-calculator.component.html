@@ -7,11 +7,14 @@
     <div class="form-group">
       <label>{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</label>
       <div class="currency-tabs">
-        <button *ngFor="let currency of availableCurrencies"
-                [class.active]="selectedCurrency === currency"
-                (click)="onCurrencyChange(currency)">
-          {{ currency.toUpperCase() }}
-        </button>
+        @for(currency of availableCurrencies; track currency) {
+          <button 
+          [class.active]="selectedCurrency === currency"
+          (click)="onCurrencyChange(currency)">
+           {{ currency.toUpperCase() }}
+           </button>
+        }
+       
       </div>
     </div>
     
@@ -19,17 +22,22 @@
     <div class="form-group">
       <label>{{ 'CALCULATORS.LOAN.AMOUNT' | translate }}</label>
       <div class="input-slider-container">
-        <div *ngIf="!isEditingAmount" class="input-display" (click)="startEditing()">
-          {{ loanAmount | number:'1.0-0':'ru-RU' }}
-        </div>
-        <input *ngIf="isEditingAmount" 
-               type="number" 
-               class="loan-input" 
-               [(ngModel)]="loanAmount" 
-               (input)="recalculate()"
-               (blur)="stopEditing()"
-               (keydown.enter)="stopEditing()"
-               autofocus>
+        @if(!isEditingAmount) {
+          <div  class="input-display" (click)="startEditing()">
+            {{ loanAmount | number:'1.0-0':'ru-RU' }}
+          </div>
+        }
+       @if(isEditingAmount) {
+        <input  
+        type="number" 
+        class="loan-input" 
+        [(ngModel)]="loanAmount" 
+        (input)="recalculate()"
+        (blur)="stopEditing()"
+        (keydown.enter)="stopEditing()"
+        autofocus>
+       }
+      
                
         <input class="range-slider" type="range"
               [min]="minAmount" [max]="maxAmount"
@@ -77,35 +85,51 @@
 
   <!-- Правая колонка -->
   <div class="result-wrapper">
-    <div class="result-card" *ngIf="calculationResult">
-      <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
-      <div class="result-item">
-        <p>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</p>
-        <h3>{{ calculationResult.interestRate | percent:'1.0-0' }}</h3>
+    @if(calculationResult) {
+      <div class="result-card" >
+        <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</p>
+          <h3>{{ calculationResult.interestRate | percent:'1.0-0' }}</h3>
+        </div>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
+          @if(selectedCurrency === 'tjs') {
+            <h3 >
+              {{ calculationResult.monthlyPayment | number:'1.0-0':'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
+            </h3>
+          }
+          @if(selectedCurrency === 'usd') {
+            <h3 >
+              {{ calculationResult.monthlyPayment | currency:'USD':'$':'1.0-0':'ru-RU' }}
+            </h3>
+          }
+         
+        </div>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.LOAN.OVERPAYMENT' | translate }}</p>
+          @if(selectedCurrency === 'tjs') {
+            <h3 >
+              {{ calculationResult.totalOverpayment | number:'1.0-0':'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
+            </h3>
+          }
+          @if(selectedCurrency === 'usd') {
+            <h3 >
+              {{ calculationResult.totalOverpayment | currency:'USD':'$':'1.0-0':'ru-RU' }}
+            </h3>
+          }
+         
+        </div>
+        @if(showApplyButton) {
+          <button 
+          class="apply-button" 
+          [scrollTo]="'application-form'">
+    {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
+  </button>
+        }
+      
       </div>
-      <div class="result-item">
-        <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
-        <h3 *ngIf="selectedCurrency === 'tjs'">
-          {{ calculationResult.monthlyPayment | number:'1.0-0':'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
-        </h3>
-        <h3 *ngIf="selectedCurrency === 'usd'">
-          {{ calculationResult.monthlyPayment | currency:'USD':'$':'1.0-0':'ru-RU' }}
-        </h3>
-      </div>
-      <div class="result-item">
-        <p>{{ 'CALCULATORS.LOAN.OVERPAYMENT' | translate }}</p>
-        <h3 *ngIf="selectedCurrency === 'tjs'">
-          {{ calculationResult.totalOverpayment | number:'1.0-0':'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
-        </h3>
-        <h3 *ngIf="selectedCurrency === 'usd'">
-          {{ calculationResult.totalOverpayment | currency:'USD':'$':'1.0-0':'ru-RU' }}
-        </h3>
-      </div>
-      <button *ngIf="showApplyButton" 
-              class="apply-button" 
-              [scrollTo]="'application-form'">
-        {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
-      </button>
-    </div>
+    }
+   
   </div>
 </div>

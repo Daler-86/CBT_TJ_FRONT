@@ -13,33 +13,54 @@
   </div>
 
   <!-- Заголовок и текст для блока условий -->
-  <h1 *ngIf="transferData.upload_tariff_file_id!==''">{{ 'TRANSFERS.DETAILS.CONDITIONS_TITLE' | translate }}</h1>
+  @if(transferData.upload_tariff_file_id!=='') {
+    <h1 >{{ 'TRANSFERS.DETAILS.CONDITIONS_TITLE' | translate }}</h1>
+  }
+  
   <!-- <p *ngIf="transferData.upload_tariff_file_id">{{ 'transfers.details.swiftInfo' | translate }}</p> -->
 
   <div class="section2">
       <!-- Динамический блок, перевод не требуется -->
-      <div class="box" *ngFor="let condition of transferData.conditions">
-          <p>{{condition.title}}</p>
-          <h1>{{condition.description}}</h1>
-          <p *ngFor="let i of condition.items">{{i.title}}</p>
-      </div>
+      @for(condition of transferData.conditions; track condition) {
+        <div class="box" >
+            <p>{{condition.title}}</p>
+            <h1>{{condition.description}}</h1>
+            @for(i of condition.items; track i) {
+                <p >{{i.title}}</p>
+            }
+      
+        </div>
+      }
+     
 
       <!-- Блок для кнопки тарифов -->
-      <div class="box" *ngIf="transferData.upload_tariff_file_id!==''">
-          <p>{{ 'TRANSFERS.DETAILS.VIEW_ALL_TARIFFS_TEXT' | translate }}</p>
-          <button class="btn-secondary">{{ 'BUTTONS.ALL_TARIFFS' | translate }}</button>
-      </div>
+      @if(transferData.upload_tariff_file_id!=='') {
+        <div class="box" >
+            <p>{{ 'TRANSFERS.DETAILS.VIEW_ALL_TARIFFS_TEXT' | translate }}</p>
+            <button class="btn-secondary">{{ 'BUTTONS.ALL_TARIFFS' | translate }}</button>
+        </div>
+      }
+     
   </div>
 
   <div class="section3">
       <!-- Заголовок для блока документов -->
-      <h1 *ngIf="!transferData.upload_tariff_file_id">{{ 'transfers.details.documentsAndTariffsTitle' | translate }}</h1>
+      @if(!transferData.upload_tariff_file_id) {
+        <h1>{{ 'transfers.details.documentsAndTariffsTitle' | translate }}</h1>
+      }
+     
       <div class="section2">
           <!-- Динамический блок, перевод не требуется -->
-          <div class="box" *ngFor="let document of transferData.documents">
-              <h2>{{document.title}}</h2>
-              <p *ngFor="let item of document.items">{{item.title}}</p>
-          </div>
+          @for(document of transferData.documents; track document) {
+            <div class="box" >
+                <h2>{{document.title}}</h2>
+                @for(item of document.items; track item) {
+                    <p >{{item.title}}</p>
+                }
+                
+            </div>
+          }
+         
       </div>
   </div>
 

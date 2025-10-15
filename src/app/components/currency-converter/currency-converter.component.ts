@@ -1,4 +1,4 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ interface ExchangeRatesByMode {
 @Component({
   selector: 'app-currency-converter',
   standalone: true,
-  imports: [TranslateModule, FormsModule, NgFor, CommonModule, HttpClientModule,NgIf],
+  imports: [TranslateModule, FormsModule, CommonModule, HttpClientModule],
   templateUrl: './currency-converter.component.html',
   styleUrls: ['./currency-converter.component.scss']
 })

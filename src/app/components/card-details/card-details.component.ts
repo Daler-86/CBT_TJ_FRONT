@@ -1,7 +1,7 @@
 import { Component ,HostListener, ElementRef, OnInit, ViewChild, OnDestroy, inject,} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Card, CardList, cardDetail, cardFaqs, cardLimits, cardOperations, helpfulDocument } from '../../models/cards.model';
 import { RegionService } from '../../api/region.service';
@@ -18,7 +18,7 @@ import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-card-details',
   standalone: true,
-  imports: [NgFor, NgIf,FormsModule, TranslateModule, ReactiveFormsModule, ScrollToDirective],
+  imports: [CommonModule,FormsModule, TranslateModule, ReactiveFormsModule, ScrollToDirective],
   templateUrl: './card-details.component.html',
   styleUrl: './card-details.component.scss'
 })

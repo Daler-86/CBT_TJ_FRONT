@@ -18,13 +18,19 @@
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.TARIFFS_AND_CONDITIONS' | translate }}</h1>
     <div class="content">
       <div class="info-container">
-        <div class="info-box-limits" *ngFor="let tariff of tariffs">
-          <div class="info-title-1">{{ tariff.name }}</div>
-          <div class="info-title" *ngFor="let item of tariff.items">
-            {{ item.title }}
-            <div class="info-detail">{{ item.description }}</div>
+        @for(tariff of tariffs; track tariff) {
+          <div class="info-box-limits" >
+            <div class="info-title-1">{{ tariff.name }}</div>
+            @for(item of tariff.items; track item) {
+              <div class="info-title" >
+                {{ item.title }}
+                <div class="info-detail">{{ item.description }}</div>
+              </div>
+            }
+           
           </div>
-        </div>
+        }
+       
       </div>
     </div>
   </div>
@@ -33,26 +39,33 @@
   <div class="container-2">
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.REQUIRED_DOCUMENTS' | translate }}</h1>
     <div class="box">
-      <div class="box-details" *ngFor="let document of documents">
-        <!-- ВАЖНО: Добавлен динамический alt-текст -->
-        <img [src]="imageUrl + document.upload_file" [alt]="document.name">
-        <p>{{ document.name }}</p>
-      </div>
+      @for(document of documents; track document) {
+        <div class="box-details" >
+          <!-- ВАЖНО: Добавлен динамический alt-текст -->
+          <img [src]="imageUrl + document.upload_file" [alt]="document.name">
+          <p>{{ document.name }}</p>
+        </div>
+      }
+      
     </div>
   </div>
 
   <!-- Блок 4: Онлайн-заявка и калькулятор -->
 
-
-  <div *ngIf="calculatorDataForChild && creditData.id!==7" class="container-4">
-    <app-loan-calculator  
-    [conditionsData]="calculatorDataForChild"
-    [showApplyButton]="true"
-    ></app-loan-calculator>
-  </div> 
-  <div *ngIf="calculatorDataForChild  && creditData.id==7" class="container-4">
-    <app-car-loan-calculate></app-car-loan-calculate>
-  </div> 
+  @if(calculatorDataForChild && creditData.id!==7) {
+    <div  class="container-4">
+      <app-loan-calculator  
+      [conditionsData]="calculatorDataForChild"
+      [showApplyButton]="true"
+      ></app-loan-calculator>
+    </div> 
+  }
+  @if(calculatorDataForChild  && creditData.id==7) {
+    <div  class="container-4">
+      <app-car-loan-calculate></app-car-loan-calculate>
+    </div> 
+  }
+ 
 
  
   <div class="container-3" id='application-form'>
@@ -62,7 +75,10 @@
       <form class="form" #applicationForm="ngForm" (ngSubmit)="submitApplication(applicationForm)">
         <!-- Имя -->
         <div class="form-group">
-          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">{{ 'forms.errors.required' | translate }}</div>
+          @if(name.invalid && (name.dirty || name.touched)) {
+            <div  class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
+          }
+         
           <!-- ИЗМЕНЕНИЕ 1: Добавляем пайп translate -->
           <input type="text" id="fullName" [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'" class="form-control" 
                  required [(ngModel)]="model.client_name" name="fullName" #name="ngModel">
@@ -70,7 +86,10 @@
         
         <!-- Телефон -->
         <div class="form-group">
-          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">{{ 'forms.errors.required' | translate }}</div>
+          @if(phone.invalid && (phone.dirty || phone.touched)) {
+            <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
+          }
+         
           <input type="text" id="phone" [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'" class="form-control" 
                  required [(ngModel)]="model.phone" name="phone" #phone="ngModel">
         </div>
@@ -92,11 +111,14 @@
             </div>
           </div>
           <!-- Список опций остается без изменений -->
-          <div class="dropdown-options" *ngIf="dropdownOpen">
-            <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption($event, item)">
-              <p>{{ item.name }}</p>
+          @if(dropdownOpen) {
+            <div class="dropdown-options" >
+              <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption($event, item)">
+                <p>{{ item.name }}</p>
+              </div>
             </div>
-          </div>
+          }
+       
           <!-- Добавляем скрытое поле для валидации, если его еще нет -->
           <input type="hidden" name="office_id" [(ngModel)]="model.office_id" required>
         </div>

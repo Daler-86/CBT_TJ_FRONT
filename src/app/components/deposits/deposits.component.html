@@ -1,28 +1,31 @@
 <div class="cards">
   <h1>{{ 'DEPOSITS.PAGE_TITLE' | translate }}</h1>
   <div class="content">
-    <div class="card-container" *ngFor="let card of depositsList">
+    @for(card of depositsList; track card) {
+      <div class="card-container" >
   
-      <div class="card-image">
-        <!-- alt-текст берется из заголовка, что является хорошей практикой -->
-        <img class="card" [src]="imageUrl + card.upload_icon_file" [alt]="card.title"/>
-      </div>
-      <div class="card-info">
-        <h2 class="card-title">{{ card.title }}</h2>
-
-        <div class="box-description">
-          <!-- Динамический контент, не требует перевода -->
-          <div class="detail" *ngFor="let i of card.content_item">
-            <p>{{ i.title }}</p>
-            <h3>{{ i.description }}</h3>
+        <div class="card-image">
+          <!-- alt-текст берется из заголовка, что является хорошей практикой -->
+          <img class="card" [src]="imageUrl + card.upload_icon_file" [alt]="card.title"/>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">{{ card.title }}</h2>
+  
+          <div class="box-description">
+            <!-- Динамический контент, не требует перевода -->
+            <div class="detail" *ngFor="let i of card.content_item">
+              <p>{{ i.title }}</p>
+              <h3>{{ i.description }}</h3>
+            </div>
+          </div>
+  
+          <div class="card-buttons">
+            <button class="btn-primary" [routerLink]="['/deposits',card.id]">{{ 'BUTTONS.MORE_DETAILS' | translate }}</button>
           </div>
         </div>
-
-        <div class="card-buttons">
-          <button class="btn-primary" [routerLink]="['/deposits',card.id]">{{ 'BUTTONS.MORE_DETAILS' | translate }}</button>
-        </div>
+  
       </div>
-
-    </div>
+    }
+   
   </div>
 </div>

@@ -8,33 +8,45 @@
         <label for="category">{{ 'VACANCIES.FILTERS.DIRECTION_LABEL' | translate }}</label><br>
         <select id="category" [(ngModel)]="selectedCategory" name="category" (change)="loadAllVacancies()">
           <option value="">{{ 'VACANCIES.FILTERS.ALL_DIRECTIONS' | translate }} ({{vacancyCategory.length}})</option>
-          <option *ngFor="let category of vacancyCategory" [value]="category.id">{{ category.name }}</option>
+          @for (category of vacancyCategory; track category.id) {
+            <option [value]="category.id">{{ category.name }}</option>
+          }
+          
         </select>
         <br>
         <label for="city">{{ 'VACANCIES.FILTERS.CITY_LABEL' | translate }}</label><br>
         <select id="city" [(ngModel)]="selectedRegion" name="city" (change)="loadAllVacancies()">
           <option value="">{{ 'VACANCIES.FILTERS.ALL_CITIES' | translate }} ({{regionList.length}})</option>
-          <option *ngFor="let city of regionList" [value]="city.id">{{ city.name }}</option>
+          @for (city of regionList; track city.id) {
+            <option [value]="city.id">{{ city.name }}</option>
+          }
+          
         </select>
       </form>
     </div>
     <!-- Список вакансий -->
     <div class="vacancy-items">
       <p>{{ 'VACANCIES.LIST.TOTAL' | translate }} {{ vacancyCount }} {{ 'VACANCIES.LIST.VACANCIES_LABEL' | translate }}</p>
-      <div *ngFor="let vacancy of vacancyList" class="vacancy-item">
-        <a [routerLink]="['/vacancies/list',vacancy.id]">
-          {{ vacancy.name }}
-        </a>
-        <div class="city">
-          <div class="city-location">
-            <img src="../../../assets/icons/Layer 2.svg" [alt]="'vacancies.list.locationIconAlt' | translate">
-            <p>{{ vacancy.region_name }}</p>
-          </div>
-          <a [routerLink]="[ vacancy.id]">
-            <img src="../../../assets/icons/strel.svg" [alt]="'vacancies.list.arrowIconAlt' | translate">
+      @for (vacancy of vacancyList; track vacancy.id) {
+        <div class="vacancy-item">
+          <a [routerLink]="['/vacancies/list', vacancy.id]">
+            {{ vacancy.name }}
           </a>
+      
+          <div class="city">
+            <div class="city-location">
+              <img src="../../../assets/icons/Layer 2.svg" 
+                   [alt]="'vacancies.list.locationIconAlt' | translate">
+              <p>{{ vacancy.region_name }}</p>
+            </div>
+            <a [routerLink]="[vacancy.id]">
+              <img src="../../../assets/icons/strel.svg" 
+                   [alt]="'vacancies.list.arrowIconAlt' | translate">
+            </a>
+          </div>
         </div>
-      </div>
+      }
+      
     </div>
   </div>
   
@@ -42,10 +54,12 @@
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      
-      <button *ngFor="let page of pages" [class.active]="page === currentPage" (click)="selectPage(page)">
-        {{ page === -1 ? '...' : page }}
-      </button>
+      @for(page of pages; track page) {
+        <button  [class.active]="page === currentPage" (click)="selectPage(page)">
+          {{ page === -1 ? '...' : page }}
+        </button>
+      }
+    
       
       <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
       <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>

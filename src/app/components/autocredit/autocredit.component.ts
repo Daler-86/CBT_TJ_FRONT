@@ -1,13 +1,13 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { FavriComponent } from "../favri/favri.component";
+
 
 @Component({
   selector: 'app-autocredit',
   standalone: true,
-  imports: [TranslateModule, NgFor,  FormsModule, FormsModule],
+  imports: [TranslateModule, CommonModule,  FormsModule, FormsModule],
   templateUrl: './autocredit.component.html',
   styleUrl: './autocredit.component.scss'
 })

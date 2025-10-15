@@ -5,36 +5,46 @@
   </div>
 
   <div class="news-list">
-    <ng-container *ngIf="news.length > 0; else noNews">
-      <article class="news-card" *ngFor="let item of news;" (click)="navigateToCardDetailsAndForm(item.id)">
-        <div class="news-text-content">
-          <h2>{{ item.title }}</h2>
-          <p class="article-content">
-            {{ item.firstParagraphText | slice:0:200 }}
-          </p>
+    @if (news.length > 0) {
+      <ng-container>
+        @for(item of news; track item) {
+          <article class="news-card"  (click)="navigateToCardDetailsAndForm(item.id)">
+            <div class="news-text-content">
+              <h2>{{ item.title }}</h2>
+              <p class="article-content">
+                {{ item.firstParagraphText | slice:0:200 }}
+              </p>
+            </div>
+            <div class="news-image-content">
+              <img [src]="imageUrl + item.upload_file" [alt]="item.title">
+            </div>
+          </article>
+        }
+       
+    
+        <div class="pagination">
+          <button (click)="selectPage(1)" [disabled]="currentPage === 1" [title]="'common.pagination.firstPage' | translate">«</button>
+          <button (click)="prevPage()" [disabled]="currentPage === 1" [title]="'common.pagination.previousPage' | translate">‹</button>
+          @for(page of pages; track page) {
+            <button
+            [class.active]="page === currentPage"
+            (click)="selectPage(page)"
+          >
+            {{ page === -1 ? '...' : page }}
+          </button>
+          }
+          
+    
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages" [title]="'common.pagination.nextPage' | translate">›</button>
+          <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages" [title]="'common.pagination.lastPage' | translate">»</button>
         </div>
-        <div class="news-image-content">
-          <!-- Alt-текст берется из заголовка новости, что является хорошей практикой -->
-          <img [src]="imageUrl+item.upload_file" [alt]="item.title">
-        </div>
-      </article>
-
-      <div class="pagination">
-        <button (click)="selectPage(1)" [disabled]="currentPage === 1" [title]="'common.pagination.firstPage' | translate">«</button>
-        <button (click)="prevPage()" [disabled]="currentPage === 1" [title]="'common.pagination.previousPage' | translate">‹</button>
-
-        <button
-          *ngFor="let page of pages"
-          [class.active]="page === currentPage"
-          (click)="selectPage(page)"
-        >
-          {{ page === -1 ? '...' : page }}
-        </button>
-
-        <button (click)="nextPage()" [disabled]="currentPage === totalPages" [title]="'common.pagination.nextPage' | translate">›</button>
-        <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages" [title]="'common.pagination.lastPage' | translate">»</button>
+      </ng-container>
+    } @else {
+      <div class="no-news">
+        {{ 'NEWS.NO_NEWS' | translate }}
       </div>
-    </ng-container>
+    }
+    
 
     <!-- Сообщение, если нет новостей -->
     <ng-template #noNews>

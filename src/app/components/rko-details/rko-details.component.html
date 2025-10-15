@@ -18,25 +18,36 @@
     <h2>{{ 'DEPOSIT_DETAILS.ADVANTAGES_TITLE' | translate }}</h2>
     <div class="advantages">
       <!-- Динамический контент -->
-      <div class="item" *ngFor="let a of scsData.advantages">
+      @for(a of scsData.advantages; track a) {
+        <div class="item" >
           <h3>{{a.title}}</h3>
           <p>{{a.description}}</p>
       </div>
+      }
+     
     </div>
   </div>
 
   <div class="faq-container">
     <h2 class="faq-title">{{ 'DEPOSIT_DETAILS.CONDITIONS_TITLE' | translate }}</h2>
-    <div *ngFor="let faq of scsData.conditions; let i = index" class="faq-item">
-      <div class="faq-question" (click)="toggleFaq(i)">
-        <!-- Динамический контент -->
-        <span>{{ faq.title }}</span>
-        <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
-      </div>
-      <div *ngIf="selectedFaqIndex === i" class="faq-answer">
+    @for(faq of scsData.conditions; track $index) {
+      <div  class="faq-item">
+        <div class="faq-question" (click)="toggleFaq($index)">
           <!-- Динамический контент -->
-          <p *ngFor="let i of faq.items">   {{ i.title }}</p>
+          <span>{{ faq.title }}</span>
+          <span class="faq-icon">{{ selectedFaqIndex === $index ? '-' : '+' }}</span>
+        </div>
+        @if(selectedFaqIndex === $index) {
+          <div  class="faq-answer">
+            <!-- Динамический контент -->
+            @for(i of faq.items; track i) {
+              <p >   {{ i.title }}</p>
+            }
+        </div>
+        }
+        
       </div>
-    </div>
+    }
+    
   </div>
 </div>

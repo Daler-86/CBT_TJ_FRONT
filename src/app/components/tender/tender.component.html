@@ -17,35 +17,43 @@
     </div>
   
     <!-- Сообщение об отсутствии данных -->
-    <div *ngIf="tenders.length === 0" class="no-data-row">
-      {{ 'TENDERS_LIST.TABLE.NO_DATA' | translate }}
-    </div>
+    @if(tenders.length === 0) {
+      <div class="no-data-row">
+        {{ 'TENDERS_LIST.TABLE.NO_DATA' | translate }}
+      </div>
+    }
+   
   
     <!-- Строки данных (имитация tbody и tr) -->
-    <div class="tender-div-row" *ngFor="let tender of tenders" (click)="navigateToCardDetailsAndForm(tender.id)">
-      <div class="tender-div-cell">{{ tender.name }}</div>
-      <div class="tender-div-cell">{{ tender.start_date }}</div>
-      <div class="tender-div-cell">{{ tender.end_date }}</div>
-      <div class="tender-div-cell cell-status">
-        <span class="status-badge"
-              [ngClass]="{
-                'status-open': tender.status === 'open',
-                'status-completed': tender.status === 'close'
-              }">
-          {{ tender.status === 'open' ? ('TENDER_DETAILS.STATUS.OPEN' | translate) : ('TENDER_DETAILS.STATUS.CLOSED' | translate) }}
-        </span>
+    @for(tender of tenders; track tender) {
+      <div class="tender-div-row" (click)="navigateToCardDetailsAndForm(tender.id)">
+        <div class="tender-div-cell">{{ tender.name }}</div>
+        <div class="tender-div-cell">{{ tender.start_date }}</div>
+        <div class="tender-div-cell">{{ tender.end_date }}</div>
+        <div class="tender-div-cell cell-status">
+          <span class="status-badge"
+                [ngClass]="{
+                  'status-open': tender.status === 'open',
+                  'status-completed': tender.status === 'close'
+                }">
+            {{ tender.status === 'open' ? ('TENDER_DETAILS.STATUS.OPEN' | translate) : ('TENDER_DETAILS.STATUS.CLOSED' | translate) }}
+          </span>
+        </div>
       </div>
-    </div>
+    }
+  
 
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      
-      <button *ngFor="let page of pages"
-              [class.active]="page === currentPage"
-              (click)="selectPage(page)">
+      @for(page of pages; track page) {
+        <button 
+        [class.active]="page === currentPage"
+        (click)="selectPage(page)">
         {{ page === -1 ? '...' : page }}
-      </button>
+        </button>
+      }
+     
       
       <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
       <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>

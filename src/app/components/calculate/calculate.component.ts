@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,7 +12,7 @@ import { CalculatorData } from '../../models/calculate.model';
 @Component({
   selector: 'app-calculate',
   standalone: true,
-  imports: [TranslateModule, NgIf, FormsModule, DepositCalculatorComponent, InstallmentCalculateComponent, CarLoanCalculateComponent, LoanCalculatorComponent],
+  imports: [TranslateModule, CommonModule, FormsModule, DepositCalculatorComponent, InstallmentCalculateComponent, CarLoanCalculateComponent, LoanCalculatorComponent],
   templateUrl: './calculate.component.html',
   styleUrl: './calculate.component.scss'
 })

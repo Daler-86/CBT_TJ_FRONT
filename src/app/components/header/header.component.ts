@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ElementRef, HostListener } from '@angular/core';
 
@@ -17,8 +17,7 @@ import { Languages } from '../../shared/enums/languages.enum';
   selector: 'app-header',
   standalone: true,
   imports: [
-    NgFor,
-    NgIf,
+    CommonModule,
     FormsModule,
     RouterModule,
     TranslateModule,

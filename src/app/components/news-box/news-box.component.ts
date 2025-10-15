@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NewsEventItem, news } from '../../models/news.model';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 
 import { NewsService } from '../../api/news.service';
@@ -13,7 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-box',
   standalone: true,
-  imports: [RouterModule, RouterLink, NgFor, NgIf, TranslateModule ],
+  imports: [RouterModule, RouterLink, CommonModule, TranslateModule ],
   templateUrl: './news-box.component.html',
   styleUrl: './news-box.component.scss'
 })

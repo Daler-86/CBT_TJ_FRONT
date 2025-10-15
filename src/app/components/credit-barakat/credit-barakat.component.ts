@@ -1,6 +1,6 @@
 
 
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { Component, HostListener,ElementRef, inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -23,7 +23,7 @@ import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-credit-barakat',
   standalone: true,
-  imports: [TranslateModule, NgFor, NgIf, FormsModule, FavriComponent, LoanCalculatorComponent, ScrollToDirective, CarLoanCalculateComponent],
+  imports: [TranslateModule, CommonModule, FormsModule, FavriComponent, LoanCalculatorComponent, ScrollToDirective, CarLoanCalculateComponent],
   templateUrl: './credit-barakat.component.html',
   styleUrl: './credit-barakat.component.scss'
 })

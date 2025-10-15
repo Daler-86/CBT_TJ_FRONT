@@ -3,7 +3,7 @@ import { RkoService } from '../../api/rko.service';
 import { MenuService } from '../../api/menu.service';
 import { environment } from '../../../environments/environment';
 import { scs } from '../../models/rko.model';
-import {CommonModule, NgFor, NgIf} from '@angular/common';
+import {CommonModule} from '@angular/common';
 
 import {RouterLink, RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
@@ -11,7 +11,7 @@ import {TranslateModule} from '@ngx-translate/core';
 @Component({
   selector: 'app-rko',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgIf, NgFor, CommonModule],
+  imports: [RouterLink, RouterModule, TranslateModule, CommonModule],
   templateUrl: './rko.component.html',
   styleUrl: './rko.component.scss'
 })

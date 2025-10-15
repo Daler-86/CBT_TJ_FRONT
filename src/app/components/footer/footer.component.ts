@@ -1,12 +1,12 @@
 import { Languages } from './../../shared/enums/languages.enum';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import {  RouterLink, RouterModule } from '@angular/router';
 import { OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 // Для ссылки на главную
-import { CommonModule } from '@angular/common'; // Для *ngIf
+import { CommonModule } from '@angular/common'; 
 
 
 @Component({

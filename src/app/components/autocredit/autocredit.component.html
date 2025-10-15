@@ -158,7 +158,9 @@
         </div>
         <!-- Метки слайдера -->
         <div class="range-labels">
-          <span *ngFor="let value of rangeValues">{{ value }}</span>
+          @for (value of rangeValues; track $index) {
+            <span>{{ value }}</span>
+          }
         </div>
         <label for="loanAmount">Предоплата</label>
         <div class="input-slider-container">
@@ -171,7 +173,10 @@
       
         <label>{{"Loan term" | translate}}</label>
         <div class="loan-terms">
-          <button *ngFor="let term of loanTerms" (click)="selectTerm(term)" [class.active]="selectedTerm === term">{{ term }}</button>
+          @for(term of loanTerms; track term) {
+            <button (click)="selectTerm(term)" [class.active]="selectedTerm === term">{{ term }}</button>
+          }
+          
         </div>
       
         <p>Все расчеты являются предварительными и могут отличаться от фактически полученных</p>

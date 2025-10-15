@@ -1,4 +1,4 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { Component,ElementRef,HostListener, ViewChild, } from '@angular/core';
 import { Subscription } from 'rxjs'; // Важно для отписки
 import { RouterLink, RouterModule } from '@angular/router';
@@ -19,7 +19,7 @@ export interface regionList1 {
 @Component({
   selector: 'app-office-list',
   standalone: true,
-  imports: [RouterModule, TranslateModule, NgIf, NgFor,CommonModule,],
+  imports: [RouterModule, TranslateModule,CommonModule,],
   templateUrl: './office-list.component.html',
   styleUrl: './office-list.component.scss'
 })

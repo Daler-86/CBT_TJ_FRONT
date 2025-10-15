@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-credit-overview',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgFor],
+  imports: [RouterLink, RouterModule, TranslateModule, CommonModule],
   templateUrl: './credit-overview.component.html',
   styleUrl: './credit-overview.component.scss'
 })

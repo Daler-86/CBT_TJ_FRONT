@@ -19,10 +19,13 @@
   
   <div class="container">
     <!-- Этот блок полностью динамический, перевод не требуется -->
-    <div class="box" *ngFor="let item of vacancyStatistics">
-      <h1>{{ item.title }}</h1>
-      <p>{{ item.description }}</p>
-    </div>
+    @for(item of vacancyStatistics; track item) {
+      <div class="box" >
+        <h1>{{ item.title }}</h1>
+        <p>{{ item.description }}</p>
+      </div>
+    }
+    
   </div>
 
   <!-- <div class="why-we-are-great">

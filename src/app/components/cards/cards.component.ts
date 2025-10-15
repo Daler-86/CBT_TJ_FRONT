@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RouterLink, RouterModule } from '@angular/router';
@@ -14,7 +14,7 @@ import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-cards',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgFor,CommonModule],
+  imports: [RouterLink, RouterModule, TranslateModule,CommonModule],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.scss'
 })

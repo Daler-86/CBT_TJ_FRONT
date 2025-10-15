@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
@@ -14,7 +14,7 @@ import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-rko-details',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule],
+  imports: [CommonModule, FormsModule, RouterModule, TranslateModule],
   templateUrl: './rko-details.component.html',
   styleUrl: './rko-details.component.scss'
 })

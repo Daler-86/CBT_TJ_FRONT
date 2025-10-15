@@ -2,14 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink, RouterModule} from '@angular/router';
 import {VacanciesService} from '../../api/vacancies.service';
 import {vacancyContent, vacancyGallery, vacancyItem, vacancyStatistic} from '../../models/vacancies.model';
-import {NgFor} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {TranslateModule} from '@ngx-translate/core';
 import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-vacancies',
   standalone: true,
-  imports: [RouterLink, RouterModule, NgFor, TranslateModule],
+  imports: [RouterLink, RouterModule, CommonModule, TranslateModule],
   templateUrl: './vacancies.component.html',
   styleUrl: './vacancies.component.scss'
 })

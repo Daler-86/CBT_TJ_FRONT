@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component,inject, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,7 +12,7 @@ import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-transfers-details',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterModule, TranslateModule, RouterLink],
   templateUrl: './transfers-details.component.html',
   styleUrl: './transfers-details.component.scss'
 })

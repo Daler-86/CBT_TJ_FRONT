@@ -10,23 +10,32 @@
         <input type="text" class="form-control" 
                [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
                formControlName="client_name">
-        <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
-          {{ 'FORMS.ERRORS.REQUIRED' | translate }}
-        </div>
+          @if(client_name?.invalid && client_name?.touched)  {
+            <div  class="error">
+              {{ 'FORMS.ERRORS.REQUIRED' | translate }}
+            </div>
+          }   
+        
       </div>
 
       <div class="form-group">
         <input type="text" class="form-control" 
                [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
                formControlName="phone">
-        <div *ngIf="phone?.invalid && phone?.touched" class="error">
-          {{ 'FORMS.ERRORS.REQUIRED' | translate }}
-        </div>
+          @if(phone?.invalid && phone?.touched) {
+            <div  class="error">
+              {{ 'FORMS.ERRORS.REQUIRED' | translate }}
+            </div>
+          }
+        
       </div>
 
       <button type="submit" class="submit-button" [disabled]="applicationForm.invalid || isSubmitting">
-        <span *ngIf="!isSubmitting">{{ 'BUTTONS.SEND' | translate }}</span>
-        <span *ngIf="isSubmitting">{{ 'BUTTONS.SENDING' | translate }}...</span>
+        @if(!isSubmitting) {
+          <span >{{ 'BUTTONS.SEND' | translate }}</span>
+        } @else {
+          <span >{{ 'BUTTONS.SENDING' | translate }}...</span>
+        }
       </button>
 
       <div class="privacy-policy">

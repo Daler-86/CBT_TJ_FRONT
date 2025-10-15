@@ -6,14 +6,19 @@
             <span><img src="../../../assets/icons/arrow_forward.svg" [alt]="'alt.arrowForward' | translate"></span>
          </div>
     </div>
-    
-    <div class="box2" *ngIf="news.length>0" >
-        <!-- Динамический контент, не требует перевода через пайп -->
-        <div class="" *ngFor="let new of news" (click)="navigateToCardDetailsAndForm(new.id)">
-            <h3>{{new.title}}</h3>
-            <p>{{new.shortDescription}}</p>
-            <h1></h1>
-            <p>{{new.date_time}}</p>
+    @if(news.length > 0) {
+        <div class="box2"  >
+            <!-- Динамический контент, не требует перевода через пайп -->
+            @for(new of news; track new) {
+                <div class=""  (click)="navigateToCardDetailsAndForm(new.id)">
+                    <h3>{{new.title}}</h3>
+                    <p>{{new.shortDescription}}</p>
+                    <h1></h1>
+                    <p>{{new.date_time}}</p>
+                </div>
+            }
+           
         </div>
-    </div>
+    }
+   
 </div>

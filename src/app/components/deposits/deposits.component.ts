@@ -1,4 +1,4 @@
-import {CommonModule, NgFor, NgIf} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
 import {RouterLink, RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-deposits',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgIf, NgFor, CommonModule],
+  imports: [RouterLink, RouterModule, TranslateModule, CommonModule],
   templateUrl: './deposits.component.html',
   styleUrl: './deposits.component.scss'
 })
