@@ -1,5 +1,5 @@
 <div class="cards">
-  <h1>{{ 'deposits.pageTitle' | translate }}</h1>
+  <h1>{{ 'DEPOSITS.PAGE_TITLE' | translate }}</h1>
   <div class="content">
     <div class="card-container" *ngFor="let card of depositsList">
   
@@ -19,7 +19,7 @@
         </div>
 
         <div class="card-buttons">
-          <button class="btn-primary" [routerLink]="['/deposits',card.id]">{{ 'buttons.moreDetails' | translate }}</button>
+          <button class="btn-primary" [routerLink]="['/deposits',card.id]">{{ 'BUTTONS.MORE_DETAILS' | translate }}</button>
         </div>
       </div>
 

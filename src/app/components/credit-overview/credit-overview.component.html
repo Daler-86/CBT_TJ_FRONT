@@ -1,5 +1,5 @@
 <div class="credit">
-    <h1>{{'creditsPage.title' | translate}}</h1>
+    <h1>{{'CREDITS_PAGE.TITLE' | translate}}</h1>
 
 
           <div class="card-container" *ngFor="let credit of credits ">
@@ -16,9 +16,9 @@
                 </div>
               </div>
               <div class="card-buttons">
-                <button class="btn-primary" [routerLink]="['/credits', credit.id]" [queryParams]="{ scrollTo: 'application-form' }">{{'creditsPage.card.applyButton' | translate}}</button>
+                <button class="btn-primary" [routerLink]="['/credits', credit.id]" [queryParams]="{ scrollTo: 'application-form' }">{{'CREDITS_PAGE.CARD.APPLY_BUTTON' | translate}}</button>
                 <button class="btn-secondary"   [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                  {{'creditsPage.card.detailsButton' | translate}}
+                  {{'CREDITS_PAGE.CARD.DETAILS_BUTTON' | translate}}
                 </button>
 
               </div>

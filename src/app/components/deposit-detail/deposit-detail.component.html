@@ -1,14 +1,12 @@
-<!-- Мы используем твой корневой класс .cards -->
 <div class="cards" *ngIf="depositData">
 
   <!-- Блок 1: Промо -->
-  <!-- Эта часть остается абсолютно без изменений -->
   <div class="card-container">
     <div class="card-info">
       <h2 class="card-title">{{ depositData.title }}</h2>
       <p class="card-description">{{ depositData.description }}</p>
       <div class="card-buttons">
-        <button class="btn-primary" [scrollTo]="'application-form'">{{ 'buttons.openDeposit' | translate }}</button>
+        <button class="btn-primary" [scrollTo]="'application-form'">{{ 'BUTTONS.OPEN_DEPOSIT' | translate }}</button>
       </div>
     </div>
     <div class="card-image">
@@ -17,18 +15,17 @@
   </div>
 
   <!-- Блок 2: Калькулятор вклада -->
-  <!-- Твой оригинальный контейнер .deposit-calculator -->
   <div class="deposit-calculator">
-    <!-- Внутри него мы просто вызываем наш компонент-калькулятор -->
     <app-deposit-calculator *ngIf="depositData.id" [productId]="depositData.id"></app-deposit-calculator>
   </div>
 
   <!-- Блок 3: Тарифы и условия -->
-  <!-- Эта часть остается абсолютно без изменений -->
   <div class="container" *ngIf="depositData.currency">
-    <h1>{{ 'common.tariffsAndConditions' | translate }}</h1>
+    <h1>{{ 'COMMON.TARIFFS_AND_CONDITIONS' | translate }}</h1>
     <div class="btnCards">
-      <button *ngFor="let btn of depositData.currency" (click)="selectTab(btn.code)" [class.active]="selectedTab === btn.code">{{ btn.title }}</button>
+      <button *ngFor="let btn of depositData.currency" (click)="selectTab(btn.code)" [class.active]="selectedTab === btn.code">
+        {{ btn.title }}
+      </button>
     </div>
     <div *ngFor="let tariff of depositData.currency" class="content">
       <div class="info-container" *ngIf="selectedTab === tariff.code">
@@ -39,7 +36,7 @@
         <div class="info-box" *ngFor="let service of depositData.documents">
           <div class="info-title-1">{{ service.title }}</div>
           <div class="info-title document-card">
-            <img src="../../../assets/icons/Book.png" [alt]="'alt.bookIcon' | translate" class="pdf-icon">
+            <img src="../../../assets/icons/Book.png" [alt]="'ALT.BOOK_ICON' | translate" class="pdf-icon">
             <a [href]="imageUrl+service.upload_file" target="_blank" rel="noopener noreferrer" class="document-link">{{ service.title }}</a>
           </div>
         </div>
@@ -48,44 +45,44 @@
   </div>
 
   <!-- Блок 4: Форма заявки -->
- 
   <div class="application-form-container" #applicationForm id='application-form'>
     <div class="form">
       <div class="text">
-        <h2 class="form-title">{{ 'depositDetails.applicationForm.title' | translate }}</h2>
-        <p class="form-subtitle">{{ 'depositDetails.applicationForm.subtitle' | translate }}</p>
+        <h2 class="form-title">{{ 'DEPOSIT_DETAILS.APPLICATION_FORM.TITLE' | translate }}</h2>
+        <p class="form-subtitle">{{ 'DEPOSIT_DETAILS.APPLICATION_FORM.SUBTITLE' | translate }}</p>
       </div>
-      <!-- === ИЗМЕНЕНИЯ ТОЛЬКО ВНУТРИ <form> === -->
       <form #form="ngForm" (ngSubmit)="submitApplication(form)">
         <div class="form-group">
-          <input type="text" id="phone" [placeholder]="'depositDetails.applicationForm.phonePlaceholder' | translate" 
+          <input type="text" id="phone" [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.PHONE_PLACEHOLDER' | translate" 
                  class="form-control" required 
                  [(ngModel)]="model.phone" name="phone" #phone="ngModel">
           <div *ngIf="phone.invalid && phone.touched" class="error">
-            {{ 'common.fieldIsRequired' | translate }}
+            {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
           </div>
         </div>
         <div class="form-group">
-          <input type="text" id="name" [placeholder]="'depositDetails.applicationForm.namePlaceholder' | translate" 
+          <input type="text" id="name" [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.NAME_PLACEHOLDER' | translate" 
                  class="form-control" required 
                  [(ngModel)]="model.client_name" name="name" #name="ngModel">
           <div *ngIf="name.invalid && name.touched" class="error">
-            {{ 'common.fieldIsRequired' | translate }}
+            {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
           </div>
         </div>
-     
         <div class="form-group">
-          <button type="submit" class="btn-primary" [disabled]="form.invalid">{{ 'buttons.applyForDeposit' | translate }}</button>
+          <button type="submit" class="btn-primary" [disabled]="form.invalid">{{ 'BUTTONS.APPLY_FOR_DEPOSIT' | translate }}</button>
         </div>
-        <p class="form-disclaimer">{{ 'common.consent.prefix2' | translate }} <a href="#">{{ 'common.consent.linkText' | translate }}</a>{{ 'common.consent.linkText2' | translate }}</p>
+        <p class="form-disclaimer">
+          {{ 'COMMON.CONSENT.PREFIX2' | translate }} 
+          <a href="#">{{ 'COMMON.CONSENT.LINK_TEXT' | translate }}</a>
+          {{ 'COMMON.CONSENT.LINK_TEXT2' | translate }}
+        </p>
       </form>
     </div>
   </div>
 
   <!-- Блок 5: FAQ -->
- 
   <div class="faq-container" *ngIf="depositData?.faqs">
-    <h2 class="faq-title">{{ 'common.faqTitle' | translate }}</h2>
+    <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
     <div *ngFor="let faq of depositData.faqs; let i = index" class="faq-item">
       <div class="faq-question" (click)="toggleFaq(i)">
         <span>{{ faq.title }}</span>
@@ -95,4 +92,3 @@
     </div>
   </div>
 </div>
-

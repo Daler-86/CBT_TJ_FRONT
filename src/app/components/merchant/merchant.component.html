@@ -4,8 +4,8 @@
 
   <!-- Заголовок страницы -->
   <div class="page-header">
-    <h1>{{ 'merchantsPage.title' | translate }}</h1>
-    <p>{{ 'merchantsPage.subtitle' | translate }}</p>
+    <h1>{{ 'MERCHANTS_PAGE.TITLE' | translate }}</h1>
+    <p>{{ 'MERCHANTS_PAGE.SUBTITLE' | translate }}</p>
   </div>
 
   <!-- Основной контент: фильтры + сетка -->
@@ -14,27 +14,27 @@
     <!-- Блок с фильтрами (левая колонка) -->
     <div class="filters-panel">
       <div class="filter-controls">
-        <p class="filters-title">{{ 'merchantsPage.filters.title' | translate }}</p>
+        <p class="filters-title">{{ 'MERCHANTS_PAGE.FILTERS.TITLE' | translate }}</p>
         <input
           type="text"
           class="search-input"
-          [placeholder]="'merchantsPage.filters.searchPlaceholder' | translate"
+          [placeholder]="'MERCHANTS_PAGE.FILTERS.SEARCH_PLACEHOLDER' | translate"
           [(ngModel)]="filterName"
           (keyup.enter)="onFilterChange()"
         />
 
         <select class="filter-select" [(ngModel)]="filterRegionId" (change)="onFilterChange()">
-          <option [ngValue]="null">{{ 'merchantsPage.filters.allRegions' | translate }}</option>
+          <option [ngValue]="null">{{ 'MERCHANTS_PAGE.FILTERS.ALL_REGIONS' | translate }}</option>
           <option *ngFor="let region of regions" [value]="region.id">{{ region.name }}</option>
         </select>
 
         <select class="filter-select" [(ngModel)]="filterCategoryId" (change)="onFilterChange()">
-          <option [ngValue]="null">{{ 'merchantsPage.filters.allCategories' | translate }}</option>
+          <option [ngValue]="null">{{ 'MERCHANTS_PAGE.FILTERS.ALL_CATEGORIES' | translate }}</option>
           <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
         </select>
 
         <div class="cashback-toggle">
-          <label for="cashback">{{ 'merchantsPage.filters.cashbacks' | translate }}</label>
+          <label for="cashback">{{ 'MERCHANTS_PAGE.FILTERS.CASHBACKS' | translate }}</label>
           <label class="switch">
             <input
               type="checkbox"
@@ -79,6 +79,6 @@
 
   <app-simple-application-form 
   [apiUrl]="merchantApiUrl"
-  [titleKey]="'forms.titles.merchant'">
+  [titleKey]="'FORMS.TITLES.MERCHANT'">
 </app-simple-application-form>
 </div>

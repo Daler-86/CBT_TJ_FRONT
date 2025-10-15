@@ -7,7 +7,7 @@ import { CalculationParams, CalculationResult, DepositProducts } from '../models
 export class DepositCalculateService {
   private readonly DEPOSIT_PRODUCTS: DepositProducts = {
     "2": {
-        name: "depositProducts.favri",
+        name: "DEPOSIT_PRODUCTS.FAVRI",
         currencies: {
             "TJS": { 
                 minAmount: 1000, maxAmount: 10000000, stepAmount: 1000, amountLabels: ['1 тыс.', '25 тыс.', '50 тыс.', '75 тыс.', '∞'],
@@ -22,7 +22,7 @@ export class DepositCalculateService {
         }
     },
     "1": {
-        name: "depositProducts.durakhshon",
+        name: "DEPOSIT_PRODUCTS.DURAKHSHON",
 
         currencies: {
             "TJS": {
@@ -38,7 +38,7 @@ export class DepositCalculateService {
         }
     },
     "4": {
-        name: "depositProducts.orzu",
+        name: "DEPOSIT_PRODUCTS.ORZU",
         currencies: {
             "TJS": {
                 minAmount: 1000, maxAmount: 10000000, stepAmount: 500, amountLabels: ['1 тыс.', '10 тыс.', '25 тыс.', '∞'],
@@ -49,7 +49,7 @@ export class DepositCalculateService {
         }
     },
     "3": {
-        name: "depositProducts.vip",
+        name: "DEPOSIT_PRODUCTS.VIP",
         currencies: {
             "TJS": {
                 minAmount: 500000, maxAmount: 10000000, stepAmount: 10000, amountLabels: ['500 тыс.', '1.5 млн', '3 млн', '∞'],
@@ -64,7 +64,7 @@ export class DepositCalculateService {
         }
     },
     "5": {
-        name: "depositProducts.avf",
+        name: "DEPOSIT_PRODUCTS.AVF",
         currencies: {
             "TJS": {
                 minAmount: 1000, maxAmount:10000000, stepAmount: 1000, amountLabels: ['1 тыс.', '250 тыс.', '500 тыс.', '∞'],

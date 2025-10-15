@@ -1,8 +1,8 @@
 <!-- src/app/pages/contact/contact.component.html -->
 <div class="contact-page">
   <div class="page-header">
-    <h1>{{ 'contactsPage.title' | translate }}</h1>
-    <p>{{ 'contactsPage.subtitle' | translate }}</p>
+    <h1>{{ 'CONTACTS_PAGE.TITLE' | translate }}</h1>
+    <p>{{ 'CONTACTS_PAGE.SUBTITLE' | translate }}</p>
   </div>
 
   <!-- Сетка с контактными блоками -->
@@ -43,26 +43,26 @@
       </div>
       <div class="form-container" id='application-form'>
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-          <h2>{{ 'forms.contact.title' | translate }}</h2>
-          <p>{{ 'forms.contact.subtitle' | translate }}</p>
+          <h2>{{ 'FORMS.CONTACT.TITLE' | translate }}</h2>
+          <p>{{ 'FORMS.CONTACT.SUBTITLE' | translate }}</p>
       
           <!-- Имя -->
           <div class="form-group">
             <input type="text" class="form-control" 
-                   [placeholder]="('forms.placeholders.fullName' | translate) + ' *'"
+                   [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
                    formControlName="client_name">
             <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
-              {{ 'forms.errors.required' | translate }}
+              {{ 'FORMS.ERROR.REQUIRED' | translate }}
             </div>
           </div>
       
           <!-- Телефон -->
           <div class="form-group">
-            <input type="text" class="form-control" [placeholder]="('forms.placeholders.phone' | translate) + ' *'"
+            <input type="text" class="form-control" [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
               formControlName="phone">
             <div *ngIf="phone?.invalid && phone?.touched" class="error">
-              <span *ngIf="phone?.errors?.['required']">{{ 'forms.errors.required' | translate }}</span>
-              <span *ngIf="phone?.errors?.['pattern']">{{ 'forms.errors.onlyDigits' | translate }}</span>
+              <span *ngIf="phone?.errors?.['required']">{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
+              <span *ngIf="phone?.errors?.['pattern']">{{ 'FORMS.ERRORS.ONLYDIGITS' | translate }}</span>
             </div>
           </div>
           
@@ -82,26 +82,26 @@
               </div>
             </div>
             <div *ngIf="contact_subject_id?.invalid && contact_subject_id?.touched" class="error">
-              {{ 'forms.errors.selectSubject' | translate }}
+              {{ 'FORMS.ERRORS.SELECTSUBJECT' | translate }}
             </div>
           </div>
       
           <!-- Текстовое поле для вопроса -->
           <div class="form-group">
             <textarea class="form-control" 
-                      [placeholder]="('forms.placeholders.question' | translate) + ' *'"
+                      [placeholder]="('FORMS.PLACEHOLDERS.QUESTION' | translate) + ' *'"
                       rows="5"
                       formControlName="question"></textarea>
             <div *ngIf="question?.invalid && question?.touched" class="error">
-              <span *ngIf="question?.errors?.['required']">{{ 'forms.errors.required' | translate }}</span>
-              <span *ngIf="question?.errors?.['minlength']">{{ 'forms.errors.minLength' | translate:{ min: 10 } }}</span>
+              <span *ngIf="question?.errors?.['required']">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</span>
+              <span *ngIf="question?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate:{ min: 10 } }}</span>
             </div>
           </div>
       
           <!-- Кнопка отправки -->
           <button type="submit" class="submit-button" [disabled]="contactForm.invalid || isSubmitting">
-            <span *ngIf="!isSubmitting">{{ 'buttons.send' | translate }}</span>
-            <span *ngIf="isSubmitting">{{ 'buttons.sending' | translate }}...</span>
+            <span *ngIf="!isSubmitting">{{ 'BUTTONS.SEND' | translate }}</span>
+            <span *ngIf="isSubmitting">{{ 'BUTTONS.SENDING' | translate }}...</span>
           </button>
         </form>
       </div>

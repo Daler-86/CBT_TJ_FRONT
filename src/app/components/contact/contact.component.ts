@@ -93,7 +93,7 @@ export class ContactComponent implements OnInit {
   }
   updateSubjectPlaceholder(): void {
     if (!this.contactForm.get('contact_subject_id')?.value) {
-      this.translateService.get('forms.placeholders.selectSubject').subscribe(translation => {
+      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_SUBJECT').subscribe(translation => {
         this.selectedSubjectName = translation;
       });
     }

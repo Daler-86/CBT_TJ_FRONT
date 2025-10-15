@@ -56,7 +56,7 @@ export class MapComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     document.addEventListener('click', this.closeDropdownsManual.bind(this));
     this.loadRegionList();
-    this.translateService.get('mapPage.filters.regionPlaceholder').subscribe(translation => {
+    this.translateService.get('MAP_PAGE.FILTERS.REGION_PLACEHOLDER').subscribe(translation => {
       this.regionSelectedName = translation;
     });
     this.loadCardFaqs();

@@ -1,24 +1,28 @@
 <div class="bankDetail">
   <div class="card-container">
-      <div class="card-info">
-        <h2 class="card-title">{{ 'bankDetails.pageTitle' | translate }}</h2>
-        <p class="card-description">{{ 'bankDetails.pageSubtitle' | translate }}</p>
-      </div>
+    <div class="card-info">
+      <h2 class="card-title">{{ 'BANK_DETAILS.PAGE_TITLE' | translate }}</h2>
+      <p class="card-description">{{ 'BANK_DETAILS.PAGE_SUBTITLE' | translate }}</p>
+    </div>
   </div>
+
   <div class="btnCards">
-      <!-- ВАЖНО: Добавлен пайп translate для названий валют -->
-      <button *ngFor="let currency of bankdetailCurrency; trackBy: trackByCurrencyId"
-              [ngClass]="{'active': isTabSelected(currency.id)}"
-              (click)="selectTab(currency.id)">
-        {{ currency.title | translate }}
-      </button>
+    <!-- Названия валют также переводим -->
+    <button
+      *ngFor="let currency of bankdetailCurrency; trackBy: trackByCurrencyId"
+      [ngClass]="{ 'active': isTabSelected(currency.id) }"
+      (click)="selectTab(currency.id)"
+    >
+      {{ currency.title | translate }}
+    </button>
   </div>
+
   <div class="info-list-container">
-      <div class="info-item-row" *ngFor="let item of bankdetailList; trackBy: trackByDetailId">
-        <!-- ВАЖНО: Добавлен пайп translate для названий реквизитов -->
-        <div class="info-label">{{ item.title | translate }}</div>
-        <!-- Значение реквизита (item.description) не переводится, что правильно -->
-        <div class="info-value">{{ item.description }}</div>
-      </div>
+    <div class="info-item-row" *ngFor="let item of bankdetailList; trackBy: trackByDetailId">
+      <!-- Названия реквизитов с переводом -->
+      <div class="info-label">{{ item.title | translate }}</div>
+      <!-- Значение реквизита не переводится -->
+      <div class="info-value">{{ item.description }}</div>
+    </div>
   </div>
 </div>

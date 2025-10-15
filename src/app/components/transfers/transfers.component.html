@@ -1,6 +1,6 @@
 <div class="cards">
 
-  <h1>{{ 'transfers.pageTitle' | translate }}</h1>
+  <h1>{{ 'TRANSFERS.PAGE_TITLE' | translate }}</h1>
   <div class="content">
     <div class="card-container" *ngFor="let transfer of transfersList">
 
@@ -16,7 +16,7 @@
 
         <div class="card-buttons">
           <button (click)="onCardClick(transfer.id)" class="btn-primary"
-                  [routerLink]="['/transfers',transfer.id]">{{ 'buttons.moreDetails' | translate }}
+                  [routerLink]="['/transfers',transfer.id]">{{ 'BUTTONS.MORE_DETAILS' | translate }}
           </button>
         </div>
       </div>

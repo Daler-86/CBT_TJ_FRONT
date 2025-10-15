@@ -12,7 +12,7 @@ check command: nvm ls
 
 ## Used node and angula-cli versions
 
-node: nvm isntall 18
+node: nvm install 18
 
 run this: nvm use 18
 

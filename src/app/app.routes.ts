@@ -57,8 +57,8 @@ export const routes: Routes = [
   path: 'cards',
   component: CardWrapperComponent, // Используем обертку
   data: { 
-    breadcrumb: 'breadcrumbs.cards', 
-    titleKey: 'titles.cards' 
+    breadcrumb: 'BREADCRUMBS.CARDS', 
+    titleKey: 'TITLES.CARDS' 
   },
   children: [
     {
@@ -77,7 +77,7 @@ export const routes: Routes = [
     path: 'credits',
     component: CreditComponent, // Родительский компонент с <router-outlet>
     // --- 1. Крошка определяется на родительском уровне ---
-           data: { breadcrumb: 'breadcrumbs.credits', titleKey: 'titles.credits' },
+           data: { breadcrumb: 'BREADCRUMBS.CREDITS', titleKey: 'TITLES.CREDITS' },
     children: [
       { 
         path: '', 
@@ -97,8 +97,8 @@ export const routes: Routes = [
     path: 'transfers', // <-- ОБЩИЙ ПУТЬ ДЛЯ РАЗДЕЛА
     component: TransferWrapperComponent,
     data: { 
-      breadcrumb: 'breadcrumbs.transfers', 
-      titleKey: 'titles.transfers' 
+      breadcrumb: 'BREADCRUMBS.TRANSFERS', 
+      titleKey: 'TITLES.TRANSFERS' 
     },
     children: [
       {
@@ -117,8 +117,8 @@ export const routes: Routes = [
     path: 'deposits', // <-- ОБЩИЙ ПУТЬ ДЛЯ РАЗДЕЛА
     component: DepositWrapperComponent,
     data: { 
-      breadcrumb: 'breadcrumbs.deposits', 
-      titleKey: 'titles.deposits' 
+      breadcrumb: 'BREADCRUMBS.DEPOSITS', 
+      titleKey: 'TITLES.DEPOSITS' 
     },
     children: [
       {
@@ -137,8 +137,8 @@ export const routes: Routes = [
     path: 'vacancies',
     component: VacancyWrapperComponent, // <-- Обертка для всего раздела
     data: { 
-      breadcrumb: 'breadcrumbs.vacancies' ,
-      titleKey: 'titles.vacancies' 
+      breadcrumb: 'BREADCRUMBS.VACANCIES' ,
+      titleKey: 'TITLES.VACANCIES' 
     },
     children: [
       {
@@ -150,8 +150,8 @@ export const routes: Routes = [
         path: 'list', // <-- URL: /vacancies/list
         component: VacancyListWrapperComponent, // <-- Обертка для списка и деталей
         data: { 
-          breadcrumb: 'breadcrumbs.vacancyList',
-          titleKey: 'titles.vacancyList' 
+          breadcrumb: 'BREADCRUMBS.VACANCY_LIST',
+          titleKey: 'TITLES.VACANCY_LIST' 
         },
         children: [
           {
@@ -172,8 +172,8 @@ export const routes: Routes = [
     path: 'news', // <-- ОБЩИЙ ПУТЬ ДЛЯ РАЗДЕЛА
     component: NewsWrapperComponent,
     data: { 
-      breadcrumb: 'breadcrumbs.news', 
-      titleKey: 'titles.news' 
+      breadcrumb: 'BREADCRUMBS.NEWS', 
+      titleKey: 'TITLES.NEWS' 
     },
     children: [
       {
@@ -191,7 +191,7 @@ export const routes: Routes = [
   {
     path: 'tender', // <-- Новый общий путь
     component: TenderWrapperComponent,
-    data: { breadcrumb: 'breadcrumbs.tenders', titleKey: 'titles.tenders' },
+    data: { breadcrumb: 'BREADCRUMBS.TENDERS', titleKey: 'TITLES.TENDERS' },
     children: [
       { path: '', component: TenderComponent }, // <-- Список
       {
@@ -205,7 +205,7 @@ export const routes: Routes = [
   {
     path: 'rko',
     component: RkoWrapperComponent,
-    data: { breadcrumb: 'breadcrumbs.rko', titleKey: 'titles.rko' },
+    data: { breadcrumb: 'BREADCRUMBS.RKO', titleKey: 'TITLES.RKO' },
     children: [
       { path: '', component: RkoComponent }, // <-- Список
       {
@@ -217,15 +217,15 @@ export const routes: Routes = [
     ]
   },
 
-   { path: 'map', component: MapComponent, data: { breadcrumb: 'breadcrumbs.map', titleKey: 'titles.map' } },
-   { path: 'about-us', component: AboutUsComponent, data: { breadcrumb: 'breadcrumbs.aboutUs', titleKey: 'titles.aboutUs' } },
-   { path: 'report', component: ReportComponent, data: { breadcrumb: 'breadcrumbs.report', titleKey: 'titles.report' } },
-   { path: 'bank-detail', component: BankDetailComponent, data: { breadcrumb: 'breadcrumbs.bankDetail', titleKey: 'titles.bankDetail' } },
-   { path: 'merchant', component: MerchantComponent, data: { breadcrumb: 'breadcrumbs.merchant', titleKey: 'titles.merchant' } },
-   { path: 'contact', component: ContactComponent, data: { breadcrumb: 'breadcrumbs.contact', titleKey: 'titles.contact' } },
-   { path: 'insurance-info', component: InsuranceInfoComponent, data: { breadcrumb: 'breadcrumbs.insurance', titleKey: 'titles.insurance' } },
-   { path: 'salary-project', component: SalaryProjectPageComponent, data: { breadcrumb: 'breadcrumbs.salaryProject', titleKey: 'titles.salaryProject' } },
-   { path: 'acquiring', component: AcquiringPageComponent, data: { breadcrumb: 'breadcrumbs.acquiring', titleKey: 'titles.acquiring' } },
+   { path: 'map', component: MapComponent, data: { breadcrumb: 'BREADCRUMBS.MAP', titleKey: 'TITLES.MAP' } },
+   { path: 'about-us', component: AboutUsComponent, data: { breadcrumb: 'BREADCRUMBS.ABOUT_US', titleKey: 'TITLES.ABOUT_US' } },
+   { path: 'report', component: ReportComponent, data: { breadcrumb: 'BREADCRUMBS.REPORT', titleKey: 'TITLES.REPORT' } },
+   { path: 'bank-detail', component: BankDetailComponent, data: { breadcrumb: 'BREADCRUMBS.BANK_DETAIL', titleKey: 'TITLES.BANK_DETAIL' } },
+   { path: 'merchant', component: MerchantComponent, data: { breadcrumb: 'BREADCRUMBS.MERCHANT', titleKey: 'TITLES.MERCHANT' } },
+   { path: 'contact', component: ContactComponent, data: { breadcrumb: 'BREADCRUMBS.CONTACT', titleKey: 'TITLES.CONTACT' } },
+   { path: 'insurance-info', component: InsuranceInfoComponent, data: { breadcrumb: 'BREADCRUMBS.INSURANCE', titleKey: 'TITLES.INSURANCE' } },
+   { path: 'salary-project', component: SalaryProjectPageComponent, data: { breadcrumb: 'BREADCRUMBS.SALARY_PROJECT', titleKey: 'TITLES.SALARY_PROJECT' } },
+   { path: 'acquiring', component: AcquiringPageComponent, data: { breadcrumb: 'BREADCRUMBS.ACQUIRING', titleKey: 'TITLES.ACQUIRING' } },
 ];
 
  

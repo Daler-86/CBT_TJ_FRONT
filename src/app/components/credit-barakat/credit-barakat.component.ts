@@ -118,7 +118,7 @@ this.route.queryParams.subscribe(params => {
   updateOfficePlaceholder(): void {
     // Обновляем плейсхолдер только если офис еще не выбран
     if (!this.model.office_id) {
-      this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
+      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE').subscribe(translation => {
         this.officeName = translation;
       });
     }
