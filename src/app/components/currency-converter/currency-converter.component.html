@@ -1,6 +1,6 @@
 <div class="currency-converter-container"> 
   <div class="calculator-tabs">
-    @for(mode of getModes(); track mode) {
+    @for(mode of getModes(); track $index) {
       <button 
             (click)="selectMode(mode)"
             [class.active]="selectedMode === mode">
@@ -19,15 +19,11 @@
           <tr>
             <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.CURRENCY' | translate }}</th>
             @if(selectedMode === 'CB_RATE') {
-              <ng-container >
                 <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.ACCOUNTING' | translate }}</th>
-              </ng-container>
             }
             @if(selectedMode !== 'CB_RATE') {
-              <ng-container >
                 <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.PURCHASE' | translate }}</th>
                 <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.SALE' | translate }}</th>
-              </ng-container>
             }
            
           </tr>
@@ -54,12 +50,12 @@
       
       <div class="more">
         <p>{{ 'CURRENCY_CONVERTER.RATES_TABLE.UPDATED_LABEL' | translate }} {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}</p>
-        @if(exchangeRatesByMode && exchangeRatesByMode[selectedMode] && exchangeRatesByMode[selectedMode].length > 3) {
-          <button  (click)="toggleShowMore()">
-            <!-- Правильное использование тернарного оператора с пайпом -->
+        @if((exchangeRatesByMode[selectedMode] ?? []).length > 3) {
+          <button (click)="toggleShowMore()">
             {{ (showMore ? 'BUTTONS.COLLAPSE' : 'BUTTONS.SHOW_MORE') | translate }}
           </button>
         }
+        
     
       </div>
     </div>
@@ -95,18 +91,12 @@
           <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
           <select [(ngModel)]="toCurrency" (change)="convertCurrency()">
             @if(fromCurrency === 'TJS') {
-              <ng-container >
-                @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
+              @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
                   <option [value]="rate.currency">{{ rate.currency }}</option>
                 }
-                
-              </ng-container>
-            } @else {
-              <ng-container >
+              } @else {
                 <option value="TJS">TJS</option>
-              </ng-container>
             }
-         
           </select>
         </div>
       </div>

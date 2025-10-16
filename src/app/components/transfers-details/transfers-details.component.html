@@ -21,11 +21,11 @@
 
   <div class="section2">
       <!-- Динамический блок, перевод не требуется -->
-      @for(condition of transferData.conditions; track condition) {
+      @for(condition of transferData.conditions; track condition.id) {
         <div class="box" >
             <p>{{condition.title}}</p>
             <h1>{{condition.description}}</h1>
-            @for(i of condition.items; track i) {
+            @for(i of condition.items; track i.id) {
                 <p >{{i.title}}</p>
             }
       
@@ -51,10 +51,10 @@
      
       <div class="section2">
           <!-- Динамический блок, перевод не требуется -->
-          @for(document of transferData.documents; track document) {
+          @for(document of transferData.documents; track document.id) {
             <div class="box" >
                 <h2>{{document.title}}</h2>
-                @for(item of document.items; track item) {
+                @for(item of document.items; track item.id) {
                     <p >{{item.title}}</p>
                 }
                 

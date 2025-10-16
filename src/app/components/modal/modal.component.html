@@ -1,6 +1,5 @@
 <!-- Подписываемся на уведомление через async пайп -->
 @if(notification$ | async; as notification) {
-  <ng-container >
   
     <!-- 
       Привязываем состояние анимации: 'visible', если уведомление есть, и 'hidden', если его нет.
@@ -15,6 +14,5 @@
       <span class="message">{{ notification.message }}</span>
     </div>
   
-  </ng-container>
 }
 

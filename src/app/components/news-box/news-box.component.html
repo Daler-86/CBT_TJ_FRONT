@@ -9,7 +9,7 @@
     @if(news.length > 0) {
         <div class="box2"  >
             <!-- Динамический контент, не требует перевода через пайп -->
-            @for(new of news; track new) {
+            @for(new of news; track $index) {
                 <div class=""  (click)="navigateToCardDetailsAndForm(new.id)">
                     <h3>{{new.title}}</h3>
                     <p>{{new.shortDescription}}</p>

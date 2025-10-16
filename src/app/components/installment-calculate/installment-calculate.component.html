@@ -31,7 +31,7 @@
                [style.--range-percent]="loanAmountPercent">
 
         <div class="range-labels">
-          @for(label of amountLabels; track label) {
+          @for(label of amountLabels; track $index) {
             <span >{{ label }}</span>
           }
      
@@ -43,7 +43,7 @@
     <div class="form-group">
       <label>{{ 'CALCULATORS.INSTALLMENT.TERM' | translate }}</label>
       <div class="term-buttons">
-        @for(term of availableTerms; track term) {
+        @for(term of availableTerms; track $index) {
           <button 
           (click)="loanTerm = term; onValueChange()"
           [class.active]="loanTerm === term">

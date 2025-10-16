@@ -7,7 +7,7 @@
     <div class="form-group">
       <label>{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</label>
       <div class="currency-tabs">
-        @for(currency of availableCurrencies; track currency) {
+        @for(currency of availableCurrencies; track $index) {
           <button 
           [class.active]="selectedCurrency === currency"
           (click)="onCurrencyChange(currency)">

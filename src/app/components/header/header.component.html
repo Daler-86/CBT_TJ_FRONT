@@ -21,7 +21,7 @@
       </div>
       @if(dropdownOpen) {
         <div class="dropdown-options" >
-          @for(option of languageOptions; track option) {
+          @for(option of languageOptions; track $index) {
             <div class="dropdown-option" (click)="selectLanguage(option)">
               <p id="body-medium">{{ option.label }}</p>
               @if(option.value === selectedLanguage) {
@@ -60,7 +60,7 @@
     
               @if(dropdownOpenMap[$index]) {
                 <div class="dropdown-options">
-                  @for (item of menu.items; track item) {
+                  @for (item of menu.items; track item.id) {
                     <div class="dropdown-option" (click)="selectOption(item, $index, $event, menu)">
                       @if(item.is_new_tab) {
                         <a [href]="item.route" target="_blank" rel="noopener noreferrer">
@@ -79,7 +79,6 @@
           }
     
           @if(!menu.items || menu.items.length === 0) {
-            <ng-container>
               @if(menu.is_new_tab) {
                 <a class="a" [href]="menu.route" target="_blank" rel="noopener noreferrer">
                   {{ menu.name | translate }}
@@ -89,7 +88,6 @@
                   {{ menu.name | translate }}
                 </a>
               }
-            </ng-container>
           }
         </li>
       }
@@ -120,7 +118,6 @@
     @for(menu of menus; track $index) {
       <li>
         @if(menu.items && menu.items.length > 0) {
-          <ng-container>
             <div class="menu-item" (click)="toggleDropdown($index, $event)" [class.open]="dropdownOpenMap[$index]">
               <a>{{ menu.name | translate }}</a>
               <img src="../../../assets/icons/arrow-down.png" alt="arrow" class="submenu-arrow">
@@ -142,11 +139,9 @@
                 </div>
               </div>
             }
-          </ng-container>
         }
   
         @if(!menu.items || menu.items.length === 0) {
-          <ng-container>
             @if(menu.is_new_tab) {
               <a class="menu-item single-link" [href]="menu.route" target="_blank"
                  rel="noopener noreferrer" (click)="toggleMenu()">
@@ -157,7 +152,6 @@
                 {{ menu.name | translate }}
               </a>
             }
-          </ng-container>
         }
       </li>
     }

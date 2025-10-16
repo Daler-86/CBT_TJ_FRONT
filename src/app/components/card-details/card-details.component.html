@@ -24,7 +24,7 @@
     class="features-container"
     [class]="{'type1': cardContent?.length % 3 == 0, 'type2': cardContent?.length % 2 == 0}"
   >
-    @for(detail of cardContent; track detail) {
+    @for(detail of cardContent; track $index) {
       <div class="feature-card">
         <div>
           <h3>{{ detail.title }}</h3>
@@ -60,7 +60,7 @@
     @if(selectedTab === 'services') {
       <div class="content">
         <div class="info-container">
-          @for(service of services; track service) {
+          @for(service of services; track $index) {
             <div class="info-box" >
               <div class="info-title-1">{{ service.name }}</div>
               <div class="info-title">
@@ -77,7 +77,7 @@
     @if(selectedTab === 'limits') {
       <div class="content">
         <div class="info-container">
-          @for(limit of limits; track limit) {
+          @for(limit of limits; track limit.id) {
             <div class="info-box-limits">
               <div class="info-title-1">{{ limit.name }}</div>
               <div class="info-title">
@@ -98,7 +98,7 @@
     @if(selectedTab === 'operations') {
       <div class="content">
         <div class="info-container">
-          @for(operation of operations; track operation) {
+          @for(operation of operations; track operation.id) {
             <div class="info-box" >
               <div class="info-title-1">{{ operation.name }}</div>
               <div class="info-title">
@@ -115,7 +115,7 @@
     @if(selectedTab === 'documents') {
       <div class="content">
         <div class="info-container">
-          @for(document of documents; track document) {
+          @for(document of documents; track document.id) {
             <div class="info-box-documents" >
               <a [href]="imageUrl + document.upload_file" target="_blank">
                 <img src="../../../assets/icons/pdficon.png" [alt]="'ALT.PDF_ICON' | translate" />
@@ -189,7 +189,7 @@
             </div>
             @if(dropdownOpen) {
               <div class="dropdown-options" >
-                @for(item of offices; track item) {
+                @for(item of offices; track item.id) {
                   <div class="dropdown-option" (click)="selectOption(item)">
                     <p>{{ item.name }}</p>
                   </div>
@@ -227,7 +227,7 @@
   <div class="faq-container">
     <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
  
-    @for (faq of faqs; track $index) {
+    @for (faq of faqs; track faq.id) {
       <div class="faq-item">
         <div class="faq-question" (click)="toggleFaq($index)">
           <span>{{ faq.title }}</span>

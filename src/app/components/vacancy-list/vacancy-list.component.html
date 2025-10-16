@@ -54,7 +54,7 @@
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      @for(page of pages; track page) {
+      @for(page of pages; track $index) {
         <button  [class.active]="page === currentPage" (click)="selectPage(page)">
           {{ page === -1 ? '...' : page }}
         </button>

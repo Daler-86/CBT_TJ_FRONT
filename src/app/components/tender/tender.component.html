@@ -25,7 +25,7 @@
    
   
     <!-- Строки данных (имитация tbody и tr) -->
-    @for(tender of tenders; track tender) {
+    @for(tender of tenders; track tender.id) {
       <div class="tender-div-row" (click)="navigateToCardDetailsAndForm(tender.id)">
         <div class="tender-div-cell">{{ tender.name }}</div>
         <div class="tender-div-cell">{{ tender.start_date }}</div>
@@ -46,7 +46,7 @@
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      @for(page of pages; track page) {
+      @for(page of pages; track $index) {
         <button 
         [class.active]="page === currentPage"
         (click)="selectPage(page)">

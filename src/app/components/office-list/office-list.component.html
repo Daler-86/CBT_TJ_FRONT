@@ -53,7 +53,7 @@
                   {{ 'MAP_PAGE.FILTERS.ALL_REGIONS' | translate }}
                 </label>
               </div>
-              @for(option of regionList; track option) {
+              @for(option of regionList; track option.id) {
                 <div  class="dropdown-option">
                   <label class="custom-checkbox">
                     <input type="radio" name="region" [checked]="regionSelected === option.id" (change)="onRegionChange(option)"/>
@@ -125,8 +125,7 @@
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      @for(page of pages; track page) {
-        <ng-container >
+      @for(page of pages; track $index) {
           @if(page !== -1) {
             <button  [class.active]="page === currentPage" (click)="selectPage(page)">
               {{ page }}
@@ -134,10 +133,6 @@
           } @else {
             <span class="ellipsis">...</span>
           }
-         
-        
-          
-        </ng-container>
       }
       
       <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>

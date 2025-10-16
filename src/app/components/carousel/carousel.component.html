@@ -1,7 +1,7 @@
 <div class="carousel">
   @if(galleries.length > 0) {
     <div  class="carousel-slides" [style.transform]="getTransform()">
-      @for(slide of galleries; track slide) {
+      @for(slide of galleries; track slide.id) {
         <div class="carousel-item" >
           <div class="carousel-content">
             <h2>{{ slide.title }}</h2>
@@ -22,7 +22,7 @@
   
 
   <div class="carousel-indicators">
-    @for (slide of galleries; track $index) {
+    @for (slide of galleries; track slide.id) {
       <span
         class="INDICATOR"
         [class.active]="$index === currentSlide"

@@ -4,7 +4,7 @@
     <!-- <p class="p">{{ 'home.tagline' | translate }}</p> -->
 
     <div class="container_1">
-      @for(menu of menus; track menu) {
+      @for(menu of menus; track $index) {
         <div class="box_1" >
    
           <div [routerLinkActiveOptions]="{exact: true}" *ngFor="let favorite of menu.favorites" class="card-item" [routerLink]="favorite.route" routerLinkActive="active">

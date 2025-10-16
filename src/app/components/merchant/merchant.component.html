@@ -25,7 +25,7 @@
 
         <select class="filter-select" [(ngModel)]="filterRegionId" (change)="onFilterChange()">
           <option [ngValue]="null">{{ 'MERCHANTS_PAGE.FILTERS.ALL_REGIONS' | translate }}</option>
-          @for(region of regions; track region) {
+          @for(region of regions; track region.id) {
             <option  [value]="region.id">{{ region.name }}</option>
           }
          
@@ -33,7 +33,7 @@
 
         <select class="filter-select" [(ngModel)]="filterCategoryId" (change)="onFilterChange()">
           <option [ngValue]="null">{{ 'MERCHANTS_PAGE.FILTERS.ALL_CATEGORIES' | translate }}</option>
-          @for(category of categories; track category)  {
+          @for(category of categories; track category.id)  {
             <option  [value]="category.id">{{ category.name }}</option>
           }
           
@@ -56,7 +56,7 @@
 
     <!-- Сетка с карточками мерчантов (правая колонка) -->
     <div class="merchants-grid">
-      @for(merchant of merchants; track merchant) {
+      @for(merchant of merchants; track merchant.id) {
         <div class="merchant-card" >
           <div class="card-logo-wrapper">
             <img [src]="imageUrl+merchant.upload_file" [alt]="merchant.name" class="card-logo" />
@@ -75,7 +75,7 @@
     <div class="pagination-container" >
       <button (click)="selectPage(1)" [disabled]="currentPage === 1" [title]="'common.pagination.firstPage' | translate">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1" [title]="'common.pagination.previousPage' | translate">‹</button>
-      @for(page of pages; track page) {
+      @for(page of pages; track $index) {
         <button 
         [class.active]="page === currentPage"
         [disabled]="page === -1"

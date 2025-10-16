@@ -144,7 +144,7 @@
     <div class="form-group">
       <label>{{ 'CALCULATORS.AUTO_LOAN.TERM' | translate }}</label>
       <div class="term-buttons">
-        @for(term of availableTerms; track term ) {
+        @for(term of availableTerms; track $index ) {
           <button
           (click)="loanTerm = term; recalculate()"
           [class.active]="loanTerm === term"

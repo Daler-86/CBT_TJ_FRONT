@@ -27,24 +27,24 @@
       <div class="container" >
         <h1>{{ 'COMMON.TARIFFS_AND_CONDITIONS' | translate }}</h1>
         <div class="btnCards">
-          @for(btn of depositData.currency; track btn) {
+          @for(btn of depositData.currency; track btn.id) {
             <button  (click)="selectTab(btn.code)" [class.active]="selectedTab === btn.code">
               {{ btn.title }}
             </button>
           }
           
         </div>
-        @for(tariff of depositData.currency; track tariff) {
+        @for(tariff of depositData.currency; track tariff.id) {
           <div  class="content">
             @if(selectedTab === tariff.code) {
               <div class="info-container">
-                @for(service of tariff.tariffs; track service ) {
+                @for(service of tariff.tariffs; track service.id ) {
                   <div class="info-box">
                     <div class="info-title-1">{{ service.title }}</div>
                     <div class="info-title">{{ service.description }}</div>
                   </div>
                 }
-               @for(service of depositData.documents; track service ) {
+               @for(service of depositData.documents; track service.id ) {
                 <div class="info-box" >
                   <div class="info-title-1">{{ service.title }}</div>
                   <div class="info-title document-card">
@@ -110,7 +110,7 @@
     @if (depositData?.faqs) {
       <div class="faq-container">
         <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
-        @for (faq of depositData.faqs; track $index) {
+        @for (faq of depositData.faqs; track faq.id) {
           <div class="faq-item">
             <div class="faq-question" (click)="toggleFaq($index)">
               <span>{{ faq.title }}</span>

@@ -12,7 +12,7 @@
     <div class="tender-main-column">
       <!-- Карточка с описанием тендера (динамические данные) -->
       <div class="tender-card tender-description-card">
-        @for(item of processedTenderInfo; track item) {
+        @for(item of processedTenderInfo; track $index) {
           <div >
             <h2>{{ item.title }}</h2>
             

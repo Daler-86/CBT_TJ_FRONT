@@ -22,7 +22,7 @@
         <div class="vacancy-details"> 
           <h4>{{ 'vacancyDetails.sections.education' | translate }}</h4>
           <ul>
-            @for( education of education; track education) {
+            @for( education of education; track education.id) {
               <li >{{ education.content }}</li>
             }
       
@@ -32,7 +32,7 @@
         <div class="vacancy-details">
           <h4>{{ 'vacancyDetails.sections.experience' | translate }}</h4>
           <ul>
-            @for(work of experience; track work) {
+            @for(work of experience; track work.id) {
               <li >{{ work.content }}</li>
             }
            
@@ -42,7 +42,7 @@
         <div class="vacancy-details">
           <h4>{{ 'vacancyDetails.sections.skills' | translate }}</h4>
           <ul>
-            @for(skill of skill; track skill) {
+            @for(skill of skill; track skill.id) {
               <li >{{ skill.content }}</li>
             }
           
@@ -52,7 +52,7 @@
         <div class="vacancy-details">
           <h4>{{ 'vacancyDetails.sections.qualities' | translate }}</h4>
           <ul>
-            @for(quality of personalQuality; track quality) {
+            @for(quality of personalQuality; track quality.id) {
               <li >{{ quality.content }}</li>
             }
       
@@ -62,7 +62,7 @@
         <div class="vacancy-details">
           <h4>{{ 'vacancyDetails.sections.conditions' | translate }}</h4>
           <ul>
-            @for(condition of condition; track condition) {
+            @for(condition of condition; track condition.id) {
               <li >{{ condition.content }}</li>
             }
           

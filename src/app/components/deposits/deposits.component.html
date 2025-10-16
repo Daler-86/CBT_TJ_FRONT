@@ -1,7 +1,7 @@
 <div class="cards">
   <h1>{{ 'DEPOSITS.PAGE_TITLE' | translate }}</h1>
   <div class="content">
-    @for(card of depositsList; track card) {
+    @for(card of depositsList; track card.id) {
       <div class="card-container" >
   
         <div class="card-image">

@@ -8,14 +8,14 @@
   <!-- Сетка с контактными блоками -->
   <div class="contact-grid">
     <!-- Динамический контент, перевод не требуется -->
-    @for(block of contactBlocks; track block) {
+    @for(block of contactBlocks; track block.id) {
       <div class="contact-card" >
         <div class="card-header"> 
           <h2>{{ block.title }}</h2>
           <img [src]="imageUrl+block.upload_file" [alt]="block.title" class="card-icon" />
         </div>
         <div class="card-body">
-          @for(detail of block.data; track detail) {
+          @for(detail of block.data; track detail.id) {
             <div class="contact-item" >
               @if(detail.upload_file) {
                 <img  [src]="imageUrl+detail.upload_file" [alt]="detail.title" class="item-icon" />
@@ -95,7 +95,7 @@
               </div>
               @if(dropdownOpen) {
                 <div class="dropdown-options">
-                  @for(subject of subjects; track subject) {
+                  @for(subject of subjects; track subject.id) {
                     <div class="dropdown-option"  (click)="selectSubject(subject)">
                       <p>{{ subject.name }}</p> <!-- Предполагаем, что имя приходит на нужном языке -->
                     </div>

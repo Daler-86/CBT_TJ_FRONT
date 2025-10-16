@@ -111,7 +111,7 @@
                     {{ 'ALL' | translate }}
                   </label>
                 </div>
-                @for(option of regionList; track option) {
+                @for(option of regionList; track $index) {
                   <div  class="dropdown-option">
                     <label class="custom-checkbox">
                       <input type="checkbox" [checked]="regionSelected==option.id" (change)="onRegionChange(option)"/>
@@ -134,7 +134,6 @@
     <!-- 1. Боковая панель -->
     <div class="info-sidebar" [class.is-visible]="selectedPoint">
       @if(selectedPoint) {
-        <ng-container >
           <button class="info-sidebar__close-btn" (click)="closeSidebar()">×</button>
           
           <div class="info-sidebar__header">    
@@ -152,7 +151,7 @@
          
             @if(selectedPoint.properties.items.length > 0) {
               <div  class="info-sidebar__section">
-                @for(item of selectedPoint.properties.items; track item) {
+                @for(item of selectedPoint.properties.items; track $index) {
                   <div  class="info-sidebar__item">
                   
                     <div class="info-sidebar__label">{{ item.title }}</div>
@@ -169,7 +168,7 @@
               <div class="info-sidebar__section">
                 <div class="info-sidebar__label">{{ 'MAP_PAGE.SIDE_BAR.SERVICES_LABEL' | translate }}</div>
                 <ul class="info-sidebar__service-list">
-                  @for(service of selectedPoint.properties.services; track service) {
+                  @for(service of selectedPoint.properties.services; track $index) {
                     <li >
                       {{ service.name }}
                     </li>
@@ -180,7 +179,6 @@
             }
            
           </div>
-        </ng-container>
       }
       
     </div>

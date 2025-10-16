@@ -13,7 +13,7 @@
           </div>
           @if(dropdownOpen) {
             <div class="dropdown-options" >
-              @for(key of productKeys; track key) {
+              @for(key of productKeys; track $index) {
                 <div class="dropdown-option"  (click)="selectProduct(key)">
                   <p>{{ productsData[key].name | translate }}</p>
                 </div>
@@ -27,7 +27,7 @@
 
     <!-- Переключатель валют -->
     <div class="currency-tabs">
-      @for(currency of availableCurrencies; track currency) {
+      @for(currency of availableCurrencies; track $index) {
         <button 
               (click)="selectCurrency(currency)"
               [class.active]="selectedCurrency === currency">
@@ -61,7 +61,7 @@
                  [style.--range-percent]="depositAmountPercent">
         </div>
         <div class="range-labels">
-          @for(label of amountLabels; track label) {
+          @for(label of amountLabels; track $index) {
             <span >{{ label }}</span>
           }
          
@@ -79,7 +79,7 @@
                  [style.--range-percent]="depositTermPercent">
         </div>
         <div class="range-labels">
-          @for(label of termLabels; track label) {
+          @for(label of termLabels; track $index) {
             <span >{{ label }}</span>
           }
     

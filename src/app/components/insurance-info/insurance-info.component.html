@@ -105,7 +105,7 @@
 
   <div class="contact-grid">
     <!-- Динамический контент, перевод не требуется -->
-    @for(block of contactBlocks; track block) {
+    @for(block of contactBlocks; track block.id) {
       <div class="contact-card" >
         <div class="card-header"> 
           <h2>{{ block.title }}</h2>

@@ -1,7 +1,7 @@
 <div class="credit">
     <h1>{{'CREDITS_PAGE.TITLE' | translate}}</h1>
 
-          @for(credit of credits; track credit) {
+          @for(credit of credits; track credit.id) {
             <div class="card-container">
               <div class="card-info">
                 <h2 class="card-title">{{credit.title}}
