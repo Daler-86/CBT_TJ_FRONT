@@ -13,6 +13,7 @@ import { Atm, Office, Terminal, regionList, TerminalItem } from '../../models/re
 // --- Компоненты и Интерфейсы ---
 import { OfficeListComponent } from '../office-list/office-list.component';
 import { YandexMapComponent, IMapPoint } from '../yandex-map/yandex-map.component';
+import { Services } from '../../services/vacancy.service';
 
 @Component({
   selector: 'app-map',
@@ -139,7 +140,7 @@ export class MapComponent implements OnInit, OnDestroy {
         const workHoursText = isWorking ? 'Круглосуточно' : 'Пн-Пт: 08:00-17:00, Сб: 08:00-12:00'; // Задаем реальный график
         const statusClass = isWorking ? 'status--open' : 'status--closed'; // Здесь нужна логика проверки текущего времени
         const entityItems: TerminalItem[] = [];
-        const entityServices: TerminalItem[] = [];
+        const entityServices: Services[] = [];
         return {
           id: item.id,
           // --- ГЛАВНОЕ ИСПРАВЛЕНИЕ ---

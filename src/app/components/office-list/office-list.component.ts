@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs'; // Важно для отписки
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RegionService } from '../../api/region.service';
-import { regionList } from '../../models/region.model';
+import { Atm, Office, Terminal, regionList } from '../../models/region.model';
 
 import { Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 export interface regionList1 {
@@ -38,7 +38,7 @@ export class OfficeListComponent implements OnInit, OnDestroy {
 
   // --- Данные ---
   public regionList: regionList[] = [];
-  public combinedData: any[] = [];
+  public combinedData: Atm[] | Terminal[] | Office[] = [];
 
   // --- Свойства для отображения ---
   public selectedObjectTypeName = '';

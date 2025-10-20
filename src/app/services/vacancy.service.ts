@@ -10,6 +10,11 @@ export interface Vacancy {
   skillsAndKnowledge?: string[];
   personalQualities?: string[];
 }
+export interface Services {
+  id: number;
+  name: string;
+  sort_id: string;
+}
 
 export interface Category {
   id: number;

@@ -1,13 +1,25 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularYandexMapsModule, YaReadyEvent } from 'angular8-yandex-maps';
+import { TerminalItem } from '../../models/region.model';
+import { Services } from '../../services/vacancy.service';
 
 // declare const ymaps: any;
 
 export interface IMapPoint {
   id: number | string;
   geometry: { type: 'Point'; coordinates: number[] };
-  properties: { type: 'atm' | 'terminal' | 'office' | 'office_inactive' };
+  properties: {
+    type: 'atm' | 'terminal' | 'office' | 'office_inactive';
+    title: string;
+    address: string;
+    workHours: string;
+    statusClass: string;
+    iconSrc: string;
+    // Добавим поле для боковой панели
+    items: TerminalItem[];
+    services: Services[];
+  };
 }
 
 @Component({
