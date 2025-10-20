@@ -1,58 +1,55 @@
 @import '../../../styles/variables.scss';
-.cards{
-    margin: none;
-   padding:3% 5% ;
-   background-color: #f8f9fa;
-    h1{
+.cards {
+  margin: none;
+  padding: 3% 5%;
+  background-color: #f8f9fa;
+  h1 {
     font-size: $font-size-h2;
     line-height: $line-height-h2;
     font-weight: 700;
-  margin-bottom: 25px;
-}
-    .btnCards{
-
+    margin-bottom: 25px;
+  }
+  .btnCards {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
-    button{
-        border-radius: 53px;
-        padding:14px 28px;
-        background-color: white;
-        border: none;
-        cursor: pointer;
+    button {
+      border-radius: 53px;
+      padding: 14px 28px;
+      background-color: white;
+      border: none;
+      cursor: pointer;
 
-        color: #141A20;
-        font-size: 17px;
-        font-weight: 500;
+      color: #141a20;
+      font-size: 17px;
+      font-weight: 500;
 
-        @media (max-width: 1024px) {
-            padding:10px 20px;
-         }
-        &.active {
-          background-color: #00B06C;
-          color: white;
-        }
-        
+      @media (max-width: 1024px) {
+        padding: 10px 20px;
+      }
+      &.active {
+        background-color: #00b06c;
+        color: white;
+      }
     }
-    
-    }
+  }
 
-.card-container {
-   position: relative;
-            margin: 30px 0 0;
-        box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-       
-        background-color: white;
-        border-radius: 24px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-@media (max-width: 1024px) {
-  // 1. Превращаем контейнер в вертикальный flex-бокс, а не просто block
-  display: flex;
-  flex-direction: column;
-  padding: 29px 30px; // Немного скорректируем боковые отступы для мобильных
-}
+  .card-container {
+    position: relative;
+    margin: 30px 0 0;
+    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+
+    background-color: white;
+    border-radius: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 1024px) {
+      // 1. Превращаем контейнер в вертикальный flex-бокс, а не просто block
+      display: flex;
+      flex-direction: column;
+      padding: 29px 30px; // Немного скорректируем боковые отступы для мобильных
+    }
     .card-info {
       width: 50%;
       padding: 62px 76px;
@@ -61,68 +58,66 @@ align-items: center;
         padding: 0;
         // 2. Блок с текстом теперь будет вторым по порядку
         order: 2;
-        
       }
-  
+
       .card-title {
         font-size: 30px;
         font-weight: bold;
         margin-bottom: 10px;
       }
-  
+
       .card-description {
         font-size: 18px;
-        color:  #475569;
+        color: #475569;
         font-weight: 500;
         margin-bottom: 20px;
         line-height: 23px;
       }
-  
+
       .card-details {
         display: grid;
         grid-template-columns: 1fr 1fr;
         justify-content: space-between;
         margin: 45px 0;
         @media (max-width: 768px) {
-            display: block;
-         }
+          display: block;
+        }
         .currency-info,
         .service-info {
           width: 90%;
-      
+
           .title {
             font-weight: 700;
             font-size: 24px;
             margin-bottom: 5px;
             @media (max-width: 768px) {
-             margin-top: 20px ;
-           }
+              margin-top: 20px;
+            }
           }
-  
+
           .description {
             color: #475569;
             font-size: 16px;
           }
         }
       }
-  
-  .card-buttons {
+
+      .card-buttons {
         display: flex;
         gap: 15px;
-       margin-top: 25px;
-       @media (max-width: 1024px) {
-        flex-direction: column; // Лучше чем block для кнопок
-        gap: 10px;
-      }
-     button{
+        margin-top: 25px;
         @media (max-width: 1024px) {
+          flex-direction: column; // Лучше чем block для кнопок
+          gap: 10px;
+        }
+        button {
+          @media (max-width: 1024px) {
             width: 100%;
             margin-bottom: 30px;
           }
-
-     }
+        }
         .btn-primary {
-          background-color: #00B06C;
+          background-color: #00b06c;
           color: #fff;
           border: none;
           padding: 19px 50px;
@@ -130,10 +125,10 @@ align-items: center;
           cursor: pointer;
           font-size: 14px;
         }
-  
+
         .btn-secondary {
           background-color: transparent;
-          color: #00B06C;
+          color: #00b06c;
           border: none;
           padding: 19px 50px;
           cursor: pointer;
@@ -141,23 +136,23 @@ align-items: center;
         }
       }
     }
-  
+
     .card-image {
       width: 50%;
-      align-self: flex-end; 
-      
+      align-self: flex-end;
+
       @media (max-width: 1024px) {
         width: 100%;
         // 3. Блок с картинкой теперь будет первым
         order: 1;
         // 4. Добавляем отступ снизу, чтобы отделить картинку от текста
-        margin-bottom: 25px; 
+        margin-bottom: 25px;
       }
       @media (max-width: 1320px) {
         // align-self: center;
       }
 
-      img{
+      img {
         width: 100%;
         border-radius: 24px;
         display: flex;
@@ -168,13 +163,13 @@ align-items: center;
 
   .faq-container {
     padding: 20px 0;
-  
+
     .faq-title {
       font-size: 32px;
       font-weight: 700;
       margin: 40px 0;
     }
-  
+
     .faq-item {
       margin-bottom: 20px;
       border-radius: 12px;
@@ -182,7 +177,7 @@ align-items: center;
       padding: 15px 30px;
       background-color: #fff;
     }
-  
+
     .faq-question {
       display: flex;
       justify-content: space-between;
@@ -190,18 +185,17 @@ align-items: center;
       cursor: pointer;
       font-size: 18px;
       font-weight: 500;
-  gap: 20px;
+      gap: 20px;
       .faq-icon {
         font-size: 24px;
         font-weight: 500;
       }
     }
-  
+
     .faq-answer {
       margin-top: 10px;
       font-size: 16px;
       color: #555;
     }
   }
-  
-    }
+}

@@ -2,8 +2,8 @@
   <div class="card-container">
     <div class="card-info">
       <!-- Динамические данные -->
-      <h2 class="card-title">{{tenderDetailData.name}}</h2>
-      <p class="card-description">{{tenderDetailData.start_date}}</p>
+      <h2 class="card-title">{{ tenderDetailData.name }}</h2>
+      <p class="card-description">{{ tenderDetailData.start_date }}</p>
     </div>
   </div>
 
@@ -14,31 +14,33 @@
       <div class="tender-card tender-description-card">
         <div *ngFor="let item of processedTenderInfo">
           <h2>{{ item.title }}</h2>
-          
+
           <!-- Выводим каждый параграф с новой строки -->
           <div *ngFor="let paragraph of item.paragraphs" class="description-paragraph subtitle">
             {{ paragraph }}
           </div>
         </div>
       </div>
-  
+
       <!-- Карточка с документацией (под основной) -->
       <div class="tender-card tender-document-card">
-        <img src="../../../assets/icons/файл.png" [alt]="'alt.pdfIcon' | translate" class="pdf-icon">
-        <a [href]="imageUrl+tenderDetailData.upload_file" class="document-link">{{ 'tenderDetails.documentationLink' | translate }}</a>
+        <img src="../../../assets/icons/файл.png" [alt]="'alt.pdfIcon' | translate" class="pdf-icon" />
+        <a [href]="imageUrl + tenderDetailData.upload_file" class="document-link">{{
+          'tenderDetails.documentationLink' | translate
+        }}</a>
       </div>
     </div>
-  
+
     <!-- Правая колонка (сайдбар с метаданными) -->
     <div class="tender-sidebar-column">
       <div class="tender-card tender-metadata-card">
         <div class="metadata-item">
           <span class="label">{{ 'tenderDetails.meta.startDate' | translate }}</span>
-          <span class="value" >{{tenderDetailData.start_date}}</span>
+          <span class="value">{{ tenderDetailData.start_date }}</span>
         </div>
         <div class="metadata-item">
           <span class="label">{{ 'tenderDetails.meta.endDate' | translate }}</span>
-          <span class="value">{{tenderDetailData.end_date}}</span>
+          <span class="value">{{ tenderDetailData.end_date }}</span>
         </div>
         <!-- <div class="metadata-item" *ngIf="tenderDetailData.responsible_person">
           <span class="label">{{ 'tenderDetails.meta.responsiblePerson' | translate }}</span>
@@ -46,21 +48,27 @@
         </div> -->
         <div class="metadata-item">
           <span class="label">{{ 'tenderDetails.meta.phoneNumber' | translate }}</span>
-          <a [href]="'tel:'+tenderDetailData.phone_number" class="value">{{tenderDetailData.phone_number}}</a>
+          <a [href]="'tel:' + tenderDetailData.phone_number" class="value">{{ tenderDetailData.phone_number }}</a>
         </div>
         <div class="metadata-item">
           <span class="label">{{ 'tenderDetails.meta.emailAddress' | translate }}</span>
-          <a [href]="'mailto:'+ tenderDetailData.email " class="value">{{tenderDetailData.email}}</a>
+          <a [href]="'mailto:' + tenderDetailData.email" class="value">{{ tenderDetailData.email }}</a>
         </div>
         <div class="metadata-item">
           <span class="label">{{ 'tenderDetails.meta.statusLabel' | translate }}</span>
           <span class="value">
-            <span class="status-badge"
-                  [ngClass]="{
-                    'status-open': tenderDetailData.status === 'open',
-                    'status-completed': tenderDetailData.status === 'close'
-                  }">
-              {{ tenderDetailData.status === 'open' ? ('tenderDetails.status.open' | translate) : ('tenderDetails.status.closed' | translate) }}
+            <span
+              class="status-badge"
+              [ngClass]="{
+                'status-open': tenderDetailData.status === 'open',
+                'status-completed': tenderDetailData.status === 'close',
+              }"
+            >
+              {{
+                tenderDetailData.status === 'open'
+                  ? ('tenderDetails.status.open' | translate)
+                  : ('tenderDetails.status.closed' | translate)
+              }}
             </span>
           </span>
         </div>

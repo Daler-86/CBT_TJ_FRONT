@@ -3,10 +3,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'splitByDash',
-  standalone: true
+  standalone: true,
 })
 export class SplitByDashPipe implements PipeTransform {
-
   transform(value: string | null | undefined): string[] {
     if (!value) {
       return []; // Если на входе пусто, возвращаем пустой массив
@@ -16,7 +15,6 @@ export class SplitByDashPipe implements PipeTransform {
     const parts = value.split('-');
 
     // Убираем пустые элементы и возвращаем готовый массив
-    return parts.filter(part => part.trim() !== '');
+    return parts.filter((part) => part.trim() !== '');
   }
-
 }

@@ -1,121 +1,112 @@
 @import '../../../styles/variables.scss';
-.footer{
+.footer {
+  padding: 20px 5%;
+  background-color: white;
+  color: #141a20;
+  font-size: 16px;
+  line-height: 30px;
+  .box_1 {
+    display: flex;
 
-    padding: 20px 5%;
-    background-color: white;
-    color: #141A20;
-    font-size: 16px;
-    line-height: 30px;
-    .box_1{
-        display: flex;
-     
-        justify-content: space-between;
-        align-items: center;
-        
-        .contact{
-           
-            display: flex;
-            gap: 60px;
-            justify-content: end;
-            text-align: end;
-            h4{
-                font-size: $font-size-h5;
-                line-height: $line-height-h5;
-                font-weight: 700;
-                       }
-                       p{
-                        font-size: $font-size-body-large;
-                        line-height: $line-height-body-large;
-                        color: #64748B;
-                       }
-            @media (max-width: 1024px) {
-             
-              h4{
-                font-size: $font-size-body-large;
-              }
-              p{
-                font-size: $font-size-body-medium;
-              }
-         
-              
-            }
-            @media (max-width: 768px) {
-                flex-wrap: wrap;
-                justify-content: center;
-                
-            }
+    justify-content: space-between;
+    align-items: center;
 
-          
+    .contact {
+      display: flex;
+      gap: 60px;
+      justify-content: end;
+      text-align: end;
+      h4 {
+        font-size: $font-size-h5;
+        line-height: $line-height-h5;
+        font-weight: 700;
+      }
+      p {
+        font-size: $font-size-body-large;
+        line-height: $line-height-body-large;
+        color: #64748b;
+      }
+      @media (max-width: 1024px) {
+        h4 {
+          font-size: $font-size-body-large;
         }
-          @media (max-width: 768px) {
-            flex-wrap: wrap;
-                // flex-direction: column;
-              gap: 20px;
-                justify-content: center;
-           a{
-            img{
-                width: 200px;
-            }
-           }
-            }
-    }
-    .box_2{
-        padding: 20px 0 ;
-        border: 1px solid #E2E8F0;
-        border-right: 0px;
-        border-left: 0px;
-        display: flex;
+        p {
+          font-size: $font-size-body-medium;
+        }
+      }
+      @media (max-width: 768px) {
         flex-wrap: wrap;
-        gap: 20px;
-        justify-content: space-between;
-        align-items: first baseline;
-        .navbar{
-            width: 70%;
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            @media (max-width: 1024px) {
-            //    flex-wrap: wrap;
-               display: contents;
-            }
-            div{
-                display: flex;
-                flex-direction: column;
-            a,p{
-            text-decoration: none;
-            color: #475569;
-            margin: 7px 0;
-            font-weight: 500;
-            font-size: $font-size-body-medium;
-            line-height: $line-height-body-medium;
-          }
-          .p{
-            color: $color-text;
-            font-weight: 700;
-          }
-          a{
-            cursor: pointer;
-          }
-        }
-        }
-        .sotset{
-            justify-self: end;
-        
-            display: flex;
-
-            justify-content: space-between;
-            gap: 10px;
-           a{
-            img{
-                width: 100%;
-                cursor: pointer;
-            }
-           }
-
-            
-        }
+        justify-content: center;
+      }
     }
-    .box_3{
-        padding: 20px 0;
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      // flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      a {
+        img {
+          width: 200px;
+        }
+      }
     }
+  }
+  .box_2 {
+    padding: 20px 0;
+    border: 1px solid #e2e8f0;
+    border-right: 0px;
+    border-left: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: first baseline;
+    .navbar {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      @media (max-width: 1024px) {
+        //    flex-wrap: wrap;
+        display: contents;
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+        a,
+        p {
+          text-decoration: none;
+          color: #475569;
+          margin: 7px 0;
+          font-weight: 500;
+          font-size: $font-size-body-medium;
+          line-height: $line-height-body-medium;
+        }
+        .p {
+          color: $color-text;
+          font-weight: 700;
+        }
+        a {
+          cursor: pointer;
+        }
+      }
+    }
+    .sotset {
+      justify-self: end;
+
+      display: flex;
+
+      justify-content: space-between;
+      gap: 10px;
+      a {
+        img {
+          width: 100%;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .box_3 {
+    padding: 20px 0;
+  }
 }

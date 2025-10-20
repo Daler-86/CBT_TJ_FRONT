@@ -1,13 +1,12 @@
 // Переменные
-$primary-color: #00B06C;
+$primary-color: #00b06c;
 $text-primary: #212529;
 $text-secondary: #555;
 $background-light: #f8f9fa;
 $border-color: #e9ecef;
 
-
 .info-page-container {
-  background-color: #F7F8FA;
+  background-color: #f7f8fa;
   padding: 3% 5%;
 
   @media (max-width: 768px) {
@@ -59,7 +58,7 @@ $border-color: #e9ecef;
       }
 
       button {
-        background-color: #00B06C;
+        background-color: #00b06c;
         padding: 19px 50px;
         border: none;
         border-radius: 6px;
@@ -149,7 +148,7 @@ $border-color: #e9ecef;
         }
 
         p {
-          color: #666F8D;
+          color: #666f8d;
           font-size: 20px;
 
           @media (max-width: 768px) {
@@ -205,7 +204,7 @@ $border-color: #e9ecef;
         }
 
         p {
-          color: #666F8D;
+          color: #666f8d;
           font-size: 20px;
 
           @media (max-width: 768px) {
@@ -238,7 +237,7 @@ $border-color: #e9ecef;
         background-color: white;
         border: none;
         cursor: pointer;
-        color: #141A20;
+        color: #141a20;
         font-size: 17px;
         font-weight: 500;
 
@@ -252,7 +251,7 @@ $border-color: #e9ecef;
         }
 
         &.active {
-          background-color: #00B06C;
+          background-color: #00b06c;
           color: white;
         }
       }
@@ -299,7 +298,7 @@ $border-color: #e9ecef;
         .info-title {
           width: 70%;
           font-weight: bold;
-          color: #141A20;
+          color: #141a20;
           font-size: 18px;
 
           @media (max-width: 768px) {
@@ -440,7 +439,7 @@ $border-color: #e9ecef;
         }
 
         p {
-          color: #666F8D;
+          color: #666f8d;
           padding-top: 80px;
           font-size: 20px;
           text-align: center; // Center text for better readability

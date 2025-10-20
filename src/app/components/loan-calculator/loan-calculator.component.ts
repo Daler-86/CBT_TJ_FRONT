@@ -1,5 +1,5 @@
-import { Component, OnInit, inject,OnChanges, Input , SimpleChanges  } from '@angular/core';
-import { CalculatorData, LoanCalculationResult, LoanConditionsData } from '../../models/calculate.model';
+import { Component, OnInit, inject, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { LoanCalculationResult, LoanConditionsData } from '../../models/calculate.model';
 import { LoanService } from '../../services/loan.service';
 import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,36 +10,41 @@ type Currency = 'tjs' | 'usd';
 @Component({
   selector: 'app-loan-calculator',
   standalone: true,
-  imports:  [CommonModule, FormsModule, CurrencyPipe, PercentPipe,ScrollToDirective, TranslateModule],
+  imports: [CommonModule, FormsModule, CurrencyPipe, PercentPipe, ScrollToDirective, TranslateModule],
   templateUrl: './loan-calculator.component.html',
-  styleUrl: './loan-calculator.component.scss'
+  styleUrl: './loan-calculator.component.scss',
 })
-export class LoanCalculatorComponent implements OnChanges{
+export class LoanCalculatorComponent implements OnChanges, OnInit {
   @Input() conditionsData?: LoanConditionsData[];
-  @Input() showApplyButton: boolean = false;
-  loanAmount: any = 0;
-  loanTerm: number = 0;
-  interestRatePercent: number = 0;
-  
+  @Input() showApplyButton = false;
+  loanAmount = 0;
+  loanTerm = 0;
+  interestRatePercent = 0;
+
   selectedCurrency: Currency = 'tjs';
   availableCurrencies: Currency[] = [];
-  
-  minAmount = 0; maxAmount = 0; stepAmount = 100;
-  minTerm = 0; maxTerm = 0; stepTerm = 1;
-  minRate = 0; maxRate = 0;
-  
+
+  minAmount = 0;
+  maxAmount = 0;
+  stepAmount = 100;
+  minTerm = 0;
+  maxTerm = 0;
+  stepTerm = 1;
+  minRate = 0;
+  maxRate = 0;
+
   amountLabels: string[] = [];
   termLabels: string[] = [];
   rateLabels: string[] = [];
-  
+
   loanAmountPercent = '0%';
   loanTermPercent = '0%';
   ratePercent = '0%';
 
   calculationResult: LoanCalculationResult | null = null;
-  isEditingAmount: boolean = false;
-  
-  constructor(private loanService: LoanService, private scrollService:ScrollService) {}
+  isEditingAmount = false;
+  private loanService = inject(LoanService);
+  private scrollService = inject(ScrollService);
 
   ngOnInit(): void {
     if (!this.conditionsData) {
@@ -56,18 +61,17 @@ export class LoanCalculatorComponent implements OnChanges{
   setupOrUpdate(): void {
     if (this.conditionsData && this.conditionsData.length > 0) {
       // РЕЖИМ ПРОДУКТА
-      this.availableCurrencies = this.conditionsData.map(c => c.currency);
-      if(!this.availableCurrencies.includes(this.selectedCurrency)) {
+      this.availableCurrencies = this.conditionsData.map((c) => c.currency);
+      if (!this.availableCurrencies.includes(this.selectedCurrency)) {
         this.selectedCurrency = this.availableCurrencies[0];
       }
-      const conditions = this.conditionsData.find(c => c.currency === this.selectedCurrency)!;
+      const conditions = this.conditionsData.find((c) => c.currency === this.selectedCurrency)!;
       this.minAmount = conditions.min_amount;
       this.maxAmount = conditions.max_amount;
       this.minTerm = conditions.min_month;
       this.maxTerm = conditions.max_month;
       this.minRate = conditions.min_percentage;
       this.maxRate = conditions.max_percentage;
-      
     } else {
       // РЕЖИМ ПО УМОЛЧАНИЮ
       this.availableCurrencies = ['tjs', 'usd'];
@@ -78,7 +82,6 @@ export class LoanCalculatorComponent implements OnChanges{
       this.maxTerm = conditions.maxTerm;
       this.minRate = conditions.minRate;
       this.maxRate = conditions.maxRate;
-    
     }
 
     this.loanAmount = this.minAmount;
@@ -97,11 +100,17 @@ export class LoanCalculatorComponent implements OnChanges{
 
   recalculate(): void {
     let numericAmount = parseInt(String(this.loanAmount).replace(/\D/g, ''));
-    if (isNaN(numericAmount)) { numericAmount = this.minAmount; }
-    
+    if (isNaN(numericAmount)) {
+      numericAmount = this.minAmount;
+    }
+
     if (!this.isEditingAmount) {
-      if (numericAmount > this.maxAmount) { numericAmount = this.maxAmount; }
-      if (numericAmount < this.minAmount) { numericAmount = this.minAmount; }
+      if (numericAmount > this.maxAmount) {
+        numericAmount = this.maxAmount;
+      }
+      if (numericAmount < this.minAmount) {
+        numericAmount = this.minAmount;
+      }
     }
     this.loanAmount = numericAmount;
 
@@ -113,10 +122,10 @@ export class LoanCalculatorComponent implements OnChanges{
       term: this.loanTerm,
       annualRate: this.interestRatePercent / 100,
     });
-    
+
     this.updateVisuals();
   }
-  
+
   startEditing(): void {
     this.isEditingAmount = true;
   }
@@ -125,10 +134,17 @@ export class LoanCalculatorComponent implements OnChanges{
     this.isEditingAmount = false;
     this.recalculate();
   }
-  
+
   updateVisuals(): void {
-    this.loanAmountPercent = (this.maxAmount > this.minAmount) ? `${((this.loanAmount - this.minAmount) / (this.maxAmount - this.minAmount)) * 100}%` : '0%';
-    this.loanTermPercent = (this.maxTerm > this.minTerm) ? `${((this.loanTerm - this.minTerm) / (this.maxTerm - this.minTerm)) * 100}%` : '0%';
-    this.ratePercent = (this.maxRate > this.minRate) ? `${((this.interestRatePercent - this.minRate) / (this.maxRate - this.minRate)) * 100}%` : '0%';
+    this.loanAmountPercent =
+      this.maxAmount > this.minAmount
+        ? `${((this.loanAmount - this.minAmount) / (this.maxAmount - this.minAmount)) * 100}%`
+        : '0%';
+    this.loanTermPercent =
+      this.maxTerm > this.minTerm ? `${((this.loanTerm - this.minTerm) / (this.maxTerm - this.minTerm)) * 100}%` : '0%';
+    this.ratePercent =
+      this.maxRate > this.minRate
+        ? `${((this.interestRatePercent - this.minRate) / (this.maxRate - this.minRate)) * 100}%`
+        : '0%';
   }
 }

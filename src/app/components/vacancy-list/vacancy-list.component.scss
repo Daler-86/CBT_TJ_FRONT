@@ -1,140 +1,135 @@
 .vacancies-container {
-    padding:3% 5%;
-    background-color: #f8f9fa;
-  
-    h1 {
-     font-size: 42px;
-     font-weight: 700;
-      margin-bottom: 20px;
-      color: #141A20;
+  padding: 3% 5%;
+  background-color: #f8f9fa;
+
+  h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #141a20;
+  }
+
+  .vacancies-list {
+    padding: 20px 0;
+
+    display: grid;
+    grid-template-columns: 30% 60%;
+    justify-content: space-between;
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
     }
-  
-    .vacancies-list {
-      padding: 20px 0;
 
-      display: grid;
-      grid-template-columns: 30% 60%;
-      justify-content: space-between;
-      @media (max-width: 1024px) {
-       grid-template-columns: 1fr;
-      }
-  
-      .vacancy-filter {
-       
-        gap: 15px;
-        margin-bottom: 20px;
-        p{
+    .vacancy-filter {
+      gap: 15px;
+      margin-bottom: 20px;
+      p {
         color: #475569;
         padding: 15px;
-        }
-  
-        form {
-         box-shadow: 0px 4px 20px 0px #AFAFAF2E;
-         border-radius: 14px;
-         display: flex;
-         flex-direction: column; 
-   background-color: #fff;
+      }
+
+      form {
+        box-shadow: 0px 4px 20px 0px #afafaf2e;
+        border-radius: 14px;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
         padding: 25px 40px;
-          label {
-            font-weight: bold;
-          }
-  
-          select {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #fff;
-  
-            &:focus {
-              border-color: #007bff;
-              outline: none;
-            }
+        label {
+          font-weight: bold;
+        }
+
+        select {
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: #fff;
+
+          &:focus {
+            border-color: #007bff;
+            outline: none;
           }
         }
       }
-  
-      .vacancy-items {
-      p{
+    }
+
+    .vacancy-items {
+      p {
         color: #475569;
         padding: 15px;
-        }
-        .vacancy-item {
-          margin-bottom: 25px;
-          padding: 25px 40px;
-          background-color: #fff;
+      }
+      .vacancy-item {
+        margin-bottom: 25px;
+        padding: 25px 40px;
+        background-color: #fff;
         border-radius: 24px;
-        box-shadow: 0px 4px 20px 0px #AFAFAF2E;
+        box-shadow: 0px 4px 20px 0px #afafaf2e;
 
-  
-       
-  
-          a {
-        color: #141A20;
-            text-decoration: none;
-            display: block; // Make the whole row clickable
-      font-size: 24px;
-      font-weight: 700;
-            &:hover {
-              text-decoration: underline;
-            }
+        a {
+          color: #141a20;
+          text-decoration: none;
+          display: block; // Make the whole row clickable
+          font-size: 24px;
+          font-weight: 700;
+          &:hover {
+            text-decoration: underline;
           }
-          .city{
+        }
+        .city {
           display: flex;
           justify-content: space-between;
           align-items: end;
-          .city-location{
-          display: flex;
-        
-          align-items: center;
-          gap: 5px;
-          padding: 5px 20px;
-          background-color:#F7F8FA ;
-          border-radius: 46px;
-          p{
-            padding: 0px
+          .city-location {
+            display: flex;
+
+            align-items: center;
+            gap: 5px;
+            padding: 5px 20px;
+            background-color: #f7f8fa;
+            border-radius: 46px;
+            p {
+              padding: 0px;
+            }
           }
         }
       }
     }
   }
-}
-.pagination {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-button {
-
-  border: 1.55px solid #E3E6EA;
-  background-color: white;
-  cursor: pointer;
-  color: #353E5C;
-  box-sizing: border-box;
-  font-size: 18px;
-  width: 50px; /* Установите нужный размер */
-  height: 50px; /* Ширина и высота одинаковые для круга */
-  border-radius: 50%; /* Делает кнопку круглой */
-  display: flex; /* Для центрирования текста */
-  align-items: center; /* Вертикальное выравнивание */
-  justify-content: center; /* Горизонтальное выравнивание */
-
-  background-color: white; /* Фон кнопки */
-  cursor: pointer; /* Указатель при наведении */
-
-  transition: background-color 0.3s ease; 
-}
-
-button.active {
-  background-color: #00B06C;
-  color: white;
-  font-weight: bold;
-  border: none;
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
+  .pagination {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
   }
+
+  button {
+    border: 1.55px solid #e3e6ea;
+    background-color: white;
+    cursor: pointer;
+    color: #353e5c;
+    box-sizing: border-box;
+    font-size: 18px;
+    width: 50px; /* Установите нужный размер */
+    height: 50px; /* Ширина и высота одинаковые для круга */
+    border-radius: 50%; /* Делает кнопку круглой */
+    display: flex; /* Для центрирования текста */
+    align-items: center; /* Вертикальное выравнивание */
+    justify-content: center; /* Горизонтальное выравнивание */
+
+    background-color: white; /* Фон кнопки */
+    cursor: pointer; /* Указатель при наведении */
+
+    transition: background-color 0.3s ease;
+  }
+
+  button.active {
+    background-color: #00b06c;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

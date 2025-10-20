@@ -1,25 +1,20 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
+import { CommonModule, PercentPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InstallmentResult } from '../../models/calculate.model';
 import { InstallmentService } from '../../services/installment.service';
 import { TranslateModule } from '@ngx-translate/core';
 
-// Модель для результатов расчета
-interface InstallmentCalculationResult {
-  monthlyPayment: number;
-  totalPayment: number;
-  interestRate: number;
-}
 @Component({
   selector: 'app-installment-calculate',
   standalone: true,
-  imports: [CommonModule, FormsModule,  PercentPipe, TranslateModule],
+  imports: [CommonModule, FormsModule, PercentPipe, TranslateModule],
   templateUrl: './installment-calculate.component.html',
-  styleUrl: './installment-calculate.component.scss'
+  styleUrl: './installment-calculate.component.scss',
 })
-export class InstallmentCalculateComponent implements OnInit { // <-- Возвращаем OnInit
- 
+export class InstallmentCalculateComponent implements OnInit {
+  // <-- Возвращаем OnInit
+
   private installmentService = inject(InstallmentService);
 
   // --- Условия ---
@@ -28,57 +23,63 @@ export class InstallmentCalculateComponent implements OnInit { // <-- Возвр
   availableTerms: number[] = [];
 
   // --- Состояние формы ---
-  loanAmount: number = 10000;
-  loanTerm: number = 12;
+  loanAmount = 10000;
+  loanTerm = 12;
 
   // --- Визуальные свойства ---
   loanAmountPercent = '0%';
   amountLabels: string[] = [];
 
   // === НОВЫЙ ФЛАГ ДЛЯ УМНОГО ИНПУТА ===
-  isEditingAmount: boolean = false;
+  isEditingAmount = false;
 
   // --- Результат расчета ---
   calculationResult: InstallmentResult | null = null;
-  
-  constructor() {}
 
   ngOnInit(): void {
     const conditions = this.installmentService.getConditions();
     this.minAmount = conditions.minAmount;
     this.maxAmount = conditions.maxAmount;
     this.availableTerms = this.installmentService.getAvailableTerms();
-    this.amountLabels = [`${this.minAmount/1000} тыс.`, `${this.maxAmount/2} тыс.`, `${this.maxAmount/1000} тыс.`];
+    this.amountLabels = [
+      `${this.minAmount / 1000} тыс.`,
+      `${this.maxAmount / 2} тыс.`,
+      `${this.maxAmount / 1000} тыс.`,
+    ];
 
     if (!this.availableTerms.includes(this.loanTerm)) {
       this.loanTerm = this.availableTerms[0];
     }
-    
+
     this.recalculate();
   }
 
   onValueChange(): void {
     this.recalculate();
   }
-  
+
   recalculate(): void {
     // Валидация
-    if (!this.isEditingAmount) { // Валидируем, только если пользователь не вводит вручную
-        this.loanAmount = Math.max(this.minAmount, Math.min(this.loanAmount, this.maxAmount));
+    if (!this.isEditingAmount) {
+      // Валидируем, только если пользователь не вводит вручную
+      this.loanAmount = Math.max(this.minAmount, Math.min(this.loanAmount, this.maxAmount));
     }
 
     this.calculationResult = this.installmentService.calculate({
       amount: this.loanAmount,
       term: this.loanTerm,
     });
-    
+
     this.updateVisuals();
   }
-  
+
   updateVisuals(): void {
-    this.loanAmountPercent = (this.maxAmount > this.minAmount) ? `${((this.loanAmount - this.minAmount) / (this.maxAmount - this.minAmount)) * 100}%` : '0%';
+    this.loanAmountPercent =
+      this.maxAmount > this.minAmount
+        ? `${((this.loanAmount - this.minAmount) / (this.maxAmount - this.minAmount)) * 100}%`
+        : '0%';
   }
-  
+
   applyForInstallment(): void {
     alert('Ваша заявка на рассрочку отправлена!');
   }

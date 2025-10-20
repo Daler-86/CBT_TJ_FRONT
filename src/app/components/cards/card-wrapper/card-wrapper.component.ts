@@ -6,8 +6,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './card-wrapper.component.html',
-  styleUrl: './card-wrapper.component.scss'
+  styleUrl: './card-wrapper.component.scss',
 })
-export class CardWrapperComponent {
-
-}
+export class CardWrapperComponent {}

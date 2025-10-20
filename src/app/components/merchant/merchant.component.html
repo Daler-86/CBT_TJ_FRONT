@@ -1,7 +1,6 @@
 <!-- src/app/pages/merchant-list/merchant-list.component.html -->
 <!-- Контейнер всей страницы для общих отступов и фона -->
 <div class="page-container">
-
   <!-- Заголовок страницы -->
   <div class="page-header">
     <h1>{{ 'MERCHANTS_PAGE.TITLE' | translate }}</h1>
@@ -10,7 +9,6 @@
 
   <!-- Основной контент: фильтры + сетка -->
   <div class="content-wrapper">
-
     <!-- Блок с фильтрами (левая колонка) -->
     <div class="filters-panel">
       <div class="filter-controls">
@@ -36,12 +34,7 @@
         <div class="cashback-toggle">
           <label for="cashback">{{ 'MERCHANTS_PAGE.FILTERS.CASHBACKS' | translate }}</label>
           <label class="switch">
-            <input
-              type="checkbox"
-              id="cashback"
-              [(ngModel)]="filterHasCashback"
-              (change)="onFilterChange()"
-            />
+            <input type="checkbox" id="cashback" [(ngModel)]="filterHasCashback" (change)="onFilterChange()" />
             <span class="slider round"></span>
           </label>
         </div>
@@ -52,7 +45,7 @@
     <div class="merchants-grid">
       <div class="merchant-card" *ngFor="let merchant of merchants">
         <div class="card-logo-wrapper">
-          <img [src]="imageUrl+merchant.upload_file" [alt]="merchant.name" class="card-logo" />
+          <img [src]="imageUrl + merchant.upload_file" [alt]="merchant.name" class="card-logo" />
         </div>
         <h3 class="card-name">{{ merchant?.name }}</h3>
         <p class="card-phone">{{ merchant.phone }}</p>
@@ -60,25 +53,41 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Пагинация -->
   <div class="pagination-container" *ngIf="totalPages >= 1">
-    <button (click)="selectPage(1)" [disabled]="currentPage === 1" [title]="'common.pagination.firstPage' | translate">«</button>
-    <button (click)="prevPage()" [disabled]="currentPage === 1" [title]="'common.pagination.previousPage' | translate">‹</button>
-    
-    <button *ngFor="let page of pages" 
-            [class.active]="page === currentPage"
-            [disabled]="page === -1"
-            (click)="selectPage(page)">
+    <button (click)="selectPage(1)" [disabled]="currentPage === 1" [title]="'common.pagination.firstPage' | translate">
+      «
+    </button>
+    <button (click)="prevPage()" [disabled]="currentPage === 1" [title]="'common.pagination.previousPage' | translate">
+      ‹
+    </button>
+
+    <button
+      *ngFor="let page of pages"
+      [class.active]="page === currentPage"
+      [disabled]="page === -1"
+      (click)="selectPage(page)"
+    >
       {{ page === -1 ? '...' : page }}
     </button>
-  
-    <button (click)="nextPage()" [disabled]="currentPage === totalPages" [title]="'common.pagination.nextPage' | translate">›</button>
-    <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages" [title]="'common.pagination.lastPage' | translate">»</button>
+
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+      [title]="'common.pagination.nextPage' | translate"
+    >
+      ›
+    </button>
+    <button
+      (click)="selectPage(totalPages)"
+      [disabled]="currentPage === totalPages"
+      [title]="'common.pagination.lastPage' | translate"
+    >
+      »
+    </button>
   </div>
 
-  <app-simple-application-form 
-  [apiUrl]="merchantApiUrl"
-  [titleKey]="'FORMS.TITLES.MERCHANT'">
-</app-simple-application-form>
+  <app-simple-application-form [apiUrl]="merchantApiUrl" [titleKey]="'FORMS.TITLES.MERCHANT'">
+  </app-simple-application-form>
 </div>

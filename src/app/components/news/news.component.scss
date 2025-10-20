@@ -1,34 +1,31 @@
-$section-bg: #f8f9fa; // Фон секции (если он отличается от основного)
+$section-bg: #f8f9fa;
 $card-bg: #ffffff;
 $card-border-radius: 24px;
 $card-padding: 40px 45px;
-$card-gap: 30px; // Отступ между карточками
-$column-gap: 60px; // Отступ между текстом и картинкой
+$card-gap: 30px;
+$column-gap: 60px;
 
-$title-color: #00B06C; // Примерный зеленый цвет заголовка секции
-$subtitle-color: #666F8D; // Серый для подзаголовка
-$news-title-color: #020617; // Черный для заголовка новости
-$news-text-color: #353E5C; // Темно-серый для текста новости
+$title-color: #00b06c;
+$subtitle-color: #666f8d;
+$news-title-color: #020617;
+$news-text-color: #353e5c;
 
-// Основная секция
 .news-events-section {
-    padding:3% 5% ; // Вертикальные и горизонтальные отступы секции
-  background-color: $section-bg; // Если нужен фон
+  padding: 3% 5%;
+  background-color: $section-bg;
 }
 
-// Заголовок секции
 .section-header {
   text-align: center;
- background-color: white;
- padding: 90px 0;
- border-radius: 26px;
+  background-color: white;
+  padding: 90px 0;
+  border-radius: 26px;
 
   h1 {
-    font-size: 56px; // Размер главного заголовка
+    font-size: 56px;
     font-weight: 700;
     color: $title-color;
     margin-bottom: 10px;
-    
   }
 
   .subtitle {
@@ -38,194 +35,226 @@ $news-text-color: #353E5C; // Темно-серый для текста ново
   }
 }
 
-// Список новостей
 .news-list {
   display: flex;
   flex-direction: column;
   gap: $card-gap;
   margin: 60px 0;
+
   .pagination {
     display: flex;
     gap: 15px;
     align-items: center;
     justify-content: flex-end;
   }
-  
+
   button {
-  
-    border: 1.55px solid #E3E6EA;
+    border: 1.55px solid #e3e6ea;
     background-color: white;
     cursor: pointer;
-    color: #353E5C;
+    color: #353e5c;
     box-sizing: border-box;
     font-size: 18px;
-    width: 50px; /* Установите нужный размер */
-    height: 50px; /* Ширина и высота одинаковые для круга */
-    border-radius: 50%; /* Делает кнопку круглой */
-    display: flex; /* Для центрирования текста */
-    align-items: center; /* Вертикальное выравнивание */
-    justify-content: center; /* Горизонтальное выравнивание */
-  
-    background-color: white; /* Фон кнопки */
-    cursor: pointer; /* Указатель при наведении */
-  
-    transition: background-color 0.3s ease; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
-  
+
   button.active {
-    background-color: #00B06C;
+    background-color: #00b06c;
     color: white;
     font-weight: bold;
     border: none;
   }
-  
+
   button:disabled {
     cursor: not-allowed;
     opacity: 0.5;
   }
 }
 
-// Отдельная карточка новости
-.news-card {
-  display: flex;
-  background-color: $card-bg;
-  border-radius: $card-border-radius;
-  padding: $card-padding;
-  cursor: pointer;
-//   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  overflow: hidden;    // Чтобы скругленные углы картинки работали, если она вплотную
-  gap: $column-gap;    // Отступ между колонками текста и картинки
-  align-items: center; // Выравниваем контент по центру вертикально
+// --- КОРРЕКТИРОВКИ ДЛЯ news-card-link и news-card ---
+  .news-card {
+    .news-card-link {
+  display: contents; /* Важно: Делает элемент невидимым для раскладки, но его содержимое остается видимым. Позволяет стилям .news-card влиять на вид, а link остается кликабельным. */
+  text-decoration: none; /* Убираем подчеркивание */
+  color: inherit; /* Наследуем цвет текста от родителя (news-text-content), чтобы заголовок не был синим */
+  cursor: pointer; /* Курсор-указатель, чтобы показать, что это кликабельно */
+
+  /* Добавим стили для news-card здесь, чтобы они срабатывали при наведении на news-card-link */
+
+    display: flex;
+    background-color: $card-bg;
+    border-radius: $card-border-radius;
+    padding: $card-padding;
+    cursor: pointer; // Курсор уже задан на news-card-link
+ 
+    overflow: hidden;
+    gap: $column-gap;
+    align-items: center;
+
+
+  }
 }
+
+
 
 // Контент с текстом
 .news-text-content {
-  flex: 1 1 60%; // Занимает ~60% ширины и может сжиматься/растягиваться
+  flex: 1 1 60%;
 
   h2 {
     font-size: 30px;
     font-weight: 700;
-    color: $news-title-color;
+    color: $news-title-color; // Используем эту переменную для цвета заголовка
     margin-top: 0;
     margin-bottom: 20px;
     line-height: 1.3;
   }
 
-  // Если заголовок является ссылкой
-  .news-title-link {
-      text-decoration: none;
-      color: inherit; // Наследует цвет от h2
-   font-size: 30px;
-   font-weight: 700;
-  }
+  // Эту секцию `.news-title-link` можно удалить, так как весь `news-card-link`
+  // уже делает заголовок кликабельным, и мы наследуем цвет.
+  // .news-title-link {
+  //   text-decoration: none;
+  //   color: inherit;
+  //   font-size: 30px;
+  //   font-weight: 700;
+  // }
 
   p {
     font-size: 18px;
     color: $news-text-color;
     line-height: 1.6;
-    margin-bottom: 0; // Убираем нижний отступ у последнего параграфа
-  }
-
-  // Опциональная кнопка "Подробнее"
-  .read-more-btn {
-     display: inline-block;
-     margin-top: 15px;
-     padding: 8px 16px;
-     background-color: $title-color;
-     color: #fff;
-     text-decoration: none;
-     border-radius: 5px;
-     font-weight: 500;
-     transition: background-color 0.2s ease;
-
-     &:hover {
-         background-color: darken($title-color, 10%);
-     }
+    margin-bottom: 0;
   }
 }
 
 // Контейнер с картинкой
 .news-image-content {
-  flex: 1 0 30%; // Занимает ~40% ширины, не сжимается
-  max-width: 40%; // Жестко ограничиваем максимальную ширину
-  align-self: center; // Выравнивание по центру, если картинка меньше
+  flex: 1 0 45%;
+  // max-width: 40%;
+  align-self: center;
 
   img {
-    display: block; // Убирает лишний отступ снизу
-    width: 100%; // Картинка на всю ширину контейнера
-    height: auto; // Сохраняет пропорции
-    // Для одинаковой высоты картинок и обрезки:
-    // height: 250px; // Задать фиксированную высоту
-    // object-fit: cover; // Масштабирует и обрезает для заполнения
-    border-radius: 10px; // Скругляем углы картинки
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
   }
 }
 
-// Сообщение об отсутствии новостей
 .no-news-message {
-    text-align: center;
-    padding: 40px;
-    color: $subtitle-color;
-    font-size: 1.1rem;
+  text-align: center;
+  padding: 40px;
+  color: $subtitle-color;
+  font-size: 1.1rem;
 }
-
 
 // --- Адаптивность ---
 @media (max-width: 1024px) {
-    .news-card {
- 
-        // Можно оставить как есть или сделать картинку чуть меньше
-        .news-image-content {
-            // flex-basis: 35%;
-          
-        }
-    }
-     .section-header h1 {
-         font-size: 2rem;
-     }
-}
-
-
-@media (max-width: 1024px) {
-  .news-card {
+  .news-card-link .news-card {
     gap: 5px;
-    flex-direction: column; // Ставим колонки друг под другом
-    padding: 35px 45px; // Уменьшаем паддинги карточки
+    flex-direction: column;
+    padding: 35px 45px;
   }
 
   .news-text-content {
-    flex-basis: auto; // Сбрасываем flex-basis
+    flex-basis: auto;
     width: 100%;
-    order: 2; // Текст идет после картинки
+    order: 2;
   }
 
   .news-image-content {
-    flex-basis: auto; // Сбрасываем flex-basis
-    width: 80%; // Картинка на всю ширину
+    flex-basis: auto;
+    width: 80%;
     margin: auto;
     max-width: 100%;
-    margin-bottom: 20px; // Отступ снизу картинки
-    order: 1; // Картинка идет первой
-    align-self: stretch; // Растягиваем контейнер картинки
-
-     img {
-        // Можно задать максимальную высоту для мобильных
-        // max-height: 250px;
-        // object-fit: cover;
-        // width: 100%; // Уже есть
-     }
+    margin-bottom: 20px;
+    order: 1;
+    align-self: stretch;
   }
 
-   .section-header h1 {
-       font-size: 2rem;
-   }
-    .section-header .subtitle {
-       font-size: 1.2rem;
-    }
-    .news-text-content h2 {
-        font-size: 1.6rem;
-    }
+  .section-header h1 {
+    font-size: 2rem;
+  }
+  .section-header .subtitle {
+    font-size: 1.2rem;
+  }
+  .news-text-content h2 {
+    font-size: 1.6rem;
+  }
+}
 
-    
+@media (max-width: 768px) {
+  .news-events-section {
+    padding: 3% 2%;
+  }
 
+  .section-header {
+    padding: 60px 0;
+  }
+  .section-header h1 {
+    font-size: 40px;
+  }
+  .section-header .subtitle {
+    font-size: 20px;
+  }
+  .news-card-link .news-card {
+    padding: 25px 30px;
+  }
+  .news-text-content h2 {
+    font-size: 24px;
+  }
+  .news-text-content p {
+    font-size: 16px;
+  }
+  .news-image-content {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .news-events-section {
+    padding: 5% 10px;
+  }
+  .section-header {
+    padding: 40px 0;
+  }
+  .section-header h1 {
+    font-size: 32px;
+  }
+  .section-header .subtitle {
+    font-size: 18px;
+  }
+  .news-list {
+    margin: 30px 0;
+  }
+  .news-card-link .news-card {
+    padding: 20px;
+    gap: 20px;
+  }
+  .news-text-content h2 {
+    font-size: 20px;
+  }
+  .news-text-content p {
+    font-size: 14px;
+  }
+  .news-image-content {
+    max-width: 100%;
+  }
+  .pagination {
+    justify-content: center;
+    gap: 10px;
+    button {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+  }
 }

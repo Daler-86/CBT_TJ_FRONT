@@ -19,7 +19,7 @@
   <div
     class="features-container"
     *ngIf="cardContent"
-    [class]="{'type1': cardContent?.length % 3 == 0, 'type2': cardContent?.length % 2 == 0}"
+    [class]="{ type1: +cardContent.length % 3 === 0, type2: +cardContent.length % 2 === 0 }"
   >
     <div class="feature-card" *ngFor="let detail of cardContent">
       <div>
@@ -143,12 +143,28 @@
             <div
               class="dropdown-selected form-control"
               (click)="toggleDropdown()"
+              (keydown.enter)="toggleDropdown()"
+              (keydown.space)="toggleDropdown()"
+              tabindex="0"
+              role="button"
+              [attr.aria-expanded]="dropdownOpen"
+              aria-haspopup="listbox"
               [class.is-invalid]="office_id?.invalid && office_id?.touched"
             >
               {{ officeName }}
             </div>
-            <div class="dropdown-options" *ngIf="dropdownOpen">
-              <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption(item)">
+            <div class="dropdown-options" *ngIf="dropdownOpen" role="listbox">
+              <!-- Родительский контейнер для опций, если это listbox -->
+              <div
+                class="dropdown-option"
+                *ngFor="let item of offices"
+                (click)="selectOption(item)"
+                (keydown.enter)="selectOption(item)"
+                (keydown.space)="selectOption(item)"
+                [attr.aria-selected]="item.name === officeName"
+                tabindex="0"
+                role="option"
+              >
                 <p>{{ item.name }}</p>
               </div>
             </div>
@@ -178,7 +194,16 @@
   <div class="faq-container">
     <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
     <div *ngFor="let faq of faqs; let i = index" class="faq-item">
-      <div class="faq-question" (click)="toggleFaq(i)">
+      <div
+        class="faq-question"
+        (click)="toggleFaq(i)"
+        (keydown.enter)="toggleFaq(i)"
+        (keydown.space)="toggleFaq(i)"
+        tabindex="0"
+        role="button"
+        [attr.aria-expanded]="selectedFaqIndex === i"
+        [attr.aria-controls]="'faq-answer-' + i"
+      >
         <span>{{ faq.title }}</span>
         <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
       </div>

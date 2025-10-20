@@ -1,451 +1,432 @@
 @import '../../../styles/variables.scss';
-.main{
-    background: #fff;
-    padding: 20px 0;
-.home{
-.p{
-    font-size:$font-size-h4;
-    line-height: $line-height-h4;
-    font-weight: 700;
-    padding: 20px 5%;
-}
-.container_1 {
-    // Контейнер можно немного упростить
-    width: 90%; // Используем проценты для лучшей адаптивности
-
-    margin: 35px auto;
-  }
-  
-  .box_1 {
-    display: grid; 
-    gap: 24px; 
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
-  
-  // Стили для самой карточки
-  .box_1 > div { // или .card-item
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end; // Прижимаем контент к низу для единой линии текста
-    padding: 24px;
-    background-color: #F1F5F9;
-    border-radius: 16px;
-    cursor: pointer;
-    box-sizing: border-box;
-    text-align: center;
-    min-height: 180px; // Задаем минимальную высоту для выравнивания
-  
-    // Ваши стили для анимации сохранены
-    img {
-      transition: transform 0.3s ease;
-      transform: scale(1);
-      margin-bottom: 20px; // Отступ между картинкой и текстом
-      max-width: 150px; // Ограничиваем размер иконки
+.main {
+  background: #fff;
+  padding: 20px 0;
+  .home {
+    .p {
+      font-size: $font-size-h4;
+      line-height: $line-height-h4;
+      font-weight: 700;
+      padding: 20px 5%;
     }
-  
-    &:hover {
+    .container_1 {
+      // Контейнер можно немного упростить
+      width: 90%; // Используем проценты для лучшей адаптивности
+
+      margin: 35px auto;
+    }
+
+    .box_1 {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    // Стили для самой карточки
+    .box_1 > div {
+      // или .card-item
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end; // Прижимаем контент к низу для единой линии текста
+      padding: 24px;
+      background-color: #f1f5f9;
+      border-radius: 16px;
+      cursor: pointer;
+      box-sizing: border-box;
+      text-align: center;
+      min-height: 180px; // Задаем минимальную высоту для выравнивания
+
+      // Ваши стили для анимации сохранены
       img {
-        transform: scale(1.1);
+        transition: transform 0.3s ease;
+        transform: scale(1);
+        margin-bottom: 20px; // Отступ между картинкой и текстом
+        max-width: 150px; // Ограничиваем размер иконки
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 500;
+        color: #020617;
+
+        margin: 0;
       }
     }
-  
-    p {
-      font-size: 18px;
-      line-height: 24px;
-      font-weight: 500;
-      color: #020617;
-      
-      margin: 0; 
-    }
-  }
 
-.container_2{
-    width: 90%;
-    margin: auto;
-    padding: 20px 0; 
-       background-color: #f8f9fa;
-    display: grid;
+    .container_2 {
+      width: 90%;
+      margin: auto;
+      padding: 20px 0;
+      background-color: #f8f9fa;
+      display: grid;
 
-    grid-template-columns: 40% 55%;
-    @media (max-width: 1024px) {
-       display: block;
-    }
-    gap: 5%;
-    div{
+      grid-template-columns: 40% 55%;
+      @media (max-width: 1024px) {
+        display: block;
+      }
+      gap: 5%;
+      div {
         background-color: white;
         padding: 20px 0 0 30px;
         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    @media (max-width: 1024px) {
-        margin: 10px 0;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        @media (max-width: 1024px) {
+          margin: 10px 0;
+        }
+        p {
+          width: 70%;
+          font-weight: 700;
+          font-size: 24px;
+        }
+        img {
+          box-sizing: border-box;
+          align-self: self-end;
+        }
+      }
     }
-    p{
-        width: 70%;
-        font-weight: 700;
-        font-size: 24px;
-    }
-    img{
-        box-sizing: border-box;
-        align-self: self-end;
-   
-}
 
-}
-}
-
-.container_3{
-    .news{
-    padding: 60px 55px;
-    background-color: #fff;
-    border-radius: 26px;
-    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-
-}
-    // width: 90%;
-    padding: 2% 5%;
-    background-color: #f8f9fa;
-    .favri{
+    .container_3 {
+      .news {
+        padding: 60px 55px;
+        background-color: #fff;
+        border-radius: 26px;
+        box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+      }
+      // width: 90%;
+      padding: 2% 5%;
+      background-color: #f8f9fa;
+      .favri {
         display: flex;
         margin: 30px 0;
         background-color: white;
         justify-content: space-between;
         align-items: center;
-        padding: 30px 7% 0 ;
+        padding: 30px 7% 0;
         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
         border-radius: 16px;
         @media (max-width: 768px) {
-            flex-direction: column;
-            padding: 25px 35px 0 35px;
-            justify-content: center;
+          flex-direction: column;
+          padding: 25px 35px 0 35px;
+          justify-content: center;
         }
-       div{
-            width: 50%;
-         @media (max-width: 768px) {
-                width: 100%;
-                
-            }
-        }}
-       
-            h2{
-                font-size: $font-size-h3;
-                line-height: $line-height-h3;
-                font-weight: 700;
-                padding: 10px 0;
-          
-            }
-            p{
-                color: #64748B;
-                font-size: $font-size-body-large;
-                line-height: $line-height-body-large;
-                font-weight: 500;
-            }
-            .google{
-                margin: 20px 0;
-                display: flex;
-                gap: 20px;
-                @media (max-width: 1034px) {
-                  display: block;
-                    
-                  }
-                img{
-                    cursor: pointer;
-                }
-            }
-       
-        .phone{
+        div {
+          width: 50%;
+          @media (max-width: 768px) {
             width: 100%;
-            display: flex;
-            justify-content: end;
-            @media (max-width: 1024px) {
-               justify-content: center;
-                
-             }
-            img{
-                width:520px;
-                justify-self: end;
-                 @media (max-width: 1024px) {
-               justify-self: center;
-               width: 420px;
-                
-              }
-                
-            }
+          }
         }
+      }
 
-} 
-.container_4{
-    padding: 60px 55px;
-    background-color: #fff;
-    border-radius: 26px;
-    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+      h2 {
+        font-size: $font-size-h3;
+        line-height: $line-height-h3;
+        font-weight: 700;
+        padding: 10px 0;
+      }
+      p {
+        color: #64748b;
+        font-size: $font-size-body-large;
+        line-height: $line-height-body-large;
+        font-weight: 500;
+      }
+      .google {
+        margin: 20px 0;
+        display: flex;
+        gap: 20px;
+        @media (max-width: 1034px) {
+          display: block;
+        }
+        img {
+          cursor: pointer;
+        }
+      }
 
-    .box1{
+      .phone {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        @media (max-width: 1024px) {
+          justify-content: center;
+        }
+        img {
+          width: 520px;
+          justify-self: end;
+          @media (max-width: 1024px) {
+            justify-self: center;
+            width: 420px;
+          }
+        }
+      }
+    }
+    .container_4 {
+      padding: 60px 55px;
+      background-color: #fff;
+      border-radius: 26px;
+      box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+
+      .box1 {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 30px;
-        .p{
-            display: flex;
-            align-items: center;
-            padding: 0%;
-            gap: 5px;
+        .p {
+          display: flex;
+          align-items: center;
+          padding: 0%;
+          gap: 5px;
         }
-    }
-    .box2{
+      }
+      .box2 {
         display: flex;
         justify-content: space-between;
         gap: 38px;
         @media (max-width: 1034px) {
-         flex-wrap: wrap;
-          }
-
-        div{
-           padding: 20px 24px;
-           background-color: #F7F8FA;
-           border-radius: 22px;
-           display: flex;
-           flex-direction: column;
-           justify-content: space-between;
-            p{
-                padding: 15px 0;
-
-            }
-            h1{
-                padding: 20px 0;
-            }
-            h3{
-                width: 90%;
-                font-size: 24px;
-                font-weight: 700;
-            }
+          flex-wrap: wrap;
         }
+
+        div {
+          padding: 20px 24px;
+          background-color: #f7f8fa;
+          border-radius: 22px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          p {
+            padding: 15px 0;
+          }
+          h1 {
+            padding: 20px 0;
+          }
+          h3 {
+            width: 90%;
+            font-size: 24px;
+            font-weight: 700;
+          }
+        }
+      }
     }
-}
-.container_5{
-    display: flex;
-    padding: 30px 5% 55px ;
-    justify-content: space-between; 
-    background-color:  #f8f9fa;
-    align-items: stretch;
-  
-    gap: 2%;
-    @media (max-width: 1024px) {
+    .container_5 {
+      display: flex;
+      padding: 30px 5% 55px;
+      justify-content: space-between;
+      background-color: #f8f9fa;
+      align-items: stretch;
+
+      gap: 2%;
+      @media (max-width: 1024px) {
         display: block;
       }
-    .location{
+      .location {
         width: 53%;
         flex: 1;
-        box-shadow: 0px 4px 20px 0px #AFAFAF2E;
+        box-shadow: 0px 4px 20px 0px #afafaf2e;
 
         @media (max-width: 1024px) {
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-  }
-   
+          width: 100%;
+          box-sizing: border-box;
+          margin-bottom: 20px;
+        }
+
         background-image: url(../../../assets/icons/bgMap.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
 
         border-radius: 16px;
-    
+
         padding: 50px 60px;
-     
 
-        h3{
-            color: #141A20;
-            padding: 5px 0;
-            font-size:$font-size-h3 ;
-            line-height: $line-height-h3;
-            font-weight: 700;
-        
-        }
-        p{    
-            color: #64748B;
-            font-size: $font-size-body-large;
-            line-height: $line-height-body-large;
-            
-        }
-     
-        button{
-            background-color: #F1F5F9;
-            padding: 19px 60px;
-            color: #141A20;
-            font-size: $font-size-body-large;
-            line-height: $line-height-body-large;
-            font-weight:500 ;
-            color: $color-text;
-            margin: 150px 0 0;
-            border-radius: 6px;
-            border: 0;
-            cursor: pointer;
-            &:hover{
-                background-color: #f1f5f99d;
-                // color: #141A209d;
-            }
-        }
-
-    }
-    .d{
-        width: 43%;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 4%;
-      @media (max-width: 1024px) {
-        width: 100%;
-        margin-bottom: 5%;
-      }
-        .box{
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 40px;
-            align-items: center;
-            background-color: white;
-            border-radius: 16px;
-            box-shadow: 0px 4px 20px 0px #AFAFAF2E;
-       gap: 30px;
-       cursor: pointer;
-       img{
-        transition: transform 0.5s ease; /* Анимация будет длиться 0.5 секунды */
-        transform: scale(1);
-      
-    }  
-    &:hover{
-        img{
-            transform: scale(1.1);
-        } 
-        }
-    
-            h3{
-                color: $color-text;
-                padding: 5px 0;
-                font-size:$font-size-h5 ;
-                line-height: $line-height-h5;
-                font-weight: 700;
-            
-            }
-            p{  
-                  color: #64748B;
-                font-size: $font-size-body-medium;
-            }
-        }
-    }
-}
-.statistics-section {
-
-
-padding: 2% 5%;
-background-color: #F7F8FA;
-    @media (max-width: 768px) {
-      padding: 2% 3%;
-    }
-  .statistic{
-    background-color: white;
-    padding: 48px;
-    border-radius: 24px;
-    .statistics-header {
-      margin-bottom: 40px;
-      h2 {
-        font-size: 32px;
-        color: #020617;
-        font-weight: 700;
-  
-        @media (max-width: 768px) {
-          font-size: 26px;
-        }
-        @media (max-width: 480px) {
-          font-size: 22px;
-        }
-      }
-    }
-  
-    .statistics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr); // 4 колонки
-      gap: 24px;
-  
-      @media (max-width: 992px) {
-        grid-template-columns: repeat(2, 1fr); // 2 колонки на планшетах
-      }
-  
-      @media (max-width: 576px) {
-        grid-template-columns: 1fr; // 1 колонка на мобильных
-      }
-  
-      .statistic-item {
-        background-color: #F7F8FA;
-        border-radius: 24px;
-        padding: 40px 25px;
-        // text-align: center;
-        display: flex;
-        flex-direction: column;
-        // align-items: center;
-  
         h3 {
-          font-size: 20px;
-          font-weight: 600;
-          color: #333;
-          margin-top: 20px; // Отступ от круга
+          color: #141a20;
+          padding: 5px 0;
+          font-size: $font-size-h3;
+          line-height: $line-height-h3;
+          font-weight: 700;
         }
-  
         p {
-          font-size: 15px;
-          color: #666;
-          margin-top: 10px;
-          line-height: 1.5;
+          color: #64748b;
+          font-size: $font-size-body-large;
+          line-height: $line-height-body-large;
         }
-  
-        .progress-circle {
-          position: relative;
-          width: 88px; // Размер контейнера для SVG
-          height: 88px;
-          margin-bottom: 20px;
+
+        button {
+          background-color: #f1f5f9;
+          padding: 19px 60px;
+          color: #141a20;
+          font-size: $font-size-body-large;
+          line-height: $line-height-body-large;
+          font-weight: 500;
+          color: $color-text;
+          margin: 150px 0 0;
+          border-radius: 6px;
+          border: 0;
+          cursor: pointer;
+          &:hover {
+            background-color: #f1f5f99d;
+            // color: #141A209d;
+          }
+        }
+      }
+      .d {
+        width: 43%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 4%;
+        @media (max-width: 1024px) {
+          width: 100%;
+          margin-bottom: 5%;
+        }
+        .box {
           display: flex;
-          justify-content: center;
+          justify-content: space-between;
+          padding: 5px 40px;
           align-items: center;
-  
-          .circular-chart {
-            display: block;
-            margin: 10px auto;
-            max-width: 100%;
-            max-height: 100%;
-            background-color: white;
-            border-radius: 100px;
+          background-color: white;
+          border-radius: 16px;
+          box-shadow: 0px 4px 20px 0px #afafaf2e;
+          gap: 30px;
+          cursor: pointer;
+          img {
+            transition: transform 0.5s ease; /* Анимация будет длиться 0.5 секунды */
+            transform: scale(1);
           }
-  
-          .circle-bg {
-            fill: none;
-            // stroke: #eee; // Цвет фона круга
-            stroke-width: 3.8;
+          &:hover {
+            img {
+              transform: scale(1.1);
+            }
           }
-  
-          .circle {
-            fill: none;
-            stroke: #00B06C; // Цвет заполнения
-            stroke-width: 2.8;
-            stroke-linecap: round;
-            transition: stroke-dasharray .8s ease-out; // Анимация заполнения
-            transform: rotate(-90deg); // Начало сверху
-            transform-origin: 50% 50%;
-          }
-  
-          .percentage-value {
-            position: absolute;
-            font-size: 24px;
+
+          h3 {
+            color: $color-text;
+            padding: 5px 0;
+            font-size: $font-size-h5;
+            line-height: $line-height-h5;
             font-weight: 700;
-            color: #020617;
-            line-height: 1; // Убираем лишнее пространство
+          }
+          p {
+            color: #64748b;
+            font-size: $font-size-body-medium;
           }
         }
       }
     }
+    .statistics-section {
+      padding: 2% 5%;
+      background-color: #f7f8fa;
+      @media (max-width: 768px) {
+        padding: 2% 3%;
+      }
+      .statistic {
+        background-color: white;
+        padding: 48px;
+        border-radius: 24px;
+        .statistics-header {
+          margin-bottom: 40px;
+          h2 {
+            font-size: 32px;
+            color: #020617;
+            font-weight: 700;
 
+            @media (max-width: 768px) {
+              font-size: 26px;
+            }
+            @media (max-width: 480px) {
+              font-size: 22px;
+            }
+          }
+        }
+
+        .statistics-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr); // 4 колонки
+          gap: 24px;
+
+          @media (max-width: 992px) {
+            grid-template-columns: repeat(2, 1fr); // 2 колонки на планшетах
+          }
+
+          @media (max-width: 576px) {
+            grid-template-columns: 1fr; // 1 колонка на мобильных
+          }
+
+          .statistic-item {
+            background-color: #f7f8fa;
+            border-radius: 24px;
+            padding: 40px 25px;
+            // text-align: center;
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+
+            h3 {
+              font-size: 20px;
+              font-weight: 600;
+              color: #333;
+              margin-top: 20px; // Отступ от круга
+            }
+
+            p {
+              font-size: 15px;
+              color: #666;
+              margin-top: 10px;
+              line-height: 1.5;
+            }
+
+            .progress-circle {
+              position: relative;
+              width: 88px; // Размер контейнера для SVG
+              height: 88px;
+              margin-bottom: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              .circular-chart {
+                display: block;
+                margin: 10px auto;
+                max-width: 100%;
+                max-height: 100%;
+                background-color: white;
+                border-radius: 100px;
+              }
+
+              .circle-bg {
+                fill: none;
+                // stroke: #eee; // Цвет фона круга
+                stroke-width: 3.8;
+              }
+
+              .circle {
+                fill: none;
+                stroke: #00b06c; // Цвет заполнения
+                stroke-width: 2.8;
+                stroke-linecap: round;
+                transition: stroke-dasharray 0.8s ease-out; // Анимация заполнения
+                transform: rotate(-90deg); // Начало сверху
+                transform-origin: 50% 50%;
+              }
+
+              .percentage-value {
+                position: absolute;
+                font-size: 24px;
+                font-weight: 700;
+                color: #020617;
+                line-height: 1; // Убираем лишнее пространство
+              }
+            }
+          }
+        }
+      }
+    }
   }
-  }
-
-}}
-
+}

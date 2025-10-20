@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,31 +9,33 @@ import { MenuService } from '../../api/menu.service';
 
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import {environment} from "../../../environments/environment";
+import { environment } from '../../../environments/environment';
+import { Card, CardBrand, cardContentItem } from '../../models/cards.model';
 
 @Component({
   selector: 'app-cards',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgFor,CommonModule],
+  imports: [RouterLink, RouterModule, TranslateModule, NgFor, CommonModule],
   templateUrl: './cards.component.html',
-  styleUrl: './cards.component.scss'
+  styleUrl: './cards.component.scss',
 })
-
 export class CardsComponent implements OnInit {
   imageUrl: string = environment.IMAGE_URL;
-  cardList: any[] = [];
-  cardBrands: any[] = [];
-  contentItem: any[] = [];
-  personTypeId: number = 1;
+  cardList: Card[] = [];
+  cardBrands: CardBrand[] = [];
+  contentItem: cardContentItem[] = [];
+  personTypeId = 1;
   selectedBrandId = new BehaviorSubject<number>(1);
   selectedBrandId$ = this.selectedBrandId.asObservable();
-  currentBrandId: any = null;
-  selectedTab: string = 'all';
-  constructor(private cardsService: CardsService, private menuService: MenuService, private router: Router) {}
+  currentBrandId: number | null = null;
+  selectedTab = 'all';
+  private cardsService = inject(CardsService);
+  private menuService = inject(MenuService);
+  private router = inject(Router);
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    this.menuService.currentPersonTypeId.subscribe(id => {
+    this.menuService.currentPersonTypeId.subscribe((id) => {
       this.personTypeId = id;
       this.loadAllCards(); // Загрузка всех карт по умолчанию
     });
@@ -48,23 +50,22 @@ export class CardsComponent implements OnInit {
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
   }
   loadCardBrands() {
     this.cardsService.getCardBrands().subscribe(
       (response) => {
         this.cardBrands = response.data.card_brands;
-
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
   }
-   isBrandSelected(brandId: number): boolean {
-      return this.selectedTab !== 'all' && this.currentBrandId === brandId;
-    }
+  isBrandSelected(brandId: number): boolean {
+    return this.selectedTab !== 'all' && this.currentBrandId === brandId;
+  }
   selectBrand(brandId: number) {
     this.selectedBrandId.next(brandId);
     this.currentBrandId = brandId;
@@ -80,13 +81,13 @@ export class CardsComponent implements OnInit {
       },
       (error) => {
         console.error('Ошибка при загрузке всех карт', error);
-      }
+      },
     );
   }
   selectTab(tab: string) {
     this.selectedTab = tab;
     if (tab === 'all') {
-      this.currentBrandId=null;
+      this.currentBrandId = null;
       this.loadAllCards();
     } else {
       this.loadCards();
@@ -100,8 +101,7 @@ export class CardsComponent implements OnInit {
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
-      }
+      },
     );
   }
-
 }

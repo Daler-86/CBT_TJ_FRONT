@@ -26,7 +26,7 @@
       background-color: white;
       border: none;
       cursor: pointer;
-      color: #141A20;
+      color: #141a20;
       font-size: 17px;
       font-weight: 500;
 
@@ -34,7 +34,7 @@
         padding: 10px 20px;
       }
       &.active {
-        background-color: #00B06C;
+        background-color: #00b06c;
         color: white;
       }
     }
@@ -58,9 +58,9 @@
       .custom-dropdown {
         position: relative;
         width: 30%;
-        font-family: "Inter", sans-serif;
-        border: 1px solid #CBD5E1;
-        background-color: #F1F5F9;
+        font-family: 'Inter', sans-serif;
+        border: 1px solid #cbd5e1;
+        background-color: #f1f5f9;
         border-radius: 6px;
         @media (max-width: 1024px) {
           width: 50%;
@@ -73,7 +73,7 @@
           border-radius: 4px;
           font-size: 16px;
           padding: 20px;
-          color: #64748B;
+          color: #64748b;
           cursor: pointer;
         }
 
@@ -84,7 +84,7 @@
           width: 100%;
           padding: 20px 0;
           background-color: #fff;
-          border: 1px solid #CBD5E1;
+          border: 1px solid #cbd5e1;
           border-radius: 12px;
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
           z-index: 100;
@@ -102,7 +102,7 @@
         .divider {
           width: 100%;
           height: 1px;
-          background-color: #E3E6EA;
+          background-color: #e3e6ea;
           margin: 10px 0;
         }
 
@@ -119,17 +119,19 @@
           .checkbox {
             width: 20px;
             height: 20px;
-            border: 2px solid #BAC0CC;
+            border: 2px solid #bac0cc;
             border-radius: 4px;
             margin-right: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition:
+              background-color 0.3s,
+              border-color 0.3s;
           }
           input:checked + .checkbox {
-            background-color: #00B06C;
-            border-color: #00B06C;
+            background-color: #00b06c;
+            border-color: #00b06c;
             &::after {
               content: '\2713';
               color: white;
@@ -156,21 +158,20 @@
   margin-top: 30px;
   background-color: #f8f9fa;
   @media (max-width: 1024px) {
-height: 50vh;
+    height: 50vh;
+  }
 }
-}
-
 
 // 2. Стили боковой панели
 .info-sidebar {
-  width: 380px;      // Фиксированная ширина панели
-  max-width: 90%;   // На маленьких экранах не будет занимать всё место
-  flex-shrink: 0;   // Запрещаем панели сжиматься
+  width: 380px; // Фиксированная ширина панели
+  max-width: 90%; // На маленьких экранах не будет занимать всё место
+  flex-shrink: 0; // Запрещаем панели сжиматься
   background-color: #fff;
   padding: 24px;
   box-sizing: border-box;
   overflow-y: auto;
-  
+
   position: absolute; // Позиционируем абсолютно внутри .map-layout-container
   left: 0;
   top: 0;
@@ -180,7 +181,7 @@ height: 50vh;
   // По умолчанию панель скрыта за левым краем
   transform: translateX(-100%);
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  
+
   // Когда панель видима
   &.is-visible {
     transform: translateX(0);
@@ -190,7 +191,7 @@ height: 50vh;
 
 // 3. Стили области для рендеринга карты
 .map-render-area {
-  flex-grow: 1;   // Карта занимает все оставшееся пространство
+  flex-grow: 1; // Карта занимает все оставшееся пространство
   height: 100%;
   width: 100%;
 }
@@ -210,7 +211,9 @@ height: 50vh;
   line-height: 32px;
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 
   &:hover {
     background-color: #e0e0e0;
@@ -219,23 +222,22 @@ height: 50vh;
 }
 
 .info-sidebar__header {
-display: flex;
-// justify-content: space-between;
-align-items:normal;
-margin: 10px 0;
-gap: 4px;
-img{
-  width: 32px;
-  height: 32px;
-}
-  h1{
+  display: flex;
+  // justify-content: space-between;
+  align-items: normal;
+  margin: 10px 0;
+  gap: 4px;
+  img {
+    width: 32px;
+    height: 32px;
+  }
+  h1 {
     width: 80%;
-  font-size: 18px;
-  line-height:24px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  
-   } 
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
 }
 
 .info-sidebar__status {
@@ -243,12 +245,12 @@ img{
   border-radius: 5px;
   margin-bottom: 20px;
   display: inline-block; // Чтобы фон был только под текстом
-  
+
   &.status--open {
     background-color: #e8f5e9;
     color: #388e3c;
   }
-  
+
   &.status--closed {
     background-color: #ffebee;
     color: #d32f2f;
@@ -289,7 +291,7 @@ img{
 // --- Стили для FAQ (без изменений) ---
 .faq-container {
   padding: 20px 0;
-  
+
   .faq-title {
     font-size: 32px;
     font-weight: 700;

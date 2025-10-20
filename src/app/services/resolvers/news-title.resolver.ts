@@ -4,9 +4,9 @@ import { ResolveFn } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 // !!! ЗАМЕНИТЕ НА ВАШ СЕРВИС ДЛЯ НОВОСТЕЙ !!!
-import { NewsService } from '../../api/news.service'; 
+import { NewsService } from '../../api/news.service';
 
-export const newsTitleResolver: ResolveFn<string> = (route, state) => {
+export const newsTitleResolver: ResolveFn<string> = (route) => {
   const newsService = inject(NewsService);
   const id = route.paramMap.get('id');
 
@@ -17,6 +17,6 @@ export const newsTitleResolver: ResolveFn<string> = (route, state) => {
   // !!! ЗАМЕНИТЕ НА ВАШ МЕТОД ПОЛУЧЕНИЯ ДАННЫХ !!!
   return newsService.getNewsDetailData(+id).pipe(
     // !!! ЗАМЕНИТЕ НА ПРАВИЛЬНЫЙ ПУТЬ К ЗАГОЛОВКУ В ОТВЕТЕ API !!!
-    map(response => response.data.news.title || 'Новость') 
+    map((response) => response.data.news.title || 'Новость'),
   );
 };

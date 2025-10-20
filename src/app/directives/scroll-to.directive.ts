@@ -3,11 +3,11 @@ import { ScrollService } from '../services/scroll.service';
 
 @Directive({
   selector: '[scrollTo]', // Активируется на элементах с атрибутом [scrollTo]
-  standalone: true
+  standalone: true,
 })
 export class ScrollToDirective {
   // Принимает ID элемента, к которому нужно прокрутить, из HTML
-  @Input('scrollTo') anchor: string = '';
+  @Input('scrollTo') anchor = '';
 
   private scrollService = inject(ScrollService);
 

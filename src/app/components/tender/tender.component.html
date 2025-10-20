@@ -1,5 +1,4 @@
 <div class="tender">
-
   <div class="card-container">
     <div class="card-info">
       <h2 class="card-title">{{ 'TENDERS_LIST.TITLE' | translate }}</h2>
@@ -8,31 +7,42 @@
   </div>
 
   <div class="tender-div-container">
-    <!-- Заголовок списка (имитация thead) -->
     <div class="tender-div-header">
       <div class="tender-div-cell header-cell">{{ 'TENDERS_LIST.TABLE.HEADER_TENDER' | translate }}</div>
       <div class="tender-div-cell header-cell">{{ 'TENDERS_LIST.TABLE.HEADER_START_DATE' | translate }}</div>
       <div class="tender-div-cell header-cell">{{ 'TENDERS_LIST.TABLE.HEADER_END_DATE' | translate }}</div>
       <div class="tender-div-cell header-cell">{{ 'TENDERS_LIST.TABLE.HEADER_STATUS' | translate }}</div>
     </div>
-  
-    <!-- Сообщение об отсутствии данных -->
+
     <div *ngIf="tenders.length === 0" class="no-data-row">
       {{ 'TENDERS_LIST.TABLE.NO_DATA' | translate }}
     </div>
-  
-    <!-- Строки данных (имитация tbody и tr) -->
-    <div class="tender-div-row" *ngFor="let tender of tenders" (click)="navigateToCardDetailsAndForm(tender.id)">
+
+    <div
+      class="tender-div-row"
+      *ngFor="let tender of tenders"
+      (click)="navigateToCardDetailsAndForm(tender.id)"
+      (keydown.enter)="navigateToCardDetailsAndForm(tender.id)"
+      (keydown.space)="navigateToCardDetailsAndForm(tender.id)"
+      tabindex="0"
+      role="link"
+    >
       <div class="tender-div-cell">{{ tender.name }}</div>
       <div class="tender-div-cell">{{ tender.start_date }}</div>
       <div class="tender-div-cell">{{ tender.end_date }}</div>
       <div class="tender-div-cell cell-status">
-        <span class="status-badge"
-              [ngClass]="{
-                'status-open': tender.status === 'open',
-                'status-completed': tender.status === 'close'
-              }">
-          {{ tender.status === 'open' ? ('TENDER_DETAILS.STATUS.OPEN' | translate) : ('TENDER_DETAILS.STATUS.CLOSED' | translate) }}
+        <span
+          class="status-badge"
+          [ngClass]="{
+            'status-open': tender.status === 'open',
+            'status-completed': tender.status === 'close',
+          }"
+        >
+          {{
+            tender.status === 'open'
+              ? ('TENDER_DETAILS.STATUS.OPEN' | translate)
+              : ('TENDER_DETAILS.STATUS.CLOSED' | translate)
+          }}
         </span>
       </div>
     </div>
@@ -40,13 +50,11 @@
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      
-      <button *ngFor="let page of pages"
-              [class.active]="page === currentPage"
-              (click)="selectPage(page)">
+
+      <button *ngFor="let page of pages" [class.active]="page === currentPage" (click)="selectPage(page)">
         {{ page === -1 ? '...' : page }}
       </button>
-      
+
       <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
       <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
     </div>

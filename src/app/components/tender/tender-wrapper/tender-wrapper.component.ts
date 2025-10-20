@@ -6,8 +6,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './tender-wrapper.component.html',
-  styleUrl: './tender-wrapper.component.scss'
+  styleUrl: './tender-wrapper.component.scss',
 })
-export class TenderWrapperComponent {
-
-}
+export class TenderWrapperComponent {}

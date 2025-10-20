@@ -5,8 +5,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './credit.component.html',
-  styleUrl: './credit.component.scss'
+  styleUrl: './credit.component.scss',
 })
-export class CreditComponent {
-
-}
+export class CreditComponent {}

@@ -1,7 +1,6 @@
-
 @import '../../../styles/calculate';
 // Переменные для удобства
-$primary-color: #00B06C;
+$primary-color: #00b06c;
 $text-primary: #212529;
 $text-secondary: #6c757d;
 $border-color: #e9ecef;
@@ -10,8 +9,9 @@ $white-color: #ffffff;
 
 // Сбрасываем стандартные стили кнопок и инпутов
 :host {
-  button, input {
-    font-family: "Inter", sans-serif;
+  button,
+  input {
+    font-family: 'Inter', sans-serif;
   }
 }
 
@@ -19,9 +19,8 @@ $white-color: #ffffff;
   display: grid;
   grid-template-columns: 1fr 0.7fr;
   gap: 30px;
-  
+
   margin: 40px auto;
-  
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
@@ -43,7 +42,8 @@ $white-color: #ffffff;
 
   .form-group {
     margin-bottom: 30px;
-    label {
+
+    label, .form-label {
       display: block;
       font-size: 16px;
       font-weight: 500;
@@ -72,7 +72,9 @@ $white-color: #ffffff;
     .radio-option {
       display: flex;
       align-items: center;
-      input[type="radio"] { display: none; }
+      input[type='radio'] {
+        display: none;
+      }
       label {
         margin: 0;
         cursor: pointer;
@@ -81,18 +83,36 @@ $white-color: #ffffff;
         font-weight: 600;
         color: $text-primary;
         &::before {
-          content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-          width: 20px; height: 20px; border: 2px solid $border-color; border-radius: 50%;
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 20px;
+          height: 20px;
+          border: 2px solid $border-color;
+          border-radius: 50%;
           transition: border-color 0.2s;
         }
         &::after {
-          content: ''; position: absolute; left: 5px; top: 50%; transform: translateY(-50%) scale(0);
-          width: 10px; height: 10px; background-color: $primary-color; border-radius: 50%;
+          content: '';
+          position: absolute;
+          left: 5px;
+          top: 50%;
+          transform: translateY(-50%) scale(0);
+          width: 10px;
+          height: 10px;
+          background-color: $primary-color;
+          border-radius: 50%;
           transition: transform 0.2s ease-in-out;
         }
       }
-      input[type="radio"]:checked + label::before { border-color: $primary-color; }
-      input[type="radio"]:checked + label::after { transform: translateY(-50%) scale(1); }
+      input[type='radio']:checked + label::before {
+        border-color: $primary-color;
+      }
+      input[type='radio']:checked + label::after {
+        transform: translateY(-50%) scale(1);
+      }
     }
   }
 
@@ -103,16 +123,31 @@ $white-color: #ffffff;
     border-radius: 8px;
     padding: 0 12px;
     background-color: $background-light;
-    
+
     .rate-input {
-      width: 100%; border: none; background: none; font-size: 16px; font-weight: 600;
-      padding: 12px 0; text-align: center;
-      &:focus { outline: none; }
-      &::-webkit-outer-spin-button, &::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+      width: 100%;
+      border: none;
+      background: none;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 12px 0;
+      text-align: center;
+      &:focus {
+        outline: none;
+      }
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
       // -moz-appearance: textfield;
     }
-    
-    span { font-size: 16px; font-weight: 600; color: $text-secondary; }
+
+    span {
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-secondary;
+    }
   }
 
   .smart-input-container {
@@ -139,7 +174,9 @@ $white-color: #ffffff;
       width: 100%;
       padding: 0;
       background: none;
-      &:focus { outline: none; }
+      &:focus {
+        outline: none;
+      }
     }
 
     .range-slider {
@@ -148,7 +185,13 @@ $white-color: #ffffff;
       appearance: none;
       height: 6px;
       border-radius: 3px;
-      background: linear-gradient(to right, $primary-color 0%, $primary-color var(--range-percent), #e9ecef var(--range-percent), #e9ecef 100%);
+      background: linear-gradient(
+        to right,
+        $primary-color 0%,
+        $primary-color var(--range-percent),
+        #e9ecef var(--range-percent),
+        #e9ecef 100%
+      );
       outline: none;
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -159,11 +202,11 @@ $white-color: #ffffff;
         border-radius: 50%;
         cursor: pointer;
         margin-top: -8px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
     }
   }
-  
+
   .display-value.static {
     font-size: 24px;
     font-weight: 700;
@@ -171,7 +214,7 @@ $white-color: #ffffff;
     margin-bottom: 10px;
     cursor: default;
   }
-  
+
   .term-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -202,13 +245,18 @@ $white-color: #ffffff;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     padding: 30px;
-    
+
     p {
       color: $text-secondary;
       font-size: 16px;
-      margin: 10px 0 ;
+      margin: 10px 0;
     }
-    h3 { font-size: 32px; font-weight: 700; color: $primary-color; margin:0 0 25px 0; }
+    h3 {
+      font-size: 32px;
+      font-weight: 700;
+      color: $primary-color;
+      margin: 0 0 25px 0;
+    }
     .apply-button {
       width: 100%;
       padding: 16px;

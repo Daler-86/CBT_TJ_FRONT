@@ -6,8 +6,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './transfer-wrapper.component.html',
-  styleUrl: './transfer-wrapper.component.scss'
+  styleUrl: './transfer-wrapper.component.scss',
 })
-export class TransferWrapperComponent {
-
-}
+export class TransferWrapperComponent {}

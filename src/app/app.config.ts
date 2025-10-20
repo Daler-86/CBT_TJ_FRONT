@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom,LOCALE_ID } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, LOCALE_ID } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
@@ -9,7 +9,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { YaConfig,AngularYandexMapsModule } from 'angular8-yandex-maps';
+import { YaConfig, AngularYandexMapsModule } from 'angular8-yandex-maps';
 
 registerLocaleData(localeRu);
 export const config$ = new BehaviorSubject<YaConfig>({
@@ -18,18 +18,18 @@ export const config$ = new BehaviorSubject<YaConfig>({
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes,
-        withInMemoryScrolling({
-      scrollPositionRestoration: 'enabled',
-      anchorScrolling: 'enabled',
-    })
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'enabled',
+        anchorScrolling: 'enabled',
+      }),
     ),
     provideHttpClient(),
     importProvidersFrom(TranslateModule.forRoot(provideTranslation())),
-    provideAnimations() ,
+    provideAnimations(),
     importProvidersFrom(ReactiveFormsModule),
     { provide: LOCALE_ID, useValue: 'ru-RU' },
-    importProvidersFrom(AngularYandexMapsModule.forRoot(config$))
-  ]
+    importProvidersFrom(AngularYandexMapsModule.forRoot(config$)),
+  ],
 };
-
