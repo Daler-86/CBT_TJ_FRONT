@@ -6,8 +6,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './rko-wrapper.component.html',
-  styleUrl: './rko-wrapper.component.scss'
+  styleUrl: './rko-wrapper.component.scss',
 })
-export class RkoWrapperComponent {
-
-}
+export class RkoWrapperComponent {}

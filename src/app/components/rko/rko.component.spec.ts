@@ -8,10 +8,9 @@ describe('RkoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RkoComponent]
-    })
-    .compileComponents();
-    
+      imports: [RkoComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(RkoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

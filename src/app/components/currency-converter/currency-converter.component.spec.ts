@@ -8,10 +8,9 @@ describe('CurrencyConverterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CurrencyConverterComponent]
-    })
-    .compileComponents();
-    
+      imports: [CurrencyConverterComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CurrencyConverterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

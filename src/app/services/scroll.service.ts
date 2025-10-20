@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ScrollService {
   private scroller = inject(ViewportScroller);

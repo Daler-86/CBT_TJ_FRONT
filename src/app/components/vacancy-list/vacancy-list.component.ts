@@ -1,7 +1,7 @@
-import { Component,Output, OnInit, Input,EventEmitter, } from '@angular/core';
-import { Vacancy, VacancyService, Category, City } from '../../services/vacancy.service';
+import { Component, Output, OnInit, Input, EventEmitter, OnChanges, inject } from '@angular/core';
+
 import { NgForOf } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { VacanciesService } from '../../api/vacancies.service';
 import { vacancyCategory, vacancyList } from '../../models/vacancies.model';
@@ -12,21 +12,21 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-vacancy-list',
   standalone: true,
-  imports: [NgForOf, RouterLink,  FormsModule,TranslateModule, RouterOutlet],
+  imports: [NgForOf, RouterLink, FormsModule, TranslateModule],
   templateUrl: './vacancy-list.component.html',
-  styleUrls: ['./vacancy-list.component.scss']
+  styleUrls: ['./vacancy-list.component.scss'],
 })
-
-export class VacancyListComponent {
+export class VacancyListComponent implements OnInit, OnChanges {
   vacancyCategory: vacancyCategory[] = [];
   regionList: regionList[] = [];
   vacancyList: vacancyList[] = [];
-  selectedCategory: string = '';
-  selectedRegion: string = '';
+  selectedCategory = '';
+  selectedRegion = '';
+  private vacanciesService = inject(VacanciesService);
+  private regionService = inject(RegionService);
 
-  constructor(private vacanciesService: VacanciesService, private regionService: RegionService) {}
-  @Input() totalPages: number = 0; // Общее количество страниц
-  @Input() currentPage: number = 1; // Текущая страница
+  @Input() totalPages = 0; // Общее количество страниц
+  @Input() currentPage = 1; // Текущая страница
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   pages: number[] = [];
 
@@ -37,7 +37,7 @@ export class VacancyListComponent {
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
 
     this.regionService.getRegionList().subscribe(
@@ -46,26 +46,25 @@ export class VacancyListComponent {
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
 
     this.loadAllVacancies();
     this.updatePages();
   }
-vacancyCount:number=0
+  vacancyCount = 0;
   loadAllVacancies() {
-
-    this.vacanciesService.getVacancyList(6,this.currentPage,+this.selectedCategory,+this.selectedRegion).subscribe(
+    this.vacanciesService.getVacancyList(6, this.currentPage, +this.selectedCategory, +this.selectedRegion).subscribe(
       (response) => {
         this.vacancyList = response.data.vacancies;
-     
-        this.totalPages=Math.round(response.data.total_count/6)
-        this.vacancyCount=response.data.total_count
-        this.updatePages(); 
+
+        this.totalPages = Math.round(response.data.total_count / 6);
+        this.vacancyCount = response.data.total_count;
+        this.updatePages();
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
   }
   ngOnChanges() {
@@ -98,32 +97,31 @@ vacancyCount:number=0
       }
       this.pages.push(this.totalPages);
     }
-
   }
   selectPage(page: number) {
     if (page === -1) return; // Игнорируем "..."
     this.currentPage = page;
     this.updatePages();
     this.pageChange.emit(this.currentPage);
-    this.scrollToTop(); 
-    this.loadAllVacancies()
+    this.scrollToTop();
+    this.loadAllVacancies();
   }
   scrollToTop(): void {
     const listElement = document.querySelector('.list-container'); // Замените '.list-container' на ваш селектор списка
     if (listElement) {
       listElement.scrollTo({
         top: 0,
-        behavior: 'smooth' // Плавная прокрутка
+        behavior: 'smooth', // Плавная прокрутка
       });
     } else {
       // Если контейнер не найден, прокручиваем всю страницу
       window.scrollTo({
         top: 1,
-        behavior: 'smooth' // Плавная прокрутка
+        behavior: 'smooth', // Плавная прокрутка
       });
     }
   }
-  nextPage() { 
+  nextPage() {
     if (this.currentPage < this.totalPages) {
       this.selectPage(this.currentPage + 1);
       this.scrollToTop();
@@ -137,4 +135,3 @@ vacancyCount:number=0
     }
   }
 }
-

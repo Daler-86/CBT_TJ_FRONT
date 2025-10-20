@@ -6,8 +6,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './deposit-wrapper.component.html',
-  styleUrl: './deposit-wrapper.component.scss'
+  styleUrl: './deposit-wrapper.component.scss',
 })
-export class DepositWrapperComponent {
-
-}
+export class DepositWrapperComponent {}

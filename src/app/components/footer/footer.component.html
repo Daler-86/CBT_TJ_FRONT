@@ -1,19 +1,19 @@
 <div class="footer">
   <div class="box_1">
-     <a routerLink="/" href="">
-       <img width="250px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO_BLACK' | translate">
-     </a>
-      <div class="contact">
-         <div class="">
-          <h4>22 00</h4>
-          <p>{{ 'FOOTER.CONTACTS.FOR_INDIVIDUALS2' | translate }}</p>
-        </div>
-
-        <div class="">
-          <h4>+(992) 44 630 8888</h4>
-          <p>{{ 'FOOTER.CONTACTS.FOR_INDIVIDUALS' | translate }}</p>
-        </div>
+    <a routerLink="/" href="">
+      <img width="250px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO_BLACK' | translate" />
+    </a>
+    <div class="contact">
+      <div class="">
+        <h4>22 00</h4>
+        <p>{{ 'FOOTER.CONTACTS.FOR_INDIVIDUALS2' | translate }}</p>
       </div>
+
+      <div class="">
+        <h4>+(992) 44 630 8888</h4>
+        <p>{{ 'FOOTER.CONTACTS.FOR_INDIVIDUALS' | translate }}</p>
+      </div>
+    </div>
   </div>
 
   <div class="box_2">
@@ -25,9 +25,11 @@
         <a routerLink="rko" routerLinkActive="active">{{ 'FOOTER.NAV.SCS_RKO' | translate }}</a>
         <a routerLink="merchant" routerLinkActive="active">{{ 'FOOTER.NAV.MERCHANTS' | translate }}</a>
       </div>
-      <div class=""> 
+      <div class="">
         <a routerLink="acquiring" routerLinkActive="active">{{ 'FOOTER.NAV.ACQUIRING' | translate }}</a>
-        <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ 'FOOTER.NAV.ABOUT_BANK' | translate }}</a> 
+        <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{
+          'FOOTER.NAV.ABOUT_BANK' | translate
+        }}</a>
         <a routerLink="vacancies" routerLinkActive="active">{{ 'FOOTER.NAV.VACANCIES' | translate }}</a>
         <a routerLink="map" routerLinkActive="active">{{ 'FOOTER.NAV.OFFICES_AND_ATMS' | translate }}</a>
         <a routerLink="contact" routerLinkActive="active">{{ 'FOOTER.NAV.CONTACTS' | translate }}</a>
@@ -35,11 +37,11 @@
       <div class="">
         <a routerLink="bank-detail" routerLinkActive="active">{{ 'FOOTER.NAV.BANK_DETAILS' | translate }}</a>
         <a routerLink="report" routerLinkActive="active">{{ 'FOOTER.NAV.FINANCIAL_REPORTING' | translate }}</a>
-        <a routerLink="tender" routerLinkActive="active">{{ 'FOOTER.NAV.TENDERS' | translate }}</a> 
+        <a routerLink="tender" routerLinkActive="active">{{ 'FOOTER.NAV.TENDERS' | translate }}</a>
         <a routerLink="news" routerLinkActive="active">{{ 'FOOTER.NAV.NEWS' | translate }}</a>
       </div>
       <div class="">
-        <p class="p">{{ 'FOOTER.WORKING_HOURS.TITLE' | translate }}</p> 
+        <p class="p">{{ 'FOOTER.WORKING_HOURS.TITLE' | translate }}</p>
         <p>{{ 'FOOTER.WORKING_HOURS.WEEKDAYS_TIME' | translate }}</p>
         <p>{{ 'FOOTER.WORKING_HOURS.SATURDAY' | translate }}</p>
       </div>
@@ -47,13 +49,13 @@
 
     <div class="sotset">
       <a href="https://www.instagram.com/commercebank.tj" target="_blank" rel="noopener noreferrer">
-        <img src="../../../assets/icons/insta.svg" [alt]="'ALT.INSTAGRAM' | translate">
+        <img src="../../../assets/icons/insta.svg" [alt]="'ALT.INSTAGRAM' | translate" />
       </a>
       <a href="https://www.facebook.com/commercebank.tj" target="_blank" rel="noopener noreferrer">
-        <img src="../../../assets/icons/facebook.svg" [alt]="'ALT.FACEBOOK' | translate">
+        <img src="../../../assets/icons/facebook.svg" [alt]="'ALT.FACEBOOK' | translate" />
       </a>
       <a href="https://t.me/your_channel" target="_blank" rel="noopener noreferrer">
-        <img src="../../../assets/icons/telegram.svg" [alt]="'ALT.TELEGRAM' | translate">
+        <img src="../../../assets/icons/telegram.svg" [alt]="'ALT.TELEGRAM' | translate" />
       </a>
     </div>
   </div>

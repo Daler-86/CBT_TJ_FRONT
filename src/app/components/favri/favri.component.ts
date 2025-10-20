@@ -6,8 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './favri.component.html',
-  styleUrl: './favri.component.scss'
+  styleUrl: './favri.component.scss',
 })
-export class FavriComponent {
-
-}
+export class FavriComponent {}

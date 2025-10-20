@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ModalService} from '../../services/modal.service';
-import { Observable } from 'rxjs';
+import { ModalService } from '../../services/modal.service';
+
 import { CommonModule } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -12,20 +12,23 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   styleUrl: './modal.component.scss',
   animations: [
     trigger('notificationState', [
-      state('visible', style({
-        transform: 'translateY(0)',
-        opacity: 1
-      })),
-      state('hidden', style({
-        transform: 'translateY(-100%)',
-        opacity: 0
-      })),
-      transition('hidden <=> visible', [
-        animate('300ms ease-in-out')
-      ])
-    ])
-  ]
-
+      state(
+        'visible',
+        style({
+          transform: 'translateY(0)',
+          opacity: 1,
+        }),
+      ),
+      state(
+        'hidden',
+        style({
+          transform: 'translateY(-100%)',
+          opacity: 0,
+        }),
+      ),
+      transition('hidden <=> visible', [animate('300ms ease-in-out')]),
+    ]),
+  ],
 })
 export class ModalComponent {
   public notification$ = inject(ModalService).getNotification();

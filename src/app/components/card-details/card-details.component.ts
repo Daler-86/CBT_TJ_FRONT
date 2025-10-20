@@ -1,33 +1,42 @@
-import { Component ,HostListener, ElementRef, OnInit, ViewChild, OnDestroy, inject,} from '@angular/core';
+import { Component, HostListener, ElementRef, OnInit, ViewChild, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
-import { NgClass, NgFor, NgIf } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Card, CardList, cardDetail, cardFaqs, cardLimits, cardOperations, helpfulDocument } from '../../models/cards.model';
+import { NgFor, NgIf } from '@angular/common';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  cardContentItem,
+  cardDetail,
+  cardFaqs,
+  cardLimits,
+  cardOperations,
+  cardServices,
+  helpfulDocument,
+} from '../../models/cards.model';
 import { RegionService } from '../../api/region.service';
 import { officeList } from '../../models/region.model';
-import { MenuService } from '../../api/menu.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
-import {environment} from "../../../environments/environment";
+import { environment } from '../../../environments/environment';
 import { ModalService } from '../../services/modal.service';
 import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { ScrollService } from '../../services/scroll.service';
-import { TranslateService } from '@ngx-translate/core'; 
+import { TranslateService } from '@ngx-translate/core';
 import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-card-details',
   standalone: true,
-  imports: [NgFor, NgIf,FormsModule, TranslateModule, ReactiveFormsModule, ScrollToDirective],
+  imports: [NgFor, NgIf, FormsModule, TranslateModule, ReactiveFormsModule, ScrollToDirective],
   templateUrl: './card-details.component.html',
-  styleUrl: './card-details.component.scss'
+  styleUrl: './card-details.component.scss',
 })
 export class CardDetailsComponent implements OnInit, OnDestroy {
   imageUrl: string = environment.IMAGE_URL;
-  cardId: number = 0;
-  cardData: any = {};
-  cardContent: any;
-  services: any;
+  cardId = 0;
+  cardData: cardDetail = {
+    id: 0,
+  };
+  cardContent: cardContentItem[] = [];
+  services: cardServices[] = [];
   limits: cardLimits[] = [];
   operations: cardOperations[] = [];
   documents: helpfulDocument[] = [];
@@ -35,30 +44,29 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
   offices: officeList[] = [];
   private langChangeSubscription: Subscription | undefined;
   // Свойства для UI
-  selectedTab: string = 'services';
+  selectedTab = 'services';
   selectedFaqIndex: number | null = null;
-  dropdownOpen: boolean = false;
-  officeName: string = ''; 
+  dropdownOpen = false;
+  officeName = '';
   private pageTitleService = inject(PageTitleService);
   // Реактивная форма
   public applicationForm: FormGroup;
   @ViewChild('formElement') formElementRef!: ElementRef;
   @ViewChild('customDropdown') dropdownRef!: ElementRef;
-  constructor(
-    private route: ActivatedRoute,
-    private cardsService: CardsService,
-    private regionService: RegionService,
-    private notificationService: ModalService,
-    private scrollService:ScrollService,
-    private translateService: TranslateService,
-    private translate: TranslateService, 
-    private fb: FormBuilder // Внедряем FormBuilder
-  ) {
+  private route = inject(ActivatedRoute);
+  private cardsService = inject(CardsService);
+  private regionService = inject(RegionService);
+  private notificationService = inject(ModalService);
+  private scrollService = inject(ScrollService);
+  private translateService = inject(TranslateService);
+  private translate = inject(TranslateService);
+  private fb = inject(FormBuilder);
+  constructor() {
     // Инициализируем форму в конструкторе
     this.applicationForm = this.fb.group({
       client_name: ['', [Validators.required, Validators.minLength(2)]],
       phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9\\s()-]*$')]], // Паттерн для телефонов
-      office_id: [null, [Validators.required]]
+      office_id: [null, [Validators.required]],
     });
   }
 
@@ -74,7 +82,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
       this.loadTabData(this.selectedTab, this.cardId);
       this.loadOffice();
     }
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const anchor = params['scrollTo']; // Ищем параметр 'scrollTo' в URL
       if (anchor) {
         // Если параметр есть, вызываем наш сервис
@@ -88,7 +96,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
       // Этот код будет выполняться КАЖДЫЙ РАЗ, когда меняется язык
       this.updateOfficePlaceholder();
     });
-    this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE').subscribe(translation => {
+    this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE').subscribe((translation) => {
       // Когда перевод будет готов, присваиваем его нашей переменной
       this.officeName = translation;
     });
@@ -104,7 +112,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
   updateOfficePlaceholder(): void {
     // Если офис еще не выбран, обновляем плейсхолдер
     if (!this.applicationForm.get('office_id')?.value) {
-      this.translateService.get('forms.placeholders.selectOffice').subscribe(translation => {
+      this.translateService.get('forms.placeholders.selectOffice').subscribe((translation) => {
         this.officeName = translation;
       });
     }
@@ -114,7 +122,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
       this.langChangeSubscription.unsubscribe();
     }
   }
-  loadCards(id:number):void {
+  loadCards(id: number): void {
     this.cardsService.getCardData(id).subscribe(
       (response) => {
         this.cardData = response.data.card_data;
@@ -124,7 +132,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
   }
   scrollToForm(): void {
@@ -140,7 +148,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
     this.applicationForm.get('office_id')?.setValue(item.id);
     this.dropdownOpen = false;
   }
-  
+
   toggleDropdown(): void {
     this.dropdownOpen = !this.dropdownOpen;
   }
@@ -156,37 +164,36 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
 
     const dataToSend = {
       card_id: this.cardId,
-      ...this.applicationForm.value // Берем все значения из формы
+      ...this.applicationForm.value, // Берем все значения из формы
     };
 
-    
+    // ... (внутри вашего компонента)
 
-   // ... (внутри вашего компонента)
+    this.cardsService.submitCardByBrand(dataToSend).subscribe({
+      next: () => {
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+        // Получаем переведенное сообщение
+        this.translate.get('notifications.applicationSuccessMessage').subscribe((message: string) => {
+          this.notificationService.show(message, 'success');
+        });
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
 
-this.cardsService.submitCardByBrand(dataToSend).subscribe({
-  next: (response) => {
-    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-    // Получаем переведенное сообщение
-    this.translate.get('notifications.applicationSuccessMessage').subscribe((message: string) => {
-      this.notificationService.show(message, 'success');
+        this.applicationForm.reset();
+        this.updateOfficePlaceholder();
+      },
+      error: (err) => {
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+        // Получаем перевод для стандартной ошибки
+        this.translate.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+          // Пытаемся получить ошибку с бэкенда, если ее нет - используем стандартную
+          const errorMessage = err.error?.message || message;
+          this.notificationService.show(errorMessage, 'error');
+        });
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      },
     });
-    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-
-    this.applicationForm.reset();
-    this.updateOfficePlaceholder();
-  },
-  error: (err) => {
-    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-    // Получаем перевод для стандартной ошибки
-    this.translate.get('notifications.applicationErrorMessage').subscribe((message: string) => {
-      // Пытаемся получить ошибку с бэкенда, если ее нет - используем стандартную
-      const errorMessage = err.error?.message || message;
-      this.notificationService.show(errorMessage, 'error');
-    });
-    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-  }
-}); this.cardsService.submitCardByBrand(dataToSend).subscribe({
-      next: (response) => {
+    this.cardsService.submitCardByBrand(dataToSend).subscribe({
+      next: () => {
         this.notificationService.show('Ваша заявка успешно принята!', 'success');
         this.applicationForm.reset(); // Сбрасываем форму
         this.updateOfficePlaceholder();
@@ -194,83 +201,77 @@ this.cardsService.submitCardByBrand(dataToSend).subscribe({
       error: (err) => {
         const errorMessage = err.error?.message || 'Не удалось отправить заявку. Попробуйте позже.';
         this.notificationService.show(errorMessage, 'error');
-      }
+      },
     });
   }
 
   // Геттеры для удобного доступа к контролам в шаблоне
-  get client_name() { return this.applicationForm.get('client_name'); }
-  get phone() { return this.applicationForm.get('phone'); }
-  get office_id() { return this.applicationForm.get('office_id'); }
-  
+  get client_name() {
+    return this.applicationForm.get('client_name');
+  }
+  get phone() {
+    return this.applicationForm.get('phone');
+  }
+  get office_id() {
+    return this.applicationForm.get('office_id');
+  }
 
-
-  
   selectedBrandId = new BehaviorSubject<number>(1);
   selectedBrandId$ = this.selectedBrandId.asObservable();
-  
-
-
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
-    this.loadTabData(tab,this.cardId);
+    this.loadTabData(tab, this.cardId);
   }
-    toggleFaq(index: number) {
-      this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
-    }
+  toggleFaq(index: number) {
+    this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
+  }
 
-    scrollToFormFlag = false;
+  scrollToFormFlag = false;
 
- 
-
-
-
- 
-  loadTabData(tab: string,id:number): void {
+  loadTabData(tab: string, id: number): void {
     switch (tab) {
       case 'services':
         this.cardsService.getCardServices(id).subscribe(
           (details) => {
-
-            this.services=details.data.card_services
-
+            this.services = details.data.card_services;
           },
           (error) => {
             console.error('Ошибка при получении деталей карты', error);
-          }
+          },
         );
         break;
       case 'limits':
-        this.cardsService.getCardLimits(id).subscribe(data => this.limits = data.data.card_limits);
+        this.cardsService.getCardLimits(id).subscribe((data) => (this.limits = data.data.card_limits));
         break;
       case 'operations':
-        this.cardsService.getCardOperation(id).subscribe(data => this.operations = data.data.card_operations);
+        this.cardsService.getCardOperation(id).subscribe((data) => (this.operations = data.data.card_operations));
         break;
       case 'documents':
-        this.cardsService.getCardhDocuments(id).subscribe(data => this.documents = data.data['card-helpful-documents']);
+        this.cardsService
+          .getCardhDocuments(id)
+          .subscribe((data) => (this.documents = data.data['card-helpful-documents']));
         break;
     }
   }
   loadCardDetails(id: number): void {
     this.cardsService.getCardContentItem(id).subscribe(
       (details) => {
-        this.cardContent=details.data.card_content_items
-
+        this.cardContent = details.data.card_content_items;
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
-      }
+      },
     );
   }
   loadCardFaqs(id: number): void {
     this.cardsService.getCardFaqs(id).subscribe(
       (details) => {
-        this.faqs=details.data.card_faqs
+        this.faqs = details.data.card_faqs;
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
-      }
+      },
     );
   }
 
@@ -281,9 +282,7 @@ this.cardsService.submitCardByBrand(dataToSend).subscribe({
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
   }
-
-
 }

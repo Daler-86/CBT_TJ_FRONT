@@ -9,17 +9,21 @@
   <div class="financial-dashboard">
     <div class="btnCards" *ngIf="availableYears.length > 0">
       <ng-container *ngFor="let year of availableYears">
-        <button *ngIf="year === currentApiYear"
-                class="button"
-                (click)="onYearChange(0)"
-                [class.active]="selectedYear === currentApiYear">
+        <button
+          *ngIf="year === currentApiYear"
+          class="button"
+          (click)="onYearChange(0)"
+          [class.active]="selectedYear === currentApiYear"
+        >
           {{ 'REPORTING.FILTER.CURRENT_YEAR' | translate }}
         </button>
 
-        <button *ngIf="year !== currentApiYear"
-                class="button"
-                (click)="onYearChange(year)"
-                [class.active]="selectedYear === year">
+        <button
+          *ngIf="year !== currentApiYear"
+          class="button"
+          (click)="onYearChange(year)"
+          [class.active]="selectedYear === year"
+        >
           {{ year }}
         </button>
       </ng-container>
@@ -44,8 +48,8 @@
     <div class="line"></div>
 
     <div class="documents-section" *ngIf="reportFile.length > 0">
-      <div class="document-card" *ngFor="let doc of reportFile; trackBy: trackByDocumentId">
-        <img src="../../../assets/icons/файл.png" [alt]="'ALT.FILE_ICON' | translate" class="pdf-icon">
+      <div class="document-card" *ngFor="let doc of reportFile">
+        <img src="../../../assets/icons/файл.png" [alt]="'ALT.FILE_ICON' | translate" class="pdf-icon" />
         <a [href]="imageUrl + doc.upload_file" target="_blank" rel="noopener noreferrer" class="document-link">
           {{ doc.name }}
         </a>

@@ -1,14 +1,13 @@
-import {Component, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {AngularYandexMapsModule, YaReadyEvent} from 'angular8-yandex-maps';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AngularYandexMapsModule, YaReadyEvent } from 'angular8-yandex-maps';
 
-declare const ymaps: any;
+// declare const ymaps: any;
 
 export interface IMapPoint {
   id: number | string;
   geometry: { type: 'Point'; coordinates: number[] };
-  properties: any;
-
+  properties: { type: 'atm' | 'terminal' | 'office' | 'office_inactive' };
 }
 
 @Component({
@@ -16,24 +15,24 @@ export interface IMapPoint {
   standalone: true,
   imports: [CommonModule, AngularYandexMapsModule],
   templateUrl: './yandex-map.component.html',
-  styleUrls: ['./yandex-map.component.scss']
+  styleUrls: ['./yandex-map.component.scss'],
 })
 export class YandexMapComponent implements OnChanges {
   @Input() points: IMapPoint[] = [];
   @Input() center: number[] = [38.561133, 68.773892];
-  @Input() zoom: number = 12;
+  @Input() zoom = 12;
   @Input() selectedPointId: number | string | null = null;
   @Output() pointClick = new EventEmitter<IMapPoint>();
   @Output() mapClick = new EventEmitter<void>();
 
   private mapInstance?: ymaps.Map;
   private objectManager?: ymaps.ObjectManager;
-  private readonly iconSize = {width: 36, height: 36};
+  private readonly iconSize = { width: 36, height: 36 };
 
   onMapReady(event: YaReadyEvent) {
     this.mapInstance = event.target;
 
-    this.mapInstance?.events.add('click', (e: any) => {
+    this.mapInstance?.events.add('click', (e: ymaps.IEvent) => {
       const target = e.get('target');
       if (target instanceof ymaps.Map) {
         this.mapClick.emit();
@@ -43,15 +42,14 @@ export class YandexMapComponent implements OnChanges {
     this.mapInstance?.options.set('suppressMapOpenBlock', true);
   }
 
-
-  onObjectManagerReady({target}: YaReadyEvent<ymaps.ObjectManager>): void {
+  onObjectManagerReady({ target }: YaReadyEvent<ymaps.ObjectManager>): void {
     this.objectManager = target;
     this.objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
 
-    this.objectManager.objects.events.add('click', (e: any) => {
+    this.objectManager.objects.events.add('click', (e: ymaps.IEvent) => {
       e.stopImmediatePropagation();
       const objectId = e.get('objectId');
-      const pointData = this.points.find(p => p.id === objectId);
+      const pointData = this.points.find((p) => p.id === objectId);
       if (pointData) {
         this.pointClick.emit(pointData);
       }
@@ -71,10 +69,10 @@ export class YandexMapComponent implements OnChanges {
     }
 
     if (changes['selectedPointId'] && this.mapInstance) {
-      const currentPoint = this.points.find(p => p.id === this.selectedPointId);
+      const currentPoint = this.points.find((p) => p.id === this.selectedPointId);
       if (currentPoint) {
         const coords = currentPoint.geometry.coordinates;
-        this.mapInstance.panTo(coords, {duration: 500, flying: true});
+        this.mapInstance.panTo(coords, { duration: 500, flying: true });
       }
     }
   }
@@ -94,7 +92,7 @@ export class YandexMapComponent implements OnChanges {
                             height="${this.iconSize.height}"
                             style="transform: translate(-${this.iconSize.width / 2}px, -${this.iconSize.height / 2}px);"
                         >`;
-        ymaps.layout.storage.add(layoutKey, ymaps.templateLayoutFactory.createClass(template));
+      ymaps.layout.storage.add(layoutKey, ymaps.templateLayoutFactory.createClass(template));
     });
   }
 
@@ -102,7 +100,7 @@ export class YandexMapComponent implements OnChanges {
     if (!this.objectManager) return;
     this.objectManager.removeAll();
 
-    const features = this.points.map(point => ({
+    const features = this.points.map((point) => ({
       type: 'Feature',
       id: point.id,
       geometry: point.geometry,
@@ -113,13 +111,13 @@ export class YandexMapComponent implements OnChanges {
           type: 'Rectangle',
           coordinates: [
             [-this.iconSize.width / 2, -this.iconSize.height / 2],
-            [this.iconSize.width / 2, this.iconSize.height / 2]
-          ]
+            [this.iconSize.width / 2, this.iconSize.height / 2],
+          ],
         },
-        hasBalloon: false
-      }
+        hasBalloon: false,
+      },
     }));
 
-    this.objectManager.add({type: 'FeatureCollection', features: features});
+    this.objectManager.add({ type: 'FeatureCollection', features: features });
   }
 }

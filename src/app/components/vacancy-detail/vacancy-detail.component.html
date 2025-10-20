@@ -4,21 +4,21 @@
       <div class="">
         <h2>{{ vacancyData.name }}</h2>
         <div class="city-location">
-          <img src="../../../assets/icons/Layer 2.svg" [alt]="'alt.location' | translate">
+          <img src="../../../assets/icons/Layer 2.svg" [alt]="'alt.location' | translate" />
           <p>{{ vacancyData.region_name }}</p>
         </div>
         <div class="city-location">
-          <img src="../../../assets/icons/calendar.svg" [alt]="'alt.calendar' | translate">
+          <img src="../../../assets/icons/calendar.svg" [alt]="'alt.calendar' | translate" />
           <p>{{ vacancyData.deadline_at }}</p>
         </div>
       </div>
       <div class="">
-        <button [scrollTo]="'application-form'">{{"vacancyDetails.form.title"|translate}}</button>
+        <button [scrollTo]="'application-form'">{{ 'vacancyDetails.form.title' | translate }}</button>
         <!-- Кнопка теперь находится внутри формы ниже, для лучшей семантики -->
       </div>
     </div>
     <div class="">
-      <div class="vacancy-details"> 
+      <div class="vacancy-details">
         <h4>{{ 'vacancyDetails.sections.education' | translate }}</h4>
         <ul>
           <li *ngFor="let education of education">{{ education.content }}</li>
@@ -55,48 +55,49 @@
     </div>
   </div>
 
-  <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id='application-form'>
+  <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id="application-form">
     <h2>{{ 'vacancyDetails.form.title' | translate }}</h2>
     <p>{{ 'vacancyDetails.form.subtitle' | translate }}</p>
-  
+
     <div class="form-row">
       <div class="full">
-        <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'"/>
+        <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'" />
         <div *ngIf="lastName?.invalid && lastName?.touched" class="error-message">Фамилия обязательна.</div>
       </div>
       <div class="full">
-        <input formControlName="firstName" [placeholder]="('vacancyDetails.form.firstName' | translate) + '*'"/>
+        <input formControlName="firstName" [placeholder]="('vacancyDetails.form.firstName' | translate) + '*'" />
         <div *ngIf="firstName?.invalid && firstName?.touched" class="error-message">Имя обязательно.</div>
       </div>
     </div>
-    
+
     <div class="form-row">
       <div class="full">
-        <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'"/>
+        <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'" />
         <div *ngIf="phone?.invalid && phone?.touched" class="error-message">
           <span *ngIf="phone?.errors?.['required']">Телефон обязателен.</span>
           <span *ngIf="phone?.errors?.['pattern']">Неверный формат.</span>
         </div>
-        </div>
+      </div>
       <div class="full">
-        <input formControlName="email" [placeholder]="('vacancyDetails.form.email' | translate) + '*'"/>
+        <input formControlName="email" [placeholder]="('vacancyDetails.form.email' | translate) + '*'" />
         <div *ngIf="email?.invalid && email?.touched" class="error-message">
           <span *ngIf="email?.errors?.['required']">Email обязателен.</span>
           <span *ngIf="email?.errors?.['email']">Неверный формат email.</span>
         </div>
-    
       </div>
     </div>
 
     <!-- Зона перетаскивания файла -->
-    <div class="file-drop-area"
-         (drop)="onDrop($event)"
-         (dragover)="onDragOver($event)"
-         (dragleave)="onDragLeave($event)">
-      <label>{{ 'vacancyDetails.form.dragOr' | translate }}</label>
+    <div
+      class="file-drop-area"
+      (drop)="onDrop($event)"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+    >
+      <p class="form-label">{{ 'vacancyDetails.form.dragOr' | translate }}</p>
       <small>{{ 'vacancyDetails.form.supportedFormats' | translate }}</small>
       <div>
-        <input type="file" (change)="onFileSelected($event)" #fileInput hidden>
+        <input type="file" (change)="onFileSelected($event)" #fileInput hidden />
         <button type="button" (click)="fileInput.click()">{{ 'buttons.uploadCV' | translate }}</button>
         <span *ngIf="fileName">{{ fileName }}</span>
       </div>

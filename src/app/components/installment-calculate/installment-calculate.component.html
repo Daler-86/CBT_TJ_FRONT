@@ -1,43 +1,74 @@
 <div class="calculator-wrapper">
-
   <!-- Левая колонка с формой -->
   <div class="calculator-form">
     <h2>{{ 'calculators.installment.title' | translate }}</h2>
 
     <div class="form-group">
-      <label>{{ 'calculators.installment.amount' | translate }}</label>
+      <label for="loanAmountInput">{{ 'calculators.installment.amount' | translate }}</label>
       <div class="input-slider-container">
-
         <div class="input-display">
-          <div *ngIf="!isEditingAmount" (click)="startEditing()">
-            {{ loanAmount | number:'1.0-0':'ru-RU' }} {{ 'calculators.common.currencySymbol.tjs' | translate }}
+          <div
+            *ngIf="!isEditingAmount"
+            (click)="startEditing()"
+            (keydown.enter)="startEditing()"
+            (keydown.space)="startEditing()"
+            tabindex="0"
+            role="button"
+            aria-controls="loanAmountInput"
+            [attr.aria-label]="
+              ('calculators.installment.currentAmount' | translate) +
+              ' ' +
+              (loanAmount | number: '1.0-0' : 'ru-RU') +
+              ' ' +
+              ('calculators.common.currencySymbol.tjs' | translate) +
+              '. ' +
+              ('calculators.installment.clickToEdit' | translate)
+            "
+          >
+            {{ loanAmount | number: '1.0-0' : 'ru-RU' }} {{ 'calculators.common.currencySymbol.tjs' | translate }}
           </div>
-          <input *ngIf="isEditingAmount" type="number" 
-                 [(ngModel)]="loanAmount" 
-                 (input)="onValueChange()"
-                 (blur)="stopEditing()"
-                 (keydown.enter)="stopEditing()"
-                 autofocus>
+          <input
+            *ngIf="isEditingAmount"
+            type="number"
+            id="loanAmountInput"
+            [(ngModel)]="loanAmount"
+            (input)="onValueChange()"
+            (blur)="stopEditing()"
+            (keydown.enter)="stopEditing()"
+            [attr.aria-label]="'calculators.installment.editAmount' | translate"
+          />
         </div>
 
-        <input class="range-slider" type="range"
-               [min]="minAmount" [max]="maxAmount" step="100"
-               [(ngModel)]="loanAmount" (input)="onValueChange()"
-               [style.--range-percent]="loanAmountPercent">
+        <input
+          class="range-slider"
+          type="range"
+          [min]="minAmount"
+          [max]="maxAmount"
+          step="100"
+          [(ngModel)]="loanAmount"
+          (input)="onValueChange()"
+          id="loanAmountRange"
+          [attr.aria-label]="'calculators.installment.amountRange' | translate"
+          [style.--range-percent]="loanAmountPercent"
+        />
 
         <div class="range-labels">
           <span *ngFor="let label of amountLabels">{{ label }}</span>
         </div>
-
       </div>
     </div>
 
     <div class="form-group">
-      <label>{{ 'calculators.installment.term' | translate }}</label>
-      <div class="term-buttons">
-        <button *ngFor="let term of availableTerms"
-                (click)="loanTerm = term; onValueChange()"
-                [class.active]="loanTerm === term">
+      <p class=".form-label">{{ 'calculators.installment.term' | translate }}</p>
+      <div class="term-buttons" role="radiogroup" aria-labelledby="loanTermLabel">
+        <button
+          *ngFor="let term of availableTerms"
+          (click)="loanTerm = term; onValueChange()"
+          [class.active]="loanTerm === term"
+          role="radio"
+          [attr.aria-checked]="loanTerm === term"
+          [attr.aria-label]="term + ' ' + ('calculators.common.months' | translate)"
+        >
           {{ term }} {{ 'calculators.common.months' | translate }}
         </button>
       </div>
@@ -49,22 +80,20 @@
     <h2>{{ 'calculators.common.yourOffer' | translate }}</h2>
 
     <div *ngIf="calculationResult; else noRate">
-
       <div class="result-item">
         <p>{{ 'calculators.common.monthlyPayment' | translate }}</p>
-        <h3>{{ calculationResult.monthlyPayment | number:'1.0-0':'ru-RU' }}</h3>
+        <h3>{{ calculationResult.monthlyPayment | number: '1.0-0' : 'ru-RU' }}</h3>
       </div>
 
       <div class="result-item">
         <p>{{ 'calculators.common.interestRate' | translate }}</p>
-        <h3>{{ calculationResult.interestRate | percent:'1.0-0' }}</h3>
+        <h3>{{ calculationResult.interestRate | percent: '1.0-0' }}</h3>
       </div>
 
       <div class="result-item">
         <p>{{ 'calculators.installment.totalPayment' | translate }}</p>
-        <h3>{{ calculationResult.totalPayment | number:'1.0-0':'ru-RU' }}</h3>
+        <h3>{{ calculationResult.totalPayment | number: '1.0-0' : 'ru-RU' }}</h3>
       </div>
-
     </div>
 
     <ng-template #noRate>
@@ -75,5 +104,4 @@
       {{ 'calculators.installment.applyButton' | translate }}
     </button>
   </div>
-
 </div>

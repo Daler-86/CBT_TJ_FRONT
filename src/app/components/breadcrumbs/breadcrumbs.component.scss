@@ -1,12 +1,39 @@
 // Ваши стили (разделитель ">", цвета, адаптивность)
-.breadcrumb-container { 
-    margin: 25px 5%; font-size: 16px; 
+.breadcrumb-container {
+  margin: 25px 5%;
+  font-size: 16px;
 }
-ol { display: flex; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
+ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 li {
-  display: flex; align-items: center;
-  &:not(:last-child)::after { content: '>'; margin: 0 12px; color: #94A3B8; font-size: 18px; }
+  display: flex;
+  align-items: center;
+  &:not(:last-child)::after {
+    content: '>';
+    margin: 0 12px;
+    color: #94a3b8;
+    font-size: 18px;
+  }
 }
-a { color: #64748B; text-decoration: none; transition: color 0.2s; &:hover { color: #00B06C; } }
-span { color: #334155; font-weight: 500; }
-@media (max-width: 768px) { .breadcrumb-container { font-size: 15px; } }
+a {
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s;
+  &:hover {
+    color: #00b06c;
+  }
+}
+span {
+  color: #334155;
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  .breadcrumb-container {
+    font-size: 15px;
+  }
+}

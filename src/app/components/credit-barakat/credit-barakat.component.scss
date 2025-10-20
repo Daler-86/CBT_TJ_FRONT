@@ -1,442 +1,426 @@
-.barakat{
-    margin: none;
-    padding:3% 5% ;
-    background-color: #f8f9fa;
+.barakat {
+  margin: none;
+  padding: 3% 5%;
+  background-color: #f8f9fa;
 
-.card-container {
+  .card-container {
     position: relative;
-             margin: 30px 0 0;
-         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-        
-         background-color: white;
-         border-radius: 24px;
- display: flex;
- justify-content: space-between;
- gap: 10%;
- align-items: center;
- @media (max-width: 1024px) {
-     display: block;
-     padding: 29px 50px;
-  }
-     .card-info {
-       width: 55%;
-       padding: 32px 76px;
-       @media (max-width: 1024px) {
-         width: 100%;
-         padding: 0;
-      }
-   
-       .card-title {
-         font-size: 30px;
-         font-weight: bold;
-         margin-bottom: 10px;
-       }
-   
-       .card-description {
-         font-size: 18px;
-         color:  #475569;
-         font-weight: 500;
-         margin-bottom: 20px;
-         line-height: 23px;
-       }
-   
-       .card-details {
-         display: flex;
-         justify-content: space-between;
-         margin: 45px 0;
-         @media (max-width: 1024px) {
-             display: block;
-          }
-         .currency-info,
-         .service-info {
-           width: 48%;
-           @media (max-width: 1024px) {
-             width: 100%;
-          }
-           .title {
-             font-weight: 700;
-             font-size: 24px;
-             margin-bottom: 5px;
-           }
-   
-           .description {
-             color: #475569;
-             font-size: 16px;
-           }
-         }
-       }
-   
-   .card-buttons {
-         display: flex;
-         gap: 15px;
-        margin-top: 25px;
-        @media (max-width: 1024px) {
-        display: block;
-      }
-      button{
-         @media (max-width: 1024px) {
-             width: 100%;
-             margin-bottom: 30px;
-           }
- 
-      }
-         .btn-primary {
-           background-color: #00B06C;
-           color: #fff;
-           border: none;
-           padding: 19px 50px;
-           border-radius: 5px;
-           cursor: pointer;
-           font-size: 14px;
-         }
-   
-         .btn-secondary {
-           background-color: transparent;
-           color: #00B06C;
-           border: none;
-           padding: 19px 50px;
-           cursor: pointer;
-           font-size: 14px;
-         }
-       }
-     }
-   
-     .card-image {
-       width: 30%;
-       padding: 25px 72px 0 0;
-       align-self: flex-end; 
-       @media (max-width: 1024px) {
-         width: 100%;
-         justify-self: start;
-         padding: 0;
-       }
-       img{
-         width: 100%;
-       }
-     }
-   }
+    margin: 30px 0 0;
+    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
 
- 
-   .container{
-    h1{
-   font-size: 42px;
-   font-weight: 700;
- margin: 35px 0 25px;
- @media (max-width: 768px) {
-   margin-top: 80px;
-   font-size: 36px;
- }
-}
-   .btnCards{
-   display: flex;
-   gap: 15px;
-   flex-wrap: wrap;
-   button{
-       border-radius: 53px;
-       padding:14px 28px;
-       background-color: white;
-       border: none;
-       cursor: pointer;
-
-       color: #141A20;
-       font-size: 17px;
-       font-weight: 500;
-
-       @media (max-width: 1024px) {
-           padding:10px 20px;
-        }
-       &.active {
-         background-color: #00B06C;
-         color: white;
-       }
-       
-   }
-   
-   }
-   .info-container {
-width: 100%;
-box-sizing: border-box;
-     padding: 20px 0;
-     
-   }
- 
-   .info-box,.info-box-limits,.info-box-documents{
-     align-items: center;
-     padding: 0px 30px;
-     margin: 15px 0;
-     height: 90px;
-     @media (max-width: 1024px) {
-      // 1. Меняем Grid на Block, чтобы элементы встали друг под другом
+    background-color: white;
+    border-radius: 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10%;
+    align-items: center;
+    @media (max-width: 1024px) {
       display: block;
-      // 2. Убираем фиксированную высоту, чтобы блок мог расти
-      height: auto;
-      // 3. Добавляем внутренние отступы для "воздуха"
-      padding: 20px;
+      padding: 29px 50px;
     }
-     background-color: #fff;
-     border-radius: 12px;
-     box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
-   
-     &:last-child {
-       margin-bottom: 0;
-     }
+    .card-info {
+      width: 55%;
+      padding: 32px 76px;
+      @media (max-width: 1024px) {
+        width: 100%;
+        padding: 0;
+      }
 
-     .info-title {
-       width: 100%;
-       font-weight: 700;
-       color: #141A20;
-     font-size: 18px;
-     @media (max-width: 1024px) {
-      width: 100%; // Занимаем всю ширину
-      font-size: 16px;
-      // Добавляем отступ между элементами списка
-      &:not(:last-child) {
+      .card-title {
+        font-size: 30px;
+        font-weight: bold;
         margin-bottom: 10px;
       }
-    }
 
-     }
-     .info-title-1{
+      .card-description {
         font-size: 18px;
         color: #475569;
-        font-weight: 500; 
-          @media (max-width: 1024px) {
-      // Добавляем отступ снизу, чтобы отделить заголовок от значений
-      margin-bottom: 15px;
-    }
-     }
-   
-     .info-detail {
-    width: 70%;
-       color: #475569;
-       font-size: 14px;
-       flex-grow: 1;
-       @media (max-width: 1024px) {
-        width: 100%; // Занимаем всю ширину
-     }
-     }
-   }
-     .info-box{
-      display: grid;
-     grid-template-columns: 1fr 1fr;
-   }
-       .info-box-limits{
-         display: grid;
-         grid-template-columns: 3fr 1fr 1fr 1fr;
-         @media (max-width: 1024px) {
-          // 1. Превращаем блок в гибкий контейнер с переносом элементов
-          display: flex;
-          flex-wrap: wrap;
-          // 2. Убираем фиксированную высоту и задаем отступы
-          height: auto;
-          padding: 20px;
-          // 3. Задаем отступы между строками и элементами
-          gap: 10px 20px; // 10px - между строками, 20px - между элементами в строке
-        }
-        
-     }
-     .info-box-documents{
-       display: flex;
-       gap: 35px;
-     }
-    
-   
- }
+        font-weight: 500;
+        margin-bottom: 20px;
+        line-height: 23px;
+      }
 
- .container-2{
-    h1{
-        font-size: 42px;
-        font-weight: 700;
+      .card-details {
+        display: flex;
+        justify-content: space-between;
+        margin: 45px 0;
+        @media (max-width: 1024px) {
+          display: block;
+        }
+        .currency-info,
+        .service-info {
+          width: 48%;
+          @media (max-width: 1024px) {
+            width: 100%;
+          }
+          .title {
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 5px;
+          }
+
+          .description {
+            color: #475569;
+            font-size: 16px;
+          }
+        }
+      }
+
+      .card-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 25px;
+        @media (max-width: 1024px) {
+          display: block;
+        }
+        button {
+          @media (max-width: 1024px) {
+            width: 100%;
+            margin-bottom: 30px;
+          }
+        }
+        .btn-primary {
+          background-color: #00b06c;
+          color: #fff;
+          border: none;
+          padding: 19px 50px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 14px;
+        }
+
+        .btn-secondary {
+          background-color: transparent;
+          color: #00b06c;
+          border: none;
+          padding: 19px 50px;
+          cursor: pointer;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .card-image {
+      width: 30%;
+      padding: 25px 72px 0 0;
+      align-self: flex-end;
+      @media (max-width: 1024px) {
+        width: 100%;
+        justify-self: start;
+        padding: 0;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .container {
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
       margin: 35px 0 25px;
       @media (max-width: 768px) {
         margin-top: 80px;
         font-size: 36px;
       }
+    }
+    .btnCards {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      button {
+        border-radius: 53px;
+        padding: 14px 28px;
+        background-color: white;
+        border: none;
+        cursor: pointer;
 
-     }
-     .box{
-        display: flex;
-        // justify-content: space-between;
-        gap: 2%; 
-         flex-wrap: wrap;
-        .box-details{
-            width: 23%;
-            padding: 32px;
-            background-color: white;
-            border-radius: 12px;
-         box-shadow: 0px 4px 20px 0px #AFAFAF2E;
-             box-sizing:border-box; 
-             @media (max-width: 1024px) {
-                width: 48%;
-              margin: 3% 0;
-                }
-            p{
-                font-size: 18px;
-                color: #141A20;
-                margin-top: 60px;
-                font-weight: 500;
-            }
+        color: #141a20;
+        font-size: 17px;
+        font-weight: 500;
+
+        @media (max-width: 1024px) {
+          padding: 10px 20px;
         }
-     }
- }
+        &.active {
+          background-color: #00b06c;
+          color: white;
+        }
+      }
+    }
+    .info-container {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px 0;
+    }
 
- .container-3{
-    h1{
-        font-size: 42px;
+    .info-box,
+    .info-box-limits,
+    .info-box-documents {
+      align-items: center;
+      padding: 0px 30px;
+      margin: 15px 0;
+      height: 90px;
+      @media (max-width: 1024px) {
+        // 1. Меняем Grid на Block, чтобы элементы встали друг под другом
+        display: block;
+        // 2. Убираем фиксированную высоту, чтобы блок мог расти
+        height: auto;
+        // 3. Добавляем внутренние отступы для "воздуха"
+        padding: 20px;
+      }
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .info-title {
+        width: 100%;
         font-weight: 700;
+        color: #141a20;
+        font-size: 18px;
+        @media (max-width: 1024px) {
+          width: 100%; // Занимаем всю ширину
+          font-size: 16px;
+          // Добавляем отступ между элементами списка
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+        }
+      }
+      .info-title-1 {
+        font-size: 18px;
+        color: #475569;
+        font-weight: 500;
+        @media (max-width: 1024px) {
+          // Добавляем отступ снизу, чтобы отделить заголовок от значений
+          margin-bottom: 15px;
+        }
+      }
+
+      .info-detail {
+        width: 70%;
+        color: #475569;
+        font-size: 14px;
+        flex-grow: 1;
+        @media (max-width: 1024px) {
+          width: 100%; // Занимаем всю ширину
+        }
+      }
+    }
+    .info-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .info-box-limits {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr 1fr;
+      @media (max-width: 1024px) {
+        // 1. Превращаем блок в гибкий контейнер с переносом элементов
+        display: flex;
+        flex-wrap: wrap;
+        // 2. Убираем фиксированную высоту и задаем отступы
+        height: auto;
+        padding: 20px;
+        // 3. Задаем отступы между строками и элементами
+        gap: 10px 20px; // 10px - между строками, 20px - между элементами в строке
+      }
+    }
+    .info-box-documents {
+      display: flex;
+      gap: 35px;
+    }
+  }
+
+  .container-2 {
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 35px 0 25px;
+      @media (max-width: 768px) {
+        margin-top: 80px;
+        font-size: 36px;
+      }
+    }
+    .box {
+      display: flex;
+      // justify-content: space-between;
+      gap: 2%;
+      flex-wrap: wrap;
+      .box-details {
+        width: 23%;
+        padding: 32px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0px 4px 20px 0px #afafaf2e;
+        box-sizing: border-box;
+        @media (max-width: 1024px) {
+          width: 48%;
+          margin: 3% 0;
+        }
+        p {
+          font-size: 18px;
+          color: #141a20;
+          margin-top: 60px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .container-3 {
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
       margin: 35px 0 25px;
       @media (max-width: 768px) {
         margin-top: 80px;
         font-size: 36px;
         text-align: center;
       }
-
-     }
-
-    
     }
-    .application-form-container {
-  
-      margin: 26px auto;
-      padding:40px 120px;
-      border-radius: 24px;
-      background-color: white;
-      @media (max-width: 768px) {
-        padding: 30px;
-      }
-        .form{ 
-          width: 80%;
-          margin: auto;
-        .custom-dropdown {
+  }
+  .application-form-container {
+    margin: 26px auto;
+    padding: 40px 120px;
+    border-radius: 24px;
+    background-color: white;
+    @media (max-width: 768px) {
+      padding: 30px;
+    }
+    .form {
+      width: 80%;
+      margin: auto;
+      .custom-dropdown {
         position: relative;
-        width:100%;
-        margin: auto;
-     
-         .dropdown-selected {
-          cursor: pointer;
-        border-radius: 4px;
-        // background-color: #ed3636;
-        font-size: 16px;
-        position: relative;
-        display: flex;
-        gap: 5px;
-        align-items: center;
-        z-index: 200;
-      }
-        .dropdown-selected::after {
-        // content: "\2304"; /* Маленькая стрелка вниз */
-      position: absolute;
-      // right: 1px;
-      top: 20%;
-      transform: translateY(-50%);
-      font-size: 16px;
-      // color: #fff;
-      }
-      
-      .dropdown-options {
-        position: absolute;
-        top: 80%;
-    
         width: 100%;
         margin: auto;
-        background-color:#fff ;
-        border: 1px solid #CBD5E1;
-        border-radius: 12px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-        z-index: 100;
-        max-height: 240px; // 1. Устанавливаем максимальную высоту
-        overflow-y: auto; 
-        &::-webkit-scrollbar {
-          width: 6px;
-      
+
+        .dropdown-selected {
+          cursor: pointer;
+          border-radius: 4px;
+          // background-color: #ed3636;
+          font-size: 16px;
+          position: relative;
+          display: flex;
+          gap: 5px;
+          align-items: center;
+          z-index: 200;
         }
-        &::-webkit-scrollbar-track {
-          background: #f1f1f1;
-          border-radius: 10px;
+        .dropdown-selected::after {
+          // content: "\2304"; /* Маленькая стрелка вниз */
+          position: absolute;
+          // right: 1px;
+          top: 20%;
+          transform: translateY(-50%);
+          font-size: 16px;
+          // color: #fff;
         }
-        &::-webkit-scrollbar-thumb {
-          background: #ccc;
-          border-radius: 10px;
-        }
-        &::-webkit-scrollbar-thumb:hover {
-          background: #aaa;
-        }
-    
-      .dropdown-option {
-        padding: 14px 18px;
-        cursor: pointer;
-        transition: background-color 0.2s; 
-           display: flex;
-        justify-content: space-between;
-        border-radius:0 0 12px;
-        
-      }
-      
-      .dropdown-option:hover {
-        background-color: #f1f1f1;
-      }
-      }
-      }
-        .form-group {
-         
-           width: 100%;
-      
-           margin: auto;
-          .form-control {
-            width:100%;
-            padding: 20px 30px;
-            box-sizing: border-box;
-            border-radius: 6px;
-            border: 1px solid #CBD5E1;
-            font-size: 14px;
-            background-color: #f8f9fa; 
-            margin-bottom: 20px;
-      
+
+        .dropdown-options {
+          position: absolute;
+          top: 80%;
+
+          width: 100%;
+          margin: auto;
+          background-color: #fff;
+          border: 1px solid #cbd5e1;
+          border-radius: 12px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+          z-index: 100;
+          max-height: 240px; // 1. Устанавливаем максимальную высоту
+          overflow-y: auto;
+          &::-webkit-scrollbar {
+            width: 6px;
           }
-      
-          .error {
-            color: red;
-            font-size: 12px;
-            margin-top: 5px;
-            text-align: left;
+          &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+          }
+          &::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
+          }
+
+          .dropdown-option {
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 0 0 12px;
+          }
+
+          .dropdown-option:hover {
+            background-color: #f1f1f1;
           }
         }
-      
-        .btn-primary {
+      }
+      .form-group {
+        width: 100%;
+
+        margin: auto;
+        .form-control {
           width: 100%;
           padding: 20px 30px;
-          margin-top: 20px;
-          background-color: #00B06C;
-          color: #fff;
-          border: none;
+          box-sizing: border-box;
           border-radius: 6px;
-          font-size: 16px;
-          cursor: pointer;
+          border: 1px solid #cbd5e1;
+          font-size: 14px;
+          background-color: #f8f9fa;
+          margin-bottom: 20px;
         }
-      
-        .form-disclaimer {
-          width: 50%;
-          @media (max-width: 1024px) {
-           width: 70%;
-          }
-          @media (max-width: 768px) {
-           width: 90%;
-          }
-          margin: auto;
-          font-size: 18px;
-          color: #475569;
-          margin-top: 20px;
-          font-weight: 500;
+
+        .error {
+          color: red;
+          font-size: 12px;
+          margin-top: 5px;
           text-align: left;
-      
-          a {
-            color: #00B06C;
-            text-decoration: none;
-          }
+        }
+      }
+
+      .btn-primary {
+        width: 100%;
+        padding: 20px 30px;
+        margin-top: 20px;
+        background-color: #00b06c;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .form-disclaimer {
+        width: 50%;
+        @media (max-width: 1024px) {
+          width: 70%;
+        }
+        @media (max-width: 768px) {
+          width: 90%;
+        }
+        margin: auto;
+        font-size: 18px;
+        color: #475569;
+        margin-top: 20px;
+        font-weight: 500;
+        text-align: left;
+
+        a {
+          color: #00b06c;
+          text-decoration: none;
         }
       }
     }
-    .container-4{
-      margin: 45px 0;
-    }
+  }
+  .container-4 {
+    margin: 45px 0;
+  }
 }

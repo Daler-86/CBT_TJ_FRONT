@@ -1,19 +1,18 @@
 <div class="container_4">
-    <div class="box1">
-         <h1>{{ 'NEWS.SECTION_TITLE' | translate }}</h1>
-         <div class="p" [routerLinkActiveOptions]="{exact: true}" routerLink="/news" routerLinkActive="active" >
-             <p>{{ 'LINKS.ALL_NEWS' | translate }}</p>
-            <span><img src="../../../assets/icons/arrow_forward.svg" [alt]="'alt.arrowForward' | translate"></span>
-         </div>
-    </div>
-    
-    <div class="box2" *ngIf="news.length>0" >
-        <!-- Динамический контент, не требует перевода через пайп -->
-        <div class="" *ngFor="let new of news" (click)="navigateToCardDetailsAndForm(new.id)">
-            <h3>{{new.title}}</h3>
-            <p>{{new.shortDescription}}</p>
-            <h1></h1>
-            <p>{{new.date_time}}</p>
-        </div>
-    </div>
+  <div class="box1">
+    <h1>{{ 'NEWS.SECTION_TITLE' | translate }}</h1>
+    <a class="p" [routerLinkActiveOptions]="{ exact: true }" routerLink="/news" routerLinkActive="active">
+      <p>{{ 'LINKS.ALL_NEWS' | translate }}</p>
+      <span><img src="../../../assets/icons/arrow_forward.svg" [alt]="'alt.arrowForward' | translate" /></span>
+    </a>
+  </div>
+
+  <div class="box2" *ngIf="news.length > 0">
+    <!-- Каждый блок новости теперь является ссылкой-карточкой -->
+    <a *ngFor="let new of news" [routerLink]="['/news', new.id]" class="news-item-card" tabindex="0" role="link">
+      <h3>{{ new.title }}</h3>
+      <p class="description">{{ new.shortDescription }}</p>
+      <p class="date">{{ new.date_time }}</p>
+    </a>
+  </div>
 </div>

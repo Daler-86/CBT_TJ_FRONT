@@ -10,7 +10,7 @@
     <!-- Названия валют также переводим -->
     <button
       *ngFor="let currency of bankdetailCurrency; trackBy: trackByCurrencyId"
-      [ngClass]="{ 'active': isTabSelected(currency.id) }"
+      [ngClass]="{ active: isTabSelected(currency.id) }"
       (click)="selectTab(currency.id)"
     >
       {{ currency.title | translate }}

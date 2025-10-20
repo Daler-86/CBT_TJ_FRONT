@@ -1,10 +1,17 @@
 <div class="adress">
   <div class="application-form-container">
     <div class="form">
-      
-      <!-- Выпадающий список: Тип объекта -->
       <div class="custom-dropdown">
-        <div class="dropdown-selected" (click)="toggleDropdown($event)">
+        <div
+          class="dropdown-selected"
+          (click)="toggleDropdown($event)"
+          (keydown.enter)="toggleDropdown($event)"
+          (keydown.space)="toggleDropdown($event)"
+          tabindex="0"
+          role="button"
+          [attr.aria-expanded]="dropdownOpen"
+          aria-haspopup="listbox"
+        >
           {{ selectedObjectTypeName }}
         </div>
         <div class="dropdown-options" *ngIf="dropdownOpen">
@@ -12,21 +19,36 @@
             <h4>{{ 'MAP_PAGE.FILTERS.OBJECT_TYPES' | translate }}</h4>
             <div class="dropdown-option">
               <label class="custom-checkbox">
-                <input type="radio" name="objectType" [checked]="selectedObjectType === 'offices'" (change)="onObjectTypeChange('offices')"/>
+                <input
+                  type="radio"
+                  name="objectType"
+                  [checked]="selectedObjectType === 'offices'"
+                  (change)="onObjectTypeChange('offices')"
+                />
                 <span class="checkbox"></span>
                 {{ 'MAP_PAGE.FILTERS.OFFICES' | translate }}
               </label>
             </div>
             <div class="dropdown-option">
               <label class="custom-checkbox">
-                <input type="radio" name="objectType" [checked]="selectedObjectType === 'terminals'" (change)="onObjectTypeChange('terminals')"/>
+                <input
+                  type="radio"
+                  name="objectType"
+                  [checked]="selectedObjectType === 'terminals'"
+                  (change)="onObjectTypeChange('terminals')"
+                />
                 <span class="checkbox"></span>
                 {{ 'MAP_PAGE.FILTERS.TERMINALS' | translate }}
               </label>
             </div>
             <div class="dropdown-option">
               <label class="custom-checkbox">
-                <input type="radio" name="objectType" [checked]="selectedObjectType === 'atms'" (change)="onObjectTypeChange('atms')"/>
+                <input
+                  type="radio"
+                  name="objectType"
+                  [checked]="selectedObjectType === 'atms'"
+                  (change)="onObjectTypeChange('atms')"
+                />
                 <span class="checkbox"></span>
                 {{ 'MAP_PAGE.FILTERS.ATMS' | translate }}
               </label>
@@ -34,24 +56,37 @@
           </div>
         </div>
       </div>
-      
-      <!-- Выпадающий список: Регион -->
+
       <div class="custom-dropdown">
-        <div class="dropdown-selected" (click)="toggleDropdown2($event)">
+        <div
+          class="dropdown-selected"
+          (click)="toggleDropdown2($event)"
+          (keydown.enter)="toggleDropdown2($event)"
+          (keydown.space)="toggleDropdown2($event)"
+          tabindex="0"
+          role="button"
+          [attr.aria-expanded]="dropdownOpen2"
+          aria-haspopup="listbox"
+        >
           {{ selectedRegionDisplayName }}
         </div>
         <div class="dropdown-options" *ngIf="dropdownOpen2">
           <div class="dropdown-section">
             <div class="dropdown-option">
               <label class="custom-checkbox">
-                <input type="radio" name="region" [checked]="regionSelected === 0" (change)="onRegionChange(0)"/>
+                <input type="radio" name="region" [checked]="regionSelected === 0" (change)="onRegionChange(0)" />
                 <span class="checkbox"></span>
                 {{ 'MAP_PAGE.FILTERS.ALL_REGIONS' | translate }}
               </label>
             </div>
             <div *ngFor="let option of regionList" class="dropdown-option">
               <label class="custom-checkbox">
-                <input type="radio" name="region" [checked]="regionSelected === option.id" (change)="onRegionChange(option)"/>
+                <input
+                  type="radio"
+                  name="region"
+                  [checked]="regionSelected === option.id"
+                  (change)="onRegionChange(option)"
+                />
                 <span class="checkbox"></span>
                 {{ option.name }}
               </label>
@@ -59,54 +94,55 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
- 
-  <!-- Список объектов -->
+
   <div *ngIf="combinedData.length > 0; else noData">
     <div *ngFor="let item of combinedData" class="card">
       <div class="name">
         <div class="icon">
-          <!-- Отображаем иконку в зависимости от выбранного типа -->
-          <img *ngIf="selectedObjectType === 'offices'" src="assets/icons/offices.svg" [alt]="'alt.officeIcon' | translate">
-          <img *ngIf="selectedObjectType === 'atms'" src="assets/icons/atms.svg" [alt]="'alt.atmIcon' | translate">
-          <img *ngIf="selectedObjectType === 'terminals'" src="assets/icons/terminals.svg" [alt]="'alt.terminalIcon' | translate">
+          <img
+            *ngIf="selectedObjectType === 'offices'"
+            src="assets/icons/offices.svg"
+            [alt]="'alt.officeIcon' | translate"
+          />
+          <img *ngIf="selectedObjectType === 'atms'" src="assets/icons/atms.svg" [alt]="'alt.atmIcon' | translate" />
+          <img
+            *ngIf="selectedObjectType === 'terminals'"
+            src="assets/icons/terminals.svg"
+            [alt]="'alt.terminalIcon' | translate"
+          />
         </div>
         <div class="info">
           <h3>{{ item.name }}</h3>
           <p>{{ item.address }}</p>
         </div>
       </div>
-     
-      <!-- Дополнительная информация, если есть -->
+
       <div class="item" *ngIf="item.items && item.items.length > 0">
         <div *ngFor="let detail of item.items">
-          <strong>{{ detail.title }}</strong> 
+          <strong>{{ detail.title }}</strong>
           <p>{{ detail.description }}</p>
         </div>
       </div>
-    
+    </div>
   </div>
-</div>
-  <!-- Сообщение, если данных нет -->
   <ng-template #noData>
     <div class="no-data-container">
       <p>{{ 'map.noDataMessage' | translate }}</p>
     </div>
   </ng-template>
 
-  <!-- Пагинация -->
   <div class="pagination" *ngIf="totalPages > 1">
-      <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
-      <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      <ng-container *ngFor="let page of pages">
-        <button *ngIf="page !== -1" [class.active]="page === currentPage" (click)="selectPage(page)">
-          {{ page }}
-        </button>
-        <span *ngIf="page === -1" class="ellipsis">...</span>
-      </ng-container>
-      <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
-      <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
+    <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
+    <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
+    <ng-container *ngFor="let page of pages">
+      <button *ngIf="page !== -1" [class.active]="page === currentPage" (click)="selectPage(page)">
+        {{ page }}
+      </button>
+      <span *ngIf="page === -1" class="ellipsis">...</span>
+    </ng-container>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+    <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
   </div>
 </div>

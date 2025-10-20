@@ -4,17 +4,14 @@
 
   <div class="btnCards">
     <!-- Кнопка "Все" -->
-    <button
-      [ngClass]="{ 'active': selectedTab === 'all' }"
-      (click)="selectTab('all')"
-    >
+    <button [ngClass]="{ active: selectedTab === 'all' }" (click)="selectTab('all')">
       {{ 'BUTTONS.ALL' | translate }}
     </button>
 
     <!-- Кнопки брендов -->
     <button
       *ngFor="let cBrand of cardBrands"
-      [ngClass]="{ 'active': isBrandSelected(cBrand.id) }"
+      [ngClass]="{ active: isBrandSelected(cBrand.id) }"
       (click)="selectBrand(cBrand.id); selectTab('brand')"
     >
       {{ cBrand.name | translate }}
@@ -42,22 +39,14 @@
           >
             {{ 'BUTTONS.APPLY_FOR_CARD' | translate }}
           </button>
-          <button
-            (click)="onCardClick(card.id)"
-            class="btn-secondary"
-            [routerLink]="['/cards', card.id]"
-          >
+          <button (click)="onCardClick(card.id)" class="btn-secondary" [routerLink]="['/cards', card.id]">
             {{ 'BUTTONS.MORE_DETAILS' | translate }}
           </button>
         </div>
       </div>
 
       <div class="card-image">
-        <img
-          class="card"
-          [src]="imageUrl + card.upload_file"
-          [alt]="card.title"
-        />
+        <img class="card" [src]="imageUrl + card.upload_file" [alt]="card.title" />
       </div>
     </div>
   </div>

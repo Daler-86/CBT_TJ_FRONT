@@ -1,13 +1,12 @@
 import { Languages } from './../../shared/enums/languages.enum';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
-import { OnInit, OnDestroy } from '@angular/core';
+import { RouterLink, RouterModule } from '@angular/router';
+import { OnInit, inject, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 // Для ссылки на главную
 import { CommonModule } from '@angular/common'; // Для *ngIf
-
 
 @Component({
   selector: 'app-footer',
@@ -20,23 +19,20 @@ export class FooterComponent implements OnInit, OnDestroy {
   lang = Languages;
   currentYear: number = new Date().getFullYear();
 
-  public logoSrc: string = '../../../assets/icons/logo_tj_big.png'; // Лого по умолчанию
+  public logoSrc = '../../../assets/icons/logo_tj_big.png'; // Лого по умолчанию
 
   private langChangeSubscription: Subscription | undefined;
-
-  constructor(private translateService: TranslateService) {}
+  private translateService = inject(TranslateService);
 
   ngOnInit(): void {
     // 1. Устанавливаем логотип при первой загрузке
     this.updateLogo(this.translateService.currentLang);
 
     // 2. Подписываемся на событие смены языка
-    this.langChangeSubscription = this.translateService.onLangChange.subscribe(
-      (event: { lang: string }) => {
-        // При каждой смене языка вызываем наш метод для обновления логотипа
-        this.updateLogo(event.lang);
-      }
-    );
+    this.langChangeSubscription = this.translateService.onLangChange.subscribe((event: { lang: string }) => {
+      // При каждой смене языка вызываем наш метод для обновления логотипа
+      this.updateLogo(event.lang);
+    });
   }
 
   // Метод, который выбирает правильный логотип

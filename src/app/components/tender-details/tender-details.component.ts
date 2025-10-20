@@ -20,21 +20,19 @@ interface ProcessedInfo {
   // --- ВАЖНО: УДАЛЯЕМ SplitByDashPipe ИЗ IMPORTS, он больше не нужен ---
   imports: [NgFor, CommonModule, TranslateModule],
   templateUrl: './tender-details.component.html',
-  styleUrl: './tender-details.component.scss'
+  styleUrl: './tender-details.component.scss',
 })
-export class TenderDetailsComponent implements OnInit { // <-- ВОССТАНАВЛИВАЕМ OnInit
+export class TenderDetailsComponent implements OnInit {
+  // <-- ВОССТАНАВЛИВАЕМ OnInit
   imageUrl: string = environment.IMAGE_URL;
-  
-  constructor(
-    private route: ActivatedRoute,
-    private tenderService: TenderService
-  ) { }
-  
+  private route = inject(ActivatedRoute);
+  private tenderService = inject(TenderService);
+
   private pageTitleService = inject(PageTitleService);
 
-  cardId: number = 0;
+  cardId = 0;
   tenderDetailData: tenderDetail = {};
-  
+
   // --- ОБЪЯВЛЯЕМ ПЕРЕМЕННУЮ, В КОТОРОЙ БУДЕМ ХРАНИТЬ ОБРАБОТАННЫЕ ДАННЫЕ ---
   processedTenderInfo: ProcessedInfo[] = [];
 
@@ -61,10 +59,10 @@ export class TenderDetailsComponent implements OnInit { // <-- ВОССТАНА�
 
         // --- ЛОГИКА ОБРАБОТКИ ТЕКСТА (остается без изменений) ---
         if (response && response.data.tender.information) {
-          this.processedTenderInfo = response.data.tender.information.map(item => {
+          this.processedTenderInfo = response.data.tender.information.map((item) => {
             const description: string = item.description || '';
-            let paragraphs: string[] = [];
-  
+            const paragraphs: string[] = [];
+
             if (description.includes('-')) {
               const parts = description.split('-');
               if (parts[0] && parts[0].trim() !== '') {
@@ -78,17 +76,17 @@ export class TenderDetailsComponent implements OnInit { // <-- ВОССТАНА�
             } else {
               paragraphs.push(description);
             }
-  
+
             return {
               title: item.title,
-              paragraphs: paragraphs
+              paragraphs: paragraphs,
             };
           });
         }
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
   }
 }

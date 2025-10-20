@@ -2,10 +2,9 @@
   <h1>{{ 'DEPOSITS.PAGE_TITLE' | translate }}</h1>
   <div class="content">
     <div class="card-container" *ngFor="let card of depositsList">
-  
       <div class="card-image">
         <!-- alt-текст берется из заголовка, что является хорошей практикой -->
-        <img class="card" [src]="imageUrl + card.upload_icon_file" [alt]="card.title"/>
+        <img class="card" [src]="imageUrl + card.upload_icon_file" [alt]="card.title" />
       </div>
       <div class="card-info">
         <h2 class="card-title">{{ card.title }}</h2>
@@ -19,10 +18,11 @@
         </div>
 
         <div class="card-buttons">
-          <button class="btn-primary" [routerLink]="['/deposits',card.id]">{{ 'BUTTONS.MORE_DETAILS' | translate }}</button>
+          <button class="btn-primary" [routerLink]="['/deposits', card.id]">
+            {{ 'BUTTONS.MORE_DETAILS' | translate }}
+          </button>
         </div>
       </div>
-
     </div>
   </div>
 </div>

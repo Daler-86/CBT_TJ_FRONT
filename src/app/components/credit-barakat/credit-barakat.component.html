@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="card-image">
-      <img class="card" [src]="imageUrl +creditData.upload_file" [alt]="creditData.title"/>
+      <img class="card" [src]="imageUrl + creditData.upload_file" [alt]="creditData.title" />
     </div>
   </div>
 
@@ -35,7 +35,7 @@
     <div class="box">
       <div class="box-details" *ngFor="let document of documents">
         <!-- ВАЖНО: Добавлен динамический alt-текст -->
-        <img [src]="imageUrl + document.upload_file" [alt]="document.name">
+        <img [src]="imageUrl + document.upload_file" [alt]="document.name" />
         <p>{{ document.name }}</p>
       </div>
     </div>
@@ -43,71 +43,98 @@
 
   <!-- Блок 4: Онлайн-заявка и калькулятор -->
 
-
-  <div *ngIf="calculatorDataForChild && creditData.id!==7" class="container-4">
-    <app-loan-calculator  
-    [conditionsData]="calculatorDataForChild"
-    [showApplyButton]="true"
-    ></app-loan-calculator>
-  </div> 
-  <div *ngIf="calculatorDataForChild  && creditData.id==7" class="container-4">
+  <div *ngIf="calculatorDataForChild && creditData.id !== 7" class="container-4">
+    <app-loan-calculator [conditionsData]="calculatorDataForChild" [showApplyButton]="true"></app-loan-calculator>
+  </div>
+  <div *ngIf="calculatorDataForChild && creditData.id === 7" class="container-4">
     <app-car-loan-calculate></app-car-loan-calculate>
-  </div> 
+  </div>
 
- 
-  <div class="container-3" id='application-form'>
-   
+  <div class="container-3" id="application-form">
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.ONLINE_APPLICATION' | translate }}</h1>
     <div class="application-form-container">
       <form class="form" #applicationForm="ngForm" (ngSubmit)="submitApplication(applicationForm)">
         <!-- Имя -->
         <div class="form-group">
-          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">{{ 'forms.errors.required' | translate }}</div>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+            {{ 'forms.errors.required' | translate }}
+          </div>
           <!-- ИЗМЕНЕНИЕ 1: Добавляем пайп translate -->
-          <input type="text" id="fullName" [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'" class="form-control" 
-                 required [(ngModel)]="model.client_name" name="fullName" #name="ngModel">
+          <input
+            type="text"
+            id="fullName"
+            [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
+            class="form-control"
+            required
+            [(ngModel)]="model.client_name"
+            name="fullName"
+            #name="ngModel"
+          />
         </div>
-        
+
         <!-- Телефон -->
         <div class="form-group">
-          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">{{ 'forms.errors.required' | translate }}</div>
-          <input type="text" id="phone" [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'" class="form-control" 
-                 required [(ngModel)]="model.phone" name="phone" #phone="ngModel">
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
+            {{ 'forms.errors.required' | translate }}
+          </div>
+          <input
+            type="text"
+            id="phone"
+            [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
+            class="form-control"
+            required
+            [(ngModel)]="model.phone"
+            name="phone"
+            #phone="ngModel"
+          />
         </div>
-  
-        <!-- Цель кредита -->
-        <!-- <div class="form-group">
-          <input type="text" id="purpose" [placeholder]="('forms.placeholders.creditPurpose' | translate) + ' *'" class="form-control" 
-                 required [(ngModel)]="model.purpose" name="purpose">
-        </div> -->
-  
+
         <!-- Выбор офиса -->
         <div class="custom-dropdown" #customDropdown>
-          
           <div class="dropdown-selected">
             <div class="form-group">
-              <div class="dropdown-selected form-control" (click)="toggleDropdown($event)">
+              <div
+                class="dropdown-selected form-control"
+                (click)="toggleDropdown($event)"
+                (keydown.enter)="toggleDropdown($event)"
+                (keydown.space)="toggleDropdown($event)"
+                tabindex="0"
+                role="button"
+                [attr.aria-expanded]="dropdownOpen"
+                aria-haspopup="listbox"
+              >
                 {{ officeName }}
               </div>
             </div>
           </div>
           <!-- Список опций остается без изменений -->
-          <div class="dropdown-options" *ngIf="dropdownOpen">
-            <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption($event, item)">
+          <div class="dropdown-options" *ngIf="dropdownOpen" role="listbox">
+            <div
+              class="dropdown-option"
+              *ngFor="let item of offices"
+              (click)="selectOption($event, item)"
+              (keydown.enter)="selectOption($event, item)"
+              (keydown.space)="selectOption($event, item)"
+              tabindex="0"
+              role="option"
+              [attr.aria-selected]="item.name === officeName"
+            >
               <p>{{ item.name }}</p>
             </div>
           </div>
           <!-- Добавляем скрытое поле для валидации, если его еще нет -->
-          <input type="hidden" name="office_id" [(ngModel)]="model.office_id" required>
+          <input type="hidden" name="office_id" [(ngModel)]="model.office_id" required />
         </div>
-  
+
         <!-- Место работы -->
         <!-- <div class="form-group">
           <input type="text" id="workplace" [placeholder]="'forms.placeholders.workplace' | translate" class="form-control" 
                  [(ngModel)]="model.address" name="workplace">
         </div> -->
-  
-        <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">{{ 'BUTTONS.SEND' | translate }}</button>
+
+        <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">
+          {{ 'BUTTONS.SEND' | translate }}
+        </button>
       </form>
     </div>
   </div>

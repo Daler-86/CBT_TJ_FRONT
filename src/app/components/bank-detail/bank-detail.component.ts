@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { bankDetails, currency } from '../../models/bank-detail.model';
 import { CommonModule } from '@angular/common';
 import { BankDetailsService } from '../../api/bank-details.service';
@@ -10,18 +10,17 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './bank-detail.component.html',
-  styleUrls: ['./bank-detail.component.scss']
+  styleUrls: ['./bank-detail.component.scss'],
 })
 export class BankDetailComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
 
   bankdetailList: bankDetails[] = [];
   bankdetailCurrency: currency[] = [];
-  
-  // Инициализируем как null. Это покажет, что выбор еще не сделан.
-  selectedTabId: number | null = null; 
 
-  constructor(private bankDetailService: BankDetailsService) { }
+  // Инициализируем как null. Это покажет, что выбор еще не сделан.
+  selectedTabId: number | null = null;
+  private bankDetailService = inject(BankDetailsService);
 
   ngOnInit(): void {
     // Просто запускаем загрузку валют. Все остальное произойдет после ее завершения.
@@ -38,8 +37,8 @@ export class BankDetailComponent implements OnInit, OnDestroy {
         this.bankdetailList = response.data.bank_details;
       },
       error: (error) => {
-         console.error(`Ошибка при загрузке реквизитов для таба ${tabId}`, error);
-      }
+        console.error(`Ошибка при загрузке реквизитов для таба ${tabId}`, error);
+      },
     });
     this.subscriptions.add(sub);
   }
@@ -48,7 +47,7 @@ export class BankDetailComponent implements OnInit, OnDestroy {
     const sub = this.bankDetailService.getBankDetailCurrency().subscribe({
       next: (response) => {
         this.bankdetailCurrency = response.data.bank_detail_currencies;
-        
+
         // --- НОВАЯ ЛОГИКА ---
         // Проверяем, что список валют не пустой
         if (this.bankdetailCurrency && this.bankdetailCurrency.length > 0) {
@@ -60,8 +59,8 @@ export class BankDetailComponent implements OnInit, OnDestroy {
         // --- КОНЕЦ НОВОЙ ЛОГИКИ ---
       },
       error: (error) => {
-         console.error('Ошибка при загрузке валют', error);
-      }
+        console.error('Ошибка при загрузке валют', error);
+      },
     });
     this.subscriptions.add(sub);
   }
@@ -71,12 +70,12 @@ export class BankDetailComponent implements OnInit, OnDestroy {
    * @param tabId - ID выбранного таба.
    * @param isInitialLoad - Флаг, чтобы не переустанавливать selectedTabId, если он уже установлен.
    */
-  selectTab(tabId: number, isInitialLoad: boolean = false) {
+  selectTab(tabId: number, isInitialLoad = false) {
     // Если это не первая загрузка, или если таб уже выбран, ничего не делаем.
     if (!isInitialLoad && this.selectedTabId === tabId) {
       return;
     }
-    
+
     this.selectedTabId = tabId;
     this.loadBankDetails(tabId);
   }
@@ -84,11 +83,11 @@ export class BankDetailComponent implements OnInit, OnDestroy {
   isTabSelected(tabId: number): boolean {
     return this.selectedTabId === tabId;
   }
-  
+
   trackByCurrencyId(index: number, item: currency): number {
     return item.id;
   }
-  
+
   trackByDetailId(index: number, item: bankDetails): string | number {
     return item.id || index;
   }

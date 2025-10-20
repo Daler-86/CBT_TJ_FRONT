@@ -5,124 +5,132 @@
 
     <div class="container_1">
       <div class="box_1" *ngFor="let menu of menus">
-   
-        <div [routerLinkActiveOptions]="{exact: true}" *ngFor="let favorite of menu.favorites" class="card-item" [routerLink]="favorite.route" routerLinkActive="active">
-          <img [src]="imageUrl + favorite?.upload_file" [alt]="favorite?.name">
+        <div
+          [routerLinkActiveOptions]="{ exact: true }"
+          *ngFor="let favorite of menu.favorites"
+          class="card-item"
+          [routerLink]="favorite.route"
+          routerLinkActive="active"
+        >
+          <img [src]="imageUrl + favorite?.upload_file" [alt]="favorite?.name" />
           <p>{{ favorite?.name }}</p>
         </div>
       </div>
     </div>
-    
+
     <app-calculate></app-calculate>
-      <div class="container_3">
+    <div class="container_3">
       <app-favri></app-favri>
     </div>
 
-   
-
-  
-
     <app-currency-converter></app-currency-converter>
 
- <div class="container_3">
+    <div class="container_3">
       <div class="news">
         <app-news-box></app-news-box>
       </div>
     </div>
 
-
     <div class="statistics-section">
       <div class="statistic">
-      <div class="statistics-header">
-        <h2>Статистика</h2>
+        <div class="statistics-header">
+          <h2>Статистика</h2>
+        </div>
+
+        <div class="statistics-grid">
+          <div class="statistic-item">
+            <div class="progress-circle" data-percentage="80" data-value="1200">
+              <svg viewBox="0 0 36 36" class="circular-chart">
+                <path
+                  class="circle-bg"
+                  d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path
+                  class="circle"
+                  stroke-dasharray="0, 100"
+                  d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+              </svg>
+              <span class="percentage-value">1200</span>
+            </div>
+            <h3>Сотрудников</h3>
+            <p>которые у нас работают квалифицированные и опытные сотрудники</p>
+          </div>
+
+          <div class="statistic-item">
+            <div class="progress-circle" data-percentage="30" data-value="322">
+              <svg viewBox="0 0 36 36" class="circular-chart">
+                <path
+                  class="circle-bg"
+                  d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path
+                  class="circle"
+                  stroke-dasharray="0, 100"
+                  d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+              </svg>
+              <span class="percentage-value">322</span>
+            </div>
+            <h3>Филиалов</h3>
+            <p>У нас есть филиалы в разных регионах, что позволяет быть ближе к клиентам.</p>
+          </div>
+
+          <div class="statistic-item">
+            <div class="progress-circle" data-percentage="45" data-value="455">
+              <svg viewBox="0 0 36 36" class="circular-chart">
+                <path
+                  class="circle-bg"
+                  d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path
+                  class="circle"
+                  stroke-dasharray="0, 100"
+                  d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+              </svg>
+              <span class="percentage-value">455</span>
+            </div>
+            <h3>Банкоматов</h3>
+            <p>Мы установили банкоматы в удобных и доступных местах.</p>
+          </div>
+
+          <div class="statistic-item">
+            <div class="progress-circle" data-percentage="20" data-value="222">
+              <svg viewBox="0 0 36 36" class="circular-chart">
+                <path
+                  class="circle-bg"
+                  d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path
+                  class="circle"
+                  stroke-dasharray="0, 100"
+                  d="M18 2.0845
+                   a 15.9155 15.9155 0 0 1 0 31.831
+                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+              </svg>
+              <span class="percentage-value">222</span>
+            </div>
+            <h3>Терминалов</h3>
+            <p>Мы установили банкоматы в удобных и доступных местах.</p>
+          </div>
+        </div>
       </div>
-    
-      <div class="statistics-grid">
-        <div class="statistic-item">
-          <div class="progress-circle" data-percentage="80" data-value="1200">
-            <svg viewBox="0 0 36 36" class="circular-chart">
-              <path class="circle-bg"
-                d="M18 2.0845
-                   a 15.9155 15.9155 0 0 1 0 31.831
-                   a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-              <path class="circle"
-                stroke-dasharray="0, 100"
-                d="M18 2.0845
-                   a 15.9155 15.9155 0 0 1 0 31.831
-                   a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-            </svg>
-            <span class="percentage-value">1200</span>
-          </div>
-          <h3>Сотрудников</h3>
-          <p>которые у нас работают квалифицированные и опытные сотрудники</p>
-        </div>
-    
-        <div class="statistic-item">
-          <div class="progress-circle" data-percentage="30" data-value="322">
-            <svg viewBox="0 0 36 36" class="circular-chart">
-              <path class="circle-bg"
-                d="M18 2.0845
-                   a 15.9155 15.9155 0 0 1 0 31.831
-                   a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-              <path class="circle"
-                stroke-dasharray="0, 100"
-                d="M18 2.0845
-                   a 15.9155 15.9155 0 0 1 0 31.831
-                   a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-            </svg>
-            <span class="percentage-value">322</span>
-          </div>
-          <h3>Филиалов</h3>
-          <p>У нас есть филиалы в разных регионах, что позволяет быть ближе к клиентам.</p>
-        </div>
-    
-        <div class="statistic-item">
-          <div class="progress-circle" data-percentage="45" data-value="455">
-            <svg viewBox="0 0 36 36" class="circular-chart">
-              <path class="circle-bg"
-                d="M18 2.0845
-                   a 15.9155 15.9155 0 0 1 0 31.831
-                   a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-              <path class="circle"
-                stroke-dasharray="0, 100"
-                d="M18 2.0845
-                   a 15.9155 15.9155 0 0 1 0 31.831
-                   a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-            </svg>
-            <span class="percentage-value">455</span>
-          </div>
-          <h3>Банкоматов</h3>
-          <p>Мы установили банкоматы в удобных и доступных местах.</p>
-        </div>
-    
-        <div class="statistic-item">
-          <div class="progress-circle" data-percentage="20" data-value="222">
-            <svg viewBox="0 0 36 36" class="circular-chart">
-              <path class="circle-bg"
-                d="M18 2.0845
-                   a 15.9155 15.9155 0 0 1 0 31.831
-                   a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-              <path class="circle"
-                stroke-dasharray="0, 100"
-                d="M18 2.0845
-                   a 15.9155 15.9155 0 0 1 0 31.831
-                   a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-            </svg>
-            <span class="percentage-value">222</span>
-          </div>
-          <h3>Терминалов</h3>
-          <p>Мы установили банкоматы в удобных и доступных местах.</p>
-        </div>
-      </div>
-</div>
     </div>
 
     <div class="container_5">
@@ -130,30 +138,36 @@
         <h3>{{ 'COMMON.OFFICES_AND_ATMS' | translate }}</h3>
         <p>{{ 'MAP.TAGLINE' | translate }}</p>
         <div class=""></div>
-      
+
         <button [routerLink]="'/map'">{{ 'BUTTONS.VIEW_ON_MAP' | translate }}</button>
       </div>
       <div class="d">
-        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/transfers" >
+        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/transfers">
           <div class="details">
             <h3>{{ 'COMMON.TRANSFERS' | translate }}</h3>
             <p>{{ 'COMMON.TAGLINE' | translate }}</p>
           </div>
-          <img src="../../../assets/icons/im1.svg" [alt]="'alt.mapIllustration' | translate">
+          <img src="../../../assets/icons/im1.svg" [alt]="'alt.mapIllustration' | translate" />
         </div>
-        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/vacancies">
+        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/vacancies">
           <div class="details">
             <h3>{{ 'VACANCIES.TITLE' | translate }}</h3>
             <p>{{ 'HOME.JOIN_TEAM.SUBTITLE' | translate }}</p>
           </div>
-          <img src="../../../assets/icons/im2.svg" [alt]="'alt.vacanciesIllustration' | translate">
+          <img src="../../../assets/icons/im2.svg" [alt]="'alt.vacanciesIllustration' | translate" />
         </div>
-        <div class="box" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/contact" [queryParams]="{ scrollTo: 'application-form' }">
+        <div
+          class="box"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="/contact"
+          [queryParams]="{ scrollTo: 'application-form' }"
+        >
           <div class="details">
             <h3>{{ 'HOME.SUPPORT.TITLE' | translate }}</h3>
             <p>{{ 'HOME.SUPPORT.SUBTITLE' | translate }}</p>
           </div>
-          <img src="../../../assets/icons/im3.svg" [alt]="'alt.supportIllustration' | translate">
+          <img src="../../../assets/icons/im3.svg" [alt]="'alt.supportIllustration' | translate" />
         </div>
       </div>
     </div>

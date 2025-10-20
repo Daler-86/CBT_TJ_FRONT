@@ -1,21 +1,21 @@
 @import 'styles/fonts.scss';
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
-body{
-    max-width: 1500px;
-    font-family: 'Inter', sans-serif;
-    margin: 0 auto; /* Центрирование контейнера */
-    color: #141A20;
+body {
+  max-width: 1500px;
+  font-family: 'Inter', sans-serif;
+  margin: 0 auto; /* Центрирование контейнера */
+  color: #141a20;
 }
 
 .cdk-overlay-dark-backdrop {
-    background: rgba(0, 0, 0, 0.6);
-  }
+  background: rgba(0, 0, 0, 0.6);
+}

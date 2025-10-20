@@ -1,19 +1,17 @@
 // src/app/pages/contact/contact.component.ts
 
-import { Component, OnInit, ElementRef, ViewChild , HostListener } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { GoogleMapsModule } from '@angular/google-maps'; // Убедись, что импорт есть
+
 import { ContactService } from '../../api/contact.service';
-import { ContactBlock, ContactFormPayload, ContactPayload, ContactSubject } from '../../models/contact.model';
+import { ContactBlock, ContactFormPayload, ContactSubject } from '../../models/contact.model';
 import { environment } from '../../../environments/environment';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { IMapPoint, YandexMapComponent } from '../yandex-map/yandex-map.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
-import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { ScrollService } from '../../services/scroll.service';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -21,64 +19,56 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [CommonModule, TranslateModule, YandexMapComponent, ReactiveFormsModule],
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
   contactBlocks: ContactBlock[] = [];
- 
+
   imageUrl: string = environment.IMAGE_URL;
 
   zoom = 16;
   public headOfficePoint: IMapPoint[] = [];
-  public selectedSubjectName: string = '';
-  public dropdownOpen: boolean = false;
-  subjects: ContactSubject[] = []
+  public selectedSubjectName = '';
+  public dropdownOpen = false;
+  subjects: ContactSubject[] = [];
   // Наша реактивная форма
   public contactForm!: FormGroup;
-  public isSubmitting: boolean = false;
+  public isSubmitting = false;
+  private contactService = inject(ContactService);
+  private fb = inject(FormBuilder);
+  private notificationService = inject(ModalService);
+  private scrollService = inject(ScrollService);
+  private translateService = inject(TranslateService);
 
-
-  constructor(private contactService: ContactService,
-    private fb: FormBuilder,
-    private notificationService: ModalService,
-    private scrollService: ScrollService,
-    private translateService: TranslateService,
-    private elementRef: ElementRef,
-    private route: ActivatedRoute,
-    ) {
-
-      this.contactForm = this.fb.group({
-        client_name: ['', [Validators.required, Validators.minLength(2)]],
-        phone: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern(/^\d+$/) // ✅ только цифры разрешены
-          ]
+  private route = inject(ActivatedRoute);
+  constructor() {
+    this.contactForm = this.fb.group({
+      client_name: ['', [Validators.required, Validators.minLength(2)]],
+      phone: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^\d+$/), // ✅ только цифры разрешены
         ],
-        contact_subject_id: [null, [Validators.required]],
-        question: ['', [Validators.required, Validators.minLength(10)]]
-      });
-    }
-    private langChangeSubscription: Subscription | undefined;
+      ],
+      contact_subject_id: [null, [Validators.required]],
+      question: ['', [Validators.required, Validators.minLength(10)]],
+    });
+  }
+  private langChangeSubscription: Subscription | undefined;
 
-    
   @ViewChild('customDropdown') dropdownRef!: ElementRef;
   ngOnInit(): void {
-    this.contactService.getContacts().subscribe(res => {
+    this.contactService.getContacts().subscribe((res) => {
       this.contactBlocks = res.data.contacts;
-      this.subjects=res.data.subjects
-      
-  
+      this.subjects = res.data.subjects;
     });
     this.updateSubjectPlaceholder();
     this.langChangeSubscription = this.translateService.onLangChange.subscribe(() => {
       this.updateSubjectPlaceholder();
     });
 
-
-    this.createHeadOfficeMapPoint();
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const anchor = params['scrollTo']; // Ищем параметр 'scrollTo' в URL
       if (anchor) {
         // Если параметр есть, вызываем наш сервис
@@ -93,7 +83,7 @@ export class ContactComponent implements OnInit {
   }
   updateSubjectPlaceholder(): void {
     if (!this.contactForm.get('contact_subject_id')?.value) {
-      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_SUBJECT').subscribe(translation => {
+      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_SUBJECT').subscribe((translation) => {
         this.selectedSubjectName = translation;
       });
     }
@@ -118,63 +108,55 @@ export class ContactComponent implements OnInit {
   }
 
   // --- Метод отправки формы ---
-// ... (внутри вашего компонента)
+  // ... (внутри вашего компонента)
 
-onSubmit(): void {
-  this.contactForm.markAllAsTouched();
-  if (this.contactForm.invalid) {
-    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-    this.translateService.get('notifications.fillAllFieldsWarning').subscribe((message: string) => {
-      this.notificationService.show(message, 'error');
-    });
-    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-    return;
-  }
-
-  this.isSubmitting = true;
-  const formData: ContactFormPayload = this.contactForm.value;
-
-  this.contactService.submitContactForm(formData).subscribe({
-    next: (response) => {
+  onSubmit(): void {
+    this.contactForm.markAllAsTouched();
+    if (this.contactForm.invalid) {
       // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-      this.translateService.get('notifications.messageSentSuccess').subscribe((message: string) => {
-        this.notificationService.show(message, 'success');
-      });
-      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-      this.contactForm.reset();
-      this.updateSubjectPlaceholder();
-      this.isSubmitting = false;
-    },
-    error: (error) => {
-      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-      this.translateService.get('notifications.messageSentError').subscribe((message: string) => {
+      this.translateService.get('notifications.fillAllFieldsWarning').subscribe((message: string) => {
         this.notificationService.show(message, 'error');
       });
       // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-      this.isSubmitting = false;
+      return;
     }
-  });
-}
+
+    this.isSubmitting = true;
+    const formData: ContactFormPayload = this.contactForm.value;
+
+    this.contactService.submitContactForm(formData).subscribe({
+      next: () => {
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+        this.translateService.get('notifications.messageSentSuccess').subscribe((message: string) => {
+          this.notificationService.show(message, 'success');
+        });
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+        this.contactForm.reset();
+        this.updateSubjectPlaceholder();
+        this.isSubmitting = false;
+      },
+      error: () => {
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+        this.translateService.get('notifications.messageSentError').subscribe((message: string) => {
+          this.notificationService.show(message, 'error');
+        });
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+        this.isSubmitting = false;
+      },
+    });
+  }
 
   // Геттеры для удобной валидации в HTML
-  get client_name() { return this.contactForm.get('client_name'); }
-  get phone() { return this.contactForm.get('phone'); }
-  get contact_subject_id() { return this.contactForm.get('contact_subject_id'); }
-  get question() { return this.contactForm.get('question'); }
-  private createHeadOfficeMapPoint(): void {
-    // Здесь вы можете взять данные из вашего API или задать их статически
-    const headOfficeData = {
-      id: 1,
-      name: 'Головной офис CBT Банк',
-      address: 'г. Душанбе, проспект Рудаки, 105',
-      // Точные координаты вашего головного офиса
-      latitude: '38.575678', 
-      longitude: '68.782045'
-    };
-    
-   
-  
+  get client_name() {
+    return this.contactForm.get('client_name');
   }
- 
-
+  get phone() {
+    return this.contactForm.get('phone');
+  }
+  get contact_subject_id() {
+    return this.contactForm.get('contact_subject_id');
+  }
+  get question() {
+    return this.contactForm.get('question');
+  }
 }

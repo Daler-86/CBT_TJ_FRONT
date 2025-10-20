@@ -1,13 +1,22 @@
-import { Component, OnInit , ViewChild, ElementRef, inject} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import { VacanciesService } from '../../api/vacancies.service';
-import { personalQuality, vacancyCondition, vacancyEducation, vacancyExperience, vacancySkill } from '../../models/vacancies.model';
+import {
+  fileVacancyResponse,
+  personalQuality,
+  vacancyCondition,
+  vacancyData,
+  vacancyEducation,
+  vacancyExperience,
+  vacancySkill,
+  vacancySubmit,
+} from '../../models/vacancies.model';
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalService } from '../../services/modal.service';
@@ -18,94 +27,101 @@ import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-vacancy-detail',
   standalone: true,
-  imports: [NgIf, NgFor,  RouterModule,ReactiveFormsModule, TranslateModule, ScrollToDirective],
+  imports: [NgIf, NgFor, RouterModule, ReactiveFormsModule, TranslateModule, ScrollToDirective],
   templateUrl: './vacancy-detail.component.html',
-  styleUrls: ['./vacancy-detail.component.scss']
+  styleUrls: ['./vacancy-detail.component.scss'],
 })
-
 export class VacancyDetailComponent implements OnInit {
   applyForm: FormGroup;
-  id:number=0
- // Переменная для хранения выбранного файла
-  fileName: string = '';
+  id = 0;
+  // Переменная для хранения выбранного файла
+  fileName = '';
   allowedExtensions = ['image/doc', 'image/jpeg', 'application/pdf'];
-   personalQuality:personalQuality[]=[]
-   condition:vacancyCondition[]=[]
-  education:vacancyEducation[]=[]
-  experience:vacancyExperience[]=[]
-  skill:vacancySkill[]=[]
+  personalQuality: personalQuality[] = [];
+  condition: vacancyCondition[] = [];
+  education: vacancyEducation[] = [];
+  experience: vacancyExperience[] = [];
+  skill: vacancySkill[] = [];
   // selectedFile: File | null = null;
   uploadFileId: number | null = null;
-  isSubmitted: boolean = false;
-  isError:boolean=false
-  vacancyData:any={}
-  
+  isSubmitted = false;
+  isError = false;
+  vacancyData: vacancyData = {
+    id: 0,
+    name: '',
+    region_name: '',
+    deadline_at: '',
+  };
+
   private pageTitleService = inject(PageTitleService);
-  constructor(private fb: FormBuilder,
-    private vacanciesService: VacanciesService,
-    
-    private translate: TranslateService,
-    private route: ActivatedRoute, private notificationService:ModalService) {
+  private fb = inject(FormBuilder);
+  private vacanciesService = inject(VacanciesService);
+
+  private translate = inject(TranslateService);
+  private route = inject(ActivatedRoute);
+  private notificationService = inject(ModalService);
+
+  constructor() {
     this.applyForm = this.fb.group({
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9\\s()-]*$')]],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
     });
   }
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
-      this.id= +idParam; 
+      this.id = +idParam;
     } else {
       console.error('ID is missing in the route parameters.');
     }
-       this.vacanciesService.getPersonalQuality(this.id).subscribe(
+    this.vacanciesService.getPersonalQuality(this.id).subscribe(
       (details) => {
-        this.personalQuality=details.data.vacancy_personal_qualities;
+        this.personalQuality = details.data.vacancy_personal_qualities;
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
-      }
+      },
     );
 
     this.vacanciesService.getVacancyEducation(this.id).subscribe(
       (details) => {
-        this.education=details.data.vacancy_educations;
+        this.education = details.data.vacancy_educations;
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
-      }
+      },
     );
 
     this.vacanciesService.getVacancyExperience(this.id).subscribe(
       (details) => {
-        this.experience=details.data.vacancy_experiences;
+        this.experience = details.data.vacancy_experiences;
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
-      }
+      },
     );
     this.vacanciesService.getVacancyCondition(this.id).subscribe(
       (details) => {
-        this.condition=details.data.vacancy_conditions;
+        this.condition = details.data.vacancy_conditions;
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
-      }
+      },
     );
 
     this.vacanciesService.getVacancySkill(this.id).subscribe(
       (details) => {
-        this.skill=details.data.vacancy_skills;
+        this.skill = details.data.vacancy_skills;
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
-      }
+      },
     );
     this.vacanciesService.getVacancyData(this.id).subscribe(
       (details) => {
-        this.vacancyData=details.data.vacancy_data
+        this.vacancyData = details.data.vacancy_data;
         if (this.vacancyData && this.vacancyData.name) {
           // ...передаем уже готовое, переведенное название в сервис заголовков.
           this.pageTitleService.setCustomTitle(this.vacancyData.name);
@@ -113,16 +129,15 @@ export class VacancyDetailComponent implements OnInit {
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
-      }
+      },
     );
   }
-
 
   onDrop(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
-      const file = event.dataTransfer.files[0]; 
+      const file = event.dataTransfer.files[0];
       this.handleFile(file);
     }
   }
@@ -157,7 +172,13 @@ export class VacancyDetailComponent implements OnInit {
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
       // Проверяем расширение перед загрузкой
-      if (['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)) {
+      if (
+        [
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        ].includes(file.type)
+      ) {
         this.fileName = file.name;
         this.uploadFile(file);
       } else {
@@ -170,7 +191,7 @@ export class VacancyDetailComponent implements OnInit {
 
   uploadFile(file: File) {
     this.vacanciesService.uploadFile(file).subscribe({
-      next: (response: any) => {
+      next: (response: fileVacancyResponse) => {
         if (response.status === 'success') {
           this.uploadFileId = response.data.upload_file.id;
           this.notificationService.show('Файл успешно загружен.', 'success');
@@ -180,71 +201,78 @@ export class VacancyDetailComponent implements OnInit {
         console.error('File upload failed:', error);
         this.fileName = ''; // Сбрасываем имя файла при ошибке
         this.notificationService.show('Не удалось загрузить файл.', 'error');
-      }
+      },
     });
   }
 
-// ... (внутри вашего компонента)
+  // ... (внутри вашего компонента)
 
-onSubmit() {
-  this.applyForm.markAllAsTouched();
+  onSubmit() {
+    this.applyForm.markAllAsTouched();
 
-  if (this.applyForm.invalid) {
-    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-    // Используем существующий ключ
-    this.translate.get('notifications.fillAllRequiredFieldsWarning').subscribe((message: string) => {
-      this.notificationService.show(message, 'error');
-    });
-    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-    return;
-  }
-  if (this.uploadFileId === null) {
-    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-    // Новый ключ
-    this.translate.get('notifications.uploadResumeWarning').subscribe((message: string) => {
-      this.notificationService.show(message, 'error');
-    });
-    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-    return;
-  }
-
-  const formValue = this.applyForm.value;
-  const formData = {
-    last_name: formValue.lastName,
-    first_name: formValue.firstName,
-    email: formValue.email,
-    phone: formValue.phone,
-    upload_file_id: this.uploadFileId,
-    vacancy_id: this.id 
-  };
-
-  this.vacanciesService.submitFormData(formData).subscribe({
-    next: (response) => {
+    if (this.applyForm.invalid) {
       // --- НАЧАЛО ИЗМЕНЕНИЙ ---
       // Используем существующий ключ
-      this.translate.get('notifications.applicationSentSuccess').subscribe((message: string) => {
-        this.notificationService.show(message, 'success');
-      });
-      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-      
-      this.applyForm.reset();
-      this.fileName = '';
-      this.uploadFileId = null;
-    },
-    error: (error) => {
-      console.error('Form submission failed:', error);
-      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-      // Используем существующий ключ
-      this.translate.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+      this.translate.get('notifications.fillAllRequiredFieldsWarning').subscribe((message: string) => {
         this.notificationService.show(message, 'error');
       });
       // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      return;
     }
-  });
-}  // Геттеры для удобного доступа к контролам в шаблоне
-  get lastName() { return this.applyForm.get('lastName'); }
-  get firstName() { return this.applyForm.get('firstName'); }
-  get phone() { return this.applyForm.get('phone'); }
-  get email() { return this.applyForm.get('email'); }
-  
+    if (this.uploadFileId === null) {
+      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+      // Новый ключ
+      this.translate.get('notifications.uploadResumeWarning').subscribe((message: string) => {
+        this.notificationService.show(message, 'error');
+      });
+      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      return;
+    }
+
+    const formValue = this.applyForm.value;
+    const formData: vacancySubmit = {
+      last_name: formValue.lastName,
+      first_name: formValue.firstName,
+      email: formValue.email,
+      phone: formValue.phone,
+      upload_file_id: this.uploadFileId,
+      vacancy_id: this.id,
+    };
+
+    this.vacanciesService.submitFormData(formData).subscribe({
+      next: () => {
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+        // Используем существующий ключ
+        this.translate.get('notifications.applicationSentSuccess').subscribe((message: string) => {
+          this.notificationService.show(message, 'success');
+        });
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+
+        this.applyForm.reset();
+        this.fileName = '';
+        this.uploadFileId = null;
+      },
+      error: (error) => {
+        console.error('Form submission failed:', error);
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+        // Используем существующий ключ
+        this.translate.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+          this.notificationService.show(message, 'error');
+        });
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      },
+    });
+  } // Геттеры для удобного доступа к контролам в шаблоне
+  get lastName() {
+    return this.applyForm.get('lastName');
+  }
+  get firstName() {
+    return this.applyForm.get('firstName');
+  }
+  get phone() {
+    return this.applyForm.get('phone');
+  }
+  get email() {
+    return this.applyForm.get('email');
+  }
 }

@@ -1,5 +1,5 @@
 // Переменные для цветов и шрифтов
-$primary-color: #00B06C;
+$primary-color: #00b06c;
 $text-color-primary: #212529;
 $text-color-secondary: #6c757d;
 $border-color: #dee2e6;
@@ -19,7 +19,7 @@ $background-light: #f8f9fa;
   display: grid;
   grid-template-columns: 1fr 0.7fr;
   gap: 30px;
- 
+
   @media (max-width: 992px) {
     grid-template-columns: 1fr;
   }
@@ -40,14 +40,14 @@ $background-light: #f8f9fa;
     margin-bottom: 30px;
   }
 
-  label {
+  label, .form-label {
     display: block;
     font-size: 16px;
     font-weight: 500;
     color: $text-color-secondary;
     margin-bottom: 12px;
   }
-  
+
   .input-slider-container {
     border: 1px solid $border-color;
     border-radius: 12px;
@@ -68,7 +68,13 @@ $background-light: #f8f9fa;
       height: 4px;
       border-radius: 2px;
       outline: none;
-      background: linear-gradient( to right, $primary-color 0%, $primary-color var(--range-percent), #e9ecef var(--range-percent), #e9ecef 100% );
+      background: linear-gradient(
+        to right,
+        $primary-color 0%,
+        $primary-color var(--range-percent),
+        #e9ecef var(--range-percent),
+        #e9ecef 100%
+      );
 
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -125,12 +131,26 @@ $background-light: #f8f9fa;
   @include card-style;
   align-self: flex-start;
 
-  h2 { font-size: 28px; font-weight: 700; color: $text-color-primary; margin: 0 0 25px 0; }
-  
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: $text-color-primary;
+    margin: 0 0 25px 0;
+  }
+
   .result-item {
     margin-bottom: 20px;
-    p { font-size: 16px; color: $text-color-secondary; margin: 0 0 5px 0; }
-    h3 { font-size: 32px; font-weight: 700; color: $primary-color; margin: 0; }
+    p {
+      font-size: 16px;
+      color: $text-color-secondary;
+      margin: 0 0 5px 0;
+    }
+    h3 {
+      font-size: 32px;
+      font-weight: 700;
+      color: $primary-color;
+      margin: 0;
+    }
   }
 
   button {
@@ -145,8 +165,13 @@ $background-light: #f8f9fa;
     cursor: pointer;
     margin-top: 20px;
     transition: all 0.2s ease;
-    &:hover { background-color: darken($primary-color, 5%); }
-    &:disabled { background-color: lighten($primary-color, 30%); cursor: not-allowed; }
+    &:hover {
+      background-color: darken($primary-color, 5%);
+    }
+    &:disabled {
+      background-color: lighten($primary-color, 30%);
+      cursor: not-allowed;
+    }
   }
 
   .error-message {
@@ -175,6 +200,8 @@ $background-light: #f8f9fa;
     border: none;
     width: 100%;
     background: none;
-    &:focus { outline: none; }
+    &:focus {
+      outline: none;
+    }
   }
 }
