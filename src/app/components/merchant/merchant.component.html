@@ -73,8 +73,8 @@
   <!-- Пагинация -->
   @if(totalPages >= 1) {
     <div class="pagination-container" >
-      <button (click)="selectPage(1)" [disabled]="currentPage === 1" [title]="'common.pagination.firstPage' | translate">«</button>
-      <button (click)="prevPage()" [disabled]="currentPage === 1" [title]="'common.pagination.previousPage' | translate">‹</button>
+      <button (click)="selectPage(1)" [disabled]="currentPage === 1" [title]="'COMMON.PAGINATION.FIRST_PAGE' | translate">«</button>
+      <button (click)="prevPage()" [disabled]="currentPage === 1" [title]="'COMMON.PAGINATION.PREVIOUS_PAGE' | translate">‹</button>
       @for(page of pages; track $index) {
         <button 
         [class.active]="page === currentPage"
@@ -85,8 +85,8 @@
       }
      
     
-      <button (click)="nextPage()" [disabled]="currentPage === totalPages" [title]="'common.pagination.nextPage' | translate">›</button>
-      <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages" [title]="'common.pagination.lastPage' | translate">»</button>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" [title]="'COMMON.PAGINATION.NEXT_PAGE' | translate">›</button>
+      <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages" [title]="'COMMON.PAGINATION.LAST_PAGE' | translate">»</button>
     </div>
   }
  

@@ -13,10 +13,13 @@
   
           <div class="box-description">
             <!-- Динамический контент, не требует перевода -->
-            <div class="detail" *ngFor="let i of card.content_item">
-              <p>{{ i.title }}</p>
-              <h3>{{ i.description }}</h3>
-            </div>
+            @for(i of card.content_item; track i.id) {
+              <div class="detail" >
+                <p>{{ i.title }}</p>
+                <h3>{{ i.description }}</h3>
+              </div>
+            }
+           
           </div>
   
           <div class="card-buttons">

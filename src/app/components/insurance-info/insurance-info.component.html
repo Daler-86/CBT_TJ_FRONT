@@ -112,16 +112,19 @@
           <img [src]="imageUrl+block.upload_file" [alt]="block.title" class="card-icon" />
         </div>
         <div class="card-body">
-          <div class="contact-item" *ngFor="let detail of block.data">
-            @if(detail.upload_file) {
-              <img [src]="imageUrl+detail.upload_file" [alt]="detail.title" class="item-icon" />
-            }
-           
-            <div>
-              <p class="item-title">{{ detail.title }}</p>
-              <p class="item-description">{{ detail.Description }}</p>
+          @for(detail of block.data; track detail.id)  {
+            <div class="contact-item">
+              @if(detail.upload_file) {
+                <img [src]="imageUrl+detail.upload_file" [alt]="detail.title" class="item-icon" />
+              }
+             
+              <div>
+                <p class="item-title">{{ detail.title }}</p>
+                <p class="item-description">{{ detail.Description }}</p>
+              </div>
             </div>
-          </div>
+          }
+          
         </div>
       </div>
     }

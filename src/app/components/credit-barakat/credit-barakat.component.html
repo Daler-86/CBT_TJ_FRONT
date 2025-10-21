@@ -113,9 +113,12 @@
           <!-- Список опций остается без изменений -->
           @if(dropdownOpen) {
             <div class="dropdown-options" >
-              <div class="dropdown-option" *ngFor="let item of offices" (click)="selectOption($event, item)">
-                <p>{{ item.name }}</p>
-              </div>
+              @for(item of offices; track item.id) {
+                <div class="dropdown-option"  (click)="selectOption($event, item)">
+                  <p>{{ item.name }}</p>
+                </div>
+              }
+            
             </div>
           }
        

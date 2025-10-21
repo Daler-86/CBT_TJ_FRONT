@@ -1,14 +1,18 @@
-<div class="currency-converter-container"> 
+<div class="currency-converter-container">
+
   <div class="calculator-tabs">
-    @for(mode of getModes(); track $index) {
-      <button 
-            (click)="selectMode(mode)"
-            [class.active]="selectedMode === mode">
-      <!-- ВАЖНО: Эта функция должна использовать TranslateService в TS-файле. См. ниже -->
-      {{ getReadableMode(mode) }}
-    </button>
-    }
+    @if(modes$ | async; as modes) {
+      @for(mode of modes; track $index ) {
+        <button
+      
+        (click)="selectMode(mode.key)"
+        [class.active]="selectedMode === mode.key"
+      >
+        {{ mode.label }}
+      </button>
+      }
     
+    }
   </div>
 
   <div class="div">

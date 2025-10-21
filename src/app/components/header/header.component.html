@@ -124,19 +124,22 @@
             </div>
             @if(dropdownOpenMap[$index]) {
               <div class="submenu">
-                <div class="submenu-option" *ngFor="let item of menu.items">
-                  @if(item.is_new_tab) {
-                    <a [href]="item.route" target="_blank" rel="noopener noreferrer"
-                       (click)="selectOption(item, $index, $event, menu)">
-                      <p>{{ item.name | translate }}</p>
-                    </a>
-                  } @else {
-                    <a [routerLink]="item.route"
-                       (click)="selectOption(item, $index, $event, menu)">
-                      <p>{{ item.name | translate }}</p>
-                    </a>
-                  }
-                </div>
+                @for(item of menu.items; track item.id) {
+                  <div class="submenu-option">
+                    @if(item.is_new_tab) {
+                      <a [href]="item.route" target="_blank" rel="noopener noreferrer"
+                         (click)="selectOption(item, $index, $event, menu)">
+                        <p>{{ item.name | translate }}</p>
+                      </a>
+                    } @else {
+                      <a [routerLink]="item.route"
+                         (click)="selectOption(item, $index, $event, menu)">
+                        <p>{{ item.name | translate }}</p>
+                      </a>
+                    }
+                  </div>
+                }
+                
               </div>
             }
         }

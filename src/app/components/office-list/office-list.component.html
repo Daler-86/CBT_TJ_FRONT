@@ -80,11 +80,11 @@
           <div class="icon">
             <!-- Отображаем иконку в зависимости от выбранного типа -->
             @if (selectedObjectType === 'offices') {
-              <img src="assets/icons/offices.svg" [alt]="'alt.officeIcon' | translate">
+              <img src="assets/icons/offices.svg" [alt]="'ALT.OFFICE_ICON' | translate">
             } @else if (selectedObjectType === 'atms') {
-              <img src="assets/icons/atms.svg" [alt]="'alt.atmIcon' | translate">
+              <img src="assets/icons/atms.svg" [alt]="'ALT.ATM_ICON' | translate">
             } @else if (selectedObjectType === 'terminals') {
-              <img src="assets/icons/terminals.svg" [alt]="'alt.terminalIcon' | translate">
+              <img src="assets/icons/terminals.svg" [alt]="'ALT.TERMINAL_ICON' | translate">
             }
           </div>
   
@@ -116,7 +116,7 @@
   <!-- Сообщение, если данных нет -->
   <ng-template #noData>
     <div class="no-data-container">
-      <p>{{ 'map.noDataMessage' | translate }}</p>
+      <p>{{ 'MAP.NO_DATA_MESSAGE' | translate }}</p>
     </div>
   </ng-template>
 

@@ -16,10 +16,12 @@
           <div >
             <h2>{{ item.title }}</h2>
             
-            <!-- Выводим каждый параграф с новой строки -->
-            <div *ngFor="let paragraph of item.paragraphs" class="description-paragraph subtitle">
-              {{ paragraph }}
-            </div>
+            @for(paragraph of item.paragraphs; track $index) {
+              <div class="description-paragraph subtitle">
+                {{ paragraph }}
+              </div>
+            }
+           
           </div>
         }
         

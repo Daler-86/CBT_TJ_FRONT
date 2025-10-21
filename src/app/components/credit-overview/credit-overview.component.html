@@ -10,10 +10,13 @@
               {{credit.description}}
                 </p>
                 <div class="card-details">
-                  <div class="currency-info" *ngFor="let content of credit.content">
-                    <p class="title">{{content.title}}</p>
-                    <p class="description">{{content.description}}</p>
-                  </div>
+                  @for(content of credit.content; track content.id) {
+                    <div class="currency-info">
+                      <p class="title">{{content.title}}</p>
+                      <p class="description">{{content.description}}</p>
+                    </div>
+                  }
+                 
                 </div>
                 <div class="card-buttons">
                   <button class="btn-primary" [routerLink]="['/credits', credit.id]" [queryParams]="{ scrollTo: 'application-form' }">{{'CREDITS_PAGE.CARD.APPLY_BUTTON' | translate}}</button>
