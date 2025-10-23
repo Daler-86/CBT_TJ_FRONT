@@ -4,23 +4,41 @@
     <h2>{{ 'CALCULATORS.INSTALLMENT.TITLE' | translate }}</h2>
 
     <div class="form-group">
-      <label>{{ 'CALCULATORS.INSTALLMENT.AMOUNT' | translate }}</label>
+      <label for="loanAmountInput">{{ 'calculators.installment.amount' | translate }}</label>
       <div class="input-slider-container">
         <div class="input-display">
-          @if(!isEditingAmount) {
-            <div (click)="startEditing()">
-              {{ loanAmount | number:'1.0-0':'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
+          @if (!isEditingAmount) {
+            <div
+              (click)="startEditing()"
+              (keydown.enter)="startEditing()"
+              (keydown.space)="startEditing()"
+              tabindex="0"
+              role="button"
+              aria-controls="loanAmountInput"
+              [attr.aria-label]="
+                ('calculators.installment.currentAmount' | translate) +
+                ' ' +
+                (loanAmount | number: '1.0-0' : 'ru-RU') +
+                ' ' +
+                ('calculators.common.currencySymbol.tjs' | translate) +
+                '. ' +
+                ('calculators.installment.clickToEdit' | translate)
+              "
+            >
+              {{ loanAmount | number: '1.0-0' : 'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
             </div>
           }
-         @if(isEditingAmount) {
-            <input  type="number" 
-            [(ngModel)]="loanAmount" 
-            (input)="onValueChange()"
-            (blur)="stopEditing()"
-            (keydown.enter)="stopEditing()"
-            autofocus>
-         }
-        
+          @if (isEditingAmount) {
+            <input
+              type="number"
+              id="loanAmountInput"
+              [(ngModel)]="loanAmount"
+              (input)="onValueChange()"
+              (blur)="stopEditing()"
+              (keydown.enter)="stopEditing()"
+              [attr.aria-label]="'calculators.installment.editAmount' | translate"
+            />
+          }
         </div>
 
         <input
@@ -37,25 +55,21 @@
         />
 
         <div class="range-labels">
-          @for(label of amountLabels; track $index) {
-            <span >{{ label }}</span>
+          @for (label of amountLabels; track $index) {
+            <span>{{ label }}</span>
           }
-     
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <label>{{ 'CALCULATORS.INSTALLMENT.TERM' | translate }}</label>
+      <p class=".form-label">{{ 'CALCULATORS.INSTALLMENT.TERM' | translate }}</p>
       <div class="term-buttons">
-        @for(term of availableTerms; track $index) {
-          <button 
-          (click)="loanTerm = term; onValueChange()"
-          [class.active]="loanTerm === term">
-        {{ term }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}
-        </button>
+        @for (term of availableTerms; track $index) {
+          <button (click)="loanTerm = term; onValueChange()" [class.active]="loanTerm === term">
+            {{ term }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}
+          </button>
         }
-       
       </div>
     </div>
   </div>
@@ -67,17 +81,17 @@
       <div>
         <div class="result-item">
           <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
-          <h3>{{ calculationResult.monthlyPayment | number:'1.0-0':'ru-RU' }}</h3>
+          <h3>{{ calculationResult.monthlyPayment | number: '1.0-0' : 'ru-RU' }}</h3>
         </div>
-    
+
         <div class="result-item">
           <p>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</p>
-          <h3>{{ calculationResult.interestRate | percent:'1.0-0' }}</h3>
+          <h3>{{ calculationResult.interestRate | percent: '1.0-0' }}</h3>
         </div>
-    
+
         <div class="result-item">
           <p>{{ 'CALCULATORS.INSTALLMENT.TOTAL_PAYMENT' | translate }}</p>
-          <h3>{{ calculationResult.totalPayment | number:'1.0-0':'ru-RU' }}</h3>
+          <h3>{{ calculationResult.totalPayment | number: '1.0-0' : 'ru-RU' }}</h3>
         </div>
       </div>
     } @else {
@@ -85,7 +99,6 @@
         {{ 'CALCULATORS.NO_DATA' | translate }}
       </div>
     }
- 
 
     <ng-template #noRate>
       <p class="error-message">{{ 'CALCULATORS.INSTALLMENT.SELECT_TERM_ERROR' | translate }}</p>

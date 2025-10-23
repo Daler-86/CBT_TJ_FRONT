@@ -12,55 +12,50 @@
   </div>
 
   <!-- Заголовок и текст для блока условий -->
-  @if(transferData.upload_tariff_file_id!=='') {
-    <h1 >{{ 'TRANSFERS.DETAILS.CONDITIONS_TITLE' | translate }}</h1>
+  @if (transferData.upload_tariff_file_id !== '') {
+    <h1>{{ 'TRANSFERS.DETAILS.CONDITIONS_TITLE' | translate }}</h1>
   }
-  
+
   <!-- <p *ngIf="transferData.upload_tariff_file_id">{{ 'transfers.details.swiftInfo' | translate }}</p> -->
 
   <div class="section2">
-      <!-- Динамический блок, перевод не требуется -->
-      @for(condition of transferData.conditions; track condition.id) {
-        <div class="box" >
-            <p>{{condition.title}}</p>
-            <h1>{{condition.description}}</h1>
-            @for(i of condition.items; track i.id) {
-                <p >{{i.title}}</p>
-            }
-      
-        </div>
-      }
-     
+    <!-- Динамический блок, перевод не требуется -->
+    @for (condition of transferData.conditions; track condition.id) {
+      <div class="box">
+        <p>{{ condition.title }}</p>
+        <h1>{{ condition.description }}</h1>
+        @for (i of condition.items; track i.id) {
+          <p>{{ i.title }}</p>
+        }
+      </div>
+    }
 
-      <!-- Блок для кнопки тарифов -->
-      @if(transferData.upload_tariff_file_id!=='') {
-        <div class="box" >
-            <p>{{ 'TRANSFERS.DETAILS.VIEW_ALL_TARIFFS_TEXT' | translate }}</p>
-            <button class="btn-secondary">{{ 'BUTTONS.ALL_TARIFFS' | translate }}</button>
-        </div>
-      }
-     
+    <!-- Блок для кнопки тарифов -->
+    @if (transferData.upload_tariff_file_id !== '') {
+      <div class="box">
+        <p>{{ 'TRANSFERS.DETAILS.VIEW_ALL_TARIFFS_TEXT' | translate }}</p>
+        <button class="btn-secondary">{{ 'BUTTONS.ALL_TARIFFS' | translate }}</button>
+      </div>
+    }
   </div>
 
   <div class="section3">
-      <!-- Заголовок для блока документов -->
-      @if(!transferData.upload_tariff_file_id) {
-        <h1>{{ 'transfers.details.documentsAndTariffsTitle' | translate }}</h1>
-      }
-     
-      <div class="section2">
-          <!-- Динамический блок, перевод не требуется -->
-          @for(document of transferData.documents; track document.id) {
-            <div class="box" >
-                <h2>{{document.title}}</h2>
-                @for(item of document.items; track item.id) {
-                    <p >{{item.title}}</p>
-                }
-                
-            </div>
+    <!-- Заголовок для блока документов -->
+    @if (!transferData.upload_tariff_file_id) {
+      <h1>{{ 'transfers.details.documentsAndTariffsTitle' | translate }}</h1>
+    }
+
+    <div class="section2">
+      <!-- Динамический блок, перевод не требуется -->
+      @for (document of transferData.documents; track document.id) {
+        <div class="box">
+          <h2>{{ document.title }}</h2>
+          @for (item of document.items; track item.id) {
+            <p>{{ item.title }}</p>
           }
-         
-      </div>
+        </div>
+      }
+    </div>
   </div>
 
   <div class="container_5">

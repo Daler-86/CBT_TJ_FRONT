@@ -9,31 +9,27 @@
     </button>
 
     <!-- Кнопки брендов -->
-    @for(cBrand of cardBrands; track $index) {
-      <button
-      [ngClass]="{ 'active': isBrandSelected(cBrand.id) }"
-      (click)="selectBrand(cBrand.id); selectTab('brand')"
-    >
-      {{ cBrand.name | translate }}
-    </button>
+    @for (cBrand of cardBrands; track $index) {
+      <button [ngClass]="{ active: isBrandSelected(cBrand.id) }" (click)="selectBrand(cBrand.id); selectTab('brand')">
+        {{ cBrand.name | translate }}
+      </button>
     }
-   
   </div>
 
   <div class="content">
-    @for(card of cardList; track $index ) {
-      <div class="card-container" >
+    @for (card of cardList; track $index) {
+      <div class="card-container">
         <div class="card-info">
           <h2 class="card-title">{{ card.title }}</h2>
           <p class="card-description">{{ card.description }}</p>
-  
+
           <div class="card-details">
             <div class="currency-info" *ngFor="let c of card.content">
               <p class="title">{{ c.title }}</p>
               <p class="description">{{ c.description }}</p>
             </div>
           </div>
-  
+
           <div class="card-buttons">
             <button
               class="btn-primary"
@@ -42,25 +38,16 @@
             >
               {{ 'BUTTONS.APPLY_FOR_CARD' | translate }}
             </button>
-            <button
-              (click)="onCardClick(card.id)"
-              class="btn-secondary"
-              [routerLink]="['/cards', card.id]"
-            >
+            <button (click)="onCardClick(card.id)" class="btn-secondary" [routerLink]="['/cards', card.id]">
               {{ 'BUTTONS.MORE_DETAILS' | translate }}
             </button>
           </div>
         </div>
-  
+
         <div class="card-image">
-          <img
-            class="card"
-            [src]="imageUrl + card.upload_file"
-            [alt]="card.title"
-          />
+          <img class="card" [src]="imageUrl + card.upload_file" [alt]="card.title" />
         </div>
       </div>
     }
-   
   </div>
 </div>

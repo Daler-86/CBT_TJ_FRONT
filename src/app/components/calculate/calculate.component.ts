@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,7 +10,14 @@ import { CalculatorData } from '../../models/calculate.model';
 @Component({
   selector: 'app-calculate',
   standalone: true,
-  imports: [TranslateModule, FormsModule, DepositCalculatorComponent, InstallmentCalculateComponent, CarLoanCalculateComponent, LoanCalculatorComponent],
+  imports: [
+    TranslateModule,
+    FormsModule,
+    DepositCalculatorComponent,
+    InstallmentCalculateComponent,
+    CarLoanCalculateComponent,
+    LoanCalculatorComponent,
+  ],
   templateUrl: './calculate.component.html',
   styleUrl: './calculate.component.scss',
 })

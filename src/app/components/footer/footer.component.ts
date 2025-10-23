@@ -1,13 +1,11 @@
 import { Languages } from './../../shared/enums/languages.enum';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { RouterLink, RouterModule} from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 // Для ссылки на главную
-
-
 
 @Component({
   selector: 'app-footer',

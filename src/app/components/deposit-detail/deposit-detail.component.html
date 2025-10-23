@@ -1,6 +1,5 @@
-@if(depositData) {
-  <div class="cards" >
-
+@if (depositData) {
+  <div class="cards">
     <!-- Блок 1: Промо -->
     <div class="card-container">
       <div class="card-info">
@@ -11,61 +10,62 @@
         </div>
       </div>
       <div class="card-image">
-        <img class="transfers_img" [src]="imageUrl + depositData.upload_icon_file" [alt]="depositData.title"/>
+        <img class="transfers_img" [src]="imageUrl + depositData.upload_icon_file" [alt]="depositData.title" />
       </div>
     </div>
-  
+
     <!-- Блок 2: Калькулятор вклада -->
     <div class="deposit-calculator">
-      @if(depositData.id) {
-        <app-deposit-calculator  [productId]="depositData.id"></app-deposit-calculator>
+      @if (depositData.id) {
+        <app-deposit-calculator [productId]="depositData.id"></app-deposit-calculator>
       }
     </div>
-  
+
     <!-- Блок 3: Тарифы и условия -->
-    @if(depositData.currency) {
-      <div class="container" >
+    @if (depositData.currency) {
+      <div class="container">
         <h1>{{ 'COMMON.TARIFFS_AND_CONDITIONS' | translate }}</h1>
         <div class="btnCards">
-          @for(btn of depositData.currency; track btn.id) {
-            <button  (click)="selectTab(btn.code)" [class.active]="selectedTab === btn.code">
+          @for (btn of depositData.currency; track btn.id) {
+            <button (click)="selectTab(btn.code)" [class.active]="selectedTab === btn.code">
               {{ btn.title }}
             </button>
           }
-          
         </div>
-        @for(tariff of depositData.currency; track tariff.id) {
-          <div  class="content">
-            @if(selectedTab === tariff.code) {
+        @for (tariff of depositData.currency; track tariff.id) {
+          <div class="content">
+            @if (selectedTab === tariff.code) {
               <div class="info-container">
-                @for(service of tariff.tariffs; track service.id ) {
+                @for (service of tariff.tariffs; track service.id) {
                   <div class="info-box">
                     <div class="info-title-1">{{ service.title }}</div>
                     <div class="info-title">{{ service.description }}</div>
                   </div>
                 }
-               @for(service of depositData.documents; track service.id ) {
-                <div class="info-box" >
-                  <div class="info-title-1">{{ service.title }}</div>
-                  <div class="info-title document-card">
-                    <img src="../../../assets/icons/Book.png" [alt]="'ALT.BOOK_ICON' | translate" class="pdf-icon">
-                    <a [href]="imageUrl+service.upload_file" target="_blank" rel="noopener noreferrer" class="document-link">{{ service.title }}</a>
+                @for (service of depositData.documents; track service.id) {
+                  <div class="info-box">
+                    <div class="info-title-1">{{ service.title }}</div>
+                    <div class="info-title document-card">
+                      <img src="../../../assets/icons/Book.png" [alt]="'ALT.BOOK_ICON' | translate" class="pdf-icon" />
+                      <a
+                        [href]="imageUrl + service.upload_file"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="document-link"
+                        >{{ service.title }}</a
+                      >
+                    </div>
                   </div>
-                </div>
-               }
-           
+                }
               </div>
             }
-            
           </div>
         }
-      
       </div>
     }
-   
-  
+
     <!-- Блок 4: Форма заявки -->
-    <div class="application-form-container" #applicationForm id='application-form'>
+    <div class="application-form-container" #applicationForm id="application-form">
       <div class="form">
         <div class="text">
           <h2 class="form-title">{{ 'DEPOSIT_DETAILS.APPLICATION_FORM.TITLE' | translate }}</h2>
@@ -73,46 +73,69 @@
         </div>
         <form #form="ngForm" (ngSubmit)="submitApplication(form)">
           <div class="form-group">
-            <input type="text" id="phone" [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.PHONE_PLACEHOLDER' | translate" 
-                   class="form-control" required 
-                   [(ngModel)]="model.phone" name="phone" #phone="ngModel">
-              @if(phone.invalid && phone.touched) {
-                <div  class="error">
-                  {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
-                </div>
-              }
-         
+            <input
+              type="text"
+              id="phone"
+              [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.PHONE_PLACEHOLDER' | translate"
+              class="form-control"
+              required
+              [(ngModel)]="model.phone"
+              name="phone"
+              #phone="ngModel"
+            />
+            @if (phone.invalid && phone.touched) {
+              <div class="error">
+                {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
+              </div>
+            }
           </div>
           <div class="form-group">
-            <input type="text" id="name" [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.NAME_PLACEHOLDER' | translate" 
-                   class="form-control" required 
-                   [(ngModel)]="model.client_name" name="name" #name="ngModel">
-                   @if(name.invalid && name.touched) {
-                    <div  class="error">
-                      {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
-                    </div>
-                   }
-           
+            <input
+              type="text"
+              id="name"
+              [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.NAME_PLACEHOLDER' | translate"
+              class="form-control"
+              required
+              [(ngModel)]="model.client_name"
+              name="name"
+              #name="ngModel"
+            />
+            @if (name.invalid && name.touched) {
+              <div class="error">
+                {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
+              </div>
+            }
           </div>
           <div class="form-group">
-            <button type="submit" class="btn-primary" [disabled]="form.invalid">{{ 'BUTTONS.APPLY_FOR_DEPOSIT' | translate }}</button>
+            <button type="submit" class="btn-primary" [disabled]="form.invalid">
+              {{ 'BUTTONS.APPLY_FOR_DEPOSIT' | translate }}
+            </button>
           </div>
           <p class="form-disclaimer">
-            {{ 'COMMON.CONSENT.PREFIX2' | translate }} 
+            {{ 'COMMON.CONSENT.PREFIX2' | translate }}
             <a href="#">{{ 'COMMON.CONSENT.LINK_TEXT' | translate }}</a>
             {{ 'COMMON.CONSENT.LINK_TEXT2' | translate }}
           </p>
         </form>
       </div>
     </div>
-  
+
     <!-- Блок 5: FAQ -->
     @if (depositData?.faqs) {
       <div class="faq-container">
         <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
-        @for (faq of depositData.faqs; track faq.id) {
+        @for (faq of depositData.faqs; track faq.id; let i = $index) {
           <div class="faq-item">
-            <div class="faq-question" (click)="toggleFaq($index)">
+            <div
+              class="faq-question"
+              (click)="toggleFaq(i)"
+              (keydown.enter)="toggleFaq(i)"
+              (keydown.space)="toggleFaq(i)"
+              tabindex="0"
+              role="button"
+              [attr.aria-expanded]="selectedFaqIndex === i"
+              [attr.aria-controls]="'faq-answer-' + i"
+            >
               <span>{{ faq.title }}</span>
               <span class="faq-icon">{{ selectedFaqIndex === $index ? '-' : '+' }}</span>
             </div>
@@ -123,9 +146,5 @@
         }
       </div>
     }
-    
-   
   </div>
 }
-
-

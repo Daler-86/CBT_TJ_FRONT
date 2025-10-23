@@ -13,46 +13,54 @@
       <div class="tender-div-cell header-cell">{{ 'TENDERS_LIST.TABLE.HEADER_END_DATE' | translate }}</div>
       <div class="tender-div-cell header-cell">{{ 'TENDERS_LIST.TABLE.HEADER_STATUS' | translate }}</div>
     </div>
-  
+
     <!-- Сообщение об отсутствии данных -->
-    @if(tenders.length === 0) {
+    @if (tenders.length === 0) {
       <div class="no-data-row">
         {{ 'TENDERS_LIST.TABLE.NO_DATA' | translate }}
       </div>
     }
-   
-  
+
     <!-- Строки данных (имитация tbody и tr) -->
-    @for(tender of tenders; track tender.id) {
-      <div class="tender-div-row" (click)="navigateToCardDetailsAndForm(tender.id)">
+    @for (tender of tenders; track tender.id) {
+      <div
+        class="tender-div-row"
+        (click)="navigateToCardDetailsAndForm(tender.id)"
+        (keydown.enter)="navigateToCardDetailsAndForm(tender.id)"
+        (keydown.space)="navigateToCardDetailsAndForm(tender.id)"
+        tabindex="0"
+        role="link"
+      >
         <div class="tender-div-cell">{{ tender.name }}</div>
         <div class="tender-div-cell">{{ tender.start_date }}</div>
         <div class="tender-div-cell">{{ tender.end_date }}</div>
         <div class="tender-div-cell cell-status">
-          <span class="status-badge"
-                [ngClass]="{
-                  'status-open': tender.status === 'open',
-                  'status-completed': tender.status === 'close'
-                }">
-            {{ tender.status === 'open' ? ('TENDER_DETAILS.STATUS.OPEN' | translate) : ('TENDER_DETAILS.STATUS.CLOSED' | translate) }}
+          <span
+            class="status-badge"
+            [ngClass]="{
+              'status-open': tender.status === 'open',
+              'status-completed': tender.status === 'close',
+            }"
+          >
+            {{
+              tender.status === 'open'
+                ? ('TENDER_DETAILS.STATUS.OPEN' | translate)
+                : ('TENDER_DETAILS.STATUS.CLOSED' | translate)
+            }}
           </span>
         </div>
       </div>
     }
-  
 
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      @for(page of pages; track $index) {
-        <button 
-        [class.active]="page === currentPage"
-        (click)="selectPage(page)">
-        {{ page === -1 ? '...' : page }}
+      @for (page of pages; track $index) {
+        <button [class.active]="page === currentPage" (click)="selectPage(page)">
+          {{ page === -1 ? '...' : page }}
         </button>
       }
-     
-      
+
       <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
       <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
     </div>

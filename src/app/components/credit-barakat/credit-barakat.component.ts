@@ -1,7 +1,4 @@
-
-
-
-import { Component, HostListener,ElementRef, inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, HostListener, ElementRef, inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FavriComponent } from '../favri/favri.component';
@@ -23,7 +20,14 @@ import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-credit-barakat',
   standalone: true,
-  imports: [TranslateModule, FormsModule, FavriComponent, LoanCalculatorComponent, ScrollToDirective, CarLoanCalculateComponent],
+  imports: [
+    TranslateModule,
+    FormsModule,
+    FavriComponent,
+    LoanCalculatorComponent,
+    ScrollToDirective,
+    CarLoanCalculateComponent,
+  ],
   templateUrl: './credit-barakat.component.html',
   styleUrl: './credit-barakat.component.scss',
 })

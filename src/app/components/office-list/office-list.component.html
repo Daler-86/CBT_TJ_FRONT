@@ -14,27 +14,42 @@
         >
           {{ selectedObjectTypeName }}
         </div>
-        @if(dropdownOpen) {
-          <div class="dropdown-options" >
+        @if (dropdownOpen) {
+          <div class="dropdown-options">
             <div class="dropdown-section">
               <h4>{{ 'MAP_PAGE.FILTERS.OBJECT_TYPES' | translate }}</h4>
               <div class="dropdown-option">
                 <label class="custom-checkbox">
-                  <input type="radio" name="objectType" [checked]="selectedObjectType === 'offices'" (change)="onObjectTypeChange('offices')"/>
+                  <input
+                    type="radio"
+                    name="objectType"
+                    [checked]="selectedObjectType === 'offices'"
+                    (change)="onObjectTypeChange('offices')"
+                  />
                   <span class="checkbox"></span>
                   {{ 'MAP_PAGE.FILTERS.OFFICES' | translate }}
                 </label>
               </div>
               <div class="dropdown-option">
                 <label class="custom-checkbox">
-                  <input type="radio" name="objectType" [checked]="selectedObjectType === 'terminals'" (change)="onObjectTypeChange('terminals')"/>
+                  <input
+                    type="radio"
+                    name="objectType"
+                    [checked]="selectedObjectType === 'terminals'"
+                    (change)="onObjectTypeChange('terminals')"
+                  />
                   <span class="checkbox"></span>
                   {{ 'MAP_PAGE.FILTERS.TERMINALS' | translate }}
                 </label>
               </div>
               <div class="dropdown-option">
                 <label class="custom-checkbox">
-                  <input type="radio" name="objectType" [checked]="selectedObjectType === 'atms'" (change)="onObjectTypeChange('atms')"/>
+                  <input
+                    type="radio"
+                    name="objectType"
+                    [checked]="selectedObjectType === 'atms'"
+                    (change)="onObjectTypeChange('atms')"
+                  />
                   <span class="checkbox"></span>
                   {{ 'MAP_PAGE.FILTERS.ATMS' | translate }}
                 </label>
@@ -42,7 +57,6 @@
             </div>
           </div>
         }
-      
       </div>
 
       <div class="custom-dropdown">
@@ -58,34 +72,37 @@
         >
           {{ selectedRegionDisplayName }}
         </div>
-        @if(dropdownOpen2) {
+        @if (dropdownOpen2) {
           <div class="dropdown-options">
             <div class="dropdown-section">
               <div class="dropdown-option">
                 <label class="custom-checkbox">
-                  <input type="radio" name="region" [checked]="regionSelected === 0" (change)="onRegionChange(0)"/>
+                  <input type="radio" name="region" [checked]="regionSelected === 0" (change)="onRegionChange(0)" />
                   <span class="checkbox"></span>
                   {{ 'MAP_PAGE.FILTERS.ALL_REGIONS' | translate }}
                 </label>
               </div>
-              @for(option of regionList; track option.id) {
-                <div  class="dropdown-option">
+              @for (option of regionList; track option.id) {
+                <div class="dropdown-option">
                   <label class="custom-checkbox">
-                    <input type="radio" name="region" [checked]="regionSelected === option.id" (change)="onRegionChange(option)"/>
+                    <input
+                      type="radio"
+                      name="region"
+                      [checked]="regionSelected === option.id"
+                      (change)="onRegionChange(option)"
+                    />
                     <span class="checkbox"></span>
                     {{ option.name }}
                   </label>
                 </div>
               }
-              
             </div>
           </div>
         }
-     
       </div>
     </div>
   </div>
- 
+
   <!-- Список объектов -->
   @if (combinedData.length > 0) {
     @for (item of combinedData; track $index) {
@@ -94,22 +111,22 @@
           <div class="icon">
             <!-- Отображаем иконку в зависимости от выбранного типа -->
             @if (selectedObjectType === 'offices') {
-              <img src="assets/icons/offices.svg" [alt]="'ALT.OFFICE_ICON' | translate">
+              <img src="assets/icons/offices.svg" [alt]="'ALT.OFFICE_ICON' | translate" />
             } @else if (selectedObjectType === 'atms') {
-              <img src="assets/icons/atms.svg" [alt]="'ALT.ATM_ICON' | translate">
+              <img src="assets/icons/atms.svg" [alt]="'ALT.ATM_ICON' | translate" />
             } @else if (selectedObjectType === 'terminals') {
-              <img src="assets/icons/terminals.svg" [alt]="'ALT.TERMINAL_ICON' | translate">
+              <img src="assets/icons/terminals.svg" [alt]="'ALT.TERMINAL_ICON' | translate" />
             }
           </div>
-  
+
           <div class="info">
             <h3>{{ item.name }}</h3>
             <p>{{ item.address }}</p>
           </div>
         </div>
-  
+
         <!-- Дополнительная информация, если есть -->
-        @if (item.items?.length > 0) {
+        @if (item.items.length > 0) {
           <div class="item">
             @for (detail of item.items; track $index) {
               <div>
@@ -126,7 +143,7 @@
       {{ 'COMMON.NO_DATA' | translate }}
     </div>
   }
-  
+
   <!-- Сообщение, если данных нет -->
   <ng-template #noData>
     <div class="no-data-container">
@@ -135,23 +152,22 @@
   </ng-template>
 
   <!-- Пагинация -->
-  @if(totalPages > 1) {
+  @if (totalPages > 1) {
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      @for(page of pages; track $index) {
-          @if(page !== -1) {
-            <button  [class.active]="page === currentPage" (click)="selectPage(page)">
-              {{ page }}
-            </button>
-          } @else {
-            <span class="ellipsis">...</span>
-          }
+      @for (page of pages; track $index) {
+        @if (page !== -1) {
+          <button [class.active]="page === currentPage" (click)="selectPage(page)">
+            {{ page }}
+          </button>
+        } @else {
+          <span class="ellipsis">...</span>
+        }
       }
-      
+
       <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
       <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
-  </div>
+    </div>
   }
-
 </div>

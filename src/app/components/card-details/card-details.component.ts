@@ -1,9 +1,16 @@
 import { Component, HostListener, ElementRef, OnInit, ViewChild, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
-import { NgClass} from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Card, CardList, cardDetail, cardFaqs, cardLimits, cardOperations, helpfulDocument } from '../../models/cards.model';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  cardContentItem,
+  cardDetail,
+  cardFaqs,
+  cardLimits,
+  cardOperations,
+  cardServices,
+  helpfulDocument,
+} from '../../models/cards.model';
 import { RegionService } from '../../api/region.service';
 import { officeList } from '../../models/region.model';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -14,6 +21,7 @@ import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { ScrollService } from '../../services/scroll.service';
 import { TranslateService } from '@ngx-translate/core';
 import { PageTitleService } from '../../services/page-title.service';
+
 @Component({
   selector: 'app-card-details',
   standalone: true,

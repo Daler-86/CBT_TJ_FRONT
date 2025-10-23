@@ -9,10 +9,7 @@
   <div class="btnCards">
     <!-- Названия валют также переводим -->
     @for (currency of bankdetailCurrency; track currency.id) {
-      <button
-        [ngClass]="{ 'active': isTabSelected(currency.id) }"
-        (click)="selectTab(currency.id)"
-      >
+      <button [ngClass]="{ active: isTabSelected(currency.id) }" (click)="selectTab(currency.id)">
         {{ currency.title | translate }}
       </button>
     }
@@ -27,6 +24,5 @@
         <div class="info-value">{{ item.description }}</div>
       </div>
     }
-    
   </div>
 </div>

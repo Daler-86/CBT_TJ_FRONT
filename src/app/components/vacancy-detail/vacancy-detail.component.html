@@ -1,77 +1,71 @@
 <div class="more-vacancy">
-  @if(personalQuality) {
-    <div >
+  @if (personalQuality) {
+    <div>
       <div class="title">
         <div class="">
           <h2>{{ vacancyData.name }}</h2>
           <div class="city-location">
-            <img src="../../../assets/icons/Layer 2.svg" [alt]="'alt.location' | translate">
+            <img src="../../../assets/icons/Layer 2.svg" [alt]="'alt.location' | translate" />
             <p>{{ vacancyData.region_name }}</p>
           </div>
           <div class="city-location">
-            <img src="../../../assets/icons/calendar.svg" [alt]="'alt.calendar' | translate">
+            <img src="../../../assets/icons/calendar.svg" [alt]="'alt.calendar' | translate" />
             <p>{{ vacancyData.deadline_at }}</p>
           </div>
         </div>
         <div class="">
-          <button [scrollTo]="'application-form'">{{"vacancyDetails.form.title"|translate}}</button>
+          <button [scrollTo]="'application-form'">{{ 'vacancyDetails.form.title' | translate }}</button>
           <!-- Кнопка теперь находится внутри формы ниже, для лучшей семантики -->
         </div>
       </div>
       <div class="">
-        <div class="vacancy-details"> 
+        <div class="vacancy-details">
           <h4>{{ 'vacancyDetails.sections.education' | translate }}</h4>
           <ul>
-            @for( education of education; track education.id) {
-              <li >{{ education.content }}</li>
+            @for (education of education; track education.id) {
+              <li>{{ education.content }}</li>
             }
-      
           </ul>
         </div>
-  
+
         <div class="vacancy-details">
           <h4>{{ 'vacancyDetails.sections.experience' | translate }}</h4>
           <ul>
-            @for(work of experience; track work.id) {
-              <li >{{ work.content }}</li>
+            @for (work of experience; track work.id) {
+              <li>{{ work.content }}</li>
             }
-           
           </ul>
         </div>
-  
+
         <div class="vacancy-details">
           <h4>{{ 'vacancyDetails.sections.skills' | translate }}</h4>
           <ul>
-            @for(skill of skill; track skill.id) {
-              <li >{{ skill.content }}</li>
+            @for (skill of skill; track skill.id) {
+              <li>{{ skill.content }}</li>
             }
-          
           </ul>
         </div>
-  
+
         <div class="vacancy-details">
           <h4>{{ 'vacancyDetails.sections.qualities' | translate }}</h4>
           <ul>
-            @for(quality of personalQuality; track quality.id) {
-              <li >{{ quality.content }}</li>
+            @for (quality of personalQuality; track quality.id) {
+              <li>{{ quality.content }}</li>
             }
-      
           </ul>
         </div>
-  
+
         <div class="vacancy-details">
           <h4>{{ 'vacancyDetails.sections.conditions' | translate }}</h4>
           <ul>
-            @for(condition of condition; track condition.id) {
-              <li >{{ condition.content }}</li>
+            @for (condition of condition; track condition.id) {
+              <li>{{ condition.content }}</li>
             }
-          
           </ul>
         </div>
       </div>
     </div>
   }
- 
 
   <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id="application-form">
     <h2>{{ 'vacancyDetails.form.title' | translate }}</h2>
@@ -79,52 +73,45 @@
 
     <div class="form-row">
       <div class="full">
-        <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'"/>
-        @if(lastName?.invalid && lastName?.touched) {
-          <div  class="error-message">Фамилия обязательна.</div>
+        <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'" />
+        @if (lastName?.invalid && lastName?.touched) {
+          <div class="error-message">Фамилия обязательна.</div>
         }
-       
       </div>
       <div class="full">
-        <input formControlName="firstName" [placeholder]="('vacancyDetails.form.firstName' | translate) + '*'"/>
-        @if(firstName?.invalid && firstName?.touched) {
-          <div  class="error-message">Имя обязательно.</div>
+        <input formControlName="firstName" [placeholder]="('vacancyDetails.form.firstName' | translate) + '*'" />
+        @if (firstName?.invalid && firstName?.touched) {
+          <div class="error-message">Имя обязательно.</div>
         }
-
       </div>
     </div>
 
     <div class="form-row">
       <div class="full">
-        <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'"/>
-        @if(phone?.invalid && phone?.touched) {
-          <div  class="error-message">
-            @if(phone?.errors?.['required']) {
-              <span >Телефон обязателен.</span>
+        <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'" />
+        @if (phone?.invalid && phone?.touched) {
+          <div class="error-message">
+            @if (phone?.errors?.['required']) {
+              <span>Телефон обязателен.</span>
             }
-            @if(phone?.errors?.['pattern']) {
-              <span >Неверный формат.</span>
+            @if (phone?.errors?.['pattern']) {
+              <span>Неверный формат.</span>
             }
-      
           </div>
         }
-       
-        </div>
+      </div>
       <div class="full">
-        <input formControlName="email" [placeholder]="('vacancyDetails.form.email' | translate) + '*'"/>
-        @if(email?.invalid && email?.touched) {
-          <div  class="error-message">
-          @if(email?.errors?.['required']) {
-            <span >Email обязателен.</span>
-          }
-           @if(email?.errors?.['email']) {
-            <span >Неверный формат email.</span>
-           } 
-           
+        <input formControlName="email" [placeholder]="('vacancyDetails.form.email' | translate) + '*'" />
+        @if (email?.invalid && email?.touched) {
+          <div class="error-message">
+            @if (email?.errors?.['required']) {
+              <span>Email обязателен.</span>
+            }
+            @if (email?.errors?.['email']) {
+              <span>Неверный формат email.</span>
+            }
           </div>
         }
-       
-    
       </div>
     </div>
 
@@ -140,24 +127,21 @@
       <div>
         <input type="file" (change)="onFileSelected($event)" #fileInput hidden />
         <button type="button" (click)="fileInput.click()">{{ 'buttons.uploadCV' | translate }}</button>
-        @if(fileName) {
+        @if (fileName) {
           <span>{{ fileName }}</span>
         }
-     
       </div>
     </div>
     <button type="submit">{{ 'buttons.send' | translate }}</button>
   </form>
-  @if(isSubmitted) {
-    <div  class="notification success-message">
+  @if (isSubmitted) {
+    <div class="notification success-message">
       {{ 'notifications.submitSuccess' | translate }}
     </div>
   }
 
-  @if(isError) {
-
-  }
-  <div  class="notification error-message animated">
+  @if (isError) {}
+  <div class="notification error-message animated">
     {{ 'notifications.submitError' | translate }}
   </div>
 </div>

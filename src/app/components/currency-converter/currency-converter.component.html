@@ -1,17 +1,12 @@
 <div class="currency-converter-container">
-
   <div class="calculator-tabs">
-    @if(modes$ | async; as modes) {
-      @for(mode of modes; track $index ) {
-        <button
-      
+    @for (mode of modes; track mode.key) {
+      <button
         (click)="selectMode(mode.key)"
         [class.active]="selectedMode === mode.key"
       >
         {{ mode.label }}
       </button>
-      }
-    
     }
   </div>
 
@@ -22,24 +17,27 @@
         <thead>
           <tr>
             <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.CURRENCY' | translate }}</th>
-            @if(selectedMode === 'CB_RATE') {
-                <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.ACCOUNTING' | translate }}</th>
+            @if (selectedMode === 'CB_RATE') {
+              <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.ACCOUNTING' | translate }}</th>
             }
-            @if(selectedMode !== 'CB_RATE') {
-                <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.PURCHASE' | translate }}</th>
-                <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.SALE' | translate }}</th>
+            @if (selectedMode !== 'CB_RATE') {
+              <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.PURCHASE' | translate }}</th>
+              <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.SALE' | translate }}</th>
             }
-           
           </tr>
         </thead>
         <tbody>
-          @for (rate of exchangeRatesByMode[selectedMode] | slice:0:(showMore ? exchangeRatesByMode[selectedMode].length : 3); track $index) {
+          @for (
+            rate of exchangeRatesByMode[selectedMode]
+              | slice: 0 : (showMore ? exchangeRatesByMode[selectedMode].length : 3);
+            track $index
+          ) {
             <tr>
               <td class="flag">
-                <img [src]="rate.flag" [alt]="rate.currency + ' flag'">
+                <img [src]="rate.flag" [alt]="rate.currency + ' flag'" />
                 <p>{{ rate.currency }}</p>
               </td>
-          
+
               @if (selectedMode === 'CB_RATE') {
                 <td>{{ rate.buy | number: '1.4-4' }}</td>
               } @else {
@@ -48,19 +46,19 @@
               }
             </tr>
           }
-          
         </tbody>
       </table>
 
       <div class="more">
-        <p>{{ 'CURRENCY_CONVERTER.RATES_TABLE.UPDATED_LABEL' | translate }} {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}</p>
-        @if((exchangeRatesByMode[selectedMode] ?? []).length > 3) {
+        <p>
+          {{ 'CURRENCY_CONVERTER.RATES_TABLE.UPDATED_LABEL' | translate }}
+          {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}
+        </p>
+        @if ((exchangeRatesByMode[selectedMode] ?? []).length > 3) {
           <button (click)="toggleShowMore()">
             {{ (showMore ? 'BUTTONS.COLLAPSE' : 'BUTTONS.SHOW_MORE') | translate }}
           </button>
         }
-        
-    
       </div>
     </div>
 
@@ -124,7 +122,6 @@
             @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
               <option [value]="rate.currency">{{ rate.currency }}</option>
             }
-            
           </select>
         </div>
       </div>
@@ -136,12 +133,12 @@
         <div class="a">
           <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
           <select [(ngModel)]="toCurrency" (change)="convertCurrency()">
-            @if(fromCurrency === 'TJS') {
+            @if (fromCurrency === 'TJS') {
               @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
-                  <option [value]="rate.currency">{{ rate.currency }}</option>
-                }
-              } @else {
-                <option value="TJS">TJS</option>
+                <option [value]="rate.currency">{{ rate.currency }}</option>
+              }
+            } @else {
+              <option value="TJS">TJS</option>
             }
           </select>
         </div>

@@ -1,4 +1,3 @@
-
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 
@@ -8,7 +7,7 @@ import { RateService } from '../../api/rate.service';
 import { ProcessedRate } from '../../models/rate.model';
 import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-
+import { AsyncPipe, DatePipe, DecimalPipe, NgClass, SlicePipe } from '@angular/common';
 interface Mode {
   key: string;
   label: string;
@@ -17,10 +16,9 @@ interface Mode {
 @Component({
   selector: 'app-currency-converter',
   standalone: true,
-  imports: [TranslateModule, FormsModule, HttpClientModule],
+  imports: [TranslateModule, FormsModule, HttpClientModule, DecimalPipe, NgClass, DatePipe, SlicePipe, AsyncPipe],
   templateUrl: './currency-converter.component.html',
   styleUrls: ['./currency-converter.component.scss'],
- 
 })
 export class CurrencyConverterComponent implements OnInit {
   transactionType: 'buy' | 'sell' = 'buy';
@@ -33,14 +31,26 @@ export class CurrencyConverterComponent implements OnInit {
   exchangeRatesByMode: Record<string, ProcessedRate[]> = {};
   showMore = false;
 
-  
-  modes$!: Observable<Mode[]>;
+  modes: Mode[] = [];
 
   private translate = inject(TranslateService);
   private rateService = inject(RateService);
 
   ngOnInit() {
-    this.initModesStream();
+    // 1. Инициализируем массив modes
+    this.modes = [
+      { key: 'REMITTANCE_RATE', label: this.translate.instant('CURRENCY_CONVERTER.RATE_MODES.NON_CASH') },
+      { key: 'CASH', label: this.translate.instant('CURRENCY_CONVERTER.RATE_MODES.CASH') },
+      { key: 'CB_RATE', label: this.translate.instant('CURRENCY_CONVERTER.RATE_MODES.CB_RATE') },
+    ];
+
+    // 2. Устанавливаем selectedMode, если ещё пустой
+    if (!this.selectedMode && this.modes.length > 0) {
+      this.selectedMode = this.modes[0].key;
+      this.updateCurrencies();
+    }
+
+    // 3. Загружаем курсы валют
     this.fetchExchangeRates();
   }
 
@@ -48,30 +58,12 @@ export class CurrencyConverterComponent implements OnInit {
     return this.exchangeRatesByMode[this.selectedMode]?.length || 0;
   }
 
-  private initModesStream() {
-    const cash$ = this.translate.stream('CURRENCY_CONVERTER.RATE_MODES.CASH');
-    const nonCash$ = this.translate.stream('CURRENCY_CONVERTER.RATE_MODES.NON_CASH');
-    const cbRate$ = this.translate.stream('CURRENCY_CONVERTER.RATE_MODES.CB_RATE');
-
-    this.modes$ = combineLatest([nonCash$, cash$, cbRate$]).pipe(
-      map(([nonCash, cash, cbRate]) => [
-        { key: 'REMITTANCE_RATE', label: nonCash },
-        { key: 'CASH', label: cash },
-        { key: 'CB_RATE', label: cbRate },
-      ])
-    );
-  }
-
   fetchExchangeRates() {
     this.rateService.getProcessedExchangeRates().subscribe({
       next: (processedData) => {
         this.exchangeRatesByMode = processedData.ratesByMode;
         this.lastUpdated = processedData.lastUpdated;
-
-        if (!this.selectedMode && Object.keys(this.exchangeRatesByMode).length > 0) {
-          this.selectedMode = Object.keys(this.exchangeRatesByMode)[0];
-          this.updateCurrencies();
-        }
+        this.updateCurrencies();
       },
       error: (err) => console.error('Error fetching exchange rates:', err),
     });
@@ -102,12 +94,10 @@ export class CurrencyConverterComponent implements OnInit {
   convertCurrency() {
     const rates = this.exchangeRatesByMode[this.selectedMode];
 
-
     if (!this.amount || this.fromCurrency === this.toCurrency) {
       this.convertedAmount = this.amount;
       return;
     }
-
 
     if (this.transactionType === 'buy') {
       if (this.fromCurrency === 'TJS') {
@@ -136,4 +126,3 @@ export class CurrencyConverterComponent implements OnInit {
     alert(`Вы отправили ${this.convertedAmount.toFixed(2)} ${this.toCurrency}`);
   }
 }
-

@@ -1,24 +1,21 @@
 <div class="container_4">
-    <div class="box1">
-         <h1>{{ 'NEWS.SECTION_TITLE' | translate }}</h1>
-         <div class="p" [routerLinkActiveOptions]="{exact: true}" routerLink="/news" routerLinkActive="active" >
-             <p>{{ 'LINKS.ALL_NEWS' | translate }}</p>
-            <span><img src="../../../assets/icons/arrow_forward.svg" [alt]="'alt.arrowForward' | translate"></span>
-         </div>
+  <div class="box1">
+    <h1>{{ 'NEWS.SECTION_TITLE' | translate }}</h1>
+    <div class="p" [routerLinkActiveOptions]="{ exact: true }" routerLink="/news" routerLinkActive="active">
+      <p>{{ 'LINKS.ALL_NEWS' | translate }}</p>
+      <span><img src="../../../assets/icons/arrow_forward.svg" [alt]="'alt.arrowForward' | translate" /></span>
     </div>
-    @if(news.length > 0) {
-        <div class="box2"  >
-            <!-- Динамический контент, не требует перевода через пайп -->
-            @for(new of news; track $index) {
-                <div class=""  (click)="navigateToCardDetailsAndForm(new.id)">
-                    <h3>{{new.title}}</h3>
-                    <p>{{new.shortDescription}}</p>
-                    <h1></h1>
-                    <p>{{new.date_time}}</p>
-                </div>
-            }
-           
-        </div>
-    }
-   
+  </div>
+  @if (news.length > 0) {
+    <div class="box2">
+      <!-- Динамический контент, не требует перевода через пайп -->
+      @for (new of news; track $index) {
+        <a [routerLink]="['/news', new.id]" class="news-item-card" tabindex="0" role="link">
+          <h3>{{ new.title }}</h3>
+          <p>{{ new.shortDescription }}</p>
+          <p>{{ new.date_time }}</p>
+        </a>
+      }
+    </div>
+  }
 </div>

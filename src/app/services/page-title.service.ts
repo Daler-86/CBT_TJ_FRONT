@@ -46,14 +46,14 @@ export class PageTitleService {
 
   public setCustomTitle(pageTitle: string): void {
     this.lastStaticTitleKey = null;
-    this.translateService.get('TITLES.SITE_NAME').subscribe(siteName => {
+    this.translateService.get('TITLES.SITE_NAME').subscribe((siteName) => {
       this.titleService.setTitle(`${pageTitle} | ${siteName}`);
     });
   }
 
   private updateTitleFromKey(titleKey: string): void {
     this.lastStaticTitleKey = titleKey;
-    this.translateService.get([titleKey, 'TITLES.SITE_NAME']).subscribe(translations => {
+    this.translateService.get([titleKey, 'TITLES.SITE_NAME']).subscribe((translations) => {
       const pageTitle = translations[titleKey];
       const siteName = translations['TITLES.SITE_NAME'];
 

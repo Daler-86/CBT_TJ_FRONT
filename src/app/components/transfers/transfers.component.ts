@@ -1,11 +1,10 @@
-
-import {Component} from '@angular/core';
-import {Router, RouterLink, RouterModule} from '@angular/router';
-import {TranslateModule} from '@ngx-translate/core';
-import {TransfersService} from '../../api/transfer.service';
-import {MenuService} from '../../api/menu.service';
-import {Transfer} from '../../models/transfers.model';
-import {environment} from "../../../environments/environment";
+import { Component, OnInit, inject } from '@angular/core';
+import { RouterLink, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { TransfersService } from '../../api/transfer.service';
+import { MenuService } from '../../api/menu.service';
+import { Transfer } from '../../models/transfers.model';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-transfers',

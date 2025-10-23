@@ -4,18 +4,21 @@
     <!-- <p class="p">{{ 'home.tagline' | translate }}</p> -->
 
     <div class="container_1">
-      @for(menu of menus; track $index) {
-        <div class="box_1" >
-          @for(favorite of menu.favorites; track $index) {
-            <div [routerLinkActiveOptions]="{exact: true}" class="card-item" [routerLink]="favorite.route" routerLinkActive="active">
-              <img [src]="imageUrl + favorite?.upload_file" [alt]="favorite?.name">
+      @for (menu of menus; track $index) {
+        <div class="box_1">
+          @for (favorite of menu.favorites; track $index) {
+            <div
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="card-item"
+              [routerLink]="favorite.route"
+              routerLinkActive="active"
+            >
+              <img [src]="imageUrl + favorite?.upload_file" [alt]="favorite?.name" />
               <p>{{ favorite?.name }}</p>
             </div>
           }
-        
         </div>
       }
-     
     </div>
 
     <app-calculate></app-calculate>

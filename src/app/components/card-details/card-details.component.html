@@ -1,7 +1,7 @@
 <div class="milli-card">
   <!-- Блок 1: Промо -->
-  @if(cardData) {
-    <div class="card-container" >
+  @if (cardData) {
+    <div class="card-container">
       <div class="card-info">
         <h2 class="card-title">{{ cardData.title }}</h2>
         <p class="card-description">{{ cardData.description }}</p>
@@ -15,28 +15,25 @@
         <img class="card" [src]="imageUrl + cardData.upload_file" [alt]="cardData.title" />
       </div>
     </div>
-  
   }
- 
+
   <!-- Блок 2: Преимущества -->
-  @if(cardContent) {
+  @if (cardContent) {
     <div
-    class="features-container"
-    [class]="{'type1': cardContent?.length % 3 == 0, 'type2': cardContent?.length % 2 == 0}"
-  >
-    @for(detail of cardContent; track $index) {
-      <div class="feature-card">
-        <div>
-          <h3>{{ detail.title }}</h3>
-          <p>{{ detail.description }}</p>
+      class="features-container"
+      [class]="{ type1: cardContent.length % 3 === 0, type2: cardContent.length % 2 === 0 }"
+    >
+      @for (detail of cardContent; track $index) {
+        <div class="feature-card">
+          <div>
+            <h3>{{ detail.title }}</h3>
+            <p>{{ detail.description }}</p>
+          </div>
+          <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="feature-icon" />
         </div>
-        <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="feature-icon" />
-      </div>
-    }
- 
-  </div>
+      }
+    </div>
   }
- 
 
   <!-- Блок 3: Тарифы и условия -->
   <div class="container">
@@ -57,11 +54,11 @@
       </button>
     </div>
 
-    @if(selectedTab === 'services') {
+    @if (selectedTab === 'services') {
       <div class="content">
         <div class="info-container">
-          @for(service of services; track $index) {
-            <div class="info-box" >
+          @for (service of services; track $index) {
+            <div class="info-box">
               <div class="info-title-1">{{ service.name }}</div>
               <div class="info-title">
                 {{ service.title }}
@@ -69,15 +66,14 @@
               </div>
             </div>
           }
-       
         </div>
       </div>
     }
-  
-    @if(selectedTab === 'limits') {
+
+    @if (selectedTab === 'limits') {
       <div class="content">
         <div class="info-container">
-          @for(limit of limits; track limit.id) {
+          @for (limit of limits; track limit.id) {
             <div class="info-box-limits">
               <div class="info-title-1">{{ limit.name }}</div>
               <div class="info-title">
@@ -90,16 +86,15 @@
               </div>
             </div>
           }
-        
         </div>
       </div>
     }
-   
-    @if(selectedTab === 'operations') {
+
+    @if (selectedTab === 'operations') {
       <div class="content">
         <div class="info-container">
-          @for(operation of operations; track operation.id) {
-            <div class="info-box" >
+          @for (operation of operations; track operation.id) {
+            <div class="info-box">
               <div class="info-title-1">{{ operation.name }}</div>
               <div class="info-title">
                 {{ operation.title }}
@@ -107,27 +102,24 @@
               </div>
             </div>
           }
-         
         </div>
       </div>
     }
-   
-    @if(selectedTab === 'documents') {
+
+    @if (selectedTab === 'documents') {
       <div class="content">
         <div class="info-container">
-          @for(document of documents; track document.id) {
-            <div class="info-box-documents" >
+          @for (document of documents; track document.id) {
+            <div class="info-box-documents">
               <a [href]="imageUrl + document.upload_file" target="_blank">
                 <img src="../../../assets/icons/pdficon.png" [alt]="'ALT.PDF_ICON' | translate" />
               </a>
               <p class="info-title">{{ document.name }}</p>
             </div>
           }
-         
         </div>
       </div>
     }
-    
   </div>
 
   <!-- Блок 4: Форма заявки -->
@@ -146,18 +138,16 @@
             class="form-control"
             formControlName="phone"
           />
-          @if(phone?.invalid && phone?.touched) {
-            <div  class="error">
-              @if(phone?.errors?.['required']) {
-                <span >{{ 'COMMON.FIELD_IS_REQUIRED' | translate }}</span>
+          @if (phone?.invalid && phone?.touched) {
+            <div class="error">
+              @if (phone?.errors?.['required']) {
+                <span>{{ 'COMMON.FIELD_IS_REQUIRED' | translate }}</span>
               }
-              @if(phone?.errors?.['pattern']) {
-                <span >Неверный формат телефона</span>
+              @if (phone?.errors?.['pattern']) {
+                <span>Неверный формат телефона</span>
               }
-          
             </div>
           }
-          
         </div>
 
         <!-- Имя -->
@@ -169,12 +159,11 @@
             class="form-control"
             formControlName="client_name"
           />
-          @if(client_name?.invalid && client_name?.touched) {
-            <div  class="error">
+          @if (client_name?.invalid && client_name?.touched) {
+            <div class="error">
               {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
             </div>
           }
-          
         </div>
 
         <!-- Офис -->
@@ -193,24 +182,29 @@
             >
               {{ officeName }}
             </div>
-            @if(dropdownOpen) {
-              <div class="dropdown-options" >
-                @for(item of offices; track item.id) {
-                  <div class="dropdown-option" (click)="selectOption(item)">
+            @if (dropdownOpen) {
+              <div class="dropdown-options">
+                @for (item of offices; track item.id) {
+                  <div
+                    class="dropdown-option"
+                    (click)="selectOption(item)"
+                    (keydown.enter)="selectOption(item)"
+                    (keydown.space)="selectOption(item)"
+                    [attr.aria-selected]="item.name === officeName"
+                    tabindex="0"
+                    role="option"
+                  >
                     <p>{{ item.name }}</p>
                   </div>
                 }
-             
               </div>
             }
-           
           </div>
-          @if(office_id?.invalid && office_id?.touched) {
-            <div  class="error">
+          @if (office_id?.invalid && office_id?.touched) {
+            <div class="error">
               {{ 'CHANGE_OFFICE' | translate }}
             </div>
           }
-         
         </div>
 
         <!-- Кнопка -->
@@ -232,18 +226,30 @@
   <!-- Блок 5: FAQ -->
   <div class="faq-container">
     <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
- 
-    @for (faq of faqs; track faq.id) {
+
+    @for (faq of faqs; track faq.id; let i = $index) {
       <div class="faq-item">
-        <div class="faq-question" (click)="toggleFaq($index)">
+        <div
+          class="faq-question"
+          (click)="toggleFaq(i)"
+          (keydown.enter)="toggleFaq(i)"
+          (keydown.space)="toggleFaq(i)"
+          tabindex="0"
+          role="button"
+          [attr.aria-expanded]="selectedFaqIndex === i"
+          [attr.aria-controls]="'faq-answer-' + i"
+          [id]="'faq-question-' + i"
+        >
           <span>{{ faq.title }}</span>
-          <span class="faq-icon">{{ selectedFaqIndex === $index ? '-' : '+' }}</span>
+          <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
         </div>
-        @if (selectedFaqIndex === $index) {
-          <div class="faq-answer">{{ faq.description }}</div>
+
+        @if (selectedFaqIndex === i) {
+          <div class="faq-answer" [id]="'faq-answer-' + i" [attr.aria-labelledby]="'faq-question-' + i">
+            {{ faq.description }}
+          </div>
         }
       </div>
     }
-    
   </div>
 </div>

@@ -3,7 +3,7 @@ import { RkoService } from '../../api/rko.service';
 import { MenuService } from '../../api/menu.service';
 import { environment } from '../../../environments/environment';
 import { scs } from '../../models/rko.model';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';

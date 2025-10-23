@@ -1,20 +1,17 @@
-@if(breadcrumbs$ | async; as breadcrumbs) {
-  
-  @if(breadcrumbs.length > 1) {
+@if (breadcrumbs$ | async; as breadcrumbs) {
+  @if (breadcrumbs.length > 1) {
     <nav aria-label="breadcrumb" class="breadcrumb-container">
       <ol>
-        @for(crumb of breadcrumbs; track $index; let last = $last) {
+        @for (crumb of breadcrumbs; track $index; let last = $last) {
           <li>
-            @if(!last) {
+            @if (!last) {
               <a [routerLink]="crumb.url">{{ crumb.label }}</a>
-            }
-            @else {
-              <span  aria-current="page">{{ crumb.label }}</span>
+            } @else {
+              <span aria-current="page">{{ crumb.label }}</span>
             }
           </li>
         }
-        </ol>
+      </ol>
     </nav>
   }
-
 }

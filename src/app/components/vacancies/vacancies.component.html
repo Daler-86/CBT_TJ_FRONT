@@ -28,13 +28,12 @@
 
   <div class="container">
     <!-- Этот блок полностью динамический, перевод не требуется -->
-    @for(item of vacancyStatistics; track item.id) {
-      <div class="box" >
+    @for (item of vacancyStatistics; track item.id) {
+      <div class="box">
         <h1>{{ item.title }}</h1>
         <p>{{ item.description }}</p>
       </div>
     }
-    
   </div>
 
   <!-- <div class="why-we-are-great">

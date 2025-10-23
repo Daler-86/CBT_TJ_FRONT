@@ -7,34 +7,38 @@
 
     <div class="">
       <div class="form-group">
-        <input type="text" class="form-control" 
-               [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
-               formControlName="client_name">
-          @if(client_name?.invalid && client_name?.touched)  {
-            <div  class="error">
-              {{ 'FORMS.ERRORS.REQUIRED' | translate }}
-            </div>
-          }   
-        
+        <input
+          type="text"
+          class="form-control"
+          [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
+          formControlName="client_name"
+        />
+        @if (client_name?.invalid && client_name?.touched) {
+          <div class="error">
+            {{ 'FORMS.ERRORS.REQUIRED' | translate }}
+          </div>
+        }
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control" 
-               [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
-               formControlName="phone">
-          @if(phone?.invalid && phone?.touched) {
-            <div  class="error">
-              {{ 'FORMS.ERRORS.REQUIRED' | translate }}
-            </div>
-          }
-        
+        <input
+          type="text"
+          class="form-control"
+          [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
+          formControlName="phone"
+        />
+        @if (phone?.invalid && phone?.touched) {
+          <div class="error">
+            {{ 'FORMS.ERRORS.REQUIRED' | translate }}
+          </div>
+        }
       </div>
 
       <button type="submit" class="submit-button" [disabled]="applicationForm.invalid || isSubmitting">
-        @if(!isSubmitting) {
-          <span >{{ 'BUTTONS.SEND' | translate }}</span>
+        @if (!isSubmitting) {
+          <span>{{ 'BUTTONS.SEND' | translate }}</span>
         } @else {
-          <span >{{ 'BUTTONS.SENDING' | translate }}...</span>
+          <span>{{ 'BUTTONS.SENDING' | translate }}...</span>
         }
       </button>
 

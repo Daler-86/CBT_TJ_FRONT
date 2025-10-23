@@ -23,18 +23,16 @@
 
         <select class="filter-select" [(ngModel)]="filterRegionId" (change)="onFilterChange()">
           <option [ngValue]="null">{{ 'MERCHANTS_PAGE.FILTERS.ALL_REGIONS' | translate }}</option>
-          @for(region of regions; track region.id) {
-            <option  [value]="region.id">{{ region.name }}</option>
+          @for (region of regions; track region.id) {
+            <option [value]="region.id">{{ region.name }}</option>
           }
-         
         </select>
 
         <select class="filter-select" [(ngModel)]="filterCategoryId" (change)="onFilterChange()">
           <option [ngValue]="null">{{ 'MERCHANTS_PAGE.FILTERS.ALL_CATEGORIES' | translate }}</option>
-          @for(category of categories; track category.id)  {
-            <option  [value]="category.id">{{ category.name }}</option>
+          @for (category of categories; track category.id) {
+            <option [value]="category.id">{{ category.name }}</option>
           }
-          
         </select>
 
         <div class="cashback-toggle">
@@ -49,40 +47,58 @@
 
     <!-- Сетка с карточками мерчантов (правая колонка) -->
     <div class="merchants-grid">
-      @for(merchant of merchants; track merchant.id) {
-        <div class="merchant-card" >
+      @for (merchant of merchants; track merchant.id) {
+        <div class="merchant-card">
           <div class="card-logo-wrapper">
-            <img [src]="imageUrl+merchant.upload_file" [alt]="merchant.name" class="card-logo" />
+            <img [src]="imageUrl + merchant.upload_file" [alt]="merchant.name" class="card-logo" />
           </div>
           <h3 class="card-name">{{ merchant?.name }}</h3>
           <p class="card-phone">{{ merchant.phone }}</p>
           <p class="card-address">{{ merchant.address }}</p>
         </div>
       }
-     
     </div>
   </div>
 
   <!-- Пагинация -->
-  @if(totalPages >= 1) {
-    <div class="pagination-container" >
-      <button (click)="selectPage(1)" [disabled]="currentPage === 1" [title]="'COMMON.PAGINATION.FIRST_PAGE' | translate">«</button>
-      <button (click)="prevPage()" [disabled]="currentPage === 1" [title]="'COMMON.PAGINATION.PREVIOUS_PAGE' | translate">‹</button>
-      @for(page of pages; track $index) {
-        <button 
-        [class.active]="page === currentPage"
-        [disabled]="page === -1"
-        (click)="selectPage(page)">
-      {{ page === -1 ? '...' : page }}
+  @if (totalPages >= 1) {
+    <div class="pagination-container">
+      <button
+        (click)="selectPage(1)"
+        [disabled]="currentPage === 1"
+        [title]="'COMMON.PAGINATION.FIRST_PAGE' | translate"
+      >
+        «
       </button>
+      <button
+        (click)="prevPage()"
+        [disabled]="currentPage === 1"
+        [title]="'COMMON.PAGINATION.PREVIOUS_PAGE' | translate"
+      >
+        ‹
+      </button>
+      @for (page of pages; track $index) {
+        <button [class.active]="page === currentPage" [disabled]="page === -1" (click)="selectPage(page)">
+          {{ page === -1 ? '...' : page }}
+        </button>
       }
-     
-    
-      <button (click)="nextPage()" [disabled]="currentPage === totalPages" [title]="'COMMON.PAGINATION.NEXT_PAGE' | translate">›</button>
-      <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages" [title]="'COMMON.PAGINATION.LAST_PAGE' | translate">»</button>
+
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+        [title]="'COMMON.PAGINATION.NEXT_PAGE' | translate"
+      >
+        ›
+      </button>
+      <button
+        (click)="selectPage(totalPages)"
+        [disabled]="currentPage === totalPages"
+        [title]="'COMMON.PAGINATION.LAST_PAGE' | translate"
+      >
+        »
+      </button>
     </div>
   }
- 
 
   <app-simple-application-form [apiUrl]="merchantApiUrl" [titleKey]="'FORMS.TITLES.MERCHANT'">
   </app-simple-application-form>

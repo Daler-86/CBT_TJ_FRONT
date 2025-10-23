@@ -1,28 +1,25 @@
 <div class="cards">
   <h1>{{ 'TRANSFERS.PAGE_TITLE' | translate }}</h1>
   <div class="content">
-    @for(transfer of transfersList; track transfer.id) {
-      <div class="card-container" >
-
+    @for (transfer of transfersList; track transfer.id) {
+      <div class="card-container">
         <div class="card-image">
           <!-- alt-текст берется из динамического поля transfer.title, что корректно -->
-          <img class="transfers_img" [src]="imageUrl + transfer.upload_icon_file_id" [alt]="transfer.title"/>
+          <img class="transfers_img" [src]="imageUrl + transfer.upload_icon_file_id" [alt]="transfer.title" />
         </div>
         <div class="card-info">
           <h2 class="card-title">{{ transfer.title }}</h2>
           <p class="card-description">
             {{ transfer.description }}
           </p>
-  
+
           <div class="card-buttons">
-            <button (click)="onCardClick(transfer.id)" class="btn-primary"
-                    [routerLink]="['/transfers',transfer.id]">{{ 'BUTTONS.MORE_DETAILS' | translate }}
+            <button class="btn-primary" [routerLink]="['/transfers', transfer.id]">
+              {{ 'BUTTONS.MORE_DETAILS' | translate }}
             </button>
           </div>
         </div>
-  
       </div>
     }
-   
   </div>
 </div>

@@ -1,38 +1,44 @@
 <div class="carousel">
-  @if(galleries.length > 0) {
-    <div  class="carousel-slides" [style.transform]="getTransform()">
-      @for(slide of galleries; track slide.id) {
-        <div class="carousel-item" >
+  @if (galleries.length > 0) {
+    <div class="carousel-slides" [style.transform]="getTransform()">
+      @for (slide of galleries; track slide.id) {
+        <div class="carousel-item">
           <div class="carousel-content">
             <h2>{{ slide.title }}</h2>
             <p>{{ slide.description }}</p>
-            @if(slide.show_button) {
-              <button  (click)="onLearnMore(slide.route)" [routerLink]="[slide.route]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            @if (slide.show_button) {
+              <button
+                (click)="onLearnMore(slide.route)"
+                [routerLink]="[slide.route]"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 {{ 'BUTTONS.MORE_DETAILS' | translate }}
               </button>
             }
-           
           </div>
           <img [src]="imageUrl + slide.upload_file" [alt]="slide.title" />
         </div>
       }
-    
     </div>
   }
-  
 
   <div class="carousel-indicators">
-    @for (slide of galleries; track slide.id) {
+    @for (slide of galleries; track slide.id; let i = $index) {
       <span
         class="INDICATOR"
-        [class.active]="$index === currentSlide"
-        (click)="goToSlide($index)"
-      ></span>
+        [class.active]="i === currentSlide"
+        (click)="goToSlide(i)"
+        (keydown.enter)="goToSlide(i)"
+        (keydown.space)="goToSlide(i)"
+        tabindex="0"
+        role="button"
+        [attr.aria-label]="'Перейти к слайду ' + (i + 1)"
+        [attr.aria-current]="i === currentSlide ? 'true' : 'false'"
+      >
+      </span>
     }
-    
   </div>
-
-  
 
   <button class="carousel-control prev" (click)="prevSlide()">
     <img src="../../../assets/icons/arrow-right.svg" [alt]="'ALT.PREVIOUS_SLIDE' | translate" />

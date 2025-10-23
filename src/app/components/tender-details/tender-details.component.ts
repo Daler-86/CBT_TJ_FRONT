@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { TenderService } from '../../api/tender.service';
 import { ActivatedRoute } from '@angular/router';
 import { tenderDetail } from '../../models/tender.model';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { PageTitleService } from '../../services/page-title.service';
@@ -18,7 +18,7 @@ interface ProcessedInfo {
   selector: 'app-tender-details',
   standalone: true,
   // --- ВАЖНО: УДАЛЯЕМ SplitByDashPipe ИЗ IMPORTS, он больше не нужен ---
-  imports: [ CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './tender-details.component.html',
   styleUrl: './tender-details.component.scss',
 })

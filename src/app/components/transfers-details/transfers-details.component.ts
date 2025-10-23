@@ -1,5 +1,4 @@
-
-import { Component,inject, ElementRef } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';

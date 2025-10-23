@@ -14,23 +14,23 @@
     </button>
   </div>
 
-  @if(selectedTab === 'credit') {
-    <div >
+  @if (selectedTab === 'credit') {
+    <div>
       <app-loan-calculator [conditionsData]="mainPageCalculatorData"></app-loan-calculator>
     </div>
   }
-  
-  @if(selectedTab === 'deposit') {
+
+  @if (selectedTab === 'deposit') {
     <div>
       <app-deposit-calculator></app-deposit-calculator>
     </div>
   }
-  @if(selectedTab === 'installment') {
+  @if (selectedTab === 'installment') {
     <div>
       <app-installment-calculate></app-installment-calculate>
     </div>
   }
-  @if(selectedTab === 'car') {
+  @if (selectedTab === 'car') {
     <div>
       <app-car-loan-calculate></app-car-loan-calculate>
     </div>

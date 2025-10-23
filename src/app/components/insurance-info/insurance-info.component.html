@@ -103,29 +103,27 @@
 
   <div class="contact-grid">
     <!-- Динамический контент, перевод не требуется -->
-    @for(block of contactBlocks; track block.id) {
-      <div class="contact-card" >
-        <div class="card-header"> 
+    @for (block of contactBlocks; track block.id) {
+      <div class="contact-card">
+        <div class="card-header">
           <h2>{{ block.title }}</h2>
-          <img [src]="imageUrl+block.upload_file" [alt]="block.title" class="card-icon" />
+          <img [src]="imageUrl + block.upload_file" [alt]="block.title" class="card-icon" />
         </div>
         <div class="card-body">
-          @for(detail of block.data; track detail.id)  {
+          @for (detail of block.data; track detail.id) {
             <div class="contact-item">
-              @if(detail.upload_file) {
-                <img [src]="imageUrl+detail.upload_file" [alt]="detail.title" class="item-icon" />
+              @if (detail.upload_file) {
+                <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="item-icon" />
               }
-             
+
               <div>
                 <p class="item-title">{{ detail.title }}</p>
                 <p class="item-description">{{ detail.Description }}</p>
               </div>
             </div>
           }
-          
         </div>
       </div>
     }
-    
   </div>
 </div>

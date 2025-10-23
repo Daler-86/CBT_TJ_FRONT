@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RouterLink, RouterModule } from '@angular/router';
@@ -10,11 +9,12 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { Card, CardBrand, cardContentItem } from '../../models/cards.model';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-cards',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule],
+  imports: [RouterLink, RouterModule, TranslateModule, NgClass],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.scss',
 })

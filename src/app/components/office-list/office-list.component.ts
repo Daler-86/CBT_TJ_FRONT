@@ -1,5 +1,4 @@
-
-import { Component,ElementRef,HostListener, ViewChild, } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { Subscription } from 'rxjs'; // Важно для отписки
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
