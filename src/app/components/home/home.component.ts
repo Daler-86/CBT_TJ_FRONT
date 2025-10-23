@@ -1,59 +1,41 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 // import { CarouselComponent } from '../carousel/carousel.component';
 import {  CalculateComponent } from "../calculate/calculate.component";
-import { CommonModule} from '@angular/common';
+
 import { CurrencyConverterComponent } from '../currency-converter/currency-converter.component';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule} from '@ngx-translate/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
+import { CardsComponent } from '../cards/cards.component';
 import { FavriComponent } from "../favri/favri.component";
 import { MenuService } from '../../api/menu.service';
-import { HttpClient } from '@angular/common/http';
-import { LanguagesService } from '../../languages.service';
-import {environment} from "../../../environments/environment";
-import { NewsBoxComponent } from "../news-box/news-box.component";
-import { CarouselComponent } from "../carousel/carousel.component";
 
-
-interface News{
-  image:string;
-  date:string;
-  title:string;
-  content:string;
-}
+import { environment } from '../../../environments/environment';
+import { NewsBoxComponent } from '../news-box/news-box.component';
+import { CarouselComponent } from '../carousel/carousel.component';
+import { Menu } from '../../models/menu.model';
 
 @Component({
   selector: 'app-home',
   standalone:true,
-  imports: [RouterModule, RouterLink, TranslateModule, CalculateComponent, CurrencyConverterComponent, CommonModule, FavriComponent, NewsBoxComponent, CarouselComponent],
+  imports: [RouterModule, RouterLink, TranslateModule, CalculateComponent, CurrencyConverterComponent, FavriComponent, NewsBoxComponent, CarouselComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
-
-export class HomeComponent {
-  constructor(
-    private elementRef: ElementRef,
-    private router: Router,
-    private http: HttpClient,
-    private menuService:MenuService,
-
-    private languageService: LanguagesService,
-    private translateService: TranslateService
-  ) {
-
-  }
+export class HomeComponent implements OnInit {
+  private menuService = inject(MenuService);
   ngOnInit(): void {
-        this.loadMenu();
+    this.loadMenu();
   }
   imageUrl: string = environment.IMAGE_URL;
-  menus: any[] = [];
+  menus: Menu[] = [];
   loadMenu(): void {
     this.menuService.getMenu().subscribe(
       (response) => {
-      this.menus = response.data.menus;
+        this.menus = response.data.menus;
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
   }
 }

@@ -1,6 +1,7 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RateService } from '../../api/rate.service';
@@ -16,9 +17,10 @@ interface Mode {
 @Component({
   selector: 'app-currency-converter',
   standalone: true,
-  imports: [TranslateModule, FormsModule, NgFor, NgIf, CommonModule, HttpClientModule],
+  imports: [TranslateModule, FormsModule, HttpClientModule],
   templateUrl: './currency-converter.component.html',
   styleUrls: ['./currency-converter.component.scss'],
+ 
 })
 export class CurrencyConverterComponent implements OnInit {
   transactionType: 'buy' | 'sell' = 'buy';
@@ -100,10 +102,12 @@ export class CurrencyConverterComponent implements OnInit {
   convertCurrency() {
     const rates = this.exchangeRatesByMode[this.selectedMode];
 
+
     if (!this.amount || this.fromCurrency === this.toCurrency) {
       this.convertedAmount = this.amount;
       return;
     }
+
 
     if (this.transactionType === 'buy') {
       if (this.fromCurrency === 'TJS') {
@@ -132,3 +136,4 @@ export class CurrencyConverterComponent implements OnInit {
     alert(`Вы отправили ${this.convertedAmount.toFixed(2)} ${this.toCurrency}`);
   }
 }
+

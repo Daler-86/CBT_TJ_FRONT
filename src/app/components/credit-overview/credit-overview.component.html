@@ -1,38 +1,38 @@
 <div class="credit">
-    <h1>{{'CREDITS_PAGE.TITLE' | translate}}</h1>
+  <h1>{{'CREDITS_PAGE.TITLE' | translate}}</h1>
 
-          @for(credit of credits; track credit.id) {
-            <div class="card-container">
-              <div class="card-info">
-                <h2 class="card-title">{{credit.title}}
-                </h2>
-                <p class="card-description">
-              {{credit.description}}
-                </p>
-                <div class="card-details">
-                  @for(content of credit.content; track content.id) {
-                    <div class="currency-info">
-                      <p class="title">{{content.title}}</p>
-                      <p class="description">{{content.description}}</p>
-                    </div>
-                  }
-                 
-                </div>
-                <div class="card-buttons">
-                  <button class="btn-primary" [routerLink]="['/credits', credit.id]" [queryParams]="{ scrollTo: 'application-form' }">{{'CREDITS_PAGE.CARD.APPLY_BUTTON' | translate}}</button>
-                  <button class="btn-secondary"   [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    {{'CREDITS_PAGE.CARD.DETAILS_BUTTON' | translate}}
-                  </button>
-  
-                </div>
+        @for(credit of credits; track credit.id) {
+          <div class="card-container">
+            <div class="card-info">
+              <h2 class="card-title">{{credit.title}}
+              </h2>
+              <p class="card-description">
+            {{credit.description}}
+              </p>
+              <div class="card-details">
+                @for(content of credit.content; track content.id) {
+                  <div class="currency-info">
+                    <p class="title">{{content.title}}</p>
+                    <p class="description">{{content.description}}</p>
+                  </div>
+                }
+               
               </div>
-              <div class="card-image">
-                <img class="card" [src]="imageUrl + credit.upload_file" alt="Barakat" />
-  
+              <div class="card-buttons">
+                <button class="btn-primary" [routerLink]="['/credits', credit.id]" [queryParams]="{ scrollTo: 'application-form' }">{{'CREDITS_PAGE.CARD.APPLY_BUTTON' | translate}}</button>
+                <button class="btn-secondary"   [routerLink]="['/credits', credit.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                  {{'CREDITS_PAGE.CARD.DETAILS_BUTTON' | translate}}
+                </button>
+
               </div>
             </div>
-          }
-          
-    
-    </div>
- <!-- <router-outlet></router-outlet> -->
+            <div class="card-image">
+              <img class="card" [src]="imageUrl + credit.upload_file" alt="Barakat" />
+
+            </div>
+          </div>
+        }
+        
+  
+  </div>
+<!-- <router-outlet></router-outlet> -->

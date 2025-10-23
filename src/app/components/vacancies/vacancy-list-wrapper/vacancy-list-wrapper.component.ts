@@ -6,8 +6,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './vacancy-list-wrapper.component.html',
-  styleUrl: './vacancy-list-wrapper.component.scss'
+  styleUrl: './vacancy-list-wrapper.component.scss',
 })
-export class VacancyListWrapperComponent {
-
-}
+export class VacancyListWrapperComponent {}

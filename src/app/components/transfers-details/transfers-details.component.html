@@ -1,15 +1,14 @@
 <div class="cards">
-
   <div class="card-container">
-      <div class="card-info">
-          <!-- Динамический контент, перевод не требуется -->
-          <h2 class="card-title">{{transferData.title}}</h2>
-          <p class="card-description">{{transferData.description}}</p>
-      </div>
-      <div class="card-image">
-          <!-- Динамический alt, перевод не требуется -->
-          <img class="transfers_img" [src]="imageUrl + transferData.upload_icon_file_id" [alt]="transferData.title" />
-      </div>
+    <div class="card-info">
+      <!-- Динамический контент, перевод не требуется -->
+      <h2 class="card-title">{{ transferData.title }}</h2>
+      <p class="card-description">{{ transferData.description }}</p>
+    </div>
+    <div class="card-image">
+      <!-- Динамический alt, перевод не требуется -->
+      <img class="transfers_img" [src]="imageUrl + transferData.upload_icon_file_id" [alt]="transferData.title" />
+    </div>
   </div>
 
   <!-- Заголовок и текст для блока условий -->
@@ -65,20 +64,24 @@
   </div>
 
   <div class="container_5">
-      <div class="d">
-          <div class="box">
-              <div class="details">
-                  <h3>{{ 'TRANSFERS.DETAILS.MORE_INFO_ON_SITE' | translate }}</h3>
-                  <!-- Динамический контент, перевод не требуется -->
-               <a [href]="transferData.link"><p>{{transferData.title}}</p></a>   
-              </div>
-          </div>
+    <div class="d">
+      <div class="box">
+        <div class="details">
+          <h3>{{ 'TRANSFERS.DETAILS.MORE_INFO_ON_SITE' | translate }}</h3>
+          <!-- Динамический контент, перевод не требуется -->
+          <a [href]="transferData.link"
+            ><p>{{ transferData.title }}</p></a
+          >
+        </div>
       </div>
-      <div class="location">
-          <h3>{{ 'COMMON.OFFICES_AND_ATMS' | translate }}</h3>
-          <p>{{ 'MAP.TAGLINE' | translate }}</p>
-          <div class=""></div>
-          <button routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/map">{{ 'BUTTONS.VIEW_ON_MAP' | translate }}</button>
-      </div>
+    </div>
+    <div class="location">
+      <h3>{{ 'COMMON.OFFICES_AND_ATMS' | translate }}</h3>
+      <p>{{ 'MAP.TAGLINE' | translate }}</p>
+      <div class=""></div>
+      <button routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/map">
+        {{ 'BUTTONS.VIEW_ON_MAP' | translate }}
+      </button>
+    </div>
   </div>
 </div>

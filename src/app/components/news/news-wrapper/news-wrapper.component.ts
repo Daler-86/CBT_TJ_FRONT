@@ -6,8 +6,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './news-wrapper.component.html',
-  styleUrl: './news-wrapper.component.scss'
+  styleUrl: './news-wrapper.component.scss',
 })
-export class NewsWrapperComponent {
-
-}
+export class NewsWrapperComponent {}

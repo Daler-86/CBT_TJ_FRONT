@@ -1,171 +1,162 @@
-.bankDetail{
-    padding:3% 5% ;
-    background-color: #f8f9fa;
-    .btnCards{
-      margin: 20px 0;
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      button{
-          border-radius: 53px;
-          padding:14px 28px;
-          background-color: white;
-          border: none;
-          cursor: pointer;
-  
-          color: #141A20;
-          font-size: 17px;
-          font-weight: 500;
-  
-          @media (max-width: 1024px) {
-              padding:10px 20px;
-           }
-          &.active {
-            background-color: #00B06C;
-            color: white;
-          }
-          
+.bankDetail {
+  padding: 3% 5%;
+  background-color: #f8f9fa;
+  .btnCards {
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    button {
+      border-radius: 53px;
+      padding: 14px 28px;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+
+      color: #141a20;
+      font-size: 17px;
+      font-weight: 500;
+
+      @media (max-width: 1024px) {
+        padding: 10px 20px;
       }
-      
+      &.active {
+        background-color: #00b06c;
+        color: white;
       }
+    }
+  }
   .card-container {
     position: relative;
-             margin: 30px 0 0;
-         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-        
-         background-color: white;
-         border-radius: 24px;
+    margin: 30px 0 0;
+    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
 
- 
+    background-color: white;
+    border-radius: 24px;
 
- @media (max-width: 1024px) {
-     display: block;
-     padding: 29px 50px;
-  }
-     .card-info {
-       width: 50%;
-       padding: 62px 76px;
-       @media (max-width: 1024px) {
-         width: 100%;
-         padding: 0;
+    @media (max-width: 1024px) {
+      display: block;
+      padding: 29px 50px;
+    }
+    .card-info {
+      width: 50%;
+      padding: 62px 76px;
+      @media (max-width: 1024px) {
+        width: 100%;
+        padding: 0;
       }
-   
-       .card-title {
-         font-size: 30px;
-         font-weight: bold;
-         margin-bottom: 10px;
-       }
-   
-       .card-description {
-         font-size: 18px;
-         color:  #475569;
-         font-weight: 500;
-         margin-bottom: 20px;
-         line-height: 23px;
-       }
-      
 
+      .card-title {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
 
-    }
-} 
-
-    // Переменные
-$container-bg: #f4f7fa; // Светло-серый фон контейнера
-$row-bg: #ffffff;
-$row-border-radius: 12px;
-$row-padding: 40px 46px;
-$row-gap: 15px; // Вертикальный отступ между строками
-
-$label-color: #475569; // Приглушенный цвет для лейбла
-$value-color: #222222; // Темный цвет для значения
-$link-color: #007bff; // Цвет для ссылок (если отличается от value-color)
-
-$label-width-percentage: 38%; // Ширина колонки лейблов (подбери значение)
-$value-label-gap: 20px; // Горизонтальный отступ между лейблом и значением
-
-// Контейнер списка
-.info-list-container {
- margin: 60px 0;
-}
-
-// Отдельная строка (карточка)
-.info-item-row {
-  display: flex;
-  align-items:center; // Выравнивание по верху, если текст значения переносится
-  background-color: $row-bg;
-  border-radius: $row-border-radius;
-  padding: $row-padding;
-  margin-bottom: $row-gap;
-
-
-  &:last-child {
-    margin-bottom: 0; // Убираем отступ у последней строки
-  }
-}
-
-// Лейбл (левая часть)
-.info-label {
-  flex: 0 0 $label-width-percentage; // Фиксированная процентная ширина
-  padding-right: $value-label-gap; // Отступ справа
-  color: $label-color;
-  font-size: 18px;
-  line-height: 100%;
-  word-wrap: break-word; // Перенос длинных лейблов
-}
-
-// Значение (правая часть)
-.info-value {
-  flex: 1; // Занимает оставшееся пространство
-  color: $value-color;
-  font-size: 18px;
-  font-weight: 700; // Чуть жирнее
-  line-height: 1.5;
-  word-wrap: break-word; // Перенос длинных значений
-
-  // Стили для ссылок внутри значения
-  a {
-    color: $value-color; // По умолчанию цвет как у обычного текста
-    text-decoration: none;
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: $link-color; // Цвет при наведении
-      text-decoration: underline;
+      .card-description {
+        font-size: 18px;
+        color: #475569;
+        font-weight: 500;
+        margin-bottom: 20px;
+        line-height: 23px;
+      }
     }
   }
-}
 
-// Сообщение об отсутствии данных
-.no-data-message {
-  text-align: center;
-  padding: 30px;
-  color: #888;
-}
+  // Переменные
+  $container-bg: #f4f7fa; // Светло-серый фон контейнера
+  $row-bg: #ffffff;
+  $row-border-radius: 12px;
+  $row-padding: 40px 46px;
+  $row-gap: 15px; // Вертикальный отступ между строками
 
+  $label-color: #475569; // Приглушенный цвет для лейбла
+  $value-color: #222222; // Темный цвет для значения
+  $link-color: #007bff; // Цвет для ссылок (если отличается от value-color)
 
-// --- Адаптивность ---
-@media (max-width: 767.98px) {
+  $label-width-percentage: 38%; // Ширина колонки лейблов (подбери значение)
+  $value-label-gap: 20px; // Горизонтальный отступ между лейблом и значением
+
+  // Контейнер списка
+  .info-list-container {
+    margin: 60px 0;
+  }
+
+  // Отдельная строка (карточка)
   .info-item-row {
-    flex-direction: column; // Лейбл и значение друг под другом
-    align-items: stretch; // Растягиваем элементы на всю ширину
-    padding: 15px; // Уменьшаем паддинги
+    display: flex;
+    align-items: center; // Выравнивание по верху, если текст значения переносится
+    background-color: $row-bg;
+    border-radius: $row-border-radius;
+    padding: $row-padding;
+    margin-bottom: $row-gap;
+
+    &:last-child {
+      margin-bottom: 0; // Убираем отступ у последней строки
+    }
   }
 
+  // Лейбл (левая часть)
   .info-label {
-    flex-basis: auto; // Сбрасываем фиксированную ширину
-    width: 100%;
-    padding-right: 0; // Убираем правый отступ
-    margin-bottom: 8px; // Добавляем отступ снизу
-    font-weight: 600; // Можно сделать лейбл жирнее на мобильных
-    color: darken($label-color, 10%); // Чуть темнее
+    flex: 0 0 $label-width-percentage; // Фиксированная процентная ширина
+    padding-right: $value-label-gap; // Отступ справа
+    color: $label-color;
+    font-size: 18px;
+    line-height: 100%;
+    word-wrap: break-word; // Перенос длинных лейблов
   }
 
+  // Значение (правая часть)
   .info-value {
-    flex-basis: auto; // Сбрасываем flex
-    width: 100%;
+    flex: 1; // Занимает оставшееся пространство
+    color: $value-color;
+    font-size: 18px;
+    font-weight: 700; // Чуть жирнее
+    line-height: 1.5;
+    word-wrap: break-word; // Перенос длинных значений
+
+    // Стили для ссылок внутри значения
+    a {
+      color: $value-color; // По умолчанию цвет как у обычного текста
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $link-color; // Цвет при наведении
+        text-decoration: underline;
+      }
+    }
   }
-   .info-list-container {
-     padding: 10px; // Уменьшаем общие отступы
-   }
-}
+
+  // Сообщение об отсутствии данных
+  .no-data-message {
+    text-align: center;
+    padding: 30px;
+    color: #888;
+  }
+
+  // --- Адаптивность ---
+  @media (max-width: 767.98px) {
+    .info-item-row {
+      flex-direction: column; // Лейбл и значение друг под другом
+      align-items: stretch; // Растягиваем элементы на всю ширину
+      padding: 15px; // Уменьшаем паддинги
+    }
+
+    .info-label {
+      flex-basis: auto; // Сбрасываем фиксированную ширину
+      width: 100%;
+      padding-right: 0; // Убираем правый отступ
+      margin-bottom: 8px; // Добавляем отступ снизу
+      font-weight: 600; // Можно сделать лейбл жирнее на мобильных
+      color: darken($label-color, 10%); // Чуть темнее
+    }
+
+    .info-value {
+      flex-basis: auto; // Сбрасываем flex
+      width: 100%;
+    }
+    .info-list-container {
+      padding: 10px; // Уменьшаем общие отступы
+    }
+  }
 }

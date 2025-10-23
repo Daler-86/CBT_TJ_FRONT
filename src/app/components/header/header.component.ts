@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
@@ -9,20 +9,20 @@ import { ElementRef, HostListener } from '@angular/core';
 // Ваши сервисы
 import { MenuService } from '../../api/menu.service';
 import { LanguagesService } from '../../languages.service';
-import { Menu } from '../../models/menu.model';
-import { DropdownService } from '../../services/dropdown.service';
+import { Menu, MenuItem } from '../../models/menu.model';
+
 import { Languages } from '../../shared/enums/languages.enum';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
-    CommonModule,
+  
     FormsModule,
     RouterModule,
     TranslateModule,
     RouterLink,
-    RouterOutlet,
+   
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -30,7 +30,7 @@ import { Languages } from '../../shared/enums/languages.enum';
 export class HeaderComponent implements OnInit, OnDestroy {
   lang = Languages;
   menus: Menu[] = [];
-  dropdownOpenMap: { [key: number]: boolean } = {};
+  dropdownOpenMap: Record<number, boolean> = {};
   dropdownOpen = false;
   selectedLanguage: string = this.lang.Tj;
   menuActive = false;
@@ -55,16 +55,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         return this.lang.Tj;
     }
   }
-  logoSrc: string = '../../../assets/icons/logo_tj_big.png';
-
-  constructor(
-    private elementRef: ElementRef,
-    private router: Router,
-    private menuService: MenuService,
-    private dropdownService: DropdownService,
-    private translateService: TranslateService,
-    private languageService: LanguagesService
-  ) {}
+  logoSrc = '../../../assets/icons/logo_tj_big.png';
+  private elementRef = inject(ElementRef);
+  private router = inject(Router);
+  private menuService = inject(MenuService);
+  private translateService = inject(TranslateService);
+  private languageService = inject(LanguagesService);
 
   ngOnInit(): void {
     const langSub = this.languageService.language$.subscribe((lang) => {
@@ -79,7 +75,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       (error) => {
         console.error('Ошибка при получении меню', error);
-      }
+      },
     );
 
     this.subscriptions.add(langSub);
@@ -97,7 +93,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.logoSrc = '../../../assets/icons/logo_en_big.png';
         break;
       default:
-        this.logoSrc = '../../../assets/icons/logo_tj_big.png'; 
+        this.logoSrc = '../../../assets/icons/logo_tj_big.png';
     }
   }
   selectLanguage(option: { value: Languages; label: string }) {
@@ -109,7 +105,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-
   toggleDropdown1(event: Event) {
     this.dropdownOpen = !this.dropdownOpen;
     event.stopPropagation();
@@ -120,7 +115,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     event.stopPropagation();
   }
 
-  selectOption(option: any, index: number, event: Event, menuItem: any) {
+  selectOption(option: MenuItem, index: number, event: Event, menuItem: Menu) {
     event.stopPropagation();
     this.dropdownOpenMap[index] = false;
     if (option.route) {
@@ -139,11 +134,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-
   closeDropdown(index: number) {
     this.dropdownOpenMap[index] = false;
   }
- 
 
   toggleMenu() {
     this.menuActive = !this.menuActive;

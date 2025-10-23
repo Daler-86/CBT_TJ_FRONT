@@ -1,4 +1,4 @@
-import {CommonModule} from '@angular/common';
+
 import {Component} from '@angular/core';
 import {RouterLink, RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
@@ -10,37 +10,34 @@ import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-deposits',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, CommonModule],
+  imports: [RouterLink, RouterModule, TranslateModule],
   templateUrl: './deposits.component.html',
-  styleUrl: './deposits.component.scss'
+  styleUrl: './deposits.component.scss',
 })
-export class DepositsComponent {
+export class DepositsComponent implements OnInit {
   imageUrl: string = environment.IMAGE_URL;
-  personTypeId: number = 1;
-
-  constructor(private depositService: DepositsService, private menuService: MenuService) {
-  }
+  personTypeId = 1;
+  private depositService = inject(DepositsService);
+  private menuService = inject(MenuService);
 
   ngOnInit(): void {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-    this.menuService.currentPersonTypeId.subscribe(id => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.menuService.currentPersonTypeId.subscribe((id) => {
       this.personTypeId = id;
       this.loadAllTransfers(); // Загрузка всех карт по умолчанию
     });
   }
 
-  depositsList: Deposit[] = []
+  depositsList: Deposit[] = [];
 
   loadAllTransfers() {
-
     this.depositService.getDepositsListAll().subscribe(
       (response) => {
         this.depositsList = response.data.deposits;
-
       },
       (error) => {
         console.error('Ошибка при загрузке всех карт', error);
-      }
+      },
     );
   }
 }

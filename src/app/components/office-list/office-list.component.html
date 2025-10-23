@@ -1,10 +1,17 @@
 <div class="adress">
   <div class="application-form-container">
     <div class="form">
-      
-      <!-- Выпадающий список: Тип объекта -->
       <div class="custom-dropdown">
-        <div class="dropdown-selected" (click)="toggleDropdown($event)">
+        <div
+          class="dropdown-selected"
+          (click)="toggleDropdown($event)"
+          (keydown.enter)="toggleDropdown($event)"
+          (keydown.space)="toggleDropdown($event)"
+          tabindex="0"
+          role="button"
+          [attr.aria-expanded]="dropdownOpen"
+          aria-haspopup="listbox"
+        >
           {{ selectedObjectTypeName }}
         </div>
         @if(dropdownOpen) {
@@ -37,10 +44,18 @@
         }
       
       </div>
-      
-      <!-- Выпадающий список: Регион -->
+
       <div class="custom-dropdown">
-        <div class="dropdown-selected" (click)="toggleDropdown2($event)">
+        <div
+          class="dropdown-selected"
+          (click)="toggleDropdown2($event)"
+          (keydown.enter)="toggleDropdown2($event)"
+          (keydown.space)="toggleDropdown2($event)"
+          tabindex="0"
+          role="button"
+          [attr.aria-expanded]="dropdownOpen2"
+          aria-haspopup="listbox"
+        >
           {{ selectedRegionDisplayName }}
         </div>
         @if(dropdownOpen2) {
@@ -68,7 +83,6 @@
         }
      
       </div>
-
     </div>
   </div>
  

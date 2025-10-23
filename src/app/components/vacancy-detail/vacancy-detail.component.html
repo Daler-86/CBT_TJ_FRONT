@@ -73,10 +73,10 @@
   }
  
 
-  <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id='application-form'>
+  <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id="application-form">
     <h2>{{ 'vacancyDetails.form.title' | translate }}</h2>
     <p>{{ 'vacancyDetails.form.subtitle' | translate }}</p>
-  
+
     <div class="form-row">
       <div class="full">
         <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'"/>
@@ -93,7 +93,7 @@
 
       </div>
     </div>
-    
+
     <div class="form-row">
       <div class="full">
         <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'"/>
@@ -129,14 +129,16 @@
     </div>
 
     <!-- Зона перетаскивания файла -->
-    <div class="file-drop-area"
-         (drop)="onDrop($event)"
-         (dragover)="onDragOver($event)"
-         (dragleave)="onDragLeave($event)">
-      <label>{{ 'vacancyDetails.form.dragOr' | translate }}</label>
+    <div
+      class="file-drop-area"
+      (drop)="onDrop($event)"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+    >
+      <p class="form-label">{{ 'vacancyDetails.form.dragOr' | translate }}</p>
       <small>{{ 'vacancyDetails.form.supportedFormats' | translate }}</small>
       <div>
-        <input type="file" (change)="onFileSelected($event)" #fileInput hidden>
+        <input type="file" (change)="onFileSelected($event)" #fileInput hidden />
         <button type="button" (click)="fileInput.click()">{{ 'buttons.uploadCV' | translate }}</button>
         @if(fileName) {
           <span>{{ fileName }}</span>

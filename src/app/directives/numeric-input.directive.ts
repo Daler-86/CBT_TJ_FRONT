@@ -1,18 +1,15 @@
 // src/app/directives/numeric-input.directive.ts
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appNumericInput]', 
-  standalone: true
+  selector: '[appNumericInput]',
+  standalone: true,
 })
 export class NumericInputDirective {
-
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     // Разрешаем: Backspace, Tab, End, Home, стрелки, Delete
-    const allowedKeys = [
-      'Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight', 'Delete'
-    ];
+    const allowedKeys = ['Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight', 'Delete'];
     if (allowedKeys.includes(event.key)) {
       return;
     }

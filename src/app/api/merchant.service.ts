@@ -1,6 +1,6 @@
 // src/app/api/merchant.service.ts
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -9,12 +9,12 @@ import { environment } from '../../environments/environment';
 import { MerchantListResponse, MerchantCategoryResponse } from '../models/merchant.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MerchantService {
   private baseUrl = environment.BASE_URL;
-
-  constructor(private http: HttpClient, private languageService: LanguagesService) { }
+  private http = inject(HttpClient);
+  private languageService = inject(LanguagesService);
 
   /**
    * Переписано точно по вашему примеру VacanciesService.
@@ -26,20 +26,20 @@ export class MerchantService {
     region_id: number | null,
     category_id: number | null,
     has_cashback: boolean,
-    name: string | null
+    name: string | null,
   ): Observable<MerchantListResponse> {
     return this.languageService.language$.pipe(
-      switchMap(lang => {
+      switchMap((lang) => {
         const headers = new HttpHeaders({
-          'accept': 'application/json',
-          'Language': lang
+          accept: 'application/json',
+          Language: lang,
         });
 
         // В вашем примере offset вычисляется как (currentPage - 1) * limit,
         // а передается просто currentPage. Давайте сделаем точно как в примере,
         // но учтем, что offset и currentPage - это разные вещи.
         // Я сохраню правильный расчет offset.
-        const offset = (currentPage - 1) * limit+1;
+        const offset = (currentPage - 1) * limit + 1;
 
         const params = new HttpParams()
           .set('limit', limit.toString())
@@ -50,17 +50,17 @@ export class MerchantService {
           .set('name', name !== null ? name : '');
 
         return this.http.get<MerchantListResponse>(`${this.baseUrl}/merchant/list`, { headers, params });
-      })
+      }),
     );
   }
 
   // getCategories остается без изменений
   getCategories(): Observable<MerchantCategoryResponse> {
     return this.languageService.language$.pipe(
-      switchMap(lang => {
-        const headers = new HttpHeaders({ 'accept': 'application/json', 'Language': lang });
+      switchMap((lang) => {
+        const headers = new HttpHeaders({ accept: 'application/json', Language: lang });
         return this.http.get<MerchantCategoryResponse>(`${this.baseUrl}/merchant/category`, { headers });
-      })
+      }),
     );
   }
 }

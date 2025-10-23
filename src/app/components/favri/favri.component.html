@@ -1,30 +1,35 @@
+<div class="favri">
+  <!-- Левая часть с текстом -->
+  <div class="favri-info">
+    <h2>{{ 'FAVRI_APP.TITLE' | translate }}</h2>
+    <p>{{ 'FAVRI_APP.SUBTITLE' | translate }}</p>
 
-    <div class="favri">
-        <!-- Левая часть с текстом -->
-        <div class="favri-info">
-            <h2>{{ 'FAVRI_APP.TITLE' | translate }}</h2>
-            <p>{{ 'FAVRI_APP.SUBTITLE' | translate }}</p>
-            
-            <div class="google">
-                <a  href="https://play.google.com/store/apps/details?id=tj.itservice.cbt&hl=ru" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                aria-label="Загрузить Favri из Google Play">
-                    <img src="../../assets/icons/googleplay.svg" [alt]="'alt.googlePlay' | translate">
-                </a>
-                <a href="https://apps.apple.com/tj/app/favri-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D1%80%D1%86%D0%B1%D0%B0%D0%BD%D0%BA/id1633432498" target="_blank" rel="noopener noreferrer">
-                    <img src="../../assets/icons/appstore.svg" [alt]="'alt.appStore' | translate">
-                </a>
-            </div>
-        </div>
+    <div class="google">
+      <a
+        href="https://play.google.com/store/apps/details?id=tj.itservice.cbt&hl=ru"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Загрузить Favri из Google Play"
+      >
+        <img src="../../assets/icons/googleplay.svg" [alt]="'alt.googlePlay' | translate" />
+      </a>
+      <a
+        href="https://apps.apple.com/tj/app/favri-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D1%80%D1%86%D0%B1%D0%B0%D0%BD%D0%BA/id1633432498"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src="../../assets/icons/appstore.svg" [alt]="'alt.appStore' | translate" />
+      </a>
+    </div>
+  </div>
 
-        <!-- Правая часть с телефоном и анимацией -->
-        <div class="phone">
-            <!-- Основное изображение телефона -->
-            <img class="phone-mockup" src="../../../assets/icons/favri.png" [alt]="'alt.favriAppMockup' | translate">
+  <!-- Правая часть с телефоном и анимацией -->
+  <div class="phone">
+    <!-- Основное изображение телефона -->
+    <img class="phone-mockup" src="../../../assets/icons/favri.png" [alt]="'alt.favriAppMockup' | translate" />
 
-            <!-- Блок для "летающих" иконок. Он будет невидим до наведения. -->
-            <!-- <div class="floating-icons">
+    <!-- Блок для "летающих" иконок. Он будет невидим до наведения. -->
+    <!-- <div class="floating-icons">
                 
                 <div class="icon-bubble icon-1">
                     <img src="../../../assets/icons/Book.svg" alt="Кошелек"> 
@@ -38,5 +43,5 @@
                     <img src="../../../assets/icons/Book.png" alt="Чат">
                 </div>
             </div> -->
-        </div>
-    </div>
+  </div>
+</div>

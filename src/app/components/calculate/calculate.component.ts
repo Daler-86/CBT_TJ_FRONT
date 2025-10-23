@@ -1,97 +1,30 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { DepositCalculatorComponent } from "../deposit-calculate/deposit-calculate.component";
-import { InstallmentCalculateComponent } from "../installment-calculate/installment-calculate.component";
-import { CarLoanCalculateComponent } from "../car-loan-calculate/car-loan-calculate.component";
-import { LoanCalculatorComponent } from "../loan-calculator/loan-calculator.component";
+import { DepositCalculatorComponent } from '../deposit-calculate/deposit-calculate.component';
+import { InstallmentCalculateComponent } from '../installment-calculate/installment-calculate.component';
+import { CarLoanCalculateComponent } from '../car-loan-calculate/car-loan-calculate.component';
+import { LoanCalculatorComponent } from '../loan-calculator/loan-calculator.component';
 import { CalculatorData } from '../../models/calculate.model';
-
 
 @Component({
   selector: 'app-calculate',
   standalone: true,
-  imports: [TranslateModule, CommonModule, FormsModule, DepositCalculatorComponent, InstallmentCalculateComponent, CarLoanCalculateComponent, LoanCalculatorComponent],
+  imports: [TranslateModule, FormsModule, DepositCalculatorComponent, InstallmentCalculateComponent, CarLoanCalculateComponent, LoanCalculatorComponent],
   templateUrl: './calculate.component.html',
-  styleUrl: './calculate.component.scss'
+  styleUrl: './calculate.component.scss',
 })
-
-
-// export class CalculateComponent {
-//   selectedTab: string = 'credit';
-//   loanAmount: number = 30000;
-//   rangeValues: number[] = [10000, 50000, 100000, 150000, 200000]; // Значения меток
-
-//   selectedTerm: string = '1 год';
-//   interestRate: number = 30; 
-//   loanTerms: string[] = ['1 год', '2 года', '3 года', '4 года', '5 лет'];
-
-//   selectTab(tab: string) {
-//     this.selectedTab = tab;
-   
-//   }
-
-//   calculateMonthlyPayment(): number {
-//     const years = parseInt(this.selectedTerm);
-//     const monthlyInterest = this.interestRate / 100 / 12;
-//     const numberOfPayments = years * 12;
-//     const payment = (this.loanAmount * monthlyInterest) / (1 - Math.pow(1 + monthlyInterest, -numberOfPayments));
-//     return Math.round(payment);
-//   }
-
-//   applyForLoan() {
-//     alert('Вы оформили кредит на сумму ' + this.loanAmount + 'с.');
-//   }
-
-//   // loanAmount: number = 30000; // Начальное значение
-//   formattedLoanAmount: string = this.formatCurrency(this.loanAmount); // Отформатированное значение для отображения в поле ввода
- 
-//   ngOnInit() {
-//     this.updateSliderBackground();
-//   }
-
-//   // Форматирование суммы для отображения в поле ввода
-//   formatCurrency(value: number): string {
-//     return new Intl.NumberFormat('ru-RU').format(value) + ' с.';
-//   }
-
-//   // Обновление форматированной суммы при изменении слайдера
-//   updateFormattedLoanAmount() {
-//     this.formattedLoanAmount = this.formatCurrency(this.loanAmount);
-//     this.updateSliderBackground();
-//   }
-
-//   // Обновление фона слайдера
-//   updateSliderBackground() {
-//     const percent = ((this.loanAmount - 10000) / (200000 - 10000)) * 100;
-//     document.documentElement.style.setProperty('--range-percent', `${percent}%`);
-//   }
-
-//   // Обработка изменения суммы через поле ввода
-//   onLoanAmountChange(value: string) {
-//     const rawValue = +value.replace(/\D/g, ''); // Убираем символы, кроме цифр
-//     if (rawValue >= 10000 && rawValue <= 200000) {
-//       this.loanAmount = Math.round(rawValue / 50) * 50; // Округляем до ближайшего шага 50
-//       this.updateFormattedLoanAmount(); // Обновляем форматированную сумму
-//     }
-//   }
-
-//   // Метод для выбора срока кредита
-//   selectTerm(term: string) {
-//     this.selectedTerm = term;
-//   }
-// }
-export class CalculateComponent {
-  selectedTab: string = 'credit';
-  loanAmount: number = 30000;
-  loanTerm: number = 24;
-  interestRate: number = 30;
+export class CalculateComponent implements OnInit {
+  selectedTab = 'credit';
+  loanAmount = 30000;
+  loanTerm = 24;
+  interestRate = 30;
   loanAmountLabels: string[] = ['10 000с.', '30 000с.', '60 000с.', '80 000с.', '200 000с.'];
   loanTermLabels: string[] = ['12 мес', '24 мес', '36 мес', '48 мес'];
-  selectedCurrency: string = 'Сомони (TJS)';
-  depositAmount: number = 20000;
-  depositTerm: number = 12;
+  selectedCurrency = 'Сомони (TJS)';
+  depositAmount = 20000;
+  depositTerm = 12;
   // interestRate: number = 10;
 
   currencies: string[] = ['Сомони (TJS)', 'Доллар (USA)', 'Евро (EUR)'];
@@ -108,12 +41,10 @@ export class CalculateComponent {
     this.updateSliderBackground('loanTerm');
   }
 
-  
   updateFormattedLoanAmount() {
-      this.formattedLoanAmount = this.formatCurrency(this.loanAmount);
-    
+    this.formattedLoanAmount = this.formatCurrency(this.loanAmount);
   }
-  
+
   public mainPageCalculatorData: CalculatorData[] = [
     {
       currency: 'tjs',
@@ -125,7 +56,7 @@ export class CalculateComponent {
       max_percentage: 30, // <-- Твоя ставка
       // Остальные поля можно добавить, если они нужны
       id: 0,
-      credit_id: 0
+      credit_id: 0,
     },
     {
       currency: 'usd',
@@ -136,23 +67,21 @@ export class CalculateComponent {
       min_percentage: 12, // Для примера, другие ставки для USD
       max_percentage: 22,
       id: 0,
-      credit_id: 0
-    }
+      credit_id: 0,
+    },
   ];
 
   updateFormattedLoanTerm() {
-      this.formattedLoanTerm = this.formatTerm(this.loanTerm);
-    
-    }
+    this.formattedLoanTerm = this.formatTerm(this.loanTerm);
+  }
 
   selectTab(tab: string) {
     this.selectedTab = tab;
-   
   }
-  loanAmountPercent: string = '';
-  loanTermPercent: string = '';
-  depositAmountPercent: string = '';
-  depositTermPercent: string = '';
+  loanAmountPercent = '';
+  loanTermPercent = '';
+  depositAmountPercent = '';
+  depositTermPercent = '';
   updateSliderBackground(sliderType: string) {
     if (sliderType === 'loanAmount') {
       const percent = ((this.loanAmount - 10000) / (200000 - 10000)) * 100;
@@ -171,61 +100,55 @@ export class CalculateComponent {
       this.depositTermPercent = `${percent}%`;
     }
   }
-  
+
   calculateMonthlyPayment(): number {
-      const months = this.loanTerm;
-      const monthlyInterest = this.interestRate / 100 / 12;
-      const payment = (this.loanAmount * monthlyInterest) / (1 - Math.pow(1 + monthlyInterest, -months));
-      return Math.round(payment);
+    const months = this.loanTerm;
+    const monthlyInterest = this.interestRate / 100 / 12;
+    const payment = (this.loanAmount * monthlyInterest) / (1 - Math.pow(1 + monthlyInterest, -months));
+    return Math.round(payment);
   }
-    // Обработка изменения суммы через поле ввода
+  // Обработка изменения суммы через поле ввода
   onLoanAmountChange(value: string) {
     const rawValue = +value.replace(/\D/g, ''); // Убираем символы, кроме цифр
     if (rawValue >= 10000 && rawValue <= 200000) {
       this.loanAmount = Math.round(rawValue / 50) * 50; // Округляем до ближайшего шага 50
       this.updateFormattedLoanAmount(); // Обновляем форматированную сумму
-
     }
   }
 
   applyForLoan() {
-      alert('Вы оформили кредит на сумму ' + this.loanAmount + 'с.');
+    alert('Вы оформили кредит на сумму ' + this.loanAmount + 'с.');
   }
 
   selectCurrency(currency: string) {
     this.selectedCurrency = currency;
-}
+  }
 
-updateFormattedDepositAmount() {
+  updateFormattedDepositAmount() {
     this.formattedDepositAmount = this.formatCurrency(this.depositAmount);
-}
+  }
 
-updateFormattedDepositTerm() {
+  updateFormattedDepositTerm() {
     this.formattedDepositTerm = this.formatTerm(this.depositTerm);
-}
+  }
 
-formatCurrency(value: number): string {
+  formatCurrency(value: number): string {
     return new Intl.NumberFormat('ru-RU').format(value) + ' с.';
-}
+  }
 
-formatTerm(value: number): string {
+  formatTerm(value: number): string {
     return `${value} мес`;
-}
+  }
 
-calculateDepositIncome(): number {
+  calculateDepositIncome(): number {
     return Math.round((this.depositAmount * this.interestRate * this.depositTerm) / 1200);
-}
+  }
 
-calculateFinalAmount(): number {
+  calculateFinalAmount(): number {
     return this.depositAmount + this.calculateDepositIncome();
-}
+  }
 
-applyForDeposit() {
+  applyForDeposit() {
     alert('Вы оформили вклад на сумму ' + this.depositAmount + 'с.');
+  }
 }
-onDepositAmountChange(value:any){
-  
-}
-
-}
-

@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="card-image">
-      <img class="card" [src]="imageUrl +creditData.upload_file" [alt]="creditData.title"/>
+      <img class="card" [src]="imageUrl + creditData.upload_file" [alt]="creditData.title" />
     </div>
   </div>
 
@@ -67,9 +67,7 @@
   }
  
 
- 
-  <div class="container-3" id='application-form'>
-   
+  <div class="container-3" id="application-form">
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.ONLINE_APPLICATION' | translate }}</h1>
     <div class="application-form-container">
       <form class="form" #applicationForm="ngForm" (ngSubmit)="submitApplication(applicationForm)">
@@ -80,10 +78,18 @@
           }
          
           <!-- ИЗМЕНЕНИЕ 1: Добавляем пайп translate -->
-          <input type="text" id="fullName" [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'" class="form-control" 
-                 required [(ngModel)]="model.client_name" name="fullName" #name="ngModel">
+          <input
+            type="text"
+            id="fullName"
+            [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
+            class="form-control"
+            required
+            [(ngModel)]="model.client_name"
+            name="fullName"
+            #name="ngModel"
+          />
         </div>
-        
+
         <!-- Телефон -->
         <div class="form-group">
           @if(phone.invalid && (phone.dirty || phone.touched)) {
@@ -93,19 +99,21 @@
           <input type="text" id="phone" [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'" class="form-control" 
                  required [(ngModel)]="model.phone" name="phone" #phone="ngModel">
         </div>
-  
-        <!-- Цель кредита -->
-        <!-- <div class="form-group">
-          <input type="text" id="purpose" [placeholder]="('forms.placeholders.creditPurpose' | translate) + ' *'" class="form-control" 
-                 required [(ngModel)]="model.purpose" name="purpose">
-        </div> -->
-  
+
         <!-- Выбор офиса -->
         <div class="custom-dropdown" #customDropdown>
-          
           <div class="dropdown-selected">
             <div class="form-group">
-              <div class="dropdown-selected form-control" (click)="toggleDropdown($event)">
+              <div
+                class="dropdown-selected form-control"
+                (click)="toggleDropdown($event)"
+                (keydown.enter)="toggleDropdown($event)"
+                (keydown.space)="toggleDropdown($event)"
+                tabindex="0"
+                role="button"
+                [attr.aria-expanded]="dropdownOpen"
+                aria-haspopup="listbox"
+              >
                 {{ officeName }}
               </div>
             </div>
@@ -123,16 +131,18 @@
           }
        
           <!-- Добавляем скрытое поле для валидации, если его еще нет -->
-          <input type="hidden" name="office_id" [(ngModel)]="model.office_id" required>
+          <input type="hidden" name="office_id" [(ngModel)]="model.office_id" required />
         </div>
-  
+
         <!-- Место работы -->
         <!-- <div class="form-group">
           <input type="text" id="workplace" [placeholder]="'forms.placeholders.workplace' | translate" class="form-control" 
                  [(ngModel)]="model.address" name="workplace">
         </div> -->
-  
-        <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">{{ 'BUTTONS.SEND' | translate }}</button>
+
+        <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">
+          {{ 'BUTTONS.SEND' | translate }}
+        </button>
       </form>
     </div>
   </div>

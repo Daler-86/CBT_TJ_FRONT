@@ -6,17 +6,26 @@
         {{ vacancyContent[0]?.description }}
       </p>
       <div class="card-buttons">
-        <button class="btn-primary" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                routerLink="/vacancies/list">{{ 'BUTTONS.VIEW_VACANCIES' | translate }}
+        <button
+          class="btn-primary"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="/vacancies/list"
+        >
+          {{ 'BUTTONS.VIEW_VACANCIES' | translate }}
         </button>
       </div>
     </div>
     <div class="card-image">
       <!-- Динамический src, но статичный alt -->
-      <img class="card" [src]="imageUrl+ vacancyContent[0]?.file_name" [alt]="'vacancies.promoCard.imageAlt' | translate"/>
+      <img
+        class="card"
+        [src]="imageUrl + vacancyContent[0]?.file_name"
+        [alt]="'vacancies.promoCard.imageAlt' | translate"
+      />
     </div>
   </div>
-  
+
   <div class="container">
     <!-- Этот блок полностью динамический, перевод не требуется -->
     @for(item of vacancyStatistics; track item.id) {

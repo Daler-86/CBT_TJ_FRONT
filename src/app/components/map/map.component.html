@@ -1,20 +1,56 @@
 <div class="adress">
   <h1>{{ 'MAP_PAGE.TITLE' | translate }}</h1>
-  <div class="btnCards"> 
-    <button [ngClass]="{'active': selectedTab === 'NaKarte'}" (click)="selectTab('NaKarte')">
+  <div class="btnCards">
+    <button
+      [ngClass]="{ active: selectedTab === 'NaKarte' }"
+      (click)="selectTab('NaKarte')"
+      (keydown.enter)="selectTab('NaKarte')"
+      (keydown.space)="selectTab('NaKarte')"
+      role="tab"
+      [attr.aria-selected]="selectedTab === 'NaKarte'"
+      aria-controls="map-tab-panel"
+      tabindex="0"
+    >
       {{ 'MAP_PAGE.TABS.ON_MAP' | translate }}
     </button>
-    <button [ngClass]="{'active': selectedTab==='Spiskom'}" (click)="selectTab('Spiskom')">
+    <button
+      [ngClass]="{ active: selectedTab === 'Spiskom' }"
+      (click)="selectTab('Spiskom')"
+      (keydown.enter)="selectTab('Spiskom')"
+      (keydown.space)="selectTab('Spiskom')"
+      role="tab"
+      [attr.aria-selected]="selectedTab === 'Spiskom'"
+      aria-controls="list-tab-panel"
+      tabindex="0"
+    >
       {{ 'MAP_PAGE.TABS.AS_LIST' | translate }}
     </button>
   </div>
 
-  <div [hidden]="selectedTab !== 'NaKarte'">
+  <div
+    [hidden]="selectedTab !== 'NaKarte'"
+    id="map-tab-panel"
+    role="tabpanel"
+    [attr.aria-hidden]="selectedTab !== 'NaKarte'"
+  >
     <div class="application-form-container">
       <div class="form">
-     
         <div class="custom-dropdown">
-          <div class="dropdown-selected" (click)="toggleDropdown($event)">
+          <div
+            class="dropdown-selected"
+            (click)="toggleDropdown($event)"
+            (keydown.enter)="toggleDropdown($event)"
+            (keydown.space)="toggleDropdown($event)"
+            tabindex="0"
+            role="button"
+            [attr.aria-expanded]="dropdownOpen"
+            aria-haspopup="true"
+            aria-controls="filter-options-panel"
+            [attr.aria-label]="
+              ('MAP_PAGE.FILTERS.MAIN_BUTTON_LABEL' | translate) +
+              (dropdownOpen ? ', ' + ('COMMON.OPENED' | translate) : ', ' + ('COMMON.CLOSED' | translate))
+            "
+          >
             {{ 'MAP_PAGE.FILTERS.MAIN_BUTTON_LABEL' | translate }}
           </div>
           @if(dropdownOpen) {
@@ -95,11 +131,26 @@
           }
           
         </div>
-        
-      
+
         <div class="custom-dropdown">
-          <div class="dropdown-selected" (click)="toggleDropdown2($event)">
-           {{ regionSelectedName }}
+          <div
+            class="dropdown-selected"
+            (click)="toggleDropdown2($event)"
+            (keydown.enter)="toggleDropdown2($event)"
+            (keydown.space)="toggleDropdown2($event)"
+            tabindex="0"
+            role="button"
+            [attr.aria-expanded]="dropdownOpen2"
+            aria-haspopup="listbox"
+            aria-controls="region-options-panel"
+            [attr.aria-label]="
+              ('MAP_PAGE.FILTERS.REGION_FILTER_LABEL' | translate) +
+              ': ' +
+              regionSelectedName +
+              (dropdownOpen2 ? ', ' + ('COMMON.OPENED' | translate) : ', ' + ('COMMON.CLOSED' | translate))
+            "
+          >
+            {{ regionSelectedName }}
           </div>
           @if(dropdownOpen2) {
             <div class="dropdown-options" >
@@ -192,13 +243,14 @@
         (mapClick)="closeSidebar()">
       </app-yandex-map>
     </div>
-    
   </div>
-  
-
- </div> 
   <!-- Список терминалов -->
-  <div [hidden]="selectedTab !== 'Spiskom'">
+  <div
+    [hidden]="selectedTab !== 'Spiskom'"
+    id="list-tab-panel"
+    role="tabpanel"
+    [attr.aria-hidden]="selectedTab !== 'Spiskom'"
+  >
     <app-office-list></app-office-list>
   </div>
     <!-- Часто задаваемые вопросы -->

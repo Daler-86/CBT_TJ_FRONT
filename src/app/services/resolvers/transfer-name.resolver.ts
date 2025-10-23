@@ -6,8 +6,7 @@ import { TransfersService } from '../../api/transfer.service';
 
 // !!! ЗАМЕНИТЕ НА ВАШ СЕРВИС ДЛЯ ПЕРЕВОДОВ !!!
 
-
-export const transferNameResolver: ResolveFn<string> = (route, state) => {
+export const transferNameResolver: ResolveFn<string> = (route) => {
   const transferService = inject(TransfersService);
   const id = route.paramMap.get('id');
 
@@ -20,6 +19,6 @@ export const transferNameResolver: ResolveFn<string> = (route, state) => {
     // !!! ЗАМЕНИТЕ НА ПРАВИЛЬНЫЙ ПУТЬ К НАЗВАНИЮ В ОТВЕТЕ API !!!
     // Предполагаю, что структура transfer.title[1].value для русского языка,
     // но лучше, если сервис вернет одно название.
-    map(response => response.data.transfer_data.title || 'Перевод')
+    map((response) => response.data.transfer_data.title || 'Перевод'),
   );
 };

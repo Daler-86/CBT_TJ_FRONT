@@ -1,146 +1,152 @@
 // :host - специальный селектор Angular для инкапсуляции
 :host {
-    // Контейнер, который держит наш блок
-    .container_3 {
-        // Добавляем немного отступов сверху и снизу для воздуха
-        padding: 40px 15px;
+  // Контейнер, который держит наш блок
+  .container_3 {
+    // Добавляем немного отступов сверху и снизу для воздуха
+    padding: 40px 15px;
+  }
+
+  // Основной блок с эффектом "стекла"
+  .favri {
+    display: flex;
+    gap: 30px; // Пространство между текстом и телефоном
+    align-items: center;
+    padding: 40px; // Внутренние отступы со всех сторон
+    border-radius: 24px; // Увеличенное скругление для эффекта стекла
+    background-color: white;
+    backdrop-filter: blur(15px); // Размытие фона
+    -webkit-backdrop-filter: blur(15px); // Для поддержки Safari
+    border: 1px solid rgba(255, 255, 255, 0.2); // Тонкая светлая граница
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); // Мягкая тень
+
+    // Адаптивность для мобильных
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      padding: 40px 25px 0; // На мобильных убираем нижний паддинг, т.к. телефон и так отступает
+      text-align: center;
+    }
+  }
+
+  // Левая часть с информацией
+  .favri-info {
+    flex: 1 1 50%; // Занимает половину места, гибкий
+    min-width: 300px; // Минимальная ширина, чтобы текст не слипался
+    position: relative;
+    z-index: 2; // Текст всегда сверху
+
+    h2 {
+      font-family: Inter;
+      font-weight: 800;
+      font-style: Extra Bold;
+      font-size: 34px;
+      // leading-trim: NONE;
+      line-height: 120%;
+      letter-spacing: 0%;
+    }
+    p {
+      font-family: Inter;
+      font-weight: 500;
+      font-style: Medium;
+      font-size: 20px;
+      // leading-trim: NONE;
+      margin-top: 15px;
+      color: #64748b;
+      line-height: 100%;
+      letter-spacing: 0%;
     }
 
-    // Основной блок с эффектом "стекла"
-    .favri {
-        display: flex;
-        gap: 30px; // Пространство между текстом и телефоном
-        align-items: center;
-        padding: 40px; // Внутренние отступы со всех сторон
-        border-radius: 24px; // Увеличенное скругление для эффекта стекла
-background-color: white;
-        backdrop-filter: blur(15px);          // Размытие фона
-        -webkit-backdrop-filter: blur(15px);  // Для поддержки Safari
-        border: 1px solid rgba(255, 255, 255, 0.2); // Тонкая светлая граница
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); // Мягкая тень
-
-        // Адаптивность для мобильных
-        @media (max-width: 1024px) {
-            flex-direction: column;
-            padding: 40px 25px 0; // На мобильных убираем нижний паддинг, т.к. телефон и так отступает
-            text-align: center;
+    .google {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      @media (max-width: 1024px) {
+        justify-content: center; // Центрируем кнопки на мобильных
+        a {
+          img {
+            max-width: 180px;
+          }
         }
+      }
     }
+  }
 
-    // Левая часть с информацией
-    .favri-info {
-        flex: 1 1 50%;     // Занимает половину места, гибкий
-        min-width: 300px;  // Минимальная ширина, чтобы текст не слипался
-        position: relative;
-        z-index: 2;        // Текст всегда сверху
+  // Правая часть с телефоном
+  .phone {
+    flex: 1 1 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
 
-        h2{
-            font-family: Inter;
-font-weight: 800;
-font-style: Extra Bold;
-font-size: 34px;
-// leading-trim: NONE;
-line-height: 120%;
-letter-spacing: 0%;
+  .phone-mockup {
+    max-width: 100%;
+    width: 520px;
+    height: auto;
+    position: relative;
+    z-index: 1; // Телефон под иконками
 
-        }
- p { font-family: Inter;
-    font-weight: 500;
-    font-style: Medium;
-    font-size: 20px;
-    // leading-trim: NONE;
-    margin-top: 15px;
-    color: #64748B;
-    line-height: 100%;
-    letter-spacing: 0%;
-     }
-
-        .google {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            @media (max-width: 1024px) {
-               
-                justify-content: center; // Центрируем кнопки на мобильных
-                a{
-                    img{
-                        max-width: 180px;
-                    }
-                }
-            }
-        }
+    @media (max-width: 1024px) {
+      max-width: 420px;
     }
-
-    // Правая часть с телефоном
-    .phone {
-        flex: 1 1 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
+    @media (max-width: 768px) {
+      max-width: 320px;
     }
+  }
 
-    .phone-mockup {
-        max-width: 100%;
-        width: 520px;
-        height: auto;
-        position: relative;
-        z-index: 1; // Телефон под иконками
+  // --- Стили и анимация иконок ---
+  .floating-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+    z-index: 2; // Иконки над телефоном
+  }
 
-        @media (max-width: 1024px) { max-width: 420px; }
-        @media (max-width: 768px) { max-width: 320px; }
+  .icon-bubble {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.8); // Фон иконок тоже полупрозрачный
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    img {
+      width: 32px;
+      height: 32px;
     }
+  }
 
-    // --- Стили и анимация иконок ---
-    .floating-icons {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 1px;
-        height: 1px;
-        pointer-events: none;
-        z-index: 2; // Иконки над телефоном
-    }
-
+  // Состояние при наведении
+  .favri:hover .floating-icons {
     .icon-bubble {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 60px;
-        height: 60px;
-        background: rgba(255, 255, 255, 0.8); // Фон иконок тоже полупрозрачный
-        border-radius: 16px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0);
-        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-        img { width: 32px; height: 32px; }
+      opacity: 1;
     }
 
-    // Состояние при наведении
-    .favri:hover .floating-icons {
-        .icon-bubble {
-             opacity: 1;
-        }
-        
-        .icon-1 {
-            transform: translate(-140px, -60px) scale(1) rotate(-15deg);
-            transition-delay: 0s;
-        }
-        .icon-2 {
-            transform: translate(120px, -90px) scale(1) rotate(20deg);
-            transition-delay: 0.1s;
-        }
-        .icon-3 {
-            transform: translate(-100px, 110px) scale(1) rotate(10deg);
-            transition-delay: 0.15s;
-        }
-        .icon-4 {
-            transform: translate(130px, 80px) scale(1) rotate(-25deg);
-            transition-delay: 0.05s;
-        }
+    .icon-1 {
+      transform: translate(-140px, -60px) scale(1) rotate(-15deg);
+      transition-delay: 0s;
     }
+    .icon-2 {
+      transform: translate(120px, -90px) scale(1) rotate(20deg);
+      transition-delay: 0.1s;
+    }
+    .icon-3 {
+      transform: translate(-100px, 110px) scale(1) rotate(10deg);
+      transition-delay: 0.15s;
+    }
+    .icon-4 {
+      transform: translate(130px, 80px) scale(1) rotate(-25deg);
+      transition-delay: 0.05s;
+    }
+  }
 }

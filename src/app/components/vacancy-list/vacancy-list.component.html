@@ -5,7 +5,8 @@
     <div class="vacancy-filter">
       <p>{{ 'VACANCIES.FILTERS.TITLE' | translate }}</p>
       <form>
-        <label for="category">{{ 'VACANCIES.FILTERS.DIRECTION_LABEL' | translate }}</label><br>
+        <label for="category">{{ 'VACANCIES.FILTERS.DIRECTION_LABEL' | translate }}</label
+        ><br />
         <select id="category" [(ngModel)]="selectedCategory" name="category" (change)="loadAllVacancies()">
           <option value="">{{ 'VACANCIES.FILTERS.ALL_DIRECTIONS' | translate }} ({{vacancyCategory.length}})</option>
           @for (category of vacancyCategory; track category.id) {
@@ -13,8 +14,9 @@
           }
           
         </select>
-        <br>
-        <label for="city">{{ 'VACANCIES.FILTERS.CITY_LABEL' | translate }}</label><br>
+        <br />
+        <label for="city">{{ 'VACANCIES.FILTERS.CITY_LABEL' | translate }}</label
+        ><br />
         <select id="city" [(ngModel)]="selectedRegion" name="city" (change)="loadAllVacancies()">
           <option value="">{{ 'VACANCIES.FILTERS.ALL_CITIES' | translate }} ({{regionList.length}})</option>
           @for (city of regionList; track city.id) {
@@ -49,7 +51,7 @@
       
     </div>
   </div>
-  
+
   <div class="">
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>

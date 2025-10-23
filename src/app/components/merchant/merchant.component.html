@@ -1,7 +1,6 @@
 <!-- src/app/pages/merchant-list/merchant-list.component.html -->
 <!-- Контейнер всей страницы для общих отступов и фона -->
 <div class="page-container">
-
   <!-- Заголовок страницы -->
   <div class="page-header">
     <h1>{{ 'MERCHANTS_PAGE.TITLE' | translate }}</h1>
@@ -10,7 +9,6 @@
 
   <!-- Основной контент: фильтры + сетка -->
   <div class="content-wrapper">
-
     <!-- Блок с фильтрами (левая колонка) -->
     <div class="filters-panel">
       <div class="filter-controls">
@@ -42,12 +40,7 @@
         <div class="cashback-toggle">
           <label for="cashback">{{ 'MERCHANTS_PAGE.FILTERS.CASHBACKS' | translate }}</label>
           <label class="switch">
-            <input
-              type="checkbox"
-              id="cashback"
-              [(ngModel)]="filterHasCashback"
-              (change)="onFilterChange()"
-            />
+            <input type="checkbox" id="cashback" [(ngModel)]="filterHasCashback" (change)="onFilterChange()" />
             <span class="slider round"></span>
           </label>
         </div>
@@ -69,7 +62,7 @@
      
     </div>
   </div>
-  
+
   <!-- Пагинация -->
   @if(totalPages >= 1) {
     <div class="pagination-container" >
@@ -91,8 +84,6 @@
   }
  
 
-  <app-simple-application-form 
-  [apiUrl]="merchantApiUrl"
-  [titleKey]="'FORMS.TITLES.MERCHANT'">
-</app-simple-application-form>
+  <app-simple-application-form [apiUrl]="merchantApiUrl" [titleKey]="'FORMS.TITLES.MERCHANT'">
+  </app-simple-application-form>
 </div>

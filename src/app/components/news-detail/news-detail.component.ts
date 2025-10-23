@@ -1,58 +1,58 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject, inject } from '@angular/core';
-import { NewsDetailData, news } from '../../models/news.model';
+import { Component, Inject, inject, OnInit } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../api/news.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; // <-- Все еще нужен для SafeHtml
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PageTitleService } from '../../services/page-title.service';
+import { news } from '../../models/news.model';
 interface SocialLink {
   type: string;
   url: string;
   ariaLabel: string;
   iconClass: string;
- }
+}
 @Component({
   selector: 'app-news-detail',
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './news-detail.component.html',
-  styleUrl: './news-detail.component.scss'
+  styleUrl: './news-detail.component.scss',
 })
-export class NewsDetailComponent {
- // --- Данные для статьи (замени на реальные) ---
- copyButtonText: string='';
- imageUrls: string[] = [
-   'assets/images/news-detail-1.jpg', 
-   'assets/images/news-detail-2.jpg',
-   'assets/images/news-detail-3.jpg'
- ];
- private pageTitleService = inject(PageTitleService);
- // --- Данные для блока "Поделиться" ---
- socialLinks: SocialLink[] = [];
- pageUrl: string = '';
-//  copyButtonText: string = 'Скопировать ссылку';
+export class NewsDetailComponent implements OnInit {
+  // --- Данные для статьи (замени на реальные) ---
+  copyButtonText = '';
+  imageUrls: string[] = [
+    'assets/images/news-detail-1.jpg',
+    'assets/images/news-detail-2.jpg',
+    'assets/images/news-detail-3.jpg',
+  ];
+  private pageTitleService = inject(PageTitleService);
+  // --- Данные для блока "Поделиться" ---
+  socialLinks: SocialLink[] = [];
+  pageUrl = '';
+  //  copyButtonText: string = 'Скопировать ссылку';
+  @Inject(DOCUMENT)
+  private route = inject(ActivatedRoute);
+  private newsService = inject(NewsService);
+  private translate = inject(TranslateService);
+  constructor() {
+    this.translate.get('buttons.copyLink').subscribe((text: string) => {
+      this.copyButtonText = text;
+    });
+  } // Внедряем DOCUMENT
 
- constructor(@Inject(DOCUMENT) private document: Document,
- private route: ActivatedRoute,
- private newsService:NewsService,
- private translate: TranslateService
- ) {
-  this.translate.get('buttons.copyLink').subscribe((text: string) => {
-    this.copyButtonText = text;
-  });
-
- } // Внедряем DOCUMENT
-
- cardId: number=0;
-newDetailData:any={}
+  cardId = 0;
+  newDetailData: news = {
+    id: 0,
+  };
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
-      this.cardId= +idParam;  // Преобразование строки в число
+      this.cardId = +idParam; // Преобразование строки в число
     } else {
       console.error('ID is missing in the route parameters.');
       // Здесь может быть код для обработки ситуации отсутствия ID
@@ -60,10 +60,9 @@ newDetailData:any={}
     this.loadCards(this.cardId);
   }
 
-  loadCards(id:number):void {
+  loadCards(id: number): void {
     this.newsService.getNewsDetailData(id).subscribe(
       (response) => {
-
         this.newDetailData = response.data.news;
         if (this.newDetailData && this.newDetailData.title) {
           this.pageTitleService.setCustomTitle(this.newDetailData.title);
@@ -71,7 +70,7 @@ newDetailData:any={}
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
   }
 
@@ -92,15 +91,12 @@ newDetailData:any={}
     }, 2000);
   }
 
+  // TrackBy функции для оптимизации
+  trackByIndex(index: number): number {
+    return index;
+  }
 
-
- // TrackBy функции для оптимизации
- trackByIndex(index: number): number {
-   return index;
- }
-
- trackBySocialType(index: number, item: SocialLink): string {
-     return item.type;
- }
-
+  trackBySocialType(index: number, item: SocialLink): string {
+    return item.type;
+  }
 }

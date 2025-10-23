@@ -1,48 +1,43 @@
-
-  
-export interface reportFile{
-    id:number;
-    name:string;
-    upload_file:string;
-
+export interface reportFile {
+  id: number;
+  name: string;
+  upload_file: string;
 }
-export interface ReportFile{
- status:string;
- status_code:string;
- data:{
-   total_count:number,
-    report_files:reportFile[]
-    
- }
+export interface ReportFile {
+  status: string;
+  status_code: string;
+  data: {
+    total_count: number;
+    report_files: reportFile[];
+  };
 }
 
-export interface reportData{
-  id:number;
-  description:string;
+export interface reportData {
+  id: number;
+  description: string;
   report_year: number; // <-- ДОБАВИТЬ
   report_years: number[]; // <-- ДОБАВИТЬ
   quarter: number; // <-- ДОБАВИТЬ
   is_quarter_or_year: boolean;
-  report_indicator:indecator[];
+  report_indicator: indecator[];
 }
-interface indecator{
-  id:number;
-  name:string;
-  sort_id:number;
-  report_indicator_data: indecator_data[]; 
+interface indecator {
+  id: number;
+  name: string;
+  sort_id: number;
+  report_indicator_data: indecator_data[];
   // report_indecator_data:indecator_data[]
 }
-interface indecator_data{
-
-  id:number;
-  title:string;
-  description:string;
-  sort_id:number
+interface indecator_data {
+  id: number;
+  title: string;
+  description: string;
+  sort_id: number;
 }
-export interface ReportData{
-status:string;
-status_code:string;
-data:{
-  reports:reportData
-}
+export interface ReportData {
+  status: string;
+  status_code: string;
+  data: {
+    reports: reportData;
+  };
 }

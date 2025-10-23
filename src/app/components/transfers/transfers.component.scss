@@ -1,101 +1,99 @@
 @import '../../../styles/variables.scss';
-.cards{
-    margin: none;
-   padding:3% 5% ;
-   background-color: #f8f9fa;
-    h1{
+.cards {
+  margin: none;
+  padding: 3% 5%;
+  background-color: #f8f9fa;
+  h1 {
     font-size: $font-size-h2;
     line-height: $line-height-h2;
     font-weight: 700;
-  margin-bottom: 25px;
-  @media (max-width: 768px) {
-  font-size: 36px;
-}
-}
-
-.card-container {
-    position: relative;
-             margin: 30px 0 0;
-         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-        
-         background-color: white;
-         border-radius: 24px;
- display: flex;
- justify-content: space-between;
- align-items: center;
- @media (max-width: 1024px) {
-     display: block;
-     padding: 29px 50px;
+    margin-bottom: 25px;
+    @media (max-width: 768px) {
+      font-size: 36px;
+    }
   }
-     .card-info {
-       width: 60%;
-       padding: 62px 76px;
-       @media (max-width: 1024px) {
-         width: 100%;
-         padding: 0;
-      }
-   
-       .card-title {
-         font-size: 30px;
-         font-weight: bold;
-         margin-bottom: 10px;
-       }
-   
-       .card-description {
-         font-size: 18px;
-         color:  #475569;
-         font-weight: 500;
-         margin-bottom: 20px;
-         line-height: 23px;
-       }
-   
-   
-   .card-buttons {
-      margin-top: 25px;
-        @media (max-width: 1024px) {
-        display: block;
-      }
-      button{
-         @media (max-width: 1024px) {
-             width: 100%;
-             margin-bottom: 30px;
-           }
- 
-      }
-         .btn-primary {
-           background-color: #00B06C;
-           color: #fff;
-           border: none;
-           padding: 19px 50px;
-           border-radius: 5px;
-           cursor: pointer;
-           font-size: 14px;
-         }
-   
-         .btn-secondary {
-           background-color: transparent;
-           color: #00B06C;
-           border: none;
-           padding: 19px 50px;
-           cursor: pointer;
-           font-size: 14px;
-         }
-       }
-     }
-   .card-image{
-    width: 40%;
-    margin: 62px 0 62px 76px;
-border-radius: 22px;
-  
- background-color: #f8f9fa;
-    padding: 24px 34px;
+
+  .card-container {
+    position: relative;
+    margin: 30px 0 0;
+    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+
+    background-color: white;
+    border-radius: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     @media (max-width: 1024px) {
-      width: 80%;
-      margin: 15px auto;
+      display: block;
+      padding: 29px 50px;
     }
-    .transfers_img{
-     width: 100%;
-     }
-}
+    .card-info {
+      width: 60%;
+      padding: 62px 76px;
+      @media (max-width: 1024px) {
+        width: 100%;
+        padding: 0;
+      }
+
+      .card-title {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .card-description {
+        font-size: 18px;
+        color: #475569;
+        font-weight: 500;
+        margin-bottom: 20px;
+        line-height: 23px;
+      }
+
+      .card-buttons {
+        margin-top: 25px;
+        @media (max-width: 1024px) {
+          display: block;
+        }
+        button {
+          @media (max-width: 1024px) {
+            width: 100%;
+            margin-bottom: 30px;
+          }
+        }
+        .btn-primary {
+          background-color: #00b06c;
+          color: #fff;
+          border: none;
+          padding: 19px 50px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 14px;
+        }
+
+        .btn-secondary {
+          background-color: transparent;
+          color: #00b06c;
+          border: none;
+          padding: 19px 50px;
+          cursor: pointer;
+          font-size: 14px;
+        }
+      }
     }
+    .card-image {
+      width: 40%;
+      margin: 62px 0 62px 76px;
+      border-radius: 22px;
+
+      background-color: #f8f9fa;
+      padding: 24px 34px;
+      @media (max-width: 1024px) {
+        width: 80%;
+        margin: 15px auto;
+      }
+      .transfers_img {
+        width: 100%;
+      }
+    }
+  }
 }

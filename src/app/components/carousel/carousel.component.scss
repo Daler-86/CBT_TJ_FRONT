@@ -30,13 +30,13 @@
   .carousel-content {
     width: 48%;
     z-index: 1; // Чтобы текст всегда был поверх фона
-    
+
     h2 {
       font-weight: 700;
       font-size: $font-size-h2; // 48px из вашего примера
       line-height: 1.2;
     }
-    
+
     p {
       font-weight: 500;
       font-size: $font-size-body-large; // 18px
@@ -47,14 +47,16 @@
     button {
       padding: 15px 50px;
       color: white;
-      background-color: #00B06C;
+      background-color: #00b06c;
       font-weight: 700;
       font-size: $font-size-body-large;
       line-height: $line-height-body-large;
       border: none;
       border-radius: 8px; // Сделали скругление чуть больше
       cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
+      transition:
+        background-color 0.3s,
+        color 0.3s;
 
       &:hover {
         background-color: #008a54; // Более тёмный зелёный при наведении
@@ -70,7 +72,7 @@
     align-self: flex-end; // Прижимаем к низу flex-контейнера
     // Эффект "выезда" за пределы блока снизу
     position: relative;
-    bottom: -40px; 
+    bottom: -40px;
   }
 }
 
@@ -83,12 +85,12 @@
     .carousel-content {
       width: 100%;
       max-width: 500px;
-      order: 1; 
-      
+      order: 1;
+
       // *** ВОТ КЛЮЧЕВОЕ ИЗМЕНЕНИЕ ***
       // Добавляем отступ снизу, чтобы создать "безопасную зону" для контента.
       // Машина будет заезжать в эту пустую область, не трогая текст и кнопку.
-      padding-bottom: 20px; 
+      padding-bottom: 20px;
 
       h2 {
         font-size: 32px;
@@ -97,14 +99,14 @@
         font-size: 16px;
       }
     }
-    
+
     img {
       order: 2;
       width: 85%;
       align-self: center;
       bottom: auto;
       // Уменьшаем отрицательный отступ, чтобы машина не заезжала слишком высоко
-      margin-top: -10%; 
+      margin-top: -10%;
       margin-bottom: -5%;
     }
   }
@@ -113,15 +115,15 @@
 @media (max-width: 768px) {
   .carousel-item {
     min-height: 500px;
-    
+
     .carousel-content h2 {
       font-size: 24px;
     }
-    
+
     img {
       width: 100%;
       // Также корректируем отступ для самых маленьких экранов
-      margin-top: -15%; 
+      margin-top: -15%;
     }
   }
 }

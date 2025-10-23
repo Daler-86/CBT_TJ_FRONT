@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NewsBoxComponent } from "../news-box/news-box.component";
+import { NewsBoxComponent } from '../news-box/news-box.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -7,8 +7,6 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [NewsBoxComponent, TranslateModule],
   templateUrl: './about-us.component.html',
-  styleUrl: './about-us.component.scss'
+  styleUrl: './about-us.component.scss',
 })
-export class AboutUsComponent {
-
-}
+export class AboutUsComponent {}

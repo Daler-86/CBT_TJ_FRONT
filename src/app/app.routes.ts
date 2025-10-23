@@ -10,7 +10,6 @@ import { VacancyDetailComponent } from './components/vacancy-detail/vacancy-deta
 import { CardDetailsComponent } from './components/card-details/card-details.component';
 import { CreditBarakatComponent } from './components/credit-barakat/credit-barakat.component';
 import { CreditOverviewComponent } from './components/credit-overview/credit-overview.component';
-import { AutocreditComponent } from './components/autocredit/autocredit.component';
 import { MapComponent } from './components/map/map.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { TransfersComponent } from './components/transfers/transfers.component';
@@ -48,145 +47,141 @@ import { RkoWrapperComponent } from './components/rko/rko-wrapper/rko-wrapper.co
 import { rkoNameResolver } from './services/resolvers/rko-name.resolver';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' ,data: { titleKey: 'titles.default'  }},
-  { path: 'home', component: HomeComponent,
-  data: { titleKey: 'titles.default' 
-}
-},
-{
-  path: 'cards',
-  component: CardWrapperComponent, // Используем обертку
-  data: { 
-    breadcrumb: 'BREADCRUMBS.CARDS', 
-    titleKey: 'TITLES.CARDS' 
-  },
-  children: [
-    {
-      path: '', // Для URL /cards
-      component: CardsComponent 
+  { path: '', redirectTo: 'home', pathMatch: 'full', data: { titleKey: 'titles.default' } },
+  { path: 'home', component: HomeComponent, data: { titleKey: 'titles.default' } },
+  {
+    path: 'cards',
+    component: CardWrapperComponent, // Используем обертку
+    data: {
+      breadcrumb: 'BREADCRUMBS.CARDS',
+      titleKey: 'TITLES.CARDS',
     },
-    {
-      path: ':id', // Для URL /cards/123
-      component: CardDetailsComponent,
-      data: { isDynamic: true },
-      resolve: { breadcrumb: cardNameResolver }
-    }
-  ]
-},
- {
+    children: [
+      {
+        path: '', // Для URL /cards
+        component: CardsComponent,
+      },
+      {
+        path: ':id', // Для URL /cards/123
+        component: CardDetailsComponent,
+        data: { isDynamic: true },
+        resolve: { breadcrumb: cardNameResolver },
+      },
+    ],
+  },
+  {
     path: 'credits',
     component: CreditComponent, // Родительский компонент с <router-outlet>
     // --- 1. Крошка определяется на родительском уровне ---
-           data: { breadcrumb: 'BREADCRUMBS.CREDITS', titleKey: 'TITLES.CREDITS' },
+    data: { breadcrumb: 'BREADCRUMBS.CREDITS', titleKey: 'TITLES.CREDITS' },
     children: [
-      { 
-        path: '', 
+      {
+        path: '',
         component: CreditOverviewComponent,
 
-         // --- 2. УБИРАЕМ breadcrumb отсюда, чтобы не было дублирования ---
+        // --- 2. УБИРАЕМ breadcrumb отсюда, чтобы не было дублирования ---
       },
       {
         path: ':id',
         component: CreditBarakatComponent,
         data: { isDynamic: true },
-        resolve: { breadcrumb: creditNameResolver }
-      }
-    ]
+        resolve: { breadcrumb: creditNameResolver },
+      },
+    ],
   },
   {
     path: 'transfers', // <-- ОБЩИЙ ПУТЬ ДЛЯ РАЗДЕЛА
     component: TransferWrapperComponent,
-    data: { 
-      breadcrumb: 'BREADCRUMBS.TRANSFERS', 
-      titleKey: 'TITLES.TRANSFERS' 
+    data: {
+      breadcrumb: 'BREADCRUMBS.TRANSFERS',
+      titleKey: 'TITLES.TRANSFERS',
     },
     children: [
       {
         path: '', // <-- Для URL /transfers (список)
-        component: TransfersComponent 
+        component: TransfersComponent,
       },
       {
         path: ':id', // <-- Для URL /transfers/123 (детали)
         component: TransfersDetailsComponent,
         data: { isDynamic: true },
-        resolve: { breadcrumb: transferNameResolver }
-      }
-    ]
+        resolve: { breadcrumb: transferNameResolver },
+      },
+    ],
   },
   {
     path: 'deposits', // <-- ОБЩИЙ ПУТЬ ДЛЯ РАЗДЕЛА
     component: DepositWrapperComponent,
-    data: { 
-      breadcrumb: 'BREADCRUMBS.DEPOSITS', 
-      titleKey: 'TITLES.DEPOSITS' 
+    data: {
+      breadcrumb: 'BREADCRUMBS.DEPOSITS',
+      titleKey: 'TITLES.DEPOSITS',
     },
     children: [
       {
         path: '', // <-- Для URL /deposits (список)
-        component: DepositsComponent 
+        component: DepositsComponent,
       },
       {
         path: ':id', // <-- Для URL /deposits/123 (детали)
         component: DepositDetailComponent,
         data: { isDynamic: true },
-        resolve: { breadcrumb: depositNameResolver }
-      }
-    ]
+        resolve: { breadcrumb: depositNameResolver },
+      },
+    ],
   },
   {
     path: 'vacancies',
     component: VacancyWrapperComponent, // <-- Обертка для всего раздела
-    data: { 
-      breadcrumb: 'BREADCRUMBS.VACANCIES' ,
-      titleKey: 'TITLES.VACANCIES' 
+    data: {
+      breadcrumb: 'BREADCRUMBS.VACANCIES',
+      titleKey: 'TITLES.VACANCIES',
     },
     children: [
       {
         path: '', // <-- URL: /vacancies (Общая страница)
         component: VacanciesComponent,
-   
       },
       {
         path: 'list', // <-- URL: /vacancies/list
         component: VacancyListWrapperComponent, // <-- Обертка для списка и деталей
-        data: { 
+        data: {
           breadcrumb: 'BREADCRUMBS.VACANCY_LIST',
-          titleKey: 'TITLES.VACANCY_LIST' 
+          titleKey: 'TITLES.VACANCY_LIST',
         },
         children: [
           {
             path: '', // <-- URL: /vacancies/list (показывает список)
-            component: VacancyListComponent
+            component: VacancyListComponent,
           },
           {
             path: ':id', // <-- URL: /vacancies/list/:id (показывает детали)
             component: VacancyDetailComponent,
             data: { isDynamic: true },
-            resolve: { breadcrumb: vacancyNameResolver }
-          }
-        ]
-      }
-    ]
+            resolve: { breadcrumb: vacancyNameResolver },
+          },
+        ],
+      },
+    ],
   },
   {
     path: 'news', // <-- ОБЩИЙ ПУТЬ ДЛЯ РАЗДЕЛА
     component: NewsWrapperComponent,
-    data: { 
-      breadcrumb: 'BREADCRUMBS.NEWS', 
-      titleKey: 'TITLES.NEWS' 
+    data: {
+      breadcrumb: 'BREADCRUMBS.NEWS',
+      titleKey: 'TITLES.NEWS',
     },
     children: [
       {
         path: '', // <-- Для URL /news (список)
-        component: NewsComponent 
+        component: NewsComponent,
       },
       {
         path: ':id', // <-- Для URL /news/123 (детали)
         component: NewsDetailComponent,
         data: { isDynamic: true },
-        resolve: { breadcrumb: newsTitleResolver }
-      }
-    ]
+        resolve: { breadcrumb: newsTitleResolver },
+      },
+    ],
   },
   {
     path: 'tender', // <-- Новый общий путь
@@ -198,9 +193,9 @@ export const routes: Routes = [
         path: ':id', // <-- Детали
         component: TenderDetailsComponent,
         data: { isDynamic: true },
-        resolve: { breadcrumb: tenderNameResolver }
-      }
-    ]
+        resolve: { breadcrumb: tenderNameResolver },
+      },
+    ],
   },
   {
     path: 'rko',
@@ -212,22 +207,46 @@ export const routes: Routes = [
         path: ':id', // <-- Детали
         component: RkoDetailsComponent,
         data: { isDynamic: true },
-        resolve: { breadcrumb: rkoNameResolver }
-      }
-    ]
+        resolve: { breadcrumb: rkoNameResolver },
+      },
+    ],
   },
 
-   { path: 'map', component: MapComponent, data: { breadcrumb: 'BREADCRUMBS.MAP', titleKey: 'TITLES.MAP' } },
-   { path: 'about-us', component: AboutUsComponent, data: { breadcrumb: 'BREADCRUMBS.ABOUT_US', titleKey: 'TITLES.ABOUT_US' } },
-   { path: 'report', component: ReportComponent, data: { breadcrumb: 'BREADCRUMBS.REPORT', titleKey: 'TITLES.REPORT' } },
-   { path: 'bank-detail', component: BankDetailComponent, data: { breadcrumb: 'BREADCRUMBS.BANK_DETAIL', titleKey: 'TITLES.BANK_DETAIL' } },
-   { path: 'merchant', component: MerchantComponent, data: { breadcrumb: 'BREADCRUMBS.MERCHANT', titleKey: 'TITLES.MERCHANT' } },
-   { path: 'contact', component: ContactComponent, data: { breadcrumb: 'BREADCRUMBS.CONTACT', titleKey: 'TITLES.CONTACT' } },
-   { path: 'insurance-info', component: InsuranceInfoComponent, data: { breadcrumb: 'BREADCRUMBS.INSURANCE', titleKey: 'TITLES.INSURANCE' } },
-   { path: 'salary-project', component: SalaryProjectPageComponent, data: { breadcrumb: 'BREADCRUMBS.SALARY_PROJECT', titleKey: 'TITLES.SALARY_PROJECT' } },
-   { path: 'acquiring', component: AcquiringPageComponent, data: { breadcrumb: 'BREADCRUMBS.ACQUIRING', titleKey: 'TITLES.ACQUIRING' } },
+  { path: 'map', component: MapComponent, data: { breadcrumb: 'BREADCRUMBS.MAP', titleKey: 'TITLES.MAP' } },
+  {
+    path: 'about-us',
+    component: AboutUsComponent,
+    data: { breadcrumb: 'BREADCRUMBS.ABOUT_US', titleKey: 'TITLES.ABOUT_US' },
+  },
+  { path: 'report', component: ReportComponent, data: { breadcrumb: 'BREADCRUMBS.REPORT', titleKey: 'TITLES.REPORT' } },
+  {
+    path: 'bank-detail',
+    component: BankDetailComponent,
+    data: { breadcrumb: 'BREADCRUMBS.BANK_DETAIL', titleKey: 'TITLES.BANK_DETAIL' },
+  },
+  {
+    path: 'merchant',
+    component: MerchantComponent,
+    data: { breadcrumb: 'BREADCRUMBS.MERCHANT', titleKey: 'TITLES.MERCHANT' },
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+    data: { breadcrumb: 'BREADCRUMBS.CONTACT', titleKey: 'TITLES.CONTACT' },
+  },
+  {
+    path: 'insurance-info',
+    component: InsuranceInfoComponent,
+    data: { breadcrumb: 'BREADCRUMBS.INSURANCE', titleKey: 'TITLES.INSURANCE' },
+  },
+  {
+    path: 'salary-project',
+    component: SalaryProjectPageComponent,
+    data: { breadcrumb: 'BREADCRUMBS.SALARY_PROJECT', titleKey: 'TITLES.SALARY_PROJECT' },
+  },
+  {
+    path: 'acquiring',
+    component: AcquiringPageComponent,
+    data: { breadcrumb: 'BREADCRUMBS.ACQUIRING', titleKey: 'TITLES.ACQUIRING' },
+  },
 ];
-
- 
-
-

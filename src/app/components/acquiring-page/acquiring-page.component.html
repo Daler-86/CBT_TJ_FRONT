@@ -1,5 +1,4 @@
 <div class="info-page-container">
-
   <div class="section-1">
     <div class="box1">
       <h1>Онлайн-эквайринг</h1>
@@ -7,89 +6,72 @@
       <button>Отправить заявку</button>
     </div>
     <div class="box2">
-      <img src="../../../assets/icons/эквайринг.png" alt="">
+      <img src="../../../assets/icons/эквайринг.png" alt="" />
     </div>
   </div>
 
   <div class="section-3">
-
     <h2 class="header">Плюсы эквайринга от Коммерцбанк Таджикистан</h2>
     <div class="details-1">
       <div class="box1">
-        <img src="../../../assets/icons/a1.png" alt="">  
+        <img src="../../../assets/icons/a1.png" alt="" />
 
         <div class="">
-        <h3>Через QR-код приложения «Фаври»</h3>
-        <p>Более 150 000 пользователей «Фаври» смогут оплачивать, 
-          в том числе оплачивать через кредит-рассрочку. 
-          Деньги моментально переходят на счет магазина/торговой точки.</p>
-         
-      </div>
-     
+          <h3>Через QR-код приложения «Фаври»</h3>
+          <p>
+            Более 150 000 пользователей «Фаври» смогут оплачивать, в том числе оплачивать через кредит-рассрочку. Деньги
+            моментально переходят на счет магазина/торговой точки.
+          </p>
+        </div>
       </div>
       <div class="box1">
-         <img src="../../../assets/icons/a2.png" alt="">   
-         <div class="">
-        <h3>Через карты «Корти милли»</h3>
-        <p>ПОС-терминал может принимать оплату по всем картам «Корти милли». 
-          Деньги переходят на счет магазина/торговой точки 
-          на следующий рабочий день.</p>
-          
-     </div>
-  
-    </div>
-  
+        <img src="../../../assets/icons/a2.png" alt="" />
+        <div class="">
+          <h3>Через карты «Корти милли»</h3>
+          <p>
+            ПОС-терминал может принимать оплату по всем картам «Корти милли». Деньги переходят на счет магазина/торговой
+            точки на следующий рабочий день.
+          </p>
+        </div>
+      </div>
     </div>
 
     <h2 class="header">Почему выбирают нас?</h2>
     <div class="details-2">
       <div class="box1">
-        <img src="../../../assets/icons/a3.png" alt="">  
+        <img src="../../../assets/icons/a3.png" alt="" />
 
         <div class="">
-        <h3>Быстрое поступление средств</h3>
-        <p>Средства поступят уже на следующий день после оплаты</p>
-         
-      </div>
-     
+          <h3>Быстрое поступление средств</h3>
+          <p>Средства поступят уже на следующий день после оплаты</p>
+        </div>
       </div>
       <div class="box1">
-        <img src="../../../assets/icons/a4.png" alt="">  
+        <img src="../../../assets/icons/a4.png" alt="" />
 
         <div class="">
-        <h3>Уменьшение нагрузки</h3>
-        <p>Меньше времени на расчёты для вашего бухгалтера</p>
-         
-      </div>
-     
+          <h3>Уменьшение нагрузки</h3>
+          <p>Меньше времени на расчёты для вашего бухгалтера</p>
+        </div>
       </div>
 
       <div class="box1">
-        <img src="../../../assets/icons/a5.png" alt="">  
+        <img src="../../../assets/icons/a5.png" alt="" />
 
         <div class="">
-        <h3>Управление в режиме онлайн</h3>
-        <p>Ваши продажи под контролем — 24/7 и с любого устройства</p>
-         
-      </div>
-     
+          <h3>Управление в режиме онлайн</h3>
+          <p>Ваши продажи под контролем — 24/7 и с любого устройства</p>
+        </div>
       </div>
     </div>
     <h2 class="header">Тарифы</h2>
 
     <div class="btnCards">
       <!-- Используем общий ключ для кнопки "Все" -->
-      <button [ngClass]="{'active': selectedTab === 'all'}" (click)="selectTab('all')">
-        Торговая точка
-      </button>
-      <button [ngClass]="{'active': selectedTab === 'all1'}" (click)="selectTab('all1')">
-        Интернет-магазин
-      </button>
-      <button [ngClass]="{'active': selectedTab === 'all2'}" (click)="selectTab('all2')">
-        Для курьеров
-      </button>
+      <button [ngClass]="{ active: selectedTab === 'all' }" (click)="selectTab('all')">Торговая точка</button>
+      <button [ngClass]="{ active: selectedTab === 'all1' }" (click)="selectTab('all1')">Интернет-магазин</button>
+      <button [ngClass]="{ active: selectedTab === 'all2' }" (click)="selectTab('all2')">Для курьеров</button>
       <!-- ВАЖНО: Добавлен пайп translate для названий брендов -->
- 
     </div>
 
     @if(selectedTab ==='all') {
@@ -121,87 +103,66 @@
              
       </div>
     }
-  
 
     <h2 class="header">Условия</h2>
     <div class="details-3">
       <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="">
+        <img src="../../../assets/icons/Check Circle.svg" alt="" />
         <p>Круглосуточный доступ к счету</p>
       </div>
       <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="">
-        <p>Оплата безналичным путем за товары/услуги через пос-терминалы, установленные в различных торговых и сервисных точках</p>
+        <img src="../../../assets/icons/Check Circle.svg" alt="" />
+        <p>
+          Оплата безналичным путем за товары/услуги через пос-терминалы, установленные в различных торговых и сервисных
+          точках
+        </p>
       </div>
       <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="">
+        <img src="../../../assets/icons/Check Circle.svg" alt="" />
         <p>Онлайн-контроль карты, переводы, оплата услуг в мобильном приложении «Мобильного Банка» и на сайте банка</p>
       </div>
       <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="">
+        <img src="../../../assets/icons/Check Circle.svg" alt="" />
         <p>Сохранность денег на карточном счете при утере карты</p>
       </div>
       <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="">
+        <img src="../../../assets/icons/Check Circle.svg" alt="" />
         <p>Получение заработной платы через банкоматы 24 часа в сутки</p>
       </div>
       <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="">
+        <img src="../../../assets/icons/Check Circle.svg" alt="" />
         <p>Обеспечение конфиденциальности информации по счету</p>
       </div>
-
     </div>
     <h2 class="header">Перечень необходимых документов</h2>
     <div class="details-4">
       <div class="box1">
-        <img src="../../../assets/icons/a6.png" alt="">  
+        <img src="../../../assets/icons/a6.png" alt="" />
 
         <div class="">
-    
-        <p>Копия паспорта 
-          Руководителя</p>
-         
-      </div>
-     
+          <p>Копия паспорта Руководителя</p>
+        </div>
       </div>
       <div class="box1">
-         <img src="../../../assets/icons/a7.png" alt="">   
-         <div class="">
-       
-        <p>Выписка из единого 
-          государственного реестра (Иқтибос)</p>
-          
-     </div>
-  
+        <img src="../../../assets/icons/a7.png" alt="" />
+        <div class="">
+          <p>Выписка из единого государственного реестра (Иқтибос)</p>
+        </div>
+      </div>
+      <div class="box1">
+        <img src="../../../assets/icons/a8.png" alt="" />
+        <div class="">
+          <p>Патент или свидетельство о государственной регистрации (Шаходатнома, патент)</p>
+        </div>
+      </div>
+      <div class="box1">
+        <img src="../../../assets/icons/a9.png" alt="" />
+        <div class="">
+          <p>ИНН (оригинал)</p>
+        </div>
+      </div>
     </div>
-    <div class="box1">
-      <img src="../../../assets/icons/a8.png" alt="">   
-      <div class="">
-    
-     <p>Патент или свидетельство о государственной регистрации (Шаходатнома, патент)</p>
-       
   </div>
-
- </div>
- <div class="box1">
-  <img src="../../../assets/icons/a9.png" alt="">   
-  <div class="">
-
- <p>ИНН (оригинал)</p>
-   
+  <app-simple-application-form id="application-form" [apiUrl]="acquiringApiUrl" [titleKey]="'FORMS.TITLES.ACQUIRING'">
+  </app-simple-application-form>
 </div>
-
-</div>
-  
-    </div>
-
-  </div>
-  <app-simple-application-form 
-  id="application-form"
-  [apiUrl]="acquiringApiUrl"
-  [titleKey]="'FORMS.TITLES.ACQUIRING'">
-</app-simple-application-form>
-
-  </div>
-
-

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DropdownService {
   // Сервис будет хранить индекс открытого селектора, -1 означает, что ни один не открыт
@@ -12,7 +12,6 @@ export class DropdownService {
 
   // Метод для установки открытого селектора
   setOpenDropdown(index: number) {
-  
     this.openDropdownIndex.next(index);
   }
 

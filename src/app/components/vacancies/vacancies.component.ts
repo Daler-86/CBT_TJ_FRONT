@@ -2,37 +2,35 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink, RouterModule} from '@angular/router';
 import {VacanciesService} from '../../api/vacancies.service';
 import {vacancyContent, vacancyGallery, vacancyItem, vacancyStatistic} from '../../models/vacancies.model';
-import {CommonModule} from '@angular/common';
+import {NgFor} from '@angular/common';
 import {TranslateModule} from '@ngx-translate/core';
 import {environment} from "../../../environments/environment";
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-vacancies',
   standalone: true,
-  imports: [RouterLink, RouterModule, CommonModule, TranslateModule],
+  imports: [RouterLink, RouterModule, TranslateModule],
   templateUrl: './vacancies.component.html',
-  styleUrl: './vacancies.component.scss'
+  styleUrl: './vacancies.component.scss',
 })
-export class VacanciesComponent implements  OnInit {
+export class VacanciesComponent implements OnInit {
   imageUrl: string = environment.IMAGE_URL;
-  currentIndex: number = 0;
-  vacancyContent: vacancyContent[] = []
-  vacancyItems: vacancyItem[] = []
-  vacancyStatistics: vacancyStatistic[] = []
-  vacancyGalleries: vacancyGallery[] = []
-
-  constructor(private vacanciesService: VacanciesService) {
-  }
+  currentIndex = 0;
+  vacancyContent: vacancyContent[] = [];
+  vacancyItems: vacancyItem[] = [];
+  vacancyStatistics: vacancyStatistic[] = [];
+  vacancyGalleries: vacancyGallery[] = [];
+  private vacanciesService = inject(VacanciesService);
 
   ngOnInit(): void {
-
     this.vacanciesService.getVacancyContent().subscribe(
       (response) => {
         this.vacancyContent = response.data.vacancy_contents;
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
 
     this.vacanciesService.getVacancyContentItem().subscribe(
@@ -41,7 +39,7 @@ export class VacanciesComponent implements  OnInit {
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
 
     this.vacanciesService.getVacancyStatistic().subscribe(
@@ -50,7 +48,7 @@ export class VacanciesComponent implements  OnInit {
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
 
     this.vacanciesService.getVacancyGallery().subscribe(
@@ -59,11 +57,9 @@ export class VacanciesComponent implements  OnInit {
       },
       (error) => {
         console.error('Ошибка при запросе данных', error);
-      }
+      },
     );
-
   }
-
 
   next() {
     if (this.currentIndex < this.vacancyGalleries.length - 1) {
@@ -76,5 +72,4 @@ export class VacanciesComponent implements  OnInit {
       this.currentIndex--;
     }
   }
-
 }

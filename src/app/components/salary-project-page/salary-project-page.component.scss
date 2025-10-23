@@ -1,13 +1,12 @@
 // Переменные
-$primary-color: #00B06C;
+$primary-color: #00b06c;
 $text-primary: #212529;
 $text-secondary: #555;
 $background-light: #f8f9fa;
 $border-color: #e9ecef;
 
-
 .info-page-container {
-  background-color: #F7F8FA;
+  background-color: #f7f8fa;
   padding: 3% 5%;
 
   @media (max-width: 768px) {
@@ -59,7 +58,7 @@ $border-color: #e9ecef;
       }
 
       button {
-        background-color: #00B06C;
+        background-color: #00b06c;
         padding: 19px 50px;
         border: none;
         border-radius: 6px;
@@ -114,7 +113,7 @@ $border-color: #e9ecef;
 
     p {
       text-align: center;
-      color: #353E5C;
+      color: #353e5c;
       font-size: 24px;
       line-height: 100%;
 
@@ -128,7 +127,6 @@ $border-color: #e9ecef;
       }
     }
   }
-
 
   .section-3 {
     h2 {
@@ -179,7 +177,7 @@ $border-color: #e9ecef;
         h3 {
           font-weight: 700;
           font-size: 24px;
-          color: #353E5C;
+          color: #353e5c;
 
           @media (max-width: 768px) {
             font-size: 20px;
@@ -188,7 +186,7 @@ $border-color: #e9ecef;
 
         p {
           padding: 8px 0 30px;
-          color: #353E5C;
+          color: #353e5c;
           font-size: 20px;
 
           @media (max-width: 768px) {
@@ -230,7 +228,7 @@ $border-color: #e9ecef;
           @media (max-width: 480px) {
             padding: 20px 15px 0;
           }
-          img{
+          img {
             align-self: center; // Центрируем изображение
           }
         }

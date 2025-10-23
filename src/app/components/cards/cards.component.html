@@ -4,10 +4,7 @@
 
   <div class="btnCards">
     <!-- Кнопка "Все" -->
-    <button
-      [ngClass]="{ 'active': selectedTab === 'all' }"
-      (click)="selectTab('all')"
-    >
+    <button [ngClass]="{ active: selectedTab === 'all' }" (click)="selectTab('all')">
       {{ 'BUTTONS.ALL' | translate }}
     </button>
 

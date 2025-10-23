@@ -1,13 +1,12 @@
-$primary-color: #00B06C;
+$primary-color: #00b06c;
 $text-primary: #212529;
 $text-secondary: #6c757d; // For subtitles and secondary text
-$light-grey-border: #E0E0E0; // A lighter border color like in the first image
+$light-grey-border: #e0e0e0; // A lighter border color like in the first image
 $error-color: #dc3545;
-$button-disabled-bg: #E0E0E0; // Lighter grey for disabled button
-$button-disabled-text: #A0A0A0; // Darker grey for disabled button text
+$button-disabled-bg: #e0e0e0; // Lighter grey for disabled button
+$button-disabled-text: #a0a0a0; // Darker grey for disabled button text
 
 // Overall page background (if applicable, not in form-container)
-
 
 // Общий контейнер формы
 .form-container {
@@ -40,7 +39,7 @@ p {
 .form-group {
   margin-bottom: 25px; // More space between form groups
 }
-form{
+form {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   justify-content: space-between;
@@ -59,10 +58,13 @@ form{
   border-radius: 8px;
   background-color: #ffffff; // Ensure background is white
   box-sizing: border-box;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
   color: $text-primary; // Default text color in input
 
-  &::placeholder { // Style for placeholders
+  &::placeholder {
+    // Style for placeholders
     color: $text-secondary; // Lighter placeholder text
   }
 
@@ -92,7 +94,9 @@ form{
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s, box-shadow 0.2s;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
   margin-bottom: 25px; // Space before the privacy text
 
   &:hover:not(:disabled) {

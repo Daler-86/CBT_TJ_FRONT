@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AutoLoanParams, AutoLoanResult, CarLoanConditions, CarLoanParams, CarLoanResult } from '../models/calculate.model';
+import { AutoLoanParams, AutoLoanResult } from '../models/calculate.model';
 export interface AutoLoanConditions {
   minCarCost: number;
   maxCarCost: number;
@@ -10,9 +10,8 @@ export interface AutoLoanConditions {
   maxRate: number;
 }
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 // export class CarLoanService {
 
@@ -56,17 +55,16 @@ export interface AutoLoanConditions {
 
 //     // Проверка, если сумма кредита отрицательная или нулевая
 //     if (loanAmount <= 0) {
-//       return { 
-//         monthlyPayment: 0, 
-//         totalOverpayment: 0, 
-//         interestRate: this.conditions[params.currency].annualRate 
+//       return {
+//         monthlyPayment: 0,
+//         totalOverpayment: 0,
+//         interestRate: this.conditions[params.currency].annualRate
 //       };
-      
+
 //     }
-    
 
 //     const conditions = this.getConditions(params.currency);
-    
+
 //     const monthlyRate = conditions.annualRate / 12;
 //     const numberOfPayments = params.term;
 
@@ -82,32 +80,32 @@ export interface AutoLoanConditions {
 //     };
 //   }
 // }
-export class CarLoanService{
-  private readonly conditions: { [currency: string]: AutoLoanConditions } = {
-    'tjs': {
+export class CarLoanService {
+  private readonly conditions: Record<string, AutoLoanConditions> = {
+    tjs: {
       minCarCost: 50000,
       maxCarCost: 300000,
-      minDownPaymentPercent: 0.20,
+      minDownPaymentPercent: 0.2,
       minTerm: 12,
       maxTerm: 36,
       minRate: 20,
       maxRate: 25,
     },
-    'usd': {
+    usd: {
       minCarCost: 5000,
       maxCarCost: 30000,
-      minDownPaymentPercent: 0.20,
+      minDownPaymentPercent: 0.2,
       minTerm: 12,
       maxTerm: 48,
       minRate: 13,
       maxRate: 15,
-    }
+    },
   };
 
   getConditions(currency: 'tjs' | 'usd'): AutoLoanConditions {
     return this.conditions[currency];
   }
-  
+
   calculate(params: AutoLoanParams): AutoLoanResult {
     const financingAmount = params.carCost - params.downPayment;
     if (financingAmount <= 0) {
@@ -115,24 +113,26 @@ export class CarLoanService{
     }
 
     const monthlyRate = params.annualRate / 12;
-    
-    if(monthlyRate === 0 || params.term === 0) {
+
+    if (monthlyRate === 0 || params.term === 0) {
       const monthlyPayment = params.term > 0 ? financingAmount / params.term : 0;
-      return { 
+      return {
         monthlyPayment: Math.round(monthlyPayment),
         totalOverpayment: 0,
-        financingAmount
+        financingAmount,
       };
     }
 
-    const monthlyPayment = financingAmount * (monthlyRate * Math.pow(1 + monthlyRate, params.term)) / (Math.pow(1 + monthlyRate, params.term) - 1);
+    const monthlyPayment =
+      (financingAmount * (monthlyRate * Math.pow(1 + monthlyRate, params.term))) /
+      (Math.pow(1 + monthlyRate, params.term) - 1);
     const totalPayment = monthlyPayment * params.term;
     const totalOverpayment = totalPayment - financingAmount;
 
     return {
       monthlyPayment: monthlyPayment,
       totalOverpayment: totalOverpayment,
-      financingAmount: financingAmount
+      financingAmount: financingAmount,
     };
   }
 }

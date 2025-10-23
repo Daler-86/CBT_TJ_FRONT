@@ -1,23 +1,31 @@
 <nav>
-  <!-- Блок 1: Верхняя панель с контактами и языком (только для десктопа) -->
   <div class="adress desktop-only">
     <div class="cont">
       <div class="contact">
-        <img src="../../../assets/icons/phonegrey.svg" [alt]="'ALT.PHONE_ICON' | translate">
+        <img src="../../../assets/icons/phonegrey.svg" [alt]="'ALT.PHONE_ICON' | translate" />
         <p class="p" id="body-medium">+(992) 44 630 8888</p>
       </div>
       <a href="" routerLink="map" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <div class="contact">
-          <img src="../../../assets/icons/Map Point.svg" [alt]="'ALT.MAP_POINT_ICON' | translate">
+          <img src="../../../assets/icons/Map Point.svg" [alt]="'ALT.MAP_POINT_ICON' | translate" />
           <p class="p" id="body-medium">{{ 'HEADER.TOP.OFFICES_AND_ATMS' | translate }}</p>
         </div>
       </a>
     </div>
     <div class="custom-dropdown">
-      <div class="dropdown-selected contact" (click)="toggleDropdown1($event)">
-        <img src="../../../assets/icons/Global.svg" [alt]="'ALT.GLOBAL_ICON' | translate">
+      <div
+        class="dropdown-selected contact"
+        (click)="toggleDropdown1($event)"
+        (keydown.enter)="toggleDropdown1($event)"
+        (keydown.space)="toggleDropdown1($event)"
+        tabindex="0"
+        role="button"
+        [attr.aria-expanded]="dropdownOpen"
+        aria-haspopup="listbox"
+      >
+        <img src="../../../assets/icons/Global.svg" [alt]="'ALT.GLOBAL_ICON' | translate" />
         <p class="p" id="body-medium">{{ getDisplayLanguage() }}</p>
-        <img src="../../../assets/icons/arrow-down.png" [alt]="'ALT.ARROW_DOWN' | translate">
+        <img src="../../../assets/icons/arrow-down.png" [alt]="'ALT.ARROW_DOWN' | translate" />
       </div>
       @if(dropdownOpen) {
         <div class="dropdown-options" >
@@ -38,12 +46,10 @@
     </div>
   </div>
 
-  <!-- Блок 2: Основная панель навигации -->
   <div class="men">
-    <!-- Логотип -->
     <a routerLink="/" href="" class="logo-link">
       <div class="logo">
-        <img width="200px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO' | translate">
+        <img width="200px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO' | translate" />
       </div>
     </a>
 
@@ -102,16 +108,16 @@
   </div>
 </nav>
 
-<div class="mobile-overlay" [class.active]="menuActive">
+<div class="mobile-overlay" [class.active]="menuActive" id="mobile-menu-overlay" role="dialog" aria-modal="true">
   <div class="mobile-menu-header">
     <a routerLink="/" (click)="toggleMenu()">
-      <img width="160px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO' | translate">
+      <img width="160px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO' | translate" />
     </a>
   </div>
 
   <a routerLink="map" class="mobile-menu-map-button" (click)="toggleMenu()">
     <p>{{ 'HEADER.TOP.OFFICES_AND_ATMS' | translate }}</p>
-    <img src="../../../assets/icons/map-icons.svg" [alt]="'ALT.MAP_POINT_ICON' | translate">
+    <img src="../../../assets/icons/map-icons.svg" [alt]="'ALT.MAP_POINT_ICON' | translate" />
   </a>
 
   <ul class="mobile-menu-list">
@@ -169,12 +175,24 @@
     <div class="footer-lang-switcher">
       <span>{{ 'FOOTER.LANG.CHOOSE_LANGUAGE' | translate }}</span>
       <div class="lang-buttons">
-        <button [class.active]="selectedLanguage === lang.Tj"
-          (click)="selectLanguage({value: lang.Tj, label: 'Тоҷикӣ'})">TJ</button>
-        <button [class.active]="selectedLanguage === lang.Ru"
-          (click)="selectLanguage({value: lang.Ru, label: 'Русский'})">RU</button>
-        <button [class.active]="selectedLanguage === lang.En"
-          (click)="selectLanguage({value: lang.En, label: 'English'})">EN</button>
+        <button
+          [class.active]="selectedLanguage === lang.Tj"
+          (click)="selectLanguage({ value: lang.Tj, label: 'Тоҷикӣ' })"
+        >
+          TJ
+        </button>
+        <button
+          [class.active]="selectedLanguage === lang.Ru"
+          (click)="selectLanguage({ value: lang.Ru, label: 'Русский' })"
+        >
+          RU
+        </button>
+        <button
+          [class.active]="selectedLanguage === lang.En"
+          (click)="selectLanguage({ value: lang.En, label: 'English' })"
+        >
+          EN
+        </button>
       </div>
     </div>
   </div>

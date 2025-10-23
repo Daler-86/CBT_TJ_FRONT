@@ -1,4 +1,4 @@
-import {CommonModule} from '@angular/common';
+
 import {Component} from '@angular/core';
 import {Router, RouterLink, RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
@@ -10,48 +10,34 @@ import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-transfers',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, CommonModule],
+  imports: [RouterLink, RouterModule, TranslateModule],
   templateUrl: './transfers.component.html',
-  styleUrl: './transfers.component.scss'
+  styleUrl: './transfers.component.scss',
 })
-export class TransfersComponent {
+export class TransfersComponent implements OnInit {
   imageUrl: string = environment.IMAGE_URL;
-  personTypeId: number = 1;
-
-  constructor(private transfersService: TransfersService, private menuService: MenuService, private router: Router) {
-  }
+  personTypeId = 1;
+  private transfersService = inject(TransfersService);
+  private menuService = inject(MenuService);
 
   ngOnInit(): void {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-    this.menuService.currentPersonTypeId.subscribe(id => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.menuService.currentPersonTypeId.subscribe((id) => {
       this.personTypeId = id;
       this.loadAllTransfers(); // Загрузка всех карт по умолчанию
     });
   }
 
-  transfersList: Transfer[] = []
+  transfersList: Transfer[] = [];
 
   loadAllTransfers() {
-
     this.transfersService.getTransfersListAll().subscribe(
       (response) => {
         this.transfersList = response.data.transfers;
-
       },
       (error) => {
         console.error('Ошибка при загрузке всех карт', error);
-      }
+      },
     );
-  }
-
-  onCardClick(cardId: number) {
-    // this.c.getCardContentItem(cardId).subscribe(
-    //   (details) => {
-    //     this.contentItem = details.data.card_content_items;
-    //   },
-    //   (error) => {
-    //     console.error('Ошибка при получении деталей карты', error);
-    //   }
-    // );
   }
 }
