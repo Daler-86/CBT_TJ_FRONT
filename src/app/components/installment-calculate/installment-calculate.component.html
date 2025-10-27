@@ -1,42 +1,44 @@
 <div class="calculator-wrapper">
   <!-- Левая колонка с формой -->
   <div class="calculator-form">
-    <h2>{{ 'calculators.installment.title' | translate }}</h2>
+    <h2>{{ 'CALCULATORS.INSTALLMENT.TITLE' | translate }}</h2>
 
     <div class="form-group">
       <label for="loanAmountInput">{{ 'calculators.installment.amount' | translate }}</label>
       <div class="input-slider-container">
         <div class="input-display">
-          <div
-            *ngIf="!isEditingAmount"
-            (click)="startEditing()"
-            (keydown.enter)="startEditing()"
-            (keydown.space)="startEditing()"
-            tabindex="0"
-            role="button"
-            aria-controls="loanAmountInput"
-            [attr.aria-label]="
-              ('calculators.installment.currentAmount' | translate) +
-              ' ' +
-              (loanAmount | number: '1.0-0' : 'ru-RU') +
-              ' ' +
-              ('calculators.common.currencySymbol.tjs' | translate) +
-              '. ' +
-              ('calculators.installment.clickToEdit' | translate)
-            "
-          >
-            {{ loanAmount | number: '1.0-0' : 'ru-RU' }} {{ 'calculators.common.currencySymbol.tjs' | translate }}
-          </div>
-          <input
-            *ngIf="isEditingAmount"
-            type="number"
-            id="loanAmountInput"
-            [(ngModel)]="loanAmount"
-            (input)="onValueChange()"
-            (blur)="stopEditing()"
-            (keydown.enter)="stopEditing()"
-            [attr.aria-label]="'calculators.installment.editAmount' | translate"
-          />
+          @if (!isEditingAmount) {
+            <div
+              (click)="startEditing()"
+              (keydown.enter)="startEditing()"
+              (keydown.space)="startEditing()"
+              tabindex="0"
+              role="button"
+              aria-controls="loanAmountInput"
+              [attr.aria-label]="
+                ('calculators.installment.currentAmount' | translate) +
+                ' ' +
+                (loanAmount | number: '1.0-0' : 'ru-RU') +
+                ' ' +
+                ('calculators.common.currencySymbol.tjs' | translate) +
+                '. ' +
+                ('calculators.installment.clickToEdit' | translate)
+              "
+            >
+              {{ loanAmount | number: '1.0-0' : 'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
+            </div>
+          }
+          @if (isEditingAmount) {
+            <input
+              type="number"
+              id="loanAmountInput"
+              [(ngModel)]="loanAmount"
+              (input)="onValueChange()"
+              (blur)="stopEditing()"
+              (keydown.enter)="stopEditing()"
+              [attr.aria-label]="'calculators.installment.editAmount' | translate"
+            />
+          }
         </div>
 
         <input
@@ -53,55 +55,57 @@
         />
 
         <div class="range-labels">
-          <span *ngFor="let label of amountLabels">{{ label }}</span>
+          @for (label of amountLabels; track $index) {
+            <span>{{ label }}</span>
+          }
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <p class=".form-label">{{ 'calculators.installment.term' | translate }}</p>
-      <div class="term-buttons" role="radiogroup" aria-labelledby="loanTermLabel">
-        <button
-          *ngFor="let term of availableTerms"
-          (click)="loanTerm = term; onValueChange()"
-          [class.active]="loanTerm === term"
-          role="radio"
-          [attr.aria-checked]="loanTerm === term"
-          [attr.aria-label]="term + ' ' + ('calculators.common.months' | translate)"
-        >
-          {{ term }} {{ 'calculators.common.months' | translate }}
-        </button>
+      <p class=".form-label">{{ 'CALCULATORS.INSTALLMENT.TERM' | translate }}</p>
+      <div class="term-buttons">
+        @for (term of availableTerms; track $index) {
+          <button (click)="loanTerm = term; onValueChange()" [class.active]="loanTerm === term">
+            {{ term }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}
+          </button>
+        }
       </div>
     </div>
   </div>
 
   <!-- Правая колонка с результатами -->
   <div class="calculator-result">
-    <h2>{{ 'calculators.common.yourOffer' | translate }}</h2>
+    <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
+    @if (calculationResult) {
+      <div>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
+          <h3>{{ calculationResult.monthlyPayment | number: '1.0-0' : 'ru-RU' }}</h3>
+        </div>
 
-    <div *ngIf="calculationResult; else noRate">
-      <div class="result-item">
-        <p>{{ 'calculators.common.monthlyPayment' | translate }}</p>
-        <h3>{{ calculationResult.monthlyPayment | number: '1.0-0' : 'ru-RU' }}</h3>
-      </div>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</p>
+          <h3>{{ calculationResult.interestRate | percent: '1.0-0' }}</h3>
+        </div>
 
-      <div class="result-item">
-        <p>{{ 'calculators.common.interestRate' | translate }}</p>
-        <h3>{{ calculationResult.interestRate | percent: '1.0-0' }}</h3>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.INSTALLMENT.TOTAL_PAYMENT' | translate }}</p>
+          <h3>{{ calculationResult.totalPayment | number: '1.0-0' : 'ru-RU' }}</h3>
+        </div>
       </div>
-
-      <div class="result-item">
-        <p>{{ 'calculators.installment.totalPayment' | translate }}</p>
-        <h3>{{ calculationResult.totalPayment | number: '1.0-0' : 'ru-RU' }}</h3>
+    } @else {
+      <div class="no-rate">
+        {{ 'CALCULATORS.NO_DATA' | translate }}
       </div>
-    </div>
+    }
 
     <ng-template #noRate>
-      <p class="error-message">{{ 'calculators.installment.selectTermError' | translate }}</p>
+      <p class="error-message">{{ 'CALCULATORS.INSTALLMENT.SELECT_TERM_ERROR' | translate }}</p>
     </ng-template>
 
     <button class="apply-button">
-      {{ 'calculators.installment.applyButton' | translate }}
+      {{ 'CALCULATORS.INSTALLMENT.APPLY_BUTTON' | translate }}
     </button>
   </div>
 </div>

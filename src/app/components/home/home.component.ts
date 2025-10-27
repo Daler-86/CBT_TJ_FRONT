@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 // import { CarouselComponent } from '../carousel/carousel.component';
 import { CalculateComponent } from '../calculate/calculate.component';
-import { NgFor } from '@angular/common';
+
 import { CurrencyConverterComponent } from '../currency-converter/currency-converter.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink, RouterModule } from '@angular/router';
+
 import { FavriComponent } from '../favri/favri.component';
 import { MenuService } from '../../api/menu.service';
 
@@ -22,7 +23,6 @@ import { Menu } from '../../models/menu.model';
     TranslateModule,
     CalculateComponent,
     CurrencyConverterComponent,
-    NgFor,
     FavriComponent,
     NewsBoxComponent,
     CarouselComponent,

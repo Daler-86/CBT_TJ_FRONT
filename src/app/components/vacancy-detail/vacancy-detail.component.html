@@ -1,59 +1,71 @@
 <div class="more-vacancy">
-  <div *ngIf="personalQuality">
-    <div class="title">
-      <div class="">
-        <h2>{{ vacancyData.name }}</h2>
-        <div class="city-location">
-          <img src="../../../assets/icons/Layer 2.svg" [alt]="'alt.location' | translate" />
-          <p>{{ vacancyData.region_name }}</p>
+  @if (personalQuality) {
+    <div>
+      <div class="title">
+        <div class="">
+          <h2>{{ vacancyData.name }}</h2>
+          <div class="city-location">
+            <img src="../../../assets/icons/Layer 2.svg" [alt]="'alt.location' | translate" />
+            <p>{{ vacancyData.region_name }}</p>
+          </div>
+          <div class="city-location">
+            <img src="../../../assets/icons/calendar.svg" [alt]="'alt.calendar' | translate" />
+            <p>{{ vacancyData.deadline_at }}</p>
+          </div>
         </div>
-        <div class="city-location">
-          <img src="../../../assets/icons/calendar.svg" [alt]="'alt.calendar' | translate" />
-          <p>{{ vacancyData.deadline_at }}</p>
+        <div class="">
+          <button [scrollTo]="'application-form'">{{ 'vacancyDetails.form.title' | translate }}</button>
+          <!-- Кнопка теперь находится внутри формы ниже, для лучшей семантики -->
         </div>
       </div>
       <div class="">
-        <button [scrollTo]="'application-form'">{{ 'vacancyDetails.form.title' | translate }}</button>
-        <!-- Кнопка теперь находится внутри формы ниже, для лучшей семантики -->
+        <div class="vacancy-details">
+          <h4>{{ 'vacancyDetails.sections.education' | translate }}</h4>
+          <ul>
+            @for (education of education; track education.id) {
+              <li>{{ education.content }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="vacancy-details">
+          <h4>{{ 'vacancyDetails.sections.experience' | translate }}</h4>
+          <ul>
+            @for (work of experience; track work.id) {
+              <li>{{ work.content }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="vacancy-details">
+          <h4>{{ 'vacancyDetails.sections.skills' | translate }}</h4>
+          <ul>
+            @for (skill of skill; track skill.id) {
+              <li>{{ skill.content }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="vacancy-details">
+          <h4>{{ 'vacancyDetails.sections.qualities' | translate }}</h4>
+          <ul>
+            @for (quality of personalQuality; track quality.id) {
+              <li>{{ quality.content }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="vacancy-details">
+          <h4>{{ 'vacancyDetails.sections.conditions' | translate }}</h4>
+          <ul>
+            @for (condition of condition; track condition.id) {
+              <li>{{ condition.content }}</li>
+            }
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="">
-      <div class="vacancy-details">
-        <h4>{{ 'vacancyDetails.sections.education' | translate }}</h4>
-        <ul>
-          <li *ngFor="let education of education">{{ education.content }}</li>
-        </ul>
-      </div>
-
-      <div class="vacancy-details">
-        <h4>{{ 'vacancyDetails.sections.experience' | translate }}</h4>
-        <ul>
-          <li *ngFor="let work of experience">{{ work.content }}</li>
-        </ul>
-      </div>
-
-      <div class="vacancy-details">
-        <h4>{{ 'vacancyDetails.sections.skills' | translate }}</h4>
-        <ul>
-          <li *ngFor="let skill of skill">{{ skill.content }}</li>
-        </ul>
-      </div>
-
-      <div class="vacancy-details">
-        <h4>{{ 'vacancyDetails.sections.qualities' | translate }}</h4>
-        <ul>
-          <li *ngFor="let quality of personalQuality">{{ quality.content }}</li>
-        </ul>
-      </div>
-
-      <div class="vacancy-details">
-        <h4>{{ 'vacancyDetails.sections.conditions' | translate }}</h4>
-        <ul>
-          <li *ngFor="let condition of condition">{{ condition.content }}</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  }
 
   <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id="application-form">
     <h2>{{ 'vacancyDetails.form.title' | translate }}</h2>
@@ -62,28 +74,44 @@
     <div class="form-row">
       <div class="full">
         <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'" />
-        <div *ngIf="lastName?.invalid && lastName?.touched" class="error-message">Фамилия обязательна.</div>
+        @if (lastName?.invalid && lastName?.touched) {
+          <div class="error-message">Фамилия обязательна.</div>
+        }
       </div>
       <div class="full">
         <input formControlName="firstName" [placeholder]="('vacancyDetails.form.firstName' | translate) + '*'" />
-        <div *ngIf="firstName?.invalid && firstName?.touched" class="error-message">Имя обязательно.</div>
+        @if (firstName?.invalid && firstName?.touched) {
+          <div class="error-message">Имя обязательно.</div>
+        }
       </div>
     </div>
 
     <div class="form-row">
       <div class="full">
         <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'" />
-        <div *ngIf="phone?.invalid && phone?.touched" class="error-message">
-          <span *ngIf="phone?.errors?.['required']">Телефон обязателен.</span>
-          <span *ngIf="phone?.errors?.['pattern']">Неверный формат.</span>
-        </div>
+        @if (phone?.invalid && phone?.touched) {
+          <div class="error-message">
+            @if (phone?.errors?.['required']) {
+              <span>Телефон обязателен.</span>
+            }
+            @if (phone?.errors?.['pattern']) {
+              <span>Неверный формат.</span>
+            }
+          </div>
+        }
       </div>
       <div class="full">
         <input formControlName="email" [placeholder]="('vacancyDetails.form.email' | translate) + '*'" />
-        <div *ngIf="email?.invalid && email?.touched" class="error-message">
-          <span *ngIf="email?.errors?.['required']">Email обязателен.</span>
-          <span *ngIf="email?.errors?.['email']">Неверный формат email.</span>
-        </div>
+        @if (email?.invalid && email?.touched) {
+          <div class="error-message">
+            @if (email?.errors?.['required']) {
+              <span>Email обязателен.</span>
+            }
+            @if (email?.errors?.['email']) {
+              <span>Неверный формат email.</span>
+            }
+          </div>
+        }
       </div>
     </div>
 
@@ -99,17 +127,21 @@
       <div>
         <input type="file" (change)="onFileSelected($event)" #fileInput hidden />
         <button type="button" (click)="fileInput.click()">{{ 'buttons.uploadCV' | translate }}</button>
-        <span *ngIf="fileName">{{ fileName }}</span>
+        @if (fileName) {
+          <span>{{ fileName }}</span>
+        }
       </div>
     </div>
     <button type="submit">{{ 'buttons.send' | translate }}</button>
   </form>
+  @if (isSubmitted) {
+    <div class="notification success-message">
+      {{ 'notifications.submitSuccess' | translate }}
+    </div>
+  }
 
-  <div *ngIf="isSubmitted" class="notification success-message">
-    {{ 'notifications.submitSuccess' | translate }}
-  </div>
-
-  <div *ngIf="isError" class="notification error-message animated">
+  @if (isError) {}
+  <div class="notification error-message animated">
     {{ 'notifications.submitError' | translate }}
   </div>
 </div>

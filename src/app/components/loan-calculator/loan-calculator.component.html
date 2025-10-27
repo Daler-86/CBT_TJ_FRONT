@@ -6,17 +6,12 @@
     <!-- Переключатель валют -->
     <div class="form-group">
       <p class="form-label">{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</p>
-      <div class="currency-tabs" role="radiogroup" aria-labelledby="currencyLabel">
-        <button
-          *ngFor="let currency of availableCurrencies"
-          [class.active]="selectedCurrency === currency"
-          (click)="onCurrencyChange(currency)"
-          role="radio"
-          [attr.aria-checked]="selectedCurrency === currency"
-          [attr.aria-label]="currency.toUpperCase() + ' ' + ('CALCULATORS.COMMON.CURRENCY' | translate)"
-        >
-          {{ currency.toUpperCase() }}
-        </button>
+      <div class="currency-tabs">
+        @for (currency of availableCurrencies; track $index) {
+          <button [class.active]="selectedCurrency === currency" (click)="onCurrencyChange(currency)">
+            {{ currency.toUpperCase() }}
+          </button>
+        }
       </div>
     </div>
 
@@ -24,47 +19,46 @@
     <div class="form-group">
       <label for="loanAmountInput">{{ 'CALCULATORS.LOAN.AMOUNT' | translate }}</label>
       <div class="input-slider-container">
-        <div
-          *ngIf="!isEditingAmount"
-          class="input-display"
-          (click)="startEditing()"
-          (keydown.enter)="startEditing()"
-          (keydown.space)="startEditing()"
-          tabindex="0"
-          role="button"
-          aria-controls="loanAmountInput"
-          [attr.aria-label]="
-            ('CALCULATORS.LOAN.CURRENT_AMOUNT' | translate) +
-            ' ' +
-            (loanAmount | number: '1.0-0' : 'ru-RU') +
-            '. ' +
-            ('CALCULATORS.LOAN.CLICK_TO_EDIT' | translate)
-          "
-        >
-          {{ loanAmount | number: '1.0-0' : 'ru-RU' }}
-        </div>
+        @if (!isEditingAmount) {
+          <div
+            class="input-display"
+            (click)="startEditing()"
+            (keydown.enter)="startEditing()"
+            (keydown.space)="startEditing()"
+            tabindex="0"
+            role="button"
+            aria-controls="loanAmountInput"
+            [attr.aria-label]="
+              ('CALCULATORS.LOAN.CURRENT_AMOUNT' | translate) +
+              ' ' +
+              (loanAmount | number: '1.0-0' : 'ru-RU') +
+              '. ' +
+              ('CALCULATORS.LOAN.CLICK_TO_EDIT' | translate)
+            "
+          >
+            {{ loanAmount | number: '1.0-0' : 'ru-RU' }}
+          </div>
+        }
+        @if (isEditingAmount) {
+          <input
+            type="number"
+            class="loan-input"
+            [(ngModel)]="loanAmount"
+            (input)="recalculate()"
+            (blur)="stopEditing()"
+            (keydown.enter)="stopEditing()"
+          />
+        }
+
         <input
-          *ngIf="isEditingAmount"
-          type="number"
-          class="loan-input"
+          class="range-slider"
+          type="range"
           id="loanAmountInput"
           [(ngModel)]="loanAmount"
           (input)="recalculate()"
           (blur)="stopEditing()"
           (keydown.enter)="stopEditing()"
           [attr.aria-label]="'CALCULATORS.LOAN.EDIT_AMOUNT' | translate"
-        />
-
-        <input
-          class="range-slider"
-          type="range"
-          [min]="minAmount"
-          [max]="maxAmount"
-          [(ngModel)]="loanAmount"
-          (input)="recalculate()"
-          id="loanAmountRange"
-          [attr.aria-label]="'CALCULATORS.LOAN.AMOUNT_RANGE' | translate"
-          [style.--range-percent]="loanAmountPercent"
         />
       </div>
       <div class="range-labels">
@@ -77,7 +71,7 @@
     <div class="form-group">
       <label for="loanTermRange">{{ 'CALCULATORS.LOAN.TERM' | translate }}</label>
       <div class="input-slider-container">
-        <div class="input-display" aria-live="polite">{{ loanTerm }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}</div>
+        <div class="input-display">{{ loanTerm }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}</div>
         <input
           class="range-slider"
           type="range"
@@ -86,8 +80,6 @@
           step="1"
           [(ngModel)]="loanTerm"
           (input)="recalculate()"
-          id="loanTermRange"
-          [attr.aria-label]="'CALCULATORS.LOAN.TERM_RANGE' | translate"
           [style.--range-percent]="loanTermPercent"
         />
       </div>
@@ -101,7 +93,7 @@
     <div class="form-group">
       <label for="interestRateRange">{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</label>
       <div class="input-slider-container">
-        <div class="input-display" aria-live="polite">{{ interestRatePercent }}%</div>
+        <div class="input-display">{{ interestRatePercent }}%</div>
         <input
           class="range-slider"
           type="range"
@@ -110,8 +102,6 @@
           step="1"
           [(ngModel)]="interestRatePercent"
           (input)="recalculate()"
-          id="interestRateRange"
-          [attr.aria-label]="'CALCULATORS.COMMON.INTEREST_RATE_RANGE' | translate"
           [style.--range-percent]="ratePercent"
         />
       </div>
@@ -124,35 +114,47 @@
 
   <!-- Правая колонка -->
   <div class="result-wrapper">
-    <div class="result-card" *ngIf="calculationResult">
-      <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
-      <div class="result-item">
-        <p>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</p>
-        <h3>{{ calculationResult.interestRate | percent: '1.0-0' }}</h3>
+    @if (calculationResult) {
+      <div class="result-card">
+        <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</p>
+          <h3>{{ calculationResult.interestRate | percent: '1.0-0' }}</h3>
+        </div>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
+          @if (selectedCurrency === 'tjs') {
+            <h3>
+              {{ calculationResult.monthlyPayment | number: '1.0-0' : 'ru-RU' }}
+              {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
+            </h3>
+          }
+          @if (selectedCurrency === 'usd') {
+            <h3>
+              {{ calculationResult.monthlyPayment | currency: 'USD' : '$' : '1.0-0' : 'ru-RU' }}
+            </h3>
+          }
+        </div>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.LOAN.OVERPAYMENT' | translate }}</p>
+          @if (selectedCurrency === 'tjs') {
+            <h3>
+              {{ calculationResult.totalOverpayment | number: '1.0-0' : 'ru-RU' }}
+              {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
+            </h3>
+          }
+          @if (selectedCurrency === 'usd') {
+            <h3>
+              {{ calculationResult.totalOverpayment | currency: 'USD' : '$' : '1.0-0' : 'ru-RU' }}
+            </h3>
+          }
+        </div>
+        @if (showApplyButton) {
+          <button class="apply-button" [scrollTo]="'application-form'">
+            {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
+          </button>
+        }
       </div>
-      <div class="result-item">
-        <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
-        <h3 *ngIf="selectedCurrency === 'tjs'">
-          {{ calculationResult.monthlyPayment | number: '1.0-0' : 'ru-RU' }}
-          {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
-        </h3>
-        <h3 *ngIf="selectedCurrency === 'usd'">
-          {{ calculationResult.monthlyPayment | currency: 'USD' : '$' : '1.0-0' : 'ru-RU' }}
-        </h3>
-      </div>
-      <div class="result-item">
-        <p>{{ 'CALCULATORS.LOAN.OVERPAYMENT' | translate }}</p>
-        <h3 *ngIf="selectedCurrency === 'tjs'">
-          {{ calculationResult.totalOverpayment | number: '1.0-0' : 'ru-RU' }}
-          {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
-        </h3>
-        <h3 *ngIf="selectedCurrency === 'usd'">
-          {{ calculationResult.totalOverpayment | currency: 'USD' : '$' : '1.0-0' : 'ru-RU' }}
-        </h3>
-      </div>
-      <button *ngIf="showApplyButton" class="apply-button" [scrollTo]="'application-form'">
-        {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
-      </button>
-    </div>
+    }
   </div>
 </div>

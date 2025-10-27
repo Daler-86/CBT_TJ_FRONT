@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular/core';
-import { NewsEventItem, fullNews } from '../../models/news.model'; // Убедитесь, что fullNews содержит все необходимые поля
-import { NgFor, NgIf } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { NewsEventItem, fullNews } from '../../models/news.model';
+
 import { Router, RouterLink, RouterModule } from '@angular/router';
 
 import { NewsService } from '../../api/news.service';
@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-box',
   standalone: true,
-  imports: [RouterModule, RouterLink, NgFor, NgIf, TranslateModule],
+  imports: [RouterModule, RouterLink, TranslateModule],
   templateUrl: './news-box.component.html',
   styleUrl: './news-box.component.scss',
 })

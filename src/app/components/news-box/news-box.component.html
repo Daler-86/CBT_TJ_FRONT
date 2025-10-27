@@ -1,18 +1,21 @@
 <div class="container_4">
   <div class="box1">
     <h1>{{ 'NEWS.SECTION_TITLE' | translate }}</h1>
-    <a class="p" [routerLinkActiveOptions]="{ exact: true }" routerLink="/news" routerLinkActive="active">
+    <div class="p" [routerLinkActiveOptions]="{ exact: true }" routerLink="/news" routerLinkActive="active">
       <p>{{ 'LINKS.ALL_NEWS' | translate }}</p>
       <span><img src="../../../assets/icons/arrow_forward.svg" [alt]="'alt.arrowForward' | translate" /></span>
-    </a>
+    </div>
   </div>
-
-  <div class="box2" *ngIf="news.length > 0">
-    <!-- Каждый блок новости теперь является ссылкой-карточкой -->
-    <a *ngFor="let new of news" [routerLink]="['/news', new.id]" class="news-item-card" tabindex="0" role="link">
-      <h3>{{ new.title }}</h3>
-      <p class="description">{{ new.shortDescription }}</p>
-      <p class="date">{{ new.date_time }}</p>
-    </a>
-  </div>
+  @if (news.length > 0) {
+    <div class="box2">
+      <!-- Динамический контент, не требует перевода через пайп -->
+      @for (new of news; track $index) {
+        <a [routerLink]="['/news', new.id]" class="news-item-card" tabindex="0" role="link">
+          <h3>{{ new.title }}</h3>
+          <p>{{ new.shortDescription }}</p>
+          <p>{{ new.date_time }}</p>
+        </a>
+      }
+    </div>
+  }
 </div>

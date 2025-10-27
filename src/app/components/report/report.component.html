@@ -1,82 +1,87 @@
-<div class="report" *ngIf="reportData">
-  <div class="card-container">
-    <div class="card-info">
-      <h2 class="card-title">{{ 'REPORTING.PAGE_TITLE' | translate }}</h2>
-      <p class="card-description">{{ reportData.description }}</p>
+@if (reportData) {
+  <div class="report">
+    <div class="card-container">
+      <div class="card-info">
+        <h2 class="card-title">{{ 'REPORTING.PAGE_TITLE' | translate }}</h2>
+        <p class="card-description">{{ reportData.description }}</p>
+      </div>
+    </div>
+
+    <div class="financial-dashboard">
+      @if (availableYears.length > 0) {
+        <div class="btnCards">
+          @for (year of availableYears; track $index) {
+            @if (year === currentApiYear) {
+              <button class="button" (click)="onYearChange(0)" [class.active]="selectedYear === currentApiYear">
+                {{ 'REPORTING.FILTER.CURRENT_YEAR' | translate }}
+              </button>
+            }
+
+            @if (year !== currentApiYear) {
+              <button class="button" (click)="onYearChange(year)" [class.active]="selectedYear === year">
+                {{ year }}
+              </button>
+            }
+          }
+        </div>
+      }
+
+      <div class="stats-grid">
+        @for (card of reportData.report_indicator; track card.id) {
+          <div class="stat-card">
+            <h3>{{ card.name }}</h3>
+            @if (card.report_indicator_data && card.report_indicator_data.length > 0) {
+              <div class="data-point">
+                <span class="data-label">{{ card.report_indicator_data[0].title }}</span>
+                <span class="data-value">{{ card.report_indicator_data[0].description }}</span>
+              </div>
+              @if (card.report_indicator_data.length > 1) {
+                <div class="data-point deviation">
+                  <span class="data-label">{{ 'REPORTING.STATS.DEVIATION_LABEL' | translate }}</span>
+                  <span class="data-value">{{ card.report_indicator_data[1].description }}</span>
+                </div>
+              }
+            }
+          </div>
+        }
+      </div>
+
+      <div class="line"></div>
+      @if (reportFile.length > 0) {
+        <div class="documents-section">
+          @for (doc of reportFile; track doc.id) {
+            <div class="document-card">
+              <img src="../../../assets/icons/файл.png" [alt]="'ALT.FILE_ICON' | translate" class="pdf-icon" />
+              <a [href]="imageUrl + doc.upload_file" target="_blank" rel="noopener noreferrer" class="document-link">
+                {{ doc.name }}
+              </a>
+            </div>
+          }
+
+          <!-- Пагинация -->
+          <!--
+          <div class="pagination" *ngIf="totalPages > 1">
+            <button class="btn" (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
+            <button class="btn" (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
+    
+            <button class="btn"
+              *ngFor="let page of pages"
+              [class.active]="page === currentPage"
+              (click)="selectPage(page)"
+              [disabled]="page === -1">
+              {{ page === -1 ? '...' : page }}
+            </button>
+    
+            <button class="btn" (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+            <button class="btn" (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
+          </div>
+          -->
+        </div>
+      }
+
+      <div *ngIf="reportFile.length === 0" class="no-data-message">
+        {{ 'REPORTING.DOCUMENTS.NO_DATA' | translate }}
+      </div>
     </div>
   </div>
-
-  <div class="financial-dashboard">
-    <div class="btnCards" *ngIf="availableYears.length > 0">
-      <ng-container *ngFor="let year of availableYears">
-        <button
-          *ngIf="year === currentApiYear"
-          class="button"
-          (click)="onYearChange(0)"
-          [class.active]="selectedYear === currentApiYear"
-        >
-          {{ 'REPORTING.FILTER.CURRENT_YEAR' | translate }}
-        </button>
-
-        <button
-          *ngIf="year !== currentApiYear"
-          class="button"
-          (click)="onYearChange(year)"
-          [class.active]="selectedYear === year"
-        >
-          {{ year }}
-        </button>
-      </ng-container>
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-card" *ngFor="let card of reportData.report_indicator; trackBy: trackByCardId">
-        <h3>{{ card.name }}</h3>
-        <ng-container *ngIf="card.report_indicator_data && card.report_indicator_data.length > 0">
-          <div class="data-point">
-            <span class="data-label">{{ card.report_indicator_data[0].title }}</span>
-            <span class="data-value">{{ card.report_indicator_data[0].description }}</span>
-          </div>
-          <div class="data-point deviation" *ngIf="card.report_indicator_data.length > 1">
-            <span class="data-label">{{ 'REPORTING.STATS.DEVIATION_LABEL' | translate }}</span>
-            <span class="data-value">{{ card.report_indicator_data[1].description }}</span>
-          </div>
-        </ng-container>
-      </div>
-    </div>
-
-    <div class="line"></div>
-
-    <div class="documents-section" *ngIf="reportFile.length > 0">
-      <div class="document-card" *ngFor="let doc of reportFile">
-        <img src="../../../assets/icons/файл.png" [alt]="'ALT.FILE_ICON' | translate" class="pdf-icon" />
-        <a [href]="imageUrl + doc.upload_file" target="_blank" rel="noopener noreferrer" class="document-link">
-          {{ doc.name }}
-        </a>
-      </div>
-
-      <!-- Пагинация -->
-      <!--
-      <div class="pagination" *ngIf="totalPages > 1">
-        <button class="btn" (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
-        <button class="btn" (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-
-        <button class="btn"
-          *ngFor="let page of pages"
-          [class.active]="page === currentPage"
-          (click)="selectPage(page)"
-          [disabled]="page === -1">
-          {{ page === -1 ? '...' : page }}
-        </button>
-
-        <button class="btn" (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
-        <button class="btn" (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
-      </div>
-      -->
-    </div>
-
-    <div *ngIf="reportFile.length === 0" class="no-data-message">
-      {{ 'REPORTING.DOCUMENTS.NO_DATA' | translate }}
-    </div>
-  </div>
-</div>
+}

@@ -74,35 +74,37 @@
       <!-- ВАЖНО: Добавлен пайп translate для названий брендов -->
     </div>
 
-    <div *ngIf="selectedTab === 'all'" class="content">
-      <div class="info-container">
-        <div class="info-box">
-          <div class="info-title-1">кассовое обслуживание бесплатно</div>
-          <div class="info-title">
-            до 3-х дней
-            <div class="info-detail"></div>
+    @if (selectedTab === 'all') {
+      <div class="content">
+        <div class="info-container">
+          <div class="info-box">
+            <div class="info-title-1">кассовое обслуживание бесплатно</div>
+            <div class="info-title">
+              до 3-х дней
+              <div class="info-detail"></div>
+            </div>
+          </div>
+        </div>
+        <div class="info-container">
+          <div class="info-box">
+            <div class="info-title-1">выгодная комиссия на эквайринг</div>
+            <div class="info-title">
+              от 1 %
+              <div class="info-detail"></div>
+            </div>
+          </div>
+        </div>
+        <div class="info-container">
+          <div class="info-box">
+            <div class="info-title-1">обналичивание платежей от эквайринга</div>
+            <div class="info-title">
+              0 %
+              <div class="info-detail"></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="info-container">
-        <div class="info-box">
-          <div class="info-title-1">выгодная комиссия на эквайринг</div>
-          <div class="info-title">
-            от 1 %
-            <div class="info-detail"></div>
-          </div>
-        </div>
-      </div>
-      <div class="info-container">
-        <div class="info-box">
-          <div class="info-title-1">обналичивание платежей от эквайринга</div>
-          <div class="info-title">
-            0 %
-            <div class="info-detail"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    }
 
     <h2 class="header">Условия</h2>
     <div class="details-3">

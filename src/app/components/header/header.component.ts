@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ElementRef, HostListener } from '@angular/core';
 
@@ -16,7 +15,7 @@ import { Languages } from '../../shared/enums/languages.enum';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, RouterModule, TranslateModule, RouterLink],
+  imports: [FormsModule, RouterModule, TranslateModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })

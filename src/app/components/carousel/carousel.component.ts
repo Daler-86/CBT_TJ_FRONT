@@ -1,14 +1,14 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MenuService } from '../../api/menu.service';
 import { mainGalleries } from '../../models/menu.model';
 import { environment } from '../../../environments/environment';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
-  imports: [NgFor, NgIf, TranslateModule, RouterLink, RouterLinkActive],
+  imports: [TranslateModule, RouterLink, RouterLinkActive],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   standalone: true,
@@ -18,6 +18,7 @@ export class CarouselComponent implements OnInit {
   imageUrl: string = environment.IMAGE_URL;
   private menuService = inject(MenuService);
   private router = inject(Router);
+
   ngOnInit(): void {
     this.menuService.getMainGalleries().subscribe(
       (response) => {

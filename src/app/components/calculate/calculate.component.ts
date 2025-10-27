@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -13,7 +12,6 @@ import { CalculatorData } from '../../models/calculate.model';
   standalone: true,
   imports: [
     TranslateModule,
-    NgIf,
     FormsModule,
     DepositCalculatorComponent,
     InstallmentCalculateComponent,

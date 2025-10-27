@@ -1,34 +1,39 @@
 <div class="milli-card">
   <!-- Блок 1: Промо -->
-  <div class="card-container" *ngIf="cardData">
-    <div class="card-info">
-      <h2 class="card-title">{{ cardData.title }}</h2>
-      <p class="card-description">{{ cardData.description }}</p>
-      <div class="card-buttons">
-        <button class="btn-primary" [scrollTo]="'application-form'">
-          {{ 'BUTTONS.APPLY_FOR_CARD' | translate }}
-        </button>
+  @if (cardData) {
+    <div class="card-container">
+      <div class="card-info">
+        <h2 class="card-title">{{ cardData.title }}</h2>
+        <p class="card-description">{{ cardData.description }}</p>
+        <div class="card-buttons">
+          <button class="btn-primary" [scrollTo]="'application-form'">
+            {{ 'BUTTONS.APPLY_FOR_CARD' | translate }}
+          </button>
+        </div>
+      </div>
+      <div class="card-image">
+        <img class="card" [src]="imageUrl + cardData.upload_file" [alt]="cardData.title" />
       </div>
     </div>
-    <div class="card-image">
-      <img class="card" [src]="imageUrl + cardData.upload_file" [alt]="cardData.title" />
-    </div>
-  </div>
+  }
 
   <!-- Блок 2: Преимущества -->
-  <div
-    class="features-container"
-    *ngIf="cardContent"
-    [class]="{ type1: +cardContent.length % 3 === 0, type2: +cardContent.length % 2 === 0 }"
-  >
-    <div class="feature-card" *ngFor="let detail of cardContent">
-      <div>
-        <h3>{{ detail.title }}</h3>
-        <p>{{ detail.description }}</p>
-      </div>
-      <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="feature-icon" />
+  @if (cardContent) {
+    <div
+      class="features-container"
+      [class]="{ type1: cardContent.length % 3 === 0, type2: cardContent.length % 2 === 0 }"
+    >
+      @for (detail of cardContent; track $index) {
+        <div class="feature-card">
+          <div>
+            <h3>{{ detail.title }}</h3>
+            <p>{{ detail.description }}</p>
+          </div>
+          <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="feature-icon" />
+        </div>
+      }
     </div>
-  </div>
+  }
 
   <!-- Блок 3: Тарифы и условия -->
   <div class="container">
@@ -49,56 +54,72 @@
       </button>
     </div>
 
-    <div *ngIf="selectedTab === 'services'" class="content">
-      <div class="info-container">
-        <div class="info-box" *ngFor="let service of services">
-          <div class="info-title-1">{{ service.name }}</div>
-          <div class="info-title">
-            {{ service.title }}
-            <div class="info-detail">{{ service.description }}</div>
-          </div>
+    @if (selectedTab === 'services') {
+      <div class="content">
+        <div class="info-container">
+          @for (service of services; track $index) {
+            <div class="info-box">
+              <div class="info-title-1">{{ service.name }}</div>
+              <div class="info-title">
+                {{ service.title }}
+                <div class="info-detail">{{ service.description }}</div>
+              </div>
+            </div>
+          }
         </div>
       </div>
-    </div>
+    }
 
-    <div *ngIf="selectedTab === 'limits'" class="content">
-      <div class="info-container">
-        <div class="info-box-limits" *ngFor="let limit of limits">
-          <div class="info-title-1">{{ limit.name }}</div>
-          <div class="info-title">
-            <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.TJS' | translate }}</div>
-            {{ limit.tjs }}
-          </div>
-          <div class="info-title">
-            <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.USD' | translate }}</div>
-            {{ limit.usd }}
-          </div>
+    @if (selectedTab === 'limits') {
+      <div class="content">
+        <div class="info-container">
+          @for (limit of limits; track limit.id) {
+            <div class="info-box-limits">
+              <div class="info-title-1">{{ limit.name }}</div>
+              <div class="info-title">
+                <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.TJS' | translate }}</div>
+                {{ limit.tjs }}
+              </div>
+              <div class="info-title">
+                <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.USD' | translate }}</div>
+                {{ limit.usd }}
+              </div>
+            </div>
+          }
         </div>
       </div>
-    </div>
+    }
 
-    <div *ngIf="selectedTab === 'operations'" class="content">
-      <div class="info-container">
-        <div class="info-box" *ngFor="let operation of operations">
-          <div class="info-title-1">{{ operation.name }}</div>
-          <div class="info-title">
-            {{ operation.title }}
-            <div class="info-detail">{{ operation.description }}</div>
-          </div>
+    @if (selectedTab === 'operations') {
+      <div class="content">
+        <div class="info-container">
+          @for (operation of operations; track operation.id) {
+            <div class="info-box">
+              <div class="info-title-1">{{ operation.name }}</div>
+              <div class="info-title">
+                {{ operation.title }}
+                <div class="info-detail">{{ operation.description }}</div>
+              </div>
+            </div>
+          }
         </div>
       </div>
-    </div>
+    }
 
-    <div *ngIf="selectedTab === 'documents'" class="content">
-      <div class="info-container">
-        <div class="info-box-documents" *ngFor="let document of documents">
-          <a [href]="imageUrl + document.upload_file" target="_blank">
-            <img src="../../../assets/icons/pdficon.png" [alt]="'ALT.PDF_ICON' | translate" />
-          </a>
-          <p class="info-title">{{ document.name }}</p>
+    @if (selectedTab === 'documents') {
+      <div class="content">
+        <div class="info-container">
+          @for (document of documents; track document.id) {
+            <div class="info-box-documents">
+              <a [href]="imageUrl + document.upload_file" target="_blank">
+                <img src="../../../assets/icons/pdficon.png" [alt]="'ALT.PDF_ICON' | translate" />
+              </a>
+              <p class="info-title">{{ document.name }}</p>
+            </div>
+          }
         </div>
       </div>
-    </div>
+    }
   </div>
 
   <!-- Блок 4: Форма заявки -->
@@ -117,10 +138,16 @@
             class="form-control"
             formControlName="phone"
           />
-          <div *ngIf="phone?.invalid && phone?.touched" class="error">
-            <span *ngIf="phone?.errors?.['required']">{{ 'COMMON.FIELD_IS_REQUIRED' | translate }}</span>
-            <span *ngIf="phone?.errors?.['pattern']">Неверный формат телефона</span>
-          </div>
+          @if (phone?.invalid && phone?.touched) {
+            <div class="error">
+              @if (phone?.errors?.['required']) {
+                <span>{{ 'COMMON.FIELD_IS_REQUIRED' | translate }}</span>
+              }
+              @if (phone?.errors?.['pattern']) {
+                <span>Неверный формат телефона</span>
+              }
+            </div>
+          }
         </div>
 
         <!-- Имя -->
@@ -132,9 +159,11 @@
             class="form-control"
             formControlName="client_name"
           />
-          <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
-            {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
-          </div>
+          @if (client_name?.invalid && client_name?.touched) {
+            <div class="error">
+              {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
+            </div>
+          }
         </div>
 
         <!-- Офис -->
@@ -153,25 +182,29 @@
             >
               {{ officeName }}
             </div>
-            <div class="dropdown-options" *ngIf="dropdownOpen" role="listbox">
-              <!-- Родительский контейнер для опций, если это listbox -->
-              <div
-                class="dropdown-option"
-                *ngFor="let item of offices"
-                (click)="selectOption(item)"
-                (keydown.enter)="selectOption(item)"
-                (keydown.space)="selectOption(item)"
-                [attr.aria-selected]="item.name === officeName"
-                tabindex="0"
-                role="option"
-              >
-                <p>{{ item.name }}</p>
+            @if (dropdownOpen) {
+              <div class="dropdown-options">
+                @for (item of offices; track item.id) {
+                  <div
+                    class="dropdown-option"
+                    (click)="selectOption(item)"
+                    (keydown.enter)="selectOption(item)"
+                    (keydown.space)="selectOption(item)"
+                    [attr.aria-selected]="item.name === officeName"
+                    tabindex="0"
+                    role="option"
+                  >
+                    <p>{{ item.name }}</p>
+                  </div>
+                }
               </div>
+            }
+          </div>
+          @if (office_id?.invalid && office_id?.touched) {
+            <div class="error">
+              {{ 'CHANGE_OFFICE' | translate }}
             </div>
-          </div>
-          <div *ngIf="office_id?.invalid && office_id?.touched" class="error">
-            {{ 'CHANGE_OFFICE' | translate }}
-          </div>
+          }
         </div>
 
         <!-- Кнопка -->
@@ -193,21 +226,30 @@
   <!-- Блок 5: FAQ -->
   <div class="faq-container">
     <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
-    <div *ngFor="let faq of faqs; let i = index" class="faq-item">
-      <div
-        class="faq-question"
-        (click)="toggleFaq(i)"
-        (keydown.enter)="toggleFaq(i)"
-        (keydown.space)="toggleFaq(i)"
-        tabindex="0"
-        role="button"
-        [attr.aria-expanded]="selectedFaqIndex === i"
-        [attr.aria-controls]="'faq-answer-' + i"
-      >
-        <span>{{ faq.title }}</span>
-        <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+
+    @for (faq of faqs; track faq.id; let i = $index) {
+      <div class="faq-item">
+        <div
+          class="faq-question"
+          (click)="toggleFaq(i)"
+          (keydown.enter)="toggleFaq(i)"
+          (keydown.space)="toggleFaq(i)"
+          tabindex="0"
+          role="button"
+          [attr.aria-expanded]="selectedFaqIndex === i"
+          [attr.aria-controls]="'faq-answer-' + i"
+          [id]="'faq-question-' + i"
+        >
+          <span>{{ faq.title }}</span>
+          <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+        </div>
+
+        @if (selectedFaqIndex === i) {
+          <div class="faq-answer" [id]="'faq-answer-' + i" [attr.aria-labelledby]="'faq-question-' + i">
+            {{ faq.description }}
+          </div>
+        }
       </div>
-      <div *ngIf="selectedFaqIndex === i" class="faq-answer">{{ faq.description }}</div>
-    </div>
+    }
   </div>
 </div>

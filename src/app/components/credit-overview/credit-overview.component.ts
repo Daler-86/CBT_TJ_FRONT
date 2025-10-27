@@ -1,16 +1,17 @@
-import { NgFor } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
 import { CreditService } from '../../api/credit.service';
 import { creditList } from '../../models/credit.model';
 import { MenuService } from '../../api/menu.service';
 import { environment } from '../../../environments/environment';
+import { OnInit, inject } from '@angular/core';
+
+
 @Component({
   selector: 'app-credit-overview',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgFor],
+  imports: [RouterLink, RouterModule, TranslateModule],
   templateUrl: './credit-overview.component.html',
   styleUrl: './credit-overview.component.scss',
 })

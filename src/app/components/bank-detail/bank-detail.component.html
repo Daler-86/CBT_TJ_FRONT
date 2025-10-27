@@ -8,21 +8,21 @@
 
   <div class="btnCards">
     <!-- Названия валют также переводим -->
-    <button
-      *ngFor="let currency of bankdetailCurrency; trackBy: trackByCurrencyId"
-      [ngClass]="{ active: isTabSelected(currency.id) }"
-      (click)="selectTab(currency.id)"
-    >
-      {{ currency.title | translate }}
-    </button>
+    @for (currency of bankdetailCurrency; track currency.id) {
+      <button [ngClass]="{ active: isTabSelected(currency.id) }" (click)="selectTab(currency.id)">
+        {{ currency.title | translate }}
+      </button>
+    }
   </div>
 
   <div class="info-list-container">
-    <div class="info-item-row" *ngFor="let item of bankdetailList; trackBy: trackByDetailId">
-      <!-- Названия реквизитов с переводом -->
-      <div class="info-label">{{ item.title | translate }}</div>
-      <!-- Значение реквизита не переводится -->
-      <div class="info-value">{{ item.description }}</div>
-    </div>
+    @for (item of bankdetailList; track item.id) {
+      <div class="info-item-row">
+        <!-- Названия реквизитов с переводом -->
+        <div class="info-label">{{ item.title | translate }}</div>
+        <!-- Значение реквизита не переводится -->
+        <div class="info-value">{{ item.description }}</div>
+      </div>
+    }
   </div>
 </div>

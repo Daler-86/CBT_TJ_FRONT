@@ -1,15 +1,15 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { VacanciesService } from '../../api/vacancies.service';
 import { vacancyContent, vacancyGallery, vacancyItem, vacancyStatistic } from '../../models/vacancies.model';
-import { NgFor } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-vacancies',
   standalone: true,
-  imports: [RouterLink, RouterModule, NgFor, TranslateModule],
+  imports: [RouterLink, RouterModule, TranslateModule],
   templateUrl: './vacancies.component.html',
   styleUrl: './vacancies.component.scss',
 })

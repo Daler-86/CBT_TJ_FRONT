@@ -5,8 +5,8 @@
   </div>
 
   <div class="news-list">
-    <ng-container *ngIf="news.length > 0; else noNews">
-      <article class="news-card" *ngFor="let item of news">
+    @if (news.length > 0) {
+      @for (item of news; track item.id) {
         <a
           [routerLink]="['/news', item.id]"
           class="news-card-link"
@@ -24,14 +24,13 @@
             <img [src]="imageUrl + item.upload_file" [alt]="item.title" />
           </div>
         </a>
-      </article>
+      }
 
-      <div class="pagination" role="navigation" [attr.aria-label]="'common.pagination.label' | translate">
+      <div class="pagination">
         <button
           (click)="selectPage(1)"
           [disabled]="currentPage === 1"
           [title]="'common.pagination.firstPage' | translate"
-          [attr.aria-label]="'common.pagination.firstPage' | translate"
         >
           «
         </button>
@@ -39,31 +38,19 @@
           (click)="prevPage()"
           [disabled]="currentPage === 1"
           [title]="'common.pagination.previousPage' | translate"
-          [attr.aria-label]="'common.pagination.previousPage' | translate"
         >
           ‹
         </button>
-
-        <button
-          *ngFor="let page of pages"
-          [class.active]="page === currentPage"
-          (click)="selectPage(page)"
-          [attr.aria-label]="
-            page === -1
-              ? ('common.pagination.ellipsis' | translate)
-              : ('common.pagination.gotoPage' | translate) + ' ' + page
-          "
-          [attr.aria-current]="page === currentPage ? 'page' : null"
-          [disabled]="page === -1"
-        >
-          {{ page === -1 ? '...' : page }}
-        </button>
+        @for (page of pages; track $index) {
+          <button [class.active]="page === currentPage" (click)="selectPage(page)">
+            {{ page === -1 ? '...' : page }}
+          </button>
+        }
 
         <button
           (click)="nextPage()"
           [disabled]="currentPage === totalPages"
           [title]="'common.pagination.nextPage' | translate"
-          [attr.aria-label]="'common.pagination.nextPage' | translate"
         >
           ›
         </button>
@@ -71,12 +58,15 @@
           (click)="selectPage(totalPages)"
           [disabled]="currentPage === totalPages"
           [title]="'common.pagination.lastPage' | translate"
-          [attr.aria-label]="'common.pagination.lastPage' | translate"
         >
           »
         </button>
       </div>
-    </ng-container>
+    } @else {
+      <div class="no-news">
+        {{ 'NEWS.NO_NEWS' | translate }}
+      </div>
+    }
 
     <!-- Сообщение, если нет новостей -->
     <ng-template #noNews>

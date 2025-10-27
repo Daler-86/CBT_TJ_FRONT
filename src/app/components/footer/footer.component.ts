@@ -1,17 +1,16 @@
 import { Languages } from './../../shared/enums/languages.enum';
-import { Component } from '@angular/core';
+import { Component,inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink, RouterModule } from '@angular/router';
-import { OnInit, inject, OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 // Для ссылки на главную
-import { CommonModule } from '@angular/common'; // Для *ngIf
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [TranslateModule, RouterModule, RouterLink, CommonModule],
+  imports: [TranslateModule, RouterModule, RouterLink],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })

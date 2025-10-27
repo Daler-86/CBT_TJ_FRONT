@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
 
-import { NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
@@ -27,7 +26,7 @@ import { PageTitleService } from '../../services/page-title.service';
 @Component({
   selector: 'app-vacancy-detail',
   standalone: true,
-  imports: [NgIf, NgFor, RouterModule, ReactiveFormsModule, TranslateModule, ScrollToDirective],
+  imports: [RouterModule, ReactiveFormsModule, TranslateModule, ScrollToDirective],
   templateUrl: './vacancy-detail.component.html',
   styleUrls: ['./vacancy-detail.component.scss'],
 })

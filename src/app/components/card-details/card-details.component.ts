@@ -1,7 +1,6 @@
 import { Component, HostListener, ElementRef, OnInit, ViewChild, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardsService } from '../../api/cards.service';
-import { NgFor, NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   cardContentItem,
@@ -22,10 +21,11 @@ import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { ScrollService } from '../../services/scroll.service';
 import { TranslateService } from '@ngx-translate/core';
 import { PageTitleService } from '../../services/page-title.service';
+
 @Component({
   selector: 'app-card-details',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, TranslateModule, ReactiveFormsModule, ScrollToDirective],
+  imports: [FormsModule, TranslateModule, ReactiveFormsModule, ScrollToDirective],
   templateUrl: './card-details.component.html',
   styleUrl: './card-details.component.scss',
 })

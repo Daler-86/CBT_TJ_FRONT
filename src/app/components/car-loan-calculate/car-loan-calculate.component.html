@@ -6,9 +6,8 @@
     <!-- Валюта и Ставка -->
     <div class="top-controls">
       <div class="form-group">
-        <!-- Изменяем label на span -->
         <span id="currencyLabel" class="form-label">{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</span>
-        <div class="currency-selector" role="radiogroup" aria-labelledby="currencyLabel">
+        <div class="currency-selector">
           <div class="radio-option">
             <input
               type="radio"
@@ -35,7 +34,6 @@
       </div>
 
       <div class="form-group">
-        <!-- Ошибка 37:9 - Исправлено. Добавляем id к input и привязываем label. -->
         <label for="interestRateInput">{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</label>
         <div class="rate-input-wrapper">
           <input
@@ -54,36 +52,33 @@
 
     <!-- Стоимость авто -->
     <div class="form-group">
-      <!-- Ошибка 54:7 - Исправлено. Добавляем id к edit-input и привязываем label.
-           Так как есть два input, label должен быть связан с основным, который принимает ввод пользователя.
-           В данном случае это edit-input. -->
       <label for="carCostEditInput">{{ 'CALCULATORS.AUTO_LOAN.CAR_COST' | translate }}</label>
       <div class="smart-input-container">
-        <!-- Ошибка 56:9 - click must be accompanied... and Elements with interaction...
-             display-value является div с click. Делаем его фокусируемым и добавляем обработчики keydown.
-             Используем tabindex="0" и role="button" для доступности. -->
-        <div
-          *ngIf="!isEditingCarCost"
-          class="display-value"
-          (click)="startEditing('carCost')"
-          (keydown.enter)="startEditing('carCost')"
-          (keydown.space)="startEditing('carCost')"
-          tabindex="0"
-          role="button"
-          aria-labelledby="carCostEditInput"
-        >
-          {{ carCost | number: '1.2-2' : 'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
-        </div>
-        <input
-          *ngIf="isEditingCarCost"
-          type="number"
-          class="edit-input"
-          id="carCostEditInput"
-          [(ngModel)]="carCost"
-          (blur)="stopEditing()"
-          (keydown.enter)="stopEditing()"
-          aria-labelledby="carCostEditInput"
-        />
+        @if (!isEditingCarCost) {
+          <div
+            class="display-value"
+            (click)="startEditing('carCost')"
+            (keydown.enter)="startEditing('carCost')"
+            (keydown.space)="startEditing('carCost')"
+            tabindex="0"
+            role="button"
+            aria-label="Редактировать стоимость автомобиля"
+          >
+            {{ carCost | number: '1.2-2' : 'ru-RU' }}
+            {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+          </div>
+        }
+        @if (isEditingCarCost) {
+          <input
+            type="number"
+            class="edit-input"
+            id="carCostEditInput"
+            [(ngModel)]="carCost"
+            (blur)="stopEditing()"
+            (keydown.enter)="stopEditing()"
+          />
+        }
+
         <input
           type="range"
           class="range-slider"
@@ -92,7 +87,6 @@
           [(ngModel)]="carCost"
           (input)="recalculate()"
           [style.--range-percent]="carCostPercent"
-          aria-labelledby="carCostEditInput"
         />
 
         <div class="range-labels">
@@ -104,35 +98,37 @@
 
     <!-- Предоплата -->
     <div class="form-group">
-      <!-- Ошибка 86:7 - Исправлено. Добавляем id к edit-input и привязываем label. -->
       <label for="downPaymentEditInput">{{ 'CALCULATORS.AUTO_LOAN.DOWN_PAYMENT' | translate }}</label>
       <div class="smart-input-container">
-        <!-- Ошибка 88:9 - click must be accompanied... and Elements with interaction...
-             display-value является div с click. Делаем его фокусируемым и добавляем обработчики keydown. -->
-        <div
-          *ngIf="!isEditingDownPayment"
-          class="display-value"
-          (click)="startEditing('downPayment')"
-          (keydown.enter)="startEditing('downPayment')"
-          (keydown.space)="startEditing('downPayment')"
-          tabindex="0"
-          role="button"
-          aria-labelledby="downPaymentEditInput"
-        >
-          {{ downPayment | number: '1.2-2' : 'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
-        </div>
-        <input
-          *ngIf="isEditingDownPayment"
-          type="number"
-          class="edit-input"
-          id="downPaymentEditInput"
-          [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent"
-          [max]="carCost"
-          [(ngModel)]="downPayment"
-          (blur)="stopEditing()"
-          (keydown.enter)="stopEditing()"
-          aria-labelledby="downPaymentEditInput"
-        />
+        @if (!isEditingDownPayment) {
+          <div
+            class="display-value"
+            (click)="startEditing('downPayment')"
+            (keydown.enter)="startEditing('downPayment')"
+            (keydown.space)="startEditing('downPayment')"
+            tabindex="0"
+            role="button"
+            aria-label="downPaymentEditInput"
+          >
+            {{ downPayment | number: '1.2-2' : 'ru-RU' }}
+            {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+          </div>
+        }
+
+        @if (isEditingDownPayment) {
+          <input
+            type="number"
+            class="edit-input"
+            id="downPaymentEditInput"
+            [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent"
+            [max]="carCost"
+            [(ngModel)]="downPayment"
+            (blur)="stopEditing()"
+            (keydown.enter)="stopEditing()"
+            aria-labelledby="downPaymentEditInput"
+          />
+        }
+
         <input
           type="range"
           class="range-slider"
@@ -152,61 +148,50 @@
 
     <!-- Сумма финансирования -->
     <div class="form-group">
-      <!-- Ошибка 119:7 - Исправлено. Label теперь ассоциирован с соответствующим элементом (хотя это display-value, а не input).
-           Для display-value, который не является полем ввода, но отображает значение, можно привязать label к div с role="status"
-           или просто к самому div, если он играет роль текстового вывода.
-           В данном случае, мы добавим id к div и свяжем label с ним. -->
       <label for="financingAmountDisplay">{{ 'CALCULATORS.AUTO_LOAN.FINANCING_AMOUNT' | translate }}</label>
-      <div id="financingAmountDisplay" class="display-value static" role="status">
+      <div class="display-value static" role="status">
         {{ financingAmount }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
       </div>
     </div>
 
     <!-- Срок -->
     <div class="form-group">
-      <!-- Изменяем label на span -->
       <span id="loanTermLabel" class="form-label">{{ 'CALCULATORS.AUTO_LOAN.TERM' | translate }}</span>
       <div class="term-buttons" role="group" aria-labelledby="loanTermLabel">
-        <button
-          *ngFor="let term of availableTerms"
-          (click)="loanTerm = term; recalculate()"
-          [class.active]="loanTerm === term"
-          type="button"
-        >
-          {{ term }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}
-        </button>
+        @for (term of availableTerms; track $index) {
+          <button (click)="loanTerm = term; recalculate()" [class.active]="loanTerm === term" type="button">
+            {{ term }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}
+          </button>
+        }
       </div>
     </div>
   </div>
 
   <!-- Правая колонка -->
   <div class="result-wrapper">
-    <div class="result-card" *ngIf="calculationResult">
-      <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
-      <p>{{ 'CALCULATORS.AUTO_LOAN.ACTUAL_OVERPAYMENT' | translate }}</p>
+    @if (calculationResult) {
+      <div class="result-card">
+        <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
+        <p>{{ 'CALCULATORS.AUTO_LOAN.ACTUAL_OVERPAYMENT' | translate }}</p>
 
-      <h3>
-        {{ calculationResult.totalOverpayment | number: '1.2-2' : 'ru-RU' }}
-        {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
-      </h3>
+        <h3>
+          {{ calculationResult.totalOverpayment | number: '1.2-2' : 'ru-RU' }}
+          {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+        </h3>
 
-      <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
-      <h3>
-        {{ calculationResult.monthlyPayment | number: '1.2-2' : 'ru-RU' }}
-        {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
-      </h3>
+        <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
+        <h3>
+          {{ calculationResult.monthlyPayment | number: '1.2-2' : 'ru-RU' }}
+          {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+        </h3>
 
-      <p>{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</p>
-      <h3>{{ interestRate }}%</h3>
+        <p>{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</p>
+        <h3>{{ interestRate }}%</h3>
 
-      <button
-        class="apply-button"
-        [routerLink]="['/credits', 7]"
-        [queryParams]="{ scrollTo: 'application-form' }"
-        type="button"
-      >
-        {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
-      </button>
-    </div>
+        <button class="apply-button" [routerLink]="['/credits', 7]" [queryParams]="{ scrollTo: 'application-form' }">
+          {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
+        </button>
+      </div>
+    }
   </div>
 </div>

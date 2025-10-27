@@ -53,126 +53,106 @@
           >
             {{ 'MAP_PAGE.FILTERS.MAIN_BUTTON_LABEL' | translate }}
           </div>
-          <div
-            class="dropdown-options"
-            *ngIf="dropdownOpen"
-            id="filter-options-panel"
-            role="group"
-            [attr.aria-label]="'MAP_PAGE.FILTERS.MAIN_BUTTON_LABEL' | translate"
-          >
-            <!-- Типы объектов -->
-            <div class="dropdown-section">
-              <h4>{{ 'MAP_PAGE.FILTERS.OBJECT_TYPES' | translate }}</h4>
-              <div class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="allSelected"
-                    (change)="onCheckboxChange('allSelected', $event)"
-                    id="allObjectsCheckbox"
-                  />
-                  <span class="checkbox"></span>
-                  {{ 'ALL' | translate }}
-                </label>
+          @if (dropdownOpen) {
+            <div class="dropdown-options">
+              <!-- Типы объектов -->
+              <div class="dropdown-section">
+                <h4>{{ 'MAP_PAGE.FILTERS.OBJECT_TYPES' | translate }}</h4>
+                <div class="dropdown-option">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" [checked]="allSelected" (change)="onCheckboxChange('allSelected', $event)" />
+                    <span class="checkbox"></span>
+                    {{ 'ALL' | translate }}
+                  </label>
+                </div>
+                <div class="dropdown-option">
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="officesSelected"
+                      (change)="onCheckboxChange('officesSelected', $event)"
+                    />
+                    <span class="checkbox"></span>
+                    {{ 'OFFICES' | translate }}
+                  </label>
+                </div>
+                <div class="dropdown-option">
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="terminalsSelected"
+                      (change)="onCheckboxChange('terminalsSelected', $event)"
+                    />
+                    <span class="checkbox"></span>
+                    {{ 'TERMINALS' | translate }}
+                  </label>
+                </div>
+                <div class="dropdown-option">
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="atmsSelected"
+                      (change)="onCheckboxChange('atmsSelected', $event)"
+                    />
+                    <span class="checkbox"></span>
+                    {{ 'ATM' | translate }}
+                  </label>
+                </div>
               </div>
-              <div class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="officesSelected"
-                    (change)="onCheckboxChange('officesSelected', $event)"
-                    id="officesCheckbox"
-                  />
-                  <span class="checkbox"></span>
-                  {{ 'OFFICES' | translate }}
-                </label>
-              </div>
-              <div class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="terminalsSelected"
-                    (change)="onCheckboxChange('terminalsSelected', $event)"
-                    id="terminalsCheckbox"
-                  />
-                  <span class="checkbox"></span>
-                  {{ 'TERMINALS' | translate }}
-                </label>
-              </div>
-              <div class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="atmsSelected"
-                    (change)="onCheckboxChange('atmsSelected', $event)"
-                    id="atmsCheckbox"
-                  />
-                  <span class="checkbox"></span>
-                  {{ 'ATM' | translate }}
-                </label>
-              </div>
-            </div>
-            <div class="divider"></div>
+              <div class="divider"></div>
 
-            <!-- Доступность -->
-            <div class="dropdown-section">
-              <h4>{{ 'MAP_PAGE.FILTERS.AVAILABILITY' | translate }}</h4>
-              <div class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="is24Selected"
-                    (change)="onCheckboxChange('is24Selected', $event)"
-                    id="is24Checkbox"
-                  />
-                  <span class="checkbox"></span>
-                  {{ '24H' | translate }}
-                </label>
+              <!-- Доступность -->
+              <div class="dropdown-section">
+                <h4>{{ 'MAP_PAGE.FILTERS.AVAILABILITY' | translate }}</h4>
+                <div class="dropdown-option">
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="is24Selected"
+                      (change)="onCheckboxChange('is24Selected', $event)"
+                    />
+                    <span class="checkbox"></span>
+                    {{ '24H' | translate }}
+                  </label>
+                </div>
+                <div class="dropdown-option">
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="workingNowSelected"
+                      (change)="onCheckboxChange('workingNowSelected', $event)"
+                    />
+                    <span class="checkbox"></span>
+                    {{ 'NOW' | translate }}
+                  </label>
+                </div>
               </div>
-              <div class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="workingNowSelected"
-                    (change)="onCheckboxChange('workingNowSelected', $event)"
-                    id="workingNowCheckbox"
-                  />
-                  <span class="checkbox"></span>
-                  {{ 'NOW' | translate }}
-                </label>
-              </div>
-            </div>
-            <div class="divider"></div>
+              <div class="divider"></div>
 
-            <!-- Дополнительно -->
-            <div class="dropdown-section">
-              <h4>{{ 'MAP_PAGE.FILTERS.ADDITIONAL' | translate }}</h4>
-              <div class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="qrCodeSelected"
-                    (change)="onCheckboxChange('qrCodeSelected', $event)"
-                    id="qrCodeCheckbox"
-                  />
-                  <span class="checkbox"></span>
-                  {{ 'QR' | translate }}
-                </label>
-              </div>
-              <div class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="nfcSelected"
-                    (change)="onCheckboxChange('nfcSelected', $event)"
-                    id="nfcCheckbox"
-                  />
-                  <span class="checkbox"></span>
-                  {{ 'NFC' | translate }}
-                </label>
+              <!-- Дополнительно -->
+              <div class="dropdown-section">
+                <h4>{{ 'MAP_PAGE.FILTERS.ADDITIONAL' | translate }}</h4>
+                <div class="dropdown-option">
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="qrCodeSelected"
+                      (change)="onCheckboxChange('qrCodeSelected', $event)"
+                    />
+                    <span class="checkbox"></span>
+                    {{ 'QR' | translate }}
+                  </label>
+                </div>
+                <div class="dropdown-option">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" [checked]="nfcSelected" (change)="onCheckboxChange('nfcSelected', $event)" />
+                    <span class="checkbox"></span>
+                    {{ 'NFC' | translate }}
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
+          }
         </div>
 
         <div class="custom-dropdown">
@@ -195,40 +175,32 @@
           >
             {{ regionSelectedName }}
           </div>
-          <div
-            class="dropdown-options"
-            *ngIf="dropdownOpen2"
-            id="region-options-panel"
-            role="listbox"
-            [attr.aria-label]="'MAP_PAGE.FILTERS.REGION_FILTER_LABEL' | translate"
-          >
-            <div class="dropdown-section">
-              <div class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="+regionSelected === 0"
-                    (change)="onRegionChange(0)"
-                    id="allRegionsCheckbox"
-                  />
-                  <span class="checkbox"></span>
-                  {{ 'ALL' | translate }}
-                </label>
-              </div>
-              <div *ngFor="let option of regionList" class="dropdown-option">
-                <label class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    [checked]="+regionSelected === option.id"
-                    (change)="onRegionChange(option)"
-                    [id]="'regionCheckbox-' + option.id"
-                  />
-                  <span class="checkbox"></span>
-                  {{ option.name }}
-                </label>
+          @if (dropdownOpen2) {
+            <div class="dropdown-options">
+              <div class="dropdown-section">
+                <div class="dropdown-option">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" [checked]="regionSelected === 0" (change)="onRegionChange(0)" />
+                    <span class="checkbox"></span>
+                    {{ 'ALL' | translate }}
+                  </label>
+                </div>
+                @for (option of regionList; track $index) {
+                  <div class="dropdown-option">
+                    <label class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        [checked]="regionSelected === option.id"
+                        (change)="onRegionChange(option)"
+                      />
+                      <span class="checkbox"></span>
+                      {{ option.name }}
+                    </label>
+                  </div>
+                }
               </div>
             </div>
-          </div>
+          }
         </div>
       </div>
     </div>
@@ -236,17 +208,11 @@
     <div class="map-layout-container">
       <!-- 1. Боковая панель -->
       <div class="info-sidebar" [class.is-visible]="selectedPoint">
-        <ng-container *ngIf="selectedPoint">
-          <button
-            class="info-sidebar__close-btn"
-            (click)="closeSidebar()"
-            [attr.aria-label]="'COMMON.CLOSE' | translate"
-          >
-            ×
-          </button>
+        @if (selectedPoint) {
+          <button class="info-sidebar__close-btn" (click)="closeSidebar()">×</button>
 
           <div class="info-sidebar__header">
-            <img [src]="selectedPoint.properties.iconSrc" alt="{{ 'MAP_PAGE.SIDE_BAR.OBJECT_ICON_ALT' | translate }}" />
+            <img [src]="selectedPoint.properties.iconSrc" alt="" />
             <h1>{{ selectedPoint.properties.title }}</h1>
           </div>
 
@@ -256,23 +222,31 @@
               <div class="info-sidebar__value">{{ selectedPoint.properties.address }}</div>
             </div>
 
-            <div *ngIf="selectedPoint.properties.items.length > 0" class="info-sidebar__section">
-              <div *ngFor="let item of selectedPoint.properties.items" class="info-sidebar__item">
-                <div class="info-sidebar__label">{{ item.title }}</div>
-                <div class="info-sidebar__value">{{ item.description }}</div>
+            @if (selectedPoint.properties.items.length > 0) {
+              <div class="info-sidebar__section">
+                @for (item of selectedPoint.properties.items; track $index) {
+                  <div class="info-sidebar__item">
+                    <div class="info-sidebar__label">{{ item.title }}</div>
+                    <div class="info-sidebar__value">{{ item.description }}</div>
+                  </div>
+                }
               </div>
-            </div>
+            }
 
-            <div *ngIf="selectedPoint.properties.services.length > 0" class="info-sidebar__section">
-              <div class="info-sidebar__label">{{ 'MAP_PAGE.SIDE_BAR.SERVICES_LABEL' | translate }}</div>
-              <ul class="info-sidebar__service-list">
-                <li *ngFor="let service of selectedPoint.properties.services">
-                  {{ service.name }}
-                </li>
-              </ul>
-            </div>
+            @if (selectedPoint.properties.services.length > 0) {
+              <div class="info-sidebar__section">
+                <div class="info-sidebar__label">{{ 'MAP_PAGE.SIDE_BAR.SERVICES_LABEL' | translate }}</div>
+                <ul class="info-sidebar__service-list">
+                  @for (service of selectedPoint.properties.services; track $index) {
+                    <li>
+                      {{ service.name }}
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
           </div>
-        </ng-container>
+        }
       </div>
 
       <!-- 2. Область для рендеринга карты -->
@@ -286,36 +260,40 @@
         </app-yandex-map>
       </div>
     </div>
-  </div>
-  <!-- Список терминалов -->
-  <div
-    [hidden]="selectedTab !== 'Spiskom'"
-    id="list-tab-panel"
-    role="tabpanel"
-    [attr.aria-hidden]="selectedTab !== 'Spiskom'"
-  >
-    <app-office-list></app-office-list>
-  </div>
-  <!-- Часто задаваемые вопросы -->
-  <div class="faq-container">
-    <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
-    <div *ngFor="let faq of faqs; let i = index" class="faq-item">
-      <button
-        class="faq-question"
-        (click)="toggleFaq(i)"
-        (keydown.enter)="toggleFaq(i)"
-        (keydown.space)="toggleFaq(i)"
-        tabindex="0"
-        role="button"
-        [attr.aria-expanded]="selectedFaqIndex === i"
-        [attr.aria-controls]="'faq-answer-' + i"
-      >
-        <span>{{ faq.title }}</span>
-        <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
-      </button>
-      <div *ngIf="selectedFaqIndex === i" class="faq-answer" [id]="'faq-answer-' + i" role="region" aria-live="polite">
-        {{ faq.description }}
-      </div>
+    <!-- Список терминалов -->
+    <div
+      [hidden]="selectedTab !== 'Spiskom'"
+      id="list-tab-panel"
+      role="tabpanel"
+      [attr.aria-hidden]="selectedTab !== 'Spiskom'"
+    >
+      <app-office-list></app-office-list>
+    </div>
+    <!-- Часто задаваемые вопросы -->
+    <div class="faq-container">
+      <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
+      @for (faq of faqs; track i; let i = $index) {
+        <div class="faq-item">
+          <div
+            class="faq-question"
+            (click)="toggleFaq(i)"
+            (keydown.enter)="toggleFaq(i)"
+            (keydown.space)="toggleFaq(i)"
+            tabindex="0"
+            role="button"
+            [attr.aria-expanded]="selectedFaqIndex === i"
+            [attr.aria-controls]="'faq-answer-' + i"
+          >
+            <span>{{ faq.title }}</span>
+            <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+          </div>
+          @if (selectedFaqIndex === i) {
+            <div class="faq-answer">
+              {{ faq.description }}
+            </div>
+          }
+        </div>
+      }
     </div>
   </div>
 </div>

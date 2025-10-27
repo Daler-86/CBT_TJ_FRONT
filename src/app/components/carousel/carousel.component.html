@@ -1,38 +1,43 @@
 <div class="carousel">
-  <div *ngIf="galleries.length > 0" class="carousel-slides" [style.transform]="getTransform()">
-    <div class="carousel-item" *ngFor="let slide of galleries">
-      <div class="carousel-content">
-        <h2>{{ slide.title }}</h2>
-        <p>{{ slide.description }}</p>
-        <button
-          *ngIf="slide.show_button"
-          (click)="onLearnMore(slide.route)"
-          [routerLink]="[slide.route]"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          {{ 'BUTTONS.MORE_DETAILS' | translate }}
-        </button>
-      </div>
-      <img [src]="imageUrl + slide.upload_file" [alt]="slide.title" />
+  @if (galleries.length > 0) {
+    <div class="carousel-slides" [style.transform]="getTransform()">
+      @for (slide of galleries; track slide.id) {
+        <div class="carousel-item">
+          <div class="carousel-content">
+            <h2>{{ slide.title }}</h2>
+            <p>{{ slide.description }}</p>
+            @if (slide.show_button) {
+              <button
+                (click)="onLearnMore(slide.route)"
+                [routerLink]="[slide.route]"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                {{ 'BUTTONS.MORE_DETAILS' | translate }}
+              </button>
+            }
+          </div>
+          <img [src]="imageUrl + slide.upload_file" [alt]="slide.title" />
+        </div>
+      }
     </div>
-  </div>
+  }
 
   <div class="carousel-indicators">
-    <span
-      *ngFor="let slide of galleries; let i = index"
-      class="INDICATOR"
-      [class.active]="i === currentSlide"
-      (click)="goToSlide(i)"
-      (keydown.enter)="goToSlide(i)"
-      (keydown.space)="goToSlide(i)"
-      tabindex="0"
-      role="button"
-      [attr.aria-label]="'Перейти к слайду ' + (i + 1)"
-      [attr.aria-current]="i === currentSlide ? 'true' : 'false'"
-    >
-      <!-- Span остается пустым внутри -->
-    </span>
+    @for (slide of galleries; track slide.id; let i = $index) {
+      <span
+        class="INDICATOR"
+        [class.active]="i === currentSlide"
+        (click)="goToSlide(i)"
+        (keydown.enter)="goToSlide(i)"
+        (keydown.space)="goToSlide(i)"
+        tabindex="0"
+        role="button"
+        [attr.aria-label]="'Перейти к слайду ' + (i + 1)"
+        [attr.aria-current]="i === currentSlide ? 'true' : 'false'"
+      >
+      </span>
+    }
   </div>
 
   <button class="carousel-control prev" (click)="prevSlide()">

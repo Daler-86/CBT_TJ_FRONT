@@ -17,33 +17,43 @@
   <div class="container">
     <h2>{{ 'DEPOSIT_DETAILS.ADVANTAGES_TITLE' | translate }}</h2>
     <div class="advantages">
-      <div class="item" *ngFor="let a of scsData.advantages">
-        <h3>{{ a.title }}</h3>
-        <p>{{ a.description }}</p>
-      </div>
+      <!-- Динамический контент -->
+      @for (a of scsData.advantages; track a.id) {
+        <div class="item">
+          <h3>{{ a.title }}</h3>
+          <p>{{ a.description }}</p>
+        </div>
+      }
     </div>
   </div>
 
   <div class="faq-container">
     <h2 class="faq-title">{{ 'DEPOSIT_DETAILS.CONDITIONS_TITLE' | translate }}</h2>
-    <div *ngFor="let faq of scsData.conditions; let i = index" class="faq-item">
-      <div
-        class="faq-question"
-        (click)="toggleFaq(i)"
-        (keydown.enter)="toggleFaq(i)"
-        (keydown.space)="toggleFaq(i)"
-        tabindex="0"
-        role="button"
-        [attr.aria-expanded]="selectedFaqIndex === i"
-        [attr.aria-controls]="'faq-answer-' + i"
-      >
-        <span>{{ faq.title }}</span>
-        <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+    @for (faq of scsData.conditions; track faq.id; let i = $index) {
+      <div class="faq-item">
+        <div
+          class="faq-question"
+          (click)="toggleFaq(i)"
+          (keydown.enter)="toggleFaq(i)"
+          (keydown.space)="toggleFaq(i)"
+          tabindex="0"
+          role="button"
+          [attr.aria-expanded]="selectedFaqIndex === i"
+          [attr.aria-controls]="'faq-answer-' + i"
+        >
+          <!-- Динамический контент -->
+          <span>{{ faq.title }}</span>
+          <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
+        </div>
+        @if (selectedFaqIndex === i) {
+          <div class="faq-answer">
+            <!-- Динамический контент -->
+            @for (i of faq.items; track i.id) {
+              <p>{{ i.title }}</p>
+            }
+          </div>
+        }
       </div>
-      <div *ngIf="selectedFaqIndex === i" class="faq-answer" [id]="'faq-answer-' + i" role="region">
-        <!-- И здесь -->
-        <p *ngFor="let item of faq.items">{{ item.title }}</p>
-      </div>
-    </div>
+    }
   </div>
 </div>

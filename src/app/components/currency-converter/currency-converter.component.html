@@ -1,9 +1,10 @@
 <div class="currency-converter-container">
   <div class="calculator-tabs">
-    <button *ngFor="let mode of getModes()" (click)="selectMode(mode)" [class.active]="selectedMode === mode">
-      <!-- ВАЖНО: Эта функция должна использовать TranslateService в TS-файле. См. ниже -->
-      {{ getReadableMode(mode) }}
-    </button>
+    @for (mode of modes; track mode.key) {
+      <button (click)="selectMode(mode.key)" [class.active]="selectedMode === mode.key">
+        {{ mode.label | translate }}
+      </button>
+    }
   </div>
 
   <div class="div">
@@ -13,35 +14,35 @@
         <thead>
           <tr>
             <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.CURRENCY' | translate }}</th>
-            <ng-container *ngIf="selectedMode === 'CB_RATE'">
+            @if (selectedMode === 'CB_RATE') {
               <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.ACCOUNTING' | translate }}</th>
-            </ng-container>
-            <ng-container *ngIf="selectedMode !== 'CB_RATE'">
+            }
+            @if (selectedMode !== 'CB_RATE') {
               <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.PURCHASE' | translate }}</th>
               <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.SALE' | translate }}</th>
-            </ng-container>
+            }
           </tr>
         </thead>
         <tbody>
-          <tr
-            *ngFor="
-              let rate of exchangeRatesByMode[selectedMode]
-                | slice: 0 : (showMore ? exchangeRatesByMode[selectedMode].length : 3)
-            "
-          >
-            <td class="flag">
-              <!-- Alt-текст теперь описывает флаг -->
-              <img [src]="rate.flag" [alt]="rate.currency + ' flag'" />
-              <p>{{ rate.currency }}</p>
-            </td>
-            <ng-container *ngIf="selectedMode === 'CB_RATE'">
-              <td>{{ rate.buy | number: '1.4-4' }}</td>
-            </ng-container>
-            <ng-container *ngIf="selectedMode !== 'CB_RATE'">
-              <td>{{ rate.buy | number: '1.4-4' }}</td>
-              <td>{{ rate.sell | number: '1.4-4' }}</td>
-            </ng-container>
-          </tr>
+          @for (
+            rate of exchangeRatesByMode[selectedMode]
+              | slice: 0 : (showMore ? exchangeRatesByMode[selectedMode].length : 3);
+            track $index
+          ) {
+            <tr>
+              <td class="flag">
+                <img [src]="rate.flag" [alt]="rate.currency + ' flag'" />
+                <p>{{ rate.currency }}</p>
+              </td>
+
+              @if (selectedMode === 'CB_RATE') {
+                <td>{{ rate.buy | number: '1.4-4' }}</td>
+              } @else {
+                <td>{{ rate.buy | number: '1.4-4' }}</td>
+                <td>{{ rate.sell | number: '1.4-4' }}</td>
+              }
+            </tr>
+          }
         </tbody>
       </table>
 
@@ -50,15 +51,11 @@
           {{ 'CURRENCY_CONVERTER.RATES_TABLE.UPDATED_LABEL' | translate }}
           {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}
         </p>
-        <button
-          *ngIf="
-            exchangeRatesByMode && exchangeRatesByMode[selectedMode] && exchangeRatesByMode[selectedMode].length > 3
-          "
-          (click)="toggleShowMore()"
-        >
-          <!-- Правильное использование тернарного оператора с пайпом -->
-          {{ (showMore ? 'BUTTONS.COLLAPSE' : 'BUTTONS.SHOW_MORE') | translate }}
-        </button>
+        @if ((exchangeRatesByMode[selectedMode] ?? []).length > 3) {
+          <button (click)="toggleShowMore()">
+            {{ (showMore ? 'BUTTONS.COLLAPSE' : 'BUTTONS.SHOW_MORE') | translate }}
+          </button>
+        }
       </div>
     </div>
 
@@ -113,15 +110,11 @@
         ><br />
         <div class="a">
           <input class="inp" type="number" id="amountInput" [(ngModel)]="amount" (ngModelChange)="convertCurrency()" />
-          <select
-            [(ngModel)]="fromCurrency"
-            (change)="updateCurrencies()"
-            [attr.aria-label]="'CURRENCY_CONVERTER.CONVERTER.FROM_CURRENCY_LABEL' | translate"
-          >
+          <select [(ngModel)]="fromCurrency" (change)="updateCurrencies()">
             <option value="TJS">TJS</option>
-            <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency">
-              {{ rate.currency }}
-            </option>
+            @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
+              <option [value]="rate.currency">{{ rate.currency }}</option>
+            }
           </select>
         </div>
       </div>
@@ -131,20 +124,15 @@
         <label for="convertedAmountInput">{{ 'CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate }}</label
         ><br />
         <div class="a">
-          <input type="text" id="convertedAmountInput" [value]="convertedAmount | number: '1.4-4'" readonly />
-          <select
-            [(ngModel)]="toCurrency"
-            (change)="convertCurrency()"
-            [attr.aria-label]="'CURRENCY_CONVERTER.CONVERTER.TO_CURRENCY_LABEL' | translate"
-          >
-            <ng-container *ngIf="fromCurrency === 'TJS'">
-              <option *ngFor="let rate of exchangeRatesByMode[selectedMode]" [value]="rate.currency">
-                {{ rate.currency }}
-              </option>
-            </ng-container>
-            <ng-container *ngIf="fromCurrency !== 'TJS'">
+          <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
+          <select [(ngModel)]="toCurrency" (change)="convertCurrency()">
+            @if (fromCurrency === 'TJS') {
+              @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
+                <option [value]="rate.currency">{{ rate.currency }}</option>
+              }
+            } @else {
               <option value="TJS">TJS</option>
-            </ng-container>
+            }
           </select>
         </div>
       </div>

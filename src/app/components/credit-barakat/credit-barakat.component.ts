@@ -1,4 +1,3 @@
-import { NgFor, NgIf } from '@angular/common';
 import { Component, HostListener, ElementRef, inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -23,8 +22,6 @@ import { PageTitleService } from '../../services/page-title.service';
   standalone: true,
   imports: [
     TranslateModule,
-    NgFor,
-    NgIf,
     FormsModule,
     FavriComponent,
     LoanCalculatorComponent,

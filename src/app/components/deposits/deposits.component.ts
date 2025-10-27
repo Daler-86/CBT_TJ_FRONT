@@ -1,16 +1,16 @@
-import { CommonModule, NgFor } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { DepositsService } from '../../api/deposit.service';
 import { MenuService } from '../../api/menu.service';
 import { Deposit } from '../../models/deposit.model';
 import { environment } from '../../../environments/environment';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-deposits',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgFor, CommonModule],
+  imports: [RouterLink, RouterModule, TranslateModule],
   templateUrl: './deposits.component.html',
   styleUrl: './deposits.component.scss',
 })

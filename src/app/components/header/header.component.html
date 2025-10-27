@@ -27,25 +27,26 @@
         <p class="p" id="body-medium">{{ getDisplayLanguage() }}</p>
         <img src="../../../assets/icons/arrow-down.png" [alt]="'ALT.ARROW_DOWN' | translate" />
       </div>
-      <div class="dropdown-options" *ngIf="dropdownOpen" role="listbox">
-        <div
-          class="dropdown-option"
-          *ngFor="let option of languageOptions"
-          (click)="selectLanguage(option)"
-          (keydown.enter)="selectLanguage(option)"
-          (keydown.space)="selectLanguage(option)"
-          tabindex="0"
-          role="option"
-          [attr.aria-selected]="option.value === selectedLanguage"
-        >
-          <p id="body-medium">{{ option.label }}</p>
-          <img
-            *ngIf="option.value === selectedLanguage"
-            src="../../../assets/icons/tick-circle.svg"
-            [alt]="'ALT.TICK_ICON' | translate"
-          />
+      @if (dropdownOpen) {
+        <div class="dropdown-options">
+          @for (option of languageOptions; track $index) {
+            <div
+              class="dropdown-option"
+              (click)="selectLanguage(option)"
+              (keydown.enter)="selectLanguage(option)"
+              (keydown.space)="selectLanguage(option)"
+              tabindex="0"
+              role="option"
+              [attr.aria-selected]="option.value === selectedLanguage"
+            >
+              <p id="body-medium">{{ option.label }}</p>
+              @if (option.value === selectedLanguage) {
+                <img src="../../../assets/icons/tick-circle.svg" [alt]="'ALT.TICK_ICON' | translate" />
+              }
+            </div>
+          }
         </div>
-      </div>
+      }
     </div>
   </div>
 
@@ -57,54 +58,68 @@
     </a>
 
     <ul class="menu desktop-only">
-      <li *ngFor="let menu of menus; let i = index">
-        <div
-          *ngIf="menu.items && menu.items.length > 0"
-          class="custom-dropdown"
-          (mouseenter)="toggleDropdown(i, $event)"
-          (mouseleave)="closeDropdown(i)"
-        >
-          <div
-            class="dropdown-selected contact"
-            (click)="toggleDropdown(i, $event)"
-            (keydown.enter)="toggleDropdown(i, $event)"
-            (keydown.space)="toggleDropdown(i, $event)"
-            tabindex="0"
-            role="button"
-            [attr.aria-expanded]="dropdownOpenMap[i]"
-            aria-haspopup="true"
-          >
-            <a id="body-medium">{{ menu.name | translate }}</a>
-          </div>
-          <div class="dropdown-options" *ngIf="dropdownOpenMap[i]" role="menu">
+      @for (menu of menus; track i; let i = $index) {
+        <li>
+          @if (menu.items && menu.items.length > 0) {
             <div
-              class="dropdown-option"
-              *ngFor="let item of menu.items"
-              (click)="selectOption(item, i, $event, menu)"
-              (keydown.enter)="selectOption(item, i, $event, menu)"
-              (keydown.space)="selectOption(item, i, $event, menu)"
-              tabindex="0"
-              role="menuitem"
+              class="custom-dropdown"
+              (mouseenter)="toggleDropdown(i, $event)"
+              (mouseleave)="closeDropdown(i)"
             >
-              <a *ngIf="item.is_new_tab" [href]="item.route" target="_blank" rel="noopener noreferrer">
-                <p id="body-medium">{{ item.name | translate }}</p>
-              </a>
-              <a *ngIf="!item.is_new_tab" [routerLink]="item.route">
-                <p id="body-medium">{{ item.name | translate }}</p>
-              </a>
-            </div>
-          </div>
-        </div>
+              <div
+                class="dropdown-selected contact"
+                (click)="toggleDropdown(i, $event)"
+                (keydown.enter)="toggleDropdown(i, $event)"
+                (keydown.space)="toggleDropdown(i, $event)"
+                tabindex="0"
+                role="button"
+                [attr.aria-expanded]="dropdownOpenMap[i]"
+                aria-haspopup="true"
+              >
+                <a id="body-medium">{{ menu.name | translate }}</a>
+              </div>
 
-        <ng-container *ngIf="!menu.items || menu.items.length === 0">
-          <a *ngIf="menu.is_new_tab" class="a" [href]="menu.route" target="_blank" rel="noopener noreferrer">
-            {{ menu.name | translate }}
-          </a>
-          <a *ngIf="!menu.is_new_tab" class="a" [routerLink]="menu.route">
-            {{ menu.name | translate }}
-          </a>
-        </ng-container>
-      </li>
+              @if (dropdownOpenMap[i]) {
+                <div class="dropdown-options">
+                  @for (item of menu.items; track item.id) {
+                    <div
+                      class="dropdown-option"
+                      (click)="selectOption(item, i, $event, menu)"
+                      (keydown.enter)="selectOption(item, i, $event, menu)"
+                      (keydown.space)="selectOption(item, i, $event, menu)"
+                      tabindex="0"
+                      role="menuitem"
+                    >
+                      @if (item.is_new_tab) {
+                        <a [href]="item.route" target="_blank" rel="noopener noreferrer">
+                          <p id="body-medium">{{ item.name | translate }}</p>
+                        </a>
+                      } @else {
+                        <a [routerLink]="item.route">
+                          <p id="body-medium">{{ item.name | translate }}</p>
+                        </a>
+                      }
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          }
+
+          @if (!menu.items || menu.items.length === 0) {
+            @if (menu.is_new_tab) {
+              <a class="a" [href]="menu.route" target="_blank" rel="noopener noreferrer">
+                {{ menu.name | translate }}
+              </a>
+            }
+            @if (!menu.is_new_tab) {
+              <a class="a" [routerLink]="menu.route">
+                {{ menu.name | translate }}
+              </a>
+            }
+          }
+        </li>
+      }
     </ul>
 
     <div
@@ -138,64 +153,66 @@
   </a>
 
   <ul class="mobile-menu-list">
-    <li *ngFor="let menu of menus; let i = index">
-      <ng-container *ngIf="menu.items && menu.items.length > 0">
-        <div
-          class="menu-item"
-          (click)="toggleDropdown(i, $event)"
-          (keydown.enter)="toggleDropdown(i, $event)"
-          (keydown.space)="toggleDropdown(i, $event)"
-          tabindex="0"
-          role="button"
-          [class.open]="dropdownOpenMap[i]"
-          [attr.aria-expanded]="dropdownOpenMap[i]"
-          [attr.aria-controls]="'submenu-' + i"
-        >
-          <a>{{ menu.name | translate }}</a>
-          <img src="../../../assets/icons/arrow-down.png" alt="arrow" class="submenu-arrow" />
-        </div>
-        <div class="submenu" *ngIf="dropdownOpenMap[i]" [id]="'submenu-' + i" role="menu">
+    @for (menu of menus; track i; let i = $index) {
+      <li>
+        @if (menu.items && menu.items.length > 0) {
           <div
-            class="submenu-option"
-            *ngFor="let item of menu.items"
-            (click)="selectOption(item, i, $event, menu)"
-            (keydown.enter)="selectOption(item, i, $event, menu)"
-            (keydown.space)="selectOption(item, i, $event, menu)"
+            class="menu-item"
+            (click)="toggleDropdown(i, $event)"
+            (keydown.enter)="toggleDropdown(i, $event)"
+            (keydown.space)="toggleDropdown(i, $event)"
             tabindex="0"
-            role="menuitem"
+            role="button"
+            [class.open]="dropdownOpenMap[i]"
+            [attr.aria-expanded]="dropdownOpenMap[i]"
+            [attr.aria-controls]="'submenu-' + i"
           >
+            <a>{{ menu.name | translate }}</a>
+            <img src="../../../assets/icons/arrow-down.png" alt="arrow" class="submenu-arrow" />
+          </div>
+          @if (dropdownOpenMap[i]) {
+            <div class="submenu">
+              @for (item of menu.items; track item.id) {
+                <div class="submenu-option">
+                  @if (item.is_new_tab) {
+                    <a
+                      [href]="item.route"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      (click)="selectOption(item, $index, $event, menu)"
+                    >
+                      <p>{{ item.name | translate }}</p>
+                    </a>
+                  } @else {
+                    <a [routerLink]="item.route" (click)="selectOption(item, $index, $event, menu)">
+                      <p>{{ item.name | translate }}</p>
+                    </a>
+                  }
+                </div>
+              }
+            </div>
+          }
+        }
+
+        @if (!menu.items || menu.items.length === 0) {
+          @if (menu.is_new_tab) {
             <a
-              *ngIf="item.is_new_tab"
-              [href]="item.route"
+              class="menu-item single-link"
+              [href]="menu.route"
               target="_blank"
               rel="noopener noreferrer"
               (click)="toggleMenu()"
             >
-              <p>{{ item.name | translate }}</p>
+              {{ menu.name | translate }}
             </a>
-            <a *ngIf="!item.is_new_tab" [routerLink]="item.route" (click)="toggleMenu()">
-              <p>{{ item.name | translate }}</p>
+          } @else {
+            <a class="menu-item single-link" [routerLink]="menu.route" (click)="toggleMenu()">
+              {{ menu.name | translate }}
             </a>
-          </div>
-        </div>
-      </ng-container>
-
-      <ng-container *ngIf="!menu.items || menu.items.length === 0">
-        <a
-          *ngIf="menu.is_new_tab"
-          class="menu-item single-link"
-          [href]="menu.route"
-          target="_blank"
-          rel="noopener noreferrer"
-          (click)="toggleMenu()"
-        >
-          {{ menu.name | translate }}
-        </a>
-        <a *ngIf="!menu.is_new_tab" class="menu-item single-link" [routerLink]="menu.route" (click)="toggleMenu()">
-          {{ menu.name | translate }}
-        </a>
-      </ng-container>
-    </li>
+          }
+        }
+      </li>
+    }
   </ul>
 
   <div class="mobile-menu-footer">

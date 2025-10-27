@@ -1,4 +1,3 @@
-import { CommonModule, NgFor } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +9,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-transfers',
   standalone: true,
-  imports: [RouterLink, RouterModule, TranslateModule, NgFor, CommonModule],
+  imports: [RouterLink, RouterModule, TranslateModule],
   templateUrl: './transfers.component.html',
   styleUrl: './transfers.component.scss',
 })
