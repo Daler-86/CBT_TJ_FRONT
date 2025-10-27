@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DepositCalculatorComponent } from '../deposit-calculate/deposit-calculate.component';
@@ -6,7 +6,6 @@ import { InstallmentCalculateComponent } from '../installment-calculate/installm
 import { CarLoanCalculateComponent } from '../car-loan-calculate/car-loan-calculate.component';
 import { LoanCalculatorComponent } from '../loan-calculator/loan-calculator.component';
 import { CalculatorData } from '../../models/calculate.model';
-import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-calculate',

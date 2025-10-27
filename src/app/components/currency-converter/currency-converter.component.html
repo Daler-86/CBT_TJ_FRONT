@@ -1,11 +1,8 @@
 <div class="currency-converter-container">
   <div class="calculator-tabs">
     @for (mode of modes; track mode.key) {
-      <button
-        (click)="selectMode(mode.key)"
-        [class.active]="selectedMode === mode.key"
-      >
-        {{ mode.label }}
+      <button (click)="selectMode(mode.key)" [class.active]="selectedMode === mode.key">
+        {{ mode.label | translate }}
       </button>
     }
   </div>
@@ -113,11 +110,7 @@
         ><br />
         <div class="a">
           <input class="inp" type="number" id="amountInput" [(ngModel)]="amount" (ngModelChange)="convertCurrency()" />
-          <select
-            [(ngModel)]="fromCurrency"
-            (change)="updateCurrencies()"
-            [attr.aria-label]="'CURRENCY_CONVERTER.CONVERTER.FROM_CURRENCY_LABEL' | translate"
-          >
+          <select [(ngModel)]="fromCurrency" (change)="updateCurrencies()">
             <option value="TJS">TJS</option>
             @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
               <option [value]="rate.currency">{{ rate.currency }}</option>

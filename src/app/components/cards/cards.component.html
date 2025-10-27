@@ -24,10 +24,12 @@
           <p class="card-description">{{ card.description }}</p>
 
           <div class="card-details">
-            <div class="currency-info" *ngFor="let c of card.content">
-              <p class="title">{{ c.title }}</p>
-              <p class="description">{{ c.description }}</p>
-            </div>
+            @for (c of card.content; track $index) {
+              <div class="currency-info">
+                <p class="title">{{ c.title }}</p>
+                <p class="description">{{ c.description }}</p>
+              </div>
+            }
           </div>
 
           <div class="card-buttons">

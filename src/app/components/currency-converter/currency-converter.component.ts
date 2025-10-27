@@ -35,11 +35,10 @@ export class CurrencyConverterComponent implements OnInit {
   private rateService = inject(RateService);
 
   ngOnInit() {
-    // 1. Инициализируем массив modes
     this.modes = [
-      { key: 'REMITTANCE_RATE', label: this.translate.instant('CURRENCY_CONVERTER.RATE_MODES.NON_CASH') },
-      { key: 'CASH', label: this.translate.instant('CURRENCY_CONVERTER.RATE_MODES.CASH') },
-      { key: 'CB_RATE', label: this.translate.instant('CURRENCY_CONVERTER.RATE_MODES.CB_RATE') },
+      { key: 'REMITTANCE_RATE', label: 'CURRENCY_CONVERTER.RATE_MODES.NON_CASH' },
+      { key: 'CASH', label: 'CURRENCY_CONVERTER.RATE_MODES.CASH' },
+      { key: 'CB_RATE', label: 'CURRENCY_CONVERTER.RATE_MODES.CB_RATE' },
     ];
 
     // 2. Устанавливаем selectedMode, если ещё пустой
