@@ -7,37 +7,38 @@
   <div class="news-list">
     @if (news.length > 0) {
       @for (item of news; track item.id) {
-        <a
-          [routerLink]="['/news', item.id]"
-          class="news-card-link"
-          tabindex="0"
-          role="link"
-          [attr.aria-label]="item.title + '. ' + ('NEWS_PAGE.READ_MORE' | translate)"
-        >
-          <div class="news-text-content">
-            <h2>{{ item.title }}</h2>
-            <p class="article-content">
-              {{ item.firstParagraphText | slice: 0 : 200 }}
-            </p>
-          </div>
-          <div class="news-image-content">
-            <img [src]="imageUrl + item.upload_file" [alt]="item.title" />
-          </div>
-        </a>
+        <article class="news-card">
+          <a
+            [routerLink]="['/news', item.id]"
+            class="news-card-link"
+            tabindex="0"
+            role="link"
+            [attr.aria-label]="item.title + '. ' + ('NEWS_PAGE.READ_MORE' | translate)"
+          >
+            <div class="news-text-content">
+              <h2>{{ item.title }}</h2>
+              <p class="article-content">
+                {{ item.firstParagraphText | slice: 0 : 200 }}
+              </p>
+            </div>
+            <div class="news-image-content">
+              <img [src]="imageUrl + item.upload_file" [alt]="item.title" />
+            </div>
+          </a>
+        </article>
       }
-
       <div class="pagination">
         <button
           (click)="selectPage(1)"
           [disabled]="currentPage === 1"
-          [title]="'common.pagination.firstPage' | translate"
+          [title]="'COMMON.PAGINATION.FIRST_PAGE' | translate"
         >
           «
         </button>
         <button
           (click)="prevPage()"
           [disabled]="currentPage === 1"
-          [title]="'common.pagination.previousPage' | translate"
+          [title]="'COMMON.PAGINATION.PREVIOUS_PAGE' | translate"
         >
           ‹
         </button>
@@ -50,14 +51,14 @@
         <button
           (click)="nextPage()"
           [disabled]="currentPage === totalPages"
-          [title]="'common.pagination.nextPage' | translate"
+          [title]="'COMMON.PAGINATION.NEXT_PAGE' | translate"
         >
           ›
         </button>
         <button
           (click)="selectPage(totalPages)"
           [disabled]="currentPage === totalPages"
-          [title]="'common.pagination.lastPage' | translate"
+          [title]="'COMMON.PAGINATION.LAST_PAGE' | translate"
         >
           »
         </button>

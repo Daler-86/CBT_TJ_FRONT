@@ -5,22 +5,22 @@
         <div class="">
           <h2>{{ vacancyData.name }}</h2>
           <div class="city-location">
-            <img src="../../../assets/icons/Layer 2.svg" [alt]="'alt.location' | translate" />
+            <img src="../../../assets/icons/Layer 2.svg" [alt]="'ALT.LOCATION' | translate" />
             <p>{{ vacancyData.region_name }}</p>
           </div>
           <div class="city-location">
-            <img src="../../../assets/icons/calendar.svg" [alt]="'alt.calendar' | translate" />
+            <img src="../../../assets/icons/calendar.svg" [alt]="'ALT.CALENDAR' | translate" />
             <p>{{ vacancyData.deadline_at }}</p>
           </div>
         </div>
         <div class="">
-          <button [scrollTo]="'application-form'">{{ 'vacancyDetails.form.title' | translate }}</button>
+          <button [scrollTo]="'application-form'">{{ 'VACANCY_DETAILS.FORM.TITLE' | translate }}</button>
           <!-- Кнопка теперь находится внутри формы ниже, для лучшей семантики -->
         </div>
       </div>
       <div class="">
         <div class="vacancy-details">
-          <h4>{{ 'vacancyDetails.sections.education' | translate }}</h4>
+          <h4>{{ 'VACANCY_DETAILS.SECTIONS.EDUCATION' | translate }}</h4>
           <ul>
             @for (education of education; track education.id) {
               <li>{{ education.content }}</li>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="vacancy-details">
-          <h4>{{ 'vacancyDetails.sections.experience' | translate }}</h4>
+          <h4>{{ 'VACANCY_DETAILS.SECTIONS.EXPERIENCE' | translate }}</h4>
           <ul>
             @for (work of experience; track work.id) {
               <li>{{ work.content }}</li>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="vacancy-details">
-          <h4>{{ 'vacancyDetails.sections.skills' | translate }}</h4>
+          <h4>{{ 'VACANCY_DETAILS.SECTIONS.SKILLS' | translate }}</h4>
           <ul>
             @for (skill of skill; track skill.id) {
               <li>{{ skill.content }}</li>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="vacancy-details">
-          <h4>{{ 'vacancyDetails.sections.qualities' | translate }}</h4>
+          <h4>{{ 'VACANCY_DETAILS.SECTIONS.QUALITIES' | translate }}</h4>
           <ul>
             @for (quality of personalQuality; track quality.id) {
               <li>{{ quality.content }}</li>
@@ -56,7 +56,7 @@
         </div>
 
         <div class="vacancy-details">
-          <h4>{{ 'vacancyDetails.sections.conditions' | translate }}</h4>
+          <h4>{{ 'VACANCY_DETAILS.SECTIONS.CONDITIONS' | translate }}</h4>
           <ul>
             @for (condition of condition; track condition.id) {
               <li>{{ condition.content }}</li>
@@ -68,18 +68,18 @@
   }
 
   <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id="application-form">
-    <h2>{{ 'vacancyDetails.form.title' | translate }}</h2>
-    <p>{{ 'vacancyDetails.form.subtitle' | translate }}</p>
+    <h2>{{ 'VACANCY_DETAILS.FORM.TITLE' | translate }}</h2>
+    <p>{{ 'VACANCY_DETAILS.FORM.SUBTITLE' | translate }}</p>
 
     <div class="form-row">
       <div class="full">
-        <input formControlName="lastName" [placeholder]="('vacancyDetails.form.lastName' | translate) + '*'" />
+        <input formControlName="lastName" [placeholder]="('VACANCY_DETAILS.FORM.LAST_NAME' | translate) + '*'" />
         @if (lastName?.invalid && lastName?.touched) {
           <div class="error-message">Фамилия обязательна.</div>
         }
       </div>
       <div class="full">
-        <input formControlName="firstName" [placeholder]="('vacancyDetails.form.firstName' | translate) + '*'" />
+        <input formControlName="firstName" [placeholder]="('VACANCY_DETAILS.FORM.FIRST_NAME' | translate) + '*'" />
         @if (firstName?.invalid && firstName?.touched) {
           <div class="error-message">Имя обязательно.</div>
         }
@@ -88,7 +88,7 @@
 
     <div class="form-row">
       <div class="full">
-        <input formControlName="phone" [placeholder]="('vacancyDetails.form.phone' | translate) + '*'" />
+        <input formControlName="phone" [placeholder]="('VACANCY_DETAILS.FORM.PHONE' | translate) + '*'" />
         @if (phone?.invalid && phone?.touched) {
           <div class="error-message">
             @if (phone?.errors?.['required']) {
@@ -101,7 +101,7 @@
         }
       </div>
       <div class="full">
-        <input formControlName="email" [placeholder]="('vacancyDetails.form.email' | translate) + '*'" />
+        <input formControlName="email" [placeholder]="('VACANCY_DETAILS.FORM.EMAIL' | translate) + '*'" />
         @if (email?.invalid && email?.touched) {
           <div class="error-message">
             @if (email?.errors?.['required']) {
@@ -122,26 +122,26 @@
       (dragover)="onDragOver($event)"
       (dragleave)="onDragLeave($event)"
     >
-      <p class="form-label">{{ 'vacancyDetails.form.dragOr' | translate }}</p>
-      <small>{{ 'vacancyDetails.form.supportedFormats' | translate }}</small>
+      <p class="form-label">{{ 'VACANCY_DETAILS.FORM.DRAG_OR' | translate }}</p>
+      <small>{{ 'VACANCY_DETAILS.FORM.SUPPORTED_FORMATS' | translate }}</small>
       <div>
         <input type="file" (change)="onFileSelected($event)" #fileInput hidden />
-        <button type="button" (click)="fileInput.click()">{{ 'buttons.uploadCV' | translate }}</button>
+        <button type="button" (click)="fileInput.click()">{{ 'BUTTONS.UPLOAD_CV' | translate }}</button>
         @if (fileName) {
           <span>{{ fileName }}</span>
         }
       </div>
     </div>
-    <button type="submit">{{ 'buttons.send' | translate }}</button>
+    <button type="submit">{{ 'BUTTONS.SEND' | translate }}</button>
   </form>
   @if (isSubmitted) {
     <div class="notification success-message">
-      {{ 'notifications.submitSuccess' | translate }}
+      {{ 'NOTIFICATIONS.SUBMIT_SUCCESSSuccess' | translate }}
     </div>
   }
 
   @if (isError) {}
   <div class="notification error-message animated">
-    {{ 'notifications.submitError' | translate }}
+    {{ 'NOTIFICATIONS.SUBMIT_ERROR' | translate }}
   </div>
 </div>

@@ -38,7 +38,7 @@ export class NewsDetailComponent implements OnInit {
   private newsService = inject(NewsService);
   private translate = inject(TranslateService);
   constructor() {
-    this.translate.get('buttons.copyLink').subscribe((text: string) => {
+    this.translate.get('BUTTONS.COPY_LINK').subscribe((text: string) => {
       this.copyButtonText = text;
     });
   } // Внедряем DOCUMENT
