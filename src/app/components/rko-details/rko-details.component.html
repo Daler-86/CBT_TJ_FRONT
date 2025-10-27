@@ -33,7 +33,7 @@
       <div class="faq-item">
         <div
           class="faq-question"
-          (click)="toggleFaq($index)"
+          (click)="toggleFaq(i)"
           (keydown.enter)="toggleFaq(i)"
           (keydown.space)="toggleFaq(i)"
           tabindex="0"
@@ -43,9 +43,9 @@
         >
           <!-- Динамический контент -->
           <span>{{ faq.title }}</span>
-          <span class="faq-icon">{{ selectedFaqIndex === $index ? '-' : '+' }}</span>
+          <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
         </div>
-        @if (selectedFaqIndex === $index) {
+        @if (selectedFaqIndex === i) {
           <div class="faq-answer">
             <!-- Динамический контент -->
             @for (i of faq.items; track i.id) {

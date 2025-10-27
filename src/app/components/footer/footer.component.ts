@@ -1,5 +1,5 @@
 import { Languages } from './../../shared/enums/languages.enum';
-import { Component } from '@angular/core';
+import { Component,inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { OnInit, OnDestroy } from '@angular/core';

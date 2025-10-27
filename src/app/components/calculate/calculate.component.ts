@@ -6,6 +6,7 @@ import { InstallmentCalculateComponent } from '../installment-calculate/installm
 import { CarLoanCalculateComponent } from '../car-loan-calculate/car-loan-calculate.component';
 import { LoanCalculatorComponent } from '../loan-calculator/loan-calculator.component';
 import { CalculatorData } from '../../models/calculate.model';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-calculate',

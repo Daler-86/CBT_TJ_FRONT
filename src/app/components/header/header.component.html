@@ -58,13 +58,13 @@
     </a>
 
     <ul class="menu desktop-only">
-      @for (menu of menus; track $index; let i = $index) {
+      @for (menu of menus; track i; let i = $index) {
         <li>
           @if (menu.items && menu.items.length > 0) {
             <div
               class="custom-dropdown"
-              (mouseenter)="toggleDropdown($index, $event)"
-              (mouseleave)="closeDropdown($index)"
+              (mouseenter)="toggleDropdown(i, $event)"
+              (mouseleave)="closeDropdown(i)"
             >
               <div
                 class="dropdown-selected contact"
@@ -79,12 +79,12 @@
                 <a id="body-medium">{{ menu.name | translate }}</a>
               </div>
 
-              @if (dropdownOpenMap[$index]) {
+              @if (dropdownOpenMap[i]) {
                 <div class="dropdown-options">
                   @for (item of menu.items; track item.id) {
                     <div
                       class="dropdown-option"
-                      (click)="selectOption(item, $index, $event, menu)"
+                      (click)="selectOption(item, i, $event, menu)"
                       (keydown.enter)="selectOption(item, i, $event, menu)"
                       (keydown.space)="selectOption(item, i, $event, menu)"
                       tabindex="0"
@@ -153,12 +153,12 @@
   </a>
 
   <ul class="mobile-menu-list">
-    @for (menu of menus; track $index; let i = $index) {
+    @for (menu of menus; track i; let i = $index) {
       <li>
         @if (menu.items && menu.items.length > 0) {
           <div
             class="menu-item"
-            (click)="toggleDropdown($index, $event)"
+            (click)="toggleDropdown(i, $event)"
             (keydown.enter)="toggleDropdown(i, $event)"
             (keydown.space)="toggleDropdown(i, $event)"
             tabindex="0"
@@ -170,7 +170,7 @@
             <a>{{ menu.name | translate }}</a>
             <img src="../../../assets/icons/arrow-down.png" alt="arrow" class="submenu-arrow" />
           </div>
-          @if (dropdownOpenMap[$index]) {
+          @if (dropdownOpenMap[i]) {
             <div class="submenu">
               @for (item of menu.items; track item.id) {
                 <div class="submenu-option">

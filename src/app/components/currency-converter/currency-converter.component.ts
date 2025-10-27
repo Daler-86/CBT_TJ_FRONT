@@ -1,13 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
-
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RateService } from '../../api/rate.service';
 import { ProcessedRate } from '../../models/rate.model';
-import { Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { AsyncPipe, DatePipe, DecimalPipe, NgClass, SlicePipe } from '@angular/common';
+
 interface Mode {
   key: string;
   label: string;

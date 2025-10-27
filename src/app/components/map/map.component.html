@@ -272,11 +272,11 @@
     <!-- Часто задаваемые вопросы -->
     <div class="faq-container">
       <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
-      @for (faq of faqs; track $index; let i = $index) {
+      @for (faq of faqs; track i; let i = $index) {
         <div class="faq-item">
           <div
             class="faq-question"
-            (click)="toggleFaq($index)"
+            (click)="toggleFaq(i)"
             (keydown.enter)="toggleFaq(i)"
             (keydown.space)="toggleFaq(i)"
             tabindex="0"
@@ -285,9 +285,9 @@
             [attr.aria-controls]="'faq-answer-' + i"
           >
             <span>{{ faq.title }}</span>
-            <span class="faq-icon">{{ selectedFaqIndex === $index ? '-' : '+' }}</span>
+            <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
           </div>
-          @if (selectedFaqIndex === $index) {
+          @if (selectedFaqIndex === i) {
             <div class="faq-answer">
               {{ faq.description }}
             </div>

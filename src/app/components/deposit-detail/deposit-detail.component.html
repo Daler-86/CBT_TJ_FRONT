@@ -124,6 +124,7 @@
     @if (depositData?.faqs) {
       <div class="faq-container">
         <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
+    
         @for (faq of depositData.faqs; track faq.id; let i = $index) {
           <div class="faq-item">
             <div
@@ -137,14 +138,16 @@
               [attr.aria-controls]="'faq-answer-' + i"
             >
               <span>{{ faq.title }}</span>
-              <span class="faq-icon">{{ selectedFaqIndex === $index ? '-' : '+' }}</span>
+              <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
             </div>
-            @if (selectedFaqIndex === $index) {
+    
+            @if (selectedFaqIndex === i) {
               <div class="faq-answer">{{ faq.description }}</div>
             }
           </div>
         }
       </div>
     }
+    
   </div>
 }

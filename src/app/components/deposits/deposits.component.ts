@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { DepositsService } from '../../api/deposit.service';
 import { MenuService } from '../../api/menu.service';
 import { Deposit } from '../../models/deposit.model';
 import { environment } from '../../../environments/environment';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-deposits',

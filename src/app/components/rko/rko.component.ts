@@ -12,7 +12,6 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-rko',
   standalone: true,
   imports: [RouterLink, RouterModule, TranslateModule, CommonModule],
-  imports: [RouterLink, RouterModule, TranslateModule, CommonModule],
   templateUrl: './rko.component.html',
   styleUrl: './rko.component.scss',
 })
