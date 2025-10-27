@@ -51,7 +51,7 @@
           {{ 'CURRENCY_CONVERTER.RATES_TABLE.UPDATED_LABEL' | translate }}
           {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}
         </p>
-        @if ((exchangeRatesByMode[selectedMode] ?? []).length > 3) {
+        @if (exchangeRatesByMode[selectedMode] && exchangeRatesByMode[selectedMode].length > 3) {
           <button (click)="toggleShowMore()">
             {{ (showMore ? 'BUTTONS.COLLAPSE' : 'BUTTONS.SHOW_MORE') | translate }}
           </button>
@@ -62,9 +62,6 @@
     <div class="currency-converter" [ngClass]="{ 'sell-active': transactionType === 'sell' }">
       <div
         class="switch-container"
-        (click)="toggleTransaction()"
-        (keydown.enter)="toggleTransaction()"
-        (keydown.space)="toggleTransaction()"
         tabindex="0"
         role="switch"
         [attr.aria-checked]="transactionType === 'buy' ? 'true' : 'false'"
@@ -95,12 +92,19 @@
               #anim
             />
           </rect>
-          <text x="50" y="30" [attr.fill]="transactionType === 'buy' ? 'white' : 'black'" style="cursor: pointer">
-            {{ 'BUTTONS.BUY' | translate }}
-          </text>
-          <text x="250" y="30" [attr.fill]="transactionType === 'sell' ? 'white' : 'black'" style="cursor: pointer">
-            {{ 'BUTTONS.SELL' | translate }}
-          </text>
+          <g (click)="toggleTransaction('buy')">
+            <rect x="0" y="0" width="200" height="50" fill="transparent" />
+            <text x="50" y="30" [attr.fill]="transactionType === 'buy' ? 'white' : 'black'">
+              {{ 'BUTTONS.BUY' | translate }}
+            </text>
+          </g>
+
+          <g (click)="toggleTransaction('sell')">
+            <rect x="200" y="0" width="200" height="50" fill="transparent" />
+            <text x="250" y="30" [attr.fill]="transactionType === 'sell' ? 'white' : 'black'">
+              {{ 'BUTTONS.SELL' | translate }}
+            </text>
+          </g>
         </svg>
       </div>
 

@@ -1,29 +1,31 @@
 <div class="vacancies">
   <div class="vacancies-container">
-    <div class="card-info">
-      <h2 class="card-title">{{ vacancyContent[0]?.title }}</h2>
-      <p class="card-description">
-        {{ vacancyContent[0]?.description }}
-      </p>
-      <div class="card-buttons">
-        <button
-          class="btn-primary"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          routerLink="/vacancies/list"
-        >
-          {{ 'BUTTONS.VIEW_VACANCIES' | translate }}
-        </button>
+    @if (vacancyContent[0]) {
+      <div class="card-info">
+        <h2 class="card-title">{{ vacancyContent[0].title }}</h2>
+        <p class="card-description">
+          {{ vacancyContent[0].description }}
+        </p>
+        <div class="card-buttons">
+          <button
+            class="btn-primary"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/vacancies/list"
+          >
+            {{ 'BUTTONS.VIEW_VACANCIES' | translate }}
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="card-image">
-      <!-- Динамический src, но статичный alt -->
-      <img
-        class="card"
-        [src]="imageUrl + vacancyContent[0]?.file_name"
-        [alt]="'vacancies.promoCard.imageAlt' | translate"
-      />
-    </div>
+      <div class="card-image">
+        <!-- Динамический src, но статичный alt -->
+        <img
+          class="card"
+          [src]="imageUrl + vacancyContent[0].file_name"
+          [alt]="'vacancies.promoCard.imageAlt' | translate"
+        />
+      </div>
+    }
   </div>
 
   <div class="container">

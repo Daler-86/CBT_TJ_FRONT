@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { RateService } from '../../api/rate.service';
 import { ProcessedRate } from '../../models/rate.model';
 import { AsyncPipe, DatePipe, DecimalPipe, NgClass, SlicePipe } from '@angular/common';
@@ -14,7 +14,7 @@ interface Mode {
 @Component({
   selector: 'app-currency-converter',
   standalone: true,
-  imports: [TranslateModule, FormsModule, HttpClientModule, DecimalPipe, NgClass, DatePipe, SlicePipe, AsyncPipe],
+  imports: [TranslateModule, FormsModule, HttpClientModule, DecimalPipe, NgClass, DatePipe, SlicePipe],
   templateUrl: './currency-converter.component.html',
   styleUrls: ['./currency-converter.component.scss'],
 })
@@ -31,7 +31,6 @@ export class CurrencyConverterComponent implements OnInit {
 
   modes: Mode[] = [];
 
-  private translate = inject(TranslateService);
   private rateService = inject(RateService);
 
   ngOnInit() {
@@ -71,8 +70,8 @@ export class CurrencyConverterComponent implements OnInit {
     this.updateCurrencies();
   }
 
-  toggleTransaction() {
-    this.transactionType = this.transactionType === 'buy' ? 'sell' : 'buy';
+  toggleTransaction(type: 'buy' | 'sell') {
+    this.transactionType = type;
     this.convertCurrency();
   }
 
