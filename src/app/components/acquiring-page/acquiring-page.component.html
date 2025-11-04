@@ -1,9 +1,9 @@
 <div class="info-page-container">
   <div class="section-1">
     <div class="box1">
-      <h1>Онлайн-эквайринг</h1>
-      <p>Станьте ближе к клиентам - принимайте оплаты через Favri и онлайн</p>
-      <button>Отправить заявку</button>
+      <h1>{{ 'ACQUIRING.TITLE' | translate }}</h1>
+      <p>{{ 'ACQUIRING.SUBTITLE' | translate }}</p>
+      <button>{{ 'ACQUIRING.SUBMIT_BUTTON' | translate }}</button>
     </div>
     <div class="box2">
       <img src="../../../assets/icons/эквайринг.png" alt="" />
@@ -11,94 +11,88 @@
   </div>
 
   <div class="section-3">
-    <h2 class="header">Плюсы эквайринга от Коммерцбанк Таджикистан</h2>
+    <h2 class="header">{{ 'ACQUIRING.ADVANTAGES.TITLE' | translate }}</h2>
     <div class="details-1">
       <div class="box1">
         <img src="../../../assets/icons/a1.png" alt="" />
-
         <div class="">
-          <h3>Через QR-код приложения «Фаври»</h3>
-          <p>
-            Более 150 000 пользователей «Фаври» смогут оплачивать, в том числе оплачивать через кредит-рассрочку. Деньги
-            моментально переходят на счет магазина/торговой точки.
-          </p>
+          <h3>{{ 'ACQUIRING.ADVANTAGES.QR_CODE.TITLE' | translate }}</h3>
+          <p>{{ 'ACQUIRING.ADVANTAGES.QR_CODE.DESCRIPTION' | translate }}</p>
         </div>
       </div>
       <div class="box1">
         <img src="../../../assets/icons/a2.png" alt="" />
         <div class="">
-          <h3>Через карты «Корти милли»</h3>
-          <p>
-            ПОС-терминал может принимать оплату по всем картам «Корти милли». Деньги переходят на счет магазина/торговой
-            точки на следующий рабочий день.
-          </p>
+          <h3>{{ 'ACQUIRING.ADVANTAGES.KORTI_MILLI.TITLE' | translate }}</h3>
+          <p>{{ 'ACQUIRING.ADVANTAGES.KORTI_MILLI.DESCRIPTION' | translate }}</p>
         </div>
       </div>
     </div>
 
-    <h2 class="header">Почему выбирают нас?</h2>
+    <h2 class="header">{{ 'ACQUIRING.WHY_US.TITLE' | translate }}</h2>
     <div class="details-2">
       <div class="box1">
         <img src="../../../assets/icons/a3.png" alt="" />
-
         <div class="">
-          <h3>Быстрое поступление средств</h3>
-          <p>Средства поступят уже на следующий день после оплаты</p>
+          <h3>{{ 'ACQUIRING.WHY_US.FAST_PAYMENT.TITLE' | translate }}</h3>
+          <p>{{ 'ACQUIRING.WHY_US.FAST_PAYMENT.DESCRIPTION' | translate }}</p>
         </div>
       </div>
       <div class="box1">
         <img src="../../../assets/icons/a4.png" alt="" />
-
         <div class="">
-          <h3>Уменьшение нагрузки</h3>
-          <p>Меньше времени на расчёты для вашего бухгалтера</p>
+          <h3>{{ 'ACQUIRING.WHY_US.REDUCE_LOAD.TITLE' | translate }}</h3>
+          <p>{{ 'ACQUIRING.WHY_US.REDUCE_LOAD.DESCRIPTION' | translate }}</p>
         </div>
       </div>
-
       <div class="box1">
         <img src="../../../assets/icons/a5.png" alt="" />
-
         <div class="">
-          <h3>Управление в режиме онлайн</h3>
-          <p>Ваши продажи под контролем — 24/7 и с любого устройства</p>
+          <h3>{{ 'ACQUIRING.WHY_US.ONLINE_MANAGEMENT.TITLE' | translate }}</h3>
+          <p>{{ 'ACQUIRING.WHY_US.ONLINE_MANAGEMENT.DESCRIPTION' | translate }}</p>
         </div>
       </div>
     </div>
-    <h2 class="header">Тарифы</h2>
+
+    <h2 class="header">{{ 'ACQUIRING.TARIFFS.TITLE' | translate }}</h2>
 
     <div class="btnCards">
-      <!-- Используем общий ключ для кнопки "Все" -->
-      <button [ngClass]="{ active: selectedTab === 'all' }" (click)="selectTab('all')">Торговая точка</button>
-      <button [ngClass]="{ active: selectedTab === 'all1' }" (click)="selectTab('all1')">Интернет-магазин</button>
-      <button [ngClass]="{ active: selectedTab === 'all2' }" (click)="selectTab('all2')">Для курьеров</button>
-      <!-- ВАЖНО: Добавлен пайп translate для названий брендов -->
+      <button [ngClass]="{ active: selectedTab === 'all' }" (click)="selectTab('all')">
+        {{ 'ACQUIRING.TARIFFS.TABS.RETAIL' | translate }}
+      </button>
+      <button [ngClass]="{ active: selectedTab === 'all1' }" (click)="selectTab('all1')">
+        {{ 'ACQUIRING.TARIFFS.TABS.ONLINE_STORE' | translate }}
+      </button>
+      <button [ngClass]="{ active: selectedTab === 'all2' }" (click)="selectTab('all2')">
+        {{ 'ACQUIRING.TARIFFS.TABS.COURIER' | translate }}
+      </button>
     </div>
 
     @if (selectedTab === 'all') {
       <div class="content">
         <div class="info-container">
           <div class="info-box">
-            <div class="info-title-1">кассовое обслуживание бесплатно</div>
+            <div class="info-title-1">{{ 'ACQUIRING.TARIFFS.RETAIL_INFO.CASH_SERVICE' | translate }}</div>
             <div class="info-title">
-              до 3-х дней
+              {{ 'ACQUIRING.TARIFFS.RETAIL_INFO.DAYS' | translate }}
               <div class="info-detail"></div>
             </div>
           </div>
         </div>
         <div class="info-container">
           <div class="info-box">
-            <div class="info-title-1">выгодная комиссия на эквайринг</div>
+            <div class="info-title-1">{{ 'ACQUIRING.TARIFFS.RETAIL_INFO.COMMISSION' | translate }}</div>
             <div class="info-title">
-              от 1 %
+              {{ 'ACQUIRING.TARIFFS.RETAIL_INFO.FROM_PERCENT' | translate }}
               <div class="info-detail"></div>
             </div>
           </div>
         </div>
         <div class="info-container">
           <div class="info-box">
-            <div class="info-title-1">обналичивание платежей от эквайринга</div>
+            <div class="info-title-1">{{ 'ACQUIRING.TARIFFS.RETAIL_INFO.WITHDRAWAL' | translate }}</div>
             <div class="info-title">
-              0 %
+              {{ 'ACQUIRING.TARIFFS.RETAIL_INFO.ZERO_PERCENT' | translate }}
               <div class="info-detail"></div>
             </div>
           </div>
@@ -106,65 +100,28 @@
       </div>
     }
 
-    <h2 class="header">Условия</h2>
+    <h2 class="header">{{ 'ACQUIRING.CONDITIONS.TITLE' | translate }}</h2>
     <div class="details-3">
-      <div class="box">
+      <div class="box" *ngFor="let item of 'ACQUIRING.CONDITIONS.ITEMS' | translate">
         <img src="../../../assets/icons/Check Circle.svg" alt="" />
-        <p>Круглосуточный доступ к счету</p>
-      </div>
-      <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="" />
-        <p>
-          Оплата безналичным путем за товары/услуги через пос-терминалы, установленные в различных торговых и сервисных
-          точках
-        </p>
-      </div>
-      <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="" />
-        <p>Онлайн-контроль карты, переводы, оплата услуг в мобильном приложении «Мобильного Банка» и на сайте банка</p>
-      </div>
-      <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="" />
-        <p>Сохранность денег на карточном счете при утере карты</p>
-      </div>
-      <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="" />
-        <p>Получение заработной платы через банкоматы 24 часа в сутки</p>
-      </div>
-      <div class="box">
-        <img src="../../../assets/icons/Check Circle.svg" alt="" />
-        <p>Обеспечение конфиденциальности информации по счету</p>
+        <p>{{ item }}</p>
       </div>
     </div>
-    <h2 class="header">Перечень необходимых документов</h2>
-    <div class="details-4">
-      <div class="box1">
-        <img src="../../../assets/icons/a6.png" alt="" />
 
+    <h2 class="header">{{ 'ACQUIRING.DOCUMENTS.TITLE' | translate }}</h2>
+    <div class="details-4">
+      <div class="box1" *ngFor="let doc of 'ACQUIRING.DOCUMENTS.ITEMS' | translate; let i = index">
+        <img src="../../../assets/icons/a{{ i + 6 }}.png" alt="" />
         <div class="">
-          <p>Копия паспорта Руководителя</p>
-        </div>
-      </div>
-      <div class="box1">
-        <img src="../../../assets/icons/a7.png" alt="" />
-        <div class="">
-          <p>Выписка из единого государственного реестра (Иқтибос)</p>
-        </div>
-      </div>
-      <div class="box1">
-        <img src="../../../assets/icons/a8.png" alt="" />
-        <div class="">
-          <p>Патент или свидетельство о государственной регистрации (Шаходатнома, патент)</p>
-        </div>
-      </div>
-      <div class="box1">
-        <img src="../../../assets/icons/a9.png" alt="" />
-        <div class="">
-          <p>ИНН (оригинал)</p>
+          <p>{{ doc }}</p>
         </div>
       </div>
     </div>
   </div>
-  <app-simple-application-form id="application-form" [apiUrl]="acquiringApiUrl" [titleKey]="'FORMS.TITLES.ACQUIRING'">
+
+  <app-simple-application-form
+    id="application-form"
+    [apiUrl]="acquiringApiUrl"
+    [titleKey]="'FORMS.TITLES.ACQUIRING'">
   </app-simple-application-form>
 </div>

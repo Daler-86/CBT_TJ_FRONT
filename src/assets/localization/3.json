@@ -865,5 +865,159 @@
     "TITLE": "Page Under Construction",
     "MESSAGE": "This page is coming soon.",
     "HOME_LINK": "Back to Home"
+  },
+
+  "ACQUIRING": {
+    "TITLE": "Online Acquiring",
+    "SUBTITLE": "Get closer to customers - accept payments via Favri and online",
+    "SUBMIT_BUTTON": "Submit Application",
+    "ADVANTAGES": {
+      "TITLE": "Advantages of acquiring from Kommertsbank Tajikistan",
+      "QR_CODE": {
+        "TITLE": "Via QR code of the Favri app",
+        "DESCRIPTION": "More than 150,000 Favri users will be able to pay, including payment via credit installments. Money is instantly transferred to the store/retail point account."
+      },
+      "KORTI_MILLI": {
+        "TITLE": "Via Korti Milli cards",
+        "DESCRIPTION": "POS terminal can accept payment from all Korti Milli cards. Money is transferred to the store/retail point account on the next business day."
+      }
+    },
+    "WHY_US": {
+      "TITLE": "Why choose us?",
+      "FAST_PAYMENT": {
+        "TITLE": "Fast receipt of funds",
+        "DESCRIPTION": "Funds will arrive the next day after payment"
+      },
+      "REDUCE_LOAD": {
+        "TITLE": "Reduced workload",
+        "DESCRIPTION": "Less time spent on calculations for your accountant"
+      },
+      "ONLINE_MANAGEMENT": {
+        "TITLE": "Online management",
+        "DESCRIPTION": "Your sales are under control — 24/7 from any device"
+      }
+    },
+    "TARIFFS": {
+      "TITLE": "Tariffs",
+      "TABS": {
+        "RETAIL": "Retail point",
+        "ONLINE_STORE": "Online store",
+        "COURIER": "For couriers"
+      },
+      "RETAIL_INFO": {
+        "CASH_SERVICE": "cash service free",
+        "DAYS": "up to 3 days",
+        "COMMISSION": "favorable commission for acquiring",
+        "FROM_PERCENT": "from 1 %",
+        "WITHDRAWAL": "withdrawal of payments from acquiring",
+        "ZERO_PERCENT": "0 %"
+      }
+    },
+    "CONDITIONS": {
+      "TITLE": "Conditions",
+      "ITEMS": [
+        "Round-the-clock access to the account",
+        "Cashless payment for goods/services through POS terminals installed at various retail and service points",
+        "Online card control, transfers, bill payment in the Mobile Banking application and on the bank's website",
+        "Safety of money in the card account when the card is lost",
+        "Receiving salary through ATMs 24 hours a day",
+        "Ensuring confidentiality of account information"
+      ]
+    },
+    "DOCUMENTS": {
+      "TITLE": "List of required documents",
+      "ITEMS": [
+        "Copy of Director's passport",
+        "Extract from the unified state register (Iqtibos)",
+        "Patent or certificate of state registration (Shahodatnoma, patent)",
+        "TIN (original)"
+      ]
+    }
+  },
+
+  "SALARY_PROJECT": {
+    "TITLE": "Salary Project",
+    "SUBTITLE": "The salary project will free your organization from the need to withdraw cash",
+    "SUBMIT_BUTTON": "Submit Application",
+    "DESCRIPTION_1": "The salary project will free your organization from the need to withdraw cash from the account, recount it, and pay each employee their salary in cash. In addition to saving time, this is also security - a very important aspect when delivering cash to the organization's office.",
+    "DESCRIPTION_2": "As for convenience for employees, your employees will be able to receive salaries through any ATMs using payment cards 24 hours a day, 365 days a year, and also make cashless payments for goods/services through Mobile Banking and POS terminals installed at various retail and service points.",
+    "SIMPLE_PROFITABLE": "With the salary project - simple, profitable and convenient",
+    "FEATURES": {
+      "MOBILE_APP": {
+        "TITLE": "Mobile Application",
+        "DESCRIPTION": "Salary payments to employees in other banks directly from the application"
+      },
+      "PERSONAL_CONDITIONS": {
+        "TITLE": "Personal conditions in everything",
+        "DESCRIPTION": "Cards for any salary: for employees and managers"
+      }
+    },
+    "COMPANY_BENEFITS": {
+      "TITLE": "Benefits of the salary project for your organization",
+      "ITEMS": [
+        "Reducing the risks of receiving, storing and transporting cash intended for payment to employees",
+        "Reducing the number of employees engaged in accounting and cashier work",
+        "Elimination of queues for salary collection",
+        "Provision of business travel expenses in a cashless manner",
+        "Ensuring confidentiality of information on individual salaries"
+      ]
+    },
+    "EMPLOYEE_BENEFITS": {
+      "TITLE": "Benefits of the salary project for your organization's employees",
+      "ITEMS": [
+        "Round-the-clock access to the account",
+        "Cashless payment for goods/services through POS terminals installed at various retail and service points",
+        "Online card control, transfers, bill payment in the Mobile Banking application and on the bank's website",
+        "Safety of money in the card account when the card is lost",
+        "Receiving salary through ATMs 24 hours a day",
+        "Ensuring confidentiality of account information"
+      ]
+    }
+  },
+
+  "INSURANCE_PAGE": {
+    "TITLE": "Insurance",
+    "DESCRIPTION_1": "The deposit insurance system for individuals is a set of measures aimed at protecting depositors' rights and interests through compensation payments.",
+    "DESCRIPTION_2": "The deposit insurance system for individuals protects depositors' rights by compensating them in case of an insured event in credit institutions that are members of the Deposit Insurance Fund.",
+    "DESCRIPTION_3": "The goal of the deposit insurance system is to ensure financial stability in the Republic of Tajikistan and maintain public trust in the banking system.",
+    "DESCRIPTION_4": "The principles of the deposit insurance system are regulated by the Law of the Republic of Tajikistan 'On Deposit Insurance for Individuals'.",
+    "NO_COMPENSATION_TITLE": "In the event of an insured case, compensation for the following deposits is not paid:",
+    "NO_COMPENSATION_LIST": [
+      "Deposits that the credit institution may offset against the depositor’s debt",
+      "Deposits pledged as collateral",
+      "Deposits that worsened the credit institution’s financial condition",
+      "Deposits of affiliated persons of the credit institution",
+      "Deposits of partners of the auditing company of the credit institution",
+      "Deposits of individuals owning more than 5% of the bank’s shares",
+      "Deposits in foreign branches of the credit institution",
+      "Deposits equal to the depositor’s unpaid debt",
+      "Deposits under 10 somoni"
+    ],
+    "COMPENSATION_TITLE": "Insurance Compensation",
+    "COMPENSATION_TEXT": "In case of an insured event, the compensation amount for deposits is:",
+    "COMPENSATION_DETAILS": [
+      "In national currency — up to 500 calculation indicators",
+      "In foreign currency — up to 350 calculation indicators",
+      "Deposits in national currency are reimbursed in somoni; foreign currency deposits are reimbursed in somoni at the official exchange rate of the National Bank of Tajikistan on the date of the insured event. Interest is not reimbursed."
+    ],
+    "INFO_FOR_DEPOSITORS_TITLE": "Information for Depositors",
+    "INFO_ITEMS": [
+      {
+        "title": "Check the credit institution",
+        "text": "Make sure the organization you choose is a member of the deposit insurance system and has a membership certificate."
+      },
+      {
+        "title": "Check your deposit agreement",
+        "text": "Carefully verify your personal data in the contract and inform the bank promptly about any changes."
+      },
+      {
+        "title": "Remember which deposits are not reimbursed",
+        "text": "Deposits pledged as collateral, obtained illegally, or belonging to persons affiliated with the bank are not reimbursed."
+      },
+      {
+        "title": "Receiving compensation",
+        "text": "You have one year to receive compensation. Avoid rushing on the first day to skip queues. The Fund may extend the deadline for valid reasons."
+      }
+    ]
   }
 }
