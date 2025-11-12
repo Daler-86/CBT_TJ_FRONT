@@ -1,0 +1,16 @@
+@if (cardData && cardData.id) {
+    <div class="card-container">
+      <div class="card-info">
+        <h2 class="card-title">{{ cardData.title }}</h2>
+        <p class="card-description">{{ cardData.description }}</p>
+        <div class="card-buttons">
+          <button class="btn-primary" (click)="scrollToForm()">
+            {{ 'BUTTONS.APPLY_FOR_CARD' | translate }}
+          </button>
+        </div>
+      </div>
+      <div class="card-image">
+        <img class="card" [src]="imageUrl + cardData.upload_file" [alt]="cardData.title" />
+      </div>
+    </div>
+  }
