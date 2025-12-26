@@ -76,7 +76,7 @@
                 [attr.aria-expanded]="dropdownOpenMap[i]"
                 aria-haspopup="true"
               >
-                <a id="body-medium">{{ menu.name | translate }}</a>
+                <a id="body-medium">{{ menu.name  }}</a>
               </div>
 
               @if (dropdownOpenMap[i]) {
@@ -92,11 +92,11 @@
                     >
                       @if (item.is_new_tab) {
                         <a [href]="item.route" target="_blank" rel="noopener noreferrer">
-                          <p id="body-medium">{{ item.name | translate }}</p>
+                          <p id="body-medium">{{ item.name  }}</p>
                         </a>
                       } @else {
                         <a [routerLink]="item.route">
-                          <p id="body-medium">{{ item.name | translate }}</p>
+                          <p id="body-medium">{{ item.name  }}</p>
                         </a>
                       }
                     </div>
@@ -109,12 +109,12 @@
           @if (!menu.items || menu.items.length === 0) {
             @if (menu.is_new_tab) {
               <a class="a" [href]="menu.route" target="_blank" rel="noopener noreferrer">
-                {{ menu.name | translate }}
+                {{ menu.name }}
               </a>
             }
             @if (!menu.is_new_tab) {
               <a class="a" [routerLink]="menu.route">
-                {{ menu.name | translate }}
+                {{ menu.name }}
               </a>
             }
           }
@@ -181,11 +181,11 @@
                       rel="noopener noreferrer"
                       (click)="selectOption(item, $index, $event, menu)"
                     >
-                      <p>{{ item.name | translate }}</p>
+                      <p>{{ item.name  }}</p>
                     </a>
                   } @else {
                     <a [routerLink]="item.route" (click)="selectOption(item, $index, $event, menu)">
-                      <p>{{ item.name | translate }}</p>
+                      <p>{{ item.name }}</p>
                     </a>
                   }
                 </div>
@@ -203,11 +203,11 @@
               rel="noopener noreferrer"
               (click)="toggleMenu()"
             >
-              {{ menu.name | translate }}
+              {{ menu.name  }}
             </a>
           } @else {
             <a class="menu-item single-link" [routerLink]="menu.route" (click)="toggleMenu()">
-              {{ menu.name | translate }}
+              {{ menu.name  }}
             </a>
           }
         }
