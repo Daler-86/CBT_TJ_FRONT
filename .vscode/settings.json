@@ -3,10 +3,9 @@
   "editor.formatOnSave": true,
   "editor.fontSize": 14,
 
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "always"
-    },
- 
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
 
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -35,5 +34,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 4
-  }
+  },
+  "liveServer.settings.port": 5501
 }
