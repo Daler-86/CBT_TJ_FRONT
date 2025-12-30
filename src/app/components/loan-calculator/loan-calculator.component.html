@@ -51,15 +51,14 @@
         }
 
         <input
-          class="range-slider"
-          type="range"
-          id="loanAmountInput"
-          [(ngModel)]="loanAmount"
-          (input)="recalculate()"
-          (blur)="stopEditing()"
-          (keydown.enter)="stopEditing()"
-          [attr.aria-label]="'CALCULATORS.LOAN.EDIT_AMOUNT' | translate"
-        />
+        class="range-slider"
+         type="range"
+              [min]="minAmount"
+               [max]="maxAmount"
+              [(ngModel)]="loanAmount" 
+              (input)="recalculate()"
+              [style.--range-percent]="loanAmountPercent">
+        
       </div>
       <div class="range-labels">
         <span>{{ amountLabels[0] }}</span>
