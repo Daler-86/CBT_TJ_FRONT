@@ -4,7 +4,7 @@
     <h2>{{ 'CALCULATORS.INSTALLMENT.TITLE' | translate }}</h2>
 
     <div class="form-group">
-      <label for="loanAmountInput">{{ 'calculators.installment.amount' | translate }}</label>
+      <label for="loanAmountInput">{{ 'CALCULATORS.INSTALLMENT.AMOUNT' | translate }}</label>
       <div class="input-slider-container">
         <div class="input-display">
           @if (!isEditingAmount) {
@@ -16,13 +16,14 @@
               role="button"
               aria-controls="loanAmountInput"
               [attr.aria-label]="
-                ('calculators.installment.currentAmount' | translate) +
+                ('CALCULATORS.INSTALLMENT.CURRENT_AMOUNT' | translate) +
                 ' ' +
                 (loanAmount | number: '1.0-0' : 'ru-RU') +
                 ' ' +
-                ('calculators.common.currencySymbol.tjs' | translate) +
+                ('CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate) +
                 '. ' +
-                ('calculators.installment.clickToEdit' | translate)
+                ('CALCULATORS.INSTALLMENT.CLICK_TO_EDIT' | translate)
+
               "
             >
               {{ loanAmount | number: '1.0-0' : 'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
@@ -36,7 +37,7 @@
               (input)="onValueChange()"
               (blur)="stopEditing()"
               (keydown.enter)="stopEditing()"
-              [attr.aria-label]="'calculators.installment.editAmount' | translate"
+              [attr.aria-label]="'CALCULATORS.INSTALLMENT.EDIT_AMOUNT' | translate"
             />
           }
         </div>
@@ -50,7 +51,7 @@
           [(ngModel)]="loanAmount"
           (input)="onValueChange()"
           id="loanAmountRange"
-          [attr.aria-label]="'calculators.installment.amountRange' | translate"
+          [attr.aria-label]="'CALCULATORS.INSTALLMENT.AMOUNT' | translate"
           [style.--range-percent]="loanAmountPercent"
         />
 

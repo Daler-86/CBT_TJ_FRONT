@@ -302,6 +302,26 @@
       "SUBTITLE": "We will resolve"
     }
   },
+  "STATISTICS": {
+    "TITLE": "Statistics",
+    "EMPLOYEES": {
+      "TITLE": "Employees",
+      "DESCRIPTION": "Qualified and experienced employees working with us"
+    },
+    "BRANCHES": {
+      "TITLE": "Branches",
+      "DESCRIPTION": "Our branches are located in different regions to stay close to our clients"
+    },
+    "ATMS": {
+      "TITLE": "ATMs",
+      "DESCRIPTION": "ATMs are installed in convenient and accessible locations"
+    },
+    "TERMINALS": {
+      "TITLE": "Terminals",
+      "DESCRIPTION": "Terminals for fast and convenient customer service"
+    }
+  },
+  
   "FOOTER": {
     "CONTACTS": {
       "FOR_INDIVIDUALS": "For private individuals",
@@ -543,10 +563,16 @@
       "TITLE": "Installment Calculator",
       "AMOUNT": "Amount",
       "TERM": "Term",
-      "TOTAL_PAYMENT": "Total payment amount",
-      "SELECT_TERM_ERROR": "Select a term from the list to see the calculation.",
-      "APPLY_BUTTON": "Apply for installment"
-    }
+      "TOTAL_PAYMENT": "Total payment",
+      "SELECT_TERM_ERROR": "To see the calculation, please select a term from the available options.",
+      "APPLY_BUTTON": "Apply for installment",
+    
+      "CURRENT_AMOUNT": "Current amount",
+      "CLICK_TO_EDIT": "Click to edit",
+      "EDIT_AMOUNT": "Edit amount"
+    },
+    "NO_DATA": "No data available for calculation"
+    
   },
   "DEPOSIT_PRODUCTS": {
     "DURAKHSHON": "Children's Deposit «Durakhshon»",
