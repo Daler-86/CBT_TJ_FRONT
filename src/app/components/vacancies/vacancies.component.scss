@@ -1,11 +1,11 @@
 .vacancies {
-  background-color: white;
+  // background-color: white;
   margin: none;
 
   .vacancies-container {
     margin: 30px 5% 0;
     box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-    background-color: #f8f9fa;
+    background-color: #fff;
     border-radius: 24px;
     display: flex;
     padding: 29px 58px;
@@ -77,7 +77,7 @@
       grid-template-columns: 1fr;
     }
     .box {
-      background-color: #f7f8fa;
+      background-color: #fff;
       border-radius: 24px;
       padding: 30px 60px;
       box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
@@ -196,7 +196,7 @@
 
     .office-info {
       width: 25%;
-      background-color: #f7f8fa;
+      background-color: #f6f7f8;
       border-radius: 24px;
       padding: 30px 60px;
       text-align: start;

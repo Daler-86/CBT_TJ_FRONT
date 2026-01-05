@@ -27,7 +27,7 @@
   }
   // width: 90%;
   padding: 20px 5% 0;
-  background-color: #f8f9fa;
+  background-color: #f6f7f8;
   .div {
     display: flex;
 
@@ -46,11 +46,12 @@
       padding: 46px 62px;
       box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
       border-radius: 10px;
-      background-color: #f8f9fa;
+      background-color: #f6f7f8;
       margin-bottom: 25px;
 
       h3 {
-        font-size: 24px;
+        font-size: 32px;
+        color: #020617;
         font-weight: 700;
       }
     }
@@ -71,9 +72,9 @@
           text-align: left;
           font-size: $font-size-body-large;
           line-height: $line-height-body-large;
-          color: #66788f;
+          color: #666f8d;
           font-weight: 500;
-          border-bottom: 1px solid #66788f;
+          border-bottom: 1px solid #cbd5e1;
         }
         td {
           font-size: $font-size-body-large;
@@ -103,6 +104,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        p {
+          color: #666f8d;
+          font-family: Inter;
+          font-weight: 500;
+          font-size: 17px;
+          line-height: 120%;
+          letter-spacing: 0%;
+        }
         button {
           border: none;
           background-color: white;
@@ -122,78 +131,193 @@
       }
       background-color: white;
 
-      .switch-container {
+      .transaction-switcher {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        gap: 16px; // Отступ между кнопками как на фото
         width: 100%;
-        background-color: #f1f5f9;
-        border-radius: 12px;
-        box-shadow: 0px 4px 20px 0px #afafaf2e;
         margin-bottom: 30px;
 
-        cursor: pointer;
+        .switch-btn {
+          flex: 1; // Чтобы кнопки были одинаковой ширины
+          padding: 14px 28px;
+          border: none;
+          border-radius: 100px; // Закругленные края (форма пилюли)
+          font-size: 16px;
+          font-weight: 500;
+          cursor: pointer;
+          transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
 
-        .switch-buttons {
-          width: 100%;
-          .switch-rect {
-            transition: transform 0.6s ease; /* Настраиваем продолжительность и плавность */
+          // Стили для неактивной кнопки (как "Продать" на фото)
+          background-color: #f1f5f9;
+          color: #020617;
+
+          // Стили для активной кнопки (как "Купить" на фото)
+          &.active {
+            background-color: #00b06c;
+            color: #ffffff;
           }
 
-          .switch-rect.buy {
-            transform: translateX(0);
-          }
-
-          .switch-rect.sell {
-            transform: translateX(200px); /* Смещение вправо при продаже */
+          &:outline {
+            outline: none;
           }
         }
       }
 
       .converter-inputs {
-        display: block;
-        align-items: center;
-        width: 100%;
-        input:focus {
-          outline: none;
-        }
-        padding: 10px 0;
+        margin-bottom: 24px;
+
         label {
-          width: 100px;
-          color: #66788f;
-          margin: 20px 0 0;
-          font-size: $font-size-body-medium;
-          line-height: $line-height-body-medium;
+          display: block;
+          color: #64748b;
+          font-size: 14px;
           font-weight: 500;
+          margin-bottom: 8px;
+          padding-left: 4px;
         }
 
-        input,
-        select {
-          padding: 10px;
-          margin: 10px 0 0;
-          border: 1.5px solid #cbd5e1;
-          // margin-right: 10px;
-        }
-        select:focus {
-          outline: none;
-        }
-        .a {
+        .field-wrapper {
           display: flex;
+          align-items: center;
+          border: 1.5px solid #e2e8f0; // Более светлая рамка в покое
+          border-radius: 12px;
+          padding: 0 20px; // Убираем вертикальный padding здесь, переносим его на дочерние элементы
+          height: 64px; // Фиксированная высота, чтобы ничего не прыгало
+          background-color: white;
+          transition: all 0.2s ease;
+
+          &:focus-within {
+            border-color: #00b06c;
+            box-shadow: 0 0 0 1px #00b06c; // Усиливаем визуально фокус без изменения геометрии
+          }
+
+          .amount-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 17px;
+            font-weight: 700;
+            color: #020617;
+            background: transparent;
+            height: 100%; // Инпут занимает всю высоту обертки
+            min-width: 0; // Важно для Flexbox, чтобы не распирало
+          }
+
+          .currency-select-container {
+            flex: 0 0 85px; // Фиксированная ширина для зоны выбора валюты (TJS, USD и т.д.)
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+            height: 100%;
+
+            select {
+              appearance: none;
+              -webkit-appearance: none;
+              border: none;
+              background: transparent;
+              font-size: 18px;
+              font-weight: 600;
+              color: #0f172a;
+              width: 100%;
+              height: 100%;
+              padding-right: 24px; // Место под стрелку
+              cursor: pointer;
+              outline: none;
+              text-align: right;
+              z-index: 2;
+
+              // Убираем синюю подсветку в некоторых браузерах
+              &:focus {
+                outline: none;
+                box-shadow: none;
+              }
+            }
+          }
         }
-        input {
-          width: 70%;
-          border-right: 0px;
-          border-radius: 6px 0 0 6px;
+        .currency-select-container {
+          position: relative;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          padding: 5px 0 5px 15px;
+          user-select: none;
+
+          .selected-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-right: 8px;
+          }
+
+          .chevron-down {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.2s;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+
+            &.open {
+              transform: rotate(180deg);
+            }
+          }
+
+          // ТО САМОЕ МЕНЮ (как на фото)
+          .custom-dropdown {
+            position: absolute;
+            top: calc(100%); // Отступ от поля
+            right: -10px;
+            width: 160px;
+            background: #ffffff;
+            border-radius: 16px; // Большое скругление
+            box-shadow:
+              0 10px 25px rgba(0, 0, 0, 0.1),
+              0 4px 10px rgba(0, 0, 0, 0.05); // Мягкая тень
+            padding: 8px;
+            z-index: 100;
+            animation: fadeIn 0.2s ease-out;
+
+            .dropdown-item {
+              padding: 12px 16px;
+              font-size: 16px;
+              font-weight: 500;
+              color: #334155;
+              border-radius: 12px; // Скругление каждого пункта
+              transition: all 0.2s;
+
+              &:hover {
+                background-color: #f1f5f9; // Светлый фон при наведении
+                color: #00b06c;
+              }
+
+              &.active {
+                background-color: #f1f5f9; // Цвет выбранного (как "Вклады" на фото)
+                color: #00b06c;
+                font-weight: 600;
+              }
+            }
+          }
         }
-        select {
-          width: 30%;
-          border-left: 0px;
-          border-radius: 0 6px 6px 0;
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
-        .mode {
-          border: 1.5px solid #cbd5e1;
-          width: auto;
-        }
+      }
+
+      // Убираем стрелочки у input type="number"
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
       }
       button {
         background-color: #00b06c;

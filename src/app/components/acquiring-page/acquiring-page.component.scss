@@ -2,11 +2,11 @@
 $primary-color: #00b06c;
 $text-primary: #212529;
 $text-secondary: #555;
-$background-light: #f8f9fa;
+$background-light: #f6f7f8;
 $border-color: #e9ecef;
 
 .info-page-container {
-  background-color: #f7f8fa;
+  background-color: #f6f7f8;
   padding: 3% 5%;
 
   @media (max-width: 768px) {
@@ -442,8 +442,7 @@ $border-color: #e9ecef;
           color: #666f8d;
           padding-top: 80px;
           font-size: 20px;
-          text-align: center; // Center text for better readability
-
+          
           @media (max-width: 768px) {
             padding-top: 30px; // Reduce padding on small screens
             font-size: 16px;
@@ -451,7 +450,7 @@ $border-color: #e9ecef;
         }
 
         img {
-          align-self: center; // Center image
+      
           max-width: 80px; // Adjust image size
           height: auto;
         }

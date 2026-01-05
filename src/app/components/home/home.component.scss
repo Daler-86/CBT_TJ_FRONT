@@ -1,6 +1,6 @@
 @import '../../../styles/variables.scss';
 .main {
-  background: #fff;
+  background-color: #f6f7f8;
   padding: 20px 0;
   .home {
     .p {
@@ -29,9 +29,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-end; // Прижимаем контент к низу для единой линии текста
-      padding: 24px;
-      background-color: #f1f5f9;
-      border-radius: 16px;
+      padding: 35px 23px;
+      background-color: #fff;
+      border-radius: 24px;
       cursor: pointer;
       box-sizing: border-box;
       text-align: center;
@@ -65,7 +65,7 @@
       width: 90%;
       margin: auto;
       padding: 20px 0;
-      background-color: #f8f9fa;
+      background-color: #f6f7f8;
       display: grid;
 
       grid-template-columns: 40% 55%;
@@ -104,7 +104,7 @@
       }
       // width: 90%;
       padding: 2% 5%;
-      background-color: #f8f9fa;
+      background-color: #f6f7f8;
       .favri {
         display: flex;
         margin: 30px 0;
@@ -196,7 +196,7 @@
 
         div {
           padding: 20px 24px;
-          background-color: #f7f8fa;
+          background-color: #f6f7f8;
           border-radius: 22px;
           display: flex;
           flex-direction: column;
@@ -219,7 +219,7 @@
       display: flex;
       padding: 30px 5% 55px;
       justify-content: space-between;
-      background-color: #f8f9fa;
+      background-color: #f6f7f8;
       align-items: stretch;
 
       gap: 2%;
@@ -322,7 +322,7 @@
     }
     .statistics-section {
       padding: 2% 5%;
-      background-color: #f7f8fa;
+      background-color: #f6f7f8;
       @media (max-width: 768px) {
         padding: 2% 3%;
       }
@@ -360,7 +360,7 @@
           }
 
           .statistic-item {
-            background-color: #f7f8fa;
+            background-color: #f6f7f8;
             border-radius: 24px;
             padding: 40px 25px;
             // text-align: center;

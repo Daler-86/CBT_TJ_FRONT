@@ -1,247 +1,128 @@
 <nav>
-  <div class="adress desktop-only">
-    <div class="cont">
-      <div class="contact">
-        <img src="../../../assets/icons/phonegrey.svg" [alt]="'ALT.PHONE_ICON' | translate" />
-        <p class="p" id="body-medium">+(992) 44 630 8888</p>
-      </div>
-      <a href="" routerLink="map" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        <div class="contact">
-          <img src="../../../assets/icons/Map Point.svg" [alt]="'ALT.MAP_POINT_ICON' | translate" />
-          <p class="p" id="body-medium">{{ 'HEADER.TOP.OFFICES_AND_ATMS' | translate }}</p>
-        </div>
-      </a>
-    </div>
-    <div class="custom-dropdown">
-      <div
-        class="dropdown-selected contact"
-        (click)="toggleDropdown1($event)"
-        (keydown.enter)="toggleDropdown1($event)"
-        (keydown.space)="toggleDropdown1($event)"
-        tabindex="0"
-        role="button"
-        [attr.aria-expanded]="dropdownOpen"
-        aria-haspopup="listbox"
-      >
-        <img src="../../../assets/icons/Global.svg" [alt]="'ALT.GLOBAL_ICON' | translate" />
-        <p class="p" id="body-medium">{{ getDisplayLanguage() }}</p>
-        <img src="../../../assets/icons/arrow-down.png" [alt]="'ALT.ARROW_DOWN' | translate" />
-      </div>
-      @if (dropdownOpen) {
-        <div class="dropdown-options">
-          @for (option of languageOptions; track $index) {
-            <div
-              class="dropdown-option"
-              (click)="selectLanguage(option)"
-              (keydown.enter)="selectLanguage(option)"
-              (keydown.space)="selectLanguage(option)"
-              tabindex="0"
-              role="option"
-              [attr.aria-selected]="option.value === selectedLanguage"
-            >
-              <p id="body-medium">{{ option.label }}</p>
-              @if (option.value === selectedLanguage) {
-                <img src="../../../assets/icons/tick-circle.svg" [alt]="'ALT.TICK_ICON' | translate" />
-              }
-            </div>
-          }
-        </div>
-      }
-    </div>
-  </div>
-
   <div class="men">
-    <a routerLink="/" href="" class="logo-link">
+    <!-- 1. Логотип -->
+    <a routerLink="/" class="logo-link">
       <div class="logo">
-        <img width="200px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO' | translate" />
+        <img width="180px" [src]="logoSrc" alt="logo" />
       </div>
     </a>
 
+    <!-- 2. Главное меню (Центр) -->
     <ul class="menu desktop-only">
       @for (menu of menus; track i; let i = $index) {
-        <li>
-          @if (menu.items && menu.items.length > 0) {
-            <div
-              class="custom-dropdown"
-              (mouseenter)="toggleDropdown(i, $event)"
-              (mouseleave)="closeDropdown(i)"
-            >
-              <div
-                class="dropdown-selected contact"
-                (click)="toggleDropdown(i, $event)"
-                (keydown.enter)="toggleDropdown(i, $event)"
-                (keydown.space)="toggleDropdown(i, $event)"
-                tabindex="0"
-                role="button"
-                [attr.aria-expanded]="dropdownOpenMap[i]"
-                aria-haspopup="true"
-              >
-                <a id="body-medium">{{ menu.name  }}</a>
+        <li (mouseenter)="toggleDropdown(i, $event)" (mouseleave)="closeDropdown(i)">
+          @if (menu.items.length) {
+            <div class="custom-dropdown">
+              <div class="dropdown-selected">
+                <a>{{ menu.name }}</a>
               </div>
-
               @if (dropdownOpenMap[i]) {
                 <div class="dropdown-options">
                   @for (item of menu.items; track item.id) {
-                    <div
-                      class="dropdown-option"
-                      (click)="selectOption(item, i, $event, menu)"
-                      (keydown.enter)="selectOption(item, i, $event, menu)"
-                      (keydown.space)="selectOption(item, i, $event, menu)"
-                      tabindex="0"
-                      role="menuitem"
-                    >
-                      @if (item.is_new_tab) {
-                        <a [href]="item.route" target="_blank" rel="noopener noreferrer">
-                          <p id="body-medium">{{ item.name  }}</p>
-                        </a>
-                      } @else {
-                        <a [routerLink]="item.route">
-                          <p id="body-medium">{{ item.name  }}</p>
-                        </a>
-                      }
-                    </div>
+                    <a [routerLink]="item.route" class="dropdown-option">{{ item.name }}</a>
                   }
                 </div>
               }
             </div>
-          }
-
-          @if (!menu.items || menu.items.length === 0) {
-            @if (menu.is_new_tab) {
-              <a class="a" [href]="menu.route" target="_blank" rel="noopener noreferrer">
-                {{ menu.name }}
-              </a>
-            }
-            @if (!menu.is_new_tab) {
-              <a class="a" [routerLink]="menu.route">
-                {{ menu.name }}
-              </a>
-            }
+          } @else {
+            <a class="menu-link" [routerLink]="menu.route" routerLinkActive="active">{{ menu.name }}</a>
           }
         </li>
       }
     </ul>
 
-    <div
-      class="burger mobile-only"
-      (click)="toggleMenu()"
-      (keydown.enter)="toggleMenu()"
-      (keydown.space)="toggleMenu()"
-      tabindex="0"
-      role="button"
-      [class.active]="menuActive"
-      [attr.aria-expanded]="menuActive"
-      aria-controls="mobile-menu-overlay"
-    >
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-</nav>
-
-<div class="mobile-overlay" [class.active]="menuActive" id="mobile-menu-overlay" role="dialog" aria-modal="true">
-  <div class="mobile-menu-header">
-    <a routerLink="/" (click)="toggleMenu()">
-      <img width="160px" [src]="logoSrc" [alt]="'ALT.MAIN_LOGO' | translate" />
-    </a>
-  </div>
-
-  <a routerLink="map" class="mobile-menu-map-button" (click)="toggleMenu()">
-    <p>{{ 'HEADER.TOP.OFFICES_AND_ATMS' | translate }}</p>
-    <img src="../../../assets/icons/map-icons.svg" [alt]="'ALT.MAP_POINT_ICON' | translate" />
-  </a>
-
-  <ul class="mobile-menu-list">
-    @for (menu of menus; track i; let i = $index) {
-      <li>
-        @if (menu.items && menu.items.length > 0) {
-          <div
-            class="menu-item"
-            (click)="toggleDropdown(i, $event)"
-            (keydown.enter)="toggleDropdown(i, $event)"
-            (keydown.space)="toggleDropdown(i, $event)"
-            tabindex="0"
-            role="button"
-            [class.open]="dropdownOpenMap[i]"
-            [attr.aria-expanded]="dropdownOpenMap[i]"
-            [attr.aria-controls]="'submenu-' + i"
-          >
-            <a>{{ menu.name | translate }}</a>
-            <img src="../../../assets/icons/arrow-down.png" alt="arrow" class="submenu-arrow" />
+    <!-- 3. Правая часть (Язык + Бургер) -->
+    <div class="nav-right">
+      <!-- Тот самый селектор языка -->
+      <div class="custom-dropdown lang-selector desktop-only" (click)="toggleDropdown1($event)">
+        <div class="dropdown-selected">
+          <img src="../../../assets/icons/Global.svg" alt="lang" class="icon-global" />
+          <span class="current-lang">{{ getDisplayLanguage() }}</span>
+          <img src="../../../assets/icons/arrow-down.png" alt="arrow" class="arrow-mini" />
+        </div>
+        
+        @if (dropdownOpen) {
+          <div class="dropdown-options right-align">
+            @for (option of languageOptions; track $index) {
+              <div class="dropdown-option" (click)="selectLanguage(option)" [class.active]="option.value === selectedLanguage">
+                <span>{{ option.label }}</span>
+                @if (option.value === selectedLanguage) {
+                  <img src="../../../assets/icons/tick-circle.svg" class="tick-icon" />
+                }
+              </div>
+            }
           </div>
-          @if (dropdownOpenMap[i]) {
-            <div class="submenu">
-              @for (item of menu.items; track item.id) {
-                <div class="submenu-option">
-                  @if (item.is_new_tab) {
-                    <a
-                      [href]="item.route"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      (click)="selectOption(item, $index, $event, menu)"
-                    >
-                      <p>{{ item.name  }}</p>
-                    </a>
-                  } @else {
-                    <a [routerLink]="item.route" (click)="selectOption(item, $index, $event, menu)">
-                      <p>{{ item.name }}</p>
-                    </a>
-                  }
-                </div>
-              }
-            </div>
-          }
         }
+      </div>
 
-        @if (!menu.items || menu.items.length === 0) {
-          @if (menu.is_new_tab) {
-            <a
-              class="menu-item single-link"
-              [href]="menu.route"
-              target="_blank"
-              rel="noopener noreferrer"
-              (click)="toggleMenu()"
-            >
-              {{ menu.name  }}
-            </a>
-          } @else {
-            <a class="menu-item single-link" [routerLink]="menu.route" (click)="toggleMenu()">
-              {{ menu.name  }}
-            </a>
-          }
-        }
-      </li>
-    }
-  </ul>
-
-  <div class="mobile-menu-footer">
-    <div class="footer-contacts">
-      <p>+(992) 44 630 8888</p>
-      <span>{{ 'FOOTER.CONTACTS.FOR_CALLS' | translate }}</span>
-    </div>
-    <div class="footer-lang-switcher">
-      <span>{{ 'FOOTER.LANG.CHOOSE_LANGUAGE' | translate }}</span>
-      <div class="lang-buttons">
-        <button
-          [class.active]="selectedLanguage === lang.Tj"
-          (click)="selectLanguage({ value: lang.Tj, label: 'Тоҷикӣ' })"
-        >
-          TJ
-        </button>
-        <button
-          [class.active]="selectedLanguage === lang.Ru"
-          (click)="selectLanguage({ value: lang.Ru, label: 'Русский' })"
-        >
-          RU
-        </button>
-        <button
-          [class.active]="selectedLanguage === lang.En"
-          (click)="selectLanguage({ value: lang.En, label: 'English' })"
-        >
-          EN
-        </button>
+      <!-- Бургер (только мобилка) -->
+      <div class="burger mobile-only" (click)="toggleMenu()" [class.active]="menuActive">
+        <span></span><span></span><span></span>
       </div>
     </div>
   </div>
-</div>
+</nav>
+<!-- Твой мобильный оверлей -->
+@if (menuActive) {
+  <div class="mobile-menu-overlay">
+    <div class="mobile-header-sticky">
+      <div class="logo-white">
+        <div class="cb-box-white">CB</div>
+        <div class="logo-text-white">
+          <div class="bold">КОММЕРЦБАНК</div>
+          <div>ТАДЖИКИСТАНА</div>
+        </div>
+      </div>
+      <button class="close-btn" (click)="toggleMenu()">
+        <img src="../../../assets/icons/X.svg" alt="close" />
+      </button>
+    </div>
+
+    <a routerLink="map" (click)="toggleMenu()" class="offices-btn-large">
+      <span>{{ 'HEADER.TOP.OFFICES_AND_ATMS' | translate }}</span>
+      <img src="../../../assets/icons/Map Point.svg" class="white-icon" />
+    </a>
+
+    <div class="mobile-accordion-container">
+      @for (menu of menus; track i; let i = $index) {
+        <div class="accordion-item">
+          <div class="accordion-header" (click)="toggleDropdown(i, $event)">
+            <span class="title">{{ menu.name }}</span>
+            @if (menu.items.length) {
+              <img src="../../../assets/icons/arrow-down.png" class="chevron" [class.rotate]="dropdownOpenMap[i]" />
+            }
+          </div>
+          @if (dropdownOpenMap[i] && menu.items.length) {
+            <div class="accordion-content">
+              @for (sub of menu.items; track sub.id) {
+                <a [routerLink]="sub.route" (click)="toggleMenu()" class="sub-link">{{ sub.name }}</a>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="mobile-footer-section">
+      <div class="lang-selector-box" (click)="showMore = !showMore">
+        <span class="current-lang">{{ getDisplayLanguage() }}</span>
+        <img src="../../../assets/icons/arrow-down.png" class="chevron" [class.rotate]="showMore" />
+      </div>
+      @if (showMore) {
+        <div class="lang-options-card">
+          @for (option of languageOptions; track $index) {
+            <button class="lang-item flex-between" (click)="selectLanguage(option)" [class.active]="option.value === selectedLanguage">
+              <span>{{ option.label }}</span>
+              @if (option.value === selectedLanguage) {
+                <img src="../../../assets/icons/tick-circle.svg" class="tick-icon" />
+              }
+            </button>
+          }
+        </div>
+      }
+      <div class="contact-footer">
+        <a href="tel:+992446308888" class="phone-link">+(992) 44 630 8888</a>
+      </div>
+    </div>
+  </div>
+}

@@ -4,7 +4,7 @@ $text-color-primary: #212529;
 $text-color-secondary: #6c757d;
 $border-color: #dee2e6;
 $white-color: #ffffff;
-$background-light: #f8f9fa;
+$background-light: #f6f7f8;
 
 // Миксин для общих стилей карточек
 @mixin card-style {
@@ -40,7 +40,8 @@ $background-light: #f8f9fa;
     margin-bottom: 30px;
   }
 
-  label, .form-label {
+  label,
+  .form-label {
     display: block;
     font-size: 16px;
     font-weight: 500;

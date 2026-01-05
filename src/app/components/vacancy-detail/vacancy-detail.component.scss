@@ -1,6 +1,6 @@
 .more-vacancy {
   padding: 3% 5%;
-  background-color: #f7f8fa;
+  background-color: #f6f7f8;
   .title {
     display: flex;
     justify-content: space-between;
@@ -157,7 +157,8 @@
       @media (max-width: 1024px) {
         width: 90%;
       }
-      label, .form-label {
+      label,
+      .form-label {
         display: block;
         margin-bottom: 10px;
         font-weight: 600;

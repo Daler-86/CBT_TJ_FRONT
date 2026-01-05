@@ -4,7 +4,7 @@ $primary-color: #00b06c;
 $text-primary: #212529;
 $text-secondary: #6c757d;
 $border-color: #e9ecef;
-$background-light: #f8f9fa;
+$background-light: #f6f7f8;
 $white-color: #ffffff;
 
 // Сбрасываем стандартные стили кнопок и инпутов
@@ -43,7 +43,8 @@ $white-color: #ffffff;
   .form-group {
     margin-bottom: 30px;
 
-    label, .form-label {
+    label,
+    .form-label {
       display: block;
       font-size: 16px;
       font-weight: 500;

@@ -1,4 +1,4 @@
-$section-bg: #f8f9fa;
+$section-bg: #f6f7f8;
 $card-bg: #ffffff;
 $card-border-radius: 24px;
 $card-padding: 40px 45px;
@@ -80,30 +80,26 @@ $news-text-color: #353e5c;
 }
 
 // --- КОРРЕКТИРОВКИ ДЛЯ news-card-link и news-card ---
-  .news-card {
-    .news-card-link {
-  display: contents; /* Важно: Делает элемент невидимым для раскладки, но его содержимое остается видимым. Позволяет стилям .news-card влиять на вид, а link остается кликабельным. */
-  text-decoration: none; /* Убираем подчеркивание */
-  color: inherit; /* Наследуем цвет текста от родителя (news-text-content), чтобы заголовок не был синим */
-  cursor: pointer; /* Курсор-указатель, чтобы показать, что это кликабельно */
+.news-card {
+  .news-card-link {
+    display: contents; /* Важно: Делает элемент невидимым для раскладки, но его содержимое остается видимым. Позволяет стилям .news-card влиять на вид, а link остается кликабельным. */
+    text-decoration: none; /* Убираем подчеркивание */
+    color: inherit; /* Наследуем цвет текста от родителя (news-text-content), чтобы заголовок не был синим */
+    cursor: pointer; /* Курсор-указатель, чтобы показать, что это кликабельно */
 
-  /* Добавим стили для news-card здесь, чтобы они срабатывали при наведении на news-card-link */
+    /* Добавим стили для news-card здесь, чтобы они срабатывали при наведении на news-card-link */
 
     display: flex;
     background-color: $card-bg;
     border-radius: $card-border-radius;
     padding: $card-padding;
     cursor: pointer; // Курсор уже задан на news-card-link
- 
+
     overflow: hidden;
     gap: $column-gap;
     align-items: center;
-
-
   }
 }
-
-
 
 // Контент с текстом
 .news-text-content {
