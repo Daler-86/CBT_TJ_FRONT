@@ -50,11 +50,11 @@ export class OfficeListComponent implements OnInit, OnDestroy {
 
   public get selectedRegionDisplayName(): string {
     if (this.regionSelected === 0) {
-      return this.translateService.instant('mapPage.filters.allRegions');
+      return this.translateService.instant('MAP_PAGE.FILTERS.ALL_REGIONS');
     }
     const region = this.regionList.find((r) => r.id === this.regionSelected);
     // Проверяем, есть ли регион, чтобы избежать ошибок
-    return region ? region.name : this.translateService.instant('mapPage.filters.allRegions');
+    return region ? region.name : this.translateService.instant('MAP_PAGE.FILTERS.ALL_REGIONS');
   }
 
   // --- ЖИЗНЕННЫЙ ЦИКЛ КОМПОНЕНТА ---
@@ -162,9 +162,17 @@ export class OfficeListComponent implements OnInit, OnDestroy {
     this.dropdownOpen2 = false;
   }
   private updateSelectedObjectTypeName(): void {
-    const key = `mapPage.filters.${this.selectedObjectType}`;
-    this.selectedObjectTypeName = this.translateService.instant(key);
+    const keyMap: Record<'offices' | 'terminals' | 'atms', string> = {
+      offices: 'MAP_PAGE.FILTERS.OFFICES',
+      terminals: 'MAP_PAGE.FILTERS.TERMINALS',
+      atms: 'MAP_PAGE.FILTERS.ATMS',
+    };
+  
+    this.selectedObjectTypeName = this.translateService.instant(
+      keyMap[this.selectedObjectType]
+    );
   }
+  
   // --- ПАГИНАЦИЯ (полный код) ---
   public pages: number[] = [];
 
