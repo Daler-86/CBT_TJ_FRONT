@@ -5,7 +5,7 @@
 
     <!-- Переключатель валют -->
     <div class="form-group">
-      <p class="form-label">{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</p>
+      <!-- <p class="form-label">{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</p> -->
       <div class="currency-tabs">
         @for (currency of availableCurrencies; track $index) {
           <button [class.active]="selectedCurrency === currency" (click)="onCurrencyChange(currency)">

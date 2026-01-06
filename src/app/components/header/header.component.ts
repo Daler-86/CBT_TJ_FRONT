@@ -11,11 +11,12 @@ import { LanguagesService } from '../../languages.service';
 import { Menu, MenuItem } from '../../models/menu.model';
 
 import { Languages } from '../../shared/enums/languages.enum';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FormsModule, RouterModule, TranslateModule, RouterLink],
+  imports: [FormsModule, RouterModule, TranslateModule, RouterLink, CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
@@ -53,7 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private menuService = inject(MenuService);
   private translateService = inject(TranslateService);
   private languageService = inject(LanguagesService);
-
+  showMore = false; 
   ngOnInit(): void {
     const langSub = this.languageService.language$.subscribe((lang) => {
       this.selectedLanguage = lang;
@@ -135,4 +136,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // --- ДОБАВЛЯЕМ ЭТУ ЛОГИКУ ---
     document.body.style.overflow = this.menuActive ? 'hidden' : 'auto';
   }
+  
 }

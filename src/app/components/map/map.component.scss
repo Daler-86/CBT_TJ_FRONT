@@ -5,7 +5,7 @@
 
 // --- Стили для всей страницы ---
 .adress {
-  background-color: #f8f9fa;
+  background-color: #f6f7f8;
   padding: 20px 5%;
 
   h1 {
@@ -156,7 +156,7 @@
   overflow: hidden; // Очень важно для скругления углов и скрытия панели
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   margin-top: 30px;
-  background-color: #f8f9fa;
+  background-color: #f6f7f8;
   @media (max-width: 1024px) {
     height: 50vh;
   }

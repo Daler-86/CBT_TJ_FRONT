@@ -47,27 +47,26 @@ export class NewsComponent implements OnInit, OnChanges {
   pages: number[] = [];
   tenderCount = 0;
   loadData(): void {
-    this.newsService.getNewsList(2, this.currentPage).subscribe(
+    const pageSize = 6;
+    this.newsService.getNewsList(pageSize, this.currentPage).subscribe(
       (response) => {
-        // *** Вот здесь происходит обработка и создание НОВОГО массива ***
+
         const processedNews = response.data.news.map((item) => {
           const tempDiv = document.createElement('div');
           tempDiv.innerHTML = item.description || '';
           const firstParagraph = tempDiv.querySelector('p');
           const extractedText = firstParagraph ? firstParagraph.textContent : tempDiv.textContent;
 
-          // Возвращаем НОВЫЙ объект, который включает все свойства исходного 'item'
-          // плюс наше новое локальное свойство 'firstParagraphText'
           return {
-            ...item, // Копирует id, title, description, date_time, upload_file из исходного item
-            firstParagraphText: extractedText, // Добавляет новое свойство в этот НОВЫЙ объект
-          } as new_news; // Приводим к типу news (с учетом опционального поля)
+            ...item, 
+            firstParagraphText: extractedText, 
+          } as new_news; 
         });
 
-        // Присваиваем этот НОВЫЙ массив свойству 'news' компонента
+        
         this.news = processedNews;
 
-        this.totalPages = Math.ceil(response.data.total_count / 2);
+        this.totalPages = Math.ceil(response.data.total_count / pageSize);
         this.tenderCount = response.data.total_count;
 
         this.updatePages();
@@ -83,33 +82,32 @@ export class NewsComponent implements OnInit, OnChanges {
 
   updatePages() {
     this.pages = [];
-    const visiblePages = 3; // Количество видимых страниц до/после текущей
+    const visiblePages = 3; 
     const rangeStart = Math.max(1, this.currentPage - 1);
     const rangeEnd = Math.min(this.totalPages, this.currentPage + visiblePages - 1);
 
-    // Добавляем страницы перед ...
+    
     if (rangeStart > 2) {
       this.pages.push(1);
       if (rangeStart > 3) {
-        this.pages.push(-1); // Индикатор для ...
+        this.pages.push(-1); 
       }
     }
 
-    // Добавляем текущие видимые страницы
+   
     for (let i = rangeStart; i <= rangeEnd; i++) {
       this.pages.push(i);
     }
 
-    // Добавляем страницы после ...
     if (rangeEnd < this.totalPages - 1) {
       if (rangeEnd < this.totalPages - 2) {
-        this.pages.push(-1); // Индикатор для ...
+        this.pages.push(-1); 
       }
       this.pages.push(this.totalPages);
     }
   }
   selectPage(page: number) {
-    if (page === -1) return; // Игнорируем "..."
+    if (page === -1) return; 
     this.currentPage = page;
     this.updatePages();
     this.pageChange.emit(this.currentPage);
@@ -121,13 +119,13 @@ export class NewsComponent implements OnInit, OnChanges {
     if (listElement) {
       listElement.scrollTo({
         top: 0,
-        behavior: 'smooth', // Плавная прокрутка
+        behavior: 'smooth', 
       });
     } else {
-      // Если контейнер не найден, прокручиваем всю страницу
+     
       window.scrollTo({
         top: 1,
-        behavior: 'smooth', // Плавная прокрутка
+        behavior: 'smooth',
       });
     }
   }

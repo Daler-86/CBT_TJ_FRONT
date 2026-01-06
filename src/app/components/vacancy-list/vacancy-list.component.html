@@ -48,7 +48,7 @@
       }
     </div>
   </div>
-
+  @if (totalPages > 1) {
   <div class="">
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
@@ -63,4 +63,5 @@
       <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
     </div>
   </div>
+}
 </div>

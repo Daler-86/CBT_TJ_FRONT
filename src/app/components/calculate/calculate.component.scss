@@ -2,7 +2,7 @@
 
 .calculator {
   // width: 90%;
-  background-color: hsl(210, 17%, 98%);
+  background-color: #f6f7f8;
   padding: 2% 5%;
 
   /* ----- Табы калькулятора (Кредит / Вклад / Покупка авто) ----- */
@@ -95,7 +95,7 @@
         padding: 0 5px;
         margin-top: 10px;
       }
-      label, .form-label {
+      label .form-label {
         margin: 25px 0;
         font-size: $font-size-body-large;
         line-height: $line-height-body-large;

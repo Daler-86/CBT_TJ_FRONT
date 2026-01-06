@@ -249,7 +249,6 @@
         }
       </div>
 
-      <!-- 2. Область для рендеринга карты -->
       <div class="map-render-area">
         <app-yandex-map
           [points]="mapPoints"
@@ -270,7 +269,7 @@
     >
       <app-office-list></app-office-list>
     </div>
-    <!-- Часто задаваемые вопросы -->
+  
     <div class="faq-container">
       <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
       @for (faq of faqs; track i; let i = $index) {

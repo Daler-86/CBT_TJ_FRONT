@@ -47,12 +47,7 @@ export class OfficeListComponent implements OnInit, OnDestroy {
   private filterService = inject(RegionService);
   public translateService = inject(TranslateService);
 
-  // --- GETTERS для динамического отображения ---
 
-  /**
-   * ✅ ВОТ СВОЙСТВО, КОТОРОЕ ИЩЕТ ВАШ HTML.
-   * Возвращает переведенное имя выбранного региона.
-   */
   public get selectedRegionDisplayName(): string {
     if (this.regionSelected === 0) {
       return this.translateService.instant('MAP_PAGE.FILTERS.ALL_REGIONS');

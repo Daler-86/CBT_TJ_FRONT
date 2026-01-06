@@ -54,11 +54,12 @@ export class VacancyListComponent implements OnInit, OnChanges {
   }
   vacancyCount = 0;
   loadAllVacancies() {
-    this.vacanciesService.getVacancyList(6, this.currentPage, +this.selectedCategory, +this.selectedRegion).subscribe(
+    const pageSize = 10;
+    this.vacanciesService.getVacancyList(pageSize, this.currentPage, +this.selectedCategory, +this.selectedRegion).subscribe(
       (response) => {
         this.vacancyList = response.data.vacancies;
 
-        this.totalPages = Math.round(response.data.total_count / 6);
+        this.totalPages = Math.round(response.data.total_count / pageSize);
         this.vacancyCount = response.data.total_count;
         this.updatePages();
       },
@@ -73,33 +74,31 @@ export class VacancyListComponent implements OnInit, OnChanges {
 
   updatePages() {
     this.pages = [];
-    const visiblePages = 3; // Количество видимых страниц до/после текущей
+    const visiblePages = 3; 
     const rangeStart = Math.max(1, this.currentPage - 1);
     const rangeEnd = Math.min(this.totalPages, this.currentPage + visiblePages - 1);
 
-    // Добавляем страницы перед ...
     if (rangeStart > 2) {
       this.pages.push(1);
       if (rangeStart > 3) {
-        this.pages.push(-1); // Индикатор для ...
+        this.pages.push(-1); 
       }
     }
 
-    // Добавляем текущие видимые страницы
+  
     for (let i = rangeStart; i <= rangeEnd; i++) {
       this.pages.push(i);
     }
 
-    // Добавляем страницы после ...
     if (rangeEnd < this.totalPages - 1) {
       if (rangeEnd < this.totalPages - 2) {
-        this.pages.push(-1); // Индикатор для ...
+        this.pages.push(-1);
       }
       this.pages.push(this.totalPages);
     }
   }
   selectPage(page: number) {
-    if (page === -1) return; // Игнорируем "..."
+    if (page === -1) return;
     this.currentPage = page;
     this.updatePages();
     this.pageChange.emit(this.currentPage);
@@ -111,13 +110,13 @@ export class VacancyListComponent implements OnInit, OnChanges {
     if (listElement) {
       listElement.scrollTo({
         top: 0,
-        behavior: 'smooth', // Плавная прокрутка
+        behavior: 'smooth', 
       });
     } else {
-      // Если контейнер не найден, прокручиваем всю страницу
+
       window.scrollTo({
         top: 1,
-        behavior: 'smooth', // Плавная прокрутка
+        behavior: 'smooth',
       });
     }
   }

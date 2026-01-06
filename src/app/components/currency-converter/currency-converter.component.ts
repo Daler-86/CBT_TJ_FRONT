@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { RateService } from '../../api/rate.service';
@@ -28,7 +28,8 @@ export class CurrencyConverterComponent implements OnInit {
   selectedMode = '';
   exchangeRatesByMode: Record<string, ProcessedRate[]> = {};
   showMore = false;
-
+  showFromDropdown = false;
+  showToDropdown = false;
   modes: Mode[] = [];
 
   private rateService = inject(RateService);
@@ -53,7 +54,27 @@ export class CurrencyConverterComponent implements OnInit {
   get ratesCount(): number {
     return this.exchangeRatesByMode[this.selectedMode]?.length || 0;
   }
-
+  selectFromCurrency(currency: string) {
+    this.fromCurrency = currency;
+    this.showFromDropdown = false;
+    this.updateCurrencies();
+  }
+  
+  selectToCurrency(currency: string) {
+    this.toCurrency = currency;
+    this.showToDropdown = false;
+    this.convertCurrency();
+  }
+  
+  // Закрытие при клике в любом другом месте
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.currency-select-container')) {
+      this.showFromDropdown = false;
+      this.showToDropdown = false;
+    }
+  }
   fetchExchangeRates() {
     this.rateService.getProcessedExchangeRates().subscribe({
       next: (processedData) => {
