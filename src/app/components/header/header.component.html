@@ -19,7 +19,9 @@
               @if (dropdownOpenMap[i]) {
                 <div class="dropdown-options">
                   @for (item of menu.items; track item.id) {
-                    <a [routerLink]="item.route" class="dropdown-option">{{ item.name }}</a>
+                    <div class="dropdown-option" (click)="selectOption(item, i, $event, menu)">
+                      <a>{{ item.name }}</a>
+                    </div>
                   }
                 </div>
               }
@@ -71,9 +73,6 @@
           <img width="180px" [src]="logoSrc" alt="logo" />
         </div>
       </a>
-      <!-- <button class="close-btn" (click)="toggleMenu()">
-       
-      </button> -->
     </div>
 
     <a routerLink="map" (click)="toggleMenu()" class="offices-btn-large">
@@ -93,7 +92,10 @@
           @if (dropdownOpenMap[i] && menu.items.length) {
             <div class="accordion-content">
               @for (sub of menu.items; track sub.id) {
-                <a [routerLink]="sub.route" (click)="toggleMenu()" class="sub-link">{{ sub.name }}</a>
+
+                <div class="sub-link" (click)="selectOption(sub, i, $event, menu)">
+                  <a>{{ sub.name }}</a>
+                </div>
               }
             </div>
           }
