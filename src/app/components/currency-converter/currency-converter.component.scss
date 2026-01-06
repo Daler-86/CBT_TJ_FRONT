@@ -3,12 +3,11 @@
   .calculator-tabs {
     display: flex;
     gap: 2%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     flex-wrap: wrap;
 
     button {
       padding: 14px 28px;
-      margin-bottom: 20px;
       border-radius: 50px;
       border: none;
       cursor: pointer;
@@ -26,14 +25,14 @@
     }
   }
   // width: 90%;
-  padding: 20px 5% 0;
+  padding: 48px 5% ;
   background-color: #f6f7f8;
   .div {
     display: flex;
 
     justify-content: space-between;
 
-    gap: 4%;
+    gap: 20px;
     @media (max-width: 1034px) {
       //  display: block;
       width: 100%;
@@ -43,11 +42,10 @@
 
     .exchange-rates,
     .currency-converter {
-      padding: 46px 62px;
+      padding: 48px 55px;
       box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-      border-radius: 10px;
+      border-radius: 24px;
       background-color: #f6f7f8;
-      margin-bottom: 25px;
 
       h3 {
         font-size: 32px;
@@ -56,7 +54,7 @@
       }
     }
     .exchange-rates {
-      width: 56%;
+      width: 60%;
       background-color: white;
       @media (max-width: 1024px) {
         width: 100%;
@@ -181,7 +179,7 @@
           display: flex;
           align-items: center;
           border: 1.5px solid #e2e8f0; // Более светлая рамка в покое
-          border-radius: 12px;
+          border-radius: 24px;
           padding: 0 20px; // Убираем вертикальный padding здесь, переносим его на дочерние элементы
           height: 64px; // Фиксированная высота, чтобы ничего не прыгало
           background-color: white;
@@ -271,7 +269,7 @@
             right: -10px;
             width: 160px;
             background: #ffffff;
-            border-radius: 16px; // Большое скругление
+            border-radius: 24px; // Большое скругление
             box-shadow:
               0 10px 25px rgba(0, 0, 0, 0.1),
               0 4px 10px rgba(0, 0, 0, 0.05); // Мягкая тень

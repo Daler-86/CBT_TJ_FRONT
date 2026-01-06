@@ -113,6 +113,7 @@ export class CardApplicationComponent implements OnInit, OnDestroy {
         this.translateService.get('NOTIFICATIONS.APPLICATION_ERROR_MESSAGE').subscribe((message: string) => {
           const errorMessage = err.error?.message || message;
           this.notificationService.show(errorMessage, 'error');
+
         });
       },
     });

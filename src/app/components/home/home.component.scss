@@ -1,7 +1,6 @@
 @import '../../../styles/variables.scss';
 .main {
   background-color: #f6f7f8;
-  padding: 20px 0;
   .home {
     .p {
       font-size: $font-size-h4;
@@ -13,7 +12,7 @@
       // Контейнер можно немного упростить
       width: 90%; // Используем проценты для лучшей адаптивности
 
-      margin: 35px auto;
+      margin: 0px auto 48px;
     }
 
     .box_1 {
@@ -21,7 +20,19 @@
       gap: 24px;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
-
+    @media (max-width: 768px) {
+      .box_1{
+        gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+      .box_1 > div {
+        padding: 25px 13px;
+        min-height: 120px;
+        img{
+          max-width: 120px;
+        }
+      }
+    }
     // Стили для самой карточки
     .box_1 > div {
       // или .card-item
@@ -77,7 +88,7 @@
         background-color: white;
         padding: 20px 0 0 30px;
         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-        border-radius: 16px;
+        border-radius: 24px;
         display: flex;
         flex-direction: column;
         @media (max-width: 1024px) {
@@ -97,13 +108,13 @@
 
     .container_3 {
       .news {
-        padding: 60px 55px;
+        padding: 48px 56px;
         background-color: #fff;
-        border-radius: 26px;
+        border-radius: 24px;
         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
       }
       // width: 90%;
-      padding: 2% 5%;
+      padding: 0% 5%;
       background-color: #f6f7f8;
       .favri {
         display: flex;
@@ -113,7 +124,7 @@
         align-items: center;
         padding: 30px 7% 0;
         box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-        border-radius: 16px;
+        border-radius: 24px;
         @media (max-width: 768px) {
           flex-direction: column;
           padding: 25px 35px 0 35px;
@@ -169,9 +180,9 @@
       }
     }
     .container_4 {
-      padding: 60px 55px;
+      padding: 48px 56px;
       background-color: #fff;
-      border-radius: 26px;
+      border-radius: 24px;
       box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
 
       .box1 {
@@ -197,7 +208,7 @@
         div {
           padding: 20px 24px;
           background-color: #f6f7f8;
-          border-radius: 22px;
+          border-radius: 24px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -217,7 +228,7 @@
     }
     .container_5 {
       display: flex;
-      padding: 30px 5% 55px;
+      padding: 0px 5% 48px;
       justify-content: space-between;
       background-color: #f6f7f8;
       align-items: stretch;
@@ -242,9 +253,9 @@
         background-repeat: no-repeat;
         background-position: center;
 
-        border-radius: 16px;
+        border-radius: 24px;
 
-        padding: 50px 60px;
+        padding: 50px 48px;
 
         h3 {
           color: #141a20;
@@ -292,7 +303,7 @@
           padding: 5px 40px;
           align-items: center;
           background-color: white;
-          border-radius: 16px;
+          border-radius: 24px;
           box-shadow: 0px 4px 20px 0px #afafaf2e;
           gap: 30px;
           cursor: pointer;
@@ -321,7 +332,7 @@
       }
     }
     .statistics-section {
-      padding: 2% 5%;
+      padding: 48px 5%;
       background-color: #f6f7f8;
       @media (max-width: 768px) {
         padding: 2% 3%;

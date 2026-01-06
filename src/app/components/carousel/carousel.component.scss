@@ -3,11 +3,11 @@
 .carousel {
   position: relative;
   width: 90%;
-  margin: 35px auto;
+  margin: 0px auto 48px;
   overflow: hidden; 
   background: url(../../../assets/icons/Frame\ 8.png);
   background-repeat: no-repeat;
-  border-radius: 26px;
+  border-radius: 24px;
   background-size: cover;
   color: white; 
 }
@@ -23,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 7%; 
+  padding: 50px 72px; 
   min-height: 450px;
   box-sizing: border-box;
 
@@ -52,7 +52,7 @@
       font-size: $font-size-body-large;
       line-height: $line-height-body-large;
       border: none;
-      border-radius: 8px; 
+      border-radius: 6px; 
       cursor: pointer;
       transition:
         background-color 0.3s,
@@ -183,7 +183,7 @@
   .indicator {
     height: 4px;
     width: 25px;
-    border-radius: 3px;
+    border-radius: 21px;
     background-color: rgba(255, 255, 255, 0.4);
     margin: 0 4px;
     cursor: pointer;

@@ -18,7 +18,7 @@ $background-light: #f6f7f8;
 .calculator-wrapper {
   display: grid;
   grid-template-columns: 1fr 0.7fr;
-  gap: 30px;
+  gap: 20px;
 
   @media (max-width: 992px) {
     grid-template-columns: 1fr;

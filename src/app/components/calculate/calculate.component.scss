@@ -1,310 +1,40 @@
 @import '../../../styles/variables.scss';
 
 .calculator {
-  // width: 90%;
   background-color: #f6f7f8;
-  padding: 2% 5%;
+  padding: 0% 5% 48px;
 
-  /* ----- Табы калькулятора (Кредит / Вклад / Покупка авто) ----- */
   .calculator-tabs {
     display: flex;
-    gap: 2%;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+    gap: 8px;             
+    overflow-x: auto;      
+    flex-wrap: nowrap;     
+    
+    -webkit-overflow-scrolling: touch; 
+    scrollbar-width: none;          
+    -ms-overflow-style: none;     
+    &::-webkit-scrollbar {
+      display: none;                
+    }
 
+  
     button {
-      padding: 14px 42px;
-      border-radius: 50px;
+      flex-shrink: 0;       
+      white-space: nowrap;  
+      
+      padding: 14px 32px;   
+      border-radius: 53px;
       border: none;
       cursor: pointer;
       background-color: white;
       color: #141a20;
-      font-size: $font-size-body-medium;
-      line-height: $line-height-body-medium;
+      font-size: 15px;     
       font-weight: 500;
-      box-shadow: 0px 4px 20px 0px #afafaf2e;
-
-      @media (max-width: 1024px) {
-        margin-bottom: 15px;
-      }
-
+      transition: all 0.2s ease;
+  
       &.active {
         background-color: #00b06c;
         color: white;
-      }
-    }
-  }
-
-  /* ----- Общие контейнеры для разных вкладок (кредит, вклад и т.д.) ----- */
-  .calculator-content,
-  .deposit-calculator {
-    display: flex;
-    justify-content: space-between;
-    gap: 5%;
-    border-radius: 16px;
-    margin: 20px 0;
-
-    @media (max-width: 1000px) {
-      flex-wrap: wrap;
-      box-sizing: border-box;
-    }
-
-    /* ----- Форма калькулятора (общая для кредита и вклада) ----- */
-    .calculator-form {
-      width: 55%;
-      padding: 40px 62px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
-      box-sizing: border-box;
-
-      @media (max-width: 1024px) {
-        width: 100%;
-        margin-bottom: 30px;
-      }
-
-      h2 {
-        font-size: $font-size-h4;
-        line-height: $line-height-h4;
-        font-weight: 700;
-        margin-bottom: 32px;
-      }
-
-      /* Табы валют (для вклада) */
-      .currency-tabs {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-
-        button {
-          padding: 10px 20px;
-          border-radius: 8px;
-          border: none;
-          cursor: pointer;
-          font-weight: 500;
-
-          &.active {
-            background-color: #00b06c;
-            color: white;
-          }
-        }
-      }
-      .range-labels {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 5px;
-        margin-top: 10px;
-      }
-      label .form-label {
-        margin: 25px 0;
-        font-size: $font-size-body-large;
-        line-height: $line-height-body-large;
-        font-weight: 500;
-        display: block;
-      }
-
-      p {
-        color: #66788f;
-        font-size: $font-size-body-medium;
-        line-height: $line-height-body-medium;
-        font-weight: 500;
-      }
-
-      .input-slider-container {
-        position: relative;
-        margin: 20px 0;
-
-        /* Поля ввода (кредит/вклад) */
-        .loan-input,
-        .deposit-input {
-          width: 100%;
-          padding: 19px;
-          font-size: $font-size-h5;
-          line-height: $line-height-h5;
-          font-weight: 700;
-          box-sizing: border-box;
-          margin: 0;
-          text-align: center;
-          border: 1px solid #dde2e9;
-          border-radius: 8px 8px 0 0;
-          border-bottom: none;
-          color: #333;
-        }
-
-        /* Если для вклада нужен иной цвет рамки */
-        .deposit-input {
-          border: 1px solid #bac0cc;
-        }
-
-        /* Слайдер для кредита */
-        .loan-slider {
-          width: 100%;
-          -webkit-appearance: none;
-          appearance: none;
-          margin: 0;
-          height: 4px;
-          border-radius: 0 0 8px 8px;
-          border: 1px solid #dde2e9;
-          border-top: none;
-          outline: none;
-          background: linear-gradient(
-            to right,
-            #00b06c 0%,
-            #00b06c var(--range-percent),
-            #e0e6ee var(--range-percent),
-            #e0e6ee 100%
-          );
-        }
-        .loan-slider::-webkit-slider-thumb {
-          transform: translateY(-30%);
-        }
-        /* Слайдер для вклада (тоже зелёный) */
-        .deposit-slider {
-          width: 100%;
-          -webkit-appearance: none;
-          appearance: none;
-          margin: 0;
-          height: 4px;
-          border-radius: 0 0 8px 8px;
-          border: 1px solid #dde2e9;
-          border-top: none;
-          outline: none;
-          background: linear-gradient(
-            to right,
-            #00b06c 0%,
-            #00b06c var(--range-percent),
-            #e0e6ee var(--range-percent),
-            #e0e6ee 100%
-          );
-        }
-
-        /* Общие стили для thumb */
-        .loan-slider::-webkit-slider-thumb,
-        .deposit-slider::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 20px;
-          height: 20px;
-          background: white;
-          border: 2px solid #00b06c;
-          border-radius: 50%;
-          cursor: pointer;
-          transform: translateY(-10%);
-          // margin-top: -8px;
-        }
-
-        /* Firefox / MS (при необходимости) */
-        .loan-slider::-moz-range-thumb,
-        .deposit-slider::-moz-range-thumb {
-          width: 20px;
-          height: 20px;
-          background: white;
-          border: 2px solid #00b06c;
-          border-radius: 50%;
-          cursor: pointer;
-        }
-
-        /* Стили для значений слайдера */
-        .range-labels {
-          display: flex;
-          justify-content: space-between;
-          padding: 0 5px;
-          margin: 0 0 30px 0;
-          font-size: 16px;
-          color: #66788f;
-          @media (max-width: 1024px) {
-            display: none;
-          }
-        }
-      }
-
-      /* Дополнительные кнопки (только для кредита) */
-      .loan-terms {
-        display: flex;
-        gap: 10px;
-        margin: 20px 0;
-        flex-wrap: wrap;
-
-        button {
-          border: 0;
-          background: none;
-          padding: 10px 16px;
-          cursor: pointer;
-          border-radius: 8px;
-          background-color: #f1f5f9;
-          color: #141a20;
-          font-size: $font-size-body-large;
-          line-height: $line-height-body-large;
-          font-weight: 500;
-
-          &.active {
-            background-color: #00b06c;
-            color: white;
-          }
-        }
-      }
-    }
-
-    /* ----- Результирующий блок (общий для кредита и вклада) ----- */
-    .calculator-result {
-      width: 40%;
-      padding: 46px 62px;
-      box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
-      border-radius: 16px;
-      background-color: white;
-      box-sizing: border-box;
-
-      @media (max-width: 1024px) {
-        width: 100%;
-        justify-self: center;
-        padding: 46px 62px;
-      }
-
-      h2 {
-        font-size: $font-size-h4;
-        line-height: $line-height-h4;
-        font-weight: 700;
-        margin-bottom: 30px;
-      }
-
-      p {
-        color: #141a20;
-        margin: 15px 0;
-        font-size: $font-size-body-large;
-        line-height: $line-height-body-large;
-        font-weight: 500;
-      }
-
-      .loan-product,
-      .deposit-product {
-        color: #00b06c;
-        font-weight: bold;
-      }
-
-      h3 {
-        font-weight: 700;
-        font-size: $font-size-h2;
-        line-height: $line-height-h2;
-        color: #00b06c;
-        margin-bottom: 20px;
-      }
-
-      button {
-        background-color: #00b06c;
-        color: white;
-        padding: 20px 50px;
-        border: none;
-        font-size: $font-size-body-large;
-        line-height: $line-height-body-large;
-        font-weight: 500;
-        border-radius: 6px;
-        cursor: pointer;
-
-        @media (max-width: 1000px) {
-          padding: 20px 35px;
-          font-size: 16px;
-          margin: 0 10%;
-        }
       }
     }
   }

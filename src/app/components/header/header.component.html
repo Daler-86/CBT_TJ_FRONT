@@ -1,13 +1,13 @@
-<nav>
+<nav class="content">
   <div class="men">
-    <!-- 1. Логотип -->
+
     <a routerLink="/" class="logo-link">
       <div class="logo">
         <img width="180px" [src]="logoSrc" alt="logo" />
       </div>
     </a>
 
-    <!-- 2. Главное меню (Центр) -->
+ 
     <ul class="menu desktop-only">
       @for (menu of menus; track i; let i = $index) {
         <li (mouseenter)="toggleDropdown(i, $event)" (mouseleave)="closeDropdown(i)">
@@ -25,15 +25,15 @@
               }
             </div>
           } @else {
-            <a class="menu-link" [routerLink]="menu.route" routerLinkActive="active">{{ menu.name }}</a>
+            <a class="menu-link" [href]="menu.route" routerLinkActive="active">{{ menu.name }}</a>
           }
         </li>
       }
     </ul>
 
-    <!-- 3. Правая часть (Язык + Бургер) -->
+
     <div class="nav-right">
-      <!-- Тот самый селектор языка -->
+   
       <div class="custom-dropdown lang-selector desktop-only" (click)="toggleDropdown1($event)">
         <div class="dropdown-selected">
           <img src="../../../assets/icons/Global.svg" alt="lang" class="icon-global" />
@@ -55,27 +55,25 @@
         }
       </div>
 
-      <!-- Бургер (только мобилка) -->
+      
       <div class="burger mobile-only" (click)="toggleMenu()" [class.active]="menuActive">
         <span></span><span></span><span></span>
       </div>
     </div>
   </div>
 </nav>
-<!-- Твой мобильный оверлей -->
+
 @if (menuActive) {
   <div class="mobile-menu-overlay">
     <div class="mobile-header-sticky">
-      <div class="logo-white">
-        <div class="cb-box-white">CB</div>
-        <div class="logo-text-white">
-          <div class="bold">КОММЕРЦБАНК</div>
-          <div>ТАДЖИКИСТАНА</div>
+      <a routerLink="/" class="logo-link">
+        <div class="logo">
+          <img width="180px" [src]="logoSrc" alt="logo" />
         </div>
-      </div>
-      <button class="close-btn" (click)="toggleMenu()">
-        <img src="../../../assets/icons/X.svg" alt="close" />
-      </button>
+      </a>
+      <!-- <button class="close-btn" (click)="toggleMenu()">
+       
+      </button> -->
     </div>
 
     <a routerLink="map" (click)="toggleMenu()" class="offices-btn-large">
@@ -87,7 +85,7 @@
       @for (menu of menus; track i; let i = $index) {
         <div class="accordion-item">
           <div class="accordion-header" (click)="toggleDropdown(i, $event)">
-            <span class="title">{{ menu.name }}</span>
+           <a [href]="menu.route"><span class="title">{{ menu.name }}</span></a> 
             @if (menu.items.length) {
               <img src="../../../assets/icons/arrow-down.png" class="chevron" [class.rotate]="dropdownOpenMap[i]" />
             }
