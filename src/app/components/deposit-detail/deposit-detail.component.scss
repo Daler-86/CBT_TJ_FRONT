@@ -345,12 +345,19 @@
           margin-bottom: 20px;
           position: relative;
           z-index: 100;
+          outline: none !important;
+          box-shadow: none !important;
+          &:focus {
+            border-color: #00b06c; 
+            background-color: #fff; 
+          }
         }
 
-        .error {
-          color: red;
+        .error-message {
+          color: rgb(209, 26, 26);
           font-size: 12px;
-          margin-top: 5px;
+          margin-top: -15px;
+          margin-bottom: 15px;
           text-align: left;
         }
       }

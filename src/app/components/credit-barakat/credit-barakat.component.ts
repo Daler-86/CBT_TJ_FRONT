@@ -209,7 +209,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
         this.creditData = details.data.credit_data;
         this.calculatorDataForChild = details.data.credit_data?.credit_calculator_data;
         if (this.creditData && this.creditData.title) {
-          // ...передаем уже готовое, переведенное название в сервис заголовков.
+
           this.pageTitleService.setCustomTitle(this.creditData.title);
         }
       },
@@ -218,19 +218,19 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       },
     );
   }
-  // Форматирование суммы для отображения в поле ввода
+  
   formatCurrency(value: number): string {
     return new Intl.NumberFormat('ru-RU').format(value) + ' с.';
   }
 
   toggleDropdown(event: Event) {
     this.dropdownOpen = !this.dropdownOpen;
-    event.stopPropagation(); // Останавливаем распространение события
+    event.stopPropagation(); 
   }
-  // @HostListener('document:click', ['$event'])
+
 
   selectOption(event: Event, item: officeList) {
-    this.officeName = item.name; // Обновляем имя для отображения
+    this.officeName = item.name; 
     this.model.office_id = item.id;
     event.stopPropagation();
     this.dropdownOpen = false;
