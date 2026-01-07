@@ -84,8 +84,14 @@
         </label>
         <!-- <label for="amountInput">{{ 'CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate }}</label> -->
         <div class="field-wrapper">
-          <input class="amount-input" type="number" [(ngModel)]="amount" (ngModelChange)="convertCurrency()" />
-          
+          <!-- <input class="amount-input" type="number" [(ngModel)]="amount" (ngModelChange)="convertCurrency()" /> -->
+          <input 
+          class="amount-input" 
+          type="number" 
+          [ngModel]="amount" 
+          (input)="onAmountInput($event)" 
+          (focus)="handleFocus($event)"
+        />
           <div class="currency-select-container" (click)="showFromDropdown = !showFromDropdown">
             <span class="selected-value">{{ fromCurrency }}</span>
             <i class="chevron-down" [class.open]="showFromDropdown"></i>

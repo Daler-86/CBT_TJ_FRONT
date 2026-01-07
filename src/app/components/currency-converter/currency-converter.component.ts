@@ -140,7 +140,31 @@ export class CurrencyConverterComponent implements OnInit {
       }
     }
   }
-
+  onAmountInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (!target) return;
+  
+    let val = target.value;
+  
+    if (val === '') {
+      this.amount = 0;
+      target.value = ''; 
+    } else {
+      const numValue = Math.abs(parseInt(val, 10));
+      
+      this.amount = numValue;
+      target.value = numValue.toString();
+    }
+    
+    this.convertCurrency();
+  }
+  
+  handleFocus(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target && target.select) {
+      target.select();
+    }
+  }
   toggleShowMore() {
     this.showMore = !this.showMore;
   }
