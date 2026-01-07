@@ -126,7 +126,7 @@
       "DOCUMENTS_AND_TARIFFS_TITLE": "Ҳуҷҷатҳо ва тарофаҳо",
       "MORE_INFO_ON_SITE": "Маълумоти муфассал дар сомона:"
     },
-    "PAGE_TITLE": "Интиқоли пул"
+    "PAGE_TITLE": "Интиқоли маблағ"
   },
   "COMMON": {
     "OFFICES_AND_ATMS": "Суроғаҳо ва реҷаи корӣ",
@@ -418,7 +418,7 @@
       "OFFICE_PLACEHOLDER": "Офисро интихоб кунед"
     },
     "RESULTS": {
-      "MONTHLY_PAYMENT_LABEL": "Пардохти моҳона",
+      "MONTHLY_PAYMENT_LABEL": "Пардохти барзиёд",
       "INTEREST_RATE_LABEL": "Меъёри фоизӣ",
       "ONLINE_APPLICATION_INFO": "Дархостҳои онлайнӣ дар рӯзҳои корӣ аз соати 8:00 то 17:00 қабул ва баррасӣ мешаванд."
     }
