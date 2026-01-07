@@ -66,7 +66,7 @@ export class CurrencyConverterComponent implements OnInit {
     this.convertCurrency();
   }
   
-  // Закрытие при клике в любом другом месте
+
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const target = event.target as HTMLElement;
@@ -107,30 +107,36 @@ export class CurrencyConverterComponent implements OnInit {
     }
     this.convertCurrency();
   }
-
   convertCurrency() {
     const rates = this.exchangeRatesByMode[this.selectedMode];
-
-    if (!this.amount || this.fromCurrency === this.toCurrency) {
-      this.convertedAmount = this.amount;
+  
+    if (!this.amount || !rates || this.fromCurrency === this.toCurrency) {
+      this.convertedAmount = this.amount || 0;
       return;
     }
-
-    if (this.transactionType === 'buy') {
-      if (this.fromCurrency === 'TJS') {
-        const toRate = rates?.find((rate) => rate.currency === this.toCurrency);
-        this.convertedAmount = toRate ? this.amount / toRate.sell : 0;
-      } else if (this.toCurrency === 'TJS') {
-        const fromRate = rates?.find((rate) => rate.currency === this.fromCurrency);
-        this.convertedAmount = fromRate ? this.amount * fromRate.sell : 0;
+  
+    const foreignCurrency = this.fromCurrency === 'TJS' ? this.toCurrency : this.fromCurrency;
+    const rateEntry = rates.find(r => r.currency === foreignCurrency);
+  
+    if (!rateEntry) return;
+  
+    let activeRate = 0;
+  
+    if (this.selectedMode === 'CB_RATE') {
+      activeRate = rateEntry.buy; 
+    } else {
+      if (this.transactionType === 'buy') {
+        activeRate = (this.fromCurrency === 'TJS') ? rateEntry.buy : rateEntry.sell;
+      } else {
+        activeRate = (this.fromCurrency === 'TJS') ? rateEntry.sell : rateEntry.buy;
       }
-    } else if (this.transactionType === 'sell') {
+    }
+  
+    if (activeRate > 0) {
       if (this.fromCurrency === 'TJS') {
-        const toRate = rates?.find((rate) => rate.currency === this.toCurrency);
-        this.convertedAmount = toRate ? this.amount / toRate.buy : 0;
-      } else if (this.toCurrency === 'TJS') {
-        const fromRate = rates?.find((rate) => rate.currency === this.fromCurrency);
-        this.convertedAmount = fromRate ? this.amount * fromRate.buy : 0;
+        this.convertedAmount = this.amount / activeRate;
+      } else {
+        this.convertedAmount = this.amount * activeRate;
       }
     }
   }

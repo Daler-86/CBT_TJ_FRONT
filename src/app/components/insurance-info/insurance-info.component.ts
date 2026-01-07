@@ -1,4 +1,3 @@
-// src/app/pages/insurance-info/insurance-info.component.ts
 
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,11 +14,9 @@ import { ContactService } from '../../api/contact.service';
   styleUrls: ['./insurance-info.component.scss'],
 })
 export class InsuranceInfoComponent implements OnInit {
-  // --- Логика для Аккордеона ---
   public activeAccordion: string | null = null;
   contactBlocks: ContactBlock[] = [];
   imageUrl: string = environment.IMAGE_URL;
-  // --- Логика для Степпера/Слайдера ---
   public slides: { title: string; content: string }[] = [];
   public currentSlideIndex = 0;
   ngOnInit(): void {

@@ -78,7 +78,11 @@
       </div>
 
       <div class="converter-inputs">
-        <label for="amountInput">{{ 'CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate }}</label>
+        <label for="amountInput">
+          
+          {{ transactionType === 'buy' ? ('CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate) : ('CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate) }}
+        </label>
+        <!-- <label for="amountInput">{{ 'CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate }}</label> -->
         <div class="field-wrapper">
           <input class="amount-input" type="number" [(ngModel)]="amount" (ngModelChange)="convertCurrency()" />
           
@@ -86,7 +90,7 @@
             <span class="selected-value">{{ fromCurrency }}</span>
             <i class="chevron-down" [class.open]="showFromDropdown"></i>
         
-            <!-- Кастомный список (как на вашем фото) -->
+        
             @if (showFromDropdown) {
               <div class="custom-dropdown">
                 <div class="dropdown-item" [class.active]="fromCurrency === 'TJS'" (click)="selectFromCurrency('TJS')">TJS</div>
@@ -102,7 +106,10 @@
       </div>
       
       <div class="converter-inputs">
-        <label>{{ 'CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate }}</label>
+        <label>
+          {{ transactionType === 'buy' ? ('CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate) : ('CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate) }}
+        </label>
+        <!-- <label>{{ 'CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate }}</label> -->
         <div class="field-wrapper">
           <input class="amount-input" type="text" [value]="convertedAmount | number: '1.0-4'" readonly />
           
