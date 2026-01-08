@@ -51,7 +51,7 @@
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <h2>{{ 'FORMS.CONTACT.TITLE' | translate }}</h2>
       <p>{{ 'FORMS.CONTACT.SUBTITLE' | translate }}</p>
-
+    
       <!-- Имя -->
       <div class="form-group">
         <input
@@ -60,11 +60,12 @@
           [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
           formControlName="client_name"
         />
-        <div *ngIf="client_name?.invalid && client_name?.touched" class="error">
-          {{ 'FORMS.ERROR.REQUIRED' | translate }}
+        <div class="error" *ngIf="client_name?.invalid && (client_name?.touched || client_name?.dirty)">
+          <span *ngIf="client_name?.errors?.['required']">{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
+          <span *ngIf="client_name?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate:{min:2} }}</span>
         </div>
       </div>
-
+    
       <!-- Телефон -->
       <div class="form-group">
         <input
@@ -73,53 +74,39 @@
           [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
           formControlName="phone"
         />
-        <div *ngIf="phone?.invalid && phone?.touched" class="error">
+        <div class="error" *ngIf="phone?.invalid && (phone?.touched || phone?.dirty)">
           <span *ngIf="phone?.errors?.['required']">{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
           <span *ngIf="phone?.errors?.['pattern']">{{ 'FORMS.ERRORS.ONLYDIGITS' | translate }}</span>
         </div>
       </div>
-
-      <!-- Кастомный селектор для темы -->
+    
+      <!-- Тема -->
       <div class="form-group">
         <div class="custom-dropdown" #customDropdown>
           <div
             class="dropdown-selected form-control"
             (click)="toggleDropdown($event)"
-            (keydown.enter)="toggleDropdown($event)"
-            (keydown.space)="toggleDropdown($event)"
             tabindex="0"
-            role="button"
-            [attr.aria-expanded]="dropdownOpen"
-            aria-haspopup="listbox"
-            [class.is-invalid]="contact_subject_id?.invalid && contact_subject_id?.touched"
+            [class.is-invalid]="contact_subject_id?.invalid && (contact_subject_id?.touched || contact_subject_id?.dirty)"
           >
-            {{ selectedSubjectName }}
+            {{ selectedSubjectName || 'Выберите тему' }}
           </div>
           @if (dropdownOpen) {
             <div class="dropdown-options">
               @for (subject of subjects; track subject.id) {
-                <div
-                  class="dropdown-option"
-                  (click)="selectSubject(subject)"
-                  (keydown.enter)="selectSubject(subject)"
-                  (keydown.space)="selectSubject(subject)"
-                  tabindex="0"
-                  role="option"
-                  [attr.aria-selected]="subject.name === selectedSubjectName"
-                >
-                  <p>{{ subject.name }}</p>
-                  <!-- Предполагаем, что имя приходит на нужном языке -->
+                <div class="dropdown-option" (click)="selectSubject(subject)">
+                  {{ subject.name }}
                 </div>
               }
             </div>
           }
         </div>
-        <div *ngIf="contact_subject_id?.invalid && contact_subject_id?.touched" class="error">
+        <div class="error" *ngIf="contact_subject_id?.invalid && (contact_subject_id?.touched || contact_subject_id?.dirty)">
           {{ 'FORMS.ERRORS.SELECTSUBJECT' | translate }}
         </div>
       </div>
-
-      <!-- Текстовое поле для вопроса -->
+    
+      <!-- Вопрос -->
       <div class="form-group">
         <textarea
           class="form-control"
@@ -127,26 +114,18 @@
           rows="5"
           formControlName="question"
         ></textarea>
-        @if (question?.invalid && question?.touched) {
-          <div class="error">
-            @if (question?.errors?.['required']) {
-              <span>{{ 'FORMS.ERRORS.REQUIRED' | translate }}</span>
-            }
-            @if (question?.errors?.['minlength']) {
-              <span>{{ 'FORMS.ERRORS.MINLENGTH' | translate: { min: 10 } }}</span>
-            }
-          </div>
-        }
+        <div class="error" *ngIf="question?.invalid && (question?.touched || question?.dirty)">
+          <span *ngIf="question?.errors?.['required']">{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
+          <span *ngIf="question?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate:{min:10} }}</span>
+        </div>
       </div>
-
-      <!-- Кнопка отправки -->
+    
+      <!-- Кнопка -->
       <button type="submit" class="submit-button" [disabled]="contactForm.invalid || isSubmitting">
-        @if (!isSubmitting) {
-          <span>{{ 'BUTTONS.SEND' | translate }}</span>
-        } @else {
-          <span>{{ 'BUTTONS.SENDING' | translate }}...</span>
-        }
+        <span *ngIf="!isSubmitting">{{ 'BUTTONS.SEND' | translate }}</span>
+        <span *ngIf="isSubmitting">{{ 'BUTTONS.SENDING' | translate }}...</span>
       </button>
     </form>
+    
   </div>
 </div>

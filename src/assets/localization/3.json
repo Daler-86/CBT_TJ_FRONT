@@ -350,6 +350,9 @@
       "SALARY_PROJECT": "Salary Project Application",
       "DEFAULT": "Submit Application"
     },
+    "ERROR": {
+      "REQUIRED": "This field is required"
+    },
     "SUBTITLES": {
       "DEFAULT": "Our manager will contact you shortly."
     },
@@ -367,6 +370,7 @@
       "SUBTITLE": "We are ready to answer any of your questions."
     },
     "ERRORS": {
+      "ONLYDIGITS": "Only digits are allowed",
       "SELECT_SUBJECT": "Please select a subject.",
       "MIN_LENGTH": "Minimum length is {{min}} characters.",
       "REQUIRED": "This field is required.",
