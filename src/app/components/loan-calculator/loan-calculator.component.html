@@ -1,13 +1,12 @@
+
 <div class="calculator-wrapper">
-  <!-- Левая колонка -->
   <div class="calculator-form">
     <h2>{{ 'CALCULATORS.LOAN.TITLE' | translate }}</h2>
 
-    <!-- Переключатель валют -->
+    <!-- Валюты (динамически с бэка) -->
     <div class="form-group">
-      <p class="form-label">{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</p>
       <div class="currency-tabs">
-        @for (currency of availableCurrencies; track $index) {
+        @for (currency of availableCurrencies; track currency) {
           <button [class.active]="selectedCurrency === currency" (click)="onCurrencyChange(currency)">
             {{ currency.toUpperCase() }}
           </button>
@@ -15,60 +14,52 @@
       </div>
     </div>
 
-    <!-- Слайдер Суммы -->
+    <!-- Сумма -->
     <div class="form-group">
-      <label for="loanAmountInput">{{ 'CALCULATORS.LOAN.AMOUNT' | translate }}</label>
+      <label>{{ 'CALCULATORS.LOAN.AMOUNT' | translate }}</label>
       <div class="input-slider-container">
         @if (!isEditingAmount) {
           <div
             class="input-display"
             (click)="startEditing()"
-            (keydown.enter)="startEditing()"
-            (keydown.space)="startEditing()"
+            [style.color]="isAmountInvalid ? '#9e9e9e' : 'inherit'"
             tabindex="0"
-            role="button"
-            aria-controls="loanAmountInput"
-            [attr.aria-label]="
-              ('CALCULATORS.LOAN.CURRENT_AMOUNT' | translate) +
-              ' ' +
-              (loanAmount | number: '1.0-0' : 'ru-RU') +
-              '. ' +
-              ('CALCULATORS.LOAN.CLICK_TO_EDIT' | translate)
-            "
           >
-            {{ loanAmount | number: '1.0-0' : 'ru-RU' }}
+            {{ loanAmount  }}
           </div>
-        }
-        @if (isEditingAmount) {
+        } @else {
           <input
-            type="number"
-            class="loan-input"
-            [(ngModel)]="loanAmount"
-            (input)="recalculate()"
-            (blur)="stopEditing()"
-            (keydown.enter)="stopEditing()"
-          />
+          #amountInput
+  type="number"
+  min="0"
+  class="loan-input"
+  [(ngModel)]="loanAmount"
+  (input)="recalculate($event)" 
+  (blur)="stopEditing()"
+  (focus)="handleFocus($event)" 
+  [style.color]="isAmountInvalid ? '#9e9e9e' : 'inherit'"
+          />  
         }
 
         <input
-        class="range-slider"
-         type="range"
-              [min]="minAmount"
-               [max]="maxAmount"
-              [(ngModel)]="loanAmount" 
-              (input)="recalculate()"
-              [style.--range-percent]="loanAmountPercent">
-        
+          class="range-slider"
+          type="range"
+          [min]="minAmount"
+          [max]="maxAmount"
+          step="100"
+          [(ngModel)]="loanAmount" 
+          (input)="recalculate()"
+          [style.--range-percent]="loanAmountPercent"
+        />
       </div>
       <div class="range-labels">
-        <span>{{ amountLabels[0] }}</span>
-        <span>{{ amountLabels[1] }}</span>
+        <span>{{ minAmount | number: '1.0-0' }}</span>
+        <span>{{ maxAmount | number: '1.0-0' }}</span>
       </div>
     </div>
 
-    <!-- Слайдер Срока -->
     <div class="form-group">
-      <label for="loanTermRange">{{ 'CALCULATORS.LOAN.TERM' | translate }}</label>
+      <label>{{ 'CALCULATORS.LOAN.TERM' | translate }}</label>
       <div class="input-slider-container">
         <div class="input-display">{{ loanTerm }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}</div>
         <input
@@ -83,14 +74,14 @@
         />
       </div>
       <div class="range-labels">
-        <span>{{ termLabels[0] }}</span>
-        <span>{{ termLabels[1] }}</span>
+        <span>{{ minTerm }}</span>
+        <span>{{ maxTerm }}</span>
       </div>
     </div>
 
-    <!-- Слайдер Процентной ставки -->
+    <!-- Процентная ставка -->
     <div class="form-group">
-      <label for="interestRateRange">{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</label>
+      <label>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</label>
       <div class="input-slider-container">
         <div class="input-display">{{ interestRatePercent }}%</div>
         <input
@@ -105,49 +96,45 @@
         />
       </div>
       <div class="range-labels">
-        <span>{{ rateLabels[0] }}</span>
-        <span>{{ rateLabels[1] }}</span>
+        <span>{{ minRate }}%</span>
+        <span>{{ maxRate }}%</span>
       </div>
     </div>
   </div>
 
-  <!-- Правая колонка -->
   <div class="result-wrapper">
     @if (calculationResult) {
       <div class="result-card">
         <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
+        
         <div class="result-item">
           <p>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</p>
-          <h3>{{ calculationResult.interestRate | percent: '1.0-0' }}</h3>
+          <h3>{{ calculationResult.interestRate | percent: '1.2-2' }}</h3>
         </div>
+
         <div class="result-item">
           <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
-          @if (selectedCurrency === 'tjs') {
-            <h3>
-              {{ calculationResult.monthlyPayment | number: '1.0-0' : 'ru-RU' }}
-              {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
-            </h3>
-          }
-          @if (selectedCurrency === 'usd') {
-            <h3>
-              {{ calculationResult.monthlyPayment | currency: 'USD' : '$' : '1.0-0' : 'ru-RU' }}
-            </h3>
-          }
+          <h3>
+            @if (selectedCurrency === 'tjs') {
+              {{ calculationResult.monthlyPayment | number: '1.2-2' : 'ru-RU' }} ТJS
+            } @else {
+              {{ calculationResult.monthlyPayment | currency: 'USD' : 'symbol' : '1.2-2' : 'ru-RU' }}
+            }
+          </h3>
+          
         </div>
+
         <div class="result-item">
           <p>{{ 'CALCULATORS.LOAN.OVERPAYMENT' | translate }}</p>
-          @if (selectedCurrency === 'tjs') {
-            <h3>
-              {{ calculationResult.totalOverpayment | number: '1.0-0' : 'ru-RU' }}
-              {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
-            </h3>
-          }
-          @if (selectedCurrency === 'usd') {
-            <h3>
-              {{ calculationResult.totalOverpayment | currency: 'USD' : '$' : '1.0-0' : 'ru-RU' }}
-            </h3>
-          }
+          <h3>
+            @if (selectedCurrency === 'tjs') {
+              {{ calculationResult.totalOverpayment | number: '1.2-2' : 'ru-RU' }} ТJS
+            } @else {
+              {{ calculationResult.totalOverpayment | currency: 'USD' : 'symbol' : '1.2-2' : 'ru-RU' }}
+            }
+          </h3>
         </div>
+
         @if (showApplyButton) {
           <button class="apply-button" [scrollTo]="'application-form'">
             {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}

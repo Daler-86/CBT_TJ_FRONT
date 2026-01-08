@@ -3,13 +3,13 @@
 .carousel {
   position: relative;
   width: 90%;
-  margin: 35px auto;
-  overflow: hidden; // Важно, чтобы изображение, выходящее за рамки, обрезалось
+  margin: 0px auto 48px;
+  overflow: hidden; 
   background: url(../../../assets/icons/Frame\ 8.png);
   background-repeat: no-repeat;
-  border-radius: 26px;
+  border-radius: 24px;
   background-size: cover;
-  color: white; // Переносим цвет текста сюда для наследования
+  color: white; 
 }
 
 .carousel-slides {
@@ -19,29 +19,29 @@
 
 .carousel-item {
   width: 100%;
-  flex: 0 0 100%; // Устанавливаем, чтобы слайд занимал всю ширину
+  flex: 0 0 100%; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 7%; // Немного скорректировали вертикальные отступы
-  min-height: 450px; // Задаем минимальную высоту для стабильности
+  padding: 50px 72px; 
+  min-height: 450px;
   box-sizing: border-box;
 
   .carousel-content {
     width: 48%;
-    z-index: 1; // Чтобы текст всегда был поверх фона
+    z-index: 1; 
 
     h2 {
       font-weight: 700;
-      font-size: $font-size-h2; // 48px из вашего примера
+      font-size: $font-size-h2; 
       line-height: 1.2;
     }
 
     p {
       font-weight: 500;
-      font-size: $font-size-body-large; // 18px
+      font-size: $font-size-body-large; 
       line-height: $line-height-body-large;
-      margin: 20px 0 30px; // Увеличили нижний отступ
+      margin: 20px 0 30px; 
     }
 
     button {
@@ -52,44 +52,48 @@
       font-size: $font-size-body-large;
       line-height: $line-height-body-large;
       border: none;
-      border-radius: 8px; // Сделали скругление чуть больше
+      border-radius: 6px; 
       cursor: pointer;
       transition:
         background-color 0.3s,
         color 0.3s;
 
       &:hover {
-        background-color: #008a54; // Более тёмный зелёный при наведении
+        background-color: #008a54; 
       }
     }
   }
 
   img {
-    width: 50%; // Немного увеличили машину
+    width: 50%;
     max-width: 550px;
     height: auto;
     object-fit: contain;
-    align-self: flex-end; // Прижимаем к низу flex-контейнера
-    // Эффект "выезда" за пределы блока снизу
+    align-self: flex-end;
     position: relative;
     bottom: -40px;
   }
+  &.no-image {
+  .carousel-content {
+    width: 100%; 
+    max-width: 100%;
+  }
+}
 }
 
 @media (max-width: 1024px) {
   .carousel-item {
     flex-direction: column;
     text-align: center;
+    justify-content: center;
     padding: 30px 5%;
 
     .carousel-content {
-      width: 100%;
+      width: 80%;
+      margin: auto;
       max-width: 500px;
       order: 1;
 
-      // *** ВОТ КЛЮЧЕВОЕ ИЗМЕНЕНИЕ ***
-      // Добавляем отступ снизу, чтобы создать "безопасную зону" для контента.
-      // Машина будет заезжать в эту пустую область, не трогая текст и кнопку.
       padding-bottom: 20px;
 
       h2 {
@@ -114,6 +118,7 @@
 
 @media (max-width: 768px) {
   .carousel-item {
+    padding: 15px 15%;
     min-height: 500px;
 
     .carousel-content h2 {
@@ -178,7 +183,7 @@
   .indicator {
     height: 4px;
     width: 25px;
-    border-radius: 3px;
+    border-radius: 21px;
     background-color: rgba(255, 255, 255, 0.4);
     margin: 0 4px;
     cursor: pointer;

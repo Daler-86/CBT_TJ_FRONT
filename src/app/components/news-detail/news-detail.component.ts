@@ -21,82 +21,74 @@ interface SocialLink {
   styleUrl: './news-detail.component.scss',
 })
 export class NewsDetailComponent implements OnInit {
-  // --- Данные для статьи (замени на реальные) ---
-  copyButtonText = '';
-  imageUrls: string[] = [
-    'assets/images/news-detail-1.jpg',
-    'assets/images/news-detail-2.jpg',
-    'assets/images/news-detail-3.jpg',
-  ];
-  private pageTitleService = inject(PageTitleService);
-  // --- Данные для блока "Поделиться" ---
-  socialLinks: SocialLink[] = [];
-  pageUrl = '';
-  //  copyButtonText: string = 'Скопировать ссылку';
-  @Inject(DOCUMENT)
+  // Сервисы
   private route = inject(ActivatedRoute);
   private newsService = inject(NewsService);
   private translate = inject(TranslateService);
-  constructor() {
-    this.translate.get('BUTTONS.COPY_LINK').subscribe((text: string) => {
-      this.copyButtonText = text;
-    });
-  } // Внедряем DOCUMENT
+  private pageTitleService = inject(PageTitleService);
 
+  // Данные
+  copyButtonText = '';
   cardId = 0;
-  newDetailData: news = {
-    id: 0,
-  };
+  newDetailData: any = null; // Рекомендую использовать интерфейс, если есть
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam !== null) {
-      this.cardId = +idParam; // Преобразование строки в число
-    } else {
-      console.error('ID is missing in the route parameters.');
-      // Здесь может быть код для обработки ситуации отсутствия ID
-    }
-    this.loadCards(this.cardId);
-  }
 
-  loadCards(id: number): void {
-    this.newsService.getNewsDetailData(id).subscribe(
-      (response) => {
-        this.newDetailData = response.data.news;
-        if (this.newDetailData && this.newDetailData.title) {
-          this.pageTitleService.setCustomTitle(this.newDetailData.title);
-        }
-      },
-      (error) => {
-        console.error('Ошибка при запросе данных', error);
-      },
-    );
-  }
-
-  onCopyLink() {
-    // Ваша логика копирования ссылки...
-    // navigator.clipboard.writeText(window.location.href);
-
-    // После успешного копирования меняем текст
-    this.translate.get('buttons.linkCopied').subscribe((text: string) => {
+    // Инициализируем текст кнопки
+    this.translate.get('BUTTONS.COPY_LINK').subscribe((text: string) => {
       this.copyButtonText = text;
     });
 
-    // Опционально: вернуть исходный текст через пару секунд
-    setTimeout(() => {
-      this.translate.get('buttons.copyLink').subscribe((text: string) => {
+    // Получаем ID из параметров роута
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam) {
+      this.cardId = +idParam;
+      this.loadNewsDetail(this.cardId);
+    }
+  }
+
+  loadNewsDetail(id: number): void {
+    this.newsService.getNewsDetailData(id).subscribe({
+      next: (response) => {
+        this.newDetailData = response.data.news;
+        if (this.newDetailData?.title) {
+          this.pageTitleService.setCustomTitle(this.newDetailData.title);
+        }
+      },
+      error: (error) => console.error('Ошибка при запросе данных', error)
+    });
+  }
+
+  // ЛОГИКА КОПИРОВАНИЯ
+  onCopyLink() {
+    const url = window.location.href; // Получаем текущий URL страницы
+
+    navigator.clipboard.writeText(url).then(() => {
+      // Меняем текст на "Скопировано"
+      this.translate.get('BUTTONS.LINK_COPIED').subscribe((text: string) => {
         this.copyButtonText = text;
       });
-    }, 2000);
+
+      // Возвращаем исходный текст через 2 секунды
+      setTimeout(() => {
+        this.translate.get('BUTTONS.COPY_LINK').subscribe((text: string) => {
+          this.copyButtonText = text;
+        });
+      }, 2000);
+    });
   }
 
-  // TrackBy функции для оптимизации
-  trackByIndex(index: number): number {
-    return index;
+  // Геттеры для ссылок "Поделиться"
+  get telegramShareLink(): string {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent(this.newDetailData?.title || '');
+    return `https://t.me/share/url?url=${url}&text=${text}`;
   }
 
-  trackBySocialType(index: number, item: SocialLink): string {
-    return item.type;
+  get whatsappShareLink(): string {
+    const url = window.location.href;
+    const text = encodeURIComponent(this.newDetailData?.title || '');
+    return `https://wa.me/?text=${text}: ${url}`;
   }
 }

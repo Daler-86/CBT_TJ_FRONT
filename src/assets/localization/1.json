@@ -126,7 +126,7 @@
       "DOCUMENTS_AND_TARIFFS_TITLE": "Ҳуҷҷатҳо ва тарофаҳо",
       "MORE_INFO_ON_SITE": "Маълумоти муфассал дар сомона:"
     },
-    "PAGE_TITLE": "Интиқоли пул"
+    "PAGE_TITLE": "Интиқоли маблағ"
   },
   "COMMON": {
     "OFFICES_AND_ATMS": "Суроғаҳо ва реҷаи корӣ",
@@ -385,7 +385,7 @@
       "UPDATED_LABEL": "Навсозӣ шудааст"
     },
     "CONVERTER": {
-      "HAVE_LABEL": "Ман дорам:",
+      "HAVE_LABEL": "Ман пардохт мекунам:",
       "RECEIVE_LABEL": "Ман мегирам:"
     }
   },
@@ -420,7 +420,7 @@
       "OFFICE_PLACEHOLDER": "Офисро интихоб кунед"
     },
     "RESULTS": {
-      "MONTHLY_PAYMENT_LABEL": "Пардохти моҳона",
+      "MONTHLY_PAYMENT_LABEL": "Пардохти барзиёд",
       "INTEREST_RATE_LABEL": "Меъёри фоизӣ",
       "ONLINE_APPLICATION_INFO": "Дархостҳои онлайнӣ дар рӯзҳои корӣ аз соати 8:00 то 17:00 қабул ва баррасӣ мешаванд."
     }
@@ -538,8 +538,14 @@
       "TERM": "Муҳлат",
       "TOTAL_PAYMENT": "Маблағи умумии пардохт",
       "SELECT_TERM_ERROR": "Барои дидани ҳисоб, муҳлатро аз рӯйхати пешниҳодшуда интихоб кунед.",
-      "APPLY_BUTTON": "Ба расмият даровардани насия"
-    }
+      "APPLY_BUTTON": "Ба расмият даровардани насия",
+    
+      "CURRENT_AMOUNT": "Маблағи ҷорӣ",
+      "CLICK_TO_EDIT": "Барои таҳрир кардан пахш кунед",
+      "EDIT_AMOUNT": "Маблағро таҳрир кунед"
+    },
+    "NO_DATA": "Маълумот барои ҳисоб дастрас нест"
+    
   },
   "DEPOSIT_PRODUCTS": {
     "DURAKHSHON": "Пасандози кӯдаконаи «Дурахшон»",

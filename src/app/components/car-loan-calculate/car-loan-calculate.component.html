@@ -1,49 +1,36 @@
 <div class="calculator-wrapper">
-  <!-- Левая колонка -->
   <div class="calculator-form">
     <h2>{{ 'CALCULATORS.AUTO_LOAN.TITLE' | translate }}</h2>
 
-    <!-- Валюта и Ставка -->
     <div class="top-controls">
+      <!-- Валюта -->
       <div class="form-group">
-        <span id="currencyLabel" class="form-label">{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</span>
+        <span class="form-label">{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</span>
         <div class="currency-selector">
           <div class="radio-option">
-            <input
-              type="radio"
-              id="tjs-auto"
-              name="currency-auto"
-              value="tjs"
-              [(ngModel)]="selectedCurrency"
-              (ngModelChange)="selectCurrency($event)"
-            />
+            <input type="radio" id="tjs-auto" name="currency-auto" value="tjs" [(ngModel)]="selectedCurrency" (ngModelChange)="selectCurrency($event)" />
             <label for="tjs-auto">{{ 'CALCULATORS.COMMON.TJS' | translate }}</label>
           </div>
           <div class="radio-option">
-            <input
-              type="radio"
-              id="usd-auto"
-              name="currency-auto"
-              value="usd"
-              [(ngModel)]="selectedCurrency"
-              (ngModelChange)="selectCurrency($event)"
-            />
+            <input type="radio" id="usd-auto" name="currency-auto" value="usd" [(ngModel)]="selectedCurrency" (ngModelChange)="selectCurrency($event)" />
             <label for="usd-auto">{{ 'CALCULATORS.COMMON.USD' | translate }}</label>
           </div>
         </div>
       </div>
 
+      <!-- Годовая ставка (Исправлено 000) -->
       <div class="form-group">
         <label for="interestRateInput">{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</label>
         <div class="rate-input-wrapper">
           <input
             id="interestRateInput"
             type="number"
+            min="20"
+            max="25"
             class="rate-input"
-            [min]="minRate"
-            [max]="maxRate"
-            [(ngModel)]="interestRate"
-            (ngModelChange)="recalculate()"
+            [ngModel]="interestRate"
+            (input)="onInputValidate($event, 'interestRate')"
+            (focus)="handleFocus($event)"
           />
           <span>%</span>
         </div>
@@ -52,43 +39,25 @@
 
     <!-- Стоимость авто -->
     <div class="form-group">
-      <label for="carCostEditInput">{{ 'CALCULATORS.AUTO_LOAN.CAR_COST' | translate }}</label>
+      <label>{{ 'CALCULATORS.AUTO_LOAN.CAR_COST' | translate }}</label>
       <div class="smart-input-container">
         @if (!isEditingCarCost) {
-          <div
-            class="display-value"
-            (click)="startEditing('carCost')"
-            (keydown.enter)="startEditing('carCost')"
-            (keydown.space)="startEditing('carCost')"
-            tabindex="0"
-            role="button"
-            aria-label="Редактировать стоимость автомобиля"
-          >
-            {{ carCost | number: '1.2-2' : 'ru-RU' }}
-            {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+          <div class="display-value" (click)="startEditing('carCost')">
+            {{ carCost | number: '1.2-2' : 'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
           </div>
-        }
-        @if (isEditingCarCost) {
+        } @else {
           <input
             type="number"
             class="edit-input"
-            id="carCostEditInput"
-            [(ngModel)]="carCost"
+            [ngModel]="carCost"
+            (input)="onInputValidate($event, 'carCost')"
             (blur)="stopEditing()"
+            (focus)="handleFocus($event)"
             (keydown.enter)="stopEditing()"
           />
         }
 
-        <input
-          type="range"
-          class="range-slider"
-          [min]="minCarCost"
-          [max]="maxCarCost"
-          [(ngModel)]="carCost"
-          (input)="recalculate()"
-          [style.--range-percent]="carCostPercent"
-        />
-
+        <input type="range" class="range-slider" [min]="minCarCost" [max]="maxCarCost" [(ngModel)]="carCost" (input)="recalculate()" [style.--range-percent]="carCostPercent" />
         <div class="range-labels">
           <span>{{ costLabels[0] }}</span>
           <span>{{ costLabels[1] }}</span>
@@ -98,47 +67,33 @@
 
     <!-- Предоплата -->
     <div class="form-group">
-      <label for="downPaymentEditInput">{{ 'CALCULATORS.AUTO_LOAN.DOWN_PAYMENT' | translate }}</label>
+      <label>{{ 'CALCULATORS.AUTO_LOAN.DOWN_PAYMENT' | translate }}</label>
       <div class="smart-input-container">
         @if (!isEditingDownPayment) {
-          <div
-            class="display-value"
-            (click)="startEditing('downPayment')"
-            (keydown.enter)="startEditing('downPayment')"
-            (keydown.space)="startEditing('downPayment')"
-            tabindex="0"
-            role="button"
-            aria-label="downPaymentEditInput"
-          >
-            {{ downPayment | number: '1.2-2' : 'ru-RU' }}
-            {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+          <div class="display-value" (click)="startEditing('downPayment')">
+            {{ downPayment | number: '1.2-2' : 'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
           </div>
-        }
-
-        @if (isEditingDownPayment) {
+        } @else {
           <input
             type="number"
             class="edit-input"
-            id="downPaymentEditInput"
-            [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent"
-            [max]="carCost"
-            [(ngModel)]="downPayment"
+            [ngModel]="downPayment"
+            (input)="onInputValidate($event, 'downPayment')"
             (blur)="stopEditing()"
+            (focus)="handleFocus($event)"
             (keydown.enter)="stopEditing()"
-            aria-labelledby="downPaymentEditInput"
           />
         }
 
         <input
-          type="range"
-          class="range-slider"
-          [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent"
-          [max]="carCost"
-          [(ngModel)]="downPayment"
-          (input)="recalculate()"
-          [style.--range-percent]="downPaymentPercent"
-          aria-labelledby="downPaymentEditInput"
-        />
+      type="range"
+      class="range-slider"
+      [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent"
+      [max]="carCost"
+      [(ngModel)]="downPayment"
+      (input)="recalculate()"
+      [style.--range-percent]="downPaymentPercent"
+    />
         <div class="range-labels">
           <span>{{ downPaymentLabels[0] }}</span>
           <span>{{ downPaymentLabels[1] }}</span>
@@ -148,17 +103,17 @@
 
     <!-- Сумма финансирования -->
     <div class="form-group">
-      <label for="financingAmountDisplay">{{ 'CALCULATORS.AUTO_LOAN.FINANCING_AMOUNT' | translate }}</label>
-      <div class="display-value static" role="status">
-        {{ financingAmount }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+      <label>{{ 'CALCULATORS.AUTO_LOAN.FINANCING_AMOUNT' | translate }}</label>
+      <div class="display-value static">
+        {{ financingAmount | number: '1.0-0' : 'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
       </div>
     </div>
 
     <!-- Срок -->
     <div class="form-group">
-      <span id="loanTermLabel" class="form-label">{{ 'CALCULATORS.AUTO_LOAN.TERM' | translate }}</span>
-      <div class="term-buttons" role="group" aria-labelledby="loanTermLabel">
-        @for (term of availableTerms; track $index) {
+      <span class="form-label">{{ 'CALCULATORS.AUTO_LOAN.TERM' | translate }}</span>
+      <div class="term-buttons">
+        @for (term of availableTerms; track term) {
           <button (click)="loanTerm = term; recalculate()" [class.active]="loanTerm === term" type="button">
             {{ term }} {{ 'CALCULATORS.COMMON.MONTHS' | translate }}
           </button>
@@ -167,28 +122,21 @@
     </div>
   </div>
 
-  <!-- Правая колонка -->
+  <!-- Результаты -->
   <div class="result-wrapper">
     @if (calculationResult) {
       <div class="result-card">
         <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
         <p>{{ 'CALCULATORS.AUTO_LOAN.ACTUAL_OVERPAYMENT' | translate }}</p>
-
-        <h3>
-          {{ calculationResult.totalOverpayment | number: '1.2-2' : 'ru-RU' }}
-          {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
-        </h3>
+        <h3>{{ calculationResult.totalOverpayment | number: '1.2-2' : 'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}</h3>
 
         <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
-        <h3>
-          {{ calculationResult.monthlyPayment | number: '1.2-2' : 'ru-RU' }}
-          {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
-        </h3>
+        <h3>{{ calculationResult.monthlyPayment | number: '1.2-2' : 'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}</h3>
 
         <p>{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</p>
-        <h3>{{ interestRate }}%</h3>
+        <h3>{{ interestRate | number: '1.0-2' }}%</h3>
 
-        <button class="apply-button" [routerLink]="['/credits', 7]" [queryParams]="{ scrollTo: 'application-form' }">
+        <button class="apply-button">
           {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
         </button>
       </div>

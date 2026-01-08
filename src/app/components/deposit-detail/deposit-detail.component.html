@@ -76,6 +76,7 @@
             <input
               type="text"
               id="phone"
+              autocomplete="off" 
               [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.PHONE_PLACEHOLDER' | translate"
               class="form-control"
               required
@@ -83,16 +84,19 @@
               name="phone"
               #phone="ngModel"
             />
+            <!-- Ошибка теперь будет позиционироваться абсолютно, чтобы не двигать верстку -->
             @if (phone.invalid && phone.touched) {
-              <div class="error">
+              <div class="error-message">
                 {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
               </div>
             }
           </div>
+        
           <div class="form-group">
             <input
               type="text"
               id="name"
+              autocomplete="off"
               [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.NAME_PLACEHOLDER' | translate"
               class="form-control"
               required
@@ -101,7 +105,7 @@
               #name="ngModel"
             />
             @if (name.invalid && name.touched) {
-              <div class="error">
+              <div class="error-message">
                 {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
               </div>
             }
@@ -113,7 +117,7 @@
           </div>
           <p class="form-disclaimer">
             {{ 'COMMON.CONSENT.PREFIX2' | translate }}
-            <a href="#">{{ 'COMMON.CONSENT.LINK_TEXT' | translate }}</a>
+            <a href="../../../assets/files/public_offer.pdf" target="_blank" rel="noopener noreferrer">{{ 'COMMON.CONSENT.LINK_TEXT' | translate }}</a>
             {{ 'COMMON.CONSENT.LINK_TEXT2' | translate }}
           </p>
         </form>

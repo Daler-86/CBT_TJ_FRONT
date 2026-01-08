@@ -62,7 +62,7 @@
                   <label class="custom-checkbox">
                     <input type="checkbox" [checked]="allSelected" (change)="onCheckboxChange('allSelected', $event)" />
                     <span class="checkbox"></span>
-                    {{ 'ALL' | translate }}
+                    {{ 'MAP_PAGE.FILTERS.ALL_REGIONS' | translate }}
                   </label>
                 </div>
                 <div class="dropdown-option">
@@ -73,7 +73,7 @@
                       (change)="onCheckboxChange('officesSelected', $event)"
                     />
                     <span class="checkbox"></span>
-                    {{ 'OFFICES' | translate }}
+                    {{ 'MAP_PAGE.FILTERS.OFFICES' | translate }}
                   </label>
                 </div>
                 <div class="dropdown-option">
@@ -84,7 +84,7 @@
                       (change)="onCheckboxChange('terminalsSelected', $event)"
                     />
                     <span class="checkbox"></span>
-                    {{ 'TERMINALS' | translate }}
+                    {{ 'MAP_PAGE.FILTERS.TERMINALS' | translate }}
                   </label>
                 </div>
                 <div class="dropdown-option">
@@ -95,7 +95,7 @@
                       (change)="onCheckboxChange('atmsSelected', $event)"
                     />
                     <span class="checkbox"></span>
-                    {{ 'ATM' | translate }}
+                    {{ 'MAP_PAGE.FILTERS.ATMS' | translate }}
                   </label>
                 </div>
               </div>
@@ -112,7 +112,7 @@
                       (change)="onCheckboxChange('is24Selected', $event)"
                     />
                     <span class="checkbox"></span>
-                    {{ '24H' | translate }}
+                    {{ 'MAP_PAGE.FILTERS.AVAILABILITY_OPTIONS.24H' | translate }}
                   </label>
                 </div>
                 <div class="dropdown-option">
@@ -123,7 +123,7 @@
                       (change)="onCheckboxChange('workingNowSelected', $event)"
                     />
                     <span class="checkbox"></span>
-                    {{ 'NOW' | translate }}
+                    {{ 'MAP_PAGE.FILTERS.AVAILABILITY_OPTIONS.NOW' | translate }}
                   </label>
                 </div>
               </div>
@@ -182,7 +182,7 @@
                   <label class="custom-checkbox">
                     <input type="checkbox" [checked]="regionSelected === 0" (change)="onRegionChange(0)" />
                     <span class="checkbox"></span>
-                    {{ 'ALL' | translate }}
+                    {{ 'MAP_PAGE.FILTERS.ALL_REGIONS' | translate }}
                   </label>
                 </div>
                 @for (option of regionList; track $index) {
@@ -249,7 +249,6 @@
         }
       </div>
 
-      <!-- 2. Область для рендеринга карты -->
       <div class="map-render-area">
         <app-yandex-map
           [points]="mapPoints"
@@ -260,6 +259,7 @@
         </app-yandex-map>
       </div>
     </div>
+    </div>
     <!-- Список терминалов -->
     <div
       [hidden]="selectedTab !== 'Spiskom'"
@@ -269,7 +269,7 @@
     >
       <app-office-list></app-office-list>
     </div>
-    <!-- Часто задаваемые вопросы -->
+  
     <div class="faq-container">
       <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
       @for (faq of faqs; track i; let i = $index) {
@@ -296,4 +296,4 @@
       }
     </div>
   </div>
-</div>
+

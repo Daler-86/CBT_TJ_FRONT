@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { RateService } from '../../api/rate.service';
@@ -28,7 +28,8 @@ export class CurrencyConverterComponent implements OnInit {
   selectedMode = '';
   exchangeRatesByMode: Record<string, ProcessedRate[]> = {};
   showMore = false;
-
+  showFromDropdown = false;
+  showToDropdown = false;
   modes: Mode[] = [];
 
   private rateService = inject(RateService);
@@ -53,7 +54,27 @@ export class CurrencyConverterComponent implements OnInit {
   get ratesCount(): number {
     return this.exchangeRatesByMode[this.selectedMode]?.length || 0;
   }
+  selectFromCurrency(currency: string) {
+    this.fromCurrency = currency;
+    this.showFromDropdown = false;
+    this.updateCurrencies();
+  }
+  
+  selectToCurrency(currency: string) {
+    this.toCurrency = currency;
+    this.showToDropdown = false;
+    this.convertCurrency();
+  }
+  
 
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.currency-select-container')) {
+      this.showFromDropdown = false;
+      this.showToDropdown = false;
+    }
+  }
   fetchExchangeRates() {
     this.rateService.getProcessedExchangeRates().subscribe({
       next: (processedData) => {
@@ -86,34 +107,64 @@ export class CurrencyConverterComponent implements OnInit {
     }
     this.convertCurrency();
   }
-
   convertCurrency() {
     const rates = this.exchangeRatesByMode[this.selectedMode];
-
-    if (!this.amount || this.fromCurrency === this.toCurrency) {
-      this.convertedAmount = this.amount;
+  
+    if (!this.amount || !rates || this.fromCurrency === this.toCurrency) {
+      this.convertedAmount = this.amount || 0;
       return;
     }
-
-    if (this.transactionType === 'buy') {
-      if (this.fromCurrency === 'TJS') {
-        const toRate = rates?.find((rate) => rate.currency === this.toCurrency);
-        this.convertedAmount = toRate ? this.amount / toRate.sell : 0;
-      } else if (this.toCurrency === 'TJS') {
-        const fromRate = rates?.find((rate) => rate.currency === this.fromCurrency);
-        this.convertedAmount = fromRate ? this.amount * fromRate.sell : 0;
+  
+    const foreignCurrency = this.fromCurrency === 'TJS' ? this.toCurrency : this.fromCurrency;
+    const rateEntry = rates.find(r => r.currency === foreignCurrency);
+  
+    if (!rateEntry) return;
+  
+    let activeRate = 0;
+  
+    if (this.selectedMode === 'CB_RATE') {
+      activeRate = rateEntry.buy; 
+    } else {
+      if (this.transactionType === 'buy') {
+        activeRate = (this.fromCurrency === 'TJS') ? rateEntry.buy : rateEntry.sell;
+      } else {
+        activeRate = (this.fromCurrency === 'TJS') ? rateEntry.sell : rateEntry.buy;
       }
-    } else if (this.transactionType === 'sell') {
+    }
+  
+    if (activeRate > 0) {
       if (this.fromCurrency === 'TJS') {
-        const toRate = rates?.find((rate) => rate.currency === this.toCurrency);
-        this.convertedAmount = toRate ? this.amount / toRate.buy : 0;
-      } else if (this.toCurrency === 'TJS') {
-        const fromRate = rates?.find((rate) => rate.currency === this.fromCurrency);
-        this.convertedAmount = fromRate ? this.amount * fromRate.buy : 0;
+        this.convertedAmount = this.amount / activeRate;
+      } else {
+        this.convertedAmount = this.amount * activeRate;
       }
     }
   }
-
+  onAmountInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (!target) return;
+  
+    let val = target.value;
+  
+    if (val === '') {
+      this.amount = 0;
+      target.value = ''; 
+    } else {
+      const numValue = Math.abs(parseInt(val, 10));
+      
+      this.amount = numValue;
+      target.value = numValue.toString();
+    }
+    
+    this.convertCurrency();
+  }
+  
+  handleFocus(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target && target.select) {
+      target.select();
+    }
+  }
   toggleShowMore() {
     this.showMore = !this.showMore;
   }

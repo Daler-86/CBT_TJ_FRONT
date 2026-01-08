@@ -2,7 +2,7 @@
   @if (galleries.length > 0) {
     <div class="carousel-slides" [style.transform]="getTransform()">
       @for (slide of galleries; track slide.id) {
-        <div class="carousel-item">
+        <div class="carousel-item" [class.no-image]="!slide.upload_file">
           <div class="carousel-content">
             <h2>{{ slide.title }}</h2>
             <p>{{ slide.description }}</p>
@@ -17,7 +17,9 @@
               </button>
             }
           </div>
-          <img [src]="imageUrl + slide.upload_file" [alt]="slide.title" />
+          @if (slide.upload_file) {
+            <img [src]="imageUrl + slide.upload_file" [alt]="slide.title" />
+          }
         </div>
       }
     </div>

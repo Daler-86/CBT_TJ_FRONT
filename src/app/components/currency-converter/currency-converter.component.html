@@ -60,84 +60,83 @@
     </div>
 
     <div class="currency-converter" [ngClass]="{ 'sell-active': transactionType === 'sell' }">
-      <div
-        class="switch-container"
-        tabindex="0"
-        role="switch"
-        [attr.aria-checked]="transactionType === 'buy' ? 'true' : 'false'"
-        [attr.aria-label]="
-          'Переключить тип транзакции: ' +
-          (transactionType === 'buy' ? ('BUTTONS.SELL' | translate) : ('BUTTONS.BUY' | translate))
-        "
-      >
-        <svg class="switch-buttons" viewBox="0 0 400 50" preserveAspectRatio="none">
-          <rect
-            class="switch-rect"
-            [class.buy]="transactionType === 'buy'"
-            [class.sell]="transactionType === 'sell'"
-            y="0"
-            width="200"
-            height="100%"
-            fill="#00B06C"
-            rx="12"
-            ry="12"
-          >
-            <animate
-              attributeName="x"
-              [attr.from]="transactionType === 'buy' ? 200 : 0"
-              [attr.to]="transactionType === 'buy' ? 0 : 200"
-              dur="0.3s"
-              fill="freeze"
-              begin="indefinite"
-              #anim
-            />
-          </rect>
-          <g (click)="toggleTransaction('buy')">
-            <rect x="0" y="0" width="200" height="50" fill="transparent" />
-            <text x="50" y="30" [attr.fill]="transactionType === 'buy' ? 'white' : 'black'">
-              {{ 'BUTTONS.BUY' | translate }}
-            </text>
-          </g>
-
-          <g (click)="toggleTransaction('sell')">
-            <rect x="200" y="0" width="200" height="50" fill="transparent" />
-            <text x="250" y="30" [attr.fill]="transactionType === 'sell' ? 'white' : 'black'">
-              {{ 'BUTTONS.SELL' | translate }}
-            </text>
-          </g>
-        </svg>
+      <div class="transaction-switcher">
+        <button 
+          type="button" 
+          class="switch-btn" 
+          [class.active]="transactionType === 'buy'" 
+          (click)="toggleTransaction('buy')">
+          {{ 'BUTTONS.BUY' | translate }}
+        </button>
+        <button 
+          type="button" 
+          class="switch-btn" 
+          [class.active]="transactionType === 'sell'" 
+          (click)="toggleTransaction('sell')">
+          {{ 'BUTTONS.SELL' | translate }}
+        </button>
       </div>
 
       <div class="converter-inputs">
-        <!-- Для "HAVE" -->
-        <label for="amountInput">{{ 'CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate }}</label
-        ><br />
-        <div class="a">
-          <input class="inp" type="number" id="amountInput" [(ngModel)]="amount" (ngModelChange)="convertCurrency()" />
-          <select [(ngModel)]="fromCurrency" (change)="updateCurrencies()">
-            <option value="TJS">TJS</option>
-            @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
-              <option [value]="rate.currency">{{ rate.currency }}</option>
+        <label for="amountInput">
+          
+          {{ transactionType === 'buy' ? ('CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate) : ('CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate) }}
+        </label>
+        <!-- <label for="amountInput">{{ 'CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate }}</label> -->
+        <div class="field-wrapper">
+          <!-- <input class="amount-input" type="number" [(ngModel)]="amount" (ngModelChange)="convertCurrency()" /> -->
+          <input 
+          class="amount-input" 
+          type="number" 
+          [ngModel]="amount" 
+          (input)="onAmountInput($event)" 
+          (focus)="handleFocus($event)"
+        />
+          <div class="currency-select-container" (click)="showFromDropdown = !showFromDropdown">
+            <span class="selected-value">{{ fromCurrency }}</span>
+            <i class="chevron-down" [class.open]="showFromDropdown"></i>
+        
+        
+            @if (showFromDropdown) {
+              <div class="custom-dropdown">
+                <div class="dropdown-item" [class.active]="fromCurrency === 'TJS'" (click)="selectFromCurrency('TJS')">TJS</div>
+                @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
+                  <div class="dropdown-item" [class.active]="fromCurrency === rate.currency" (click)="selectFromCurrency(rate.currency)">
+                    {{ rate.currency }}
+                  </div>
+                }
+              </div>
             }
-          </select>
+          </div>
         </div>
       </div>
-
+      
       <div class="converter-inputs">
-        <!-- Для "RECEIVE" -->
-        <label for="convertedAmountInput">{{ 'CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate }}</label
-        ><br />
-        <div class="a">
-          <input type="text" [value]="convertedAmount | number: '1.4-4'" readonly />
-          <select [(ngModel)]="toCurrency" (change)="convertCurrency()">
-            @if (fromCurrency === 'TJS') {
-              @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
-                <option [value]="rate.currency">{{ rate.currency }}</option>
-              }
-            } @else {
-              <option value="TJS">TJS</option>
+        <label>
+          {{ transactionType === 'buy' ? ('CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate) : ('CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate) }}
+        </label>
+        <!-- <label>{{ 'CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate }}</label> -->
+        <div class="field-wrapper">
+          <input class="amount-input" type="text" [value]="convertedAmount | number: '1.0-4'" readonly />
+          
+          <div class="currency-select-container" (click)="showToDropdown = !showToDropdown">
+            <span class="selected-value">{{ toCurrency }}</span>
+            <i class="chevron-down" [class.open]="showToDropdown"></i>
+        
+            @if (showToDropdown) {
+              <div class="custom-dropdown">
+                @if (fromCurrency === 'TJS') {
+                  @for (rate of exchangeRatesByMode[selectedMode]; track $index) {
+                    <div class="dropdown-item" [class.active]="toCurrency === rate.currency" (click)="selectToCurrency(rate.currency)">
+                      {{ rate.currency }}
+                    </div>
+                  }
+                } @else {
+                  <div class="dropdown-item" [class.active]="toCurrency === 'TJS'" (click)="selectToCurrency('TJS')">TJS</div>
+                }
+              </div>
             }
-          </select>
+          </div>
         </div>
       </div>
 

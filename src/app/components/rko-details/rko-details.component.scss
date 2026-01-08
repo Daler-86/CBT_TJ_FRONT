@@ -2,7 +2,7 @@
 .cards {
   margin: none;
   padding: 3% 5%;
-  background-color: #f8f9fa;
+  background-color: #f6f7f8;
   .card-container {
     position: relative;
     margin: 30px 0;
@@ -63,12 +63,12 @@
       display: flex;
       justify-content: center;
       // margin: 62px 76px 62px 0px;
-      border-radius: 22px;
+      border-radius: 24px;
       @media (max-width: 768px) {
         width: 80%;
         margin: auto;
       }
-      //  background-color: #f8f9fa;
+      //  background-color: #F6F7F8;
       padding: 0px 65px;
       .transfers_img {
         //  width: 100%;
@@ -92,7 +92,7 @@
         width: 30%;
         background-color: white;
         padding: 40px 45px;
-        border-radius: 22px;
+        border-radius: 24px;
         @media (max-width: 768px) {
           width: 48%;
         }
