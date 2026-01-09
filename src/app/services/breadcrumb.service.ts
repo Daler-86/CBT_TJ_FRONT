@@ -16,75 +16,82 @@ export interface Breadcrumb {
 export class BreadcrumbService {
   private readonly _breadcrumbs$ = new BehaviorSubject<Breadcrumb[]>([]);
   readonly breadcrumbs$: Observable<Breadcrumb[]> = this._breadcrumbs$.asObservable();
+
+  private dynamicLabels: { [key: string]: string } = {};
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   private translate = inject(TranslateService);
+  
   constructor() {
-    this.listenToEvents(); // Вызываем единый метод прослушки
+    this.listenToEvents(); 
+  }
+  setLabel(url: string, label: string) {
+    this.dynamicLabels[url] = label;
+    this.rebuildBreadcrumbs();
   }
 
   private listenToEvents(): void {
-    // 1. Слушаем навигацию роутера
     this.router.events
       .pipe(
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
         distinctUntilChanged(),
       )
       .subscribe(() => {
-        // При каждом переходе по странице ПЫТАЕМСЯ перестроить крошки
         this.rebuildBreadcrumbs();
       });
 
-    // 2. Слушаем события ngx-translate
-    // onLangChange срабатывает и при ПЕРВОЙ загрузке языка, и при каждой смене.
+
     this.translate.onLangChange.subscribe(() => {
-      // Когда язык точно загружен, мы ОБЯЗАТЕЛЬНО перестраиваем крошки
       this.rebuildBreadcrumbs();
     });
   }
 
-  /**
-   * Центральный метод, который пересобирает хлебные крошки.
-   */
-  private rebuildBreadcrumbs(): void {
-    // Проверяем, есть ли уже загруженные переводы. Если нет, ничего не делаем.
-    // Это предотвращает запуск до того, как ngx-translate будет готов.
-    if (Object.keys(this.translate.instant('breadcrumbs')).length === 0) {
-      return; // Ждем, пока onLangChange не вызовет этот метод снова
+  public rebuildBreadcrumbs(): void {
+    if (Object.keys(this.translate.instant('breadcrumbs') || {}).length === 0 && 
+        this.translate.currentLang) {
     }
 
     const root = this.activatedRoute.root;
     const breadcrumbs = this.buildBreadcrumbs(root);
 
+  
     const currentUrl = this.router.url;
-    const isHomePage = currentUrl === '/home' || currentUrl === '/';
-
-    if (!isHomePage && breadcrumbs.length > 0) {
-      const homeCrumb: Breadcrumb = {
+    if (currentUrl !== '/' && currentUrl !== '/home') {
+      breadcrumbs.unshift({
         label: this.translate.instant('BREADCRUMBS.HOME'),
         url: '/',
-      };
-      breadcrumbs.unshift(homeCrumb);
+      });
     }
 
-    const uniqueCrumbs = this.removeDuplicates(breadcrumbs);
-    this._breadcrumbs$.next(uniqueCrumbs);
+    this._breadcrumbs$.next(this.removeDuplicates(breadcrumbs));
   }
-
-  // Метод buildBreadcrumbs и removeDuplicates остаются такими же, как в прошлом ответе
   private buildBreadcrumbs(route: ActivatedRoute, url = '', breadcrumbs: Breadcrumb[] = []): Breadcrumb[] {
     let currentRoute: ActivatedRoute | null = route.firstChild;
     let newUrl = url;
+
     while (currentRoute) {
-      const routeURL: string = currentRoute.snapshot.url.map((segment) => segment.path).join('/');
+      const routeURL: string = currentRoute.snapshot.url.map(segment => segment.path).join('/');
       if (routeURL !== '') {
         newUrl += `/${routeURL}`;
       }
-      const label = currentRoute.snapshot.data['breadcrumb'];
-      if (label) {
-        const isDynamic = currentRoute.snapshot.data['isDynamic'];
-        const finalLabel = !isDynamic ? this.translate.instant(label) : label;
-        if (finalLabel && finalLabel.trim() !== '') {
+
+      const data = currentRoute.snapshot.data;
+      const labelKey = data['breadcrumb'];
+
+      if (labelKey) {
+        let finalLabel = '';
+
+        if (this.dynamicLabels[newUrl]) {
+          finalLabel = this.dynamicLabels[newUrl];
+        }
+        else if (!data['isDynamic']) {
+          finalLabel = this.translate.instant(labelKey);
+        } 
+        else {
+          finalLabel = labelKey; 
+        }
+
+        if (finalLabel) {
           breadcrumbs.push({ label: finalLabel, url: newUrl });
         }
       }
