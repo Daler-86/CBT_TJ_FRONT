@@ -5,7 +5,7 @@
     @for (transfer of transfersList; track transfer.id) {
       <div class="card-container">
         <div class="card-image">
-          <!-- alt-текст берется из динамического поля transfer.title, что корректно -->
+      
           <img class="transfers_img" [src]="imageUrl + transfer.upload_icon_file_id" [alt]="transfer.title" />
         </div>
         <div class="card-info">

@@ -136,12 +136,14 @@
   </form>
   @if (isSubmitted) {
     <div class="notification success-message">
-      {{ 'NOTIFICATIONS.SUBMIT_SUCCESSSuccess' | translate }}
+      {{ 'NOTIFICATIONS.SUBMIT_SUCCESS' | translate }}
     </div>
   }
 
-  @if (isError) {}
-  <div class="notification error-message animated">
-    {{ 'NOTIFICATIONS.SUBMIT_ERROR' | translate }}
-  </div>
+  @if (isError) {
+    <div class="notification error-message animated">
+      {{ 'NOTIFICATIONS.SUBMIT_ERROR' | translate }}
+    </div>
+  }
+ 
 </div>
