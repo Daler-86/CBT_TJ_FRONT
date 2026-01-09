@@ -212,7 +212,7 @@ export class VacancyDetailComponent implements OnInit {
     if (this.applyForm.invalid) {
       // --- НАЧАЛО ИЗМЕНЕНИЙ ---
       // Используем существующий ключ
-      this.translate.get('notifications.fillAllRequiredFieldsWarning').subscribe((message: string) => {
+      this.translate.get('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING').subscribe((message: string) => {
         this.notificationService.show(message, 'error');
       });
       // --- КОНЕЦ ИЗМЕНЕНИЙ ---
@@ -221,7 +221,7 @@ export class VacancyDetailComponent implements OnInit {
     if (this.uploadFileId === null) {
       // --- НАЧАЛО ИЗМЕНЕНИЙ ---
       // Новый ключ
-      this.translate.get('notifications.uploadResumeWarning').subscribe((message: string) => {
+      this.translate.get('NOTIFICATIONS.UPLOAD_RESUME_WARNING').subscribe((message: string) => {
         this.notificationService.show(message, 'error');
       });
       // --- КОНЕЦ ИЗМЕНЕНИЙ ---
@@ -242,7 +242,7 @@ export class VacancyDetailComponent implements OnInit {
       next: () => {
         // --- НАЧАЛО ИЗМЕНЕНИЙ ---
         // Используем существующий ключ
-        this.translate.get('notifications.applicationSentSuccess').subscribe((message: string) => {
+        this.translate.get('NOTIFICATIONS.APPLICATION_SENT_SUCCESS').subscribe((message: string) => {
           this.notificationService.show(message, 'success');
         });
         // --- КОНЕЦ ИЗМЕНЕНИЙ ---
@@ -255,7 +255,7 @@ export class VacancyDetailComponent implements OnInit {
         console.error('Form submission failed:', error);
         // --- НАЧАЛО ИЗМЕНЕНИЙ ---
         // Используем существующий ключ
-        this.translate.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+        this.translate.get('NOTIFICATION.APPLICATION_ERROR_MESSAGE').subscribe((message: string) => {
           this.notificationService.show(message, 'error');
         });
         // --- КОНЕЦ ИЗМЕНЕНИЙ ---

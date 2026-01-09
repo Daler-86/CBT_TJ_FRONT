@@ -73,47 +73,66 @@
 
     <div class="form-row">
       <div class="full">
-        <input formControlName="lastName" [placeholder]="('VACANCY_DETAILS.FORM.LAST_NAME' | translate) + '*'" />
+        <input
+          formControlName="lastName"
+          [placeholder]="('VACANCY_DETAILS.FORM.LAST_NAME' | translate) + '*'"
+        />
         @if (lastName?.invalid && lastName?.touched) {
-          <div class="error-message">Фамилия обязательна.</div>
+          <div class="error-message">
+            {{ 'VACANCY_DETAILS.FORM.ERRORS.LAST_NAME_REQUIRED' | translate }}
+          </div>
         }
       </div>
+    
       <div class="full">
-        <input formControlName="firstName" [placeholder]="('VACANCY_DETAILS.FORM.FIRST_NAME' | translate) + '*'" />
+        <input
+          formControlName="firstName"
+          [placeholder]="('VACANCY_DETAILS.FORM.FIRST_NAME' | translate) + '*'"
+        />
         @if (firstName?.invalid && firstName?.touched) {
-          <div class="error-message">Имя обязательно.</div>
+          <div class="error-message">
+            {{ 'VACANCY_DETAILS.FORM.ERRORS.FIRST_NAME_REQUIRED' | translate }}
+          </div>
         }
       </div>
     </div>
-
+    
     <div class="form-row">
       <div class="full">
-        <input formControlName="phone" [placeholder]="('VACANCY_DETAILS.FORM.PHONE' | translate) + '*'" />
+        <input
+          formControlName="phone"
+          [placeholder]="('VACANCY_DETAILS.FORM.PHONE' | translate) + '*'"
+        />
         @if (phone?.invalid && phone?.touched) {
           <div class="error-message">
             @if (phone?.errors?.['required']) {
-              <span>Телефон обязателен.</span>
+              <span>{{ 'VACANCY_DETAILS.FORM.ERRORS.PHONE_REQUIRED' | translate }}</span>
             }
             @if (phone?.errors?.['pattern']) {
-              <span>Неверный формат.</span>
+              <span>{{ 'VACANCY_DETAILS.FORM.ERRORS.PHONE_INVALID' | translate }}</span>
             }
           </div>
         }
       </div>
+    
       <div class="full">
-        <input formControlName="email" [placeholder]="('VACANCY_DETAILS.FORM.EMAIL' | translate) + '*'" />
+        <input
+          formControlName="email"
+          [placeholder]="('VACANCY_DETAILS.FORM.EMAIL' | translate) + '*'"
+        />
         @if (email?.invalid && email?.touched) {
           <div class="error-message">
             @if (email?.errors?.['required']) {
-              <span>Email обязателен.</span>
+              <span>{{ 'VACANCY_DETAILS.FORM.ERRORS.EMAIL_REQUIRED' | translate }}</span>
             }
             @if (email?.errors?.['email']) {
-              <span>Неверный формат email.</span>
+              <span>{{ 'VACANCY_DETAILS.FORM.ERRORS.EMAIL_INVALID' | translate }}</span>
             }
           </div>
         }
       </div>
     </div>
+    
 
     <!-- Зона перетаскивания файла -->
     <div

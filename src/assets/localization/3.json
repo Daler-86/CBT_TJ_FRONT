@@ -73,14 +73,26 @@
       "CONDITIONS": "Conditions:"
     },
     "FORM": {
-      "TITLE": "Apply for a vacancy",
-      "SUBTITLE": "Tell us about yourself and we will definitely contact you",
-      "LAST_NAME": "Last Name",
-      "FIRST_NAME": "First Name",
+      "TITLE": "Apply for the position",
+      "SUBTITLE": "Fill in your details and we will contact you shortly",
+      "LAST_NAME": "Last name",
+      "FIRST_NAME": "First name",
       "PHONE": "Phone",
       "EMAIL": "Email",
-      "DRAG_OR": "Drag or",
-      "SUPPORTED_FORMATS": "Supported formats: PDF, Doc, JPG (Max 5Mb)"
+      "DRAG_OR": "Drag and drop or",
+      "SUPPORTED_FORMATS": "Supported formats: PDF, Doc, JPG (Max 5Mb)",
+
+      "ERRORS": {
+        "LAST_NAME_REQUIRED": "Last name is required.",
+        "FIRST_NAME_REQUIRED": "First name is required.",
+        "PHONE_REQUIRED": "Phone number is required.",
+        "PHONE_INVALID": "Invalid phone number format.",
+        "EMAIL_REQUIRED": "Email is required.",
+        "EMAIL_INVALID": "Invalid email format.",
+        "FILE_REQUIRED": "Please upload your resume.",
+        "FILE_INVALID_FORMAT": "Invalid file format. Allowed: PDF, DOC, DOCX.",
+        "FILE_UPLOAD_FAILED": "Failed to upload the file."
+      }
     }
   },
   "BUTTONS": {

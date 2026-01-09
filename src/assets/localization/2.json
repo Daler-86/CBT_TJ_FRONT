@@ -74,13 +74,25 @@
     },
     "FORM": {
       "TITLE": "Откликнуться на вакансию",
-      "SUBTITLE": "Расскажите нам о себе, и мы обязательно свяжемся с вами",
+      "SUBTITLE": "Заполните данные, и мы обязательно свяжемся с вами",
       "LAST_NAME": "Фамилия",
       "FIRST_NAME": "Имя",
       "PHONE": "Телефон",
       "EMAIL": "Email",
-      "DRAG_OR": "Перетащите или",
-      "SUPPORTED_FORMATS": "Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)"
+      "DRAG_OR": "Перетащите файл или",
+      "SUPPORTED_FORMATS": "Поддерживаемые форматы: PDF, Doc, JPG (Max 5Mb)",
+
+      "ERRORS": {
+        "LAST_NAME_REQUIRED": "Фамилия обязательна.",
+        "FIRST_NAME_REQUIRED": "Имя обязательно.",
+        "PHONE_REQUIRED": "Телефон обязателен.",
+        "PHONE_INVALID": "Неверный формат телефона.",
+        "EMAIL_REQUIRED": "Email обязателен.",
+        "EMAIL_INVALID": "Неверный формат email.",
+        "FILE_REQUIRED": "Пожалуйста, загрузите резюме.",
+        "FILE_INVALID_FORMAT": "Неверный формат файла. Допустимы PDF, DOC, DOCX.",
+        "FILE_UPLOAD_FAILED": "Не удалось загрузить файл."
+      }
     }
   },
   "BUTTONS": {

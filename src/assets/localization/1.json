@@ -64,25 +64,40 @@
     "HISTORY_IMAGE2": "Акси толори амалиётии бонк",
     "HISTORY_IMAGE3": "Акси офиси муосири бонк"
   },
-  "VACANCY_DETAILS": {
-    "SECTIONS": {
-      "EDUCATION": "Маълумот ва тахассус:",
-      "EXPERIENCE": "Таҷриба:",
-      "SKILLS": "Малакаҳо ва донишҳо:",
-      "QUALITIES": "Ӯҳдадориҳо:",
-      "CONDITIONS": "Шароити корӣ:"
+  
+    "VACANCY_DETAILS": {
+      "SECTIONS": {
+        "EDUCATION": "Маълумот ва тахассус:",
+        "EXPERIENCE": "Таҷриба:",
+        "SKILLS": "Малакаҳо ва донишҳо:",
+        "QUALITIES": "Ӯҳдадориҳо:",
+        "CONDITIONS": "Шароити корӣ:"
+      },
+      "FORM": {
+        "TITLE": "Барои ҷойи кор муроҷиат кунед",
+        "SUBTITLE": "Маълумоти худро пур кунед ва мо ба шумо ҳатман тамос мегирем",
+        "LAST_NAME": "Насаб",
+        "FIRST_NAME": "Ном",
+        "PHONE": "Телефон",
+        "EMAIL": "Email",
+        "DRAG_OR": "Гирифта монед ё",
+        "SUPPORTED_FORMATS": "Форматҳои қабулшаванда: PDF, Doc, JPG (Max 5Mb)",
+  
+        "ERRORS": {
+          "LAST_NAME_REQUIRED": "Насаб ҳатмист.",
+          "FIRST_NAME_REQUIRED": "Ном ҳатмист.",
+          "PHONE_REQUIRED": "Рақами телефон ҳатмист.",
+          "PHONE_INVALID": "Формати рақами телефон нодуруст аст.",
+          "EMAIL_REQUIRED": "Email ҳатмист.",
+          "EMAIL_INVALID": "Формати Email нодуруст аст.",
+          "FILE_REQUIRED": "Лутфан, резюмеи худро бор кунед.",
+          "FILE_INVALID_FORMAT": "Формати файл нодуруст аст. Танҳо PDF, DOC, DOCX иҷозат дода мешавад.",
+          "FILE_UPLOAD_FAILED": "Боркунии файл номуваффақ шуд."
+        }
+      }
     },
-    "FORM": {
-      "TITLE": "Барои ҷойи кор муроҷиат кунед",
-      "SUBTITLE": "Маълумоти худро пур кунед ва мо ба шумо ҳатман тамос мегирем",
-      "LAST_NAME": "Насаб",
-      "FIRST_NAME": "Ном",
-      "PHONE": "Телефон",
-      "EMAIL": "Email",
-      "DRAG_OR": "Гирифта монед ё",
-      "SUPPORTED_FORMATS": "Форматҳои қабулшаванда: PDF, Doc, JPG (Max 5Mb)"
-    }
-  },
+  
+  
   "BUTTONS": {
     "APPLY_FOR_VACANCY": "Барои ҷойи кор муроҷиат кунед",
     "UPLOAD_CV": "Шарҳи ҳолро илова кунед",

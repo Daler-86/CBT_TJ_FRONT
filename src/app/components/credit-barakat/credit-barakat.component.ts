@@ -125,7 +125,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   submitApplication(form: NgForm) {
     if (form.invalid || !this.model.office_id) {
       // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-      this.translateService.get('notifications.fillAllRequiredFieldsWarning').subscribe((message: string) => {
+      this.translateService.get('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING').subscribe((message: string) => {
         this.notificationService.show(message, 'error');
       });
       // --- КОНЕЦ ИЗМЕНЕНИЙ ---
