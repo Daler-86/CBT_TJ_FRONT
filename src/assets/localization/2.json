@@ -68,7 +68,7 @@
     "SECTIONS": {
       "EDUCATION": "Образование и квалификация:",
       "EXPERIENCE": "Опыт работы:",
-      "SKILLS": "Навыки и знания:",
+      "REQUIRMENTS": "Требования:",
       "QUALITIES": "Обязанности:",
       "CONDITIONS": "Условия:"
     },

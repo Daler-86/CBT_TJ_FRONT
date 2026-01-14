@@ -38,7 +38,7 @@
         </div>
 
         <div class="vacancy-details">
-          <h4>{{ 'VACANCY_DETAILS.SECTIONS.SKILLS' | translate }}</h4>
+          <h4>{{ 'VACANCY_DETAILS.SECTIONS.REQUIREMENTS' | translate }}</h4>
           <ul>
             @for (skill of skill; track skill.id) {
               <li>{{ skill.content }}</li>
@@ -54,15 +54,17 @@
             }
           </ul>
         </div>
-
-        <div class="vacancy-details">
-          <h4>{{ 'VACANCY_DETAILS.SECTIONS.CONDITIONS' | translate }}</h4>
-          <ul>
-            @for (condition of condition; track condition.id) {
-              <li>{{ condition.content }}</li>
-            }
-          </ul>
-        </div>
+        @if(condition.length) {
+          <div class="vacancy-details">
+            <h4>{{ 'VACANCY_DETAILS.SECTIONS.CONDITIONS' | translate }}</h4>
+            <ul>
+              @for (condition of condition; track condition.id) {
+                <li>{{ condition.content }}</li>
+              }
+            </ul>
+          </div>
+        }
+        
       </div>
     </div>
   }
