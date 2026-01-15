@@ -22,13 +22,12 @@ export class ReportComponent implements OnInit {
   // Список всех годов для кнопок, например [2025, 2024]
   availableYears: number[] = [];
 
-  // Какой год API считает "главным" (например, 2025). Определяется один раз.
+
   currentApiYear: number | null = 0;
 
-  // Какой год ВЫБРАН сейчас (например, 2025 или 2024). Меняется при клике.
   selectedYear: number | null = null;
 
-  // --- Переменные для файлов ---
+ 
   reportFile: reportFile[] = [];
   totalPages = 0;
   currentPage = 1;
@@ -52,18 +51,15 @@ export class ReportComponent implements OnInit {
         const initialReportsData = response.data.reports;
         this.sortReportData(initialReportsData);
 
-        // 1. Показываем начальные данные
         this.reportData = initialReportsData;
 
-        // 2. ЗАПОМИНАЕМ, какой год API считает главным
         this.currentApiYear = initialReportsData.report_year;
-
-        // 3. Устанавливаем его как выбранный по умолчанию
-        this.selectedYear = this.currentApiYear;
+        this.selectedYear =0;
 
         // 4. Формируем ПОЛНЫЙ список годов для кнопок (один раз и навсегда)
         const yearsSet = new Set([this.currentApiYear, ...initialReportsData.report_years]);
-        this.availableYears = Array.from(yearsSet).sort((a, b) => b - a);
+        this.availableYears = Array.from(yearsSet)
+
       },
       error: (error) => console.error('Ошибка при первоначальной загрузке данных', error),
     });

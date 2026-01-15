@@ -12,16 +12,16 @@
         <div class="btnCards">
           @for (year of availableYears; track $index) {
             @if (year === currentApiYear) {
-              <button class="button" (click)="onYearChange(0)" [class.active]="selectedYear === currentApiYear">
+              <button class="button" (click)="onYearChange(0)" [class.active]="selectedYear === 0">
                 {{ 'REPORTING.FILTER.CURRENT_YEAR' | translate }}
               </button>
             }
 
-            @if (year !== currentApiYear) {
+        
               <button class="button" (click)="onYearChange(year)" [class.active]="selectedYear === year">
                 {{ year }}
               </button>
-            }
+      
           }
         </div>
       }
