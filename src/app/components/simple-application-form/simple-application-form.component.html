@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container" id="simple-application-form">
   <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
     <div class="">
       <h2>{{ titleKey | translate }}</h2>
@@ -22,11 +22,14 @@
 
       <div class="form-group">
         <input
-          type="text"
-          class="form-control"
-          [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
-          formControlName="phone"
-        />
+            type="text"
+            class="form-control"
+            [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
+            formControlName="phone"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            (input)="onPhoneInput($event)"
+          />
         @if (phone?.invalid && phone?.touched) {
           <div class="error">
             {{ 'FORMS.ERRORS.REQUIRED' | translate }}
@@ -44,7 +47,7 @@
 
       <div class="privacy-policy">
         {{ 'FORMS.PRIVACY_POLICY_PREFIX' | translate }}
-        <a href="#" target="_blank">{{ 'FORMS.PRIVACY_POLICY_LINK' | translate }}</a>
+        <a href="../../../assets/files/public_offer.pdf" target="_blank" rel="noopener noreferrer">{{ 'COMMON.CONSENT.LINK_TEXT' | translate }}</a>
       </div>
     </div>
   </form>

@@ -12,4 +12,18 @@ import { SimpleApplicationFormComponent } from '../simple-application-form/simpl
 })
 export class SalaryProjectPageComponent {
   public readonly salaryApiUrl = '/order/salary/save';
+
+  scrollToForm(): void {
+    const element = document.getElementById('simple-application-form');
+    if (!element) return;
+
+    const headerHeight = document.querySelector('.header')?.clientHeight || 0;
+
+    const offsetTop = element.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+    window.scrollTo({
+      top: offsetTop,
+      behavior: 'smooth',
+    });
+  }
 }

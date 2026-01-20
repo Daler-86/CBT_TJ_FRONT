@@ -960,7 +960,7 @@
       "ITEMS": [
         "Round-the-clock access to the account",
         "Cashless payment for goods/services through POS terminals installed at various retail and service points",
-        "Online card control, transfers, bill payment in the Mobile Banking application and on the bank's website",
+        "Online card control, transfers, bill payment in the mobile banking application and on the bank's website",
         "Safety of money in the card account when the card is lost",
         "Receiving salary through ATMs 24 hours a day",
         "Ensuring confidentiality of account information"
@@ -982,7 +982,7 @@
     "SUBTITLE": "The salary project will free your organization from the need to withdraw cash",
     "SUBMIT_BUTTON": "Submit Application",
     "DESCRIPTION_1": "The salary project will free your organization from the need to withdraw cash from the account, recount it, and pay each employee their salary in cash. In addition to saving time, this is also security - a very important aspect when delivering cash to the organization's office.",
-    "DESCRIPTION_2": "As for convenience for employees, your employees will be able to receive salaries through any ATMs using payment cards 24 hours a day, 365 days a year, and also make cashless payments for goods/services through Mobile Banking and POS terminals installed at various retail and service points.",
+    "DESCRIPTION_2": "As for convenience for employees, your employees will be able to receive salaries through any ATMs using payment cards 24 hours a day, 365 days a year, and also make cashless payments for goods/services through mobile banking and POS terminals installed at various retail and service points.",
     "SIMPLE_PROFITABLE": "With the salary project - simple, profitable and convenient",
     "FEATURES": {
       "MOBILE_APP": {
@@ -992,6 +992,14 @@
       "PERSONAL_CONDITIONS": {
         "TITLE": "Personal conditions in everything",
         "DESCRIPTION": "Cards for any salary: for employees and managers"
+      },
+      "FREE_SERVICE": {
+        "TITLE": "Free Service",
+        "DESCRIPTION": "Forever and without any conditions"
+      },
+      "FAST_CONNECTION": {
+        "TITLE": "Fast Onboarding",
+        "DESCRIPTION": "Employees, self-employed individuals, and even non-residents"
       }
     },
     "COMPANY_BENEFITS": {
@@ -1009,7 +1017,7 @@
       "ITEMS": [
         "Round-the-clock access to the account",
         "Cashless payment for goods/services through POS terminals installed at various retail and service points",
-        "Online card control, transfers, bill payment in the Mobile Banking application and on the bank's website",
+        "Online card control, transfers, bill payment in the mobile banking application and on the bank's website",
         "Safety of money in the card account when the card is lost",
         "Receiving salary through ATMs 24 hours a day",
         "Ensuring confidentiality of account information"
