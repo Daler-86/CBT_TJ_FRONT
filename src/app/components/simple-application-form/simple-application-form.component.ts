@@ -38,6 +38,13 @@ export class SimpleApplicationFormComponent {
 
   // ... (внутри вашего компонента)
 
+  onPhoneInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const numericValue = input.value.replace(/\D+/g, ''); // убираем всё кроме цифр
+    this.applicationForm.get('phone')?.setValue(numericValue, { emitEvent: false });
+  }
+  
+
   onSubmit(): void {
     this.applicationForm.markAllAsTouched();
     if (this.applicationForm.invalid) {
@@ -68,7 +75,7 @@ export class SimpleApplicationFormComponent {
       next: () => {
         // --- НАЧАло ИЗМЕНЕНИЙ ---
         // Немного другой текст, нужен новый ключ
-        this.translate.get('notifications.applicationSentSuccess').subscribe((message: string) => {
+        this.translate.get('NOTIFICATIONS.APPLICATION_SUCCESS_MESSAGE').subscribe((message: string) => {
           this.notificationService.show(message, 'success');
         });
         // --- КОНЕЦ ИЗМЕНЕНИЙ ---
@@ -78,7 +85,7 @@ export class SimpleApplicationFormComponent {
       error: () => {
         // --- НАЧАло ИЗМЕНЕНИЙ ---
         // Используем существующий ключ
-        this.translate.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+        this.translate.get('NOTIFICATIONS.APPLICATION_ERROR_MESSAGE').subscribe((message: string) => {
           this.notificationService.show(message, 'error');
         });
         // --- КОНЕЦ ИЗМЕНЕНИЙ ---
