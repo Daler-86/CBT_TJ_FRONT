@@ -13,6 +13,7 @@ import {
   vacancyData,
   vacancyEducation,
   vacancyExperience,
+  vacancyList,
   vacancySkill,
   vacancySubmit,
 } from '../../models/vacancies.model';
@@ -23,7 +24,7 @@ import { ModalService } from '../../services/modal.service';
 import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { PageTitleService } from '../../services/page-title.service';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
-
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; 
 @Component({
   selector: 'app-vacancy-detail',
   standalone: true,
@@ -51,8 +52,14 @@ export class VacancyDetailComponent implements OnInit {
     name: '',
     region_name: '',
     deadline_at: '',
+    content:"",
   };
-
+  private sanitizer = inject(DomSanitizer);
+  getSafeHtml(html: string): SafeHtml {
+   
+    if (!html) return '';
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
   private pageTitleService = inject(PageTitleService);
   private fb = inject(FormBuilder);
   private vacanciesService = inject(VacanciesService);
@@ -62,6 +69,14 @@ export class VacancyDetailComponent implements OnInit {
   private router = inject(Router);
   private notificationService = inject(ModalService);
   private breadcrumbService = inject(BreadcrumbService);
+  
+  public vacancy:vacancyList={
+    id:0,
+    name:"",
+    region_name:"",
+    content:"",
+    deadline_at:""
+  }
   constructor() {
     this.applyForm = this.fb.group({
       lastName: ['', Validators.required],
@@ -75,11 +90,7 @@ export class VacancyDetailComponent implements OnInit {
     if (idParam !== null) {
       this.id = +idParam;
       
-      // Загружаем все данные
       this.loadAllData();
-
-      // СЛУШАЕМ СМЕНУ ЯЗЫКА:
-      // При смене языка нужно заново вызвать API, чтобы получить переведенное 'name'
       this.translate.onLangChange.subscribe(() => {
         this.loadAllData();
       });
@@ -87,7 +98,11 @@ export class VacancyDetailComponent implements OnInit {
     } else {
       console.error('ID is missing in the route parameters.');
     }
-
+    const navigation = window.history.state;
+    
+    if (navigation && navigation.data) {
+      this.vacancy = navigation.data;
+    } 
   }
   loadAllData() {
     this.vacanciesService.getPersonalQuality(this.id).subscribe(d => this.personalQuality = d.data.vacancy_personal_qualities);

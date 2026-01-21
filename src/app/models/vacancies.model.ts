@@ -69,6 +69,8 @@ export interface vacancyList {
   id: number;
   name: string;
   region_name: string;
+  content:string;
+  deadline_at:string;
 }
 export interface VacancyList {
   status: string;
@@ -157,6 +159,7 @@ export interface vacancyData {
   name: string;
   region_name: string;
   deadline_at: string;
+  content:string;
 }
 export interface VacancyData {
   status: string;
