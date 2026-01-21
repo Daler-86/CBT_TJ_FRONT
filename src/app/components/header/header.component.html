@@ -46,7 +46,7 @@
         @if (dropdownOpen) {
           <div class="dropdown-options right-align">
             @for (option of languageOptions; track $index) {
-              <div class="dropdown-option" (click)="selectLanguage(option)" [class.active]="option.value === selectedLanguage">
+              <div class="dropdown-option" (click)="selectLanguage(option, $event)" [class.active]="option.value === selectedLanguage">
                 <span>{{ option.label }}</span>
                 @if (option.value === selectedLanguage) {
                   <img src="../../../assets/icons/tick-circle.svg" class="tick-icon" />
@@ -111,7 +111,7 @@
       @if (showMore) {
         <div class="lang-options-card">
           @for (option of languageOptions; track $index) {
-            <button class="lang-item flex-between" (click)="selectLanguage(option)" [class.active]="option.value === selectedLanguage">
+            <button class="lang-item flex-between" (click)="selectLanguage(option, $event)" [class.active]="option.value === selectedLanguage">
               <span>{{ option.label }}</span>
               @if (option.value === selectedLanguage) {
                 <img src="../../../assets/icons/tick-circle.svg" class="tick-icon" />

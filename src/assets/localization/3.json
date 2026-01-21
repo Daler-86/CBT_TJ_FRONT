@@ -406,7 +406,8 @@
       "SELECT_SUBJECT": "Please select a subject.",
       "MIN_LENGTH": "Minimum length is {{min}} characters.",
       "REQUIRED": "This field is required.",
-      "ONLY_DIGITS": "Only digits are allowed"
+      "ONLY_DIGITS": "Only digits are allowed",
+      "MINLENGTH": "The minimum number of characters has not been met"
     },
     "PRIVACY_POLICY_PREFIX": "By submitting this form, you agree to our",
     "PRIVACY_POLICY_LINK": "privacy policy"
@@ -711,35 +712,6 @@
       "LINK_TEXT": "Certificate"
     }
   },
-  "SALARY_PROJECT_PAGE": {
-    "MAIN_TITLE": "Salary Project",
-    "INTRO": {
-      "SUBTITLE": "JSC Commerce Bank of Tajikistan: A privileged position for employees benefits the entire company.",
-      "P1": "The salary project will free your organization from the need to withdraw cash from the account, count it, and disburse salaries to each employee in cash. In addition to saving time, this also ensures security – a very important aspect when delivering cash to the organization's office.",
-      "P2": "As for employee convenience, your staff will be able to receive their salaries through any ATM using payment cards 24 hours a day, 365 days a year, as well as make non-cash payments for goods/services through the 'Mobile Bank' and POS terminals installed at various retail and service points."
-    },
-    "BENEFITS_FOR_COMPANY": {
-      "TITLE": "Advantages of the Salary Project for Your Organization",
-      "ITEMS": [
-        "Reduction of risks associated with receiving, storing, and transporting cash intended for employee payments",
-        "Reduction in the number of employees in the accounting and cashier departments",
-        "Elimination of salary queues",
-        "Provision of business trip expenses in a non-cash manner",
-        "Ensuring the confidentiality of individual salary information"
-      ]
-    },
-    "BENEFITS_FOR_EMPLOYEES": {
-      "TITLE": "Advantages of the Salary Project for Your Employees",
-      "ITEMS": [
-        "24/7 access to the account",
-        "Non-cash payments for goods/services through POS terminals installed at various retail and service points",
-        "Online card control, transfers, and service payments in the 'Mobile Bank' application and on the bank's website",
-        "Security of money on the card account if the card is lost",
-        "Receiving salary through ATMs 24 hours a day",
-        "Ensuring the confidentiality of account information"
-      ]
-    }
-  },
   "ACQUIRING_PAGE": {
     "HERO": {
       "TITLE": "Online-acquiring",
@@ -978,53 +950,52 @@
   },
 
   "SALARY_PROJECT": {
-    "TITLE": "Salary Project",
-    "SUBTITLE": "The salary project will free your organization from the need to withdraw cash",
-    "SUBMIT_BUTTON": "Submit Application",
-    "DESCRIPTION_1": "The salary project will free your organization from the need to withdraw cash from the account, recount it, and pay each employee their salary in cash. In addition to saving time, this is also security - a very important aspect when delivering cash to the organization's office.",
-    "DESCRIPTION_2": "As for convenience for employees, your employees will be able to receive salaries through any ATMs using payment cards 24 hours a day, 365 days a year, and also make cashless payments for goods/services through mobile banking and POS terminals installed at various retail and service points.",
-    "SIMPLE_PROFITABLE": "With the salary project - simple, profitable and convenient",
+    "TITLE": "Salary Project for Business",
+    "SUBTITLE": "The salary project is a simple and cost-effective way to pay employee salaries. Automate payments, reduce costs, and eliminate cash — the bank will handle everything for you.",
+    "SUBMIT_BUTTON": "Apply",
+    "DESCRIPTION_1": "A salary project is a banking service where employee salaries are automatically transferred to their bank cards.",
+    "DESCRIPTION_2": "The company transfers a single amount — the bank distributes the funds to employees’ accounts in a short time.",
+    "SIMPLE_PROFITABLE": "Salary project — no cash, no errors, no extra work",
     "FEATURES": {
       "MOBILE_APP": {
-        "TITLE": "Mobile Application",
-        "DESCRIPTION": "Salary payments to employees in other banks directly from the application"
+        "TITLE": "Mobile App",
+        "DESCRIPTION": "Pay salaries to employees in other banks directly from the app"
       },
       "PERSONAL_CONDITIONS": {
-        "TITLE": "Personal conditions in everything",
-        "DESCRIPTION": "Cards for any salary: for employees and managers"
+        "TITLE": "Personalized conditions for everyone",
+        "DESCRIPTION": "Cards for any salary level: for employees and executives"
       },
       "FREE_SERVICE": {
         "TITLE": "Free Service",
-        "DESCRIPTION": "Forever and without any conditions"
+        "DESCRIPTION": "Forever and without conditions"
       },
       "FAST_CONNECTION": {
-        "TITLE": "Fast Onboarding",
-        "DESCRIPTION": "Employees, self-employed individuals, and even non-residents"
+        "TITLE": "Fast Connection",
+        "DESCRIPTION": "For employees, self-employed individuals, and even non-residents"
       }
     },
     "COMPANY_BENEFITS": {
-      "TITLE": "Benefits of the salary project for your organization",
+      "TITLE": "Benefits of the salary project for business",
       "ITEMS": [
-        "Reducing the risks of receiving, storing and transporting cash intended for payment to employees",
-        "Reducing the number of employees engaged in accounting and cashier work",
-        "Elimination of queues for salary collection",
-        "Provision of business travel expenses in a cashless manner",
-        "Ensuring confidentiality of information on individual salaries"
+        "Time savings for accounting departments",
+        "No cash desks or cash collection",
+        "Automated payments",
+        "Transparent financial accounting",
+        "Increased employee trust"
       ]
     },
     "EMPLOYEE_BENEFITS": {
-      "TITLE": "Benefits of the salary project for your organization's employees",
+      "TITLE": "Benefits of the salary project for employees",
       "ITEMS": [
-        "Round-the-clock access to the account",
-        "Cashless payment for goods/services through POS terminals installed at various retail and service points",
-        "Online card control, transfers, bill payment in the mobile banking application and on the bank's website",
-        "Safety of money in the card account when the card is lost",
-        "Receiving salary through ATMs 24 hours a day",
-        "Ensuring confidentiality of account information"
+        "On-time salary payments",
+        "Convenient bank card",
+        "Online payment for goods and services",
+        "Commission-free cash withdrawals at the bank’s ATMs and branches",
+        "Secure storage of funds"
       ]
     }
   },
-
+  
   "INSURANCE_PAGE": {
     "TITLE": "Insurance",
     "DESCRIPTION_1": "The deposit insurance system for individuals is a set of measures aimed at protecting depositors' rights and interests through compensation payments.",

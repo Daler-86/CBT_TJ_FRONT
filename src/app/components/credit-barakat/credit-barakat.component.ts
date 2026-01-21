@@ -142,7 +142,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       next: () => {
         // --- НАЧАЛО ИЗМЕНЕНИЙ ---
         // Используем ключ, который у нас уже есть
-        this.translateService.get('notifications.applicationSuccessMessage').subscribe((message: string) => {
+        this.translateService.get('NOTIFICATIONS.APPLICATION.SUCCESS_MESSAGE').subscribe((message: string) => {
           this.notificationService.show(message, 'success');
         });
         // --- КОНЕЦ ИЗМЕНЕНИЙ ---
