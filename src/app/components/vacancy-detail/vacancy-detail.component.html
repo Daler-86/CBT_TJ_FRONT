@@ -2,24 +2,32 @@
   @if (personalQuality) {
     <div>
       <div class="title">
-        <div class="">
-          <h2>{{ vacancyData.name }}</h2>
-          <div class="city-location">
-            <img src="../../../assets/icons/Layer 2.svg" [alt]="'ALT.LOCATION' | translate" />
-            <p>{{ vacancyData.region_name }}</p>
-          </div>
-          <div class="city-location">
-            <img src="../../../assets/icons/calendar.svg" [alt]="'ALT.CALENDAR' | translate" />
-            <p>{{ vacancyData.deadline_at }}</p>
+        <div class="header-info">
+          <h2>{{ vacancy.name }}</h2>
+          <div class="pills-container">
+            <div class="city-location">
+              <img src="../../../assets/icons/Layer 2.svg" [alt]="'ALT.LOCATION' | translate" />
+              <p>{{ vacancy.region_name }}</p>
+            </div>
+            <div class="city-location">
+              <img src="../../../assets/icons/calendar.svg" [alt]="'ALT.CALENDAR' | translate" />
+              <p>{{ vacancy.deadline_at }}</p>
+            </div>
           </div>
         </div>
-        <div class="">
-          <button [scrollTo]="'application-form'">{{ 'VACANCY_DETAILS.FORM.TITLE' | translate }}</button>
-          <!-- Кнопка теперь находится внутри формы ниже, для лучшей семантики -->
+        
+        <div class="action-button">
+          <button [scrollTo]="'application-form'">
+            {{ 'VACANCY_DETAILS.FORM.TITLE' | translate }}
+          </button>
         </div>
       </div>
+      <div class="vacancy-details">
+        <div class="ck-content" [innerHTML]="getSafeHtml(vacancy.content)"></div>
+      </div>
       <div class="">
-        <div class="vacancy-details">
+        @if(education.length>0){
+            <div class="vacancy-details">
           <h4>{{ 'VACANCY_DETAILS.SECTIONS.EDUCATION' | translate }}</h4>
           <ul>
             @for (education of education; track education.id) {
@@ -27,8 +35,10 @@
             }
           </ul>
         </div>
-
-        <div class="vacancy-details">
+      }
+      
+@if(experience.length>0){
+   <div class="vacancy-details">
           <h4>{{ 'VACANCY_DETAILS.SECTIONS.EXPERIENCE' | translate }}</h4>
           <ul>
             @for (work of experience; track work.id) {
@@ -36,8 +46,10 @@
             }
           </ul>
         </div>
-
-        <div class="vacancy-details">
+}
+       
+@if (skill.length>0) {
+    <div class="vacancy-details">
           <h4>{{ 'VACANCY_DETAILS.SECTIONS.REQUIREMENTS' | translate }}</h4>
           <ul>
             @for (skill of skill; track skill.id) {
@@ -45,15 +57,18 @@
             }
           </ul>
         </div>
-
-        <div class="vacancy-details">
+      }
+      
+@if (personalQuality.length>0) { 
+   <div class="vacancy-details">
           <h4>{{ 'VACANCY_DETAILS.SECTIONS.QUALITIES' | translate }}</h4>
           <ul>
             @for (quality of personalQuality; track quality.id) {
               <li>{{ quality.content }}</li>
             }
           </ul>
-        </div>
+        </div>}
+      
         @if(condition.length > 0) {
           <div class="vacancy-details">
             <h4>{{ 'VACANCY_DETAILS.SECTIONS.CONDITIONS' | translate }}</h4>

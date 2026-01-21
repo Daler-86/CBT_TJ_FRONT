@@ -31,7 +31,7 @@
       </p>
       @for (vacancy of vacancyList; track vacancy.id) {
         <div class="vacancy-item">
-          <a [routerLink]="['/vacancies/list', vacancy.id]">
+          <a [routerLink]="['/vacancies/list', vacancy.id]" [state]="{ data: vacancy }">
             {{ vacancy.name }}
           </a>
 
