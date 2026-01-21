@@ -1,9 +1,7 @@
-
 <div class="calculator-wrapper">
   <div class="calculator-form">
     <h2>{{ 'CALCULATORS.LOAN.TITLE' | translate }}</h2>
 
-    <!-- Валюты (динамически с бэка) -->
     <div class="form-group">
       <div class="currency-tabs">
         @for (currency of availableCurrencies; track currency) {
@@ -14,7 +12,6 @@
       </div>
     </div>
 
-    <!-- Сумма -->
     <div class="form-group">
       <label>{{ 'CALCULATORS.LOAN.AMOUNT' | translate }}</label>
       <div class="input-slider-container">
@@ -25,20 +22,20 @@
             [style.color]="isAmountInvalid ? '#9e9e9e' : 'inherit'"
             tabindex="0"
           >
-            {{ loanAmount  }}
+            {{ loanAmount }}
           </div>
         } @else {
           <input
-          #amountInput
-  type="number"
-  min="0"
-  class="loan-input"
-  [(ngModel)]="loanAmount"
-  (input)="recalculate($event)" 
-  (blur)="stopEditing()"
-  (focus)="handleFocus($event)" 
-  [style.color]="isAmountInvalid ? '#9e9e9e' : 'inherit'"
-          />  
+            #amountInput
+            type="number"
+            min="0"
+            class="loan-input"
+            [(ngModel)]="loanAmount"
+            (input)="recalculate($event)"
+            (blur)="stopEditing()"
+            (focus)="handleFocus($event)"
+            [style.color]="isAmountInvalid ? '#9e9e9e' : 'inherit'"
+          />
         }
 
         <input
@@ -47,7 +44,7 @@
           [min]="minAmount"
           [max]="maxAmount"
           step="100"
-          [(ngModel)]="loanAmount" 
+          [(ngModel)]="loanAmount"
           (input)="recalculate()"
           [style.--range-percent]="loanAmountPercent"
         />
@@ -79,7 +76,6 @@
       </div>
     </div>
 
-    <!-- Процентная ставка -->
     <div class="form-group">
       <label>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</label>
       <div class="input-slider-container">
@@ -106,7 +102,7 @@
     @if (calculationResult) {
       <div class="result-card">
         <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
-        
+
         <div class="result-item">
           <p>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</p>
           <h3>{{ calculationResult.interestRate | percent: '1.2-2' }}</h3>
@@ -121,7 +117,6 @@
               {{ calculationResult.monthlyPayment | currency: 'USD' : 'symbol' : '1.2-2' : 'ru-RU' }}
             }
           </h3>
-          
         </div>
 
         <div class="result-item">

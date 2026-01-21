@@ -1,4 +1,3 @@
-
 import { Component, OnInit, inject, OnChanges, Input, SimpleChanges, ElementRef, ViewChild } from '@angular/core';
 import { LoanCalculationResult, LoanConditionsData } from '../../models/calculate.model';
 import { LoanService } from '../../services/loan.service';
@@ -19,10 +18,9 @@ type Currency = 'tjs' | 'usd';
 export class LoanCalculatorComponent implements OnChanges, OnInit {
   @Input() conditionsData?: LoanConditionsData[];
   @Input() showApplyButton = false;
-  
+
   @ViewChild('amountInput') amountInput?: ElementRef<HTMLInputElement>;
 
-  // Текущие значения
   loanAmount = 0;
   loanTerm = 0;
   interestRatePercent = 0;
@@ -30,7 +28,6 @@ export class LoanCalculatorComponent implements OnChanges, OnInit {
   selectedCurrency: Currency = 'tjs';
   availableCurrencies: Currency[] = [];
 
-  // Лимиты (приходят с бэка)
   minAmount = 0;
   maxAmount = 0;
   minTerm = 0;
@@ -38,14 +35,13 @@ export class LoanCalculatorComponent implements OnChanges, OnInit {
   minRate = 0;
   maxRate = 0;
 
-  // Визуал для ползунков
   loanAmountPercent = '0%';
   loanTermPercent = '0%';
   ratePercent = '0%';
 
   calculationResult: any = null;
   isEditingAmount = false;
-  isAmountInvalid = false; // Флаг для серого цвета
+  isAmountInvalid = false;
 
   private loanService = inject(LoanService);
 
@@ -63,17 +59,13 @@ export class LoanCalculatorComponent implements OnChanges, OnInit {
 
   setupOrUpdate(): void {
     if (this.conditionsData && this.conditionsData.length > 0) {
-
       this.availableCurrencies = this.conditionsData.map((c) => c.currency.toLowerCase() as Currency);
-      
+
       if (!this.availableCurrencies.includes(this.selectedCurrency)) {
         this.selectedCurrency = this.availableCurrencies[0];
       }
 
- 
-      const conditions = this.conditionsData.find(
-        (c) => c.currency.toLowerCase() === this.selectedCurrency
-      )!;
+      const conditions = this.conditionsData.find((c) => c.currency.toLowerCase() === this.selectedCurrency)!;
 
       this.minAmount = conditions.min_amount;
       this.maxAmount = conditions.max_amount;
@@ -82,13 +74,10 @@ export class LoanCalculatorComponent implements OnChanges, OnInit {
       this.minRate = conditions.min_percentage;
       this.maxRate = conditions.max_percentage;
 
-
       this.loanAmount = this.minAmount;
       this.loanTerm = this.minTerm;
       this.interestRatePercent = this.minRate;
-
     } else {
-
       this.availableCurrencies = ['tjs', 'usd'];
     }
 
@@ -109,7 +98,7 @@ export class LoanCalculatorComponent implements OnChanges, OnInit {
     if (event && event.target) {
       const target = event.target as HTMLInputElement;
       let rawValue = target.value;
-  
+
       if (rawValue === '' || rawValue === null) {
         this.loanAmount = 0;
         target.value = '0';
@@ -123,11 +112,11 @@ export class LoanCalculatorComponent implements OnChanges, OnInit {
     }
     this.isAmountInvalid = this.loanAmount < this.minAmount || this.loanAmount > this.maxAmount;
     this.interestRatePercent = Math.round(this.interestRatePercent);
-   
-    const P = this.loanAmount || 0; 
-    const n = Math.max(1, this.loanTerm); 
+
+    const P = this.loanAmount || 0;
+    const n = Math.max(1, this.loanTerm);
     const annualRate = this.interestRatePercent || 0;
-    const i = annualRate / 100 / 12; 
+    const i = annualRate / 100 / 12;
 
     let monthlyPayment = 0;
     let totalOverpayment = 0;
@@ -135,9 +124,9 @@ export class LoanCalculatorComponent implements OnChanges, OnInit {
     if (P > 0 && n > 0) {
       if (i > 0) {
         const pow = Math.pow(1 + i, n);
-        monthlyPayment = P * (i * pow) / (pow - 1);
+        monthlyPayment = (P * (i * pow)) / (pow - 1);
         monthlyPayment = Math.round(monthlyPayment * 100) / 100;
-        totalOverpayment = (monthlyPayment * n) - P;
+        totalOverpayment = monthlyPayment * n - P;
       } else {
         monthlyPayment = P / n;
         totalOverpayment = 0;
@@ -147,7 +136,7 @@ export class LoanCalculatorComponent implements OnChanges, OnInit {
     this.calculationResult = {
       monthlyPayment: monthlyPayment,
       totalOverpayment: totalOverpayment,
-      interestRate: annualRate / 100
+      interestRate: annualRate / 100,
     };
 
     this.updateVisuals();

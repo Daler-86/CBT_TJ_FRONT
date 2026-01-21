@@ -8,12 +8,17 @@
   </div>
   @if (news.length > 0) {
     <div class="box2">
-      <!-- Динамический контент, не требует перевода через пайп -->
       @for (new of news; track $index) {
-        <a [routerLink]="['/news', new.id]" class="news-item-card" tabindex="0" role="link">
+        <a
+          [routerLink]="['/news', new.id]"
+          class="news-item-card"
+          [style.background-color]="cardBgColor"
+          tabindex="0"
+          role="link"
+        >
           <h3>{{ new.title }}</h3>
-          <p>{{ new.shortDescription }}</p>
-          <p>{{ new.date_time }}</p>
+          <div class="description" [innerHTML]="new.shortDescription"></div>
+          <p class="date">{{ new.date_time }}</p>
         </a>
       }
     </div>

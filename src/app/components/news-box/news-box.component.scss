@@ -1,99 +1,95 @@
 .container_4 {
-  margin: 0 auto; // Центрирование контейнера
-
-  @media (max-width: 1200px) {
-    padding: 0 50px;
-  }
-  @media (max-width: 768px) {
-    padding: 0 20px;
-  }
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 
   .box1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    // padding-top: 50px; // Отступ сверху для заголовка
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: clamp(20px, 5vw, 40px);
+    width: 100%;
 
     h1 {
-      font-size: 36px;
+      font-size: clamp(24px, 6vw, 36px);
       font-weight: 700;
-      color: #333; // Более темный цвет для заголовка
-      margin: 0; // Убрать стандартные отступы у h1
+      color: #333;
+      margin: 0;
     }
 
     .p {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      text-decoration: none;
       cursor: pointer;
-      text-decoration: none; // Убрать подчеркивание у ссылки "Все новости"
 
       p {
+        font-size: clamp(14px, 4vw, 16px);
         font-weight: 700;
         color: rgba(0, 176, 108, 1);
-        margin: 0; // Убрать стандартные отступы у p
+        margin: 0;
+        white-space: nowrap;
       }
-      span {
-        display: flex; // Для центрирования стрелки
-        align-items: center;
-      }
+
       img {
-        height: 16px; // Размер стрелки
-        width: 16px;
+        width: 18px;
+        height: 18px;
       }
     }
   }
 
   .box2 {
-    display: grid; // Используем CSS Grid для раскладки карточек
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // 3 колонки, адаптивные
-    gap: 30px; // Промежутки между карточками
-    // margin-bottom: 80px; // Отступ снизу от блока новостей
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 3vw, 30px);
 
-    .news-item-card {
-      background-color: #F7F8FA; 
-      border-radius: 24px; 
-      padding: 32px; 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; 
-      text-decoration: none; 
-      color: inherit; 
-      transition: background-color 0.3s ease; 
-      min-height: 250px; 
-
-      &:hover {
-        background-color: rgba(230, 244, 238, 1); 
-      }
-
-      h3 {
-        font-size: 24px;
-        font-weight: 700;
-        color: #333; 
-        margin-top: 0; 
-        margin-bottom: 15px;
-        line-height: 1.3;
-      }
-
-      p.description {
-        font-size: 16px;
-        color: rgba(102, 111, 141, 1); // Цвет описания
-        line-height: 1.5;
-        flex-grow: 1; // Позволяет описанию занимать все доступное пространство
-        margin-bottom: 20px; // Отступ между описанием и датой
-      }
-
-      p.date {
-        font-size: 14px;
-        color: rgba(102, 111, 141, 1); // Цвет даты
-        margin-bottom: 0; // Убрать стандартные отступы у p
-        margin-top: auto; // Прижимает дату к низу карточки
-      }
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr; // На мобильных устройствах одна колонка
+    @media (max-width: 756px) {
+      grid-template-columns: 1fr;
+    }
+
+    .news-item-card {
+      background-color: #f7f8fa;
+      border-radius: 24px;
+      padding: clamp(20px, 4vw, 32px);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      height: 100%;
+      box-sizing: border-box;
+
+      h3 {
+        font-size: clamp(18px, 5vw, 24px);
+        line-height: 1.3;
+        margin: 0 0 12px 0;
+        color: #333;
+      }
+
+      .description {
+        font-size: clamp(14px, 4vw, 16px);
+        color: #666f8d;
+        line-height: 1.5;
+        flex-grow: 1;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .date {
+        font-size: 14px;
+        color: #99a1b7;
+        margin-top: auto;
+      }
     }
   }
 }

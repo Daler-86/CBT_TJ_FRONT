@@ -4,22 +4,36 @@
 
     <div class="top-controls">
       <!-- Валюта -->
-      <div class="form-group">
-        <span class="form-label">{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</span>
+      <div class="car-loan">
+        <label>{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</label>
         <div class="currency-selector">
           <div class="radio-option">
-            <input type="radio" id="tjs-auto" name="currency-auto" value="tjs" [(ngModel)]="selectedCurrency" (ngModelChange)="selectCurrency($event)" />
+            <input
+              type="radio"
+              id="tjs-auto"
+              name="currency-auto"
+              value="tjs"
+              [(ngModel)]="selectedCurrency"
+              (ngModelChange)="selectCurrency($event)"
+            />
             <label for="tjs-auto">{{ 'CALCULATORS.COMMON.TJS' | translate }}</label>
           </div>
           <div class="radio-option">
-            <input type="radio" id="usd-auto" name="currency-auto" value="usd" [(ngModel)]="selectedCurrency" (ngModelChange)="selectCurrency($event)" />
+            <input
+              type="radio"
+              id="usd-auto"
+              name="currency-auto"
+              value="usd"
+              [(ngModel)]="selectedCurrency"
+              (ngModelChange)="selectCurrency($event)"
+            />
             <label for="usd-auto">{{ 'CALCULATORS.COMMON.USD' | translate }}</label>
           </div>
         </div>
       </div>
 
       <!-- Годовая ставка (Исправлено 000) -->
-      <div class="form-group">
+      <div class="car-loan">
         <label for="interestRateInput">{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</label>
         <div class="rate-input-wrapper">
           <input
@@ -57,7 +71,15 @@
           />
         }
 
-        <input type="range" class="range-slider" [min]="minCarCost" [max]="maxCarCost" [(ngModel)]="carCost" (input)="recalculate()" [style.--range-percent]="carCostPercent" />
+        <input
+          type="range"
+          class="range-slider"
+          [min]="minCarCost"
+          [max]="maxCarCost"
+          [(ngModel)]="carCost"
+          (input)="recalculate()"
+          [style.--range-percent]="carCostPercent"
+        />
         <div class="range-labels">
           <span>{{ costLabels[0] }}</span>
           <span>{{ costLabels[1] }}</span>
@@ -86,14 +108,14 @@
         }
 
         <input
-      type="range"
-      class="range-slider"
-      [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent"
-      [max]="carCost"
-      [(ngModel)]="downPayment"
-      (input)="recalculate()"
-      [style.--range-percent]="downPaymentPercent"
-    />
+          type="range"
+          class="range-slider"
+          [min]="carCost * autoLoanService.getConditions(selectedCurrency).minDownPaymentPercent"
+          [max]="carCost"
+          [(ngModel)]="downPayment"
+          (input)="recalculate()"
+          [style.--range-percent]="downPaymentPercent"
+        />
         <div class="range-labels">
           <span>{{ downPaymentLabels[0] }}</span>
           <span>{{ downPaymentLabels[1] }}</span>
@@ -111,7 +133,7 @@
 
     <!-- Срок -->
     <div class="form-group">
-      <span class="form-label">{{ 'CALCULATORS.AUTO_LOAN.TERM' | translate }}</span>
+      <label class="form-label">{{ 'CALCULATORS.AUTO_LOAN.TERM' | translate }}</label>
       <div class="term-buttons">
         @for (term of availableTerms; track term) {
           <button (click)="loanTerm = term; recalculate()" [class.active]="loanTerm === term" type="button">
@@ -127,18 +149,28 @@
     @if (calculationResult) {
       <div class="result-card">
         <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
-        <p>{{ 'CALCULATORS.AUTO_LOAN.ACTUAL_OVERPAYMENT' | translate }}</p>
-        <h3>{{ calculationResult.totalOverpayment | number: '1.2-2' : 'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}</h3>
-
-        <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
-        <h3>{{ calculationResult.monthlyPayment | number: '1.2-2' : 'ru-RU' }} {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}</h3>
-
-        <p>{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</p>
-        <h3>{{ interestRate | number: '1.0-2' }}%</h3>
-
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.AUTO_LOAN.ACTUAL_OVERPAYMENT' | translate }}</p>
+          <h3>
+            {{ calculationResult.totalOverpayment | number: '1.2-2' : 'ru-RU' }}
+            {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+          </h3>
+        </div>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
+          <h3>
+            {{ calculationResult.monthlyPayment | number: '1.2-2' : 'ru-RU' }}
+            {{ selectedCurrency === 'tjs' ? 'с.' : '$' }}
+          </h3>
+        </div>
+        <div class="result-item">
+          <p>{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</p>
+          <h3>{{ interestRate | number: '1.0-2' }}%</h3>
+          <!-- 
         <button class="apply-button">
           {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
-        </button>
+        </button> -->
+        </div>
       </div>
     }
   </div>

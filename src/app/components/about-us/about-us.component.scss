@@ -1,7 +1,7 @@
 // Основные стили
 .main-container {
   width: 90%;
-  margin: auto;
+  margin: 40px auto 0px;
 
   .header {
     text-align: start;
@@ -39,7 +39,7 @@
     justify-content: space-between;
     gap: 40px;
     .card {
-      border: 1px solid #bac0cc;
+      border: 1px solid #e3e6ea;
       padding: 40px 30px;
       border-radius: 42px;
       flex: 1 1 30%;
@@ -171,7 +171,7 @@
 }
 .line {
   margin-top: 100px;
-  background-color: #bac0cc;
+
   padding: 1px 0;
 }
 // Мобильные стили

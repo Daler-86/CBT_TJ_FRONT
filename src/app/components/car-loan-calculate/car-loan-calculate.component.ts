@@ -15,7 +15,6 @@ type Currency = 'tjs' | 'usd';
   styleUrl: './car-loan-calculate.component.scss',
 })
 export class CarLoanCalculateComponent implements OnInit {
-  // Состояние формы
   carCost = 0;
   downPayment = 0;
   loanTerm = 24;
@@ -28,7 +27,6 @@ export class CarLoanCalculateComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     target.select();
   }
-  // UI-настройки (всегда берутся из сервиса)
   minCarCost = 0;
   maxCarCost = 0;
   minDownPayment = 0;
@@ -64,7 +62,7 @@ export class CarLoanCalculateComponent implements OnInit {
     let max = 0;
     if (field === 'carCost') max = this.maxCarCost;
     if (field === 'interestRate') max = this.maxRate;
-    if (field === 'downPayment') max = this.carCost; 
+    if (field === 'downPayment') max = this.carCost;
 
     if (val > max) {
       val = max;
@@ -107,18 +105,14 @@ export class CarLoanCalculateComponent implements OnInit {
   }
   recalculate(): void {
     this.carCost = Math.max(this.minCarCost, Math.min(this.carCost, this.maxCarCost));
-    
+
     const minDownPercent = this.autoLoanService.getConditions(this.selectedCurrency).minDownPaymentPercent;
     const minDownAmount = this.carCost * minDownPercent;
-    
+
     this.downPayment = Math.max(minDownAmount, Math.min(this.downPayment, this.carCost));
     this.interestRate = Math.max(this.minRate, Math.min(this.interestRate, this.maxRate));
 
-  
-    this.downPaymentLabels = [
-      this.formatShortNumber(minDownAmount),
-      this.formatShortNumber(this.carCost)
-    ];
+    this.downPaymentLabels = [this.formatShortNumber(minDownAmount), this.formatShortNumber(this.carCost)];
 
     this.calculationResult = this.autoLoanService.calculate({
       carCost: this.carCost,
@@ -136,17 +130,18 @@ export class CarLoanCalculateComponent implements OnInit {
 
   updateVisuals(): void {
     if (!this.calculationResult) return;
-  
+
     this.financingAmount = this.calculationResult.financingAmount;
-  
+
     this.carCostPercent =
       this.maxCarCost > this.minCarCost
         ? `${((this.carCost - this.minCarCost) / (this.maxCarCost - this.minCarCost)) * 100}%`
         : '0%';
 
-    const currentMinDownPayment = this.carCost * this.autoLoanService.getConditions(this.selectedCurrency).minDownPaymentPercent;
+    const currentMinDownPayment =
+      this.carCost * this.autoLoanService.getConditions(this.selectedCurrency).minDownPaymentPercent;
     const currentMaxDownPayment = this.carCost;
-  
+
     if (currentMaxDownPayment > currentMinDownPayment) {
       const pct = ((this.downPayment - currentMinDownPayment) / (currentMaxDownPayment - currentMinDownPayment)) * 100;
       this.downPaymentPercent = `${Math.max(0, Math.min(100, pct))}%`;

@@ -16,23 +16,21 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './news-box.component.scss',
 })
 export class NewsBoxComponent implements OnInit {
-  imageUrl: string = environment.IMAGE_URL; 
+  @Input() cardBgColor: string = '#F7F8FA';
+  imageUrl: string = environment.IMAGE_URL;
   newsItems: NewsEventItem[] = [];
   private router = inject(Router);
   private newsService = inject(NewsService);
-
 
   trackById(index: number, item: fullNews): number {
     return item.id;
   }
 
-
-  news: fullNews[] = []; 
+  news: fullNews[] = [];
 
   ngOnInit(): void {
     this.loadData();
   }
-
 
   @Input() totalPages = 0;
   @Input() currentPage = 1;
@@ -41,20 +39,16 @@ export class NewsBoxComponent implements OnInit {
   tenderCount = 0;
 
   loadData(): void {
-
     this.newsService.getNewsList(3, 1).subscribe({
       next: (response) => {
-    
         if (response.data && Array.isArray(response.data.news)) {
-    
           const processedNews = response.data.news.map((item) => {
             const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = item.description || ''; 
+            tempDiv.innerHTML = item.description || '';
             const extractedText = (tempDiv.textContent || '').trim();
 
             let shortDescription = extractedText;
             if (extractedText.length > 90) {
-    
               shortDescription = extractedText.substring(0, 90) + '...';
             }
             return {
