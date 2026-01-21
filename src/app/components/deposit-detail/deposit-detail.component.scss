@@ -55,7 +55,8 @@
         border-radius: 5px;
         cursor: pointer;
         font-size: 14px;
-      }
+      } 
+      
     }
     .card-image {
       width: 40%;
@@ -371,6 +372,14 @@
         border-radius: 6px;
         font-size: 16px;
         cursor: pointer;
+      }
+
+      .btn-primary:disabled {
+        background-color: #cbd5e1; // серый
+        color: #94a3b8;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
       }
 
       .form-disclaimer {

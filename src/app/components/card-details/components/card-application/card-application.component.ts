@@ -121,7 +121,7 @@ export class CardApplicationComponent implements OnInit, OnDestroy {
 
   private updateOfficePlaceholder(): void {
     if (!this.applicationForm.get('office_id')?.value) {
-      this.translateService.get('forms.placeholders.selectOffice').subscribe((translation) => {
+      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE').subscribe((translation) => {
         this.officeName = translation;
       });
     }

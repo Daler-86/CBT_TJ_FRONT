@@ -61,7 +61,7 @@
           formControlName="client_name"
         />
         <div class="error" *ngIf="client_name?.invalid && (client_name?.touched || client_name?.dirty)">
-          <span *ngIf="client_name?.errors?.['required']">{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
+          <span *ngIf="client_name?.errors?.['required']">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</span>
           <span *ngIf="client_name?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate:{min:2} }}</span>
         </div>
       </div>

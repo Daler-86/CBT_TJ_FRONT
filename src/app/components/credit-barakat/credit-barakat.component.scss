@@ -100,6 +100,8 @@
       }
     }
 
+    
+
     .card-image {
       width: 30%;
       padding: 25px 72px 0 0;
@@ -378,6 +380,13 @@
           margin-bottom: 20px;
         }
 
+        .form-control:focus {
+          outline: none;
+          border-color: #00b06c;           // зелёный бордер
+          box-shadow: 0 0 0 1px #00b06c;   // тонкое зелёное свечение
+          background-color: #f6f7f8;       // оставляем фон
+        }
+
         .error {
           color: red;
           font-size: 12px;
@@ -396,6 +405,14 @@
         border-radius: 6px;
         font-size: 16px;
         cursor: pointer;
+      }
+
+      .btn-primary:disabled {
+        background-color: #cbd5e1; // серый
+        color: #94a3b8;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
       }
 
       .form-disclaimer {

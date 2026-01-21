@@ -89,14 +89,14 @@ export class DepositDetailComponent implements OnInit {
 
     this.depositService.submitDeposit(dataToSend).subscribe({
       next: () => {
-        this.translateService.get('notifications.applicationSuccessMessage').subscribe((message: string) => {
+        this.translateService.get('NOTIFICATIONS.APPLICATION_SENT_SUCCESS').subscribe((message: string) => {
           this.notificationService.show(message, 'success');
         });
 
         form.reset();
       },
       error: () => {
-        this.translateService.get('notifications.applicationErrorMessage').subscribe((message: string) => {
+        this.translateService.get('NOTIFICATIONS.APPLICATION_ERROR_MESSAGE').subscribe((message: string) => {
           this.notificationService.show(message, 'error');
         });
       },

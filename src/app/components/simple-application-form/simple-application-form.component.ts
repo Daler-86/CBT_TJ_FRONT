@@ -91,7 +91,7 @@ export class SimpleApplicationFormComponent {
         // --- КОНЕЦ ИЗМЕНЕНИЙ ---
         this.isSubmitting = false;
       },
-    });
+    })
   }
 
   get client_name() {

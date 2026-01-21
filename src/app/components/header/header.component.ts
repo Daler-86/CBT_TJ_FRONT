@@ -89,10 +89,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.logoSrc = '../../../assets/icons/logo_tj_big.png';
     }
   }
-  selectLanguage(option: { value: Languages; label: string }) {
+  selectLanguage(
+    option: { value: Languages; label: string },
+    event: Event
+  ) {
+    event.stopPropagation(); // ⬅️ КЛЮЧЕВО
     this.dropdownOpen = false;
     this.languageService.setLanguage(option.value);
   }
+  
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
