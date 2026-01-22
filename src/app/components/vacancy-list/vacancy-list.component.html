@@ -1,7 +1,6 @@
 <div class="vacancies-container">
   <h1>{{ 'VACANCIES.TITLE' | translate }}</h1>
   <div class="vacancies-list">
-    <!-- Фильтры для направлений и городов -->
     <div class="vacancy-filter">
       <p>{{ 'VACANCIES.FILTERS.TITLE' | translate }}</p>
       <form>
@@ -24,14 +23,14 @@
         </select>
       </form>
     </div>
-    <!-- Список вакансий -->
+
     <div class="vacancy-items">
       <p>
         {{ 'VACANCIES.LIST.TOTAL' | translate }} {{ vacancyCount }} {{ 'VACANCIES.LIST.VACANCIES_LABEL' | translate }}
       </p>
       @for (vacancy of vacancyList; track vacancy.id) {
         <div class="vacancy-item">
-          <a [routerLink]="['/vacancies/list', vacancy.id]" [state]="{ data: vacancy }">
+          <a [routerLink]="['/vacancies/list', vacancy.id]" >
             {{ vacancy.name }}
           </a>
 
