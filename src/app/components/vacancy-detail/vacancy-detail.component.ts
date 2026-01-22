@@ -32,51 +32,43 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './vacancy-detail.component.html',
   styleUrls: ['./vacancy-detail.component.scss'],
 })
+
 export class VacancyDetailComponent implements OnInit {
   applyForm: FormGroup;
   id = 0;
-  // Переменная для хранения выбранного файла
   fileName = '';
   allowedExtensions = ['image/doc', 'image/jpeg', 'application/pdf'];
+  
   personalQuality: personalQuality[] = [];
   condition: vacancyCondition[] = [];
   education: vacancyEducation[] = [];
   experience: vacancyExperience[] = [];
   skill: vacancySkill[] = [];
-  // selectedFile: File | null = null;
+  
   uploadFileId: number | null = null;
   isSubmitted = false;
   isError = false;
+
+  // Основной объект данных вакансии
   vacancyData: vacancyData = {
     id: 0,
     name: '',
     region_name: '',
     deadline_at: '',
-    content:"",
+    content: "", // Сюда придет HTML из редактора
   };
+
+  // Сервисы
   private sanitizer = inject(DomSanitizer);
-  getSafeHtml(html: string): SafeHtml {
-   
-    if (!html) return '';
-    return this.sanitizer.bypassSecurityTrustHtml(html);
-  }
   private pageTitleService = inject(PageTitleService);
   private fb = inject(FormBuilder);
   private vacanciesService = inject(VacanciesService);
-
   private translate = inject(TranslateService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private notificationService = inject(ModalService);
   private breadcrumbService = inject(BreadcrumbService);
-  
-  public vacancy:vacancyList={
-    id:0,
-    name:"",
-    region_name:"",
-    content:"",
-    deadline_at:""
-  }
+
   constructor() {
     this.applyForm = this.fb.group({
       lastName: ['', Validators.required],
@@ -85,32 +77,38 @@ export class VacancyDetailComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
     });
   }
+
+  // Метод для безопасного вывода HTML из админки
+  getSafeHtml(html: string): SafeHtml {
+    if (!html) return '';
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.id = +idParam;
       
       this.loadAllData();
+
+      // Перезагрузка данных при смене языка
       this.translate.onLangChange.subscribe(() => {
         this.loadAllData();
       });
-
     } else {
       console.error('ID is missing in the route parameters.');
     }
-    const navigation = window.history.state;
-    
-    if (navigation && navigation.data) {
-      this.vacancy = navigation.data;
-    } 
   }
+
   loadAllData() {
+    // Загрузка доп. списков
     this.vacanciesService.getPersonalQuality(this.id).subscribe(d => this.personalQuality = d.data.vacancy_personal_qualities);
     this.vacanciesService.getVacancyEducation(this.id).subscribe(d => this.education = d.data.vacancy_educations);
     this.vacanciesService.getVacancyExperience(this.id).subscribe(d => this.experience = d.data.vacancy_experiences);
     this.vacanciesService.getVacancyCondition(this.id).subscribe(d => this.condition = d.data.vacancy_conditions);
     this.vacanciesService.getVacancySkill(this.id).subscribe(d => this.skill = d.data.vacancy_skills);
 
+    // Загрузка основных данных вакансии (включая content)
     this.vacanciesService.getVacancyData(this.id).subscribe(
       (details) => {
         this.vacancyData = details.data.vacancy_data;
@@ -122,6 +120,9 @@ export class VacancyDetailComponent implements OnInit {
       (error) => console.error('Ошибка при получении данных вакансии', error)
     );
   }
+
+  // --- Методы для работы с файлами ---
+
   onDrop(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
@@ -134,13 +135,11 @@ export class VacancyDetailComponent implements OnInit {
   onDragOver(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    const element = event.target as HTMLElement;
-    element.classList.add('dragover');
+    (event.target as HTMLElement).classList.add('dragover');
   }
 
   onDragLeave(event: DragEvent): void {
-    const element = event.target as HTMLElement;
-    element.classList.remove('dragover');
+    (event.target as HTMLElement).classList.remove('dragover');
   }
 
   handleFile(file: File): void {
@@ -154,22 +153,21 @@ export class VacancyDetailComponent implements OnInit {
   isAllowedExtension(fileType: string): boolean {
     return this.allowedExtensions.includes(fileType);
   }
+
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
-      if (
-        [
-          'application/pdf',
-          'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        ].includes(file.type)
-      ) {
+      const validTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      ];
+      if (validTypes.includes(file.type)) {
         this.fileName = file.name;
         this.uploadFile(file);
       } else {
         this.notificationService.show('Неверный формат файла. Допустимы: PDF, DOC, DOCX.', 'error');
-        
         input.value = '';
       }
     }
@@ -191,22 +189,20 @@ export class VacancyDetailComponent implements OnInit {
     });
   }
 
+  // --- Отправка формы ---
 
   onSubmit() {
     this.applyForm.markAllAsTouched();
 
     if (this.applyForm.invalid) {
-
       this.translate.get('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING').subscribe((message: string) => {
-
         this.notificationService.show(message, 'error');
       });
-
       return;
     }
+
     if (this.uploadFileId === null) {
       this.translate.get('NOTIFICATIONS.UPLOAD_RESUME_WARNING').subscribe((message: string) => {
-
         this.notificationService.show(message, 'error');
       });
       return;
@@ -224,36 +220,25 @@ export class VacancyDetailComponent implements OnInit {
 
     this.vacanciesService.submitFormData(formData).subscribe({
       next: () => {
-
         this.translate.get('NOTIFICATIONS.APPLICATION_SENT_SUCCESS').subscribe((message: string) => {
-
           this.notificationService.show(message, 'success');
         });
-   
         this.applyForm.reset();
         this.fileName = '';
         this.uploadFileId = null;
       },
       error: (error) => {
         console.error('Form submission failed:', error);
-
         this.translate.get('NOTIFICATION.APPLICATION_ERROR_MESSAGE').subscribe((message: string) => {
-
           this.notificationService.show(message, 'error');
         });
       },
     });
-  } 
-  get lastName() {
-    return this.applyForm.get('lastName');
   }
-  get firstName() {
-    return this.applyForm.get('firstName');
-  }
-  get phone() {
-    return this.applyForm.get('phone');
-  }
-  get email() {
-    return this.applyForm.get('email');
-  }
+
+  // --- Геттеры для валидации ---
+  get lastName() { return this.applyForm.get('lastName'); }
+  get firstName() { return this.applyForm.get('firstName'); }
+  get phone() { return this.applyForm.get('phone'); }
+  get email() { return this.applyForm.get('email'); }
 }

@@ -3,15 +3,15 @@
     <div>
       <div class="title">
         <div class="header-info">
-          <h2>{{ vacancy.name }}</h2>
+          <h2>{{ vacancyData.name }}</h2>
           <div class="pills-container">
             <div class="city-location">
               <img src="../../../assets/icons/Layer 2.svg" [alt]="'ALT.LOCATION' | translate" />
-              <p>{{ vacancy.region_name }}</p>
+              <p>{{ vacancyData.region_name }}</p>
             </div>
             <div class="city-location">
               <img src="../../../assets/icons/calendar.svg" [alt]="'ALT.CALENDAR' | translate" />
-              <p>{{ vacancy.deadline_at }}</p>
+              <p>{{ vacancyData.deadline_at }}</p>
             </div>
           </div>
         </div>
@@ -22,10 +22,12 @@
           </button>
         </div>
       </div>
+      @if(vacancyData.content.length>0){
       <div class="vacancy-details">
-        <div class="ck-content" [innerHTML]="getSafeHtml(vacancy.content)"></div>
+        <div class="ck-content" [innerHTML]="getSafeHtml(vacancyData.content)"></div>
       </div>
-      <div class="">
+          }
+                <div class="">
         @if(education.length>0){
             <div class="vacancy-details">
           <h4>{{ 'VACANCY_DETAILS.SECTIONS.EDUCATION' | translate }}</h4>
