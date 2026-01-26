@@ -50,7 +50,7 @@ export class SimpleApplicationFormComponent {
     if (this.applicationForm.invalid) {
       // --- НАЧАло ИЗМЕНЕНИЙ ---
       // Используем существующий ключ
-      this.translate.get('notifications.fillAllFieldsWarning').subscribe((message: string) => {
+      this.translate.get('NOTIFICATIONS.FILL_ALL_FIELDS_WARNING').subscribe((message: string) => {
         this.notificationService.show(message, 'error');
       });
       // --- КОНЕЦ ИЗМЕНЕНИЙ ---
@@ -61,7 +61,7 @@ export class SimpleApplicationFormComponent {
       // --- НАЧАло ИЗМЕНЕНИЙ ---
       // Это сообщение для разработчика, его можно не переводить,
       // но если хотите, можно создать ключ notifications.configError
-      this.translate.get('notifications.configError').subscribe((message: string) => {
+      this.translate.get('NOTIFICATIONS.CONFIG_ERROR').subscribe((message: string) => {
         this.notificationService.show(message, 'error');
       });
       // --- КОНЕЦ ИЗМЕНЕНИЙ ---
