@@ -1,14 +1,11 @@
 <div class="cards">
-  <!-- Заголовок страницы -->
   <h1>{{ 'CARDS_PAGE.TITLE' | translate }}</h1>
 
   <div class="btnCards">
-    <!-- Кнопка "Все" -->
     <button [ngClass]="{ active: selectedTab === 'all' }" (click)="selectTab('all')">
       {{ 'BUTTONS.ALL' | translate }}
     </button>
 
-    <!-- Кнопки брендов -->
     @for (cBrand of cardBrands; track $index) {
       <button [ngClass]="{ active: isBrandSelected(cBrand.id) }" (click)="selectBrand(cBrand.id); selectTab('brand')">
         {{ cBrand.name | translate }}

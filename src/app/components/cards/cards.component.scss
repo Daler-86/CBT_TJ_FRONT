@@ -1,7 +1,7 @@
 @import '../../../styles/variables.scss';
 .cards {
   margin: none;
-  padding: 3% 5%;
+  padding: 48px 5%;
   background-color: #f6f7f8;
   h1 {
     font-size: $font-size-h2;
@@ -11,21 +11,41 @@
   }
   .btnCards {
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 8px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
     button {
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: 14px 32px;
       border-radius: 53px;
-      padding: 14px 28px;
-      background-color: white;
       border: none;
       cursor: pointer;
-
+      background-color: white;
       color: #141a20;
-      font-size: 17px;
-      font-weight: 500;
+      font-size: 18px;
+      font-weight: 400;
 
+      &.active {
+        background-color: #00b06c;
+        color: white;
+      }
       @media (max-width: 1024px) {
         padding: 10px 20px;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 16px;      
+        padding: 8px 16px;     
+        flex: 0 0 auto;         
       }
       &.active {
         background-color: #00b06c;
@@ -45,21 +65,14 @@
     justify-content: space-between;
     align-items: center;
     @media (max-width: 1024px) {
-      // 1. Превращаем контейнер в вертикальный flex-бокс, а не просто block
       display: flex;
       flex-direction: column;
-      padding: 29px 30px; // Немного скорректируем боковые отступы для мобильных
+      padding: 29px 30px; 
     }
     .card-info {
-      width: 50%;
+      width: 60%;
       padding: 62px 76px;
-      @media (max-width: 1024px) {
-        width: 100%;
-        padding: 0;
-        // 2. Блок с текстом теперь будет вторым по порядку
-        order: 2;
-      }
-
+     
       .card-title {
         font-size: 30px;
         font-weight: bold;
@@ -79,26 +92,35 @@
         grid-template-columns: 1fr 1fr;
         justify-content: space-between;
         margin: 45px 0;
+        gap: 40px;
         @media (max-width: 768px) {
           display: block;
+          margin: 0px;
         }
         .currency-info,
         .service-info {
-          width: 90%;
-
+          width: 100%;
           .title {
             font-weight: 700;
             font-size: 24px;
             margin-bottom: 5px;
-            @media (max-width: 768px) {
-              margin-top: 20px;
-            }
+           
           }
 
           .description {
             color: #475569;
             font-size: 16px;
-          }
+          } 
+          @media (max-width: 768px) {
+  .title{
+     font-size: 18px;
+  }
+  .description{
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+             
+            }
         }
       }
 
@@ -106,52 +128,70 @@
         display: flex;
         gap: 15px;
         margin-top: 25px;
-        @media (max-width: 1024px) {
-          flex-direction: column; // Лучше чем block для кнопок
-          gap: 10px;
-        }
+     
         button {
-          @media (max-width: 1024px) {
-            width: 100%;
-            margin-bottom: 30px;
-          }
+          padding: 19px 50px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 18px;
+          border: none;
         }
         .btn-primary {
           background-color: #00b06c;
           color: #fff;
-          border: none;
-          padding: 19px 50px;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 14px;
         }
 
         .btn-secondary {
           background-color: transparent;
           color: #00b06c;
-          border: none;
-          padding: 19px 50px;
-          cursor: pointer;
+        } 
+          @media (max-width: 1024px) {
+          gap: 10px;
+          button{
+            font-size: 14px;
+          }
+        }
+        @media (max-width: 768px) {
+          flex-direction: column; 
+          gap: 15px;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        width: 100%;
+        padding: 0;
+        order: 2;
+        .card-title{
+          font-size: 26px;
+        }
+        .card-description{
+          font-size: 16px;
+        }
+      }
+      @media (max-width: 768px) {
+      
+        .card-title{
+          font-size: 24px;
+        }
+        .card-description{
           font-size: 14px;
         }
       }
     }
 
     .card-image {
-      width: 50%;
+      width: 40%;
       align-self: flex-end;
 
       @media (max-width: 1024px) {
-        width: 100%;
-        // 3. Блок с картинкой теперь будет первым
+        width: 60%;
+        margin: auto;
         order: 1;
-        // 4. Добавляем отступ снизу, чтобы отделить картинку от текста
-        margin-bottom: 25px;
+        margin-bottom: 20px;
       }
-      @media (max-width: 1320px) {
-        // align-self: center;
+      @media(max-width: 768px){
+        width: 100%;
       }
-
       img {
         width: 100%;
         border-radius: 24px;

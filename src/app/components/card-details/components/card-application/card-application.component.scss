@@ -1,16 +1,15 @@
 .application-form-container {
   text-align: center;
-  margin: 26px 0;
   .form-title {
     font-size: 42px;
     font-weight: 700;
     margin-bottom: 10px;
 
     @media (max-width: 1024px) {
-      font-size: 38px;
+      font-size: 32px;
     }
     @media (max-width: 768px) {
-      font-size: 34px;
+      font-size: 28px;
     }
   }
 
@@ -18,6 +17,12 @@
     font-size: 20px;
     color: #141a20;
     margin-bottom: 20px;
+    @media (max-width: 1024px) {
+      font-size: 18px;
+    }
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
   }
 
   .form {
@@ -28,37 +33,31 @@
     box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
     text-align: center;
 
-    margin: 62px 0;
+    margin: 40px 0 0;
     .custom-dropdown {
       position: relative;
       width: 100%;
 
       .dropdown-selected {
         border-radius: 4px;
-        // background-color: #ed3636;
+        text-align: start;
         font-size: 16px;
         cursor: pointer;
         position: relative;
         display: flex;
         gap: 5px;
-        align-items: center;
-        // justify-content: center;
         z-index: 200;
       }
       .dropdown-selected::after {
-        // content: "\2304"; /* Маленькая стрелка вниз */
         position: absolute;
-        // right: 1px;
         top: 20%;
         transform: translateY(-50%);
         font-size: 16px;
-        // color: #fff;
       }
 
       .dropdown-options {
         position: absolute;
         top: 105%;
-        // left: 25%;
         width: 100%;
 
         background-color: #fff;
@@ -66,7 +65,7 @@
         border-radius: 12px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
         z-index: 100;
-        max-height: 240px; // 1. Устанавливаем максимальную высоту
+        max-height: 240px;
         overflow-y: auto;
         &::-webkit-scrollbar {
           width: 6px;
@@ -87,7 +86,7 @@
           padding: 14px 18px;
           cursor: pointer;
           transition: background-color 0.2s;
-          display: flex;
+          text-align: start;
           justify-content: space-between;
           border-radius: 0 0 12px;
         }
@@ -99,6 +98,7 @@
     }
     .form-group {
       width: 50%;
+      position: relative;
       @media (max-width: 1024px) {
         width: 70%;
       }
@@ -114,9 +114,12 @@
         border: 1px solid #cbd5e1;
         font-size: 14px;
         background-color: #f6f7f8;
-        margin-bottom: 20px;
+        margin-top: 20px;
         position: relative;
         z-index: 100;
+      }
+      #phone{
+        margin-top: 0;
       }
 
       .error {
@@ -129,6 +132,7 @@
 
     .btn-primary {
       width: 100%;
+      margin-top: 20px;
       padding: 20px 30px;
       background-color: #00b06c;
       color: #fff;
@@ -139,8 +143,8 @@
     }
 
     .btn-primary:disabled {
-      background-color: #cbd5e1; // серый
-      color: #94a3b8;
+      background-color: #94A3B8; // серый
+      color: #fff;
       cursor: not-allowed;
       pointer-events: none;
       box-shadow: none;
@@ -148,28 +152,29 @@
 
     .form-control:focus {
       outline: none;
-      border-color: #00b06c;           // зелёный бордер
-      box-shadow: 0 0 0 1px #00b06c;   // тонкое зелёное свечение
-      background-color: #f6f7f8;       // оставляем фон
+      border-color: #00b06c;        
+      box-shadow: 0 0 0 1px #00b06c;   
+      background-color: #f6f7f8;       
     }
     
     
 
     .form-disclaimer {
       width: 50%;
-      @media (max-width: 1024px) {
-        width: 70%;
-      }
-      @media (max-width: 768px) {
-        width: 90%;
-      }
       margin: auto;
       font-size: 18px;
       color: #475569;
       margin-top: 20px;
       font-weight: 500;
       text-align: left;
-
+  @media (max-width: 1024px) {
+        width: 70%;
+        font-size: 16px;
+      }
+      @media (max-width: 768px) {
+        width: 90%;
+        font-size: 14;
+      }
       a {
         color: #00b06c;
         text-decoration: none;

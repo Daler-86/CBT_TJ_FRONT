@@ -58,8 +58,7 @@ export class VacancyListComponent implements OnInit, OnChanges {
     this.vacanciesService.getVacancyList(pageSize, this.currentPage, +this.selectedCategory, +this.selectedRegion).subscribe(
       (response) => {
         this.vacancyList = response.data.vacancies;
-
-        this.totalPages = Math.round(response.data.total_count / pageSize);
+        this.totalPages = Math.ceil(response.data.total_count / pageSize);
         this.vacancyCount = response.data.total_count;
         this.updatePages();
       },
