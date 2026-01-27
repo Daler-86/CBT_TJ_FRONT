@@ -1,0 +1,43 @@
+import { Directive, ElementRef, HostListener, input } from '@angular/core';
+import { NgControl } from '@angular/forms';
+
+@Directive({
+  selector: '[onlyDigits]',
+  standalone: true,
+})
+export class OnlyDigitsDirective {
+  maxDigits = input(15);
+
+  constructor(
+    private el: ElementRef<HTMLInputElement>,
+    private control: NgControl,
+  ) {}
+
+  @HostListener('input')
+  onInput(): void {
+    let value = this.el.nativeElement.value;
+
+    value = value.replace(/[^0-9+]/g, '');
+
+    const plusCount = (value.match(/\+/g) || []).length;
+    if (plusCount > 1) {
+      value = value.replace(/\+/g, '');
+      value = '+' + value;
+    }
+
+    if (value.includes('+') && value.indexOf('+') !== 0) {
+      value = '+' + value.replace(/\+/g, '');
+    }
+
+    const digits = value.replace(/\D/g, '');
+    if (digits.length > this.maxDigits()) {
+      const allowedDigits = digits.slice(0, this.maxDigits());
+      let digitIndex = 0;
+
+      value = value.replace(/\d/g, () => allowedDigits[digitIndex++] || '');
+    }
+
+    this.el.nativeElement.value = value;
+    this.control.control?.setValue(value, { emitEvent: false });
+  }
+}

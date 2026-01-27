@@ -7,11 +7,12 @@ import { RegionService } from '../../../../api/region.service';
 import { ModalService } from '../../../../services/modal.service';
 import { officeList } from '../../../../models/region.model';
 import { Subscription } from 'rxjs';
+import { OnlyDigitsDirective } from '../../../../shared/directives/only-digits.directive';
 
 @Component({
   selector: 'app-card-application',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ReactiveFormsModule],
+  imports: [CommonModule, TranslateModule, ReactiveFormsModule, OnlyDigitsDirective],
   templateUrl: './card-application.component.html',
   styleUrl: './card-application.component.scss',
 })
@@ -48,6 +49,20 @@ export class CardApplicationComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.langChangeSubscription) {
       this.langChangeSubscription.unsubscribe();
+    }
+  }
+
+  onPhoneFocus() {
+    const control = this.phone;
+    if (!control?.value) {
+      control?.setValue('+992', { emitEvent: false });
+    }
+  }
+
+  onPhoneBlur(): void {
+    const control = this.phone;
+    if (control?.value === '+992') {
+      control?.setValue('', { emitEvent: false });
     }
   }
 
