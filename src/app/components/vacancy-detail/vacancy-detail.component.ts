@@ -49,16 +49,15 @@ export class VacancyDetailComponent implements OnInit {
   isSubmitted = false;
   isError = false;
 
-  // Основной объект данных вакансии
   vacancyData: vacancyData = {
     id: 0,
     name: '',
     region_name: '',
     deadline_at: '',
-    content: "", // Сюда придет HTML из редактора
+    content: "", 
   };
 
-  // Сервисы
+
   private sanitizer = inject(DomSanitizer);
   private pageTitleService = inject(PageTitleService);
   private fb = inject(FormBuilder);
@@ -78,7 +77,6 @@ export class VacancyDetailComponent implements OnInit {
     });
   }
 
-  // Метод для безопасного вывода HTML из админки
   getSafeHtml(html: string): SafeHtml {
     if (!html) return '';
     return this.sanitizer.bypassSecurityTrustHtml(html);
@@ -101,14 +99,12 @@ export class VacancyDetailComponent implements OnInit {
   }
 
   loadAllData() {
-    // Загрузка доп. списков
     this.vacanciesService.getPersonalQuality(this.id).subscribe(d => this.personalQuality = d.data.vacancy_personal_qualities);
     this.vacanciesService.getVacancyEducation(this.id).subscribe(d => this.education = d.data.vacancy_educations);
     this.vacanciesService.getVacancyExperience(this.id).subscribe(d => this.experience = d.data.vacancy_experiences);
     this.vacanciesService.getVacancyCondition(this.id).subscribe(d => this.condition = d.data.vacancy_conditions);
     this.vacanciesService.getVacancySkill(this.id).subscribe(d => this.skill = d.data.vacancy_skills);
 
-    // Загрузка основных данных вакансии (включая content)
     this.vacanciesService.getVacancyData(this.id).subscribe(
       (details) => {
         this.vacancyData = details.data.vacancy_data;
@@ -121,7 +117,6 @@ export class VacancyDetailComponent implements OnInit {
     );
   }
 
-  // --- Методы для работы с файлами ---
 
   onDrop(event: DragEvent): void {
     event.preventDefault();
@@ -189,22 +184,20 @@ export class VacancyDetailComponent implements OnInit {
     });
   }
 
-  // --- Отправка формы ---
+
 
   onSubmit() {
     this.applyForm.markAllAsTouched();
 
     if (this.applyForm.invalid) {
-      this.translate.get('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING').subscribe((message: string) => {
-        this.notificationService.show(message, 'error');
-      });
-      return;
+      const message = this.translate.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
+    this.notificationService.show(message, 'error');
+    return;
     }
 
     if (this.uploadFileId === null) {
-      this.translate.get('NOTIFICATIONS.UPLOAD_RESUME_WARNING').subscribe((message: string) => {
-        this.notificationService.show(message, 'error');
-      });
+      const message = this.translate.instant('NOTIFICATIONS.UPLOAD_RESUME_WARNING');
+      this.notificationService.show(message, 'error');
       return;
     }
 
@@ -220,18 +213,15 @@ export class VacancyDetailComponent implements OnInit {
 
     this.vacanciesService.submitFormData(formData).subscribe({
       next: () => {
-        this.translate.get('NOTIFICATIONS.APPLICATION_SENT_SUCCESS').subscribe((message: string) => {
-          this.notificationService.show(message, 'success');
-        });
+        const message = this.translate.instant('NOTIFICATIONS.APPLICATION_SENT_SUCCESS');
+      this.notificationService.show(message, 'success');
         this.applyForm.reset();
         this.fileName = '';
         this.uploadFileId = null;
       },
       error: (error) => {
-        console.error('Form submission failed:', error);
-        this.translate.get('NOTIFICATION.APPLICATION_ERROR_MESSAGE').subscribe((message: string) => {
-          this.notificationService.show(message, 'error');
-        });
+        const message = this.translate.instant('NOTIFICATION.APPLICATION_ERROR_MESSAGE');
+        this.notificationService.show(message, 'error');
       },
     });
   }

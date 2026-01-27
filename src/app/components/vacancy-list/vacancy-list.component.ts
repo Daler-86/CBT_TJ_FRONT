@@ -25,8 +25,8 @@ export class VacancyListComponent implements OnInit, OnChanges {
   private vacanciesService = inject(VacanciesService);
   private regionService = inject(RegionService);
 
-  @Input() totalPages = 0; // Общее количество страниц
-  @Input() currentPage = 1; // Текущая страница
+  @Input() totalPages = 0; 
+  @Input() currentPage = 1; 
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   pages: number[] = [];
 

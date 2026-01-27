@@ -1,11 +1,19 @@
+@import '../../../styles/variables.scss';
 .credit {
   margin: 0;
-  padding: 3% 5%;
+  padding: 48px 5%;
   background-color: #f6f7f8;
   h1 {
-    font-size: 42px;
-    font-weight: 800;
+    font-size: $font-size-h2;
+    line-height: $line-height-h2;
+    font-weight: 700;
     margin-bottom: 25px;
+    @media (max-width: 1024px) {
+      font-size: 36px;
+    }
+    @media (max-width: 768px) {
+      font-size: 28px;
+    }
   }
   .btnCards {
     display: flex;
@@ -43,25 +51,14 @@
     justify-content: space-between;
     align-items: center;
     @media (max-width: 1024px) {
-      // 1. Включаем Flexbox и меняем порядок элементов на вертикальный
       display: flex;
       flex-direction: column;
-      padding: 29px 30px;
+      padding: 29px 30px; 
     }
     .card-info {
       width: 60%;
-      padding: 62px 76px;
-      @media (max-width: 1024px) {
-        width: 100%;
-        padding: 0;
-        // Этот блок теперь будет вторым
-        order: 2;
-        // 2. Добавляем единый отступ между всеми дочерними элементами
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-      }
-
+      padding: 62px 0px 62px 76px;
+     
       .card-title {
         font-size: 30px;
         font-weight: bold;
@@ -81,26 +78,35 @@
         grid-template-columns: 1fr 1fr;
         justify-content: space-between;
         margin: 45px 0;
+        gap: 40px;
         @media (max-width: 768px) {
           display: block;
+          margin: 0px;
         }
         .currency-info,
         .service-info {
-          width: 90%;
-
+          width: 100%;
           .title {
             font-weight: 700;
             font-size: 24px;
             margin-bottom: 5px;
-            @media (max-width: 768px) {
-              margin-top: 20px;
-            }
+           
           }
 
           .description {
             color: #475569;
             font-size: 16px;
-          }
+          } 
+          @media (max-width: 768px) {
+  .title{
+     font-size: 18px;
+  }
+  .description{
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+             
+            }
         }
       }
 
@@ -108,52 +114,76 @@
         display: flex;
         gap: 15px;
         margin-top: 25px;
-        @media (max-width: 1024px) {
-          // Делаем кнопки тоже вертикальными для лучшего вида
-          flex-direction: column;
-          gap: 25px;
-        }
+     
         button {
-          @media (max-width: 1024px) {
-            width: 100%;
-          }
+          padding: 19px 50px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 18px;
+          border: none;
         }
         .btn-primary {
           background-color: #00b06c;
           color: #fff;
-          border: none;
-          padding: 19px 50px;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 14px;
         }
 
         .btn-secondary {
           background-color: transparent;
           color: #00b06c;
-          border: none;
-          padding: 19px 50px;
-          cursor: pointer;
+        } 
+          @media (max-width: 1024px) {
+          gap: 10px;
+          button{
+            font-size: 14px;
+          }
+        }
+        @media (max-width: 768px) {
+          flex-direction: column; 
+          gap: 15px;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        width: 100%;
+        padding: 0;
+        order: 2;
+        .card-title{
+          font-size: 26px;
+        }
+        .card-description{
+          font-size: 16px;
+        }
+      }
+      @media (max-width: 768px) {
+      
+        .card-title{
+          font-size: 24px;
+        }
+        .card-description{
           font-size: 14px;
         }
       }
     }
 
     .card-image {
-      width: 35%;
-      padding: 0 76px;
+      width: 40%;
       align-self: flex-end;
+       padding: 26px 68px 0px 0px;
       @media (max-width: 1024px) {
+        width: 60%;
+        margin: auto;
+        order: 1;  
+        padding: 0;
+        margin-bottom: 20px;
+      }
+      @media(max-width: 768px){
         width: 100%;
-        padding: 0; // Сбрасываем лишние отступы
-        // Этот блок теперь будет первым
-        order: 1;
-        // Добавляем отступ снизу, чтобы отделить картинку от текста
-        margin-bottom: 25px;
       }
       img {
         width: 100%;
+        display: flex;
+        justify-content: end;
       }
-    }
+    }  
   }
 }

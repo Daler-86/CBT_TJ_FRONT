@@ -22,13 +22,15 @@
           </button>
         </div>
       </div>
-      @if(vacancyData.content.length>0){
+
+      <div class="details">
+      @if(vacancyData.content && vacancyData.content.length>0){
       <div class="vacancy-details">
         <div class="ck-content" [innerHTML]="getSafeHtml(vacancyData.content)"></div>
       </div>
           }
-                <div class="">
-        @if(education.length>0){
+                <div class="details">
+        @if(education && education.length>0){
             <div class="vacancy-details">
           <h4>{{ 'VACANCY_DETAILS.SECTIONS.EDUCATION' | translate }}</h4>
           <ul>
@@ -39,7 +41,7 @@
         </div>
       }
       
-@if(experience.length>0){
+@if(experience && experience.length){
    <div class="vacancy-details">
           <h4>{{ 'VACANCY_DETAILS.SECTIONS.EXPERIENCE' | translate }}</h4>
           <ul>
@@ -50,7 +52,7 @@
         </div>
 }
        
-@if (skill.length>0) {
+@if (skill && skill.length>0) {
     <div class="vacancy-details">
           <h4>{{ 'VACANCY_DETAILS.SECTIONS.REQUIREMENTS' | translate }}</h4>
           <ul>
@@ -61,7 +63,7 @@
         </div>
       }
       
-@if (personalQuality.length>0) { 
+@if (personalQuality && personalQuality.length>0) { 
    <div class="vacancy-details">
           <h4>{{ 'VACANCY_DETAILS.SECTIONS.QUALITIES' | translate }}</h4>
           <ul>
@@ -71,7 +73,7 @@
           </ul>
         </div>}
       
-        @if(condition.length > 0) {
+        @if(condition && condition.length > 0) {
           <div class="vacancy-details">
             <h4>{{ 'VACANCY_DETAILS.SECTIONS.CONDITIONS' | translate }}</h4>
             <ul>
@@ -84,6 +86,7 @@
         
       </div>
     </div>
+  </div>
   }
 
   <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id="application-form">

@@ -1,5 +1,5 @@
 <div class="barakat">
-  <!-- Блок 1: Промо -->
+
   <div class="card-container">
     <div class="card-info">
       <h2 class="card-title">{{ creditData.title }}</h2>
@@ -13,7 +13,6 @@
     </div>
   </div>
 
-  <!-- Блок 2: Тарифы и условия -->
   <div class="container">
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.TARIFFS_AND_CONDITIONS' | translate }}</h1>
     <div class="content">
@@ -33,13 +32,12 @@
     </div>
   </div>
 
-  <!-- Блок 3: Список документов -->
+
   <div class="container-2">
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.REQUIRED_DOCUMENTS' | translate }}</h1>
     <div class="box">
       @for (document of documents; track document.id) {
         <div class="box-details">
-          <!-- ВАЖНО: Добавлен динамический alt-текст -->
           <img [src]="imageUrl + document.upload_file" [alt]="document.name" />
           <p>{{ document.name }}</p>
         </div>
@@ -47,7 +45,6 @@
     </div>
   </div>
 
-  <!-- Блок 4: Онлайн-заявка и калькулятор -->
 
   @if (calculatorDataForChild && creditData.id !== 7) {
     <div class="container-4">
@@ -64,13 +61,10 @@
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.ONLINE_APPLICATION' | translate }}</h1>
     <div class="application-form-container">
       <form class="form" #applicationForm="ngForm" (ngSubmit)="submitApplication(applicationForm)">
-        <!-- Имя -->
         <div class="form-group">
           @if (name.invalid && (name.dirty || name.touched)) {
             <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
           }
-
-          <!-- ИЗМЕНЕНИЕ 1: Добавляем пайп translate -->
           <input
             type="text"
             id="fullName"
@@ -82,8 +76,6 @@
             #name="ngModel"
           />
         </div>
-
-        <!-- Телефон -->
         <div class="form-group">
           @if (phone.invalid && (phone.dirty || phone.touched)) {
             <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
@@ -101,7 +93,6 @@
           />
         </div>
 
-        <!-- Выбор офиса -->
         <div class="custom-dropdown" #customDropdown>
           <div class="dropdown-selected">
             <div class="form-group">
@@ -119,7 +110,6 @@
               </div>
             </div>
           </div>
-          <!-- Список опций остается без изменений -->
           @if (dropdownOpen) {
             <div class="dropdown-options">
               @for (item of offices; track item.id) {
@@ -138,15 +128,9 @@
             </div>
           }
 
-          <!-- Добавляем скрытое поле для валидации, если его еще нет -->
+
           <input type="hidden" name="office_id" [(ngModel)]="model.office_id" required />
         </div>
-
-        <!-- Место работы -->
-        <!-- <div class="form-group">
-          <input type="text" id="workplace" [placeholder]="'forms.placeholders.workplace' | translate" class="form-control" 
-                 [(ngModel)]="model.address" name="workplace">
-        </div> -->
 
         <button type="submit" disabled class="btn-primary" [disabled]="applicationForm.invalid">
           {{ 'BUTTONS.SEND' | translate }}

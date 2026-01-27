@@ -1,5 +1,3 @@
-// src/app/pages/contact/contact.component.ts
-
 import { Component, OnInit, ElementRef, ViewChild, HostListener, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -31,7 +29,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   public selectedSubjectName = '';
   public dropdownOpen = false;
   subjects: ContactSubject[] = [];
-  // Наша реактивная форма
   public contactForm!: FormGroup;
   public isSubmitting = false;
   private contactService = inject(ContactService);
@@ -48,7 +45,7 @@ export class ContactComponent implements OnInit, OnDestroy {
         '',
         [
           Validators.required,
-          Validators.pattern(/^\d+$/), // ✅ только цифры разрешены
+          Validators.pattern(/^\d+$/), 
         ],
       ],
       contact_subject_id: [null, [Validators.required]],
@@ -69,9 +66,8 @@ export class ContactComponent implements OnInit, OnDestroy {
     });
 
     this.route.queryParams.subscribe((params) => {
-      const anchor = params['scrollTo']; // Ищем параметр 'scrollTo' в URL
+      const anchor = params['scrollTo']; 
       if (anchor) {
-        // Если параметр есть, вызываем наш сервис
         this.scrollService.scrollToAnchor(anchor);
       }
     });
@@ -102,22 +98,16 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   selectSubject(subject: ContactSubject): void {
-    this.selectedSubjectName = subject.name; // Имя для отображения
-    this.contactForm.get('contact_subject_id')?.setValue(subject.id); // ID для отправки
+    this.selectedSubjectName = subject.name; 
+    this.contactForm.get('contact_subject_id')?.setValue(subject.id); 
     this.dropdownOpen = false;
   }
-
-  // --- Метод отправки формы ---
-  // ... (внутри вашего компонента)
 
   onSubmit(): void {
     this.contactForm.markAllAsTouched();
     if (this.contactForm.invalid) {
-      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-      this.translateService.get('notifications.fillAllFieldsWarning').subscribe((message: string) => {
-        this.notificationService.show(message, 'error');
-      });
-      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+      const msg = this.translateService.instant('notifications.fillAllFieldsWarning');
+      this.notificationService.show(msg, 'error');
       return;
     }
 
@@ -126,27 +116,20 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.contactService.submitContactForm(formData).subscribe({
       next: () => {
-        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-        this.translateService.get('notifications.messageSentSuccess').subscribe((message: string) => {
-          this.notificationService.show(message, 'success');
-        });
-        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+        const successMsg = this.translateService.instant('notifications.messageSentSuccess');
+        this.notificationService.show(successMsg, 'success');
         this.contactForm.reset();
         this.updateSubjectPlaceholder();
         this.isSubmitting = false;
       },
       error: () => {
-        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-        this.translateService.get('notifications.messageSentError').subscribe((message: string) => {
-          this.notificationService.show(message, 'error');
-        });
-        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+        const errorMsg = this.translateService.instant('notifications.messageSentError');
+        this.notificationService.show(errorMsg, 'error');
         this.isSubmitting = false;
       },
     });
   }
 
-  // Геттеры для удобной валидации в HTML
   get client_name() {
     return this.contactForm.get('client_name');
   }

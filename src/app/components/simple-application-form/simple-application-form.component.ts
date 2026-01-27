@@ -1,10 +1,8 @@
-// src/app/components/simple-application-form/simple-application-form.component.ts
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
-// import { NotificationService } from '../../services/notification.service';
 import { ApplicationService } from '../../api/application.service';
 import { ModalService } from '../../services/modal.service';
 
@@ -16,7 +14,6 @@ import { ModalService } from '../../services/modal.service';
   styleUrls: ['./simple-application-form.component.scss'],
 })
 export class SimpleApplicationFormComponent {
-  // 1. Принимаем URL для отправки от родителя
   @Input() apiUrl = '';
   @Input() formTitle = 'Оставить заявку';
   @Input() formSubtitle = 'Наш менеджер скоро свяжется с вами.';
@@ -36,8 +33,6 @@ export class SimpleApplicationFormComponent {
     });
   }
 
-  // ... (внутри вашего компонента)
-
   onPhoneInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     const numericValue = input.value.replace(/\D+/g, ''); // убираем всё кроме цифр
@@ -48,23 +43,17 @@ export class SimpleApplicationFormComponent {
   onSubmit(): void {
     this.applicationForm.markAllAsTouched();
     if (this.applicationForm.invalid) {
-      // --- НАЧАло ИЗМЕНЕНИЙ ---
-      // Используем существующий ключ
-      this.translate.get('NOTIFICATIONS.FILL_ALL_FIELDS_WARNING').subscribe((message: string) => {
-        this.notificationService.show(message, 'error');
-      });
-      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+
+      const msg = this.translate.instant('NOTIFICATIONS.FILL_ALL_FIELDS_WARNING');
+      this.notificationService.show(msg, 'error');
+
       return;
     }
 
     if (!this.apiUrl) {
-      // --- НАЧАло ИЗМЕНЕНИЙ ---
-      // Это сообщение для разработчика, его можно не переводить,
-      // но если хотите, можно создать ключ notifications.configError
-      this.translate.get('NOTIFICATIONS.CONFIG_ERROR').subscribe((message: string) => {
-        this.notificationService.show(message, 'error');
-      });
-      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+
+      const msg = this.translate.instant('NOTIFICATIONS.CONFIG_ERROR');
+      this.notificationService.show(msg, 'error');
       return;
     }
 
@@ -73,22 +62,14 @@ export class SimpleApplicationFormComponent {
 
     this.applicationService.submitForm(this.apiUrl, formData).subscribe({
       next: () => {
-        // --- НАЧАло ИЗМЕНЕНИЙ ---
-        // Немного другой текст, нужен новый ключ
-        this.translate.get('NOTIFICATIONS.APPLICATION_SUCCESS_MESSAGE').subscribe((message: string) => {
-          this.notificationService.show(message, 'success');
-        });
-        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+        const msg = this.translate.instant('NOTIFICATIONS.APPLICATION_SUCCESS_MESSAGE');
+        this.notificationService.show(msg, 'success');
         this.applicationForm.reset();
         this.isSubmitting = false;
       },
       error: () => {
-        // --- НАЧАло ИЗМЕНЕНИЙ ---
-        // Используем существующий ключ
-        this.translate.get('NOTIFICATIONS.APPLICATION_ERROR_MESSAGE').subscribe((message: string) => {
-          this.notificationService.show(message, 'error');
-        });
-        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+        const msg = this.translate.instant('NOTIFICATIONS.APPLICATION_ERROR_MESSAGE');
+        this.notificationService.show(msg, 'error');
         this.isSubmitting = false;
       },
     })

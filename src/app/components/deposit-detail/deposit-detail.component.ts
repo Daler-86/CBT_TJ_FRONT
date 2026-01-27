@@ -1,5 +1,3 @@
-// src/app/pages/deposit-detail/deposit-detail.component.ts
-
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -22,14 +20,12 @@ import { PageTitleService } from '../../services/page-title.service';
   styleUrls: ['./deposit-detail.component.scss'],
 })
 export class DepositDetailComponent implements OnInit {
-  // --- Свойства для отображения данных о продукте ---
   imageUrl: string = environment.IMAGE_URL;
   depositId = 0;
   depositData: depositDetail | null = null;
   selectedFaqIndex: number | null = null;
   selectedTab = '';
 
-  // Модель только для полей формы
   model = {
     client_name: '',
     phone: '',
@@ -54,12 +50,10 @@ export class DepositDetailComponent implements OnInit {
     this.depositService.getDepositData(id).subscribe({
       next: (response) => {
         this.depositData = response.data;
-        // Устанавливаем первый таб по умолчанию
         if (this.depositData?.currency) {
           this.selectedTab = this.depositData.currency[0].code;
         }
         if (this.depositData && this.depositData.title) {
-          // ...передаем уже готовое, переведенное название в сервис заголовков.
           this.pageTitleService.setCustomTitle(this.depositData.title);
         }
       },
@@ -67,18 +61,16 @@ export class DepositDetailComponent implements OnInit {
     });
   }
 
-  // Метод для отправки формы
+
 
   submitApplication(form: NgForm): void {
     if (form.invalid) {
-      this.translateService.get('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING').subscribe((message: string) => {
-        this.notificationService.show(message, 'error');
-      });
-      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-
-      Object.values(form.controls).forEach((control) => {
-        control.markAsTouched();
-      });
+      const message = this.translateService.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
+    this.notificationService.show(message, 'error');
+    
+    Object.values(form.controls).forEach((control) => {
+      control.markAsTouched();
+    });
       return;
     }
 
@@ -89,21 +81,19 @@ export class DepositDetailComponent implements OnInit {
 
     this.depositService.submitDeposit(dataToSend).subscribe({
       next: () => {
-        this.translateService.get('NOTIFICATIONS.APPLICATION_SENT_SUCCESS').subscribe((message: string) => {
-          this.notificationService.show(message, 'success');
-        });
+        const successMessage = this.translateService.instant('NOTIFICATIONS.APPLICATION_SENT_SUCCESS');
+        this.notificationService.show(successMessage, 'success');
 
         form.reset();
       },
       error: () => {
-        this.translateService.get('NOTIFICATIONS.APPLICATION_ERROR_MESSAGE').subscribe((message: string) => {
-          this.notificationService.show(message, 'error');
-        });
+        const errorMessage = this.translateService.instant('NOTIFICATIONS.APPLICATION_ERROR_MESSAGE');
+        this.notificationService.show(errorMessage, 'error');
       },
     });
   }
 
-  // --- Вспомогательные методы для UI ---
+
 
   selectTab(tabCode: string): void {
     this.selectedTab = tabCode;

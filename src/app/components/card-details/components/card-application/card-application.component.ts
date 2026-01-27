@@ -23,7 +23,7 @@ export class CardApplicationComponent implements OnInit, OnDestroy {
 
   private langChangeSubscription: Subscription | undefined;
   public applicationForm: FormGroup;
-
+  private translate = inject(TranslateService);
   private regionService = inject(RegionService);
   private cardsService = inject(CardsService);
   private notificationService = inject(ModalService);
@@ -103,18 +103,15 @@ export class CardApplicationComponent implements OnInit, OnDestroy {
 
     this.cardsService.submitCardByBrand(dataToSend).subscribe({
       next: () => {
-        this.translateService.get('NOTIFICATIONS.APPLICATION_SUCCESS_MESSAGE').subscribe((message: string) => {
-          this.notificationService.show(message, 'success');
-        });
+        const message = this.translate.instant('NOTIFICATIONS.APPLICATION_SUCCESS_MESSAGE');
+        this.notificationService.show(message, 'success');
         this.applicationForm.reset();
         this.updateOfficePlaceholder();
       },
       error: (err) => {
-        this.translateService.get('NOTIFICATIONS.APPLICATION_ERROR_MESSAGE').subscribe((message: string) => {
-          const errorMessage = err.error?.message || message;
-          this.notificationService.show(errorMessage, 'error');
-
-        });
+        const defaultMessage = this.translate.instant('NOTIFICATIONS.APPLICATION_ERROR_MESSAGE');
+        const errorMessage = err.error?.message || defaultMessage;
+        this.notificationService.show(errorMessage, 'error');
       },
     });
   }

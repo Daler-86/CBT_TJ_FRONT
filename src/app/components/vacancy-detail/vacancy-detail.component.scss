@@ -1,6 +1,14 @@
-.more-vacancy {
-  padding: 3% 5%;
+@import '../../../styles/variables.scss';
+ .more-vacancy {
+  padding: 48px 5%;
   background-color: #f6f7f8;
+
+  @media (max-width: 1024px) {
+  gap: 30px;
+  }
+  @media (max-width: 768px) {
+   gap:20px;
+  }
   .title {
     display: flex;
     justify-content: space-between;
@@ -15,10 +23,16 @@
   
     .header-info {
       h2 {
-        font-size: 42px;
+        font-size: $font-size-h2;
+        line-height: $line-height-h2;
         font-weight: 700;
-        color: #141a20;
-        margin: 0 0 15px 0;
+        margin-bottom: 20px;
+        @media (max-width: 1024px) {
+          font-size: 36px;
+        }
+        @media (max-width: 768px) {
+          font-size: 28px;
+        }
       }
   
       .pills-container {
@@ -47,6 +61,9 @@
             font-size: 16px;
             color: #4a4a4a;
             white-space: nowrap;
+            @media (max-width: 768px) {
+              font-size: 14px;
+            }
           }
         }
       }
@@ -68,17 +85,36 @@
         &:hover {
           background-color: #008f58;
         }
+        @media (max-width: 1024px) {
+         font-size: 16px;
+          }
+          @media (max-width: 768px) {
+           font-size: 14px;
+          }
       }
     }
   }
-
+.details{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @media (max-width: 1024px) {
+  gap: 15px;
+  }
+  @media (max-width: 768px) {
+   gap:10px;
+  }
   .vacancy-details {
     background-color: #fff;
     border-radius: 24px;
     padding: 37px 75px;
     box-shadow: 0px 4px 20px 0px #afafaf2e;
-    margin: 30px 0;
-
+    @media (max-width: 1024px) {
+      padding: 30px;
+      }
+      @media (max-width: 768px) {
+       padding: 20px;
+      }
     h4 {
       color: #141a20;
       margin-bottom: 20px;
@@ -92,57 +128,95 @@
       list-style: none;
       padding: 0;
       margin: 0;
-
+      display: flex;
+        gap:20px;
+        flex-direction: column;
       li {
         color: #475569;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 500;
         display: flex;
         align-items: center;
-        margin-bottom: 25px;
+        
 
         &::before {
           content: '—'; /* Заменяем точку на тире */
           display: inline-block;
           margin-right: 10px;
-          font-size: 18px; /* Размер тире */
+          font-size: 20px; /* Размер тире */
           font-weight: 900;
           color: #00c853; /* Цвет тире */
         }
       }
     }
+    @media (max-width: 1024px) {
+      padding: 28px 48px;
+    }
+    @media (max-width: 768px) {
+      padding: 28px 20px;
+    }
+    h4{
+      font-size: 18px;
+    }
+    ul{
+      li{
+        font-size: 14px;
+      }
+    }
   }
+}
+ 
 
   form {
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
     padding: 40px;
     border-radius: 16px;
+    text-align: center;
     box-shadow: 0 4px 20px rgba(175, 175, 175, 0.18);
     .drop-zone {
-      border: 2px dashed #ccc;
+      border: 2px dashed #CBD5E1;
       padding: 20px;
       text-align: center;
       color: #ccc;
       cursor: pointer;
     }
     .drop-zone.dragover {
-      border-color: #000;
+      border-color: #000000;
       color: #000;
     }
     h2 {
-      font-size: 30px;
-      font-weight: 800;
+      font-size: 32px;
+      font-weight: 700;
       margin-bottom: 10px;
     }
 
     p {
       font-size: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
       color: #475569;
     }
+    @media (max-width: 1024px) {
+      padding: 28px 20px;
+    h2{
+      font-size: 28px;
+    }
+    p{
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+      }
+      @media (max-width: 768px) {
+        h2{
+          font-size: 24px;
+        }
+        p{
+          font-size: 14px;
+        }
+      }
 
     .form-row {
       display: flex;
@@ -154,35 +228,36 @@
       .full {
         width: 100%;
       }
-      @media (max-width: 1024px) {
+      @media (max-width: 768px) {
         display: block;
         width: 100%;
       }
       input {
-        @media (max-width: 1024px) {
-          width: 100%;
-        }
         width: 100%;
         box-sizing: border-box;
         padding: 15px;
-        border: 1px solid #ddd;
+        border: 1px solid #CBD5E1;
         border-radius: 4px;
         margin: 20px 0 5px;
         justify-self: center;
+          @media (max-width: 768px) {
+            margin: 10px 0 5px;
+        }
       }
     }
 
     .file-drop-area {
-      border: 2px dashed #ddd;
+      border: 2px dashed #CBD5E1;
       border-radius: 8px;
       padding: 40px 5%;
-
       width: 60%;
       margin: 20px auto;
       margin-bottom: 20px;
       position: relative;
-      @media (max-width: 1024px) {
-        width: 90%;
+      text-align: start;
+      @media (max-width: 768px) {
+        width: 100%;
+        padding: 20px 5%;
       }
       label,
       .form-label {
@@ -209,6 +284,10 @@
         &:hover {
           background-color: #7a8c99;
         }
+        @media (max-width: 768px) {
+          padding: 12px 44px;
+          font-size: 14px;
+        }
       }
 
       small {
@@ -231,6 +310,11 @@
 
       &:hover {
         background-color: #00b06dcc;
+      }
+      @media (max-width: 768px) {
+        width: 100%;
+        padding: 12px 44px;
+        font-size: 14px;
       }
     }
   }
@@ -263,7 +347,7 @@
 
   .error-message {
     margin: 0px 0px 5px;
-    border-left: 2px solid #e74c3c;
+ text-align: start;
     color: #e74c3c;
   }
 

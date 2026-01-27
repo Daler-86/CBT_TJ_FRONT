@@ -71,16 +71,13 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
-      this.creditId = +idParam; // Преобразование строки в число
+      this.creditId = +idParam; 
     } else {
       console.error('ID is missing in the route parameters.');
-      // Здесь может быть код для обработки ситуации отсутствия ID
     }
     this.updateOfficePlaceholder();
 
-    // === ПОДПИСЫВАЕМСЯ НА СОБЫТИЕ СМЕНЫ ЯЗЫКА ===
     this.langChangeSubscription = this.translateService.onLangChange.subscribe(() => {
-      // При каждой смене языка вызываем наш метод
       this.updateOfficePlaceholder();
     });
     this.loadCreditTariff(this.creditId);
@@ -90,9 +87,8 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     this.loadCreditData(this.creditId);
 
     this.route.queryParams.subscribe((params) => {
-      const anchor = params['scrollTo']; // Ищем параметр 'scrollTo' в URL
+      const anchor = params['scrollTo'];
       if (anchor) {
-        // Если параметр есть, вызываем наш сервис
         this.scrollService.scrollToAnchor(anchor);
       }
     });
@@ -106,13 +102,11 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
-    // Проверяем, открыт ли список и был ли клик СНАРУЖИ нашего селектора
     if (this.dropdownOpen && !this.dropdownRef.nativeElement.contains(event.target)) {
-      this.dropdownOpen = false; // Если да, то закрываем
+      this.dropdownOpen = false;
     }
   }
   updateOfficePlaceholder(): void {
-    // Обновляем плейсхолдер только если офис еще не выбран
     if (!this.model.office_id) {
       this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE').subscribe((translation) => {
         this.officeName = translation;
@@ -120,16 +114,14 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ... (внутри вашего компонента)
+
 
   submitApplication(form: NgForm) {
     if (form.invalid || !this.model.office_id) {
-      // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-      this.translateService.get('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING').subscribe((message: string) => {
-        this.notificationService.show(message, 'error');
-      });
-      // --- КОНЕЦ ИЗМЕНЕНИЙ ---
 
+      const warningMsg = this.translateService.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
+      this.notificationService.show(warningMsg, 'error');
+  
       Object.values(form.controls).forEach((control) => {
         control.markAsTouched();
       });
@@ -140,13 +132,8 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
 
     this.creditService.submitCredit(this.model).subscribe({
       next: () => {
-        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-        // Используем ключ, который у нас уже есть
-        this.translateService.get('NOTIFICATIONS.APPLICATION_SUCCESS_MESSAGE').subscribe((message: string) => {
-          this.notificationService.show(message, 'success');
-        });
-        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
-
+        const successMsg = this.translateService.instant('NOTIFICATIONS.APPLICATION.SUCCESS_MESSAGE');
+      this.notificationService.show(successMsg, 'success');
         form.resetForm();
 
         this.officeName = '';
@@ -161,12 +148,9 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
         this.updateOfficePlaceholder();
       },
       error: () => {
-        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-        // Используем ключ, который у нас уже есть
-        this.translateService.get('notifications.applicationErrorMessage').subscribe((message: string) => {
-          this.notificationService.show(message, 'error');
-        });
-        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+        const errorMsg = this.translateService.instant('notifications.applicationErrorMessage');
+        this.notificationService.show(errorMsg, 'error');
+     
       },
     });
   }

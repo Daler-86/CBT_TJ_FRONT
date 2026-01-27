@@ -11,11 +11,10 @@ import { ScrollToDirective } from '../../directives/scroll-to.directive';
   styleUrl: './acquiring-page.component.scss',
 })
 export class AcquiringPageComponent {
-  // Переменная для хранения ID активного таба
   public activeTab = 'pos';
   selectedTab = 'all';
   public readonly acquiringApiUrl = '/order/acquiring/save';
-  // Метод для смены таба
+
   selectTab1(tabId: string): void {
     this.activeTab = tabId;
   }
