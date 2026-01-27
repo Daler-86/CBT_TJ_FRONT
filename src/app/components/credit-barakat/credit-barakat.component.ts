@@ -1,5 +1,5 @@
 import { Component, HostListener, ElementRef, inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FavriComponent } from '../favri/favri.component';
 import { CreditService } from '../../api/credit.service';
@@ -17,16 +17,18 @@ import { ScrollService } from '../../services/scroll.service';
 import { CarLoanCalculateComponent } from '../car-loan-calculate/car-loan-calculate.component';
 import { Subscription } from 'rxjs';
 import { PageTitleService } from '../../services/page-title.service';
+import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directive';
 @Component({
   selector: 'app-credit-barakat',
   standalone: true,
   imports: [
     TranslateModule,
-    FormsModule,
     FavriComponent,
     LoanCalculatorComponent,
     ScrollToDirective,
     CarLoanCalculateComponent,
+    ReactiveFormsModule,
+    OnlyDigitsDirective,
   ],
   templateUrl: './credit-barakat.component.html',
   styleUrl: './credit-barakat.component.scss',
@@ -44,22 +46,12 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     id: 0,
     credit_calculator_data: [],
   };
+  applicationForm!: FormGroup;
+
   @ViewChild('customDropdown') dropdownRef!: ElementRef;
   public calculatorDataForChild: CalculatorData[] | null = null;
   private langChangeSubscription: Subscription | undefined;
-  model: creditDataSubmit = {
-    address: '',
-    client_name: '',
-    credit_id: this.creditId,
-    office_id: 0,
-    phone: '',
-    purpose: '',
-  };
-
-  selectTab(tab: string) {
-    this.selectedTab = tab;
-  }
-
+  private fb = inject(FormBuilder);
   private pageTitleService = inject(PageTitleService);
   private translateService = inject(TranslateService);
   private regionService = inject(RegionService);
@@ -67,7 +59,16 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   private creditService = inject(CreditService);
   private notificationService = inject(ModalService);
   private scrollService = inject(ScrollService);
-
+ constructor(){
+  this.applicationForm = this.fb.group({
+    fullName: ['', [Validators.required, Validators.minLength(3)]], 
+    phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9\\s()-]*$')]],
+    office_id: [null, [Validators.required]]
+  });
+ }
+ selectTab(tab: string) {
+    this.selectedTab = tab;
+  }
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
@@ -99,7 +100,19 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       this.langChangeSubscription.unsubscribe();
     }
   }
+  onPhoneFocus() {
+    const control = this.phone;
+    if (!control?.value) {
+      control?.setValue('+992', { emitEvent: false });
+    }
+  }
 
+  onPhoneBlur(): void {
+    const control = this.phone;
+    if (control?.value === '+992') {
+      control?.setValue('', { emitEvent: false });
+    }
+  }
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
     if (this.dropdownOpen && !this.dropdownRef.nativeElement.contains(event.target)) {
@@ -107,44 +120,39 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     }
   }
   updateOfficePlaceholder(): void {
-    if (!this.model.office_id) {
-      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE').subscribe((translation) => {
-        this.officeName = translation;
-      });
+    if (!this.applicationForm.get('office_id')?.value) {
+      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE')      
+      .subscribe(translation => this.officeName = translation);
     }
   }
 
 
 
-  submitApplication(form: NgForm) {
-    if (form.invalid || !this.model.office_id) {
+  submitApplication() {
+    this.applicationForm.markAllAsTouched();
+    if (this.applicationForm.invalid) {
 
       const warningMsg = this.translateService.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
       this.notificationService.show(warningMsg, 'error');
   
-      Object.values(form.controls).forEach((control) => {
-        control.markAsTouched();
-      });
       return;
     }
 
-    this.model.credit_id = this.creditId;
-
-    this.creditService.submitCredit(this.model).subscribe({
+    const formData = {
+      address: '',
+      purpose: '',
+      credit_id: this.creditId,
+      office_id: this.applicationForm.value.office_id,
+      phone: this.applicationForm.value.phone,
+      client_name: this.applicationForm.value.fullName 
+    };
+    this.creditService.submitCredit(formData).subscribe({
       next: () => {
-        const successMsg = this.translateService.instant('NOTIFICATIONS.APPLICATION.SUCCESS_MESSAGE');
+        const successMsg = this.translateService.instant('NOTIFICATIONS.APPLICATION_SUCCESS_MESSAGE');
       this.notificationService.show(successMsg, 'success');
-        form.resetForm();
+      this.applicationForm.reset();
 
         this.officeName = '';
-        this.model = {
-          address: '',
-          client_name: '',
-          credit_id: 0,
-          office_id: 0,
-          phone: '',
-          purpose: '',
-        };
         this.updateOfficePlaceholder();
       },
       error: () => {
@@ -215,8 +223,19 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
 
   selectOption(event: Event, item: officeList) {
     this.officeName = item.name; 
-    this.model.office_id = item.id;
+    this.applicationForm.patchValue({ office_id: item.id });
     event.stopPropagation();
     this.dropdownOpen = false;
+  }
+  get client_name() {
+    return this.applicationForm.get('fullName');
+  }
+
+  get phone() {
+    return this.applicationForm.get('phone');
+  }
+
+  get office_id() {
+    return this.applicationForm.get('office_id');
   }
 }
