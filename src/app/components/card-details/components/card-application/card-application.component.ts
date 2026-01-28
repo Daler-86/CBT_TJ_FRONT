@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, inject, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -49,20 +49,6 @@ export class CardApplicationComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.langChangeSubscription) {
       this.langChangeSubscription.unsubscribe();
-    }
-  }
-
-  onPhoneFocus() {
-    const control = this.phone;
-    if (!control?.value) {
-      control?.setValue('+992', { emitEvent: false });
-    }
-  }
-
-  onPhoneBlur(): void {
-    const control = this.phone;
-    if (control?.value === '+992') {
-      control?.setValue('', { emitEvent: false });
     }
   }
 

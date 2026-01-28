@@ -7,11 +7,37 @@ import { NgControl } from '@angular/forms';
 })
 export class OnlyDigitsDirective {
   maxDigits = input(15);
+  enablePhonePrefix = input(false);
+
+  private readonly PHONE_PREFIX = '+992';
 
   constructor(
     private el: ElementRef<HTMLInputElement>,
     private control: NgControl,
   ) {}
+
+  @HostListener('focus')
+  @HostListener('focus')
+  onFocus(): void {
+    if (!this.enablePhonePrefix()) return;
+
+    const value = this.control?.control?.value ?? this.el.nativeElement.value;
+
+    if (!value) {
+      this.setValue(this.PHONE_PREFIX);
+    }
+  }
+
+  @HostListener('blur')
+  onBlur(): void {
+    if (!this.enablePhonePrefix()) return;
+
+    const value = this.control?.control?.value ?? this.el.nativeElement.value;
+
+    if (value === this.PHONE_PREFIX) {
+      this.setValue('');
+    }
+  }
 
   @HostListener('input')
   onInput(): void {
@@ -39,5 +65,17 @@ export class OnlyDigitsDirective {
 
     this.el.nativeElement.value = value;
     this.control.control?.setValue(value, { emitEvent: false });
+  }
+
+  private setValue(value: string): void {
+    this.el.nativeElement.value = value;
+
+    if (this.control?.control) {
+      this.control.control.setValue(value, {
+        emitEvent: false,
+        emitModelToViewChange: false,
+        emitViewToModelChange: false,
+      });
+    }
   }
 }
