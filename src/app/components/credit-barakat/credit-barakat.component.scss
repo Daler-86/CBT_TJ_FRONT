@@ -415,7 +415,6 @@ padding: 24px 48px 0px 0px;
       .btn-primary {
         width: 100%;
         padding: 20px 30px;
-        margin-top: 20px;
         background-color: #00b06c;
         color: #fff;
         border: none;
@@ -425,7 +424,7 @@ padding: 24px 48px 0px 0px;
       }
 
       .btn-primary:disabled {
-        background-color: #cbd5e1; // серый
+        background-color: #cbd5e1; 
         color: #94a3b8;
         cursor: not-allowed;
         pointer-events: none;

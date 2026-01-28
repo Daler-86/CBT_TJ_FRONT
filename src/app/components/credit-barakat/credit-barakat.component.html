@@ -60,7 +60,8 @@
   <div class="container-3" id="application-form">
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.ONLINE_APPLICATION' | translate }}</h1>
     <div class="application-form-container">
-      <form class="form" #applicationForm="ngForm" (ngSubmit)="submitApplication(applicationForm)">
+
+      <form class="form" [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
         <div class="form-group">
           <input
             type="text"
@@ -81,6 +82,7 @@
           <input
             type="tel"
             id="phone"
+            type="text"
             [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
             class="form-control"
             required
@@ -132,10 +134,14 @@
           }
 
 
-          <input type="hidden" name="office_id" [(ngModel)]="model.office_id" required />
+          <input type="hidden" formControlName="office_id"  />
         </div>
-
-        <button type="submit" disabled class="btn-primary" [disabled]="applicationForm.invalid">
+        @if (office_id?.invalid && office_id?.touched) {
+          <div class="error" >
+            {{ 'FORMS.ERRORS.REQUIRED' | translate }}
+          </div>
+        }
+        <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">
           {{ 'BUTTONS.SEND' | translate }}
         </button>
       </form>

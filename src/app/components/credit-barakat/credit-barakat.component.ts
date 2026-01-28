@@ -1,5 +1,5 @@
-import { Component, HostListener, ElementRef, inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component, HostListener, ElementRef, inject, OnInit, OnDestroy, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FavriComponent } from '../favri/favri.component';
 import { CreditService } from '../../api/credit.service';
@@ -23,15 +23,16 @@ import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directi
   standalone: true,
   imports: [
     TranslateModule,
-    FormsModule,
     FavriComponent,
     LoanCalculatorComponent,
     ScrollToDirective,
     CarLoanCalculateComponent,
+    ReactiveFormsModule,
     OnlyDigitsDirective,
   ],
   templateUrl: './credit-barakat.component.html',
   styleUrl: './credit-barakat.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush 
 })
 export class CreditBarakatComponent implements OnInit, OnDestroy {
   imageUrl: string = environment.IMAGE_URL;
@@ -46,22 +47,12 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     id: 0,
     credit_calculator_data: [],
   };
+  applicationForm!: FormGroup;
+
   @ViewChild('customDropdown') dropdownRef!: ElementRef;
   public calculatorDataForChild: CalculatorData[] | null = null;
   private langChangeSubscription: Subscription | undefined;
-  model: creditDataSubmit = {
-    address: '',
-    client_name: '',
-    credit_id: this.creditId,
-    office_id: 0,
-    phone: '',
-    purpose: '',
-  };
-
-  selectTab(tab: string) {
-    this.selectedTab = tab;
-  }
-
+  private fb = inject(FormBuilder);
   private pageTitleService = inject(PageTitleService);
   private translateService = inject(TranslateService);
   private regionService = inject(RegionService);
@@ -69,7 +60,20 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   private creditService = inject(CreditService);
   private notificationService = inject(ModalService);
   private scrollService = inject(ScrollService);
-
+  private cdr = inject(ChangeDetectorRef);
+ constructor(){
+  this.applicationForm = this.fb.group({
+    address: '',
+    purpose: '',
+    credit_id: this.creditId,
+    client_name: ['', [Validators.required, Validators.minLength(3)]], 
+    phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9\\s()-]*$')]],
+    office_id: [null, [Validators.required]]
+  });
+ }
+ selectTab(tab: string) {
+    this.selectedTab = tab;
+  }
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
@@ -109,17 +113,20 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     }
   }
   updateOfficePlaceholder(): void {
-    if (!this.model.office_id) {
-      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE').subscribe((translation) => {
-        this.officeName = translation;
-      });
+    if (!this.office_id?.value) {
+      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE')      
+      .subscribe(translation =>{
+        this.officeName = translation
+        this.cdr.markForCheck();
+      } );
     }
   }
 
 
 
-  submitApplication(form: NgForm) {
-    if (form.invalid || !this.model.office_id) {
+  submitApplication() {
+    this.applicationForm.markAllAsTouched();
+    if (this.applicationForm.invalid) {
 
       const warningMsg = this.translateService.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
       this.notificationService.show(warningMsg, 'error');
@@ -130,24 +137,19 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.model.credit_id = this.creditId;
-
-    this.creditService.submitCredit(this.model).subscribe({
+    const formData = {
+      ...this.applicationForm.getRawValue(),
+      credit_id: this.creditId
+    };
+    this.creditService.submitCredit(formData).subscribe({
       next: () => {
-        const successMsg = this.translateService.instant('NOTIFICATIONS.APPLICATION.SUCCESS_MESSAGE');
+        const successMsg = this.translateService.instant('NOTIFICATIONS.APPLICATION_SUCCESS_MESSAGE');
       this.notificationService.show(successMsg, 'success');
-        form.resetForm();
+      this.applicationForm.reset();
 
         this.officeName = '';
-        this.model = {
-          address: '',
-          client_name: '',
-          credit_id: 0,
-          office_id: 0,
-          phone: '',
-          purpose: '',
-        };
         this.updateOfficePlaceholder();
+        this.cdr.markForCheck();
       },
       error: () => {
         const errorMsg = this.translateService.instant('notifications.applicationErrorMessage');
@@ -171,6 +173,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     this.creditService.getCreditTariff(id).subscribe(
       (details) => {
         this.tariffs = details.data.credit_tariffs;
+        this.cdr.markForCheck(); 
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
@@ -182,6 +185,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     this.creditService.getCreditDocument(id).subscribe(
       (details) => {
         this.documents = details.data.credit_documents;
+        this.cdr.markForCheck(); 
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
@@ -194,6 +198,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       (details) => {
         this.creditData = details.data.credit_data;
         this.calculatorDataForChild = details.data.credit_data?.credit_calculator_data;
+        this.cdr.markForCheck(); 
         if (this.creditData && this.creditData.title) {
 
           this.pageTitleService.setCustomTitle(this.creditData.title);
@@ -220,5 +225,16 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     this.model.office_id = item.id;
     event.stopPropagation();
     this.dropdownOpen = false;
+  }
+  get client_name() {
+    return this.applicationForm.get('client_name');
+  }
+
+  get phone() {
+    return this.applicationForm.get('phone');
+  }
+
+  get office_id() {
+    return this.applicationForm.get('office_id');
   }
 }
