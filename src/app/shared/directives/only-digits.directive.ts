@@ -17,14 +17,14 @@ export class OnlyDigitsDirective {
   ) {}
 
   @HostListener('focus')
+  @HostListener('focus')
   onFocus(): void {
     if (!this.enablePhonePrefix()) return;
 
-    const value = this.control.control?.value;
+    const value = this.control?.control?.value ?? this.el.nativeElement.value;
+
     if (!value) {
-      this.control.control?.setValue(this.PHONE_PREFIX, {
-        emitEvent: false,
-      });
+      this.setValue(this.PHONE_PREFIX);
     }
   }
 
@@ -32,11 +32,10 @@ export class OnlyDigitsDirective {
   onBlur(): void {
     if (!this.enablePhonePrefix()) return;
 
-    const value = this.control.control?.value;
+    const value = this.control?.control?.value ?? this.el.nativeElement.value;
+
     if (value === this.PHONE_PREFIX) {
-      this.control.control?.setValue('', {
-        emitEvent: false,
-      });
+      this.setValue('');
     }
   }
 
@@ -66,5 +65,17 @@ export class OnlyDigitsDirective {
 
     this.el.nativeElement.value = value;
     this.control.control?.setValue(value, { emitEvent: false });
+  }
+
+  private setValue(value: string): void {
+    this.el.nativeElement.value = value;
+
+    if (this.control?.control) {
+      this.control.control.setValue(value, {
+        emitEvent: false,
+        emitModelToViewChange: false,
+        emitViewToModelChange: false,
+      });
+    }
   }
 }
