@@ -6,39 +6,39 @@
   .card-container {
     display: flex;
     justify-content: space-between;
-    align-items: stretch; 
+    align-items: stretch;
     background-color: white;
     border-radius: 24px;
     box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
 
-    padding: 0; 
-  
+    padding: 0;
+
     @media (max-width: 768px) {
       flex-direction: column;
     }
-  
+
     .card-info {
-      padding: 116px 0 116px 80px; 
+      padding: 116px 0 116px 80px;
       flex: 1;
-  
-  
-  
+
+
+
       .card-title {
         font-size: 36px;
         font-weight: 800;
         margin-bottom: 24px;
         color: #1e293b;
       }
-  
+
       .card-description {
         font-size: 18px;
         line-height: 1.4;
         color: #475569;
         margin-bottom: 40px;
       }
-  
+
       .btn-primary {
         background-color: #00b06c;
         color: white;
@@ -48,8 +48,8 @@
         font-weight: 600;
         cursor: pointer;
         @media (max-width: 768px) { width: 100%; }
-      } 
-      
+      }
+
       @media (max-width: 1024px) {
         padding: 60px 0 60px 48px;
         .card-title{
@@ -60,7 +60,7 @@
           font-size: 16px;
         }
       }
-  
+
       @media (max-width: 768px) {
         padding: 32px 20px 0 20px;
         max-width: 100%;
@@ -75,11 +75,11 @@
         }
       }
     }
-  
+
     .card-image {
       display: flex;
       align-items: flex-end;
-      justify-content: flex-end; 
+      justify-content: flex-end;
       flex: 1;
       padding: 24px 60px 0 0;
       @media (max-width: 1024px) {
@@ -91,16 +91,16 @@ padding: 24px 48px 0px 0px;
         justify-content: center;
         margin-top: 20px;
       }
-  
+
       img {
         display: block;
-    
+
         height: auto;
-        margin-bottom: -5px; 
-  
+        margin-bottom: -5px;
+
         @media (max-width: 1024px) {
           max-width: 350px;
-     
+
         }
         @media (max-width: 768px) {
           max-width: 250px;
@@ -178,7 +178,7 @@ padding: 24px 48px 0px 0px;
         color: #141a20;
         font-size: 18px;
         @media (max-width: 1024px) {
-          width: 100%; 
+          width: 100%;
           font-size: 16px;
           &:not(:last-child) {
             margin-bottom: 10px;
@@ -201,7 +201,7 @@ padding: 24px 48px 0px 0px;
         flex-grow: 1;
         @media (max-width: 1024px) {
           font-size: 14px;
-          width: 100%; 
+          width: 100%;
         }
       }
     }
@@ -258,8 +258,8 @@ padding: 24px 48px 0px 0px;
         @media (max-width: 768px) {
        width: 100%;
         }
-     
-     
+
+
         p {
           font-size: 18px;
           color: #141a20;
@@ -376,8 +376,9 @@ padding: 24px 48px 0px 0px;
       }
       .form-group {
         width: 100%;
+        margin-bottom: 20px;
 
-        margin: auto;
+
         .form-control {
           width: 100%;
           padding: 20px 30px;
@@ -386,27 +387,27 @@ padding: 24px 48px 0px 0px;
           border: 1px solid #cbd5e1;
           font-size: 14px;
           background-color: #f6f7f8;
-          margin-bottom: 20px;
+
           &:-webkit-autofill,
-          &:-webkit-autofill:hover, 
+          &:-webkit-autofill:hover,
           &:-webkit-autofill:focus {
             -webkit-box-shadow: 0 0 0 1000px #f6f7f8 inset !important;
             -webkit-text-fill-color: #141A20!important;
           }
         }
-        
+
 
         .form-control:focus {
           outline: none;
-          border-color: #00b06c;           
-          box-shadow: 0 0 0 1px #00b06c;   
-          background-color: #f6f7f8;       
+          border-color: #00b06c;
+          box-shadow: 0 0 0 1px #00b06c;
+          background-color: #f6f7f8;
         }
 
         .error {
           color: rgb(216, 9, 9);
           font-size: 12px;
-          margin-bottom: 5px;
+          margin-top: 5px;
           text-align: left;
         }
       }

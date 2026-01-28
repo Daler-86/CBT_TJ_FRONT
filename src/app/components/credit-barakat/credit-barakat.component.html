@@ -62,9 +62,6 @@
     <div class="application-form-container">
       <form class="form" #applicationForm="ngForm" (ngSubmit)="submitApplication(applicationForm)">
         <div class="form-group">
-          @if (name.invalid && (name.dirty || name.touched)) {
-            <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
-          }
           <input
             type="text"
             id="fullName"
@@ -74,15 +71,15 @@
             [(ngModel)]="model.client_name"
             name="fullName"
             #name="ngModel"
+            maxlength="100"
           />
-        </div>
-        <div class="form-group">
-          @if (phone.invalid && (phone.dirty || phone.touched)) {
+          @if (name.invalid && (name.dirty || name.touched)) {
             <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
           }
-
+        </div>
+        <div class="form-group">
           <input
-            type="text"
+            type="tel"
             id="phone"
             [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
             class="form-control"
@@ -90,7 +87,13 @@
             [(ngModel)]="model.phone"
             name="phone"
             #phone="ngModel"
+            onlyDigits
+            [maxLength]="15"
+            [enablePhonePrefix]="true"
           />
+          @if (phone.invalid && (phone.dirty || phone.touched)) {
+            <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
+          }
         </div>
 
         <div class="custom-dropdown" #customDropdown>
