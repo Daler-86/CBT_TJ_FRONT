@@ -1,4 +1,58 @@
 @import '../../../styles/variables.scss';
+
+:host ::ng-deep {
+  .ck-content {
+  p, strong {
+    color: #141a20;
+    margin: 20px 0;
+
+    font-size: 24px;
+    font-weight: 700 !important;
+    line-height: 36px;
+
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+      gap:20px;
+      flex-direction: column;
+    li {
+      color: #475569;
+      font-size: 20px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      
+
+      &::before {
+        content: '—'; 
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 20px; 
+        font-weight: 900;
+        color: #00c853; 
+      }
+    }
+  }
+  @media (max-width: 1024px) {
+    padding: 28px 48px;
+  }
+  @media (max-width: 768px) {
+    padding: 28px 20px;
+  }
+  p,strong{
+    font-size: 18px;
+  }
+  ul{
+    li{
+      font-size: 14px;
+    }
+  }
+}
+}
  .more-vacancy {
   padding: 48px 5%;
   background-color: #f6f7f8;
@@ -140,12 +194,12 @@
         
 
         &::before {
-          content: '—'; /* Заменяем точку на тире */
+          content: '—'; 
           display: inline-block;
           margin-right: 10px;
-          font-size: 20px; /* Размер тире */
+          font-size: 20px; 
           font-weight: 900;
-          color: #00c853; /* Цвет тире */
+          color: #00c853; 
         }
       }
     }
@@ -327,21 +381,21 @@
     font-size: 16px;
     font-weight: 500;
     border-radius: 8px;
-    background-color: #fff; /* Светлый фон для минимализма */
-    color: #333; /* Тёмный текст для хорошей читаемости */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+    background-color: #fff; 
+    color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     opacity: 1;
     z-index: 1000;
     transition: all 0.4s ease;
     display: flex;
     align-items: center;
-    gap: 10px; /* Отступ между иконкой и текстом */
+    gap: 10px; 
     max-width: 400px;
     line-height: 1.4;
   }
 
   .success-message {
-    border-left: 2px solid #2ecc71; /* Акцент на левую границу */
+    border-left: 2px solid #2ecc71;
     color: #2ecc71;
   }
 
@@ -352,12 +406,12 @@
   }
 
   .icon-check::before {
-    content: '✔'; /* Иконка успеха */
+    content: '✔'; 
     font-size: 20px;
   }
 
   .icon-error::before {
-    content: '❌'; /* Иконка ошибки */
+    content: '❌';
     font-size: 20px;
   }
 

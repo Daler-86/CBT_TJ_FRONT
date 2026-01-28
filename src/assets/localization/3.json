@@ -426,7 +426,7 @@
         "PURCHASE": "Purchase",
         "SALE": "Sale"
       },
-      "UPDATED_LABEL": "Current as of"
+      "UPDATED_LABEL": "Updated on"
     },
     "CONVERTER": {
       "HAVE_LABEL": "I will exchange:",
