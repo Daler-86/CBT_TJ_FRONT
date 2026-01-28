@@ -17,6 +17,7 @@ import { ScrollService } from '../../services/scroll.service';
 import { CarLoanCalculateComponent } from '../car-loan-calculate/car-loan-calculate.component';
 import { Subscription } from 'rxjs';
 import { PageTitleService } from '../../services/page-title.service';
+import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directive';
 @Component({
   selector: 'app-credit-barakat',
   standalone: true,
@@ -27,6 +28,7 @@ import { PageTitleService } from '../../services/page-title.service';
     LoanCalculatorComponent,
     ScrollToDirective,
     CarLoanCalculateComponent,
+    OnlyDigitsDirective,
   ],
   templateUrl: './credit-barakat.component.html',
   styleUrl: './credit-barakat.component.scss',
@@ -71,7 +73,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
-      this.creditId = +idParam; 
+      this.creditId = +idParam;
     } else {
       console.error('ID is missing in the route parameters.');
     }
@@ -121,7 +123,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
 
       const warningMsg = this.translateService.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
       this.notificationService.show(warningMsg, 'error');
-  
+
       Object.values(form.controls).forEach((control) => {
         control.markAsTouched();
       });
@@ -150,7 +152,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       error: () => {
         const errorMsg = this.translateService.instant('notifications.applicationErrorMessage');
         this.notificationService.show(errorMsg, 'error');
-     
+
       },
     });
   }
@@ -202,19 +204,19 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       },
     );
   }
-  
+
   formatCurrency(value: number): string {
     return new Intl.NumberFormat('ru-RU').format(value) + ' с.';
   }
 
   toggleDropdown(event: Event) {
     this.dropdownOpen = !this.dropdownOpen;
-    event.stopPropagation(); 
+    event.stopPropagation();
   }
 
 
   selectOption(event: Event, item: officeList) {
-    this.officeName = item.name; 
+    this.officeName = item.name;
     this.model.office_id = item.id;
     event.stopPropagation();
     this.dropdownOpen = false;
