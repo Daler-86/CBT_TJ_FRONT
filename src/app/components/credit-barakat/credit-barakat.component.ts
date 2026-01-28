@@ -77,7 +77,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
-      this.creditId = +idParam; 
+      this.creditId = +idParam;
     } else {
       console.error('ID is missing in the route parameters.');
     }
@@ -130,7 +130,10 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
 
       const warningMsg = this.translateService.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
       this.notificationService.show(warningMsg, 'error');
-  
+
+      Object.values(form.controls).forEach((control) => {
+        control.markAsTouched();
+      });
       return;
     }
 
@@ -151,7 +154,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       error: () => {
         const errorMsg = this.translateService.instant('notifications.applicationErrorMessage');
         this.notificationService.show(errorMsg, 'error');
-     
+
       },
     });
   }
@@ -206,21 +209,20 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       },
     );
   }
-  
+
   formatCurrency(value: number): string {
     return new Intl.NumberFormat('ru-RU').format(value) + ' с.';
   }
 
   toggleDropdown(event: Event) {
     this.dropdownOpen = !this.dropdownOpen;
-    event.stopPropagation(); 
+    event.stopPropagation();
   }
 
 
   selectOption(event: Event, item: officeList) {
-    this.officeName = item.name; 
-    this.applicationForm.patchValue({ office_id: item.id });
-    this.cdr.markForCheck()
+    this.officeName = item.name;
+    this.model.office_id = item.id;
     event.stopPropagation();
     this.dropdownOpen = false;
   }

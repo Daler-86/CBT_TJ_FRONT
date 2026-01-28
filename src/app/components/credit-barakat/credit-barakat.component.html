@@ -63,42 +63,38 @@
 
       <form class="form" [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
         <div class="form-group">
-       
           <input
-          type="text"
-          id="fullName"
-          formControlName="client_name" 
-          [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
-          class="form-control"
-        />
-           @if (client_name?.invalid && client_name?.touched) {
+            type="text"
+            id="fullName"
+            [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
+            class="form-control"
+            required
+            [(ngModel)]="model.client_name"
+            name="fullName"
+            #name="ngModel"
+            maxlength="100"
+          />
+          @if (name.invalid && (name.dirty || name.touched)) {
             <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
           }
         </div>
         <div class="form-group">
-       
-
           <input
+            type="tel"
             id="phone"
             type="text"
             [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
             class="form-control"
-            formControlName="phone" 
-            onlyDigits         
-            [maxLength]="15"     
-            inputmode="numeric"   
-            autocomplete="tel"
+            required
+            [(ngModel)]="model.phone"
+            name="phone"
+            #phone="ngModel"
+            onlyDigits
+            [maxLength]="15"
             [enablePhonePrefix]="true"
-          /> 
-            @if (phone?.invalid && phone?.touched) {
-              <div class="error">
-                @if (phone?.errors?.['required']) {
-                  <span>{{ 'COMMON.FIELD_IS_REQUIRED' | translate }}</span>
-                }
-                @if (phone?.errors?.['pattern']) {
-                  <span>Неверный формат телефона</span>
-                }
-              </div>
+          />
+          @if (phone.invalid && (phone.dirty || phone.touched)) {
+            <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
           }
         </div>
 
