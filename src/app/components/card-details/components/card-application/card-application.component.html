@@ -14,10 +14,9 @@
           formControlName="phone"
           onlyDigits
           [maxLength]="15"
+          [enablePhonePrefix]="true"
           inputmode="numeric"
           autocomplete="tel"
-          (focus)="onPhoneFocus()"
-          (blur)="onPhoneBlur()"
         />
         @if (phone?.invalid && phone?.touched) {
           <div class="error">
