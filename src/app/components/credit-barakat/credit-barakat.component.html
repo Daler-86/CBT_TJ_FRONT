@@ -63,21 +63,20 @@
 
       <form class="form" [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
         <div class="form-group">
-          @if (client_name?.invalid && client_name?.touched) {
-            <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
-          }
+       
           <input
           type="text"
           id="fullName"
-          formControlName="fullName" 
+          formControlName="client_name" 
           [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
           class="form-control"
         />
-        </div>
-        <div class="form-group">
-          @if (phone?.invalid && phone?.touched) {
+           @if (client_name?.invalid && client_name?.touched) {
             <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
           }
+        </div>
+        <div class="form-group">
+       
 
           <input
             id="phone"
@@ -91,13 +90,12 @@
             autocomplete="tel"
             (focus)="onPhoneFocus()"
     (blur)="onPhoneBlur()"
-          />
+          /> 
+            @if (phone?.invalid && phone?.touched) {
+            <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
+          }
         </div>
-        @if (office_id?.invalid && office_id?.touched) {
-          <div class="error" >
-            {{ 'FORMS.ERRORS.REQUIRED' | translate }}
-          </div>
-        }
+
         <div class="custom-dropdown" #customDropdown>
           <div class="dropdown-selected">
             <div class="form-group">
@@ -136,7 +134,11 @@
 
           <input type="hidden" formControlName="office_id"  />
         </div>
-
+        @if (office_id?.invalid && office_id?.touched) {
+          <div class="error" >
+            {{ 'FORMS.ERRORS.REQUIRED' | translate }}
+          </div>
+        }
         <button type="submit" class="btn-primary" [disabled]="applicationForm.invalid">
           {{ 'BUTTONS.SEND' | translate }}
         </button>

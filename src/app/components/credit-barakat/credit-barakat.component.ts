@@ -63,7 +63,10 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   private cdr = inject(ChangeDetectorRef);
  constructor(){
   this.applicationForm = this.fb.group({
-    fullName: ['', [Validators.required, Validators.minLength(3)]], 
+    address: '',
+    purpose: '',
+    credit_id: this.creditId,
+    client_name: ['', [Validators.required, Validators.minLength(3)]], 
     phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9\\s()-]*$')]],
     office_id: [null, [Validators.required]]
   });
@@ -122,7 +125,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     }
   }
   updateOfficePlaceholder(): void {
-    if (!this.applicationForm.get('office_id')?.value) {
+    if (!this.office_id?.value) {
       this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE')      
       .subscribe(translation =>{
         this.officeName = translation
@@ -144,12 +147,8 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     }
 
     const formData = {
-      address: '',
-      purpose: '',
-      credit_id: this.creditId,
-      office_id: this.applicationForm.value.office_id,
-      phone: this.applicationForm.value.phone,
-      client_name: this.applicationForm.value.fullName 
+      ...this.applicationForm.getRawValue(),
+      credit_id: this.creditId
     };
     this.creditService.submitCredit(formData).subscribe({
       next: () => {
@@ -159,6 +158,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
 
         this.officeName = '';
         this.updateOfficePlaceholder();
+        this.cdr.markForCheck();
       },
       error: () => {
         const errorMsg = this.translateService.instant('notifications.applicationErrorMessage');
@@ -182,6 +182,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     this.creditService.getCreditTariff(id).subscribe(
       (details) => {
         this.tariffs = details.data.credit_tariffs;
+        this.cdr.markForCheck(); 
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
@@ -193,6 +194,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     this.creditService.getCreditDocument(id).subscribe(
       (details) => {
         this.documents = details.data.credit_documents;
+        this.cdr.markForCheck(); 
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
@@ -205,6 +207,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       (details) => {
         this.creditData = details.data.credit_data;
         this.calculatorDataForChild = details.data.credit_data?.credit_calculator_data;
+        this.cdr.markForCheck(); 
         if (this.creditData && this.creditData.title) {
 
           this.pageTitleService.setCustomTitle(this.creditData.title);
@@ -234,7 +237,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     this.dropdownOpen = false;
   }
   get client_name() {
-    return this.applicationForm.get('fullName');
+    return this.applicationForm.get('client_name');
   }
 
   get phone() {

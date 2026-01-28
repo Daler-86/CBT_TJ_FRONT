@@ -4,14 +4,13 @@
     @for (card of depositsList; track card.id) {
       <div class="card-container">
         <div class="card-image">
-          <!-- alt-текст берется из заголовка, что является хорошей практикой -->
+
           <img class="card" [src]="imageUrl + card.upload_icon_file" [alt]="card.title" />
         </div>
         <div class="card-info">
           <h2 class="card-title">{{ card.title }}</h2>
 
           <div class="box-description">
-            <!-- Динамический контент, не требует перевода -->
             @for (i of card.content_item; track i.id) {
               <div class="detail">
                 <p>{{ i.title }}</p>
