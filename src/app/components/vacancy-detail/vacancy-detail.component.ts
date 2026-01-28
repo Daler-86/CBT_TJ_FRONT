@@ -1,7 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-
 import { Router, RouterModule } from '@angular/router';
-
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +11,6 @@ import {
   vacancyData,
   vacancyEducation,
   vacancyExperience,
-  vacancyList,
   vacancySkill,
   vacancySubmit,
 } from '../../models/vacancies.model';
@@ -24,27 +21,27 @@ import { ModalService } from '../../services/modal.service';
 import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { PageTitleService } from '../../services/page-title.service';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; 
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directive';
 @Component({
   selector: 'app-vacancy-detail',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, TranslateModule, ScrollToDirective],
+  imports: [RouterModule, ReactiveFormsModule, TranslateModule, ScrollToDirective, OnlyDigitsDirective],
   templateUrl: './vacancy-detail.component.html',
   styleUrls: ['./vacancy-detail.component.scss'],
 })
-
 export class VacancyDetailComponent implements OnInit {
   applyForm: FormGroup;
   id = 0;
   fileName = '';
   allowedExtensions = ['image/doc', 'image/jpeg', 'application/pdf'];
-  
+
   personalQuality: personalQuality[] = [];
   condition: vacancyCondition[] = [];
   education: vacancyEducation[] = [];
   experience: vacancyExperience[] = [];
   skill: vacancySkill[] = [];
-  
+
   uploadFileId: number | null = null;
   isSubmitted = false;
   isError = false;
@@ -54,9 +51,8 @@ export class VacancyDetailComponent implements OnInit {
     name: '',
     region_name: '',
     deadline_at: '',
-    content: "", 
+    content: '',
   };
-
 
   private sanitizer = inject(DomSanitizer);
   private pageTitleService = inject(PageTitleService);
@@ -70,9 +66,9 @@ export class VacancyDetailComponent implements OnInit {
 
   constructor() {
     this.applyForm = this.fb.group({
-      lastName: ['', Validators.required],
-      firstName: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9\\s()-]*$')]],
+      lastName: ['', [Validators.required, Validators.maxLength(50)]],
+      firstName: ['', [Validators.required, Validators.maxLength(50)]],
+      phone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
     });
   }
@@ -86,7 +82,7 @@ export class VacancyDetailComponent implements OnInit {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.id = +idParam;
-      
+
       this.loadAllData();
 
       // Перезагрузка данных при смене языка
@@ -99,11 +95,15 @@ export class VacancyDetailComponent implements OnInit {
   }
 
   loadAllData() {
-    this.vacanciesService.getPersonalQuality(this.id).subscribe(d => this.personalQuality = d.data.vacancy_personal_qualities);
-    this.vacanciesService.getVacancyEducation(this.id).subscribe(d => this.education = d.data.vacancy_educations);
-    this.vacanciesService.getVacancyExperience(this.id).subscribe(d => this.experience = d.data.vacancy_experiences);
-    this.vacanciesService.getVacancyCondition(this.id).subscribe(d => this.condition = d.data.vacancy_conditions);
-    this.vacanciesService.getVacancySkill(this.id).subscribe(d => this.skill = d.data.vacancy_skills);
+    this.vacanciesService
+      .getPersonalQuality(this.id)
+      .subscribe((d) => (this.personalQuality = d.data.vacancy_personal_qualities));
+    this.vacanciesService.getVacancyEducation(this.id).subscribe((d) => (this.education = d.data.vacancy_educations));
+    this.vacanciesService
+      .getVacancyExperience(this.id)
+      .subscribe((d) => (this.experience = d.data.vacancy_experiences));
+    this.vacanciesService.getVacancyCondition(this.id).subscribe((d) => (this.condition = d.data.vacancy_conditions));
+    this.vacanciesService.getVacancySkill(this.id).subscribe((d) => (this.skill = d.data.vacancy_skills));
 
     this.vacanciesService.getVacancyData(this.id).subscribe(
       (details) => {
@@ -113,10 +113,9 @@ export class VacancyDetailComponent implements OnInit {
           this.breadcrumbService.setLabel(this.router.url, this.vacancyData.name);
         }
       },
-      (error) => console.error('Ошибка при получении данных вакансии', error)
+      (error) => console.error('Ошибка при получении данных вакансии', error),
     );
   }
-
 
   onDrop(event: DragEvent): void {
     event.preventDefault();
@@ -178,21 +177,19 @@ export class VacancyDetailComponent implements OnInit {
       },
       error: (error) => {
         console.error('File upload failed:', error);
-        this.fileName = ''; 
+        this.fileName = '';
         this.notificationService.show('Не удалось загрузить файл.', 'error');
       },
     });
   }
-
-
 
   onSubmit() {
     this.applyForm.markAllAsTouched();
 
     if (this.applyForm.invalid) {
       const message = this.translate.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
-    this.notificationService.show(message, 'error');
-    return;
+      this.notificationService.show(message, 'error');
+      return;
     }
 
     if (this.uploadFileId === null) {
@@ -214,12 +211,12 @@ export class VacancyDetailComponent implements OnInit {
     this.vacanciesService.submitFormData(formData).subscribe({
       next: () => {
         const message = this.translate.instant('NOTIFICATIONS.APPLICATION_SENT_SUCCESS');
-      this.notificationService.show(message, 'success');
+        this.notificationService.show(message, 'success');
         this.applyForm.reset();
         this.fileName = '';
         this.uploadFileId = null;
       },
-      error: (error) => {
+      error: () => {
         const message = this.translate.instant('NOTIFICATION.APPLICATION_ERROR_MESSAGE');
         this.notificationService.show(message, 'error');
       },
@@ -227,8 +224,16 @@ export class VacancyDetailComponent implements OnInit {
   }
 
   // --- Геттеры для валидации ---
-  get lastName() { return this.applyForm.get('lastName'); }
-  get firstName() { return this.applyForm.get('firstName'); }
-  get phone() { return this.applyForm.get('phone'); }
-  get email() { return this.applyForm.get('email'); }
+  get lastName() {
+    return this.applyForm.get('lastName');
+  }
+  get firstName() {
+    return this.applyForm.get('firstName');
+  }
+  get phone() {
+    return this.applyForm.get('phone');
+  }
+  get email() {
+    return this.applyForm.get('email');
+  }
 }

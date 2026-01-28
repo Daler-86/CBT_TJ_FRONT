@@ -5,11 +5,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ApplicationService } from '../../api/application.service';
 import { ModalService } from '../../services/modal.service';
+import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directive';
 
 @Component({
   selector: 'app-simple-application-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule, OnlyDigitsDirective],
   templateUrl: './simple-application-form.component.html',
   styleUrls: ['./simple-application-form.component.scss'],
 })
@@ -33,17 +34,9 @@ export class SimpleApplicationFormComponent {
     });
   }
 
-  onPhoneInput(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const numericValue = input.value.replace(/\D+/g, ''); // убираем всё кроме цифр
-    this.applicationForm.get('phone')?.setValue(numericValue, { emitEvent: false });
-  }
-  
-
   onSubmit(): void {
     this.applicationForm.markAllAsTouched();
     if (this.applicationForm.invalid) {
-
       const msg = this.translate.instant('NOTIFICATIONS.FILL_ALL_FIELDS_WARNING');
       this.notificationService.show(msg, 'error');
 
@@ -51,7 +44,6 @@ export class SimpleApplicationFormComponent {
     }
 
     if (!this.apiUrl) {
-
       const msg = this.translate.instant('NOTIFICATIONS.CONFIG_ERROR');
       this.notificationService.show(msg, 'error');
       return;
@@ -72,7 +64,7 @@ export class SimpleApplicationFormComponent {
         this.notificationService.show(msg, 'error');
         this.isSubmitting = false;
       },
-    })
+    });
   }
 
   get client_name() {

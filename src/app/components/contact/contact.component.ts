@@ -12,10 +12,11 @@ import { Subscription } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
 import { ScrollService } from '../../services/scroll.service';
 import { ActivatedRoute } from '@angular/router';
+import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directive';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, TranslateModule, YandexMapComponent, ReactiveFormsModule],
+  imports: [CommonModule, TranslateModule, YandexMapComponent, ReactiveFormsModule, OnlyDigitsDirective],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
 })
@@ -40,14 +41,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   constructor() {
     this.contactForm = this.fb.group({
-      client_name: ['', [Validators.required, Validators.minLength(2)]],
-      phone: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^\d+$/), 
-        ],
-      ],
+      client_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      phone: ['', [Validators.required]],
       contact_subject_id: [null, [Validators.required]],
       question: ['', [Validators.required, Validators.minLength(10)]],
     });
@@ -66,7 +61,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     });
 
     this.route.queryParams.subscribe((params) => {
-      const anchor = params['scrollTo']; 
+      const anchor = params['scrollTo'];
       if (anchor) {
         this.scrollService.scrollToAnchor(anchor);
       }
@@ -98,8 +93,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   selectSubject(subject: ContactSubject): void {
-    this.selectedSubjectName = subject.name; 
-    this.contactForm.get('contact_subject_id')?.setValue(subject.id); 
+    this.selectedSubjectName = subject.name;
+    this.contactForm.get('contact_subject_id')?.setValue(subject.id);
     this.dropdownOpen = false;
   }
 
