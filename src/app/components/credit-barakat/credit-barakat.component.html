@@ -63,7 +63,7 @@
 
       <form class="form" [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
         <div class="form-group">
-          @if (applicationForm.get('fullName')?.invalid && applicationForm.get('fullName')?.touched) {
+          @if (client_name?.invalid && client_name?.touched) {
             <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
           }
           <input
@@ -75,7 +75,7 @@
         />
         </div>
         <div class="form-group">
-          @if (applicationForm.get('phone')?.invalid && applicationForm.get('phone')?.touched) {
+          @if (phone?.invalid && phone?.touched) {
             <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
           }
 
@@ -93,7 +93,7 @@
     (blur)="onPhoneBlur()"
           />
         </div>
-        @if (applicationForm.get('office_id')?.invalid && applicationForm.get('office_id')?.touched) {
+        @if (office_id?.invalid && office_id?.touched) {
           <div class="error" >
             {{ 'FORMS.ERRORS.REQUIRED' | translate }}
           </div>

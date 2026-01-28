@@ -1,4 +1,4 @@
-import { Component, HostListener, ElementRef, inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, HostListener, ElementRef, inject, OnInit, OnDestroy, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FavriComponent } from '../favri/favri.component';
@@ -32,6 +32,7 @@ import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directi
   ],
   templateUrl: './credit-barakat.component.html',
   styleUrl: './credit-barakat.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush 
 })
 export class CreditBarakatComponent implements OnInit, OnDestroy {
   imageUrl: string = environment.IMAGE_URL;
@@ -59,6 +60,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   private creditService = inject(CreditService);
   private notificationService = inject(ModalService);
   private scrollService = inject(ScrollService);
+  private cdr = inject(ChangeDetectorRef);
  constructor(){
   this.applicationForm = this.fb.group({
     fullName: ['', [Validators.required, Validators.minLength(3)]], 
@@ -122,7 +124,10 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   updateOfficePlaceholder(): void {
     if (!this.applicationForm.get('office_id')?.value) {
       this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE')      
-      .subscribe(translation => this.officeName = translation);
+      .subscribe(translation =>{
+        this.officeName = translation
+        this.cdr.markForCheck();
+      } );
     }
   }
 
@@ -224,6 +229,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   selectOption(event: Event, item: officeList) {
     this.officeName = item.name; 
     this.applicationForm.patchValue({ office_id: item.id });
+    this.cdr.markForCheck()
     event.stopPropagation();
     this.dropdownOpen = false;
   }
