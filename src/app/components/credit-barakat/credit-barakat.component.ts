@@ -63,11 +63,8 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   private cdr = inject(ChangeDetectorRef);
  constructor(){
   this.applicationForm = this.fb.group({
-    address: '',
-    purpose: '',
-    credit_id: this.creditId,
     client_name: ['', [Validators.required, Validators.minLength(3)]], 
-    phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9\\s()-]*$')]],
+    phone: ['', [Validators.required]],
     office_id: [null, [Validators.required]]
   });
  }
@@ -127,17 +124,15 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   submitApplication() {
     this.applicationForm.markAllAsTouched();
     if (this.applicationForm.invalid) {
-
       const warningMsg = this.translateService.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
       this.notificationService.show(warningMsg, 'error');
 
-      Object.values(form.controls).forEach((control) => {
-        control.markAsTouched();
-      });
       return;
     }
 
     const formData = {
+      adress:"",
+      purpose:"",
       ...this.applicationForm.getRawValue(),
       credit_id: this.creditId
     };
@@ -222,9 +217,13 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
 
   selectOption(event: Event, item: officeList) {
     this.officeName = item.name;
-    this.model.office_id = item.id;
     event.stopPropagation();
     this.dropdownOpen = false;
+    this.applicationForm.patchValue({
+      office_id: item.id
+    });
+    
+  
   }
   get client_name() {
     return this.applicationForm.get('client_name');

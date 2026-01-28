@@ -69,12 +69,10 @@
             [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
             class="form-control"
             required
-            [(ngModel)]="model.client_name"
-            name="fullName"
-            #name="ngModel"
+      formControlName="client_name" 
             maxlength="100"
           />
-          @if (name.invalid && (name.dirty || name.touched)) {
+          @if (client_name?.invalid && (client_name?.dirty || client_name?.touched)) {
             <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
           }
         </div>
@@ -82,18 +80,15 @@
           <input
             type="tel"
             id="phone"
-            type="text"
             [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
             class="form-control"
             required
-            [(ngModel)]="model.phone"
-            name="phone"
-            #phone="ngModel"
+            formControlName="phone"
             onlyDigits
             [maxLength]="15"
             [enablePhonePrefix]="true"
           />
-          @if (phone.invalid && (phone.dirty || phone.touched)) {
+          @if (phone?.invalid && (phone?.dirty || phone?.touched)) {
             <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
           }
         </div>
@@ -136,6 +131,7 @@
 
           <input type="hidden" formControlName="office_id"  />
         </div>
+        
         @if (office_id?.invalid && office_id?.touched) {
           <div class="error" >
             {{ 'FORMS.ERRORS.REQUIRED' | translate }}

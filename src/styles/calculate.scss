@@ -185,14 +185,10 @@ $white-color: #ffffff;
     width: 100%;
     -webkit-appearance: none;
     appearance: none;
-    
-    // 1. Устанавливаем высоту равную высоте кружка (ползунка)
     height: 22px; 
-    background: transparent; // Фон теперь будет в градиенте ниже
+    background: transparent; 
     outline: none;
     cursor: pointer;
-  
-    // 2. Настраиваем градиент так, чтобы он был высотой 6px и по центру
     background-image: linear-gradient(
       to right,
       $primary-color 0%,
@@ -200,8 +196,8 @@ $white-color: #ffffff;
       #e9ecef var(--range-percent),
       #e9ecef 100%
     );
-    background-size: 100% 6px; // Высота полоски
-    background-position: center; // Центрируем полоску по вертикали
+    background-size: 100% 6px;
+    background-position: center; 
     background-repeat: no-repeat;
     border-radius: 3px;
   
