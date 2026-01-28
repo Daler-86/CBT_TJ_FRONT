@@ -105,19 +105,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       this.langChangeSubscription.unsubscribe();
     }
   }
-  onPhoneFocus() {
-    const control = this.phone;
-    if (!control?.value) {
-      control?.setValue('+992', { emitEvent: false });
-    }
-  }
 
-  onPhoneBlur(): void {
-    const control = this.phone;
-    if (control?.value === '+992') {
-      control?.setValue('', { emitEvent: false });
-    }
-  }
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
     if (this.dropdownOpen && !this.dropdownRef.nativeElement.contains(event.target)) {

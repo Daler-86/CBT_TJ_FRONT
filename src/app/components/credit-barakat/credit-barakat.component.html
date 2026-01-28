@@ -88,11 +88,17 @@
             [maxLength]="15"     
             inputmode="numeric"   
             autocomplete="tel"
-            (focus)="onPhoneFocus()"
-    (blur)="onPhoneBlur()"
+            [enablePhonePrefix]="true"
           /> 
             @if (phone?.invalid && phone?.touched) {
-            <div class="error">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</div>
+              <div class="error">
+                @if (phone?.errors?.['required']) {
+                  <span>{{ 'COMMON.FIELD_IS_REQUIRED' | translate }}</span>
+                }
+                @if (phone?.errors?.['pattern']) {
+                  <span>Неверный формат телефона</span>
+                }
+              </div>
           }
         </div>
 
