@@ -10,12 +10,20 @@ import { DepositsService } from '../../api/deposit.service';
 import { ModalService } from '../../services/modal.service';
 import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { PageTitleService } from '../../services/page-title.service';
+import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directive';
 
 @Component({
   selector: 'app-deposit-detail',
   standalone: true,
 
-  imports: [CommonModule, FormsModule, TranslateModule, DepositCalculatorComponent, ScrollToDirective],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TranslateModule,
+    DepositCalculatorComponent,
+    ScrollToDirective,
+    OnlyDigitsDirective,
+  ],
   templateUrl: './deposit-detail.component.html',
   styleUrls: ['./deposit-detail.component.scss'],
 })
@@ -61,16 +69,14 @@ export class DepositDetailComponent implements OnInit {
     });
   }
 
-
-
   submitApplication(form: NgForm): void {
     if (form.invalid) {
       const message = this.translateService.instant('NOTIFICATIONS.FILL_ALL_REQUIRED_FIELDS_WARNING');
-    this.notificationService.show(message, 'error');
-    
-    Object.values(form.controls).forEach((control) => {
-      control.markAsTouched();
-    });
+      this.notificationService.show(message, 'error');
+
+      Object.values(form.controls).forEach((control) => {
+        control.markAsTouched();
+      });
       return;
     }
 
@@ -92,8 +98,6 @@ export class DepositDetailComponent implements OnInit {
       },
     });
   }
-
-
 
   selectTab(tabCode: string): void {
     this.selectedTab = tabCode;
