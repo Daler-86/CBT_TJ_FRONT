@@ -34,7 +34,7 @@
   <!-- Контейнер для Google Карты -->
 
   <div class="map-wrapper">
-    <!-- 
+    <!--
           Используем наш переиспользуемый компонент.
           - [points]: передаем массив с одной точкой.
           - [center]: можно передать те же координаты, чтобы карта сразу центрировалась на офисе.
@@ -51,7 +51,7 @@
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <h2>{{ 'FORMS.CONTACT.TITLE' | translate }}</h2>
       <p>{{ 'FORMS.CONTACT.SUBTITLE' | translate }}</p>
-    
+
       <!-- Имя -->
       <div class="form-group">
         <input
@@ -59,27 +59,30 @@
           class="form-control"
           [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
           formControlName="client_name"
+          maxlength="100"
         />
         <div class="error" *ngIf="client_name?.invalid && (client_name?.touched || client_name?.dirty)">
           <span *ngIf="client_name?.errors?.['required']">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</span>
           <span *ngIf="client_name?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate:{min:2} }}</span>
         </div>
       </div>
-    
+
       <!-- Телефон -->
       <div class="form-group">
         <input
-          type="text"
+          type="tel"
           class="form-control"
+          onlyDigits
+          [maxLength]="15"
+          [enablePhonePrefix]="true"
           [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
           formControlName="phone"
         />
         <div class="error" *ngIf="phone?.invalid && (phone?.touched || phone?.dirty)">
           <span *ngIf="phone?.errors?.['required']">{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
-          <span *ngIf="phone?.errors?.['pattern']">{{ 'FORMS.ERRORS.ONLYDIGITS' | translate }}</span>
         </div>
       </div>
-    
+
       <!-- Тема -->
       <div class="form-group">
         <div class="custom-dropdown" #customDropdown>
@@ -105,7 +108,7 @@
           {{ 'FORMS.ERRORS.SELECTSUBJECT' | translate }}
         </div>
       </div>
-    
+
       <!-- Вопрос -->
       <div class="form-group">
         <textarea
@@ -119,13 +122,13 @@
           <span *ngIf="question?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate:{min:10} }}</span>
         </div>
       </div>
-    
+
       <!-- Кнопка -->
       <button type="submit" class="submit-button" [disabled]="contactForm.invalid || isSubmitting">
         <span *ngIf="!isSubmitting">{{ 'BUTTONS.SEND' | translate }}</span>
         <span *ngIf="isSubmitting">{{ 'BUTTONS.SENDING' | translate }}...</span>
       </button>
     </form>
-    
+
   </div>
 </div>

@@ -12,6 +12,7 @@
           class="form-control"
           [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
           formControlName="client_name"
+          maxlength="100"
         />
         @if (client_name?.invalid && client_name?.touched) {
           <div class="error">
@@ -22,14 +23,15 @@
 
       <div class="form-group">
         <input
-            type="text"
-            class="form-control"
-            [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
-            formControlName="phone"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            (input)="onPhoneInput($event)"
-          />
+          type="tel"
+          class="form-control"
+          [placeholder]="('FORMS.PLACEHOLDERS.PHONE' | translate) + ' *'"
+          formControlName="phone"
+          inputmode="numeric"
+          onlyDigits
+          [maxLength]="15"
+          [enablePhonePrefix]="true"
+        />
         @if (phone?.invalid && phone?.touched) {
           <div class="error">
             {{ 'FORMS.ERRORS.REQUIRED' | translate }}
@@ -47,7 +49,8 @@
 
       <div class="privacy-policy">
         {{ 'FORMS.PRIVACY_POLICY_PREFIX' | translate }}
-        <a href="../../../assets/files/public_offer.pdf" target="_blank" rel="noopener noreferrer">{{ 'COMMON.CONSENT.LINK_TEXT' | translate }}</a>
+        <a href="../../../assets/files/public_offer.pdf" target="_blank"
+           rel="noopener noreferrer">{{ 'COMMON.CONSENT.LINK_TEXT' | translate }}</a>
       </div>
     </div>
   </form>

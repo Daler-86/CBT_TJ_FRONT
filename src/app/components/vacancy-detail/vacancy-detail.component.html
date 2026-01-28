@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="action-button">
           <button [scrollTo]="'application-form'">
             {{ 'VACANCY_DETAILS.FORM.TITLE' | translate }}
@@ -24,69 +24,70 @@
       </div>
 
       <div class="details">
-      @if(vacancyData.content && vacancyData.content.length>0){
-      <div class="vacancy-details">
-        <div class="ck-content" [innerHTML]="getSafeHtml(vacancyData.content)"></div>
-      </div>
-          }
-                <div class="details">
-        @if(education && education.length>0){
-            <div class="vacancy-details">
-          <h4>{{ 'VACANCY_DETAILS.SECTIONS.EDUCATION' | translate }}</h4>
-          <ul>
-            @for (education of education; track education.id) {
-              <li>{{ education.content }}</li>
-            }
-          </ul>
-        </div>
-      }
-      
-@if(experience && experience.length){
-   <div class="vacancy-details">
-          <h4>{{ 'VACANCY_DETAILS.SECTIONS.EXPERIENCE' | translate }}</h4>
-          <ul>
-            @for (work of experience; track work.id) {
-              <li>{{ work.content }}</li>
-            }
-          </ul>
-        </div>
-}
-       
-@if (skill && skill.length>0) {
-    <div class="vacancy-details">
-          <h4>{{ 'VACANCY_DETAILS.SECTIONS.REQUIREMENTS' | translate }}</h4>
-          <ul>
-            @for (skill of skill; track skill.id) {
-              <li>{{ skill.content }}</li>
-            }
-          </ul>
-        </div>
-      }
-      
-@if (personalQuality && personalQuality.length>0) { 
-   <div class="vacancy-details">
-          <h4>{{ 'VACANCY_DETAILS.SECTIONS.QUALITIES' | translate }}</h4>
-          <ul>
-            @for (quality of personalQuality; track quality.id) {
-              <li>{{ quality.content }}</li>
-            }
-          </ul>
-        </div>}
-      
-        @if(condition && condition.length > 0) {
+        @if (vacancyData.content && vacancyData.content.length > 0) {
           <div class="vacancy-details">
-            <h4>{{ 'VACANCY_DETAILS.SECTIONS.CONDITIONS' | translate }}</h4>
-            <ul>
-              @for (condition of condition; track condition.id) {
-                <li>{{ condition.content }}</li>
-              }
-            </ul>
+            <div class="ck-content" [innerHTML]="getSafeHtml(vacancyData.content)"></div>
           </div>
         }
-        
+        <div class="details">
+          @if (education && education.length > 0) {
+            <div class="vacancy-details">
+              <h4>{{ 'VACANCY_DETAILS.SECTIONS.EDUCATION' | translate }}</h4>
+              <ul>
+                @for (education of education; track education.id) {
+                  <li>{{ education.content }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          @if (experience && experience.length) {
+            <div class="vacancy-details">
+              <h4>{{ 'VACANCY_DETAILS.SECTIONS.EXPERIENCE' | translate }}</h4>
+              <ul>
+                @for (work of experience; track work.id) {
+                  <li>{{ work.content }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          @if (skill && skill.length > 0) {
+            <div class="vacancy-details">
+              <h4>{{ 'VACANCY_DETAILS.SECTIONS.REQUIREMENTS' | translate }}</h4>
+              <ul>
+                @for (skill of skill; track skill.id) {
+                  <li>{{ skill.content }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          @if (personalQuality && personalQuality.length > 0) {
+            <div class="vacancy-details">
+              <h4>{{ 'VACANCY_DETAILS.SECTIONS.QUALITIES' | translate }}</h4>
+              <ul>
+                @for (quality of personalQuality; track quality.id) {
+                  <li>{{ quality.content }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          @if (condition && condition.length > 0) {
+            <div class="vacancy-details">
+              <h4>{{ 'VACANCY_DETAILS.SECTIONS.CONDITIONS' | translate }}</h4>
+              <ul>
+                @for (condition of condition; track condition.id) {
+                  <li>{{ condition.content }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+        </div>
       </div>
     </div>
-  </div>
   }
 
   <form [formGroup]="applyForm" (ngSubmit)="onSubmit()" id="application-form">
@@ -96,7 +97,9 @@
     <div class="form-row">
       <div class="full">
         <input
+          type="text"
           formControlName="lastName"
+          maxlength="50"
           [placeholder]="('VACANCY_DETAILS.FORM.LAST_NAME' | translate) + '*'"
         />
         @if (lastName?.invalid && lastName?.touched) {
@@ -105,10 +108,12 @@
           </div>
         }
       </div>
-    
+
       <div class="full">
         <input
+          type="text"
           formControlName="firstName"
+          maxlength="50"
           [placeholder]="('VACANCY_DETAILS.FORM.FIRST_NAME' | translate) + '*'"
         />
         @if (firstName?.invalid && firstName?.touched) {
@@ -118,12 +123,16 @@
         }
       </div>
     </div>
-    
+
     <div class="form-row">
       <div class="full">
         <input
+          type="tel"
           formControlName="phone"
           [placeholder]="('VACANCY_DETAILS.FORM.PHONE' | translate) + '*'"
+          onlyDigits
+          [maxLength]="15"
+          [enablePhonePrefix]="true"
         />
         @if (phone?.invalid && phone?.touched) {
           <div class="error-message">
@@ -136,12 +145,9 @@
           </div>
         }
       </div>
-    
+
       <div class="full">
-        <input
-          formControlName="email"
-          [placeholder]="('VACANCY_DETAILS.FORM.EMAIL' | translate) + '*'"
-        />
+        <input type="email" formControlName="email" [placeholder]="('VACANCY_DETAILS.FORM.EMAIL' | translate) + '*'" />
         @if (email?.invalid && email?.touched) {
           <div class="error-message">
             @if (email?.errors?.['required']) {
@@ -154,7 +160,7 @@
         }
       </div>
     </div>
-    
+
 
     <!-- Зона перетаскивания файла -->
     <div
@@ -186,5 +192,5 @@
       {{ 'NOTIFICATIONS.SUBMIT_ERROR' | translate }}
     </div>
   }
- 
+
 </div>
