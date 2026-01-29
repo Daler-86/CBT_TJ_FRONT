@@ -30,7 +30,7 @@
       </p>
       @for (vacancy of vacancyList; track vacancy.id) {
         <div class="vacancy-item">
-          <a [routerLink]="['/vacancies/list', vacancy.id]" >
+          <a [routerLink]="['/vacancies/list', vacancy.id]">
             {{ vacancy.name }}
           </a>
 
@@ -48,19 +48,19 @@
     </div>
   </div>
   @if (totalPages > 1) {
-  <div class="">
-    <div class="pagination">
-      <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
-      <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-      @for (page of pages; track $index) {
-        <button [class.active]="page === currentPage" (click)="selectPage(page)">
-          {{ page === -1 ? '...' : page }}
-        </button>
-      }
+    <div class="">
+      <div class="pagination">
+        <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
+        <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
+        @for (page of pages; track $index) {
+          <button [class.active]="page === currentPage" (click)="selectPage(page)">
+            {{ page === -1 ? '...' : page }}
+          </button>
+        }
 
-      <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
-      <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+        <button (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
+      </div>
     </div>
-  </div>
-}
+  }
 </div>

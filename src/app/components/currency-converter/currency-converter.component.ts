@@ -59,13 +59,12 @@ export class CurrencyConverterComponent implements OnInit {
     this.showFromDropdown = false;
     this.updateCurrencies();
   }
-  
+
   selectToCurrency(currency: string) {
     this.toCurrency = currency;
     this.showToDropdown = false;
     this.convertCurrency();
   }
-  
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
@@ -109,29 +108,29 @@ export class CurrencyConverterComponent implements OnInit {
   }
   convertCurrency() {
     const rates = this.exchangeRatesByMode[this.selectedMode];
-  
+
     if (!this.amount || !rates || this.fromCurrency === this.toCurrency) {
       this.convertedAmount = this.amount || 0;
       return;
     }
-  
+
     const foreignCurrency = this.fromCurrency === 'TJS' ? this.toCurrency : this.fromCurrency;
-    const rateEntry = rates.find(r => r.currency === foreignCurrency);
-  
+    const rateEntry = rates.find((r) => r.currency === foreignCurrency);
+
     if (!rateEntry) return;
-  
+
     let activeRate = 0;
-  
+
     if (this.selectedMode === 'CB_RATE') {
-      activeRate = rateEntry.buy; 
+      activeRate = rateEntry.buy;
     } else {
       if (this.transactionType === 'buy') {
-        activeRate = (this.fromCurrency === 'TJS') ? rateEntry.buy : rateEntry.sell;
+        activeRate = this.fromCurrency === 'TJS' ? rateEntry.buy : rateEntry.sell;
       } else {
-        activeRate = (this.fromCurrency === 'TJS') ? rateEntry.sell : rateEntry.buy;
+        activeRate = this.fromCurrency === 'TJS' ? rateEntry.sell : rateEntry.buy;
       }
     }
-  
+
     if (activeRate > 0) {
       if (this.fromCurrency === 'TJS') {
         this.convertedAmount = this.amount / activeRate;
@@ -143,22 +142,22 @@ export class CurrencyConverterComponent implements OnInit {
   onAmountInput(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (!target) return;
-  
+
     let val = target.value;
-  
+
     if (val === '') {
       this.amount = 0;
-      target.value = ''; 
+      target.value = '';
     } else {
       const numValue = Math.abs(parseInt(val, 10));
-      
+
       this.amount = numValue;
       target.value = numValue.toString();
     }
-    
+
     this.convertCurrency();
   }
-  
+
   handleFocus(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target && target.select) {

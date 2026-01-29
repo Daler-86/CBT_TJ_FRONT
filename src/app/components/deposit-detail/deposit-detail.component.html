@@ -115,13 +115,15 @@
             }
           </div>
           <div class="form-group">
-            <button  type="submit" disabled class="btn-primary" [disabled]="form.invalid">
+            <button type="submit" disabled class="btn-primary" [disabled]="form.invalid">
               {{ 'BUTTONS.APPLY_FOR_DEPOSIT' | translate }}
             </button>
           </div>
           <p class="form-disclaimer">
             {{ 'COMMON.CONSENT.PREFIX2' | translate }}
-            <a href="../../../assets/files/public_offer.pdf" target="_blank" rel="noopener noreferrer">{{ 'COMMON.CONSENT.LINK_TEXT' | translate }}</a>
+            <a href="../../../assets/files/public_offer.pdf" target="_blank" rel="noopener noreferrer">{{
+              'COMMON.CONSENT.LINK_TEXT' | translate
+            }}</a>
             {{ 'COMMON.CONSENT.LINK_TEXT2' | translate }}
           </p>
         </form>

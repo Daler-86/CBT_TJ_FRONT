@@ -118,7 +118,7 @@
         position: relative;
         z-index: 100;
       }
-      #phone{
+      #phone {
         margin-top: 0;
       }
 
@@ -143,7 +143,7 @@
     }
 
     .btn-primary:disabled {
-      background-color: #94A3B8; // серый
+      background-color: #94a3b8; // серый
       color: #fff;
       cursor: not-allowed;
       pointer-events: none;
@@ -152,12 +152,10 @@
 
     .form-control:focus {
       outline: none;
-      border-color: #00b06c;        
-      box-shadow: 0 0 0 1px #00b06c;   
-      background-color: #f6f7f8;       
+      border-color: #00b06c;
+      box-shadow: 0 0 0 1px #00b06c;
+      background-color: #f6f7f8;
     }
-    
-    
 
     .form-disclaimer {
       width: 50%;
@@ -167,7 +165,7 @@
       margin-top: 20px;
       font-weight: 500;
       text-align: left;
-  @media (max-width: 1024px) {
+      @media (max-width: 1024px) {
         width: 70%;
         font-size: 16px;
       }

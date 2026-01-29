@@ -56,7 +56,7 @@ export class NewsDetailComponent implements OnInit {
           this.pageTitleService.setCustomTitle(this.newDetailData.title);
         }
       },
-      error: (error) => console.error('Ошибка при запросе данных', error)
+      error: (error) => console.error('Ошибка при запросе данных', error),
     });
   }
 

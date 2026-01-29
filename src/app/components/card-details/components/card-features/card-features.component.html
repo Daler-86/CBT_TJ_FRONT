@@ -1,13 +1,13 @@
 @if (cardContent && cardContent.length > 0) {
-    <div class="features-container" [ngClass]="featureClass">
-      @for (detail of cardContent; track $index) {
-        <div class="feature-card">
-          <div>
-            <h3 class="feature-title">{{ detail.title }}</h3>
-            <p class="feature-description">{{ detail.description }}</p>
-          </div>
-          <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="feature-icon" />
+  <div class="features-container" [ngClass]="featureClass">
+    @for (detail of cardContent; track $index) {
+      <div class="feature-card">
+        <div>
+          <h3 class="feature-title">{{ detail.title }}</h3>
+          <p class="feature-description">{{ detail.description }}</p>
         </div>
-      }
-    </div>
-  }
+        <img [src]="imageUrl + detail.upload_file" [alt]="detail.title" class="feature-icon" />
+      </div>
+    }
+  </div>
+}

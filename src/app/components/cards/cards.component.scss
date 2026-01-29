@@ -50,9 +50,9 @@
       }
 
       @media (max-width: 768px) {
-        font-size: 16px;      
-        padding: 8px 16px;     
-        flex: 0 0 auto;         
+        font-size: 16px;
+        padding: 8px 16px;
+        flex: 0 0 auto;
       }
       &.active {
         background-color: #00b06c;
@@ -74,12 +74,12 @@
     @media (max-width: 1024px) {
       display: flex;
       flex-direction: column;
-      padding: 29px 30px; 
+      padding: 29px 30px;
     }
     .card-info {
       width: 60%;
       padding: 62px 76px;
-     
+
       .card-title {
         font-size: 30px;
         font-weight: bold;
@@ -111,23 +111,21 @@
             font-weight: 700;
             font-size: 24px;
             margin-bottom: 5px;
-           
           }
 
           .description {
             color: #475569;
             font-size: 16px;
-          } 
+          }
           @media (max-width: 768px) {
-  .title{
-     font-size: 18px;
-  }
-  .description{
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-             
+            .title {
+              font-size: 18px;
             }
+            .description {
+              font-size: 14px;
+              margin-bottom: 20px;
+            }
+          }
         }
       }
 
@@ -135,7 +133,7 @@
         display: flex;
         gap: 15px;
         margin-top: 25px;
-     
+
         button {
           padding: 19px 50px;
           border-radius: 6px;
@@ -151,15 +149,15 @@
         .btn-secondary {
           background-color: transparent;
           color: #00b06c;
-        } 
-          @media (max-width: 1024px) {
+        }
+        @media (max-width: 1024px) {
           gap: 10px;
-          button{
+          button {
             font-size: 14px;
           }
         }
         @media (max-width: 768px) {
-          flex-direction: column; 
+          flex-direction: column;
           gap: 15px;
         }
       }
@@ -168,19 +166,18 @@
         width: 100%;
         padding: 0;
         order: 2;
-        .card-title{
+        .card-title {
           font-size: 26px;
         }
-        .card-description{
+        .card-description {
           font-size: 16px;
         }
       }
       @media (max-width: 768px) {
-      
-        .card-title{
+        .card-title {
           font-size: 24px;
         }
-        .card-description{
+        .card-description {
           font-size: 14px;
         }
       }
@@ -196,7 +193,7 @@
         order: 1;
         margin-bottom: 20px;
       }
-      @media(max-width: 768px){
+      @media (max-width: 768px) {
         width: 100%;
       }
       img {

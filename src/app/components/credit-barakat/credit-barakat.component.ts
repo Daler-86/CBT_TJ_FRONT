@@ -1,4 +1,14 @@
-import { Component, HostListener, ElementRef, inject, OnInit, OnDestroy, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  ElementRef,
+  inject,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FavriComponent } from '../favri/favri.component';
@@ -32,7 +42,7 @@ import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directi
   ],
   templateUrl: './credit-barakat.component.html',
   styleUrl: './credit-barakat.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush 
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreditBarakatComponent implements OnInit, OnDestroy {
   imageUrl: string = environment.IMAGE_URL;
@@ -61,14 +71,14 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   private notificationService = inject(ModalService);
   private scrollService = inject(ScrollService);
   private cdr = inject(ChangeDetectorRef);
- constructor(){
-  this.applicationForm = this.fb.group({
-    client_name: ['', [Validators.required, Validators.minLength(3)]], 
-    phone: ['', [Validators.required]],
-    office_id: [null, [Validators.required]]
-  });
- }
- selectTab(tab: string) {
+  constructor() {
+    this.applicationForm = this.fb.group({
+      client_name: ['', [Validators.required, Validators.minLength(3)]],
+      phone: ['', [Validators.required]],
+      office_id: [null, [Validators.required]],
+    });
+  }
+  selectTab(tab: string) {
     this.selectedTab = tab;
   }
   ngOnInit() {
@@ -111,15 +121,12 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
   }
   updateOfficePlaceholder(): void {
     if (!this.office_id?.value) {
-      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE')      
-      .subscribe(translation =>{
-        this.officeName = translation
+      this.translateService.get('FORMS.PLACEHOLDERS.SELECT_OFFICE').subscribe((translation) => {
+        this.officeName = translation;
         this.cdr.markForCheck();
-      } );
+      });
     }
   }
-
-
 
   submitApplication() {
     this.applicationForm.markAllAsTouched();
@@ -131,16 +138,16 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     }
 
     const formData = {
-      adress:"",
-      purpose:"",
+      adress: '',
+      purpose: '',
       ...this.applicationForm.getRawValue(),
-      credit_id: this.creditId
+      credit_id: this.creditId,
     };
     this.creditService.submitCredit(formData).subscribe({
       next: () => {
         const successMsg = this.translateService.instant('NOTIFICATIONS.APPLICATION_SUCCESS_MESSAGE');
-      this.notificationService.show(successMsg, 'success');
-      this.applicationForm.reset();
+        this.notificationService.show(successMsg, 'success');
+        this.applicationForm.reset();
 
         this.officeName = '';
         this.updateOfficePlaceholder();
@@ -149,7 +156,6 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       error: () => {
         const errorMsg = this.translateService.instant('notifications.applicationErrorMessage');
         this.notificationService.show(errorMsg, 'error');
-
       },
     });
   }
@@ -168,7 +174,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     this.creditService.getCreditTariff(id).subscribe(
       (details) => {
         this.tariffs = details.data.credit_tariffs;
-        this.cdr.markForCheck(); 
+        this.cdr.markForCheck();
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
@@ -180,7 +186,7 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     this.creditService.getCreditDocument(id).subscribe(
       (details) => {
         this.documents = details.data.credit_documents;
-        this.cdr.markForCheck(); 
+        this.cdr.markForCheck();
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);
@@ -193,9 +199,8 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
       (details) => {
         this.creditData = details.data.credit_data;
         this.calculatorDataForChild = details.data.credit_data?.credit_calculator_data;
-        this.cdr.markForCheck(); 
+        this.cdr.markForCheck();
         if (this.creditData && this.creditData.title) {
-
           this.pageTitleService.setCustomTitle(this.creditData.title);
         }
       },
@@ -214,16 +219,13 @@ export class CreditBarakatComponent implements OnInit, OnDestroy {
     event.stopPropagation();
   }
 
-
   selectOption(event: Event, item: officeList) {
     this.officeName = item.name;
     event.stopPropagation();
     this.dropdownOpen = false;
     this.applicationForm.patchValue({
-      office_id: item.id
+      office_id: item.id,
     });
-    
-  
   }
   get client_name() {
     return this.applicationForm.get('client_name');

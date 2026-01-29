@@ -10,7 +10,7 @@ import { CardsService } from '../../../../api/cards.service';
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './card-faq.component.html',
-  styleUrl: './card-faq.component.scss'
+  styleUrl: './card-faq.component.scss',
 })
 export class CardFaqComponent implements OnInit {
   faqs: cardFaqs[] = [];
@@ -25,14 +25,13 @@ export class CardFaqComponent implements OnInit {
       this.cardId = +idParam;
       // Загружаем все данные для страницы
       this.loadCardFaqs(this.cardId);
+    }
   }
-}
 
   toggleFaq(index: number): void {
     this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
   }
 
-  
   loadCardFaqs(id: number): void {
     this.cardsService.getCardFaqs(id).subscribe(
       (details) => {
@@ -43,5 +42,4 @@ export class CardFaqComponent implements OnInit {
       },
     );
   }
-
 }

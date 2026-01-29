@@ -1,5 +1,4 @@
 <div class="barakat">
-
   <div class="card-container">
     <div class="card-info">
       <h2 class="card-title">{{ creditData.title }}</h2>
@@ -32,7 +31,6 @@
     </div>
   </div>
 
-
   <div class="container-2">
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.REQUIRED_DOCUMENTS' | translate }}</h1>
     <div class="box">
@@ -44,7 +42,6 @@
       }
     </div>
   </div>
-
 
   @if (calculatorDataForChild && creditData.id !== 7) {
     <div class="container-4">
@@ -60,7 +57,6 @@
   <div class="container-3" id="application-form">
     <h1>{{ 'CREDIT_DETAILS.SECTIONS.ONLINE_APPLICATION' | translate }}</h1>
     <div class="application-form-container">
-
       <form class="form" [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
         <div class="form-group">
           <input
@@ -69,7 +65,7 @@
             [placeholder]="('FORMS.PLACEHOLDERS.FULL_NAME' | translate) + ' *'"
             class="form-control"
             required
-      formControlName="client_name" 
+            formControlName="client_name"
             maxlength="100"
           />
           @if (client_name?.invalid && (client_name?.dirty || client_name?.touched)) {
@@ -128,12 +124,11 @@
             </div>
           }
 
-
-          <input type="hidden" formControlName="office_id"  />
+          <input type="hidden" formControlName="office_id" />
         </div>
-        
+
         @if (office_id?.invalid && office_id?.touched) {
-          <div class="error" >
+          <div class="error">
             {{ 'FORMS.ERRORS.REQUIRED' | translate }}
           </div>
         }

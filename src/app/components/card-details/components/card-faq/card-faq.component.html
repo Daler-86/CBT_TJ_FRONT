@@ -1,28 +1,28 @@
 <div class="faq-container">
-    <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
-  
-    @for (faq of faqs; track faq.id; let i = $index) {
-      <div class="faq-item">
-        <div
-          class="faq-question"
-          (click)="toggleFaq(i)"
-          (keydown.enter)="toggleFaq(i)"
-          (keydown.space)="toggleFaq(i)"
-          tabindex="0"
-          role="button"
-          [attr.aria-expanded]="selectedFaqIndex === i"
-          [attr.aria-controls]="'faq-answer-' + i"
-          [id]="'faq-question-' + i"
-        >
-          <span>{{ faq.title }}</span>
-          <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
-        </div>
-  
-        @if (selectedFaqIndex === i) {
-          <div class="faq-answer" [id]="'faq-answer-' + i" [attr.aria-labelledby]="'faq-question-' + i">
-            {{ faq.description }}
-          </div>
-        }
+  <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>
+
+  @for (faq of faqs; track faq.id; let i = $index) {
+    <div class="faq-item">
+      <div
+        class="faq-question"
+        (click)="toggleFaq(i)"
+        (keydown.enter)="toggleFaq(i)"
+        (keydown.space)="toggleFaq(i)"
+        tabindex="0"
+        role="button"
+        [attr.aria-expanded]="selectedFaqIndex === i"
+        [attr.aria-controls]="'faq-answer-' + i"
+        [id]="'faq-question-' + i"
+      >
+        <span>{{ faq.title }}</span>
+        <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
       </div>
-    }
-  </div>
+
+      @if (selectedFaqIndex === i) {
+        <div class="faq-answer" [id]="'faq-answer-' + i" [attr.aria-labelledby]="'faq-question-' + i">
+          {{ faq.description }}
+        </div>
+      }
+    </div>
+  }
+</div>

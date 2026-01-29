@@ -25,8 +25,8 @@ export class VacancyListComponent implements OnInit, OnChanges {
   private vacanciesService = inject(VacanciesService);
   private regionService = inject(RegionService);
 
-  @Input() totalPages = 0; 
-  @Input() currentPage = 1; 
+  @Input() totalPages = 0;
+  @Input() currentPage = 1;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   pages: number[] = [];
 
@@ -55,17 +55,19 @@ export class VacancyListComponent implements OnInit, OnChanges {
   vacancyCount = 0;
   loadAllVacancies() {
     const pageSize = 10;
-    this.vacanciesService.getVacancyList(pageSize, this.currentPage, +this.selectedCategory, +this.selectedRegion).subscribe(
-      (response) => {
-        this.vacancyList = response.data.vacancies;
-        this.totalPages = Math.ceil(response.data.total_count / pageSize);
-        this.vacancyCount = response.data.total_count;
-        this.updatePages();
-      },
-      (error) => {
-        console.error('Ошибка при запросе данных', error);
-      },
-    );
+    this.vacanciesService
+      .getVacancyList(pageSize, this.currentPage, +this.selectedCategory, +this.selectedRegion)
+      .subscribe(
+        (response) => {
+          this.vacancyList = response.data.vacancies;
+          this.totalPages = Math.ceil(response.data.total_count / pageSize);
+          this.vacancyCount = response.data.total_count;
+          this.updatePages();
+        },
+        (error) => {
+          console.error('Ошибка при запросе данных', error);
+        },
+      );
   }
   ngOnChanges() {
     this.updatePages();
@@ -73,18 +75,17 @@ export class VacancyListComponent implements OnInit, OnChanges {
 
   updatePages() {
     this.pages = [];
-    const visiblePages = 3; 
+    const visiblePages = 3;
     const rangeStart = Math.max(1, this.currentPage - 1);
     const rangeEnd = Math.min(this.totalPages, this.currentPage + visiblePages - 1);
 
     if (rangeStart > 2) {
       this.pages.push(1);
       if (rangeStart > 3) {
-        this.pages.push(-1); 
+        this.pages.push(-1);
       }
     }
 
-  
     for (let i = rangeStart; i <= rangeEnd; i++) {
       this.pages.push(i);
     }
@@ -109,10 +110,9 @@ export class VacancyListComponent implements OnInit, OnChanges {
     if (listElement) {
       listElement.scrollTo({
         top: 0,
-        behavior: 'smooth', 
+        behavior: 'smooth',
       });
     } else {
-
       window.scrollTo({
         top: 1,
         behavior: 'smooth',

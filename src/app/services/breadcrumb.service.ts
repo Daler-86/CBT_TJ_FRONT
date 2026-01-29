@@ -21,9 +21,9 @@ export class BreadcrumbService {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   private translate = inject(TranslateService);
-  
+
   constructor() {
-    this.listenToEvents(); 
+    this.listenToEvents();
   }
   setLabel(url: string, label: string) {
     this.dynamicLabels[url] = label;
@@ -40,21 +40,18 @@ export class BreadcrumbService {
         this.rebuildBreadcrumbs();
       });
 
-
     this.translate.onLangChange.subscribe(() => {
       this.rebuildBreadcrumbs();
     });
   }
 
   public rebuildBreadcrumbs(): void {
-    if (Object.keys(this.translate.instant('breadcrumbs') || {}).length === 0 && 
-        this.translate.currentLang) {
+    if (Object.keys(this.translate.instant('breadcrumbs') || {}).length === 0 && this.translate.currentLang) {
     }
 
     const root = this.activatedRoute.root;
     const breadcrumbs = this.buildBreadcrumbs(root);
 
-  
     const currentUrl = this.router.url;
     if (currentUrl !== '/' && currentUrl !== '/home') {
       breadcrumbs.unshift({
@@ -70,7 +67,7 @@ export class BreadcrumbService {
     let newUrl = url;
 
     while (currentRoute) {
-      const routeURL: string = currentRoute.snapshot.url.map(segment => segment.path).join('/');
+      const routeURL: string = currentRoute.snapshot.url.map((segment) => segment.path).join('/');
       if (routeURL !== '') {
         newUrl += `/${routeURL}`;
       }
@@ -83,12 +80,10 @@ export class BreadcrumbService {
 
         if (this.dynamicLabels[newUrl]) {
           finalLabel = this.dynamicLabels[newUrl];
-        }
-        else if (!data['isDynamic']) {
+        } else if (!data['isDynamic']) {
           finalLabel = this.translate.instant(labelKey);
-        } 
-        else {
-          finalLabel = labelKey; 
+        } else {
+          finalLabel = labelKey;
         }
 
         if (finalLabel) {
