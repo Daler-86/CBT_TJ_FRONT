@@ -116,7 +116,7 @@
       @if (showMore) {
         <div class="lang-options-card">
           @for (option of languageOptions; track $index) {
-            <button class="lang-item flex-between" (click)="selectLanguage(option, $event); closeMobileMenu()" [class.active]="option.value === selectedLanguage">
+            <button class="lang-item flex-between" (click)="selectLanguage(option, $event)" [class.active]="option.value === selectedLanguage">
               <span>{{ option.label }}</span>
               @if (option.value === selectedLanguage) {
                 <img src="../../../assets/icons/tick-circle.svg" class="tick-icon" />
