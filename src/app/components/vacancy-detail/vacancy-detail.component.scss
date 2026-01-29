@@ -1,58 +1,58 @@
 @import '../../../styles/variables.scss';
 
-:host ::ng-deep {
-  .ck-content {
-  p, strong {
-    color: #141a20;
-    margin: 20px 0;
+// :host ::ng-deep {
+//   .ck-content {
+//   p, strong {
+//     color: #141a20;
+//     margin: 20px 0;
 
-    font-size: 24px;
-    font-weight: 700 !important;
-    line-height: 36px;
+//     font-size: 24px;
+//     font-weight: 700 !important;
+//     line-height: 36px;
 
-  }
+//   }
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-      gap:20px;
-      flex-direction: column;
-    li {
-      color: #475569;
-      font-size: 20px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
+//   ul {
+//     list-style: none;
+//     padding: 0;
+//     margin: 0;
+//     display: flex;
+//       gap:20px;
+//       flex-direction: column;
+//     li {
+//       color: #475569;
+//       font-size: 20px;
+//       font-weight: 500;
+//       display: flex;
+//       align-items: center;
       
 
-      &::before {
-        content: '—'; 
-        display: inline-block;
-        margin-right: 10px;
-        font-size: 20px; 
-        font-weight: 900;
-        color: #00c853; 
-      }
-    }
-  }
-  @media (max-width: 1024px) {
-    padding: 28px 48px;
-  }
-  @media (max-width: 768px) {
-    padding: 28px 20px;
-  }
-  p,strong{
-    font-size: 18px;
-  }
-  ul{
-    li{
-      font-size: 14px;
-    }
-  }
-}
-}
+//       &::before {
+//         content: '—'; 
+//         display: inline-block;
+//         margin-right: 10px;
+//         font-size: 20px; 
+//         font-weight: 900;
+//         color: #00c853; 
+//       }
+//     }
+//   }
+//   @media (max-width: 1024px) {
+//     padding: 28px 48px;
+//   }
+//   @media (max-width: 768px) {
+//     padding: 28px 20px;
+//   }
+//   p,strong{
+//     font-size: 18px;
+//   }
+//   ul{
+//     li{
+//       font-size: 14px;
+//     }
+//   }
+// }
+// }
  .more-vacancy {
   padding: 48px 5%;
   background-color: #f6f7f8;
