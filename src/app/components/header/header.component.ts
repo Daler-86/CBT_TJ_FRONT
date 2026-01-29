@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ElementRef, HostListener } from '@angular/core';
-
-// Ваши сервисы
 import { MenuService } from '../../api/menu.service';
 import { LanguagesService } from '../../languages.service';
 import { Menu, MenuItem } from '../../models/menu.model';
@@ -76,13 +74,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   private updateLogo(language: Languages): void {
     switch (language) {
-      case this.lang.Tj: // Тоҷикӣ
+      case this.lang.Tj: 
         this.logoSrc = '../../../assets/icons/logo_tj_big.png';
         break;
-      case this.lang.Ru: // Русский
+      case this.lang.Ru: 
         this.logoSrc = '../../../assets/icons/logo_ru_big.png';
         break;
-      case this.lang.En: // English
+      case this.lang.En: 
         this.logoSrc = '../../../assets/icons/logo_en_big.png';
         break;
       default:
@@ -93,9 +91,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     option: { value: Languages; label: string },
     event: Event
   ) {
-    event.stopPropagation(); // ⬅️ КЛЮЧЕВО
+    event.stopPropagation(); 
     this.dropdownOpen = false;
     this.languageService.setLanguage(option.value);
+    this.closeMobileMenu();
   }
   
 
@@ -109,8 +108,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleDropdown(index: number, event: Event) {
-    this.dropdownOpenMap[index] = !this.dropdownOpenMap[index];
     event.stopPropagation();
+    const isOpen = !!this.dropdownOpenMap[index];
+    this.dropdownOpenMap = {}; 
+    this.dropdownOpenMap[index] = !isOpen; 
   }
 
   selectOption(option: MenuItem, index: number, event: Event, menuItem: Menu) {
@@ -119,6 +120,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (option.route) {
       this.menuService.changePersonTypeId(menuItem.person_type_id);
       this.router.navigate([option.route]);
+      this.closeMobileMenu();
     }
     window.scrollTo(0, 0);
   }
@@ -135,11 +137,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   closeDropdown(index: number) {
     this.dropdownOpenMap[index] = false;
   }
+  closeMobileMenu() {
+    this.menuActive = false;
+    this.dropdownOpenMap = {}; 
+    document.body.style.overflow = 'auto'; 
+  }
 
   toggleMenu() {
     this.menuActive = !this.menuActive;
-    // --- ДОБАВЛЯЕМ ЭТУ ЛОГИКУ ---
     document.body.style.overflow = this.menuActive ? 'hidden' : 'auto';
+    if (!this.menuActive) {
+      this.dropdownOpenMap = {};
+    }
   }
   
 }

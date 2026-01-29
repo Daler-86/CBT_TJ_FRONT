@@ -68,14 +68,14 @@
 @if (menuActive) {
   <div class="mobile-menu-overlay">
     <div class="mobile-header-sticky">
-      <a routerLink="/" class="logo-link">
+      <a routerLink="/" class="logo-link" (click)="closeMobileMenu()">
         <div class="logo">
           <img width="180px" [src]="logoSrc" alt="logo" />
         </div>
       </a>
     </div>
 
-    <a routerLink="map" (click)="toggleMenu()" class="offices-btn-large">
+    <a routerLink="map" (click)="closeMobileMenu()" class="offices-btn-large">
       <span>{{ 'HEADER.TOP.OFFICES_AND_ATMS' | translate }}</span>
       <img src="../../../assets/icons/Map Point.svg" class="white-icon" />
     </a>
@@ -83,16 +83,21 @@
     <div class="mobile-accordion-container">
       @for (menu of menus; track i; let i = $index) {
         <div class="accordion-item">
-          <div class="accordion-header" (click)="toggleDropdown(i, $event)">
-           <a [href]="menu.route"><span class="title">{{ menu.name }}</span></a> 
+          <div class="accordion-header" (click)="toggleDropdown(i, $event)"> 
             @if (menu.items.length) {
+              <span class="title">{{ menu.name }}</span>
               <img src="../../../assets/icons/arrow-down.png" class="chevron" [class.rotate]="dropdownOpenMap[i]" />
+            } @else {
+              <a [href]="menu.route" (click)="closeMobileMenu()">
+                <span class="title">{{ menu.name }}</span>
+              </a>
             }
+            
           </div>
+
           @if (dropdownOpenMap[i] && menu.items.length) {
             <div class="accordion-content">
               @for (sub of menu.items; track sub.id) {
-
                 <div class="sub-link" (click)="selectOption(sub, i, $event, menu)">
                   <a>{{ sub.name }}</a>
                 </div>
@@ -111,7 +116,7 @@
       @if (showMore) {
         <div class="lang-options-card">
           @for (option of languageOptions; track $index) {
-            <button class="lang-item flex-between" (click)="selectLanguage(option, $event)" [class.active]="option.value === selectedLanguage">
+            <button class="lang-item flex-between" (click)="selectLanguage(option, $event); closeMobileMenu()" [class.active]="option.value === selectedLanguage">
               <span>{{ option.label }}</span>
               @if (option.value === selectedLanguage) {
                 <img src="../../../assets/icons/tick-circle.svg" class="tick-icon" />
