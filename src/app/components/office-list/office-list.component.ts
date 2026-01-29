@@ -47,7 +47,6 @@ export class OfficeListComponent implements OnInit, OnDestroy {
   private filterService = inject(RegionService);
   public translateService = inject(TranslateService);
 
-
   public get selectedRegionDisplayName(): string {
     if (this.regionSelected === 0) {
       return this.translateService.instant('MAP_PAGE.FILTERS.ALL_REGIONS');
@@ -167,12 +166,10 @@ export class OfficeListComponent implements OnInit, OnDestroy {
       terminals: 'MAP_PAGE.FILTERS.TERMINALS',
       atms: 'MAP_PAGE.FILTERS.ATMS',
     };
-  
-    this.selectedObjectTypeName = this.translateService.instant(
-      keyMap[this.selectedObjectType]
-    );
+
+    this.selectedObjectTypeName = this.translateService.instant(keyMap[this.selectedObjectType]);
   }
-  
+
   // --- ПАГИНАЦИЯ (полный код) ---
   public pages: number[] = [];
 

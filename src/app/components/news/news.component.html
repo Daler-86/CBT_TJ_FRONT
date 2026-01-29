@@ -43,13 +43,13 @@
           >
             ‹
           </button>
-      
+
           @for (page of pages; track $index) {
             <button [class.active]="page === currentPage" (click)="selectPage(page)">
               {{ page === -1 ? '...' : page }}
             </button>
           }
-      
+
           <button
             (click)="nextPage()"
             [disabled]="currentPage === totalPages"

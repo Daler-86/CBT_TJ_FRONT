@@ -14,7 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class InstallmentCalculateComponent implements OnInit {
   private installmentService = inject(InstallmentService);
-  
+
   @ViewChild('amountInput') amountInput?: ElementRef<HTMLInputElement>;
 
   minAmount = 0;
@@ -24,9 +24,9 @@ export class InstallmentCalculateComponent implements OnInit {
   loanAmount = 10000;
   loanTerm = 12;
   loanAmountPercent = '0%';
-  
+
   isEditingAmount = false;
-  isAmountInvalid = false; 
+  isAmountInvalid = false;
 
   calculationResult: InstallmentResult | null = null;
 
@@ -49,7 +49,6 @@ export class InstallmentCalculateComponent implements OnInit {
   }
 
   recalculate(event?: Event): void {
-
     if (event && event.target) {
       const target = event.target as HTMLInputElement;
       let rawValue = target.value;
@@ -92,6 +91,6 @@ export class InstallmentCalculateComponent implements OnInit {
 
   stopEditing(): void {
     this.isEditingAmount = false;
-    this.recalculate(); 
+    this.recalculate();
   }
 }

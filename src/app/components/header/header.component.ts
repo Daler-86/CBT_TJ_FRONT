@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private menuService = inject(MenuService);
   private translateService = inject(TranslateService);
   private languageService = inject(LanguagesService);
-  showMore = false; 
+  showMore = false;
   ngOnInit(): void {
     const langSub = this.languageService.language$.subscribe((lang) => {
       this.selectedLanguage = lang;
@@ -74,29 +74,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   private updateLogo(language: Languages): void {
     switch (language) {
-      case this.lang.Tj: 
+      case this.lang.Tj:
         this.logoSrc = '../../../assets/icons/logo_tj_big.png';
         break;
-      case this.lang.Ru: 
+      case this.lang.Ru:
         this.logoSrc = '../../../assets/icons/logo_ru_big.png';
         break;
-      case this.lang.En: 
+      case this.lang.En:
         this.logoSrc = '../../../assets/icons/logo_en_big.png';
         break;
       default:
         this.logoSrc = '../../../assets/icons/logo_tj_big.png';
     }
   }
-  selectLanguage(
-    option: { value: Languages; label: string },
-    event: Event
-  ) {
-    event.stopPropagation(); 
+  selectLanguage(option: { value: Languages; label: string }, event: Event) {
+    event.stopPropagation();
     this.dropdownOpen = false;
     this.languageService.setLanguage(option.value);
     this.closeMobileMenu();
   }
-  
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
@@ -110,8 +106,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   toggleDropdown(index: number, event: Event) {
     event.stopPropagation();
     const isOpen = !!this.dropdownOpenMap[index];
-    this.dropdownOpenMap = {}; 
-    this.dropdownOpenMap[index] = !isOpen; 
+    this.dropdownOpenMap = {};
+    this.dropdownOpenMap[index] = !isOpen;
   }
 
   selectOption(option: MenuItem, index: number, event: Event, menuItem: Menu) {
@@ -139,8 +135,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   closeMobileMenu() {
     this.menuActive = false;
-    this.dropdownOpenMap = {}; 
-    document.body.style.overflow = 'auto'; 
+    this.dropdownOpenMap = {};
+    document.body.style.overflow = 'auto';
   }
 
   toggleMenu() {
@@ -150,5 +146,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.dropdownOpenMap = {};
     }
   }
-  
 }

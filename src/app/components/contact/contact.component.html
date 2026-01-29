@@ -63,7 +63,7 @@
         />
         <div class="error" *ngIf="client_name?.invalid && (client_name?.touched || client_name?.dirty)">
           <span *ngIf="client_name?.errors?.['required']">{{ 'FORMS.ERRORS.REQUIRED' | translate }}</span>
-          <span *ngIf="client_name?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate:{min:2} }}</span>
+          <span *ngIf="client_name?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate: { min: 2 } }}</span>
         </div>
       </div>
 
@@ -90,7 +90,9 @@
             class="dropdown-selected form-control"
             (click)="toggleDropdown($event)"
             tabindex="0"
-            [class.is-invalid]="contact_subject_id?.invalid && (contact_subject_id?.touched || contact_subject_id?.dirty)"
+            [class.is-invalid]="
+              contact_subject_id?.invalid && (contact_subject_id?.touched || contact_subject_id?.dirty)
+            "
           >
             {{ selectedSubjectName || 'Выберите тему' }}
           </div>
@@ -104,7 +106,10 @@
             </div>
           }
         </div>
-        <div class="error" *ngIf="contact_subject_id?.invalid && (contact_subject_id?.touched || contact_subject_id?.dirty)">
+        <div
+          class="error"
+          *ngIf="contact_subject_id?.invalid && (contact_subject_id?.touched || contact_subject_id?.dirty)"
+        >
           {{ 'FORMS.ERRORS.SELECTSUBJECT' | translate }}
         </div>
       </div>
@@ -119,7 +124,7 @@
         ></textarea>
         <div class="error" *ngIf="question?.invalid && (question?.touched || question?.dirty)">
           <span *ngIf="question?.errors?.['required']">{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
-          <span *ngIf="question?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate:{min:10} }}</span>
+          <span *ngIf="question?.errors?.['minlength']">{{ 'FORMS.ERRORS.MINLENGTH' | translate: { min: 10 } }}</span>
         </div>
       </div>
 
@@ -129,6 +134,5 @@
         <span *ngIf="isSubmitting">{{ 'BUTTONS.SENDING' | translate }}...</span>
       </button>
     </form>
-
   </div>
 </div>

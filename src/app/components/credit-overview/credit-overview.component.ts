@@ -7,7 +7,6 @@ import { MenuService } from '../../api/menu.service';
 import { environment } from '../../../environments/environment';
 import { OnInit, inject } from '@angular/core';
 
-
 @Component({
   selector: 'app-credit-overview',
   standalone: true,

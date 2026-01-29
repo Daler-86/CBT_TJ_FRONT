@@ -1,85 +1,85 @@
 <div class="container">
-    <h1>{{ 'COMMON.TARIFFS_AND_CONDITIONS' | translate }}</h1>
-  
-    <div class="btnCards">
-      <button (click)="selectTab('services')" [class.active]="selectedTab === 'services'">
-        {{ 'CARD_DETAILS.TABS.SERVICES' | translate }}
-      </button>
-      <button (click)="selectTab('limits')" [class.active]="selectedTab === 'limits'">
-        {{ 'CARD_DETAILS.TABS.LIMITS' | translate }}
-      </button>
-      <button (click)="selectTab('operations')" [class.active]="selectedTab === 'operations'">
-        {{ 'CARD_DETAILS.TABS.OPERATIONS' | translate }}
-      </button>
-      <button (click)="selectTab('documents')" [class.active]="selectedTab === 'documents'">
-        {{ 'CARD_DETAILS.TABS.DOCUMENTS' | translate }}
-      </button>
-    </div>
-  
-    @if (selectedTab === 'services') {
-      <div class="content">
-        <div class="info-container">
-          @for (service of services; track $index) {
-            <div class="info-box">
-              <div class="info-title-1">{{ service.name }}</div>
-              <div class="info-title">
-                {{ service.title }}
-                <div class="info-detail">{{ service.description }}</div>
-              </div>
-            </div>
-          }
-        </div>
-      </div>
-    }
-  
-    @if (selectedTab === 'limits') {
-      <div class="content">
-        <div class="info-container">
-          @for (limit of limits; track limit.id) {
-            <div class="info-box-limits">
-              <div class="info-title-1">{{ limit.name }}</div>
-              <div class="info-title">
-                <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.TJS' | translate }}</div>
-                {{ limit.tjs }}
-              </div>
-              <div class="info-title">
-                <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.USD' | translate }}</div>
-                {{ limit.usd }}
-              </div>
-            </div>
-          }
-        </div>
-      </div>
-    }
-  
-    @if (selectedTab === 'operations') {
-      <div class="content">
-        <div class="info-container">
-          @for (operation of operations; track operation.id) {
-            <div class="info-box">
-              <div class="info-title-1">{{ operation.name }}</div>
-              <div class="info-title">
-                {{ operation.title }}
-                <div class="info-detail">{{ operation.description }}</div>
-              </div>
-            </div>
-          }
-        </div>
-      </div>
-    }
-  
-    @if (selectedTab === 'documents') {
-      <div class="content">
-        <div class="info-container">
-          @for (document of documents; track document.id) {
-            <div class="info-box-documents">
-              <a [href]="imageUrl + document.upload_file" target="_blank">
-                <img src="../../../assets/icons/pdficon.png" [alt]="'ALT.PDF_ICON' | translate" />
-              </a>
-              <p class="info-title">{{ document.name }}</p>
-            </div>
-          }
-        </div>
-      </div>
-    }
+  <h1>{{ 'COMMON.TARIFFS_AND_CONDITIONS' | translate }}</h1>
+
+  <div class="btnCards">
+    <button (click)="selectTab('services')" [class.active]="selectedTab === 'services'">
+      {{ 'CARD_DETAILS.TABS.SERVICES' | translate }}
+    </button>
+    <button (click)="selectTab('limits')" [class.active]="selectedTab === 'limits'">
+      {{ 'CARD_DETAILS.TABS.LIMITS' | translate }}
+    </button>
+    <button (click)="selectTab('operations')" [class.active]="selectedTab === 'operations'">
+      {{ 'CARD_DETAILS.TABS.OPERATIONS' | translate }}
+    </button>
+    <button (click)="selectTab('documents')" [class.active]="selectedTab === 'documents'">
+      {{ 'CARD_DETAILS.TABS.DOCUMENTS' | translate }}
+    </button>
   </div>
+
+  @if (selectedTab === 'services') {
+    <div class="content">
+      <div class="info-container">
+        @for (service of services; track $index) {
+          <div class="info-box">
+            <div class="info-title-1">{{ service.name }}</div>
+            <div class="info-title">
+              {{ service.title }}
+              <div class="info-detail">{{ service.description }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  @if (selectedTab === 'limits') {
+    <div class="content">
+      <div class="info-container">
+        @for (limit of limits; track limit.id) {
+          <div class="info-box-limits">
+            <div class="info-title-1">{{ limit.name }}</div>
+            <div class="info-title">
+              <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.TJS' | translate }}</div>
+              {{ limit.tjs }}
+            </div>
+            <div class="info-title">
+              <div class="info-detail">{{ 'CARD_DETAILS.ACCOUNTS.USD' | translate }}</div>
+              {{ limit.usd }}
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  @if (selectedTab === 'operations') {
+    <div class="content">
+      <div class="info-container">
+        @for (operation of operations; track operation.id) {
+          <div class="info-box">
+            <div class="info-title-1">{{ operation.name }}</div>
+            <div class="info-title">
+              {{ operation.title }}
+              <div class="info-detail">{{ operation.description }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  @if (selectedTab === 'documents') {
+    <div class="content">
+      <div class="info-container">
+        @for (document of documents; track document.id) {
+          <div class="info-box-documents">
+            <a [href]="imageUrl + document.upload_file" target="_blank">
+              <img src="../../../assets/icons/pdficon.png" [alt]="'ALT.PDF_ICON' | translate" />
+            </a>
+            <p class="info-title">{{ document.name }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

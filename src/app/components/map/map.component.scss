@@ -89,26 +89,25 @@
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
           z-index: 100;
         }
-        
+
         .dropdown-section {
           padding: 15px 35px;
-          max-height: 200px;        // 👈 ограничение высоты
-          overflow-y: auto;         // 👈 вертикальный скролл
+          max-height: 200px; // 👈 ограничение высоты
+          overflow-y: auto; // 👈 вертикальный скролл
         }
 
         .dropdown-section::-webkit-scrollbar {
           width: 6px;
         }
-        
+
         .dropdown-section::-webkit-scrollbar-thumb {
           background-color: #cbd5e1;
           border-radius: 4px;
         }
-        
+
         .dropdown-section::-webkit-scrollbar-track {
           background: transparent;
         }
-        
 
         .divider {
           width: 100%;

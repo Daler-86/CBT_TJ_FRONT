@@ -4,12 +4,12 @@
   position: relative;
   width: 90%;
   margin: 40px auto 48px;
-  overflow: hidden; 
+  overflow: hidden;
   background: url(../../../assets/icons/Frame\ 8.png);
   background-repeat: no-repeat;
   border-radius: 24px;
   background-size: cover;
-  color: white; 
+  color: white;
 }
 
 .carousel-slides {
@@ -19,29 +19,29 @@
 
 .carousel-item {
   width: 100%;
-  flex: 0 0 100%; 
+  flex: 0 0 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 72px; 
+  padding: 50px 72px;
   min-height: 450px;
   box-sizing: border-box;
 
   .carousel-content {
     width: 48%;
-    z-index: 1; 
+    z-index: 1;
 
     h2 {
       font-weight: 700;
-      font-size: $font-size-h2; 
+      font-size: $font-size-h2;
       line-height: 1.2;
     }
 
     p {
       font-weight: 500;
-      font-size: $font-size-body-large; 
+      font-size: $font-size-body-large;
       line-height: $line-height-body-large;
-      margin: 20px 0 30px; 
+      margin: 20px 0 30px;
     }
 
     button {
@@ -52,14 +52,14 @@
       font-size: $font-size-body-large;
       line-height: $line-height-body-large;
       border: none;
-      border-radius: 6px; 
+      border-radius: 6px;
       cursor: pointer;
       transition:
         background-color 0.3s,
         color 0.3s;
 
       &:hover {
-        background-color: #008a54; 
+        background-color: #008a54;
       }
     }
   }
@@ -74,11 +74,11 @@
     bottom: -40px;
   }
   &.no-image {
-  .carousel-content {
-    width: 100%; 
-    max-width: 100%;
+    .carousel-content {
+      width: 100%;
+      max-width: 100%;
+    }
   }
-}
 }
 
 @media (max-width: 1024px) {

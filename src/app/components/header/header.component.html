@@ -1,13 +1,11 @@
 <nav class="content">
   <div class="men">
-
     <a routerLink="/" class="logo-link">
       <div class="logo">
         <img width="180px" [src]="logoSrc" alt="logo" />
       </div>
     </a>
 
- 
     <ul class="menu desktop-only">
       @for (menu of menus; track i; let i = $index) {
         <li (mouseenter)="toggleDropdown(i, $event)" (mouseleave)="closeDropdown(i)">
@@ -33,20 +31,22 @@
       }
     </ul>
 
-
     <div class="nav-right">
-   
       <div class="custom-dropdown lang-selector desktop-only" (click)="toggleDropdown1($event)">
         <div class="dropdown-selected">
           <img src="../../../assets/icons/Global.svg" alt="lang" class="icon-global" />
           <span class="current-lang">{{ getDisplayLanguage() }}</span>
           <img src="../../../assets/icons/arrow-down.png" alt="arrow" class="arrow-mini" />
         </div>
-        
+
         @if (dropdownOpen) {
           <div class="dropdown-options right-align">
             @for (option of languageOptions; track $index) {
-              <div class="dropdown-option" (click)="selectLanguage(option, $event)" [class.active]="option.value === selectedLanguage">
+              <div
+                class="dropdown-option"
+                (click)="selectLanguage(option, $event)"
+                [class.active]="option.value === selectedLanguage"
+              >
                 <span>{{ option.label }}</span>
                 @if (option.value === selectedLanguage) {
                   <img src="../../../assets/icons/tick-circle.svg" class="tick-icon" />
@@ -57,7 +57,6 @@
         }
       </div>
 
-      
       <div class="burger mobile-only" (click)="toggleMenu()" [class.active]="menuActive">
         <span></span><span></span><span></span>
       </div>
@@ -83,7 +82,7 @@
     <div class="mobile-accordion-container">
       @for (menu of menus; track i; let i = $index) {
         <div class="accordion-item">
-          <div class="accordion-header" (click)="toggleDropdown(i, $event)"> 
+          <div class="accordion-header" (click)="toggleDropdown(i, $event)">
             @if (menu.items.length) {
               <span class="title">{{ menu.name }}</span>
               <img src="../../../assets/icons/arrow-down.png" class="chevron" [class.rotate]="dropdownOpenMap[i]" />
@@ -92,7 +91,6 @@
                 <span class="title">{{ menu.name }}</span>
               </a>
             }
-            
           </div>
 
           @if (dropdownOpenMap[i] && menu.items.length) {
@@ -116,7 +114,11 @@
       @if (showMore) {
         <div class="lang-options-card">
           @for (option of languageOptions; track $index) {
-            <button class="lang-item flex-between" (click)="selectLanguage(option, $event)" [class.active]="option.value === selectedLanguage">
+            <button
+              class="lang-item flex-between"
+              (click)="selectLanguage(option, $event)"
+              [class.active]="option.value === selectedLanguage"
+            >
               <span>{{ option.label }}</span>
               @if (option.value === selectedLanguage) {
                 <img src="../../../assets/icons/tick-circle.svg" class="tick-icon" />

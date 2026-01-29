@@ -5,15 +5,9 @@
     <div class="form-group">
       <label for="loanAmountInput">{{ 'CALCULATORS.INSTALLMENT.AMOUNT' | translate }}</label>
       <div class="input-slider-container">
-        
         <div class="input-display" [style.color]="isAmountInvalid ? '#9e9e9e' : 'inherit'">
           @if (!isEditingAmount) {
-            <div
-              (click)="startEditing()"
-              (keydown.enter)="startEditing()"
-              tabindex="0"
-              role="button"
-            >
+            <div (click)="startEditing()" (keydown.enter)="startEditing()" tabindex="0" role="button">
               <!-- Показываем копейки как в кредитах -->
               {{ loanAmount | number: '1.2-2' : 'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
             </div>

@@ -333,7 +333,7 @@
       "DESCRIPTION": "Terminals for fast and convenient customer service"
     }
   },
-  
+
   "FOOTER": {
     "CONTACTS": {
       "FOR_INDIVIDUALS": "For private individuals",
@@ -583,13 +583,12 @@
       "TOTAL_PAYMENT": "Total payment",
       "SELECT_TERM_ERROR": "To see the calculation, please select a term from the available options.",
       "APPLY_BUTTON": "Apply for installment",
-    
+
       "CURRENT_AMOUNT": "Current amount",
       "CLICK_TO_EDIT": "Click to edit",
       "EDIT_AMOUNT": "Edit amount"
     },
     "NO_DATA": "No data available for calculation"
-    
   },
   "DEPOSIT_PRODUCTS": {
     "DURAKHSHON": "Children's Deposit «Durakhshon»",
@@ -995,7 +994,7 @@
       ]
     }
   },
-  
+
   "INSURANCE_PAGE": {
     "TITLE": "Insurance",
     "DESCRIPTION_1": "The deposit insurance system for individuals is a set of measures aimed at protecting depositors' rights and interests through compensation payments.",

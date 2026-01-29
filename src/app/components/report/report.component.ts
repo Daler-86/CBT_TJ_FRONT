@@ -22,12 +22,10 @@ export class ReportComponent implements OnInit {
   // Список всех годов для кнопок, например [2025, 2024]
   availableYears: number[] = [];
 
-
   currentApiYear: number | null = 0;
 
   selectedYear: number | null = null;
 
- 
   reportFile: reportFile[] = [];
   totalPages = 0;
   currentPage = 1;
@@ -54,12 +52,11 @@ export class ReportComponent implements OnInit {
         this.reportData = initialReportsData;
 
         this.currentApiYear = initialReportsData.report_year;
-        this.selectedYear =0;
+        this.selectedYear = 0;
 
         // 4. Формируем ПОЛНЫЙ список годов для кнопок (один раз и навсегда)
         const yearsSet = new Set([this.currentApiYear, ...initialReportsData.report_years]);
-        this.availableYears = Array.from(yearsSet)
-
+        this.availableYears = Array.from(yearsSet);
       },
       error: (error) => console.error('Ошибка при первоначальной загрузке данных', error),
     });

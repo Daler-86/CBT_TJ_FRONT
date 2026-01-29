@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './card-tariffs.component.html',
-  styleUrl: './card-tariffs.component.scss'
+  styleUrl: './card-tariffs.component.scss',
 })
 export class CardTariffsComponent implements OnInit {
   cardId = 0;
@@ -30,8 +30,6 @@ export class CardTariffsComponent implements OnInit {
       // Загружаем все данные для страницы
 
       this.loadTabData(this.selectedTab, this.cardId);
-  
-   
     }
   }
 
@@ -63,5 +61,4 @@ export class CardTariffsComponent implements OnInit {
         break;
     }
   }
-
 }

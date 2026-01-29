@@ -23,14 +23,14 @@
   <div class="section-3">
     <div class="left">
       <h2>{{ 'INSURANCE_PAGE.NO_COMPENSATION_TITLE' | translate }}</h2>
-      <p *ngFor="let item of ('INSURANCE_PAGE.NO_COMPENSATION_LIST' | translate)">
+      <p *ngFor="let item of 'INSURANCE_PAGE.NO_COMPENSATION_LIST' | translate">
         {{ item }}
       </p>
     </div>
     <div class="right">
       <h2>{{ 'INSURANCE_PAGE.COMPENSATION_TITLE' | translate }}</h2>
       <p>{{ 'INSURANCE_PAGE.COMPENSATION_TEXT' | translate }}</p>
-      <p *ngFor="let detail of ('INSURANCE_PAGE.COMPENSATION_DETAILS' | translate)">
+      <p *ngFor="let detail of 'INSURANCE_PAGE.COMPENSATION_DETAILS' | translate">
         {{ detail }}
       </p>
     </div>
@@ -61,7 +61,6 @@
       </div>
     </div>
   </div>
-  
 
   <div class="contact-grid">
     <!-- Динамический контент, перевод не требуется -->
