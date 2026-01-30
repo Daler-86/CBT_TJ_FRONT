@@ -45,6 +45,8 @@
     }
 
     button {
+      width: 300px;
+      height: 60px;
       padding: 15px 50px;
       color: white;
       background-color: #00b06c;
@@ -71,7 +73,7 @@
     object-fit: contain;
     align-self: flex-end;
     position: relative;
-    bottom: -40px;
+    bottom: -50px;
   }
   &.no-image {
     .carousel-content {
@@ -109,7 +111,6 @@
       width: 85%;
       align-self: center;
       bottom: auto;
-      // Уменьшаем отрицательный отступ, чтобы машина не заезжала слишком высоко
       margin-top: -10%;
       margin-bottom: -5%;
     }
@@ -127,7 +128,6 @@
 
     img {
       width: 100%;
-      // Также корректируем отступ для самых маленьких экранов
       margin-top: -15%;
     }
   }
@@ -137,11 +137,11 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(249, 248, 248, 0.3); // Сделали фон чуть темнее для контраста
+  background-color: rgba(249, 248, 248, 0.3);
   border: none;
   cursor: pointer;
-  border-radius: 50%; // Идеальный круг
-  width: 44px; // Фиксированные размеры
+  border-radius: 50%;
+  width: 44px;
   height: 44px;
   display: flex;
   align-items: center;
@@ -155,7 +155,6 @@
 
   &.prev {
     left: 20px;
-    // Поворачиваем иконку для стрелки "назад"
     img {
       transform: rotate(180deg);
     }
@@ -166,31 +165,31 @@
   }
 
   img {
-    width: 12px; // Задаем размер самой иконке
+    width: 21px;
   }
 }
 
 .carousel-indicators {
-  position: absolute; // Позиционируем относительно карусели
+  position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 8px;
   z-index: 2;
 
   .indicator {
+    width: 20px;
     height: 4px;
-    width: 25px;
     border-radius: 21px;
-    background-color: rgba(255, 255, 255, 0.4);
-    margin: 0 4px;
+    background-color: rgba(255, 255, 255, 0.47);
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
   }
 
   .indicator.active {
-    background-color: white;
+    background-color: #ffffff;
+    transform: scaleX(1.2);
   }
 }
+
