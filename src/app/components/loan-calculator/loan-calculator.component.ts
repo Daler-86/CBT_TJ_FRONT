@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, OnChanges, Input, SimpleChanges, ElementRef, ViewChild } from '@angular/core';
-import { LoanCalculationResult, LoanConditionsData } from '../../models/calculate.model';
+import { LoanConditionsData } from '../../models/calculate.model';
 import { LoanService } from '../../services/loan.service';
 import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { RateService } from '../../api/rate.service';
 import { ProcessedRate } from '../../models/rate.model';
-import { AsyncPipe, DatePipe, DecimalPipe, NgClass, SlicePipe } from '@angular/common';
+import {DatePipe, DecimalPipe, NgClass, SlicePipe } from '@angular/common';
 
 interface Mode {
   key: string;

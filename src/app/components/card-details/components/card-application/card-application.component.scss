@@ -113,7 +113,6 @@
         border-radius: 6px;
         border: 1px solid #cbd5e1;
         font-size: 14px;
-        background-color: #f6f7f8;
         margin-top: 20px;
         position: relative;
         z-index: 100;
@@ -154,7 +153,6 @@
       outline: none;
       border-color: #00b06c;
       box-shadow: 0 0 0 1px #00b06c;
-      background-color: #f6f7f8;
     }
 
     .form-disclaimer {
@@ -176,6 +174,7 @@
       a {
         color: #00b06c;
         text-decoration: none;
+        border-bottom: 1px solid #00b06c;
       }
     }
   }

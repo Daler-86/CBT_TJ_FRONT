@@ -12,23 +12,21 @@
       <h3>{{ 'CURRENCY_CONVERTER.RATES_TABLE.TITLE' | translate }}</h3>
       <table>
         <thead>
-          <tr>
-            <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.CURRENCY' | translate }}</th>
-            @if (selectedMode === 'CB_RATE') {
-              <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.ACCOUNTING' | translate }}</th>
-            }
-            @if (selectedMode !== 'CB_RATE') {
-              <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.PURCHASE' | translate }}</th>
-              <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.SALE' | translate }}</th>
-            }
-          </tr>
+        <tr>
+          <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.CURRENCY' | translate }}</th>
+          @if (selectedMode === 'CB_RATE') {
+            <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.ACCOUNTING' | translate }}</th>
+          }
+          @if (selectedMode !== 'CB_RATE') {
+            <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.PURCHASE' | translate }}</th>
+            <th>{{ 'CURRENCY_CONVERTER.RATES_TABLE.HEADERS.SALE' | translate }}</th>
+          }
+        </tr>
         </thead>
         <tbody>
-          @for (
-            rate of exchangeRatesByMode[selectedMode]
-              | slice: 0 : (showMore ? exchangeRatesByMode[selectedMode].length : 3);
-            track $index
-          ) {
+          @for (rate of exchangeRatesByMode[selectedMode]
+            | slice: 0 : (showMore ? exchangeRatesByMode[selectedMode].length : 3);
+            track $index) {
             <tr>
               <td class="flag">
                 <img [src]="rate.flag" [alt]="rate.currency + ' flag'" />

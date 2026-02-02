@@ -31,6 +31,7 @@
       }
 
       .card-description {
+        font-width: 400;
         font-size: 18px;
         line-height: 1.4;
         color: #475569;
@@ -41,9 +42,10 @@
         background-color: #00b06c;
         color: white;
         padding: 18px 32px;
-        border-radius: 12px;
+        border-radius: 6px;
         border: none;
-        font-weight: 600;
+        font-weight: 300;
+        width: 230px;
         cursor: pointer;
         @media (max-width: 768px) {
           width: 100%;
@@ -186,7 +188,7 @@
       .info-title-1 {
         font-size: 18px;
         color: #475569;
-        font-weight: 500;
+        font-weight: 400;
         @media (max-width: 1024px) {
           font-size: 16px;
         }
@@ -261,7 +263,7 @@
           font-size: 18px;
           color: #141a20;
           margin-top: 60px;
-          font-weight: 500;
+          font-weight: 400;
           @media (max-width: 1024px) {
             margin-top: 40px;
             font-size: 16px;

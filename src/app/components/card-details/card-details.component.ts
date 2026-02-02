@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
-import { ScrollToDirective } from '../../directives/scroll-to.directive';
 import { ScrollService } from '../../services/scroll.service';
 import { CardPromoComponent } from './components/card-promo/card-promo.component';
 import { CardFeaturesComponent } from './components/card-features/card-features.component';
@@ -19,7 +18,6 @@ import { CardFaqComponent } from './components/card-faq/card-faq.component';
     FormsModule,
     TranslateModule,
     ReactiveFormsModule,
-    ScrollToDirective,
     CardPromoComponent,
     CardFeaturesComponent,
     CardTariffsComponent,
