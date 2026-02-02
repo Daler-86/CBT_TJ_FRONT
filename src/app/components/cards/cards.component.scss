@@ -39,7 +39,7 @@
       background-color: white;
       color: #141a20;
       font-size: 18px;
-      font-weight: 400;
+      font-weight: 300;
 
       &.active {
         background-color: #00b06c;
@@ -89,7 +89,7 @@
       .card-description {
         font-size: 18px;
         color: #475569;
-        font-weight: 500;
+        font-weight: 400;
         margin-bottom: 20px;
         line-height: 23px;
       }
@@ -144,11 +144,13 @@
         .btn-primary {
           background-color: #00b06c;
           color: #fff;
+          font-weight: 300;
         }
 
         .btn-secondary {
           background-color: transparent;
           color: #00b06c;
+          font-weight: 300;
         }
         @media (max-width: 1024px) {
           gap: 10px;

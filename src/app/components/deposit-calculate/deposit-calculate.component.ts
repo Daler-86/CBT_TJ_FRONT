@@ -11,15 +11,7 @@ import { Languages } from '../../shared/enums/languages.enum';
 @Component({
   selector: 'app-deposit-calculator',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule, // Важно для работы с формами
-    RouterLink,
-    PercentPipe,
-    FormsModule,
-    TranslateModule,
-    // NgModel        // Пайп для форматирования процентов
-  ],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, PercentPipe, FormsModule, TranslateModule],
   templateUrl: './deposit-calculate.component.html',
   styleUrls: ['./deposit-calculate.component.scss'],
 })
@@ -44,7 +36,7 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
   depositAmountPercent = '0%';
   depositTermPercent = '0%';
 
-  public productName = ''; // Для отображения названия выбранного продукта
+  public productName = '';
   public dropdownOpen = false;
 
   productsData: DepositProducts;
@@ -55,6 +47,7 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
 
   isEditingAmount = false;
   private depositService = inject(DepositCalculateService);
+
   constructor() {
     this.productsData = this.depositService.getProductsData();
     this.productKeys = Object.keys(this.productsData);
@@ -75,20 +68,12 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
   setupCalculator(): void {
     const externalId = this.productId ? String(this.productId) : undefined;
 
-    // --- ИЗМЕНЕННАЯ ЛОГИКА ---
-    // Устанавливаем ID продукта, только если он пришел извне (@Input)
-    // или если это самая первая загрузка (selectedProductId еще не установлен).
     if (externalId && this.productsData[externalId]) {
       this.selectedProductId = externalId;
     } else if (!this.selectedProductId) {
-      // Если еще никакой продукт не выбран
       this.selectedProductId = this.productKeys[0];
     }
-    // Теперь this.selectedProductId содержит правильное значение,
-    // будь то выбор пользователя или начальная установка.
-    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
 
-    // Остальной код метода остается без изменений, так как теперь он будет работать с правильным ID
     this.productName = this.productsData[this.selectedProductId]?.name || 'Выберите продукт';
     const product = this.productsData[this.selectedProductId];
     if (product) {
@@ -104,19 +89,17 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
     this.recalculate();
   }
 
-  // Этот метод больше не нужен, его логика перенесена
-  // onSettingsChange(): void { ... }
-
   selectCurrency(currency: 'TJS' | 'USD'): void {
     this.selectedCurrency = currency;
     this.updateUIForSelectedProduct();
-    this.recalculate(); // <-- Вызываем recalculate после смены валюты
+    this.recalculate();
   }
+
   selectProduct(productId: string): void {
     this.selectedProductId = productId;
-    this.productName = this.productsData[productId].name; // Обновляем имя для отображения
-    this.dropdownOpen = false; // Закрываем список
-    this.setupCalculator(); // Перенастраиваем калькулятор для нового продукта
+    this.productName = this.productsData[productId].name;
+    this.dropdownOpen = false;
+    this.setupCalculator();
   }
 
   toggleDropdown(): void {
@@ -136,7 +119,7 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
       this.stepTerm = conditions.stepTerm;
       const midTerm = Math.round((this.minTerm + this.maxTerm) / 2);
       this.termLabels = [`${this.minTerm} мес.`, `${midTerm} мес.`, `${this.maxTerm} мес.`];
-      // Устанавливаем начальные значения, если они выходят за рамки
+
       if (this.depositAmount < this.minAmount || this.depositAmount > this.maxAmount) {
         this.depositAmount = this.minAmount;
       }
@@ -149,16 +132,10 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
   }
 
   recalculate(): void {
-    // 1. Берем текущее значение и ПРЕВРАЩАЕМ В СТРОКУ для очистки
     const valueAsString = String(this.depositAmount);
-
-    // 2. Очищаем от всего, кроме цифр
     const cleanedString = valueAsString.replace(/\D/g, '');
-
-    // 3. Превращаем обратно в число
     let numericAmount = parseInt(cleanedString, 10);
 
-    // 4. Валидируем
     if (isNaN(numericAmount)) {
       numericAmount = this.minAmount;
     }
@@ -169,20 +146,15 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
       numericAmount = this.minAmount;
     }
 
-    // 5. === КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ ===
-    // Присваиваем в this.depositAmount именно ЧИСЛО.
-    // Слайдер теперь всегда будет получать number и не будет "ломаться".
     this.depositAmount = numericAmount;
 
-    // 6. Расчет
     this.calculationResult = this.depositService.calculateDeposit({
       productId: this.selectedProductId,
-      amount: this.depositAmount, // Передаем чистое число
+      amount: this.depositAmount,
       termMonths: this.depositTerm,
       currency: this.selectedCurrency,
     });
 
-    // 7. Обновление визуальных частей
     this.updateVisuals();
   }
 
@@ -193,7 +165,7 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
   stopEditing(): void {
     this.isEditingAmount = false;
 
-    this.depositAmount = Number(this.depositAmount); // 👈 форсируем число
+    this.depositAmount = Number(this.depositAmount);
 
     this.recalculate();
   }

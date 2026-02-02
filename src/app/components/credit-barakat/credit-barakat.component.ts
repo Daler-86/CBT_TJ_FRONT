@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FavriComponent } from '../favri/favri.component';
 import { CreditService } from '../../api/credit.service';
-import { creditData, creditDataSubmit, creditDocument, creditTariff } from '../../models/credit.model';
+import { creditData, creditDocument, creditTariff } from '../../models/credit.model';
 import { officeList } from '../../models/region.model';
 import { RegionService } from '../../api/region.service';
 import { ActivatedRoute } from '@angular/router';

@@ -22,7 +22,7 @@
       background-color: white;
       color: #141a20;
       font-size: 18px;
-      font-weight: 400;
+      font-weight: 300;
 
       &.active {
         background-color: #00b06c;
@@ -77,13 +77,13 @@
           text-align: left;
           font-size: $font-size-body-large;
           color: #666f8d;
-          font-weight: 500;
+          font-weight: 400;
           border-bottom: 1px solid #cbd5e1;
         }
         td {
           font-size: $font-size-body-large;
           color: $color-text;
-          font-weight: 600;
+          font-weight: 500;
         }
 
         th,
@@ -122,7 +122,7 @@
         align-items: center;
         p {
           color: #666f8d;
-          font-weight: 500;
+          font-weight: 300;
           font-size: 17px;
           line-height: 120%;
           letter-spacing: 0%;
@@ -165,7 +165,7 @@
           border: none;
           border-radius: 100px;
           font-size: 16px;
-          font-weight: 500;
+          font-weight: 400;
           cursor: pointer;
           transition:
             background-color 0.2s ease,
@@ -192,7 +192,7 @@
           display: block;
           color: #64748b;
           font-size: 14px;
-          font-weight: 500;
+          font-weight: 400;
           margin-bottom: 8px;
           padding-left: 4px;
         }
@@ -201,7 +201,7 @@
           display: flex;
           align-items: center;
           border: 1.5px solid #e2e8f0;
-          border-radius: 24px;
+          border-radius: 8px;
           padding: 0 20px;
           height: 64px;
           background-color: white;
@@ -276,7 +276,7 @@
 
           .selected-value {
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 400;
             color: #0f172a;
             margin-right: 8px;
           }
