@@ -45,10 +45,7 @@
       </table>
 
       <div class="more">
-        <p>
-          {{ 'CURRENCY_CONVERTER.RATES_TABLE.UPDATED_LABEL' | translate }}
-          {{ lastUpdated | date: 'dd.MM.yyyy HH:mm:ss' }}
-        </p>
+      
         @if (exchangeRatesByMode[selectedMode] && exchangeRatesByMode[selectedMode].length > 3) {
           <button (click)="toggleShowMore()">
             {{ (showMore ? 'BUTTONS.COLLAPSE' : 'BUTTONS.SHOW_MORE') | translate }}
