@@ -1,4 +1,4 @@
-// Размеры шрифтов
+
 $font-size-h1: 56px;
 $line-height-h1: 110px;
 
@@ -26,13 +26,70 @@ $line-height-body-small: 20px;
 $font-size-body-xsmall: 12px;
 $line-height-body-xsmall: 20px;
 
-$breakpoint-lg: 1024px; // Для планшетов в альбомной ориентации и небольших десктопов
-$breakpoint-md: 768px; // Для планшетов в портретной ориентации
+$breakpoint-lg: 1024px; 
+$breakpoint-md: 768px; 
 $breakpoint-sm: 576px;
 
 // Цвета
-$color-text: #222222; // Основной цвет текста, предположительно черный
-$color-gradient-start: #00ff00; // Начальный цвет градиента, предположительно зеленый
-$color-gradient-end: #006400; // Конечный цвет градиента, предположительно темно-зеленый
-$color-primary: #00b06c; // Основной цвет, предположительно синий
+$color-text: #222222; 
+$color-gradient-start: #00ff00; 
+$color-gradient-end: #006400; 
+$color-primary: #00B06C;
 $color-grey: #666f8d;
+$color-dark-grey:#475569;
+
+
+
+$tablet: 1024px;
+$mobile: 768px;
+
+@mixin typography($desktop-size) {
+  font-size: #{$desktop-size}px;
+
+  @media (max-width: $tablet) {
+    @if $desktop-size >= 40 { font-size: 32px; }
+    @else if $desktop-size >= 30 { font-size: 28px; }
+    @else if $desktop-size >= 24 { font-size: 22px; } 
+    @else if $desktop-size >= 20 { font-size: 18px; }
+    @else if $desktop-size >= 18 { font-size: 16px; }
+    @else { font-size: 14px; }
+  }
+
+  @media (max-width: $mobile) {
+    @if $desktop-size >= 40 { font-size: 28px; }
+    @else if $desktop-size >= 30 { font-size: 24px; }
+    @else if $desktop-size >= 24 { font-size: 20px; }
+    @else if $desktop-size  > 20 { font-size: 18px; }
+    @else if $desktop-size == 20 { font-size: 16px; }
+    @else if $desktop-size >= 16 { font-size: 14px; }
+    @else { font-size: 12px; }
+  }
+}
+
+@mixin section-gap($property: 'margin-bottom') {
+  #{$property}: 40px;
+  @media (max-width: $tablet) { #{$property}: 30px; }
+  @media (max-width: $mobile) { #{$property}: 20px; }
+}
+
+
+@mixin main-container {
+  padding: 48px 5%; 
+  @media (max-width: $mobile) {
+    padding: 28px 22px;
+  }
+}
+
+
+@mixin primary-button {
+  padding: 19px 50px;
+  border-radius: 6px;
+  @include typography(18);
+  font-weight: 400;
+  transition: all 0.2s ease;
+  
+  @media (max-width: $mobile) {
+    padding: 14px 24px;
+    width: 100%; 
+  }
+}

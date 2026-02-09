@@ -3,12 +3,11 @@ import { VacanciesComponent } from './components/vacancies/vacancies.component';
 import { HomeComponent } from './components/home/home.component';
 import { CardsComponent } from './components/cards/cards.component';
 
-import { CreditComponent } from './components/credit/credit.component';
+
 
 import { VacancyListComponent } from './components/vacancy-list/vacancy-list.component';
 import { VacancyDetailComponent } from './components/vacancy-detail/vacancy-detail.component';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
-import { CreditBarakatComponent } from './components/credit-barakat/credit-barakat.component';
 import { CreditOverviewComponent } from './components/credit-overview/credit-overview.component';
 import { MapComponent } from './components/map/map.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
@@ -45,6 +44,8 @@ import { TenderWrapperComponent } from './components/tender/tender-wrapper/tende
 import { tenderNameResolver } from './services/resolvers/tender-name.resolver';
 import { RkoWrapperComponent } from './components/rko/rko-wrapper/rko-wrapper.component';
 import { rkoNameResolver } from './services/resolvers/rko-name.resolver';
+import { CreditDetailComponent } from './components/credit-detail/credit-detail.component';
+import { CreditComponent } from './components/credit-overview/credit/credit.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full', data: { titleKey: 'titles.default' } },
@@ -83,7 +84,7 @@ export const routes: Routes = [
       },
       {
         path: ':id',
-        component: CreditBarakatComponent,
+        component: CreditDetailComponent,
         data: { isDynamic: true },
         resolve: { breadcrumb: creditNameResolver },
       },

@@ -1,6 +1,5 @@
 @if (depositData) {
-  <div class="cards">
-    <!-- Блок 1: Промо -->
+  <div class="cards"> 
     <div class="card-container">
       <div class="card-info">
         <h2 class="card-title">{{ depositData.title }}</h2>
@@ -14,14 +13,13 @@
       </div>
     </div>
 
-    <!-- Блок 2: Калькулятор вклада -->
+    
     <div class="deposit-calculator">
       @if (depositData.id) {
         <app-deposit-calculator [productId]="depositData.id"></app-deposit-calculator>
       }
     </div>
 
-    <!-- Блок 3: Тарифы и условия -->
     @if (depositData.currency) {
       <div class="container">
         <h1>{{ 'COMMON.TARIFFS_AND_CONDITIONS' | translate }}</h1>
@@ -64,7 +62,6 @@
       </div>
     }
 
-    <!-- Блок 4: Форма заявки -->
     <div class="application-form-container" #applicationForm id="application-form">
       <div class="form">
         <div class="text">

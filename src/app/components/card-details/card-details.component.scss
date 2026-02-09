@@ -1,5 +1,10 @@
+@import '../../../styles/variables.scss';
+
 .milli-card {
-  margin: none;
-  padding: 48px 5%;
+  @include main-container;
+  
   background-color: #f6f7f8;
+  display: flex;
+  flex-direction: column;
+
 }

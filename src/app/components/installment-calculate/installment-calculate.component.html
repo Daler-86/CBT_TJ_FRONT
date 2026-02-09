@@ -18,7 +18,7 @@
               id="loanAmountInput"
               min="0"
               [(ngModel)]="loanAmount"
-              (input)="recalculate($event)"
+              (input)="recalculate()"
               (blur)="stopEditing()"
               (focus)="handleFocus($event)"
               (keydown.enter)="stopEditing()"

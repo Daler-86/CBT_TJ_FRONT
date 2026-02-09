@@ -100,9 +100,15 @@
 
   <div class="result-wrapper">
     @if (calculationResult) {
-      <div class="result-card">
+       
+      <div class="result-card">     
         <h2>{{ 'CALCULATORS.COMMON.YOUR_OFFER' | translate }}</h2>
-
+<div class="result-item">
+          <p>{{'CALCULATORS.COMMON.TYPE' | translate}}</p>
+          <h3>
+            {{'CALCULATORS.COMMON.DESCRIPTION'| translate}}
+          </h3>
+        </div>
         <div class="result-item">
           <p>{{ 'CALCULATORS.COMMON.INTEREST_RATE' | translate }}</p>
           <h3>{{ calculationResult.interestRate | percent: '1.2-2' }}</h3>
@@ -119,16 +125,7 @@
           </h3>
         </div>
 
-        <div class="result-item">
-          <p>{{ 'CALCULATORS.LOAN.OVERPAYMENT' | translate }}</p>
-          <h3>
-            @if (selectedCurrency === 'tjs') {
-              {{ calculationResult.totalOverpayment | number: '1.2-2' : 'ru-RU' }} ТJS
-            } @else {
-              {{ calculationResult.totalOverpayment | currency: 'USD' : 'symbol' : '1.2-2' : 'ru-RU' }}
-            }
-          </h3>
-        </div>
+  
 
         @if (showApplyButton) {
           <button class="apply-button" [scrollTo]="'application-form'">

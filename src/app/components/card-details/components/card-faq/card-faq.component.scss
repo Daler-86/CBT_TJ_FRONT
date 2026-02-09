@@ -1,11 +1,16 @@
+@import '../../../../../styles/variables.scss';
+
 .faq-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
+
   .faq-title {
-    font-size: 32px;
+    @include typography(42); 
     font-weight: 700;
-    margin: 40px 0 20px;
+    color: $color-text;
+    @include section-gap('margin-top');
+    margin-bottom: 20px;
   }
 
   .faq-item {
@@ -13,6 +18,10 @@
     box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     padding: 20px 30px;
     background-color: #fff;
+
+    @media (max-width: $mobile) {
+      padding: 20px 22px; 
+    }
   }
 
   .faq-question {
@@ -20,35 +29,28 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    font-size: 18px;
+    @include typography(18);
     font-weight: 500;
     gap: 20px;
+    color: $color-text;
+
     .faq-icon {
-      font-size: 24px;
-      font-weight: 500;
+      @include typography(42); 
+      font-weight: 200;
+      color: $color-text; 
     }
 
     .title {
       font-weight: 400;
-      font-size: 18px;
+      @include typography(18);
     }
   }
 
   .faq-answer {
-    margin-top: 25px;
-    font-size: 16px;
-    color: #555;
-  }
+    margin-top: 10px;
+    @include typography(16);
+    color: $color-grey;
+    line-height: 1.4;
 
-  @media (max-width: 768px) {
-    .faq-title {
-      font-size: 24px;
-    }
-    .faq-question {
-      font-size: 16px;
-    }
-    .faq-answer {
-      font-size: 14px;
-    }
   }
 }

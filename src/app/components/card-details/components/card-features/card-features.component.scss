@@ -1,11 +1,15 @@
+@import '../../../../../styles/variables.scss';
+
 .type2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding: 40px 0;
+  
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
+
   .feature-card {
     background-color: #fff;
     border-radius: 10px;
@@ -13,27 +17,35 @@
     gap: 20px;
     box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     padding: 40px 10px 15px 40px;
-    @media (max-width: 768px) {
-      flex-wrap: wrap;
-    }
+
+ 
+
     .feature-icon {
       align-self: end;
     }
+   @media (max-width: 768px) {
+      gap: 0px;
+      padding: 28px 22px; 
+      .feature-icon{
+        width: 100px;
+      }
+    }
     div {
       h3 {
-        font-size: 22px;
-        color: #141a20;
-        font-weight: 800;
+        @include typography(22); 
+        color: $color-text;
+        font-weight: 700;
         margin-bottom: 20px;
       }
 
       p {
-        font-size: 17px;
-        color: #475569;
+        @include typography(17);
+        color: $color-dark-grey;
       }
     }
   }
 }
+
 .type1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -41,12 +53,14 @@
   margin: 40px 0;
   flex-wrap: wrap;
   gap: 20px;
+
   @media (max-width: 1024px) {
     grid-template-columns: 1fr 1fr;
   }
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+
   .feature-card {
     background-color: #fff;
     border-radius: 15px;
@@ -54,52 +68,44 @@
     text-align: center;
     box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     width: 100%;
-
     display: flex;
     flex-direction: column-reverse;
-    justify-content: space-between;
+    justify-content: left;
     box-sizing: border-box;
     flex: 1;
 
     .feature-icon {
       align-self: center;
-      align-items: baseline;
       width: 200px;
       height: auto;
-      margin-bottom: 15px;
+      margin-bottom: 24px;
     }
 
     .feature-title {
-      font-size: 22px;
+      @include typography(22); 
       font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
       color: #141a20;
     }
 
     .feature-description {
-      font-size: 17px;
+      @include typography(17);
       color: #475569;
       line-height: 1.5;
     }
 
     @media (max-width: 768px) {
-      padding: 28px 30px;
+      padding: 28px 22px; 
       flex-direction: row;
       gap: 10px;
       align-items: baseline;
       text-align: left;
-      grid-template-columns: 1fr;
-      justify-content: space-between;
+
       .feature-title {
-        font-size: 18px;
-        align-content: flex-start;
         margin-bottom: 15px;
       }
-      .feature-description {
-        font-size: 14px;
-      }
       .feature-icon {
-        width: 120px;
+        width: 100px;
       }
     }
   }
