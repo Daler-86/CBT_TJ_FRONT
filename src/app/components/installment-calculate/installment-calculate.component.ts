@@ -48,49 +48,49 @@ export class InstallmentCalculateComponent implements OnInit {
     target.select();
   }
 
-  recalculate(event?: Event): void {
-    if (event && event.target) {
-      const target = event.target as HTMLInputElement;
-      let rawValue = target.value;
-
-      if (rawValue === '' || rawValue === null) {
-        this.loanAmount = 0;
-        target.value = '0';
-      } else {
-        const numValue = Math.abs(Number(rawValue));
-        this.loanAmount = numValue;
-        target.value = numValue.toString();
-      }
-    } else {
-      this.loanAmount = Math.abs(Number(this.loanAmount || 0));
-    }
-
-    this.isAmountInvalid = this.loanAmount < this.minAmount || this.loanAmount > this.maxAmount;
-
-    this.calculationResult = this.installmentService.calculate({
-      amount: this.loanAmount,
+  recalculate(): void {
+     const amount = Number(this.loanAmount) || 0;
+    this.isAmountInvalid = amount < this.minAmount || amount > this.maxAmount;
+ this.calculationResult = this.installmentService.calculate({
+      amount: amount,
       term: this.loanTerm,
     });
 
-    this.updateVisuals();
+      this.updateVisuals();
   }
 
+
   updateVisuals(): void {
-    const calcPct = (v: number, min: number, max: number) => {
-      if (max <= min) return '0%';
-      const p = ((v - min) / (max - min)) * 100;
-      return `${Math.max(0, Math.min(100, p))}%`;
-    };
-    this.loanAmountPercent = calcPct(this.loanAmount, this.minAmount, this.maxAmount);
+    if (this.maxAmount <= this.minAmount) {
+      this.loanAmountPercent = '0%';
+      return;
+    }
+    const p = ((this.loanAmount - this.minAmount) / (this.maxAmount - this.minAmount)) * 100;
+    const safeP = Math.max(0, Math.min(100, p)); 
+    this.loanAmountPercent = `${safeP}%`;
   }
 
   startEditing(): void {
     this.isEditingAmount = true;
-    setTimeout(() => this.amountInput?.nativeElement.focus(), 0);
+    setTimeout(() => {
+      this.amountInput?.nativeElement.focus();
+      this.amountInput?.nativeElement.select();
+    }, 0);
   }
 
   stopEditing(): void {
     this.isEditingAmount = false;
+    if (this.loanAmount < this.minAmount) {
+      this.loanAmount = this.minAmount;
+    } 
+
+    else if (this.loanAmount > this.maxAmount) {
+      this.loanAmount = this.maxAmount;
+    }
+    this.recalculate();
+  }
+   setTerm(term: number): void {
+    this.loanTerm = term;
     this.recalculate();
   }
 }

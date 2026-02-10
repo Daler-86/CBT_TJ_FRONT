@@ -549,6 +549,8 @@
       "APPLY_BUTTON": "Submit application",
       "DISCLAIMER": "All calculations are preliminary and may differ from the actual ones.",
       "ATTENTION": "Attention",
+      "TYPE":"Type of loan",
+      "DESCRIPTION":"Annuity",
       "CURRENCY_SYMBOL": {
         "TJS": "TJS",
         "USD": "$"
