@@ -84,7 +84,6 @@
               [maxLength]="15"
               [enablePhonePrefix]="true"
             />
-            <!-- Ошибка теперь будет позиционироваться абсолютно, чтобы не двигать верстку -->
             @if (phone.invalid && phone.touched) {
               <div class="error-message">
                 {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
@@ -127,7 +126,6 @@
       </div>
     </div>
 
-    <!-- Блок 5: FAQ -->
     @if (depositData.faqs) {
       <div class="faq-container">
         <h2 class="faq-title">{{ 'COMMON.FAQ_TITLE' | translate }}</h2>

@@ -8,7 +8,6 @@
         <div class="input-display" [style.color]="isAmountInvalid ? '#9e9e9e' : 'inherit'">
           @if (!isEditingAmount) {
             <div (click)="startEditing()" (keydown.enter)="startEditing()" tabindex="0" role="button">
-              <!-- Показываем копейки как в кредитах -->
               {{ loanAmount | number: '1.2-2' : 'ru-RU' }} {{ 'CALCULATORS.COMMON.CURRENCY_SYMBOL.TJS' | translate }}
             </div>
           } @else {
@@ -64,7 +63,7 @@
       <div>
         <div class="result-item">
           <p>{{ 'CALCULATORS.COMMON.MONTHLY_PAYMENT' | translate }}</p>
-          <!-- Добавили 2 знака (копейки) -->
+
           <h3>{{ calculationResult.monthlyPayment | number: '1.2-2' : 'ru-RU' }} TJS</h3>
         </div>
 
@@ -75,7 +74,7 @@
 
         <div class="result-item">
           <p>{{ 'CALCULATORS.INSTALLMENT.TOTAL_PAYMENT' | translate }}</p>
-          <!-- Добавили 2 знака (копейки) -->
+
           <h3>{{ calculationResult.totalPayment | number: '1.2-2' : 'ru-RU' }} TJS</h3>
         </div>
       </div>
@@ -84,9 +83,9 @@
         {{ 'CALCULATORS.NO_DATA' | translate }}
       </div>
     }
-
+<!-- 
     <button class="apply-button">
       {{ 'CALCULATORS.INSTALLMENT.APPLY_BUTTON' | translate }}
-    </button>
+    </button> -->
   </div>
 </div>
