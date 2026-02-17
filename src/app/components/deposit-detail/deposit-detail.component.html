@@ -1,5 +1,5 @@
 @if (depositData) {
-  <div class="cards">
+  <div class="cards"> 
     <div class="card-container">
       <div class="card-info">
         <h2 class="card-title">{{ depositData.title }}</h2>
@@ -13,6 +13,7 @@
       </div>
     </div>
 
+    
     <div class="deposit-calculator">
       @if (depositData.id) {
         <app-deposit-calculator [productId]="depositData.id"></app-deposit-calculator>

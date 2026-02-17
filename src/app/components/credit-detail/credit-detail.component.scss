@@ -1,0 +1,296 @@
+@import '../../../styles/variables.scss';
+
+.barakat {
+  @include main-container;
+  background-color: #f6f7f8;
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    @include section-gap('margin-bottom');
+  }
+
+  h1 {
+    @include typography(42);
+    font-weight: 700;
+    margin-bottom: 30px; 
+    color: $color-text;
+  }
+
+  .card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
+    position: relative;
+    overflow: hidden;
+
+    @media (max-width: $tablet) {
+      flex-direction: row; 
+    }
+
+    @media (max-width: 850px) {
+      flex-direction: column;
+      padding-bottom: 0;
+    }
+
+    .card-info {
+      padding: 80px 0 80px 80px;
+      flex: 1.2;
+
+      .card-title {
+        @include typography(36); 
+        font-weight: 700;
+        margin-bottom: 24px;
+        color: $color-text;
+      }
+
+      .card-description {
+        @include typography(18);
+        color: $color-grey;
+        margin-bottom: 40px;
+      }
+
+      .btn-primary {
+        @include primary-button;
+        background-color: $color-primary;
+        color: white;
+        border: none;
+        
+        @media (min-width: 851px) {
+          width: 280px; 
+        }
+      }
+
+      @media (max-width: $tablet) {
+        padding: 40px 0 40px 40px;
+      }
+
+      @media (max-width: 850px) {
+        padding: 28px 22px;
+        text-align: center;
+      }
+    }
+
+    .card-image {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      flex: 1;
+      padding: 24px 60px 0 0;
+
+      @media (max-width: 850px) {
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: -5px; 
+
+        @media (max-width: 1024px) {
+          max-width: 320px;
+        }
+        @media (max-width: 768px) {
+          max-width: 260px;
+        }
+      }
+    }
+  }
+
+  .container {
+    .info-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .info-box-limits {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
+      padding: 0 30px;
+      min-height: 90px;
+      display: grid;
+      gap: 30px;
+      grid-template-columns: 3fr 1fr 1fr 1fr;
+      align-items: center;
+      .info-title-1 {
+        @include typography(18);
+        color: $color-dark-grey;
+        font-weight: 400;   
+      }
+
+      .info-title {
+        @include typography(18);
+        color: $color-text; 
+        font-weight: 700;   
+        text-align: left;
+        
+        .info-detail {
+          @include typography(12);
+          color: $color-dark-grey; 
+          font-weight: 400;
+          line-height: 1.2;
+          display: block; 
+          margin-top: 2px;
+        }
+      }
+
+      @media (max-width: $tablet) {
+        display: grid !important; 
+        grid-template-columns: repeat(3, 1fr); 
+        height: auto !important;
+        padding: 25px 30px;
+        gap: 15px 20px;
+
+        .info-title-1 {
+          grid-column: 1 / -1; 
+          width: 100%;
+          border-bottom: 1px solid #f1f5f9; 
+          padding-bottom: 8px;
+          margin-bottom: 5px;
+        }
+
+        .info-title {
+          text-align: left;
+      
+        }
+    }
+    @media (max-width: $mobile) {
+      display: flex !important;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+      gap: 12px;
+
+      .info-title-1 {
+        grid-column: auto;
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+      
+      .info-title {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 8px;
+      }
+    }
+  }
+}
+
+  .container-2 {
+    .box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+
+      @media (max-width: $tablet) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (max-width: $mobile) {
+        grid-template-columns: 1fr;
+      }
+
+      .box-details {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0px 4px 20px 0px #afafaf2e;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        img {
+          width: 64px; 
+          height: auto;
+        }
+
+        p {
+          @include typography(18);
+          color: $color-text;
+          margin-top: 40px;
+          font-weight: 500;
+        }
+
+        @media (max-width: $mobile) {
+          padding: 28px 22px;
+          flex-direction: row;
+          align-items: center;
+          gap: 20px;
+          p { margin-top: 0; }
+        }
+      }
+    }
+  }
+
+  .application-form-container {
+    background-color: white;
+    border-radius: 24px;
+    padding: 60px 20%;
+    text-align: center;
+
+    @media (max-width: $tablet) {
+      padding: 40px 10%;
+    }
+    @media (max-width: $mobile) {
+      padding: 28px 22px;
+    }
+
+    .form {
+      .form-group {
+        margin-bottom: 20px;
+        .form-control {
+          width: 100%;
+          padding: 18px 25px;
+          border-radius: 8px;
+          border: 1px solid #cbd5e1;
+          @include typography(16);
+          background-color: #f6f7f8;
+          
+          &:focus {
+            outline: none;
+            border-color: $color-primary;
+            box-shadow: 0 0 0 1px $color-primary;
+          }
+        }
+        .error {
+          color: red;
+          @include typography(12);
+          text-align: left;
+          margin-top: 5px;
+        }
+      }
+
+      .custom-dropdown {
+        margin-bottom: 20px;
+        .dropdown-selected {
+          .form-control { cursor: pointer; text-align: left; }
+        }
+      }
+
+      .btn-primary {
+        @include primary-button;
+        background-color: $color-primary;
+        color: white;
+        border: none;
+        width: 100%;
+        margin-top: 10px;
+
+        &:disabled {
+          background-color: #cbd5e1;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}

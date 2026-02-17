@@ -4,7 +4,6 @@
 
   <div class="form">
     <form [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
-      <!-- Телефон -->
       <div class="form-group">
         <input
           type="tel"
@@ -30,7 +29,6 @@
         }
       </div>
 
-      <!-- Имя -->
       <div class="form-group">
         <input
           type="text"
@@ -46,8 +44,6 @@
           </div>
         }
       </div>
-
-      <!-- Офис -->
       <div class="form-group">
         <div class="custom-dropdown" #customDropdown>
           <div
@@ -88,7 +84,6 @@
         }
       </div>
 
-      <!-- Кнопка -->
       <div class="form-group">
         <button type="submit" disabled class="btn-primary" [disabled]="applicationForm.invalid">
           {{ 'BUTTONS.APPLY_FOR_CARD' | translate }}

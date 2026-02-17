@@ -1,1 +1,89 @@
 @import '../../../styles/calculate.scss';
+.currency-select-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 15px;
+    user-select: none;
+    background: #f8f9fa; // Можно убрать, если фон не нужен
+    border-radius: 12px;
+  
+    .selected-value {
+      font-size: 16px;
+      font-weight: 500;
+      color: #0f172a;
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+  
+    .chevron-down {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.2s;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+  
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+  
+    .custom-dropdown {
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0; // Изменил с right на left для типа кредита
+      width: 220px; // Немного шире для длинных названий
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 8px;
+      z-index: 100;
+      animation: fadeIn 0.2s ease-out;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+  
+      .dropdown-item {
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #334155;
+        border-radius: 12px;
+        transition: all 0.2s;
+  
+        &:hover {
+          background-color: #f1f5f9;
+          color: #00b06c;
+        }
+  
+        &.active {
+          background-color: #f1f5f9;
+          color: #00b06c;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Чтобы селектор и табы были в одну линию
+  .controls-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }

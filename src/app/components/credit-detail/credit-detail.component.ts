@@ -40,11 +40,11 @@ import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directi
     ReactiveFormsModule,
     OnlyDigitsDirective,
   ],
-  templateUrl: './credit-barakat.component.html',
-  styleUrl: './credit-barakat.component.scss',
+  templateUrl: './credit-detail.component.html',
+  styleUrl: './credit-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreditBarakatComponent implements OnInit, OnDestroy {
+export class CreditDetailComponent implements OnInit, OnDestroy {
   imageUrl: string = environment.IMAGE_URL;
   selectedTab = 'credit';
   tariffs: creditTariff[] = [];

@@ -89,7 +89,7 @@ export class InstallmentCalculateComponent implements OnInit {
     }
     this.recalculate();
   }
-   setTerm(term: number): void {
+  setTerm(term: number): void {
     this.loanTerm = term;
     this.recalculate();
   }

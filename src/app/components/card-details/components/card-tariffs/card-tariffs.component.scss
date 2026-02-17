@@ -1,19 +1,18 @@
+@import '../../../../../styles/variables.scss';
+
 .container {
   h1 {
-    font-size: 42px;
+    @include typography(42); 
     font-weight: 800;
-    margin-bottom: 25px;
-    @media (max-width: 768px) {
-      font-size: 28px;
-    }
+    @include section-gap('margin-bottom');
   }
 
   .btnCards {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     overflow-x: auto;
     flex-wrap: nowrap;
-    margin-bottom: 40px;
+    @include section-gap('margin-bottom');
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -24,23 +23,23 @@
     button {
       flex-shrink: 0;
       white-space: nowrap;
-      padding: 14px 32px;
+      padding: 14px 28px;
       border-radius: 53px;
       border: none;
       cursor: pointer;
       background-color: white;
-      color: #141a20;
-      font-size: 18px;
+      color: $color-text;
+      @include typography(18);
       font-weight: 300;
 
+
       &.active {
-        background-color: #00b06c;
+        background-color: $color-primary;
         color: white;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: $mobile) {
         padding: 10px 20px;
-        font-size: 16px;
       }
     }
   }
@@ -49,14 +48,14 @@
     background-color: #fff;
     border-radius: 16px;
     box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.12);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding: 0 30px;
     height: 90px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
 
-    @media (max-width: 768px) {
+    @media (max-width: $mobile) {
       height: auto !important;
       padding: 20px;
       flex-direction: column;
@@ -73,34 +72,32 @@
     height: 90px;
 
     .info-title-1 {
-      font-size: 18px;
-      color: #475569;
+      @include typography(18);
+      color: $color-grey;
       font-weight: 400;
+
     }
 
     .info-title {
-      font-size: 18px;
+      @include typography(18); 
       font-weight: 700;
-      color: #141a20;
+      color: $color-text;
       text-align: left;
 
       .info-detail {
-        font-size: 14px;
+        @include typography(14); 
         font-weight: 400;
-        color: #475569;
+        color: $color-grey;
         margin-top: 4px;
       }
     }
-    @media (max-width: 768px) {
+    @media (max-width: $mobile) {
       display: flex !important;
       flex-direction: column;
       height: auto !important;
       padding: 20px;
       align-items: flex-start;
       gap: 8px;
-      .info-title-1 {
-        font-size: 14px;
-      }
     }
   }
 
@@ -111,7 +108,7 @@
     padding: 0 30px;
     height: 90px;
 
-    @media (max-width: 768px) {
+    @media (max-width: $mobile) {
       display: flex !important;
       flex-direction: column;
       height: auto !important;
@@ -121,34 +118,30 @@
     }
 
     .info-title-1 {
-      font-size: 18px;
-      color: #475569;
+      @include typography(18);
+      color: $color-grey;
       font-weight: 500;
-    }
-    @media (max-width: 768px) {
-      font-size: 16px;
     }
 
     .info-title {
-      font-size: 18px;
+      @include typography(18); 
       font-weight: 700;
-      color: #141a20;
+      color: $color-text;
       text-align: left;
 
       .info-detail {
-        font-size: 14px;
+        @include typography(14); 
         font-weight: 400;
-        color: #475569;
+        color: $color-grey;
         margin-top: 4px;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: $mobile) {
         width: 100%;
         display: flex;
         justify-content: space-between;
         border-top: 1px solid #f1f5f9;
         padding-top: 8px;
-        font-size: 16px;
       }
     }
   }
