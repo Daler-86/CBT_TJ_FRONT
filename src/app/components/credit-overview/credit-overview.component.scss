@@ -157,10 +157,10 @@
       padding: 0px 68px 0px 0px;
 
       @media (max-width: $tablet) {
-        width: 40%; // Чуть увеличим картинку
+        width: 40%; 
         padding: 0 40px 0 0;
 
-        align-self: flex-end; // ВАЖНО: картинка "встанет" на пол
+        align-self: flex-end; 
         display: flex;
         justify-content: flex-end;
       }
@@ -174,9 +174,9 @@
 
       img {
         width: 100%;
-        max-width: 448px; // Ограничим, чтобы не стала огромной
+        max-width: 448px; 
         display: block;
-        margin-bottom: -5px; // Маленький хак, чтобы убрать микро-щель снизу
+        margin-bottom: -5px; 
       }
     }
   }

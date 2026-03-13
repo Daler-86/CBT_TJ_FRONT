@@ -62,7 +62,7 @@ export class RegionService {
           .set('terminals', terminals)
           .set('working_now', workingNow);
 
-        const url = `${this.baseUrl}/office/search`; // Замените на свой конечный URL
+        const url = `${this.baseUrl}/office/search`; 
 
         return this.http.get<FilteredData>(url, { headers, params });
       }),
@@ -91,7 +91,7 @@ export class RegionService {
           .set('limit', limit)
           .set('offset', offset);
 
-        const url = `${this.baseUrl}/office/by-region`; // Замените на свой конечный URL
+        const url = `${this.baseUrl}/office/by-region`; 
 
         return this.http.get<FilteredByRegion>(url, { headers, params });
       }),

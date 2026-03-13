@@ -1,22 +1,17 @@
-// 1. Импортируем общую библиотеку стилей
+
 @import '../../../styles/calculate';
 
-// 2. Уникальные стили для этого компонента
 
-// ... (остальные стили, например, @import)
-
-// Стили для кастомного выпадающего списка
 .form-group {
   .custom-dropdown {
     position: relative;
     width: 100%;
 
     .dropdown-selected {
-      border-radius: 8px; // Используем более современный радиус
+      border-radius: 8px; 
       font-size: 16px;
       position: relative;
       cursor: pointer;
-      // Стрелочка вниз (можно использовать иконку)
       &::after {
         content: '▼';
         position: absolute;
@@ -30,7 +25,7 @@
 
     .dropdown-options {
       position: absolute;
-      top: 100%; // Появляется сразу под полем
+      top: 100%;
       left: 0;
       right: 0;
       width: 100%;
@@ -39,7 +34,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 12px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-      z-index: 1000; // Поверх всего
+      z-index: 1000;
       margin-top: 5px;
 
       .dropdown-option {
@@ -58,7 +53,6 @@
     }
   }
 
-  // Общие стили для "поля ввода" в твоем дизайне
   .form-control {
     width: 100%;
     padding: 12px 16px;
@@ -69,12 +63,11 @@
     background-color: #f6f7f8;
   }
 }
-// Стиль для фиксированного заголовка на странице продукта
+
 .product-title-fixed {
   margin-bottom: 20px !important;
 }
 
-// Сообщение об ошибке в правой колонке
 .error-message {
   font-size: 18px;
   color: #dc3545;

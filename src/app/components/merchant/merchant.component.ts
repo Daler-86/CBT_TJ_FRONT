@@ -2,9 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MerchantService } from '../../api/merchant.service';
-import { RegionService } from '../../api/region.service'; // Используем существующий сервис
+import { RegionService } from '../../api/region.service'; 
 import { Merchant, MerchantCategory } from '../../models/merchant.model';
-import { regionList } from '../../models/region.model'; // Используем существующую модель
+import { regionList } from '../../models/region.model'; 
 import { environment } from '../../../environments/environment';
 import { TranslateModule } from '@ngx-translate/core';
 import { SimpleApplicationFormComponent } from '../simple-application-form/simple-application-form.component';
@@ -22,13 +22,11 @@ export class MerchantComponent implements OnInit {
   categories: MerchantCategory[] = [];
   regions: regionList[] = [];
 
-  // Состояние фильтров. `null` означает "не применять фильтр".
   filterName = '';
   filterRegionId: number | null = null;
   filterCategoryId: number | null = null;
-  filterHasCashback = false; // По умолчанию кэшбек выключен
+  filterHasCashback = false; 
 
-  // Пагинация
   totalItems = 0;
   itemsPerPage = 12;
   currentPage = 1;
@@ -39,10 +37,9 @@ export class MerchantComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadFilters();
-    this.loadMerchants(); // Загружаем начальный список без фильтров
+    this.loadMerchants(); 
   }
 
-  // Загрузка данных для выпадающих списков
   loadFilters(): void {
     this.merchantService.getCategories().subscribe((res) => {
       this.categories = res.data.merchant_categories;
@@ -52,9 +49,6 @@ export class MerchantComponent implements OnInit {
       this.regions = res.data.regions;
     });
   }
-
-  // Основная функция загрузки списка мерчантов
-  // В файле merchant-list.component.ts
 
   loadMerchants(): void {
     this.merchantService
@@ -67,30 +61,24 @@ export class MerchantComponent implements OnInit {
         this.filterName,
       )
       .subscribe({
-        // Блок для успешного ответа
         next: (res) => {
-          // console.log('Успешно получил данные:', res); // <-- 2. Проверяем, что пришел ответ
-
           this.merchants = res.data.merchants;
 
           this.totalItems = res.data.total_count;
           this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
           this.updatePages();
         },
-        // Блок для обработки ошибок
         error: (err) => {
           console.error('Произошла ошибка в запросе getMerchants!', err); // <-- 3. ЛОВИМ ОШИБКУ ЗДЕСЬ
         },
       });
   }
 
-  // Вызывается при изменении любого фильтра
   onFilterChange(): void {
-    this.currentPage = 1; // Сбрасываем на первую страницу
+    this.currentPage = 1; 
     this.loadMerchants();
   }
 
-  // --- ЛОГИКА ПАГИНАЦИИ (без изменений) ---
   updatePages(): void {
     this.pages = [];
     if (this.totalPages <= 7) {

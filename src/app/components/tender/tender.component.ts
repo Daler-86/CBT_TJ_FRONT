@@ -18,12 +18,11 @@ export class TenderComponent implements OnInit, OnChanges {
 
   tenders: tender[] = [];
   ngOnInit(): void {
-    // Здесь позже будет логика получения данных с бэкенда
     this.loadData();
   }
 
-  @Input() totalPages = 0; // Общее количество страниц
-  @Input() currentPage = 1; // Текущая страница
+  @Input() totalPages = 0; 
+  @Input() currentPage = 1; 
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   pages: number[] = [];
   tenderCount = 0;
@@ -46,33 +45,30 @@ export class TenderComponent implements OnInit, OnChanges {
 
   updatePages() {
     this.pages = [];
-    const visiblePages = 3; // Количество видимых страниц до/после текущей
+    const visiblePages = 3; 
     const rangeStart = Math.max(1, this.currentPage - 1);
     const rangeEnd = Math.min(this.totalPages, this.currentPage + visiblePages - 1);
 
-    // Добавляем страницы перед ...
     if (rangeStart > 2) {
       this.pages.push(1);
       if (rangeStart > 3) {
-        this.pages.push(-1); // Индикатор для ...
+        this.pages.push(-1); 
       }
     }
 
-    // Добавляем текущие видимые страницы
     for (let i = rangeStart; i <= rangeEnd; i++) {
       this.pages.push(i);
     }
 
-    // Добавляем страницы после ...
     if (rangeEnd < this.totalPages - 1) {
       if (rangeEnd < this.totalPages - 2) {
-        this.pages.push(-1); // Индикатор для ...
+        this.pages.push(-1); 
       }
       this.pages.push(this.totalPages);
     }
   }
   selectPage(page: number) {
-    if (page === -1) return; // Игнорируем "..."
+    if (page === -1) return;
     this.currentPage = page;
     this.updatePages();
     this.pageChange.emit(this.currentPage);
@@ -80,17 +76,16 @@ export class TenderComponent implements OnInit, OnChanges {
     this.loadData();
   }
   scrollToTop(): void {
-    const listElement = document.querySelector('.list-container'); // Замените '.list-container' на ваш селектор списка
+    const listElement = document.querySelector('.list-container'); 
     if (listElement) {
       listElement.scrollTo({
         top: 0,
-        behavior: 'smooth', // Плавная прокрутка
+        behavior: 'smooth',
       });
     } else {
-      // Если контейнер не найден, прокручиваем всю страницу
       window.scrollTo({
         top: 1,
-        behavior: 'smooth', // Плавная прокрутка
+        behavior: 'smooth', 
       });
     }
   }

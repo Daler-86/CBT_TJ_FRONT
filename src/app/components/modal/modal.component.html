@@ -1,15 +1,11 @@
-<!-- Подписываемся на уведомление через async пайп -->
+
 @if (notification$ | async; as notification) {
-  <!-- 
-      Привязываем состояние анимации: 'visible', если уведомление есть, и 'hidden', если его нет.
-      Привязываем класс [ngClass], чтобы менять цвет в зависимости от статуса.
-    -->
+
   <div
     class="notification-bar"
     [@notificationState]="notification ? 'visible' : 'hidden'"
     [ngClass]="{ success: notification.status === 'success', error: notification.status === 'error' }"
   >
-    <!-- Иконка и текст сообщения -->
     <span class="icon">{{ notification.status === 'success' ? '✓' : '!' }}</span>
     <span class="message">{{ notification.message }}</span>
   </div>

@@ -55,7 +55,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 20px; 
-        width: 100%; // Чтобы сетка не сжималась
+        width: 100%; 
 
         .detail {
           p {

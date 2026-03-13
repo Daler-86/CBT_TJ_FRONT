@@ -42,10 +42,8 @@ export class CardsService {
       }),
       map((response) => {
         if (response.data.cards && Array.isArray(response.data.cards)) {
-          // Сортируем сначала карты по sortId
           response.data.cards = this.sortBySortId(response.data.cards);
 
-          // Сортируем контент каждой карты по sortId
           response.data.cards.forEach((card) => {
             if (Array.isArray(card.content)) {
               card.content = this.sortBySortId(card.content);
@@ -69,10 +67,8 @@ export class CardsService {
       }),
       map((response) => {
         if (response.data.cards && Array.isArray(response.data.cards)) {
-          // Сортируем сначала карты по sortId
           response.data.cards = this.sortBySortId(response.data.cards);
 
-          // Сортируем контент каждой карты по sortId
           response.data.cards.forEach((card) => {
             if (Array.isArray(card.content)) {
               card.content = this.sortBySortId(card.content);
@@ -93,7 +89,7 @@ export class CardsService {
         });
         return this.http.get<CardDetail>(`${this.baseUrl}/card/${cardId}`, { headers });
       }),
-      map((response) => response), // Теперь здесь нет изменения данных, просто возвращаем полученный ответ
+      map((response) => response), 
     );
   }
 
@@ -102,7 +98,7 @@ export class CardsService {
       switchMap((lang) => {
         const headers = new HttpHeaders({
           accept: 'application/json',
-          Language: lang, // Установка динамического заголовка
+          Language: lang, 
         });
         return this.http.get<CardBrandsResponse>(this.baseUrl + '/card/brands', { headers });
       }),
@@ -220,7 +216,7 @@ export class CardsService {
       switchMap((lang) => {
         const headers = new HttpHeaders({
           Accept: 'application/json',
-          Language: lang, // Динамическая установка языкового заголовка
+          Language: lang, 
         });
 
         return this.http.post<fileResponse>(this.baseUrl + '/card/order/save', cardData, { headers });

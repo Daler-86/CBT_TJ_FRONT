@@ -37,15 +37,12 @@ export class CarLoanCalculateComponent implements OnInit {
   maxRate = 0;
   readonly availableTerms = [12, 18, 24, 30, 36];
 
-  // Визуальные свойства
   carCostPercent = '0%';
   downPaymentPercent = '0%';
   financingAmount = 0;
 
-  // Результаты
   calculationResult: AutoLoanResult | null = null;
 
-  // Флаги для редактирования
   isEditingCarCost = false;
   isEditingDownPayment = false;
   costLabels: string[] = [];
@@ -95,13 +92,11 @@ export class CarLoanCalculateComponent implements OnInit {
     this.minRate = conditions.minRate;
     this.maxRate = conditions.maxRate;
 
-    // Устанавливаем начальные значения
     this.carCost = this.minCarCost;
     this.loanTerm = this.availableTerms[2] || this.minTerm;
     this.interestRate = this.minRate;
     this.costLabels = [this.formatShortNumber(this.minCarCost), this.formatShortNumber(this.maxCarCost)];
-    // this.termLabels = [`${this.minTerm} мес.`, `${this.maxTerm} мес.`];
-    this.recalculate();
+   this.recalculate();
   }
   recalculate(): void {
     this.carCost = Math.max(this.minCarCost, Math.min(this.carCost, this.maxCarCost));

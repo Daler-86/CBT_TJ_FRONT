@@ -36,7 +36,7 @@ export class CardsComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.menuService.currentPersonTypeId.subscribe((id) => {
       this.personTypeId = id;
-      this.loadAllCards(); // Загрузка всех карт по умолчанию
+      this.loadAllCards(); 
     });
 
     this.loadCardBrands();
@@ -76,7 +76,6 @@ export class CardsComponent implements OnInit {
     this.cardsService.getCardListAll(this.personTypeId).subscribe(
       (response) => {
         this.cardList = response.data.cards;
-        // console.log('All cards loaded:', this.cardList);
       },
       (error) => {
         console.error('Ошибка при загрузке всех карт', error);
@@ -96,7 +95,6 @@ export class CardsComponent implements OnInit {
     this.cardsService.getCardContentItem(cardId).subscribe(
       (details) => {
         this.contentItem = details.data.card_content_items;
-        // console.log(details);
       },
       (error) => {
         console.error('Ошибка при получении деталей карты', error);

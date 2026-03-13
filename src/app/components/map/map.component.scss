@@ -1,9 +1,6 @@
-/* src/app/components/map/map.component.scss */
 
-// Подключаем переменные, если они у вас есть
 @import '../../../styles/variables.scss';
 
-// --- Стили для всей страницы ---
 .adress {
   background-color: #f6f7f8;
   padding: 20px 5%;
@@ -40,7 +37,6 @@
     }
   }
 
-  // Стили для фильтров
   .application-form-container {
     text-align: center;
     margin: 26px 0;
@@ -92,8 +88,8 @@
 
         .dropdown-section {
           padding: 15px 35px;
-          max-height: 200px; // 👈 ограничение высоты
-          overflow-y: auto; // 👈 вертикальный скролл
+          max-height: 200px; 
+          overflow-y: auto; 
         }
 
         .dropdown-section::-webkit-scrollbar {
@@ -154,16 +150,14 @@
   }
 }
 
-// === ИСПРАВЛЕННЫЕ СТИЛИ ДЛЯ МАКЕТА КАРТЫ И ПАНЕЛИ ===
 
-// 1. Общий контейнер для карты и панели
 .map-layout-container {
   position: relative;
   display: flex;
-  height: 70vh; // Задайте высоту для всего блока карты
+  height: 70vh; 
   width: 100%;
   border-radius: 20px;
-  overflow: hidden; // Очень важно для скругления углов и скрытия панели
+  overflow: hidden; 
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   margin-top: 30px;
   background-color: #f6f7f8;
@@ -172,41 +166,34 @@
   }
 }
 
-// 2. Стили боковой панели
 .info-sidebar {
-  width: 380px; // Фиксированная ширина панели
-  max-width: 90%; // На маленьких экранах не будет занимать всё место
-  flex-shrink: 0; // Запрещаем панели сжиматься
+  width: 380px; 
+  max-width: 90%; 
+  flex-shrink: 0; 
   background-color: #fff;
   padding: 24px;
   box-sizing: border-box;
   overflow-y: auto;
 
-  position: absolute; // Позиционируем абсолютно внутри .map-layout-container
+  position: absolute; 
   left: 0;
   top: 0;
   bottom: 0;
-  z-index: 1000; // Панель всегда должна быть поверх карты
-
-  // По умолчанию панель скрыта за левым краем
+  z-index: 1000; 
   transform: translateX(-100%);
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-  // Когда панель видима
   &.is-visible {
     transform: translateX(0);
     border-right: 1px solid #e0e0e0;
   }
 }
 
-// 3. Стили области для рендеринга карты
 .map-render-area {
-  flex-grow: 1; // Карта занимает все оставшееся пространство
+  flex-grow: 1; 
   height: 100%;
   width: 100%;
 }
 
-// 4. Стили для содержимого боковой панели
 .info-sidebar__close-btn {
   position: absolute;
   top: 15px;
@@ -233,7 +220,6 @@
 
 .info-sidebar__header {
   display: flex;
-  // justify-content: space-between;
   align-items: normal;
   margin: 10px 0;
   gap: 4px;
@@ -254,7 +240,7 @@
   padding: 5px 10px;
   border-radius: 5px;
   margin-bottom: 20px;
-  display: inline-block; // Чтобы фон был только под текстом
+  display: inline-block; 
 
   &.status--open {
     background-color: #e8f5e9;
@@ -298,7 +284,6 @@
   }
 }
 
-// --- Стили для FAQ (без изменений) ---
 .faq-container {
   padding: 20px 0;
 

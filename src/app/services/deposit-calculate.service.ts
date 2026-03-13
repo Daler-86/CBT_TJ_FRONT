@@ -230,16 +230,12 @@ export class DepositCalculateService {
       }
     }
 
-    // 1. Сначала считаем точный доход
     const preciseIncome = params.amount * annualRate * (params.termMonths / 12);
 
-    // 2. Округляем доход до ближайшего целого числа
     const roundedIncome = Math.round(preciseIncome);
 
-    // 3. Считаем итоговую сумму, используя уже округленный доход
     const totalAmount = params.amount + roundedIncome;
 
-    // 4. Возвращаем красивые округленные значения
     return {
       productName,
       rate: annualRate,

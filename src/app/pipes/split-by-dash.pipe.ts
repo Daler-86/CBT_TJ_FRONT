@@ -1,4 +1,4 @@
-// src/app/pipes/split-by-dash.pipe.ts
+
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -8,13 +8,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SplitByDashPipe implements PipeTransform {
   transform(value: string | null | undefined): string[] {
     if (!value) {
-      return []; // Если на входе пусто, возвращаем пустой массив
+      return []; 
     }
 
-    // "Разрезаем" строку по дефису на массив
     const parts = value.split('-');
-
-    // Убираем пустые элементы и возвращаем готовый массив
     return parts.filter((part) => part.trim() !== '');
   }
 }

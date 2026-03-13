@@ -30,7 +30,6 @@ export class BankDetailsService {
       }),
       map((response) => {
         if (response.data.bank_details && Array.isArray(response.data.bank_details)) {
-          // Сортируем сначала карты по sortId
           response.data.bank_details = this.sortBySortId(response.data.bank_details);
         }
         return response;
@@ -49,7 +48,6 @@ export class BankDetailsService {
       }),
       map((response) => {
         if (response.data.bank_detail_currencies && Array.isArray(response.data.bank_detail_currencies)) {
-          // Сортируем сначала карты по sortId
           response.data.bank_detail_currencies = this.sortBySortId(response.data.bank_detail_currencies);
         }
         return response;

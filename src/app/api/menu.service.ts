@@ -36,7 +36,6 @@ export class MenuService {
         return this.http.get<MenusResponse>(`${this.baseUrl}/menu/list`, { headers });
       }),
       map((response) => {
-        // Сортируем `menus` и вложенные элементы `items` и `favorites` по `sort_id`
         if (response.data.menus && Array.isArray(response.data.menus)) {
           response.data.menus = this.sortBySortId(response.data.menus).map((menu) => {
             if (Array.isArray(menu.items)) {

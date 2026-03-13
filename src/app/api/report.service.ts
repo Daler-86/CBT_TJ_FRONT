@@ -13,9 +13,6 @@ export class ReportService {
   private baseUrl = environment.BASE_URL;
   private http = inject(HttpClient);
   private languageService = inject(LanguagesService);
-  // private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
-  //   return items.sort((a, b) => a.sort_id - b.sort_id);
-  // }
 
   getReportFile(limit: number, currentPage: number): Observable<ReportFile> {
     return this.languageService.language$.pipe(
@@ -38,7 +35,6 @@ export class ReportService {
           Language: lang,
         });
 
-        // Передаем headers и params в запрос
         return this.http.get<ReportData>(this.baseUrl + '/report/data-by-year/' + year, { headers });
       }),
     );

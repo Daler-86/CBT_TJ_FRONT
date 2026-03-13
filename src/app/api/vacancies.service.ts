@@ -134,7 +134,7 @@ export class VacanciesService {
       switchMap((lang) => {
         const headers = new HttpHeaders({
           accept: 'application/json',
-          Language: lang, // Установка динамического заголовка
+          Language: lang, 
         });
         return this.http.get<VacancyContent>(this.baseUrl + '/vacancy/content', { headers });
       }),
@@ -146,7 +146,7 @@ export class VacanciesService {
       switchMap((lang) => {
         const headers = new HttpHeaders({
           accept: 'application/json',
-          Language: lang, // Установка динамического заголовка
+          Language: lang, 
         });
         return this.http.get<VacancyStatistic>(this.baseUrl + '/vacancy/statistic', { headers });
       }),
@@ -158,7 +158,7 @@ export class VacanciesService {
       switchMap((lang) => {
         const headers = new HttpHeaders({
           accept: 'application/json',
-          Language: lang, // Установка динамического заголовка
+          Language: lang, 
         });
         return this.http.get<VacancyGallery>(this.baseUrl + '/vacancy/gallery', { headers });
       }),
@@ -212,7 +212,7 @@ export class VacanciesService {
       switchMap((lang) => {
         const headers = new HttpHeaders({
           accept: 'application/json',
-          Language: lang, // Установка динамического заголовка
+          Language: lang, 
         });
         const params = new HttpParams().set('limit', limit).set('offset', currentPage).set('region_id', cardId);
         return this.http.get<VacancyList>(`${this.baseUrl + '/vacancy/by-category-id'}`, { headers, params });
@@ -225,7 +225,7 @@ export class VacanciesService {
       switchMap((lang) => {
         const headers = new HttpHeaders({
           accept: 'application/json',
-          Language: lang, // Установка динамического заголовка
+          Language: lang, 
         });
         const params = new HttpParams().set('limit', limit).set('offset', currentPage).set('region_id', cardId);
         return this.http.get<VacancyList>(`${this.baseUrl + '/vacancy/by-region-id'}`, { headers, params });

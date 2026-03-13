@@ -1,19 +1,15 @@
-// src/app/components/map/map.component.ts
 
 import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
-// --- Модели и Сервисы ---
 import { RegionService } from '../../api/region.service';
 
 import { Atm, Office, Terminal, regionList, TerminalItem } from '../../models/region.model';
-
-// --- Компоненты и Интерфейсы ---
 import { OfficeListComponent } from '../office-list/office-list.component';
-import { YandexMapComponent, IMapPoint } from '../yandex-map/yandex-map.component';
-import { Services } from '../../services/vacancy.service';
+import { YandexMapComponent } from '../yandex-map/yandex-map.component';
+import { IMapPoint, Services } from '../../models/map.model';
+
 
 @Component({
   selector: 'app-map',
@@ -23,7 +19,6 @@ import { Services } from '../../services/vacancy.service';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit, OnDestroy {
-  // --- Свойства для UI ---
   selectedTab = 'NaKarte';
   dropdownOpen = false;
   dropdownOpen2 = false;
@@ -32,10 +27,8 @@ export class MapComponent implements OnInit, OnDestroy {
   faqs: { title: string; description: string }[] = [];
   selectedFaqIndex: number | null = null;
   public selectedPoint: IMapPoint | null = null;
-  // --- Свойства для карты ---
   mapPoints: IMapPoint[] = [];
 
-  // --- Свойства для фильтров ---
   allSelected = true;
   terminalsSelected = false;
   officesSelected = false;
@@ -43,7 +36,6 @@ export class MapComponent implements OnInit, OnDestroy {
   is24Selected = false;
   workingNowSelected = false;
   regionSelected = 0;
-  // nfcSelected и qrCodeSelected пока не используются в getFilteredData, но оставим их
   nfcSelected = false;
   qrCodeSelected = false;
   private filterService = inject(RegionService);
@@ -63,13 +55,9 @@ export class MapComponent implements OnInit, OnDestroy {
     document.removeEventListener('click', this.closeDropdownsManual.bind(this));
   }
 
-  // --- Методы для загрузки данных ---
   public onPointSelect(point: IMapPoint): void {
     this.selectedPoint = point;
 
-    // Здесь мы могли бы центрировать карту, но YandexMapComponent уже делает это
-    // при клике на кластер, а для одиночной метки это не так критично.
-    // Если нужно, можно будет добавить.
   }
   public closeSidebar(): void {
     this.selectedPoint = null;
@@ -88,8 +76,6 @@ export class MapComponent implements OnInit, OnDestroy {
       error: (err) => console.error('Ошибка при загрузке FAQ', err),
     });
   }
-
-  // --- ГЛАВНЫЙ МЕТОД: Фильтрация и подготовка данных для карты ---
 
   sendFilteredData(): void {
     this.filterService
@@ -120,10 +106,8 @@ export class MapComponent implements OnInit, OnDestroy {
       });
   }
 
-  // --- УНИВЕРСАЛЬНЫЙ ПАРСЕР ДАННЫХ ---
 
   private parseData(items: (Office | Atm | Terminal)[], type: 'office' | 'atm' | 'terminal'): IMapPoint[] {
-    // const landmarkLabel = this.translateService.instant('mapPage.infoWindow.landmarkLabel'); // Предполагаем, что есть такой ключ перевода
     const iconPaths = {
       office: '../../../assets/icons/offices.svg',
       atm: '../../../assets/icons/atms.svg',
@@ -136,14 +120,12 @@ export class MapComponent implements OnInit, OnDestroy {
         if (!coords) return null;
 
         const isWorking = item.is_24_time === true;
-        // const services = item.is_24_time;
         const workHoursText = isWorking ? 'Круглосуточно' : 'Пн-Пт: 08:00-17:00, Сб: 08:00-12:00'; // Задаем реальный график
         const statusClass = isWorking ? 'status--open' : 'status--closed'; // Здесь нужна логика проверки текущего времени
         const entityItems: TerminalItem[] = [];
         const entityServices: Services[] = [];
         return {
           id: item.id,
-          // --- ГЛАВНОЕ ИСПРАВЛЕНИЕ ---
           geometry: { type: 'Point', coordinates: coords },
           properties: {
             type: type,
@@ -152,9 +134,8 @@ export class MapComponent implements OnInit, OnDestroy {
             workHours: workHoursText,
             statusClass: statusClass,
             iconSrc: iconPaths[type],
-            // Добавим поле для боковой панели
             items: entityItems,
-            services: entityServices, // Предполагаем, что с бэка приходят услуги
+            services: entityServices, 
           },
         };
       })
@@ -171,7 +152,6 @@ export class MapComponent implements OnInit, OnDestroy {
     return [lat, lng];
   }
 
-  // --- Методы для UI (остаются без изменений) ---
 
   toggleFaq(index: number): void {
     this.selectedFaqIndex = this.selectedFaqIndex === index ? null : index;
@@ -210,7 +190,6 @@ export class MapComponent implements OnInit, OnDestroy {
           return;
       }
 
-      // Логика для чекбокса "Все"
       if (variableName === 'allSelected' && inputElement.checked) {
         this.officesSelected = false;
         this.atmsSelected = false;

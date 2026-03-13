@@ -41,13 +41,11 @@ export class CurrencyConverterComponent implements OnInit {
       { key: 'CB_RATE', label: 'CURRENCY_CONVERTER.RATE_MODES.CB_RATE' },
     ];
 
-    // 2. Устанавливаем selectedMode, если ещё пустой
     if (!this.selectedMode && this.modes.length > 0) {
       this.selectedMode = this.modes[0].key;
       this.updateCurrencies();
     }
 
-    // 3. Загружаем курсы валют
     this.fetchExchangeRates();
   }
 

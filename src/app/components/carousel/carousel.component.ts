@@ -50,7 +50,5 @@ export class CarouselComponent implements OnInit {
 
   onLearnMore(route: string): void {
     this.router.navigate([route], { queryParams: { scrollToForm: true } });
-
-    // console.log('Подробнее нажато');
   }
 }

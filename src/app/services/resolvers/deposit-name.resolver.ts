@@ -1,4 +1,4 @@
-// src/app/services/resolvers/deposit-name.resolver.ts
+
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -9,12 +9,10 @@ export const depositNameResolver: ResolveFn<string> = (route) => {
   const id = route.paramMap.get('id');
 
   if (!id) {
-    return 'Вклад'; // Запасное название
+    return 'Вклад';
   }
 
-  // !!! ЗАМЕНИТЕ НА ВАШ МЕТОД ПОЛУЧЕНИЯ ДАННЫХ !!!
   return depositsService.getDepositData(+id).pipe(
-    // !!! ЗАМЕНИТЕ НА ПРАВИЛЬНЫЙ ПУТЬ К НАЗВАНИЮ В ОТВЕТЕ API !!!
     map((response) => response.data.title || 'Вклад'),
   );
 };

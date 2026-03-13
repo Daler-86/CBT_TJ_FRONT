@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-vacancy-list',
   standalone: true,
-  imports: [NgForOf, RouterLink, FormsModule, TranslateModule],
+  imports: [ RouterLink, FormsModule, TranslateModule],
   templateUrl: './vacancy-list.component.html',
   styleUrls: ['./vacancy-list.component.scss'],
 })
@@ -106,7 +106,7 @@ export class VacancyListComponent implements OnInit, OnChanges {
     this.loadAllVacancies();
   }
   scrollToTop(): void {
-    const listElement = document.querySelector('.list-container'); // Замените '.list-container' на ваш селектор списка
+    const listElement = document.querySelector('.list-container');
     if (listElement) {
       listElement.scrollTo({
         top: 0,

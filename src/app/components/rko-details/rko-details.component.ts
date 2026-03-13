@@ -31,10 +31,10 @@ export class RkoDetailsComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
-      this.cardId = +idParam; // Преобразование строки в число
+      this.cardId = +idParam; 
     } else {
       console.error('ID is missing in the route parameters.');
-      // Здесь может быть код для обработки ситуации отсутствия ID
+     
     }
 
     this.loadRkoDetail(this.cardId);
@@ -47,7 +47,6 @@ export class RkoDetailsComponent implements OnInit {
       (response) => {
         this.scsData = response.data;
         if (this.scsData && this.scsData.title) {
-          // ...передаем уже готовое, переведенное название в сервис заголовков.
           this.pageTitleService.setCustomTitle(this.scsData.title);
         }
       },
