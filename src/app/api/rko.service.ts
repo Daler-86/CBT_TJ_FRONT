@@ -29,7 +29,6 @@ export class RkoService {
       }),
       map((response) => {
         if (response.data.scss && Array.isArray(response.data.scss)) {
-          // Сортируем сначала карты по sortId
           response.data.scss = this.sortBySortId(response.data.scss).map((rko) => {
             if (Array.isArray(rko.scs_item)) {
               rko.scs_item = this.sortBySortId(rko.scs_item);
@@ -55,15 +54,13 @@ export class RkoService {
         if (response.data) {
           const depositData = response.data;
 
-          // Сортируем currency, если это массив
           if (Array.isArray(depositData.advantages)) {
             depositData.advantages = this.sortBySortId(depositData.advantages);
           }
-          // Сортируем currency, если это массив
+
           if (Array.isArray(depositData.conditions)) {
             depositData.conditions = this.sortBySortId(depositData.conditions);
 
-            // Для каждого элемента currency сортируем tariffs
             depositData.conditions.forEach((currencyItem) => {
               if (Array.isArray(currencyItem.items)) {
                 currencyItem.items = this.sortBySortId(currencyItem.items);

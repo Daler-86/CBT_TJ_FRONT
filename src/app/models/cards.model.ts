@@ -1,4 +1,3 @@
-// models/cards.model.ts
 
 export interface CardContent {
   id: number;

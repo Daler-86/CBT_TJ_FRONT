@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { cardContentItem, cardDetail } from '../../../../models/cards.model';
+import { cardDetail } from '../../../../models/cards.model';
 import { CardsService } from '../../../../api/cards.service';
 import { PageTitleService } from '../../../../services/page-title.service';
 import { ActivatedRoute } from '@angular/router';
@@ -29,7 +29,6 @@ export class CardPromoComponent implements OnInit {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam) {
       this.cardId = +idParam;
-      // Загружаем все данные для страницы
       this.loadCards(this.cardId);
     }
   }

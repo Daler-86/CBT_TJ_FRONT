@@ -1,5 +1,4 @@
-// Переменные
-// Переменные
+
 
 .info-page-container {
   background-color: #f6f7f8;
@@ -83,7 +82,7 @@
 
       img {
         padding: 20px 0 0;
-        max-width: 100%; // Ensures image scales down
+        max-width: 100%; 
         height: auto;
       }
     }
@@ -177,10 +176,8 @@
       }
     }
   }
-  // Сетка для карточек
   .contact-grid {
     display: grid;
-    // По дизайну у вас 3-4 колонки, сделаем их адаптивными
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     margin-bottom: 40px;
@@ -229,7 +226,7 @@
     .item-icon {
       width: 24px;
       height: 24px;
-      margin-top: 4px; // Для лучшего выравнивания
+      margin-top: 4px; 
     }
 
     .item-title {
@@ -245,13 +242,12 @@
     }
   }
 
-  // Обертка для карты
   .map-wrapper {
     width: 100%;
-    height: 450px; /* Задайте нужную вам высоту */
+    height: 450px; 
     margin-top: 40px;
     border-radius: 16px;
-    overflow: hidden; // Важно, чтобы скругленные углы работали
+    overflow: hidden; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 }
@@ -260,16 +256,6 @@
   .info-page-container {
     padding: 3% 5%;
 
-    // .section-1 {
-    //   flex-wrap: wrap;
-    //   .box1 {
-    //     width: 100%;
-    //     padding: 40px 30px;
-    //   }
-    //   .box2 {
-    //     padding: 1px 30px;
-    //   }
-    // }
 
     .section-4 {
       h2 {
@@ -277,18 +263,16 @@
         text-align: center;
       }
       .box {
-        flex-wrap: wrap; // Разрешаем элементам переноситься на новую строку
+        flex-wrap: wrap; 
 
         .detail {
-          // Делаем сетку 2x2 на планшетах
-          width: calc(50% - 10px); // 50% ширины минус половина gap
+          width: calc(50% - 10px); 
           margin-bottom: 20px;
         }
       }
     }
 
     .contact-grid {
-      // Grid уже адаптивен, но можно уменьшить минимальную ширину карточки
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
   }
@@ -319,7 +303,7 @@
         width: 100%;
       }
       .box2 {
-        padding: 25px; // Уменьшаем паддинг
+        padding: 25px; 
         gap: 20px;
         p {
           font-size: 16px;
@@ -328,12 +312,11 @@
     }
 
     .section-3 {
-      flex-direction: column; // Складываем две колонки со списками в столбец
+      flex-direction: column; 
 
       div {
-        // Обращаемся к .left и .right
         width: 100%;
-        padding: 25px; // Уменьшаем паддинг
+        padding: 25px; 
         h2 {
           font-size: 20px;
         }
@@ -349,16 +332,15 @@
         margin: 30px 0;
       }
       .box {
-        flex-direction: column; // Складываем 4 блока в столбец
+        flex-direction: column; 
 
         .detail {
-          width: 100%; // Каждый блок теперь на всю ширину
+          width: 100%; 
         }
       }
     }
 
     .contact-grid {
-      // Grid сам перестроится в одну колонку, т.к. minmax(300px) не поместится
       gap: 15px;
 
       .contact-card {

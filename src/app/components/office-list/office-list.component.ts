@@ -11,8 +11,7 @@ export interface regionList1 {
   name_ru: string;
   name_en: string;
   name_tj: string;
-  // Можно оставить и общее `name`, если оно где-то используется, сделав его опциональным
-  name?: string;
+ name?: string;
 }
 @Component({
   selector: 'app-office-list',
@@ -22,27 +21,21 @@ export interface regionList1 {
   styleUrl: './office-list.component.scss',
 })
 export class OfficeListComponent implements OnInit, OnDestroy {
-  // --- Входы/Выходы для пагинации ---
   @Input() totalPages = 0;
   @Input() currentPage = 1;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  // --- Состояние фильтров ---
   public selectedObjectType: 'offices' | 'terminals' | 'atms' = 'offices';
-  public regionSelected = 0; // 0 - для "Все регионы"
+  public regionSelected = 0; 
 
-  // --- Состояние UI ---
   public dropdownOpen = false;
   public dropdownOpen2 = false;
 
-  // --- Данные ---
   public regionList: regionList[] = [];
   public combinedData: Atm[] | Terminal[] | Office[] = [];
 
-  // --- Свойства для отображения ---
   public selectedObjectTypeName = '';
 
-  // --- Служебные свойства ---
   private langChangeSubscription!: Subscription;
   private filterService = inject(RegionService);
   public translateService = inject(TranslateService);
@@ -52,17 +45,14 @@ export class OfficeListComponent implements OnInit, OnDestroy {
       return this.translateService.instant('MAP_PAGE.FILTERS.ALL_REGIONS');
     }
     const region = this.regionList.find((r) => r.id === this.regionSelected);
-    // Проверяем, есть ли регион, чтобы избежать ошибок
     return region ? region.name : this.translateService.instant('MAP_PAGE.FILTERS.ALL_REGIONS');
   }
-
-  // --- ЖИЗНЕННЫЙ ЦИКЛ КОМПОНЕНТА ---
 
   ngOnInit(): void {
     document.addEventListener('click', this.closeDropdownsManual.bind(this));
 
     this.langChangeSubscription = this.translateService.onLangChange.subscribe(() => {
-      this.loadRegionList(); // Перезагружаем регионы при смене языка
+      this.loadRegionList(); 
       this.updateSelectedObjectTypeName();
     });
 
@@ -77,9 +67,6 @@ export class OfficeListComponent implements OnInit, OnDestroy {
       this.langChangeSubscription.unsubscribe();
     }
   }
-
-  // --- МЕТОДЫ ЗАГРУЗКИ И ОБРАБОТКИ ДАННЫХ ---
-
   private loadRegionList(): void {
     this.filterService.getRegionList().subscribe({
       next: (response) => {
@@ -89,32 +76,6 @@ export class OfficeListComponent implements OnInit, OnDestroy {
     });
   }
 
-  // public sendFilteredData(isInitialLoad: boolean = false): void {
-  //   if (!isInitialLoad) {
-  //       this.currentPage = 1;
-  //   }
-
-  //   this.filterService.getFilteredByRegion(
-  //     this.selectedObjectType === 'atms',
-  //     this.selectedObjectType === 'offices',
-  //     this.selectedObjectType === 'terminals',
-  //     this.regionSelected,
-  //     3,
-  //     this.currentPage
-  //   ).subscribe({
-  //     next: (response) => {
-  //       this.combinedData = response.data.list_data;
-  //       this.totalPages = Math.ceil(response.data.total_count / 3);
-  //       this.updatePages();
-  //     },
-  //     error: (err) => {
-  //       console.error('Error fetching filtered data:', err);
-  //       this.combinedData = [];
-  //       this.totalPages = 0;
-  //       this.updatePages();
-  //     }
-  //   });
-  // }
   public sendFilteredData(): void {
     this.filterService
       .getFilteredByRegion(
@@ -134,29 +95,18 @@ export class OfficeListComponent implements OnInit, OnDestroy {
         error: (err) => console.error('Error fetching filtered data:', err),
       });
   }
-  // --- ОБРАБОТЧИКИ СОБЫТИЙ UI ---
 
-  // public onObjectTypeChange(type: 'offices' | 'terminals' | 'atms'): void {
-  //   this.selectedObjectType = type;
-  //   this.updateSelectedObjectTypeName();
-  //   this.sendFilteredData();
-  //   this.dropdownOpen = false;
-  // }
   public onObjectTypeChange(type: 'offices' | 'terminals' | 'atms'): void {
     this.selectedObjectType = type;
     this.updateSelectedObjectTypeName();
-    this.currentPage = 1; // Сброс на первую страницу
+    this.currentPage = 1; 
     this.sendFilteredData();
     this.dropdownOpen = false;
   }
-  // public onRegionChange(region: regionList | 0): void {
-  //   this.regionSelected = (region === 0) ? 0 : region.id;
-  //   this.sendFilteredData();
-  //   this.dropdownOpen2 = false;
-  // }
+
   public onRegionChange(region: regionList | 0): void {
     this.regionSelected = region === 0 ? 0 : region.id;
-    this.currentPage = 1; // Сброс на первую страницу
+    this.currentPage = 1; 
     this.sendFilteredData();
     this.dropdownOpen2 = false;
   }
@@ -170,7 +120,6 @@ export class OfficeListComponent implements OnInit, OnDestroy {
     this.selectedObjectTypeName = this.translateService.instant(keyMap[this.selectedObjectType]);
   }
 
-  // --- ПАГИНАЦИЯ (полный код) ---
   public pages: number[] = [];
 
   private updatePages(): void {
@@ -198,7 +147,7 @@ export class OfficeListComponent implements OnInit, OnDestroy {
     if (page === -1 || page === this.currentPage) return;
     this.currentPage = page;
     this.pageChange.emit(this.currentPage);
-    this.sendFilteredData(); // Запрашиваем данные для НОВОЙ страницы
+    this.sendFilteredData(); 
     this.scrollToTop();
   }
 
@@ -214,7 +163,6 @@ export class OfficeListComponent implements OnInit, OnDestroy {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // --- УПРАВЛЕНИЕ ВЫПАДАЮЩИМИ СПИСКАМИ (полный код) ---
   @HostListener('document:click', ['$event'])
   closeDropdownsManual(event: Event): void {
     const target = event.target as HTMLElement;

@@ -15,9 +15,9 @@ export interface ReportFile {
 export interface reportData {
   id: number;
   description: string;
-  report_year: number; // <-- ДОБАВИТЬ
-  report_years: number[]; // <-- ДОБАВИТЬ
-  quarter: number; // <-- ДОБАВИТЬ
+  report_year: number; 
+  report_years: number[]; 
+  quarter: number; 
   is_quarter_or_year: boolean;
   report_indicator: indecator[];
 }
@@ -26,7 +26,6 @@ interface indecator {
   name: string;
   sort_id: number;
   report_indicator_data: indecator_data[];
-  // report_indecator_data:indecator_data[]
 }
 interface indecator_data {
   id: number;

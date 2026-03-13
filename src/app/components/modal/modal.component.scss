@@ -2,7 +2,7 @@
   position: fixed;
   top: 20px;
   left: 50%;
-  transform: translateX(-50%); // Центрируем по горизонтали
+  transform: translateX(-50%); 
   padding: 15px 25px;
   border-radius: 8px;
   color: white;
@@ -12,15 +12,14 @@
   font-size: 16px;
   font-weight: 500;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 2000; // Поверх всего
-  will-change: transform, opacity; // Подсказка браузеру для плавной анимации
+  z-index: 2000;
+  will-change: transform, opacity; 
 
-  // Стили для разных статусов
   &.success {
-    background-color: #00b06c; // Зеленый
+    background-color: #00b06c; 
   }
   &.error {
-    background-color: #dc3545; // Красный
+    background-color: #dc3545; 
   }
 
   .icon {

@@ -1,12 +1,12 @@
-// Подключаем переменные
+
 @import '../../../styles/variables.scss';
 
-// Общий контейнер для секции
+
 * {
   box-sizing: border-box;
 }
 .cards {
-  padding: 3% 5%; // Используем проценты для гибкости
+  padding: 3% 5%;
   background-color: #f6f7f8;
 
   h1 {
@@ -15,14 +15,12 @@
     font-weight: 700;
     margin-bottom: 25px;
 
-    // Планшеты и меньше
     @media (max-width: 1024px) {
       font-size: 46px;
-      // padding лучше применять к родительскому элементу, а не к заголовку
     }
   }
 }
-// Переменные (можете использовать свои глобальные)
+
 $primary-color: #00b06c;
 $text-primary: #212529;
 $text-secondary: #555;
@@ -34,7 +32,7 @@ $background-light: #f6f7f8;
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 60vh; // Занимает большую часть экрана по высоте
+  min-height: 60vh;
   padding: 40px 20px;
   background-color: $background-light;
   border-radius: 24px;
@@ -82,8 +80,6 @@ $background-light: #f6f7f8;
     }
   }
 }
-
-// Адаптивность для мобильных
 @media (max-width: 768px) {
   .work-in-progress-container {
     min-height: 50vh;
@@ -98,7 +94,7 @@ $background-light: #f6f7f8;
     }
   }
 }
-// Контейнер для одной большой карточки
+
 .card-container {
   width: 100%;
   margin-top: 30px;
@@ -110,30 +106,24 @@ $background-light: #f6f7f8;
   justify-content: space-between;
   align-items: center;
 
-  // Планшеты и меньше: карточка становится вертикальной
   @media (max-width: 1024px) {
-    flex-direction: column; // Вместо display: block, чтобы сохранить flex-свойства
-    padding: 20px; // Добавим общий внутренний отступ для мобильных
+    flex-direction: column; 
+    padding: 20px; 
   }
 
-  // Секция с текстом
   .card-info {
-    // На больших экранах занимает ~60%
     flex-basis: 60%;
-    // padding: 40px 50px; // Уменьшим отступы для большей универсальности
 
-    // Планшеты в альбомной ориентации
     @media (max-width: 1024px) {
       padding: 30px 40px;
       flex-basis: 55%;
     }
 
-    // Планшеты и меньше
     @media (max-width: 1024px) {
-      width: 100%; // Занимает всю ширину родителя
-      padding: 15px; // Небольшой отступ
-      order: 2; // Текст будет идти после картинки
-      text-align: center; // Центрируем текст для мобильных
+      width: 100%; 
+      padding: 15px;
+      order: 2; 
+      text-align: center;
     }
 
     .card-title {
@@ -146,26 +136,24 @@ $background-light: #f6f7f8;
       font-size: 18px;
       color: #475569;
       font-weight: 500;
-      line-height: 1.5; // Лучше использовать относительные единицы
+      line-height: 1.5; 
       margin-bottom: 20px;
     }
 
-    // Контейнер с деталями (валюта, сервис)
     .card-details {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px; // gap лучше, чем margin на дочерних элементах
+      gap: 20px; 
       margin: 45px 0;
 
-      // Планшеты и меньше: детали становятся в один столбец
       @media (max-width: 1024px) {
-        grid-template-columns: 1fr; // Все в одну колонку
+        grid-template-columns: 1fr; 
         margin: 30px 0;
       }
 
       .currency-info,
       .service-info {
-        // width больше не нужен, grid сам управляет шириной
+
         .title {
           font-weight: 700;
           font-size: 24px;
@@ -179,33 +167,31 @@ $background-light: #f6f7f8;
       }
     }
 
-    // Кнопки
     .card-buttons {
       display: flex;
       gap: 15px;
       margin-top: 25px;
-      justify-content: flex-start; // Явно указываем выравнивание
+      justify-content: flex-start; 
 
-      // Планшеты и меньше
       @media (max-width: 1024px) {
-        flex-direction: column; // Кнопки в столбец
-        align-items: center; // Центрируем их
+        flex-direction: column; 
+        align-items: center; 
       }
 
       button {
-        padding: 16px 32px; // Сделаем одинаковые отступы
+        padding: 16px 32px;
         border-radius: 5px;
         cursor: pointer;
         font-size: 14px;
         font-weight: 600;
-        border: 2px solid transparent; // Добавим рамку для лучшего вида при hover/focus
+        border: 2px solid transparent; 
         transition:
           background-color 0.3s,
-          color 0.3s; // Плавный переход
+          color 0.3s; 
 
         @media (max-width: 1024px) {
-          width: 100%; // Кнопки на всю ширину
-          max-width: 300px; // Но не слишком широкие
+          width: 100%; 
+          max-width: 300px; 
         }
       }
 
@@ -223,10 +209,8 @@ $background-light: #f6f7f8;
     }
   }
 
-  // Секция с картинкой
   .card-image {
-    flex-basis: 40%; // На больших экранах занимает ~40%
-    // padding: 40px; // Внутренний отступ
+    flex-basis: 40%; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,18 +220,17 @@ $background-light: #f6f7f8;
       padding: 20px;
     }
 
-    // Планшеты и меньше
     @media (max-width: 768px) {
       width: 80%;
-      order: 1; // Картинка будет идти первой
-      padding: 0; // Убираем лишние отступы
+      order: 1;
+      padding: 0;
       margin-bottom: 20px;
     }
 
-    // Сама картинка
+  
     .transfers_img {
-      max-width: 100%; // Чтобы картинка не вылезала за пределы контейнера
-      height: auto; // Сохраняем пропорции
+      max-width: 100%; 
+      height: auto; 
       border-radius: 16px;
     }
   }

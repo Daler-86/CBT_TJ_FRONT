@@ -39,20 +39,16 @@
       }
     }
   }
-  // Переменные
 
   $card-bg: #ffffff;
   $card-border-radius: 24px;
   $card-padding: 40px 45px;
-  $card-gap: 20px; // Промежуток между карточками
-  $section-gap: 30px; // Промежуток между сеткой и документами
+  $card-gap: 20px;
+  $section-gap: 30px;
 
-  // $text-color: #333;
-  $label-color: #666f8d; // Серый для дат и подписей
-  $heading-color: #666f8d; // Темно-серый для заголовков карточек
-  $value-color: #020617; // Черный для значений
-
-  // Основной контейнер
+  $label-color: #666f8d; 
+  $heading-color: #666f8d;
+  $value-color: #020617;
 
   .btnCards {
     display: flex;
@@ -79,41 +75,37 @@
       }
     }
   }
-  // Сетка карточек показателей
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); // 3 колонки по умолчанию
+    grid-template-columns: repeat(3, 1fr);
     gap: $card-gap;
-    margin-bottom: $section-gap; // Отступ перед секцией документов
+    margin-bottom: $section-gap; 
     margin: 60px 0;
   }
 
-  // Стили отдельной карточки показателя
   .stat-card {
     background-color: white;
     background-color: $card-bg;
     border-radius: $card-border-radius;
     padding: $card-padding;
-    //   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); // Мягкая тень
 
     h3 {
       font-size: 24px;
       color: $heading-color;
       margin-top: 0;
-      margin-bottom: 1.5rem; // Отступ после заголовка
-      font-weight: 700; // Не слишком жирный
+      margin-bottom: 1.5rem; 
+      font-weight: 700; 
     }
 
     .data-point {
-      margin-bottom: 1rem; // Отступ между точками данных
+      margin-bottom: 1rem; 
 
       &:last-child {
-        margin-bottom: 0; // Убираем отступ у последнего элемента
+        margin-bottom: 0; 
       }
 
-      // Особый отступ для строки "Отклонение", если она есть
       &.deviation {
-        margin-top: 1.5rem; // Доп. отступ сверху перед отклонением
+        margin-top: 1.5rem; 
       }
 
       .data-label {
@@ -126,10 +118,10 @@
 
       .data-value {
         display: block;
-        font-size: 1.25rem; // Крупные значения
-        font-weight: 700; // Жирные значения
+        font-size: 1.25rem; 
+        font-weight: 700; 
         color: $value-color;
-        line-height: 32px; // Слегка уменьшим межстрочный интервал для крупных цифр
+        line-height: 32px; 
       }
     }
   }
@@ -138,27 +130,24 @@
     background-color: #bac0cc;
     padding: 0.1px 0;
   }
-  // Секция с документами
   .documents-section {
-    display: flex; // Используем flex для управления карточками
-    flex-direction: column; // Карточки друг под другом
-    gap: 15px; // Отступ между карточками документов
+    display: flex; 
+    flex-direction: column;
+    gap: 15px;
   }
 
-  // Карточка документа
   .document-card {
     background-color: $card-bg;
     border-radius: $card-border-radius;
-    padding: 32px 40px; // Чуть меньше паддинг, чем у стат.карточек
-    //   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    padding: 32px 40px; 
     display: flex;
     align-items: center;
-    gap: 12px; // Отступ между иконкой и текстом
+    gap: 12px; 
 
     .pdf-icon {
-      width: 24px; // Размер иконки PDF
+      width: 24px; 
       height: auto;
-      flex-shrink: 0; // Не сжимать иконку
+      flex-shrink: 0; 
     }
 
     .document-link {
@@ -175,36 +164,33 @@
     }
   }
 
-  // --- Адаптивность ---
-
-  // Планшеты
+ 
   @media (max-width: 991.98px) {
     .stats-grid {
-      grid-template-columns: repeat(2, 1fr); // 2 колонки на планшетах
+      grid-template-columns: repeat(2, 1fr); 
     }
     .financial-dashboard {
-      padding: 20px; // Уменьшаем общие отступы
+      padding: 20px; 
     }
   }
 
-  // Телефоны
   @media (max-width: 600px) {
-    // Брейкпоинт можно подстроить
+
     .stats-grid {
-      grid-template-columns: 1fr; // 1 колонка на телефонах
-      gap: 15px; // Уменьшаем отступ между карточками
+      grid-template-columns: 1fr; 
+      gap: 15px; 
     }
     .financial-dashboard {
       padding: 15px;
     }
     .stat-card {
-      //   padding: 15px 20px; // Уменьшаем отступы внутри карточек
+     
       .data-value {
-        font-size: 1.1rem; // Можно чуть уменьшить шрифт значений
+        font-size: 1.1rem; 
       }
     }
     .document-card {
-      //   padding: 12px 15px;
+      
       .document-link {
         font-size: 0.9rem;
       }
@@ -224,15 +210,15 @@
     color: #353e5c;
     box-sizing: border-box;
     font-size: 18px;
-    width: 50px; /* Установите нужный размер */
-    height: 50px; /* Ширина и высота одинаковые для круга */
-    border-radius: 50%; /* Делает кнопку круглой */
-    display: flex; /* Для центрирования текста */
-    align-items: center; /* Вертикальное выравнивание */
-    justify-content: center; /* Горизонтальное выравнивание */
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
 
-    background-color: white; /* Фон кнопки */
-    cursor: pointer; /* Указатель при наведении */
+    background-color: white; 
+    cursor: pointer; 
 
     transition: background-color 0.3s ease;
   }

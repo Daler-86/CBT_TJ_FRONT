@@ -1,4 +1,4 @@
-// src/app/services/page-title.service.ts
+
 import { Injectable, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
@@ -16,7 +16,6 @@ export class PageTitleService {
   private translateService = inject(TranslateService);
 
   public init(): void {
-    // 1. Обработка статических заголовков при навигации
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -36,7 +35,6 @@ export class PageTitleService {
         }
       });
 
-    // 2. Обработка смены языка для статических заголовков
     this.translateService.onLangChange.subscribe(() => {
       if (this.lastStaticTitleKey) {
         this.updateTitleFromKey(this.lastStaticTitleKey);

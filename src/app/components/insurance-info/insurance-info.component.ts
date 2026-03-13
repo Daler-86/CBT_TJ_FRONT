@@ -26,7 +26,6 @@ export class InsuranceInfoComponent implements OnInit {
   private translate = inject(TranslateService);
   private contactService = inject(ContactService);
   constructor() {
-    // Загружаем слайды из файла перевода, чтобы знать их количество
     this.translate
       .get('insurancePage.forDepositors.slides')
       .subscribe((translatedSlides: { title: string; content: string }[]) => {
@@ -34,12 +33,10 @@ export class InsuranceInfoComponent implements OnInit {
       });
   }
 
-  // --- Методы для Аккордеона ---
   toggleAccordion(section: string): void {
     this.activeAccordion = this.activeAccordion === section ? null : section;
   }
 
-  // --- Методы для Степпера/Слайдера ---
   nextSlide(): void {
     if (this.currentSlideIndex < this.slides.length - 1) {
       this.currentSlideIndex++;

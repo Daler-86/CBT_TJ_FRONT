@@ -36,8 +36,8 @@ export interface officeFaqs {
 }
 
 export interface FilteredData {
-  status: string; // "success" или другой статус
-  status_code: string; // Код статуса, например "200"
+  status: string; 
+  status_code: string;
   data: {
     offices: Office[];
     atms: Atm[];
@@ -50,31 +50,30 @@ export interface Office {
   parent_id: number;
   name: string;
   address: string;
-  latitude: string; // Координаты широты
-  longitude: string; // Координаты долготы
-  is_24_time: boolean; // Работает ли 24/7
-  items: TerminalItem[]; // Массив объектов, если есть дополнительные данные (определите типы при необходимости)
-  // Массив сервисов (определите типы при необходимости)
+  latitude: string; 
+  longitude: string; 
+  is_24_time: boolean; 
+  items: TerminalItem[]; 
 }
 
 export interface Atm {
   id: number;
   name: string;
   address: string;
-  latitude: string; // Координаты широты
-  longitude: string; // Координаты долготы
-  is_24_time: boolean; // Работает ли 24/7
-  items: TerminalItem[]; // Массив объектов (определите типы при необходимости)
+  latitude: string; 
+  longitude: string; 
+  is_24_time: boolean; 
+  items: TerminalItem[]; 
 }
 
 export interface Terminal {
   id: number;
   name: string;
   address: string;
-  latitude: string; // Координаты широты
-  longitude: string; // Координаты долготы
-  is_24_time: boolean; // Работает ли 24/7
-  items: TerminalItem[]; // Массив объектов типа TerminalItem
+  latitude: string; 
+  longitude: string; 
+  is_24_time: boolean; 
+  items: TerminalItem[]; 
 }
 
 export interface TerminalItem {
@@ -85,8 +84,8 @@ export interface TerminalItem {
 }
 
 export interface FilteredByRegion {
-  status: string; // "success" или другой статус
-  status_code: string; // Код статуса, например "200"
+  status: string;
+  status_code: string; 
   data: {
     list_data: Terminal[] | Atm[] | Office[];
     total_count: number;

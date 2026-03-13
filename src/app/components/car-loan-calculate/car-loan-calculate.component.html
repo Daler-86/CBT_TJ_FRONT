@@ -3,7 +3,6 @@
     <h2>{{ 'CALCULATORS.AUTO_LOAN.TITLE' | translate }}</h2>
 
     <div class="top-controls">
-      <!-- Валюта -->
       <div class="car-loan">
         <label>{{ 'CALCULATORS.COMMON.CURRENCY' | translate }}</label>
         <div class="currency-selector">
@@ -32,7 +31,6 @@
         </div>
       </div>
 
-      <!-- Годовая ставка (Исправлено 000) -->
       <div class="car-loan">
         <label for="interestRateInput">{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</label>
         <div class="rate-input-wrapper">
@@ -51,7 +49,6 @@
       </div>
     </div>
 
-    <!-- Стоимость авто -->
     <div class="form-group">
       <label>{{ 'CALCULATORS.AUTO_LOAN.CAR_COST' | translate }}</label>
       <div class="smart-input-container">
@@ -87,7 +84,6 @@
       </div>
     </div>
 
-    <!-- Предоплата -->
     <div class="form-group">
       <label>{{ 'CALCULATORS.AUTO_LOAN.DOWN_PAYMENT' | translate }}</label>
       <div class="smart-input-container">
@@ -123,7 +119,6 @@
       </div>
     </div>
 
-    <!-- Сумма финансирования -->
     <div class="form-group">
       <label>{{ 'CALCULATORS.AUTO_LOAN.FINANCING_AMOUNT' | translate }}</label>
       <div class="display-value static">
@@ -131,7 +126,6 @@
       </div>
     </div>
 
-    <!-- Срок -->
     <div class="form-group">
       <label class="form-label">{{ 'CALCULATORS.AUTO_LOAN.TERM' | translate }}</label>
       <div class="term-buttons">
@@ -144,7 +138,6 @@
     </div>
   </div>
 
-  <!-- Результаты -->
   <div class="result-wrapper">
     @if (calculationResult) {
       <div class="result-card">
@@ -166,10 +159,6 @@
         <div class="result-item">
           <p>{{ 'CALCULATORS.COMMON.ANNUAL_RATE' | translate }}</p>
           <h3>{{ interestRate | number: '1.0-2' }}%</h3>
-          <!-- 
-        <button class="apply-button">
-          {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
-        </button> -->
         </div>
       </div>
     }

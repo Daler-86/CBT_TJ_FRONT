@@ -14,14 +14,13 @@
       <div class="tender-div-cell header-cell">{{ 'TENDERS_LIST.TABLE.HEADER_STATUS' | translate }}</div>
     </div>
 
-    <!-- Сообщение об отсутствии данных -->
+  
     @if (tenders.length === 0) {
       <div class="no-data-row">
         {{ 'TENDERS_LIST.TABLE.NO_DATA' | translate }}
       </div>
     }
 
-    <!-- Строки данных (имитация tbody и tr) -->
     @for (tender of tenders; track tender.id) {
       <div
         class="tender-div-row"

@@ -24,7 +24,6 @@ export class CardFeaturesComponent implements OnInit {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam) {
       this.cardId = +idParam;
-      // Загружаем все данные для страницы
 
       this.loadCardDetails(this.cardId);
     }

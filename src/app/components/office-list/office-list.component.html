@@ -103,13 +103,11 @@
     </div>
   </div>
 
-  <!-- Список объектов -->
   @if (combinedData.length > 0) {
     @for (item of combinedData; track $index) {
       <div class="card">
         <div class="name">
           <div class="icon">
-            <!-- Отображаем иконку в зависимости от выбранного типа -->
             @if (selectedObjectType === 'offices') {
               <img src="assets/icons/offices.svg" [alt]="'ALT.OFFICE_ICON' | translate" />
             } @else if (selectedObjectType === 'atms') {
@@ -125,7 +123,6 @@
           </div>
         </div>
 
-        <!-- Дополнительная информация, если есть -->
         @if (item.items.length > 0) {
           <div class="item">
             @for (detail of item.items; track $index) {
@@ -144,14 +141,12 @@
     </div>
   }
 
-  <!-- Сообщение, если данных нет -->
   <ng-template #noData>
     <div class="no-data-container">
       <p>{{ 'MAP.NO_DATA_MESSAGE' | translate }}</p>
     </div>
   </ng-template>
 
-  <!-- Пагинация -->
   @if (totalPages > 1) {
     <div class="pagination">
       <button (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>

@@ -1,9 +1,7 @@
 <div class="calculator-wrapper">
-  <!-- Левая колонка -->
   <div class="calculator-form">
     <h2>{{ 'CALCULATORS.DEPOSIT.TITLE' | translate }}</h2>
 
-    <!-- Выбор продукта (если калькулятор на главной странице) -->
     @if (!productId) {
       <div class="form-group">
         <label for="productDropdown">{{ 'CALCULATORS.DEPOSIT.PRODUCT' | translate }}</label>
@@ -44,7 +42,6 @@
       </div>
     }
 
-    <!-- Переключатель валют -->
     <div class="currency-tabs">
       @for (currency of availableCurrencies; track $index) {
         <button
@@ -60,7 +57,6 @@
     </div>
 
     <fieldset [disabled]="!isProductAvailable" style="border: none">
-      <!-- Сумма вклада -->
       <div class="form-group">
         <label for="depositAmountInput">{{ 'CALCULATORS.DEPOSIT.AMOUNT' | translate }}</label>
         <div class="input-slider-container">
@@ -108,7 +104,6 @@
         </div>
       </div>
 
-      <!-- Срок вклада -->
       <div class="form-group">
         <label for="depositTermSlider">{{ 'CALCULATORS.DEPOSIT.TERM' | translate }}</label>
         <div class="input-slider-container">
@@ -143,7 +138,6 @@
     <p class="disclaimer">{{ 'CALCULATORS.COMMON.DISCLAIMER' | translate }}</p>
   </div>
 
-  <!-- Правая колонка -->
   <div class="result-wrapper">
     @if (calculationResult && !calculationResult.error) {
       <div class="result-card">

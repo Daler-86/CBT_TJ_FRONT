@@ -2,8 +2,8 @@ export interface InfoItem {
   id: number;
   label: string;
   value: string;
-  isEmail?: boolean; // Флаг для форматирования как email ссылки
-  isPhone?: boolean; // Флаг для форматирования как телефонной ссылки
+  isEmail?: boolean;
+  isPhone?: boolean; 
 }
 
 export interface bankDetails {

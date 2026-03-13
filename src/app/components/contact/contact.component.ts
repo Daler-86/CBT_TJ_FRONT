@@ -5,7 +5,7 @@ import { ContactService } from '../../api/contact.service';
 import { ContactBlock, ContactFormPayload, ContactSubject } from '../../models/contact.model';
 import { environment } from '../../../environments/environment';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { IMapPoint, YandexMapComponent } from '../yandex-map/yandex-map.component';
+import {  YandexMapComponent } from '../yandex-map/yandex-map.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { ModalService } from '../../services/modal.service';
 import { ScrollService } from '../../services/scroll.service';
 import { ActivatedRoute } from '@angular/router';
 import { OnlyDigitsDirective } from '../../shared/directives/only-digits.directive';
+import { IMapPoint } from '../../models/map.model';
 @Component({
   selector: 'app-contact',
   standalone: true,

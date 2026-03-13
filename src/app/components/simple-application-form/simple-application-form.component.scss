@@ -1,43 +1,36 @@
 $primary-color: #00b06c;
 $text-primary: #212529;
-$text-secondary: #6c757d; // For subtitles and secondary text
-$light-grey-border: #e0e0e0; // A lighter border color like in the first image
+$text-secondary: #6c757d; 
+$light-grey-border: #e0e0e0; 
 $error-color: #dc3545;
-$button-disabled-bg: #e0e0e0; // Lighter grey for disabled button
-$button-disabled-text: #a0a0a0; // Darker grey for disabled button text
+$button-disabled-bg: #e0e0e0;
+$button-disabled-text: #a0a0a0; 
 
-// Overall page background (if applicable, not in form-container)
-
-// Общий контейнер формы
 .form-container {
-  // max-width: 600px; // Adjusted max-width to match the first image's narrower look
   margin: 40px auto;
-  padding: 50px 60px; // More padding inside the form
+  padding: 50px 60px; 
   background-color: #ffffff;
-  border-radius: 12px; // Slightly less rounded corners than current, matching first image
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); // Softer, more subtle shadow
-  // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; // More common system font stack
+  border-radius: 12px; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-// Заголовки
 h2 {
-  font-size: 32px; // Larger font size for the main heading
+  font-size: 32px; 
   font-weight: 700;
-  text-align: left; // Changed to left alignment
+  text-align: left; 
   margin: 0 0 10px;
   color: $text-primary;
 }
 
 p {
-  text-align: left; // Changed to left alignment
+  text-align: left; 
   color: $text-secondary;
-  font-size: 16px; // Slightly larger font for subtitle
-  margin: 0 0 35px; // More space below subtitle
+  font-size: 16px; 
+  margin: 0 0 35px; 
 }
 
-// Контейнер для одного поля (label + input)
 .form-group {
-  margin-bottom: 25px; // More space between form groups
+  margin-bottom: 25px; 
 }
 form {
   display: grid;
@@ -49,84 +42,80 @@ form {
   }
 }
 
-// Стили для полей ввода и textarea
 .form-control {
   width: 100%;
-  padding: 16px 20px; // Increased padding for a taller input field
-  font-size: 17px; // Slightly larger font inside input
-  border: 1px solid $light-grey-border; // Lighter border color
+  padding: 16px 20px; 
+  font-size: 17px; 
+  border: 1px solid $light-grey-border;
   border-radius: 8px;
-  background-color: #ffffff; // Ensure background is white
+  background-color: #ffffff; 
   box-sizing: border-box;
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
-  color: $text-primary; // Default text color in input
+  color: $text-primary;
 
   &::placeholder {
-    // Style for placeholders
-    color: $text-secondary; // Lighter placeholder text
+   
+    color: $text-secondary; 
   }
 
   &:focus {
     outline: none;
-    border-color: $primary-color; // Primary color border on focus
-    box-shadow: 0 0 0 1px $primary-color; // A thin shadow matching the border
+    border-color: $primary-color;
+    box-shadow: 0 0 0 1px $primary-color; 
   }
 }
 
-// Error messages
 .error {
   color: $error-color;
-  font-size: 13px; // Slightly smaller error text
-  margin-top: 8px; // More space above error text
+  font-size: 13px;
+  margin-top: 8px;
   text-align: left;
 }
 
-// Submit button
 .submit-button {
   width: 100%;
-  padding: 18px; // More vertical padding for a taller button
+  padding: 18px; 
   background-color: $primary-color;
   color: white;
   border: none;
-  border-radius: 10px; // Slightly more rounded button
+  border-radius: 10px; 
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   transition:
     background-color 0.2s,
     box-shadow 0.2s;
-  margin-bottom: 25px; // Space before the privacy text
+  margin-bottom: 25px;
 
   &:hover:not(:disabled) {
-    background-color: darken($primary-color, 8%); // Darken on hover
-    box-shadow: 0 4px 12px rgba($primary-color, 0.3); // Subtle shadow on hover
+    background-color: darken($primary-color, 8%);
+    box-shadow: 0 4px 12px rgba($primary-color, 0.3); 
   }
 
   &:disabled {
-    background-color: $button-disabled-bg; // Light grey background for disabled
-    color: $button-disabled-text; // Darker grey text for disabled
+    background-color: $button-disabled-bg;
+    color: $button-disabled-text; 
     cursor: not-allowed;
     box-shadow: none;
   }
 }
 
-// Privacy policy text
 .privacy-policy {
   font-size: 14px;
   color: $text-secondary;
-  text-align: left; // Left alignment for this text
+  text-align: left; 
   line-height: 1.5;
 
   a {
-    color: $primary-color; // Primary color for links
-    text-decoration: none; // No underline by default
-    font-weight: 500; // Slightly bolder links
+    color: $primary-color; 
+    text-decoration: none;
+    font-weight: 500; 
     transition: color 0.2s;
 
     &:hover {
-      text-decoration: underline; // Underline on hover
+      text-decoration: underline; 
       color: darken($primary-color, 10%);
     }
   }

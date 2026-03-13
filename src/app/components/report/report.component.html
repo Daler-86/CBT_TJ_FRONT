@@ -56,24 +56,6 @@
             </div>
           }
 
-          <!-- Пагинация -->
-          <!--
-          <div class="pagination" *ngIf="totalPages > 1">
-            <button class="btn" (click)="selectPage(1)" [disabled]="currentPage === 1">«</button>
-            <button class="btn" (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
-    
-            <button class="btn"
-              *ngFor="let page of pages"
-              [class.active]="page === currentPage"
-              (click)="selectPage(page)"
-              [disabled]="page === -1">
-              {{ page === -1 ? '...' : page }}
-            </button>
-    
-            <button class="btn" (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
-            <button class="btn" (click)="selectPage(totalPages)" [disabled]="currentPage === totalPages">»</button>
-          </div>
-          -->
         </div>
       }
 

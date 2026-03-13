@@ -1,5 +1,4 @@
 @import '../../../styles/calculate';
-// Переменные для удобства
 $primary-color: #00b06c;
 $text-primary: #212529;
 $text-secondary: #6c757d;
@@ -7,7 +6,6 @@ $border-color: #e9ecef;
 $background-light: #f6f7f8;
 $white-color: #ffffff;
 
-// Сбрасываем стандартные стили кнопок и инпутов
 :host {
   button,
   input {

@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-// import { CarouselComponent } from '../carousel/carousel.component';
 import { CalculateComponent } from '../calculate/calculate.component';
 
 import { CurrencyConverterComponent } from '../currency-converter/currency-converter.component';

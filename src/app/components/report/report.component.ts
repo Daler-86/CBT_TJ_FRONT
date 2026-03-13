@@ -1,4 +1,3 @@
-// report.component.ts
 
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,10 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ReportComponent implements OnInit {
   imageUrl: string = environment.IMAGE_URL;
-  // Данные для карточек
   reportData: reportData | null = null;
 
-  // Список всех годов для кнопок, например [2025, 2024]
   availableYears: number[] = [];
 
   currentApiYear: number | null = 0;
@@ -33,17 +30,11 @@ export class ReportComponent implements OnInit {
   private reportService = inject(ReportService);
 
   ngOnInit(): void {
-    // Запускаем специальную функцию для первой загрузки
     this.loadInitialData();
     this.loadReportFile();
   }
 
-  /**
-   * Запускается ТОЛЬКО ОДИН РАЗ.
-   * Узнает, какой год "текущий", и формирует список кнопок.
-   */
   loadInitialData(): void {
-    // Запрос без года, чтобы получить данные по умолчанию
     this.reportService.getReportData(0).subscribe({
       next: (response) => {
         const initialReportsData = response.data.reports;
@@ -54,7 +45,6 @@ export class ReportComponent implements OnInit {
         this.currentApiYear = initialReportsData.report_year;
         this.selectedYear = 0;
 
-        // 4. Формируем ПОЛНЫЙ список годов для кнопок (один раз и навсегда)
         const yearsSet = new Set([this.currentApiYear, ...initialReportsData.report_years]);
         this.availableYears = Array.from(yearsSet);
       },
@@ -62,39 +52,21 @@ export class ReportComponent implements OnInit {
     });
   }
 
-  /**
-   * Вызывается при нажатии на ЛЮБУЮ кнопку года.
-   * @param yearValue - Значение, привязанное к кнопке (0 для "Текущего", 2024 для "2024")
-   */
+
   onYearChange(yearValue: number): void {
-    // Определяем, какому реальному году соответствует нажатая кнопка
-    //  const targetYear = (yearValue === 0) ? t : yearValue;
 
-    // Если этот год уже выбран, ничего не делаем
-    //  if (this.selectedYear === targetYear) {
-    //    return;
-    //  }
-
-    // 1. Обновляем выбранный год, чтобы кнопка сразу подсветилась
     this.selectedYear = yearValue;
-
-    //  // 2. Определяем, что отправить в API (undefined для "Текущего", число для остальных)
-    //  const yearToSend = (yearValue === 0) ? undefined : yearValue;
-
-    //  // 3. Загружаем новые данные
     this.reportService.getReportData(yearValue).subscribe({
       next: (response) => {
         const newReportsData = response.data.reports;
         this.reportData = { ...newReportsData };
 
         this.sortReportData(newReportsData);
-        //  this.reportData = newReportsData; // Обновляем данные для карточек
       },
       error: (error) => console.error(`Ошибка при загрузке данных за год`, error),
     });
   }
 
-  /** Вспомогательная функция для сортировки */
   private sortReportData(data: reportData): void {
     if (data && data.report_indicator) {
       data.report_indicator.sort((a, b) => a.sort_id - b.sort_id);
@@ -106,7 +78,6 @@ export class ReportComponent implements OnInit {
     }
   }
 
-  // --- Код для пагинации файлов (без изменений) ---
   trackByCardId(item: number): number {
     return item;
   }
