@@ -58,9 +58,8 @@ export class CalculateComponent implements OnInit {
       max_amount: 100000,
       min_month: 3,
       max_month: 36,
-      min_percentage: 16, // <-- Твоя ставка
-      max_percentage: 30, // <-- Твоя ставка
-      // Остальные поля можно добавить, если они нужны
+      min_percentage: 16,
+      max_percentage: 30, 
       id: 0,
       credit_id: 0,
     },
@@ -70,7 +69,7 @@ export class CalculateComponent implements OnInit {
       max_amount: 10000,
       min_month: 3,
       max_month: 36,
-      min_percentage: 12, // Для примера, другие ставки для USD
+      min_percentage: 12,
       max_percentage: 22,
       id: 0,
       credit_id: 0,
@@ -113,12 +112,12 @@ export class CalculateComponent implements OnInit {
     const payment = (this.loanAmount * monthlyInterest) / (1 - Math.pow(1 + monthlyInterest, -months));
     return Math.round(payment);
   }
-  // Обработка изменения суммы через поле ввода
+
   onLoanAmountChange(value: string) {
-    const rawValue = +value.replace(/\D/g, ''); // Убираем символы, кроме цифр
+    const rawValue = +value.replace(/\D/g, '');
     if (rawValue >= 10000 && rawValue <= 200000) {
-      this.loanAmount = Math.round(rawValue / 50) * 50; // Округляем до ближайшего шага 50
-      this.updateFormattedLoanAmount(); // Обновляем форматированную сумму
+      this.loanAmount = Math.round(rawValue / 50) * 50;
+      this.updateFormattedLoanAmount(); 
     }
   }
 

@@ -26,10 +26,9 @@ export class TransfersDetailsComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
-      this.cardId = +idParam; // Преобразование строки в число
+      this.cardId = +idParam; 
     } else {
       console.error('ID is missing in the route parameters.');
-      // Здесь может быть код для обработки ситуации отсутствия ID
     }
     this.loadCards(this.cardId);
   }
@@ -39,7 +38,6 @@ export class TransfersDetailsComponent implements OnInit {
       (response) => {
         this.transferData = response.data.transfer_data;
         if (this.transferData && this.transferData.title) {
-          // ...передаем уже готовое, переведенное название в сервис заголовков.
           this.pageTitleService.setCustomTitle(this.transferData.title);
         }
       },

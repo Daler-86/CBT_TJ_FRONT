@@ -11,10 +11,9 @@
   </div>
 
   <div class="news-detail-layout">
-    <!-- Основной контент статьи -->
+
     <main class="news-main-content">
       @if (newDetailData) {
-        <!-- Этот контент приходит с бэкенда и не переводится через пайп -->
         <div class="content article-content" [innerHTML]="newDetailData.description"></div>
       }
     </main>
@@ -23,17 +22,13 @@
         <h4 class="sidebar-title">{{ 'NEWS_DETAILS.SHARE_TITLE' | translate }}</h4>
 
         <div class="social-share-icons">
-          <!-- Telegram -->
           <a [href]="telegramShareLink" target="_blank" rel="noopener noreferrer" class="social-icon">
             <img src="../../../assets/icons/tg.png" [alt]="'ALT.TELEGRAM' | translate" />
           </a>
 
-          <!-- WhatsApp -->
           <a [href]="whatsappShareLink" target="_blank" rel="noopener noreferrer" class="social-icon">
             <img src="../../../assets/icons/whatsapp.png" [alt]="'ALT.WHATSAPP' | translate" />
           </a>
-
-          <!-- Instagram (Обычно просто ссылка на профиль) -->
           <a
             href="https://www.instagram.com/commercebank.tj"
             target="_blank"
@@ -43,7 +38,6 @@
             <img src="../../../assets/icons/insta.png" [alt]="'ALT.INSTAGRAM' | translate" />
           </a>
 
-          <!-- Facebook -->
           <a
             href="https://www.facebook.com/commercebank.tj"
             target="_blank"
@@ -54,7 +48,6 @@
           </a>
         </div>
 
-        <!-- Кнопка копирования -->
         <button class="copy-link-button" type="button" (click)="onCopyLink()">
           {{ copyButtonText }}
         </button>

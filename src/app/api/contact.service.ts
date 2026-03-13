@@ -1,4 +1,3 @@
-// src/app/api/contact.service.ts
 
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -26,11 +25,9 @@ export class ContactService {
         });
         return this.http.get<ContactResponse>(`${this.baseUrl}/contact/list`, { headers });
       }),
-      // Добавим сортировку сразу в сервисе
+
       map((response) => {
-        // Сортируем основные блоки
         response.data.contacts.sort((a, b) => a.sort_id - b.sort_id);
-        // Сортируем вложенные данные в каждом блоке
         response.data.contacts.forEach((block) => {
           block.data.sort((a, b) => a.sort_id - b.sort_id);
         });
@@ -47,9 +44,7 @@ export class ContactService {
           Language: lang,
         });
 
-        // 3. Укажите правильный URL для вашего API
-        const apiUrl = this.baseUrl + '/contact/help/save'; // <-- ЗАМЕНИТЕ НА ВАШ URL!
-
+        const apiUrl = this.baseUrl + '/contact/help/save'; 
         return this.http.post<fileResponse>(apiUrl, formData, { headers });
       }),
     );

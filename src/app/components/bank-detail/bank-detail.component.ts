@@ -18,13 +18,11 @@ export class BankDetailComponent implements OnInit, OnDestroy {
   bankdetailList: bankDetails[] = [];
   bankdetailCurrency: currency[] = [];
 
-  // Инициализируем как null. Это покажет, что выбор еще не сделан.
   selectedTabId: number | null = null;
   private bankDetailService = inject(BankDetailsService);
 
   ngOnInit(): void {
-    // Просто запускаем загрузку валют. Все остальное произойдет после ее завершения.
-    this.loadCurrency();
+ this.loadCurrency();
   }
 
   ngOnDestroy(): void {
@@ -48,15 +46,11 @@ export class BankDetailComponent implements OnInit, OnDestroy {
       next: (response) => {
         this.bankdetailCurrency = response.data.bank_detail_currencies;
 
-        // --- НОВАЯ ЛОГИКА ---
-        // Проверяем, что список валют не пустой
         if (this.bankdetailCurrency && this.bankdetailCurrency.length > 0) {
-          // Берем ID ПЕРВОГО элемента из полученного списка
           const defaultTabId = this.bankdetailCurrency[0].id;
-          // Устанавливаем его как активный таб
-          this.selectTab(defaultTabId, true); // `true` как флаг, что это первая загрузка
+
+          this.selectTab(defaultTabId, true); 
         }
-        // --- КОНЕЦ НОВОЙ ЛОГИКИ ---
       },
       error: (error) => {
         console.error('Ошибка при загрузке валют', error);
@@ -65,14 +59,8 @@ export class BankDetailComponent implements OnInit, OnDestroy {
     this.subscriptions.add(sub);
   }
 
-  /**
-   * Выбирает таб и загружает для него данные.
-   * @param tabId - ID выбранного таба.
-   * @param isInitialLoad - Флаг, чтобы не переустанавливать selectedTabId, если он уже установлен.
-   */
   selectTab(tabId: number, isInitialLoad = false) {
-    // Если это не первая загрузка, или если таб уже выбран, ничего не делаем.
-    if (!isInitialLoad && this.selectedTabId === tabId) {
+     if (!isInitialLoad && this.selectedTabId === tabId) {
       return;
     }
 

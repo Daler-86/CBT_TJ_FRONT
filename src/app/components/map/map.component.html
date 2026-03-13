@@ -55,7 +55,6 @@
           </div>
           @if (dropdownOpen) {
             <div class="dropdown-options">
-              <!-- Типы объектов -->
               <div class="dropdown-section">
                 <h4>{{ 'MAP_PAGE.FILTERS.OBJECT_TYPES' | translate }}</h4>
                 <div class="dropdown-option">
@@ -101,7 +100,6 @@
               </div>
               <div class="divider"></div>
 
-              <!-- Доступность -->
               <div class="dropdown-section">
                 <h4>{{ 'MAP_PAGE.FILTERS.AVAILABILITY' | translate }}</h4>
                 <div class="dropdown-option">
@@ -129,7 +127,6 @@
               </div>
               <div class="divider"></div>
 
-              <!-- Дополнительно -->
               <div class="dropdown-section">
                 <h4>{{ 'MAP_PAGE.FILTERS.ADDITIONAL' | translate }}</h4>
                 <div class="dropdown-option">
@@ -206,7 +203,6 @@
     </div>
 
     <div class="map-layout-container">
-      <!-- 1. Боковая панель -->
       <div class="info-sidebar" [class.is-visible]="selectedPoint">
         @if (selectedPoint) {
           <button class="info-sidebar__close-btn" (click)="closeSidebar()">×</button>
@@ -260,7 +256,6 @@
       </div>
     </div>
   </div>
-  <!-- Список терминалов -->
   <div
     [hidden]="selectedTab !== 'Spiskom'"
     id="list-tab-panel"

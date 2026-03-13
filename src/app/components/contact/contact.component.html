@@ -1,13 +1,10 @@
-<!-- src/app/pages/contact/contact.component.html -->
 <div class="contact-page">
   <div class="page-header">
     <h1>{{ 'CONTACTS_PAGE.TITLE' | translate }}</h1>
     <p>{{ 'CONTACTS_PAGE.SUBTITLE' | translate }}</p>
   </div>
 
-  <!-- Сетка с контактными блоками -->
   <div class="contact-grid">
-    <!-- Динамический контент, перевод не требуется -->
     @for (block of contactBlocks; track block.id) {
       <div class="contact-card">
         <div class="card-header">
@@ -31,15 +28,10 @@
     }
   </div>
 
-  <!-- Контейнер для Google Карты -->
+
 
   <div class="map-wrapper">
-    <!--
-          Используем наш переиспользуемый компонент.
-          - [points]: передаем массив с одной точкой.
-          - [center]: можно передать те же координаты, чтобы карта сразу центрировалась на офисе.
-          - [zoom]: можно сделать побольше (например, 16), чтобы сразу видеть офис крупным планом.
-        -->
+
 
     <app-yandex-map
       [points]="headOfficePoint"
@@ -52,7 +44,6 @@
       <h2>{{ 'FORMS.CONTACT.TITLE' | translate }}</h2>
       <p>{{ 'FORMS.CONTACT.SUBTITLE' | translate }}</p>
 
-      <!-- Имя -->
       <div class="form-group">
         <input
           type="text"
@@ -67,7 +58,6 @@
         </div>
       </div>
 
-      <!-- Телефон -->
       <div class="form-group">
         <input
           type="tel"
@@ -82,8 +72,6 @@
           <span *ngIf="phone?.errors?.['required']">{{ 'FORMS.ERROR.REQUIRED' | translate }}</span>
         </div>
       </div>
-
-      <!-- Тема -->
       <div class="form-group">
         <div class="custom-dropdown" #customDropdown>
           <div
@@ -114,7 +102,6 @@
         </div>
       </div>
 
-      <!-- Вопрос -->
       <div class="form-group">
         <textarea
           class="form-control"
@@ -128,7 +115,6 @@
         </div>
       </div>
 
-      <!-- Кнопка -->
       <button type="submit" class="submit-button" [disabled]="contactForm.invalid || isSubmitting">
         <span *ngIf="!isSubmitting">{{ 'BUTTONS.SEND' | translate }}</span>
         <span *ngIf="isSubmitting">{{ 'BUTTONS.SENDING' | translate }}...</span>

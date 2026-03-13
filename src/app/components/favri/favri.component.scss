@@ -25,7 +25,7 @@
   .favri-info {
     flex: 1 1 50%;
     padding-bottom: 0px;
-    min-width: 300px;
+    // min-width: 300px;
     position: relative;
     z-index: 2;
 
@@ -41,7 +41,6 @@
       font-size: 20px;
       margin-top: 15px;
       color: #64748b;
-      line-height: 100%;
       letter-spacing: 0%;
     }
     @media (max-width: 768px) {
@@ -49,6 +48,7 @@
         font-size: 24px;
       }
       p {
+      width: auto;
         font-size: 16px;
       }
     }
@@ -76,6 +76,9 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    @media (max-width: 768px) {
+      right: 20px;
+    }
   }
 
   .phone-mockup {
@@ -85,11 +88,13 @@
     position: relative;
     z-index: 1;
 
-    @media (max-width: 1024px) {
+
+  }
+      @media (max-width: 1024px) {
       max-width: 420px;
     }
     @media (max-width: 768px) {
       max-width: 320px;
+      right: 20px;
     }
-  }
 }

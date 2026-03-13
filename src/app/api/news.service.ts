@@ -14,9 +14,6 @@ export class NewsService {
   private http = inject(HttpClient);
   private languageService = inject(LanguagesService);
 
-  // private sortBySortId<T extends { sort_id: number }>(items: T[]): T[] {
-  //   return items.sort((a, b) => a.sort_id - b.sort_id);
-  // }
 
   getNewsList(limit: number, currentPage: number): Observable<NewsData> {
     return this.languageService.language$.pipe(
@@ -41,9 +38,7 @@ export class NewsService {
         return this.http.get<NewsDetailData>(`${this.baseUrl}/news/${cardId}`, { headers });
       }),
       map((response) => {
-        // if (response.data.news) {
-        //   const tenderDetailData = response.data.news;
-        // }
+ 
         return response;
       }),
     );

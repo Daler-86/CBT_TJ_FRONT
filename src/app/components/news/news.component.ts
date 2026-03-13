@@ -10,10 +10,10 @@ import { TranslateModule } from '@ngx-translate/core';
 export interface new_news {
   id: number;
   title?: string;
-  description: string; // Исходная HTML строка
+  description: string; 
   date_time: string;
   upload_file: string;
-  firstParagraphText?: string; // <--- Это поле мы добавляем ЛОКАЛЬНО для удобства шаблона
+  firstParagraphText?: string; 
 }
 @Component({
   selector: 'app-news',
@@ -37,12 +37,11 @@ export class NewsComponent implements OnInit, OnChanges {
 
   news: new_news[] = [];
   ngOnInit(): void {
-    // Здесь позже будет логика получения данных с бэкенда
     this.loadData();
   }
 
-  @Input() totalPages = 0; // Общее количество страниц
-  @Input() currentPage = 1; // Текущая страница
+  @Input() totalPages = 0; 
+  @Input() currentPage = 1;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   pages: number[] = [];
   tenderCount = 0;
@@ -111,7 +110,7 @@ export class NewsComponent implements OnInit, OnChanges {
     this.loadData();
   }
   scrollToTop(): void {
-    const listElement = document.querySelector('.list-container'); // Замените '.list-container' на ваш селектор списка
+    const listElement = document.querySelector('.list-container'); 
     if (listElement) {
       listElement.scrollTo({
         top: 0,

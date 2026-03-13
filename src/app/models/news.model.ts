@@ -1,10 +1,9 @@
-// Интерфейс для элемента новости/события
+
 export interface NewsEventItem {
   id: number;
   title: string;
   description: string;
   imageUrl: string;
-  // Опционально: ссылка для перехода при клике на карточку/заголовок
   linkUrl?: string;
 }
 export interface fullNews {

@@ -1,43 +1,35 @@
-// src/app/models/installment.model.ts
 
-// Уровень ставки: срок и соответствующая годовая ставка
 export interface RateTier {
-  term: number; // Срок в месяцах
-  annualRate: number; // Годовая ставка в десятичном формате (например, 0.04 для 4%)
+  term: number; 
+  annualRate: number; 
 }
 
-// Параметры для расчета
+
 export interface InstallmentParams {
   amount: number;
   term: number;
 }
 
-// Результаты расчета
+
 export interface InstallmentResult {
   monthlyPayment: number;
   totalPayment: number;
-  interestRate: number; // Фактическая ставка для данного срока
+  interestRate: number; 
 }
-// src/app/models/car-loan.model.ts
 
-// Условия для конкретной валюты
 export interface CarLoanConditions {
-  annualRate: number; // Годовая ставка, например 0.25 для 25%
-  // Лимиты для стоимости авто
+  annualRate: number; 
   minCarCost: number;
   maxCarCost: number;
   stepCarCost: number;
   costLabels: string[];
-  // Лимиты для предоплаты (могут быть % от стоимости)
-  minDownPaymentPercent: number; // например, 0.2 для 20%
-  // Лимиты для срока кредита
+  minDownPaymentPercent: number; 
   minTerm: number;
   maxTerm: number;
   stepTerm: number;
   termLabels: string[];
 }
 
-// Параметры для расчета
 export interface CarLoanParams {
   carCost: number;
   downPayment: number;
@@ -46,17 +38,13 @@ export interface CarLoanParams {
   annualRate: number;
 }
 
-// Результаты расчета
 export interface CarLoanResult {
   monthlyPayment: number;
   totalOverpayment: number;
   interestRate: number;
 }
-// src/app/models/loan.model.ts
 
-// Условия для конкретной валюты и типа клиента
 export interface LoanConditions {
-  // Диапазон ставок (берем максимальную для расчета)
   rate: number;
   minAmount: number;
   maxAmount: number;
@@ -64,10 +52,9 @@ export interface LoanConditions {
   maxTerm: number;
 }
 
-// Описывает один кредитный продукт
+
 export interface LoanProduct {
   name: string;
-  // Доступные типы клиентов (если есть)
   clientTypes?: string[];
   currencies: Record<string, Record<string, LoanConditions>>;
 }
@@ -75,15 +62,14 @@ export interface LoanProduct {
 export interface LoanCalculationParams {
   amount: number;
   term: number;
-  annualRate: number; // Годовая ставка в десятичном формате (например, 0.16)
+  annualRate: number; 
 }
 
-// Результаты расчета
 export interface LoanCalculationResult {
   monthlyPayment: number;
   totalPayment: number;
   totalOverpayment: number;
-  interestRate: number; // Фактическая ставка для данного расчета
+  interestRate: number;
 }
 export interface CalculatorData {
   id: number;
@@ -103,18 +89,16 @@ export interface AutoLoanConditions {
   max_month: number;
   min_percentage: number;
   max_percentage: number;
-  min_down_payment_percent: number; // Например, 0.2 для 20%
+  min_down_payment_percent: number; 
 }
 
-// Параметры для расчета
 export interface AutoLoanParams {
   carCost: number;
   downPayment: number;
   term: number;
-  annualRate: number; // в десятичном формате
+  annualRate: number;
 }
 
-// Результат расчета
 export interface AutoLoanResult {
   monthlyPayment: number;
   totalOverpayment: number;
@@ -130,10 +114,9 @@ export interface LoanConditionsData {
   max_month: number;
 }
 
-// Описывает результат расчета
 export interface LoanCalculationResult {
   monthlyPayment: number;
   totalPayment: number;
   totalOverpayment: number;
-  interestRate: number; // Ставка в десятичном формате
+  interestRate: number; 
 }

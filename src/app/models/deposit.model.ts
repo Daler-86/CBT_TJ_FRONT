@@ -64,17 +64,12 @@ interface faq {
   sort_id: number;
 }
 
-// src/app/models/deposit.model.ts
 
 export interface RateTier {
   minMonths: number;
   rate: number;
 }
 
-// export interface CurrencyDetails {
-//   minAmount: number;
-//   rates: RateTier[];
-// }
 
 export interface DepositProduct {
   name: string;
@@ -86,7 +81,6 @@ export interface DepositProduct {
 
 export type DepositProducts = Record<string, DepositProduct>;
 
-// Модель для параметров расчета
 export interface CalculationParams {
   productId: string;
   currency: 'TJS' | 'USD';
@@ -94,28 +88,22 @@ export interface CalculationParams {
   termMonths: number;
 }
 
-// Модель для результатов расчета
 export interface CalculationResult {
   productName: string;
   rate: number;
   income: number;
   totalAmount: number;
-  error?: string; // Поле для вывода ошибок
+  error?: string;
 }
 export interface CurrencyDetails {
-  // Настройки для слайдера СУММЫ
   minAmount: number;
   maxAmount: number;
   stepAmount: number;
   amountLabels: string[];
-
-  // Настройки для слайдера СРОКА
   minTerm: number;
   maxTerm: number;
   stepTerm: number;
   termLabels: string[];
-
-  // Ставки для расчета
   rates: RateTier[];
 }
 export interface postDeposit {

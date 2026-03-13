@@ -1,9 +1,9 @@
 export interface Tender {
-  id: number; // Добавим ID для ключа в *ngFor
+  id: number; 
   description: string;
   startDate: string;
   endDate: string;
-  status: 'Открытый' | 'Завершенный'; // Используем Union Type для статуса
+  status: 'Открытый' | 'Завершенный';
 }
 
 export interface tender {

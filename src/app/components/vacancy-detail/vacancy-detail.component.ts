@@ -85,7 +85,6 @@ export class VacancyDetailComponent implements OnInit {
 
       this.loadAllData();
 
-      // Перезагрузка данных при смене языка
       this.translate.onLangChange.subscribe(() => {
         this.loadAllData();
       });
@@ -223,7 +222,6 @@ export class VacancyDetailComponent implements OnInit {
     });
   }
 
-  // --- Геттеры для валидации ---
   get lastName() {
     return this.applyForm.get('lastName');
   }

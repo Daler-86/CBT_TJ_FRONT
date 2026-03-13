@@ -7,8 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { PageTitleService } from '../../services/page-title.service';
 
-// --- ДОБАВЛЯЕМ INTERFACE ---
-// Это "чертеж" для наших обработанных данных.
+
 interface ProcessedInfo {
   title: string;
   paragraphs: string[];
@@ -17,13 +16,11 @@ interface ProcessedInfo {
 @Component({
   selector: 'app-tender-details',
   standalone: true,
-  // --- ВАЖНО: УДАЛЯЕМ SplitByDashPipe ИЗ IMPORTS, он больше не нужен ---
   imports: [CommonModule, TranslateModule],
   templateUrl: './tender-details.component.html',
   styleUrl: './tender-details.component.scss',
 })
 export class TenderDetailsComponent implements OnInit {
-  // <-- ВОССТАНАВЛИВАЕМ OnInit
   imageUrl: string = environment.IMAGE_URL;
   private route = inject(ActivatedRoute);
   private tenderService = inject(TenderService);
@@ -33,7 +30,6 @@ export class TenderDetailsComponent implements OnInit {
   cardId = 0;
   tenderDetailData: tenderDetail = {};
 
-  // --- ОБЪЯВЛЯЕМ ПЕРЕМЕННУЮ, В КОТОРОЙ БУДЕМ ХРАНИТЬ ОБРАБОТАННЫЕ ДАННЫЕ ---
   processedTenderInfo: ProcessedInfo[] = [];
 
   ngOnInit(): void {
@@ -41,7 +37,7 @@ export class TenderDetailsComponent implements OnInit {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.cardId = +idParam;
-      this.loadTenderDetails(this.cardId); // <-- Вызываем загрузку здесь
+      this.loadTenderDetails(this.cardId); 
     } else {
       console.error('ID is missing in the route parameters.');
     }
@@ -52,12 +48,10 @@ export class TenderDetailsComponent implements OnInit {
       (response) => {
         this.tenderDetailData = response.data.tender;
 
-        // Устанавливаем заголовок вкладки
         if (this.tenderDetailData && this.tenderDetailData.name) {
           this.pageTitleService.setCustomTitle(this.tenderDetailData.name);
         }
 
-        // --- ЛОГИКА ОБРАБОТКИ ТЕКСТА (остается без изменений) ---
         if (response && response.data.tender.information) {
           this.processedTenderInfo = response.data.tender.information.map((item) => {
             const description: string = item.description || '';

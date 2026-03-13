@@ -53,11 +53,11 @@ export class NewsBoxComponent implements OnInit {
             }
             return {
               ...item,
-              shortDescription: shortDescription, // Добавляем shortDescription к объекту новости
+              shortDescription: shortDescription, 
             };
           });
 
-          this.news = processedNews; // Сохраняем обработанные 3 новости
+          this.news = processedNews;
         } else {
           console.warn('API response for news is not in expected format:', response);
           this.news = [];
@@ -65,7 +65,7 @@ export class NewsBoxComponent implements OnInit {
       },
       error: (error) => {
         console.error('Ошибка при загрузке новостей', error);
-        this.news = []; // Очищаем новости в случае ошибки
+        this.news = []; 
       },
     });
   }

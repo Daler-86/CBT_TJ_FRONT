@@ -37,20 +37,20 @@
     }
   }
 
-  $layout-bg: #f6f7f8; // Фон всей страницы/секции
+  $layout-bg: #f6f7f8; 
   $sidebar-card-bg: #ffffff;
   $sidebar-border-radius: 12px;
   $sidebar-padding: 20px 25px;
-  $main-content-max-width: 800px; // Макс. ширина основного контента
-  $layout-gap: 30px; // Отступ между контентом и сайдбаром
+  $main-content-max-width: 800px; 
+  $layout-gap: 30px; 
 
   $text-color: #666f8d;
   $paragraph-color: #666f8d;
   $gallery-gap: 15px;
   $image-border-radius: 8px;
 
-  $share-title-color: #10b981; // Зеленый цвет для "Поделиться"
-  $share-icon-bg: #eefbf7; // Светло-зеленый фон иконки
+  $share-title-color: #10b981; 
+  $share-icon-bg: #eefbf7; 
   $share-icon-color: $share-title-color;
   $share-icon-hover-bg: darken($share-icon-bg, 5%);
   $copy-button-border: #ced4da;
@@ -58,44 +58,27 @@
   $copy-button-copied-bg: #10b981;
   $copy-button-copied-color: #fff;
 
-  // Основной макет
   .news-detail-layout {
     display: flex;
     gap: $layout-gap;
     justify-content: space-between;
     padding: 30px 0px;
-    // Отступы секции
-    align-items: flex-start; // Выравнивание по верху
-    background-color: $layout-bg; // Если нужен фон
+    align-items: flex-start; 
+    background-color: $layout-bg; 
   }
 
-  // Основной контент
   .news-main-content {
-    flex: 1 1 50%; // Гибкая ширина, основа 65%
+    flex: 1 1 50%; 
     background-color: white;
     padding: 40px;
     border-radius: 12px;
-    // max-width: $main-content-max-width; // Ограничиваем ширину текста для читаемости
 
     .article-content ::ng-deep img {
-      /* Обязательные стили для адаптивности и базового отображения */
-      max-width: 45%; /* Гарантируем, что изображение не выйдет за контейнер */
-      height: auto; /* Сохраняем пропорции */
-      /* Полезно для контроля отступов и центрирования */
-      margin: 15px; /* Пример: отступы сверху/снизу 15px, авто по бокам для центрирования */
 
-      /* >>> Стили для радиуса углов <<< */
-      border-radius: 8px; /* Пример: скругление углов на 8 пикселей. Выберите значение по вкусу */
-
-      /* Дополнительные стили (опционально) */
-      /* border: 1px solid #ddd; */ /* Пример: тонкая серая рамка */
-      /* box-shadow: 2px 2px 5px rgba(0,0,0,0.2); */ /* Пример: легкая тень */
-
-      /* Если вы хотите убрать красные волнистые линии от проверки орфографии */
-      /* spell-check: false; <- Это CSS свойство, но оно может не работать во всех браузерах
-     Лучше отключить проверку орфографии на элементе с [innerHTML] в HTML:
-     <div spellcheck="false" class="article-content" [innerHTML]="..."></div>
-  */
+      max-width: 45%; 
+      height: auto; 
+      margin: 15px; 
+      border-radius: 8px; 
     }
     .article-content ::ng-deep p {
       color: #666f8d;
@@ -103,29 +86,26 @@
       line-height: 32px;
     }
 
-    // --- Стили для ссылок внутри article-content ---
     .article-content ::ng-deep a {
-      color: inherit; /* Наследует цвет текста от родителя (p) */
-      text-decoration: none; /* Убирает подчеркивание */
-      cursor: text; /* Курсор остается как для текста, а не как для ссылки */
-      pointer-events: none; /* Делает ссылку некликабельной */
+      color: inherit; 
+      text-decoration: none; 
+      cursor: text; 
+      pointer-events: none; 
 
       &:hover,
       &:active,
       &:focus {
-        color: inherit; /* Сохраняет цвет при наведении/активации */
-        text-decoration: none; /* Убирает подчеркивание при наведении */
+        color: inherit; 
+        text-decoration: none; 
       }
     }
-    // --- Конец стилей для ссылок ---
   }
 
-  // Сайдбар
   .news-sidebar {
-    flex: 0 0 280px; // Фиксированная ширина сайдбара
+    flex: 0 0 280px; 
     width: 280px;
     position: sticky;
-    top: 20px; // "Прилипает" при скролле с отступом 20px
+    top: 20px; 
   }
 
   .sidebar-card {
@@ -144,35 +124,33 @@
     }
   }
 
-  // Иконки "Поделиться"
   .social-share-icons {
     display: flex;
-    justify-content: center; // Центрируем иконки
+    justify-content: center;
     gap: 15px;
     margin-bottom: 20px;
-    flex-wrap: wrap; // Перенос на новую строку, если не помещаются
+    flex-wrap: wrap; 
 
     .social-icon {
-      display: inline-flex; // Для центрирования иконки внутри
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 40px;
       height: 40px;
-      border-radius: 50%; // Круглые иконки
+      border-radius: 50%; 
 
-      font-size: 1.1rem; // Размер иконки Font Awesome
+      font-size: 1.1rem; 
       text-decoration: none;
       transition:
         background-color 0.2s ease,
         transform 0.2s ease;
 
       &:hover {
-        transform: translateY(-2px); // Легкий подъем при наведении
+        transform: translateY(-2px); 
       }
     }
   }
 
-  // Кнопка "Скопировать ссылку"
   .copy-link-button {
     display: block;
     width: 100%;
@@ -195,41 +173,37 @@
       border-color: darken($copy-button-border, 10%);
     }
 
-    // Стиль для состояния "Скопировано!"
-    &:disabled, // Можно использовать disabled или отдельный класс
+    &:disabled, 
   &.copied {
-      // Добавь класс .copied при копировании, если не используешь disabled
-      background-color: $copy-button-copied-bg;
+  background-color: $copy-button-copied-bg;
       border-color: $copy-button-copied-bg;
       color: $copy-button-copied-color;
       cursor: default;
     }
   }
 
-  // --- Адаптивность ---
   @media (max-width: 1024px) {
     .news-detail-layout {
-      flex-direction: column; // Колонки друг под другом
+      flex-direction: column; 
       gap: 25px;
     }
     .news-main-content {
-      max-width: none; // Убираем ограничение ширины текста
+      max-width: none; 
       flex-basis: auto;
-      //  width: 100%;
     }
     .news-sidebar {
       flex-basis: auto;
-      width: 100%; // Сайдбар на всю ширину
-      position: static; // Убираем "липкость"
+      width: 100%; 
+      position: static; 
     }
   }
 
   @media (max-width: 575.98px) {
     .news-detail-layout {
-      padding: 20px 15px; // Уменьшаем отступы
+      padding: 20px 15px;
     }
     .image-gallery {
-      grid-template-columns: 1fr; // Одна колонка для изображений
+      grid-template-columns: 1fr; 
       gap: 12px;
     }
     .sidebar-card {

@@ -17,7 +17,6 @@
   <div class="container">
     <h2>{{ 'DEPOSIT_DETAILS.ADVANTAGES_TITLE' | translate }}</h2>
     <div class="advantages">
-      <!-- Динамический контент -->
       @for (a of scsData.advantages; track a.id) {
         <div class="item">
           <h3>{{ a.title }}</h3>
@@ -41,13 +40,12 @@
           [attr.aria-expanded]="selectedFaqIndex === i"
           [attr.aria-controls]="'faq-answer-' + i"
         >
-          <!-- Динамический контент -->
+        
           <span>{{ faq.title }}</span>
           <span class="faq-icon">{{ selectedFaqIndex === i ? '-' : '+' }}</span>
         </div>
         @if (selectedFaqIndex === i) {
           <div class="faq-answer">
-            <!-- Динамический контент -->
             @for (i of faq.items; track i.id) {
               <p>{{ i.title }}</p>
             }

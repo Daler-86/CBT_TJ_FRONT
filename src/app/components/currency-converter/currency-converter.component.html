@@ -82,9 +82,8 @@
               : ('CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate)
           }}
         </label>
-        <!-- <label for="amountInput">{{ 'CURRENCY_CONVERTER.CONVERTER.HAVE_LABEL' | translate }}</label> -->
+
         <div class="field-wrapper">
-          <!-- <input class="amount-input" type="number" [(ngModel)]="amount" (ngModelChange)="convertCurrency()" /> -->
           <input
             class="amount-input"
             type="number"
@@ -124,7 +123,6 @@
               : ('CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate)
           }}
         </label>
-        <!-- <label>{{ 'CURRENCY_CONVERTER.CONVERTER.RECEIVE_LABEL' | translate }}</label> -->
         <div class="field-wrapper">
           <input class="amount-input" type="text" [value]="convertedAmount | number: '1.0-4'" readonly />
 
@@ -154,8 +152,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <button (click)="sendMoney()">{{ 'buttons.sendMoney' | translate }}</button> -->
     </div>
   </div>
 </div>

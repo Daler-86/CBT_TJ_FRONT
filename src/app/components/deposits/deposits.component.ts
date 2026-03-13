@@ -24,7 +24,7 @@ export class DepositsComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.menuService.currentPersonTypeId.subscribe((id) => {
       this.personTypeId = id;
-      this.loadAllTransfers(); // Загрузка всех карт по умолчанию
+      this.loadAllTransfers(); 
     });
   }
 

@@ -1,4 +1,4 @@
-// Переменные
+
 $primary-color: #00b06c;
 $text-primary: #212529;
 $text-secondary: #555;
@@ -86,7 +86,7 @@ $border-color: #e9ecef;
 
       img {
         padding: 20px 0 0;
-        max-width: 100%; // Ensures image scales down
+        max-width: 100%; 
         height: auto;
       }
     }
@@ -159,7 +159,7 @@ $border-color: #e9ecef;
 
         img {
           align-self: flex-start;
-          max-width: 100px; // Пример, можно настроить
+          max-width: 100px; 
           height: auto;
         }
       }
@@ -215,7 +215,7 @@ $border-color: #e9ecef;
 
         img {
           align-self: flex-start;
-          max-width: 100px; // Пример, можно настроить
+          max-width: 100px; 
           height: auto;
         }
       }
@@ -283,7 +283,7 @@ $border-color: #e9ecef;
         }
 
         @media (max-width: 768px) {
-          height: auto; // Allow height to adjust
+          height: auto;
           min-height: 90px;
           padding: 15px 20px;
         }
@@ -303,7 +303,7 @@ $border-color: #e9ecef;
           font-size: 18px;
 
           @media (max-width: 768px) {
-            width: 100%; // Takes full width on smaller screens
+            width: 100%; 
             font-size: 16px;
             text-align: left;
           }
@@ -327,7 +327,7 @@ $border-color: #e9ecef;
           flex-grow: 1;
 
           @media (max-width: 768px) {
-            width: 100%; // Takes full width on smaller screens
+            width: 100%; 
             text-align: left;
           }
         }
@@ -338,8 +338,8 @@ $border-color: #e9ecef;
         grid-template-columns: 1fr 1fr;
 
         @media (max-width: 768px) {
-          grid-template-columns: 1fr; // Stack columns on small screens
-          gap: 5px; // Add some space between stacked items
+          grid-template-columns: 1fr;
+          gap: 5px; 
         }
       }
 
@@ -348,7 +348,7 @@ $border-color: #e9ecef;
         grid-template-columns: 3fr 1fr 1fr 1fr;
 
         @media (max-width: 768px) {
-          grid-template-columns: 1fr; // Stack columns on small screens
+          grid-template-columns: 1fr; 
           gap: 5px;
         }
       }
@@ -358,7 +358,7 @@ $border-color: #e9ecef;
         gap: 35px;
 
         @media (max-width: 768px) {
-          flex-direction: column; // Stack items on small screens
+          flex-direction: column; 
           gap: 15px;
         }
       }
@@ -385,14 +385,14 @@ $border-color: #e9ecef;
 
         @media (max-width: 768px) {
           padding: 20px 25px;
-          flex-direction: row; // Keep icon and text side-by-side
-          align-items: flex-start; // Align text to top if multiline
+          flex-direction: row; 
+          align-items: flex-start;
           gap: 10px;
         }
 
         img {
-          flex-shrink: 0; // Prevent icon from shrinking
-          width: 24px; // Adjust icon size if needed
+          flex-shrink: 0; 
+          width: 24px;
           height: 24px;
         }
 
@@ -411,14 +411,14 @@ $border-color: #e9ecef;
       margin: 40px 0;
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap; // Allow items to wrap to the next line
+      flex-wrap: wrap; 
 
       @media (max-width: 992px) {
         gap: 20px;
       }
 
       @media (max-width: 768px) {
-        flex-direction: column; // Stack items on small screens
+        flex-direction: column;
       }
 
       .box1 {
@@ -430,12 +430,12 @@ $border-color: #e9ecef;
         border-radius: 24px;
 
         @media (max-width: 992px) {
-          width: 48%; // Two columns on medium screens
+          width: 48%; 
           padding: 30px;
         }
 
         @media (max-width: 768px) {
-          width: 100%; // Full width on small screens
+          width: 100%;
           padding: 20px;
         }
 
@@ -445,13 +445,13 @@ $border-color: #e9ecef;
           font-size: 20px;
 
           @media (max-width: 768px) {
-            padding-top: 30px; // Reduce padding on small screens
+            padding-top: 30px; 
             font-size: 16px;
           }
         }
 
         img {
-          max-width: 80px; // Adjust image size
+          max-width: 80px;
           height: auto;
         }
       }

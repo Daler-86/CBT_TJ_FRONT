@@ -78,22 +78,18 @@ $news-text-color: #353e5c;
     opacity: 0.5;
   }
 }
-
-// --- КОРРЕКТИРОВКИ ДЛЯ news-card-link и news-card ---
 .news-card {
   .news-card-link {
-    display: contents; /* Важно: Делает элемент невидимым для раскладки, но его содержимое остается видимым. Позволяет стилям .news-card влиять на вид, а link остается кликабельным. */
-    text-decoration: none; /* Убираем подчеркивание */
-    color: inherit; /* Наследуем цвет текста от родителя (news-text-content), чтобы заголовок не был синим */
-    cursor: pointer; /* Курсор-указатель, чтобы показать, что это кликабельно */
-
-    /* Добавим стили для news-card здесь, чтобы они срабатывали при наведении на news-card-link */
+    display: contents; 
+    text-decoration: none;
+    color: inherit; 
+    cursor: pointer; 
 
     display: flex;
     background-color: $card-bg;
     border-radius: $card-border-radius;
     padding: $card-padding;
-    cursor: pointer; // Курсор уже задан на news-card-link
+    cursor: pointer; 
 
     overflow: hidden;
     gap: $column-gap;
@@ -101,27 +97,17 @@ $news-text-color: #353e5c;
   }
 }
 
-// Контент с текстом
 .news-text-content {
   flex: 1 1 60%;
 
   h2 {
     font-size: 30px;
     font-weight: 700;
-    color: $news-title-color; // Используем эту переменную для цвета заголовка
+    color: $news-title-color; 
     margin-top: 0;
     margin-bottom: 20px;
     line-height: 1.3;
   }
-
-  // Эту секцию `.news-title-link` можно удалить, так как весь `news-card-link`
-  // уже делает заголовок кликабельным, и мы наследуем цвет.
-  // .news-title-link {
-  //   text-decoration: none;
-  //   color: inherit;
-  //   font-size: 30px;
-  //   font-weight: 700;
-  // }
 
   p {
     font-size: 18px;
@@ -131,10 +117,8 @@ $news-text-color: #353e5c;
   }
 }
 
-// Контейнер с картинкой
 .news-image-content {
   flex: 1 0 45%;
-  // max-width: 40%;
   align-self: center;
 
   img {
@@ -152,7 +136,6 @@ $news-text-color: #353e5c;
   font-size: 1.1rem;
 }
 
-// --- Адаптивность ---
 @media (max-width: 1024px) {
   .news-card-link .news-card {
     gap: 5px;

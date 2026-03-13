@@ -1,25 +1,20 @@
 <div class="cards">
   <div class="card-container">
     <div class="card-info">
-      <!-- Динамический контент, перевод не требуется -->
       <h2 class="card-title">{{ transferData.title }}</h2>
       <p class="card-description">{{ transferData.description }}</p>
     </div>
     <div class="card-image">
-      <!-- Динамический alt, перевод не требуется -->
       <img class="transfers_img" [src]="imageUrl + transferData.upload_icon_file_id" [alt]="transferData.title" />
     </div>
   </div>
 
-  <!-- Заголовок и текст для блока условий -->
   @if (transferData.upload_tariff_file_id !== '') {
     <h1>{{ 'TRANSFERS.DETAILS.CONDITIONS_TITLE' | translate }}</h1>
   }
 
-  <!-- <p *ngIf="transferData.upload_tariff_file_id">{{ 'transfers.details.swiftInfo' | translate }}</p> -->
 
   <div class="section2">
-    <!-- Динамический блок, перевод не требуется -->
     @for (condition of transferData.conditions; track condition.id) {
       <div class="box">
         <p>{{ condition.title }}</p>
@@ -30,7 +25,6 @@
       </div>
     }
 
-    <!-- Блок для кнопки тарифов -->
     @if (transferData.upload_tariff_file_id !== '') {
       <div class="box">
         <p>{{ 'TRANSFERS.DETAILS.VIEW_ALL_TARIFFS_TEXT' | translate }}</p>
@@ -40,13 +34,11 @@
   </div>
 
   <div class="section3">
-    <!-- Заголовок для блока документов -->
     @if (!transferData.upload_tariff_file_id) {
       <h1>{{ 'transfers.details.documentsAndTariffsTitle' | translate }}</h1>
     }
 
     <div class="section2">
-      <!-- Динамический блок, перевод не требуется -->
       @for (document of transferData.documents; track document.id) {
         <div class="box">
           <h2>{{ document.title }}</h2>
@@ -63,7 +55,6 @@
       <div class="box">
         <div class="details">
           <h3>{{ 'TRANSFERS.DETAILS.MORE_INFO_ON_SITE' | translate }}</h3>
-          <!-- Динамический контент, перевод не требуется -->
           <a [href]="transferData.link"
             ><p>{{ transferData.title }}</p></a
           >

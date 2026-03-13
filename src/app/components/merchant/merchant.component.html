@@ -1,15 +1,10 @@
-<!-- src/app/pages/merchant-list/merchant-list.component.html -->
-<!-- Контейнер всей страницы для общих отступов и фона -->
+
 <div class="page-container">
-  <!-- Заголовок страницы -->
   <div class="page-header">
     <h1>{{ 'MERCHANTS_PAGE.TITLE' | translate }}</h1>
     <p>{{ 'MERCHANTS_PAGE.SUBTITLE' | translate }}</p>
   </div>
-
-  <!-- Основной контент: фильтры + сетка -->
   <div class="content-wrapper">
-    <!-- Блок с фильтрами (левая колонка) -->
     <div class="filters-panel">
       <div class="filter-controls">
         <p class="filters-title">{{ 'MERCHANTS_PAGE.FILTERS.TITLE' | translate }}</p>
@@ -45,7 +40,6 @@
       </div>
     </div>
 
-    <!-- Сетка с карточками мерчантов (правая колонка) -->
     <div class="merchants-grid">
       @for (merchant of merchants; track merchant.id) {
         <div class="merchant-card">
@@ -60,7 +54,6 @@
     </div>
   </div>
 
-  <!-- Пагинация -->
   @if (totalPages >= 1) {
     <div class="pagination-container">
       <button

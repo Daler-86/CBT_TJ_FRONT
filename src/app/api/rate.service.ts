@@ -11,14 +11,8 @@ export class RateService {
   private apiUrl = `${environment.BASE_URL}`;
   private http = inject(HttpClient);
 
-  /**
-   * Получает и обрабатывает курсы валют.
-   * @returns Observable, который эмитит готовые для отображения данные.
-   */
   getProcessedExchangeRates(): Observable<ProcessedData> {
-    // Делаем GET-запрос и указываем, что ожидаем ответ типа ApiResponse
     return this.http.get<ApiResponse>(this.apiUrl + '/rate/list').pipe(
-      // Используем оператор map для трансформации полученных данных
       map((response) => {
         const ratesByMode: ExchangeRatesByMode = {};
         const lastUpdated = response.data.last_update;
@@ -31,13 +25,12 @@ export class RateService {
 
           ratesByMode[rate.mode].push({
             currency: rate.cur,
-            buy: parseFloat(rate.buy) || 0, // Преобразуем строку в число
+            buy: parseFloat(rate.buy) || 0, 
             sell: parseFloat(rate.sell) || 0,
-            flag: this.getFlag(rate.cur), // Получаем флаг
+            flag: this.getFlag(rate.cur), 
           });
         });
 
-        // Возвращаем обработанный объект
         return { ratesByMode, lastUpdated };
       }),
     );

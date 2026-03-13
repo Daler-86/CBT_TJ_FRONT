@@ -1,4 +1,3 @@
-// src/app/api/merchant.service.ts
 
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -16,10 +15,7 @@ export class MerchantService {
   private http = inject(HttpClient);
   private languageService = inject(LanguagesService);
 
-  /**
-   * Переписано точно по вашему примеру VacanciesService.
-   * Отправляет все параметры, даже если они null.
-   */
+
   getMerchants(
     limit: number,
     currentPage: number,
@@ -35,10 +31,6 @@ export class MerchantService {
           Language: lang,
         });
 
-        // В вашем примере offset вычисляется как (currentPage - 1) * limit,
-        // а передается просто currentPage. Давайте сделаем точно как в примере,
-        // но учтем, что offset и currentPage - это разные вещи.
-        // Я сохраню правильный расчет offset.
         const offset = (currentPage - 1) * limit + 1;
 
         const params = new HttpParams()
@@ -54,7 +46,6 @@ export class MerchantService {
     );
   }
 
-  // getCategories остается без изменений
   getCategories(): Observable<MerchantCategoryResponse> {
     return this.languageService.language$.pipe(
       switchMap((lang) => {

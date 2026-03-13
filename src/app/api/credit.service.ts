@@ -95,7 +95,7 @@ export class CreditService {
       switchMap((lang) => {
         const headers = new HttpHeaders({
           Accept: 'application/json',
-          Language: lang, // Динамическая установка языкового заголовка
+          Language: lang, 
         });
 
         return this.http.post<fileResponse>(this.baseUrl + '/credit/order/save', creditData, { headers });

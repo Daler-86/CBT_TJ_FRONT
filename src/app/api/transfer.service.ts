@@ -29,7 +29,6 @@ export class TransfersService {
       }),
       map((response) => {
         if (response.data.transfers && Array.isArray(response.data.transfers)) {
-          // Сортируем сначала карты по sortId
           response.data.transfers = this.sortBySortId(response.data.transfers);
         }
         return response;

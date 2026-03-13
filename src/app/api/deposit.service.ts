@@ -30,7 +30,6 @@ export class DepositsService {
       }),
       map((response) => {
         if (response.data.deposits && Array.isArray(response.data.deposits)) {
-          // Сортируем сначала карты по sortId
           response.data.deposits = this.sortBySortId(response.data.deposits).map((deposit) => {
             if (Array.isArray(deposit.content_item)) {
               deposit.content_item = this.sortBySortId(deposit.content_item);
@@ -56,11 +55,9 @@ export class DepositsService {
         if (response.data) {
           const depositData = response.data;
 
-          // Сортируем currency, если это массив
           if (Array.isArray(depositData.currency)) {
             depositData.currency = this.sortBySortId(depositData.currency);
 
-            // Для каждого элемента currency сортируем tariffs
             depositData.currency.forEach((currencyItem) => {
               if (Array.isArray(currencyItem.tariffs)) {
                 currencyItem.tariffs = this.sortBySortId(currencyItem.tariffs);
@@ -68,12 +65,10 @@ export class DepositsService {
             });
           }
 
-          // Сортируем documents, если это массив
           if (Array.isArray(depositData.documents)) {
             depositData.documents = this.sortBySortId(depositData.documents);
           }
 
-          // Сортируем faqs, если это массив
           if (Array.isArray(depositData.faqs)) {
             depositData.faqs = this.sortBySortId(depositData.faqs);
           }
@@ -88,7 +83,7 @@ export class DepositsService {
       switchMap((lang) => {
         const headers = new HttpHeaders({
           Accept: 'application/json',
-          Language: lang, // Динамическая установка языкового заголовка
+          Language: lang, 
         });
 
         return this.http.post<fileResponse>(this.baseUrl + '/deposit/order/save', cardData, { headers });

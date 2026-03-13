@@ -6,7 +6,7 @@
     cursor: pointer;
     padding: 5px 15px;
     user-select: none;
-    background: #f8f9fa; // Можно убрать, если фон не нужен
+    background: #f8f9fa; 
     border-radius: 12px;
   
     .selected-value {
@@ -33,8 +33,8 @@
     .custom-dropdown {
       position: absolute;
       top: calc(100% + 5px);
-      left: 0; // Изменил с right на left для типа кредита
-      width: 220px; // Немного шире для длинных названий
+      left: 0; 
+      width: 220px; 
       background: #ffffff;
       border-radius: 20px;
       padding: 8px;
@@ -75,7 +75,7 @@
     }
   }
   
-  // Чтобы селектор и табы были в одну линию
+
   .controls-row {
     display: flex;
     align-items: center;

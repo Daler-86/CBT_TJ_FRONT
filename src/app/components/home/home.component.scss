@@ -223,10 +223,6 @@
             background-color: darken(#f1f5f9, 5%);
           }
 
-          // @media (max-width: 480px) {
-          //   width: 100%;
-          //   text-align: center;
-          // }
         }
       }
 
@@ -276,7 +272,7 @@
           }
 
           img {
-            width: clamp(60px, 10vw, 100px); // Картинка плавно уменьшается
+            width: clamp(60px, 10vw, 100px); 
             height: auto;
             transition: transform 0.5s ease;
           }
