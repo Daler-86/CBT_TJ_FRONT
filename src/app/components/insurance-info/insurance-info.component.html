@@ -5,37 +5,64 @@
       <p>{{ 'INSURANCE_PAGE.DESCRIPTION_1' | translate }}</p>
     </div>
     <div class="box2">
-      <img src="../../../assets/icons/СТРАХОВАНИЕ1.png" alt="{{ 'INSURANCE_PAGE.TITLE' | translate }}" />
+      <img src="../../../assets/icons/Logo-new.svg" alt="{{ 'INSURANCE_PAGE.TITLE' | translate }}" />
     </div>
   </div>
 
   <div class="section-2">
     <div class="box1">
-      <img src="../../../assets/icons/СТРАХОВАНИЕ.png" alt="{{ 'INSURANCE_PAGE.TITLE' | translate }}" />
+      <img src="../../../assets/icons/капилка.png" alt="{{ 'INSURANCE_PAGE.TITLE' | translate }}" />
     </div>
     <div class="box2">
       <p>{{ 'INSURANCE_PAGE.DESCRIPTION_2' | translate }}</p>
       <p>{{ 'INSURANCE_PAGE.DESCRIPTION_3' | translate }}</p>
-      <p>{{ 'INSURANCE_PAGE.DESCRIPTION_4' | translate }}</p>
+      <p>{{ 'INSURANCE_PAGE.DESCRIPTION_4' | translate }} <span> <a href="https://dif.tj/">{{ 'INSURANCE_PAGE.FOND' | translate }}</a></span>:</p>
+      <p>{{ 'INSURANCE_PAGE.DESCRIPTION_5' | translate }}</p>
+      <ul>
+        <li *ngFor="let item of 'INSURANCE_PAGE.DESCRIPTION_5_LIST' | translate">{{item}}</li>
+      </ul>
     </div>
   </div>
 
+
   <div class="section-3">
     <div class="left">
+      <div class="">
       <h2>{{ 'INSURANCE_PAGE.NO_COMPENSATION_TITLE' | translate }}</h2>
       <p *ngFor="let item of 'INSURANCE_PAGE.NO_COMPENSATION_LIST' | translate">
         {{ item }}
       </p>
     </div>
+    <div class="document-card">
+      <img src="../../../assets/icons/файл.png" [alt]="'ALT.FILE_ICON' | translate" class="pdf-icon" />
+      <a href="../../../assets/files/Тасдикномаи_нави_Хазинаи_сугурта_оиди_узвияти_бонк.pdf" target="_blank" rel="noopener noreferrer" class="document-link">
+       {{"INSURANCE_PAGE.CERTIFICATE" | translate }}
+      </a>
+    </div>
+    </div>
     <div class="right">
+        <div class="">
+      <h2>{{ 'INSURANCE_PAGE.NO_COMPENSATION_TITLE_1' | translate }}</h2>
+      <p *ngFor="let item of 'INSURANCE_PAGE.NO_COMPENSATION_LIST_1' | translate">
+        {{ item }}
+      </p>
+    </div>
+    <div class="">
       <h2>{{ 'INSURANCE_PAGE.COMPENSATION_TITLE' | translate }}</h2>
       <p>{{ 'INSURANCE_PAGE.COMPENSATION_TEXT' | translate }}</p>
       <p *ngFor="let detail of 'INSURANCE_PAGE.COMPENSATION_DETAILS' | translate">
         {{ detail }}
       </p>
+      <p>{{'INSURANCE_PAGE.COMPENSATION_DETAILS_FOND' | translate}} <span> <a href="https://dif.tj/">{{ 'INSURANCE_PAGE.FOND' | translate }}</a></span>.</p>
     </div>
+    </div>
+  
   </div>
-
+  <div class="buklet">
+    <h2>{{ 'INSURANCE_PAGE.BUKLET_TITLE' | translate }}</h2>
+    <img src="../../../assets/icons/BUKLET-08-10-2025-3u-1.jpg" alt="">
+    <img src="../../../assets/icons/BUKLET-08-10-2025-22.jpg" alt="">
+  </div>
   <div class="section-4">
     <h2>{{ 'INSURANCE_PAGE.INFO_FOR_DEPOSITORS_TITLE' | translate }}</h2>
     <div class="box">
