@@ -6,7 +6,7 @@
       <button [scrollTo]="'application-form'">{{ 'ACQUIRING.SUBMIT_BUTTON' | translate }}</button>
     </div>
     <div class="box2">
-      <img src="../../../assets/icons/эквайринг.png" alt="" />
+      <img src="../../../assets/icons/acquiring.png" alt="" />
     </div>
   </div>
 
@@ -14,14 +14,14 @@
     <h2 class="header">{{ 'ACQUIRING.ADVANTAGES.TITLE' | translate }}</h2>
     <div class="details-1">
       <div class="box1">
-        <img src="../../../assets/icons/a1.png" alt="" />
+        <img src="../../../assets/icons/qr-code-icon.png" alt="" />
         <div class="">
           <h3>{{ 'ACQUIRING.ADVANTAGES.QR_CODE.TITLE' | translate }}</h3>
           <p>{{ 'ACQUIRING.ADVANTAGES.QR_CODE.DESCRIPTION' | translate }}</p>
         </div>
       </div>
       <div class="box1">
-        <img src="../../../assets/icons/a2.png" alt="" />
+        <img src="../../../assets/icons/korti-milli-logo.png" alt="" />
         <div class="">
           <h3>{{ 'ACQUIRING.ADVANTAGES.KORTI_MILLI.TITLE' | translate }}</h3>
           <p>{{ 'ACQUIRING.ADVANTAGES.KORTI_MILLI.DESCRIPTION' | translate }}</p>
@@ -32,21 +32,21 @@
     <h2 class="header">{{ 'ACQUIRING.WHY_US.TITLE' | translate }}</h2>
     <div class="details-2">
       <div class="box1">
-        <img src="../../../assets/icons/a3.png" alt="" />
+        <img src="../../../assets/icons/calendar-3d.png" alt="" />
         <div class="">
           <h3>{{ 'ACQUIRING.WHY_US.FAST_PAYMENT.TITLE' | translate }}</h3>
           <p>{{ 'ACQUIRING.WHY_US.FAST_PAYMENT.DESCRIPTION' | translate }}</p>
         </div>
       </div>
       <div class="box1">
-        <img src="../../../assets/icons/a4.png" alt="" />
+        <img src="../../../assets/icons/calculator-3d.png" alt="" />
         <div class="">
           <h3>{{ 'ACQUIRING.WHY_US.REDUCE_LOAD.TITLE' | translate }}</h3>
           <p>{{ 'ACQUIRING.WHY_US.REDUCE_LOAD.DESCRIPTION' | translate }}</p>
         </div>
       </div>
       <div class="box1">
-        <img src="../../../assets/icons/a5.png" alt="" />
+        <img src="../../../assets/icons/support-24-7-3d.png" alt="" />
         <div class="">
           <h3>{{ 'ACQUIRING.WHY_US.ONLINE_MANAGEMENT.TITLE' | translate }}</h3>
           <p>{{ 'ACQUIRING.WHY_US.ONLINE_MANAGEMENT.DESCRIPTION' | translate }}</p>
@@ -103,7 +103,7 @@
     <h2 class="header">{{ 'ACQUIRING.CONDITIONS.TITLE' | translate }}</h2>
     <div class="details-3">
       <div class="box" *ngFor="let item of 'ACQUIRING.CONDITIONS.ITEMS' | translate">
-        <img src="../../../assets/icons/Check Circle.svg" alt="" />
+        <img src="../../../assets/icons/check-circle.svg" alt="" />
         <p>{{ item }}</p>
       </div>
     </div>
@@ -111,7 +111,7 @@
     <h2 class="header">{{ 'ACQUIRING.DOCUMENTS.TITLE' | translate }}</h2>
     <div class="details-4">
       <div class="box1" *ngFor="let doc of 'ACQUIRING.DOCUMENTS.ITEMS' | translate; let i = index">
-        <img src="../../../assets/icons/a{{ i + 6 }}.png" alt="" />
+        <img src="../../../assets/icons/acquiring-icon-{{ i + 1 }}.png" alt="" />
         <div class="">
           <p>{{ doc }}</p>
         </div>

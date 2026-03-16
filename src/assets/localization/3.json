@@ -615,104 +615,7 @@
       "SWIFT": "SWIFT"
     }
   },
-  "INSURANCE_PAGE": {
-    "MAIN_TITLE": "Insurance of Individual Deposits",
-    "WHAT_IS_IT": {
-      "TITLE": "What is the individual deposit insurance system?",
-      "P1": "The individual deposit insurance system is a set of measures aimed at protecting the rights and legal interests of depositors by paying insurance compensation upon the occurrence of an insured event at credit institutions that are members of the Individual Deposit Insurance Fund.",
-      "P2": "The goal of the individual deposit insurance system is to ensure the financial stability of the Republic of Tajikistan, including maintaining public confidence in the banking system.",
-      "P3": "The activities of the individual deposit insurance system are regulated by the Law of the Republic of Tajikistan \"On Insurance of Individual Deposits\". To ensure the effectiveness of the system, the Individual Deposit Insurance Fund (hereinafter - the Fund) operates. The Fund pays insurance compensation to depositors upon the occurrence of an insured event, maintains a register of member credit institutions, and manages the accounting and collection of payments from credit institutions."
-    },
-    "FUND_GOALS": {
-      "TITLE": "The goals of the Fund are:",
-      "ITEMS": [
-        "To protect the rights and legal interests of depositors by paying insurance compensation;",
-        "To strengthen public confidence in the banking system of the Republic of Tajikistan;"
-      ]
-    },
-    "CONTACT_INFO": {
-      "TITLE": "Contact Information",
-      "CALL_CENTER_TITLE": "Call Center",
-      "CALL_CENTER_NUMBER": "88 88",
-      "WHATSAPP_TITLE": "Whatsapp",
-      "WHATSAPP_NUMBER": "+(992) 44 630 8888",
-      "EMAIL_TITLE": "Email address",
-      "EMAIL_ADDRESS": "info@cbt.tj",
-      "ADDRESS_TITLE": "Address",
-      "ADDRESS_TEXT": "Head office of Commerce Bank of Tajikistan, 734000, Dushanbe, 37/1 Bokhtar St.",
-      "SCHEDULE_TITLE": "Working Hours",
-      "SCHEDULE_WORKDAYS": "Mon-Fri",
-      "SCHEDULE_WORK_HOURS": "from 09:00 to 18:00",
-      "SCHEDULE_WEEKENDS": "Sat-Sun",
-      "SCHEDULE_WEEKEND_HOURS": "Closed"
-    },
-    "COVERAGE": {
-      "TITLE": "Level and Coverage of the Fund's Insurance Compensation",
-      "P1": "Individual deposits are insured automatically and do not require the depositor to sign an insurance contract. The object of insurance is individual deposits in national and foreign currency, confirmed by bank deposit agreements and/or bank accounts of salary and pension cards and/or savings books."
-    },
-    "NOT_COVERED": {
-      "TITLE": "Upon the occurrence of an insured event, compensation for the following individual deposits is not paid:",
-      "ITEMS": [
-        "deposits for which the credit institution has the right to offset against the depositor's debts;",
-        "deposits that are pledged as collateral;",
-        "deposits obtained through criminal means or seized by a court;",
-        "deposits that, according to the conclusion of the National Bank of Tajikistan, have worsened the financial condition of the credit institution;",
-        "deposits of affiliated persons of the credit institution;",
-        "deposits of partners of the audit company engaged as the auditor;",
-        "deposits of individuals holding more than five percent of the credit institution's shares;",
-        "deposits placed in foreign branches of the credit institution;",
-        "deposits equal to any amount of the depositor's outstanding debt;",
-        "deposits of less than 10 somoni;"
-      ]
-    },
-    "COMPENSATION": {
-      "TITLE": "Insurance Compensation",
-      "P1": "An insured event is the compulsory liquidation of a credit institution by a court decision, which creates an obligation for the Fund to pay insurance compensation.",
-      "P2": "Upon the occurrence of an insured event, the amount of compensation for deposits is as follows:",
-      "LIMITS": [
-        "in national currency, no more than 500 calculation indicators;",
-        "in foreign currency, no more than 350 calculation indicators;"
-      ],
-      "P3": "Deposits in national currency are compensated in national currency. Deposits in foreign currency are compensated in national currency at the official exchange rate of the National Bank of Tajikistan on the day of the insured event. Interest on deposits is not compensated by the Fund."
-    },
-    "PAYMENT_PROCESS": {
-      "TITLE": "Payment of Insurance Compensation",
-      "P1": "After an insured event occurs, the Fund publishes an announcement in the media about the agent bank, the place, time, and procedure for accepting applications for deposit compensation. The announcement is also posted at the entrance of the agent bank and on the Fund's official website, www.idif.tj.",
-      "P2": "Compensation payments begin no later than 14 calendar days after the insured event and are made through the agent bank in cash or non-cash form.",
-      "P3": "To receive compensation, the depositor must apply to the agent bank within one year from the date of the insured event and provide the following documents:",
-      "DOCUMENTS": [
-        "Application in the prescribed form;",
-        "Identity document;",
-        "Bank deposit agreement;",
-        "Power of attorney (if necessary)."
-      ]
-    },
-    "FOR_DEPOSITORS": {
-      "TITLE": "Information for Depositors",
-      "SLIDES": [
-        {
-          "TITLE": "1. Research the Credit Institution",
-          "CONTENT": "Make sure that the institution where you want to place a deposit is a member of the individual deposit insurance system and has a Certificate of Membership."
-        },
-        {
-          "TITLE": "2. Review the Deposit Agreement",
-          "CONTENT": "Carefully check that your name, passport details, address, and phone number are correctly stated in the agreement and always inform the institution of any changes."
-        },
-        {
-          "TITLE": "3. Remember which deposits are not compensated",
-          "CONTENT": "Pledged deposits, deposits obtained through criminal means, or deposits of affiliated persons are not compensated."
-        },
-        {
-          "TITLE": "4. Don't worry and be patient",
-          "CONTENT": "You have one year to receive compensation. Do not rush on the first day to avoid queues. The Fund may extend the application period for valid reasons."
-        }
-      ]
-    },
-    "CERTIFICATE": {
-      "TEXT": "Certificate of JSC Commerce Bank of Tajikistan on membership in the fund",
-      "LINK_TEXT": "Certificate"
-    }
-  },
+
   "ACQUIRING_PAGE": {
     "HERO": {
       "TITLE": "Online-acquiring",
@@ -998,47 +901,61 @@
   },
 
   "INSURANCE_PAGE": {
-    "TITLE": "Insurance",
-    "DESCRIPTION_1": "The deposit insurance system for individuals is a set of measures aimed at protecting depositors' rights and interests through compensation payments.",
-    "DESCRIPTION_2": "The deposit insurance system for individuals protects depositors' rights by compensating them in case of an insured event in credit institutions that are members of the Deposit Insurance Fund.",
-    "DESCRIPTION_3": "The goal of the deposit insurance system is to ensure financial stability in the Republic of Tajikistan and maintain public trust in the banking system.",
-    "DESCRIPTION_4": "The principles of the deposit insurance system are regulated by the Law of the Republic of Tajikistan 'On Deposit Insurance for Individuals'.",
-    "NO_COMPENSATION_TITLE": "In the event of an insured case, compensation for the following deposits is not paid:",
+    "CERTIFICATE":"Certificate",
+    "TITLE": "DEPOSIT INSURANCE",
+    "DESCRIPTION_1": "OJSC “Commercebank of Tajikistan” since November 28, 2017, in accordance with the “Certificate of Membership” No. 058, has been a member of the Individuals’ Deposit Insurance Fund. According to the “Certificate of Membership” No. 58 dated June 19, 2023, it is also a member of the Deposit and Savings Insurance Fund of Tajikistan.",
+    "DESCRIPTION_2": "The Individuals' Deposit Insurance Fund was established in 2004 based on the Law of the Republic of Tajikistan “On Individual Deposit Insurance.”",
+    "DESCRIPTION_3": "In 2023, due to the amendments made, this law received a new title — “On Deposit and Savings Insurance”, and the Individuals’ Deposit Insurance Fund was transformed into the Deposit and Savings Insurance Fund of Tajikistan.",
+    "DESCRIPTION_4": "The main objective of the Deposit and Savings Insurance Fund of Tajikistan is to protect the rights and legal interests of depositors, as well as to strengthen public confidence in the banking system of the Republic of Tajikistan. Detailed information about the Fund, its legal status and functions can be found on the official website, ",
+    "FOND": "Insurance Fund",
+    "BUKLET_TITLE": "Booklets",
+    "DESCRIPTION_5": "Currently, in addition to individual deposits, mandatory insurance also applies to:",
+    "DESCRIPTION_5_LIST": [
+      "deposits and savings of individual entrepreneurs;",
+      "deposits of legal entities – small business entities;",
+      "non-profit organizations."
+    ],
+    "NO_COMPENSATION_TITLE": "In the event of an insurance case, compensation is not paid for the following individual deposits:",
     "NO_COMPENSATION_LIST": [
-      "Deposits that the credit institution may offset against the depositor’s debt",
-      "Deposits pledged as collateral",
-      "Deposits that worsened the credit institution’s financial condition",
-      "Deposits of affiliated persons of the credit institution",
-      "Deposits of partners of the auditing company of the credit institution",
-      "Deposits of individuals owning more than 5% of the bank’s shares",
-      "Deposits in foreign branches of the credit institution",
-      "Deposits equal to the depositor’s unpaid debt",
-      "Deposits under 10 somoni"
+      "deposits and savings obtained through crime or deposits and savings seized by the court",
+      "deposits and savings that, according to the conclusion of the National Bank of Tajikistan, have worsened the financial condition of the credit institution",
+      "deposits that worsened the financial position of the credit organization",
+      "deposits of affiliated persons of the credit organization",
+      "deposits of partners of the credit organization's auditing company",
+      "deposits of persons owning more than 5% of the credit organization's shares",
+      "deposits in foreign branches of the credit organization",
+      "deposits equal to the amount of the depositor's outstanding debt",
+      "deposits of less than 10 somoni"
     ],
-    "COMPENSATION_TITLE": "Insurance Compensation",
-    "COMPENSATION_TEXT": "In case of an insured event, the compensation amount for deposits is:",
+    "NO_COMPENSATION_TITLE_1": "The compensation amount established by legislation for one depositor in one credit institution is no more than 35,000 somoni.",
+    "NO_COMPENSATION_LIST_1": [
+      "The remaining part of the deposits is paid during the liquidation process by the special administrator (liquidator) of the credit institution in the manner prescribed by law.",
+      "Deposits and savings placed in different credit institutions are insured separately."
+    ],
+    "COMPENSATION_TITLE": "Law and Regulatory Acts",
+    "COMPENSATION_TEXT": "Issues of deposit and savings insurance in the country are regulated by the Law of the Republic of Tajikistan “On Deposit and Savings Insurance”. The text of this law, as well as other laws of the Republic of Tajikistan:",
     "COMPENSATION_DETAILS": [
-      "In national currency — up to 500 calculation indicators",
-      "In foreign currency — up to 350 calculation indicators",
-      "Deposits in national currency are reimbursed in somoni; foreign currency deposits are reimbursed in somoni at the official exchange rate of the National Bank of Tajikistan on the date of the insured event. Interest is not reimbursed."
+      "“On Banking Activity”",
+      "“On Liquidation of Credit Organizations”"
     ],
+    "COMPENSATION_DETAILS_FOND": "and other regulatory legal acts can be found on the website",
     "INFO_FOR_DEPOSITORS_TITLE": "Information for Depositors",
     "INFO_ITEMS": [
       {
-        "title": "Check the credit institution",
-        "text": "Make sure the organization you choose is a member of the deposit insurance system and has a membership certificate."
+        "title": "Study the credit organization",
+        "text": "Make sure that your chosen organization is a member of the deposit insurance system and has a Certificate of Membership."
       },
       {
-        "title": "Check your deposit agreement",
-        "text": "Carefully verify your personal data in the contract and inform the bank promptly about any changes."
+        "title": "Check the deposit agreement",
+        "text": "Carefully check your personal data in the contract and promptly inform the bank of any changes."
       },
       {
         "title": "Remember which deposits are not reimbursed",
-        "text": "Deposits pledged as collateral, obtained illegally, or belonging to persons affiliated with the bank are not reimbursed."
+        "text": "Deposits held as collateral, obtained by criminal means, or deposits of persons associated with the bank are not reimbursed."
       },
       {
         "title": "Receiving compensation",
-        "text": "You have one year to receive compensation. Avoid rushing on the first day to skip queues. The Fund may extend the deadline for valid reasons."
+        "text": "You have one year to receive compensation. Do not rush on the first day to avoid queues. The Fund may extend the application period in case of valid reasons."
       }
     ]
   }
