@@ -53,6 +53,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private translateService = inject(TranslateService);
   private languageService = inject(LanguagesService);
   showMore = false;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (window.innerWidth > 1024) {
+      this.closeMobileMenu(); 
+    }
+  }
   ngOnInit(): void {
     const langSub = this.languageService.language$.subscribe((lang) => {
       this.selectedLanguage = lang;
@@ -139,11 +145,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     document.body.style.overflow = 'auto';
   }
 
-  toggleMenu() {
-    this.menuActive = !this.menuActive;
-    document.body.style.overflow = this.menuActive ? 'hidden' : 'auto';
-    if (!this.menuActive) {
-      this.dropdownOpenMap = {};
+  toggleMenu(event: Event) {
+    event.stopPropagation();
+    this.menuActive = !this.menuActive; 
+    if (this.menuActive) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
     }
   }
 }
