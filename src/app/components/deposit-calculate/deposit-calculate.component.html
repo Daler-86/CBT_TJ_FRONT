@@ -172,13 +172,9 @@
             }}
           </h3>
         </div>
-        <button
-          class="apply-button"
-          [routerLink]="['/deposit-details', +selectedProductId]"
-          [queryParams]="{ scrollTo: 'application-form' }"
-        >
-          {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
-        </button>
+     <button class="apply-button" (click)="onApply()">
+  {{ 'CALCULATORS.COMMON.APPLY_BUTTON' | translate }}
+</button>
       </div>
     }
     @if (calculationResult?.error) {

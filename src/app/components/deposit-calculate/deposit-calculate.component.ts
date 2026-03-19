@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CalculationResult, DepositProducts } from '../../models/deposit.model';
 import { DepositCalculateService } from '../../services/deposit-calculate.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Languages } from '../../shared/enums/languages.enum';
 
@@ -48,7 +48,7 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
   isEditingAmount = false;
   private depositService = inject(DepositCalculateService);
 
-  constructor() {
+  constructor(private router: Router) {
     this.productsData = this.depositService.getProductsData();
     this.productKeys = Object.keys(this.productsData);
   }
@@ -169,7 +169,20 @@ export class DepositCalculatorComponent implements OnInit, OnChanges {
 
     this.recalculate();
   }
-
+  onApply() {
+    const targetUrl = `/deposits/${this.selectedProductId}`;
+  
+    if (this.router.url.includes(targetUrl)) {
+      const element = document.getElementById('application-form');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      this.router.navigate([targetUrl], { 
+        queryParams: { scrollTo: 'application-form' } 
+      });
+    }
+  }
   updateVisuals(): void {
     this.depositAmountPercent =
       this.maxAmount > this.minAmount
