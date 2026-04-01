@@ -69,6 +69,25 @@
           <p class="form-subtitle">{{ 'DEPOSIT_DETAILS.APPLICATION_FORM.SUBTITLE' | translate }}</p>
         </div>
         <form #form="ngForm" (ngSubmit)="submitApplication(form)">
+           <div class="form-group">
+            <input
+              type="text"
+              id="name"
+              autocomplete="off"
+              [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.NAME_PLACEHOLDER' | translate"
+              class="form-control"
+              required
+              [(ngModel)]="model.client_name"
+              name="name"
+              #name="ngModel"
+              maxlength="100"
+            />
+            @if (name.invalid && name.touched) {
+              <div class="error-message">
+                {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
+              </div>
+            }
+          </div> 
           <div class="form-group">
             <input
               type="tel"
@@ -91,25 +110,7 @@
             }
           </div>
 
-          <div class="form-group">
-            <input
-              type="text"
-              id="name"
-              autocomplete="off"
-              [placeholder]="'DEPOSIT_DETAILS.APPLICATION_FORM.NAME_PLACEHOLDER' | translate"
-              class="form-control"
-              required
-              [(ngModel)]="model.client_name"
-              name="name"
-              #name="ngModel"
-              maxlength="100"
-            />
-            @if (name.invalid && name.touched) {
-              <div class="error-message">
-                {{ 'COMMON.FIELD_IS_REQUIRED' | translate }}
-              </div>
-            }
-          </div>
+        
           <div class="form-group">
             <button type="submit" disabled class="btn-primary" [disabled]="form.invalid">
               {{ 'BUTTONS.APPLY_FOR_DEPOSIT' | translate }}

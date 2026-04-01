@@ -34,7 +34,7 @@
     <div class="nav-right">
       <div class="custom-dropdown lang-selector desktop-only" (click)="toggleDropdown1($event)">
         <div class="dropdown-selected">
-          <img src="../../../assets/icons/Global.svg" alt="lang" class="icon-global" />
+          <img src="../../../assets/icons/global-icon.svg" alt="lang" class="icon-global" />
           <span class="current-lang">{{ getDisplayLanguage() }}</span>
           <img src="../../../assets/icons/arrow-down.png" alt="arrow" class="arrow-mini" />
         </div>
@@ -57,8 +57,12 @@
         }
       </div>
 
-      <div class="burger mobile-only" (click)="toggleMenu()" [class.active]="menuActive">
-        <span></span><span></span><span></span>
+      <div class="burger-icon mobile-only" (click)="toggleMenu($event)">
+        @if (!menuActive) {
+          <img src="../../../assets/icons/burger-menu.svg" alt="open" />
+        } @else {
+           <img src="../../../assets/icons/close-circle.svg" alt="close" />
+        }
       </div>
     </div>
   </div>
@@ -66,17 +70,16 @@
 
 @if (menuActive) {
   <div class="mobile-menu-overlay">
-    <div class="mobile-header-sticky">
+    <div class="mobile-header-sync">
       <a routerLink="/" class="logo-link" (click)="closeMobileMenu()">
-        <div class="logo">
-          <img width="180px" [src]="logoSrc" alt="logo" />
-        </div>
+        <img [src]="logoSrc" alt="logo" class="mobile-sync-logo" />
       </a>
+   
     </div>
-
+    <div class="mobile-scroll-content">
     <a routerLink="map" (click)="closeMobileMenu()" class="offices-btn-large">
       <span>{{ 'HEADER.TOP.OFFICES_AND_ATMS' | translate }}</span>
-      <img src="../../../assets/icons/Map Point.svg" class="white-icon" />
+      <img src="../../../assets/icons/map-point.svg" class="white-icon" />
     </a>
 
     <div class="mobile-accordion-container">
@@ -105,31 +108,21 @@
         </div>
       }
     </div>
-
-    <div class="mobile-footer-section">
-      <div class="lang-selector-box" (click)="showMore = !showMore">
-        <span class="current-lang">{{ getDisplayLanguage() }}</span>
-        <img src="../../../assets/icons/arrow-down.png" class="chevron" [class.rotate]="showMore" />
-      </div>
-      @if (showMore) {
-        <div class="lang-options-card">
-          @for (option of languageOptions; track $index) {
-            <button
-              class="lang-item flex-between"
-              (click)="selectLanguage(option, $event)"
-              [class.active]="option.value === selectedLanguage"
-            >
-              <span>{{ option.label }}</span>
-              @if (option.value === selectedLanguage) {
-                <img src="../../../assets/icons/tick-circle.svg" class="tick-icon" />
-              }
-            </button>
-          }
-        </div>
+    <div class="mobile-footer-area">
+    <div class="mobile-language-tabs">
+      @for (option of languageOptions; track $index) {
+        <button 
+          (click)="selectLanguage(option, $event)"
+          [class.active]="option.value === selectedLanguage"
+        >
+          {{ option.label }}
+        </button>
       }
-      <div class="contact-footer">
-        <a href="tel:+992446308888" class="phone-link">+(992) 44 630 8888</a>
-      </div>
     </div>
+    <div class="contact-footer">
+      <a href="tel:+992446308888">+(992) 44 630 8888</a>
+    </div>
+  </div>
+   </div>
   </div>
 }
