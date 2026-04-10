@@ -1,122 +1,119 @@
-$primary-color: #00b06c;
-$text-primary: #212529;
-$text-secondary: #6c757d; 
-$light-grey-border: #e0e0e0; 
-$error-color: #dc3545;
-$button-disabled-bg: #e0e0e0;
-$button-disabled-text: #a0a0a0; 
+@import '../../../styles/variables.scss';
 
 .form-container {
-  margin: 40px auto;
   padding: 50px 60px; 
   background-color: #ffffff;
-  border-radius: 12px; 
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-h2 {
-  font-size: 32px; 
-  font-weight: 700;
-  text-align: left; 
-  margin: 0 0 10px;
-  color: $text-primary;
-}
-
-p {
-  text-align: left; 
-  color: $text-secondary;
-  font-size: 16px; 
-  margin: 0 0 35px; 
-}
-
-.form-group {
-  margin-bottom: 25px; 
-}
-form {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  justify-content: space-between;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.form-control {
-  width: 100%;
-  padding: 16px 20px; 
-  font-size: 17px; 
-  border: 1px solid $light-grey-border;
-  border-radius: 8px;
-  background-color: #ffffff; 
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 60px;
   box-sizing: border-box;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
-  color: $text-primary;
 
-  &::placeholder {
-   
-    color: $text-secondary; 
+  @media (max-width: $tablet) {
+    padding: 40px;
   }
 
-  &:focus {
-    outline: none;
-    border-color: $primary-color;
-    box-shadow: 0 0 0 1px $primary-color; 
-  }
-}
-
-.error {
-  color: $error-color;
-  font-size: 13px;
-  margin-top: 8px;
-  text-align: left;
-}
-
-.submit-button {
-  width: 100%;
-  padding: 18px; 
-  background-color: $primary-color;
-  color: white;
-  border: none;
-  border-radius: 10px; 
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background-color 0.2s,
-    box-shadow 0.2s;
-  margin-bottom: 25px;
-
-  &:hover:not(:disabled) {
-    background-color: darken($primary-color, 8%);
-    box-shadow: 0 4px 12px rgba($primary-color, 0.3); 
+  @media (max-width: $mobile) {
+    padding: 28px 22px; 
+    margin: 20px auto;
   }
 
-  &:disabled {
-    background-color: $button-disabled-bg;
-    color: $button-disabled-text; 
-    cursor: not-allowed;
-    box-shadow: none;
-  }
-}
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    align-items: start;
 
-.privacy-policy {
-  font-size: 14px;
-  color: $text-secondary;
-  text-align: left; 
-  line-height: 1.5;
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
 
-  a {
-    color: $primary-color; 
-    text-decoration: none;
-    font-weight: 500; 
-    transition: color 0.2s;
+    .form-text-block {
+      h2 {
+        @include typography(32); 
+        font-weight: 700;
+        margin: 0 0 12px;
+        color: $color-text;
+      }
 
-    &:hover {
-      text-decoration: underline; 
-      color: darken($primary-color, 10%);
+      p {
+        @include typography(18); 
+        color: $color-grey;
+        line-height: 1.4;
+      }
+
+      @media (max-width: 1024px) {
+        text-align: center;
+      }
+    }
+    .form-fields-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .form-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .form-control {
+          width: 100%;
+          padding: 16px 20px;
+          @include typography(16);
+          border: 1px solid #dee2e6;
+          border-radius: 8px;
+          background-color: #f8fafc;
+          box-sizing: border-box;
+          outline: none;
+          transition: 0.2s;
+          color: $color-text;
+
+          &::placeholder { color: $color-grey; opacity: 0.7; }
+
+          &:focus {
+            border-color: $color-primary;
+            background-color: #fff;
+            box-shadow: 0 0 0 1px $color-primary;
+          }
+        }
+
+        .error {
+          color: #dc3545;
+          @include typography(12);
+          margin-top: 6px;
+        }
+      }
+
+      .submit-button {
+        @include primary-button;
+        background-color: $color-primary;
+        color: white;
+        border: none;
+        width: 100%;
+        margin-top: 10px;
+
+        &:disabled {
+          background-color: #cbd5e1;
+          color: #94a3b8;
+          cursor: not-allowed;
+        }
+      }
+
+      .privacy-policy {
+        @include typography(14);
+        color: $color-grey;
+        line-height: 1.5;
+        text-align: left;
+
+        @media (max-width: 1024px) { text-align: center; }
+
+        a {
+          color: $color-primary;
+          text-decoration: none;
+          font-weight: 600;
+          &:hover { text-decoration: underline; }
+        }
+      }
     }
   }
 }

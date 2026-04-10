@@ -1,16 +1,13 @@
-
-$primary-color: #00b06c;
-$text-primary: #212529;
-$text-secondary: #555;
-$background-light: #f6f7f8;
-$border-color: #e9ecef;
+@import '../../../styles/variables.scss';
 
 .info-page-container {
+  @include main-container;
   background-color: #f6f7f8;
-  padding: 3% 5%;
+  display: flex;
 
-  @media (max-width: 768px) {
-    padding: 2% 3%;
+  flex-direction: column;
+  & > div {
+    @include section-gap('margin-bottom');
   }
 
   .section-1 {
@@ -19,74 +16,72 @@ $border-color: #e9ecef;
     background-color: white;
     border-radius: 24px;
     align-items: center;
+    box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
+    position: relative;
+    overflow: hidden;
 
-    @media (max-width: 992px) {
+    @media (max-width: $tablet) {
       flex-direction: column;
       text-align: center;
-      padding: 40px 20px 0px;
     }
 
     .box1 {
       padding: 115px 80px;
+      width: 60%;
 
-      @media (max-width: 992px) {
-        padding: 40px 20px;
+      @media (max-width: $tablet) {
+        width: 100%;
+        padding: 40px 22px 0px; 
       }
 
       h1 {
+        @include typography(42);
         font-weight: 700;
-        font-size: 42px;
-
-        @media (max-width: 768px) {
-          font-size: 32px;
-        }
-
-        @media (max-width: 480px) {
-          font-size: 28px;
-        }
+        color: $color-text;
       }
 
       p {
-        font-size: 18px;
+        @include typography(18);
         padding: 18px 0 40px;
-        color: #475569;
-
-        @media (max-width: 768px) {
-          font-size: 16px;
-          padding: 15px 0 30px;
-        }
+        color: $color-dark-grey;
       }
 
       button {
-        background-color: #00b06c;
-        padding: 19px 50px;
-        border: none;
-        border-radius: 6px;
+        @include primary-button;
+        background-color: $color-primary;
         color: white;
-        font-size: 18px;
-        font-weight: 400;
-
-        @media (max-width: 768px) {
-          padding: 15px 30px;
-          font-size: 16px;
+        border: none;
+        
+        @media (max-width: $tablet) {
+          width: 100%; 
         }
       }
     }
 
     .box2 {
+      width: 40%;
       display: flex;
-      align-items: flex-end;
+      justify-content: end;
       align-self: flex-end;
 
-      @media (max-width: 992px) {
-        align-self: center;
-        margin-top: 30px;
+      @media (max-width: $tablet) {
+        width: 100%;
+        justify-content: center;
+        padding-top: 15px;
       }
 
       img {
-        padding: 20px 0 0;
         max-width: 100%; 
+        display: block;
         height: auto;
+        margin-bottom: -5px; 
+
+        @media (max-width: $tablet) {
+          max-width: 300px;
+        }
+        @media (max-width: $mobile) {
+          max-width: 260px;
+        }
       }
     }
   }
@@ -94,116 +89,84 @@ $border-color: #e9ecef;
   .section-2 {
     background-color: white;
     border-radius: 24px;
+    box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18); 
     padding: 50px 60px;
-    margin: 40px 0;
     display: flex;
     flex-direction: column;
     gap: 25px;
-
-    @media (max-width: 992px) {
-      padding: 40px 40px;
-      margin: 30px 0;
+  
+    @media (max-width: $tablet) {
+      padding: 40px;
     }
-
-    @media (max-width: 768px) {
-      padding: 30px 20px;
-      margin: 20px 0;
+  
+    @media (max-width: $mobile) {
+      padding: 28px 22px; 
       gap: 15px;
     }
-
+  
     p {
       text-align: center;
-      color: #353e5c;
-      font-size: 24px;
-      line-height: normal;
-
-      @media (max-width: 768px) {
-        font-size: 18px;
-        line-height: 1.4; 
-      }
-
-      @media (max-width: 480px) {
-        font-size: 16px;
-      }
+      color: $color-dark-grey;
+      @include typography(24); 
+      line-height: 1.4;
+      font-weight: 400;
+ 
     }
   }
-
   .section-3 {
-    h2 {
-      font-size: 32px;
-      color: #020617;
+    margin-bottom: 0%;
+    h2.header {
+      @include typography(42); 
       font-weight: 700;
-      margin-top: 40px; 
-
-      @media (max-width: 768px) {
-        font-size: 26px;
-        margin-top: 30px;
-      }
-
-      @media (max-width: 480px) {
-        font-size: 22px;
-      }
+      color: $color-text;
+      @include section-gap('margin-bottom');
     }
-
+  
     .details-1 {
-      margin: 40px 0;
       display: flex;
       justify-content: space-between;
-      gap: 24px; 
-
+      gap: 24px;
+      @include section-gap('margin-bottom');
+  
       @media (max-width: 992px) {
-        flex-direction: column; 
+        flex-direction: column;
       }
-
-      .box1 {
+  
+      
+      .box1:not(.boxs .box1) {
         width: 32%;
         background-color: white;
+        border-radius: 24px;
+        box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 65px 23px 0;
-        border-radius: 24px;
+        padding: 65px 23px 0; 
         text-align: center;
-
+  
         @media (max-width: 992px) {
-          width: 100%; 
-          padding: 40px 20px 0;
+          width: 100%;
+          padding: 40px 22px 0;
         }
-
-        @media (max-width: 480px) {
-          padding: 30px 15px 0;
-        }
-
+  
         h3 {
+          @include typography(24); 
           font-weight: 700;
-          font-size: 24px;
-          color: #353e5c;
-
-          @media (max-width: 768px) {
-            font-size: 20px;
-          }
+          color: $color-text; 
+          margin-bottom: 10px;
         }
-
+  
         p {
-          padding: 8px 0 30px;
-          color: #353e5c;
-          font-size: 20px;
-
-          @media (max-width: 768px) {
-            font-size: 16px;
-            padding: 5px 0 20px;
-          }
+          @include typography(18);
+          color: $color-dark-grey; 
+          padding: 0 10px 30px;
         }
-
+  
         img {
-          width: 90%;
+          width: 100%;
+          max-width: 250px;
           margin: 0 auto;
-          align-self: flex-end;
-          max-width: 200px;
-
-          @media (max-width: 992px) {
-            align-self: center; 
-          }
+          display: block;
         }
       }
 
@@ -212,67 +175,67 @@ $border-color: #e9ecef;
         display: flex;
         flex-direction: column;
         gap: 24px;
-
+  
         @media (max-width: 992px) {
-          width: 100%; 
-        }
-
-        .box1 {
           width: 100%;
-          padding: 23px 23px 0;
-          @media (max-width: 992px) {
-            padding: 30px 20px 0;
+        }
+  
+        .box1 {
+          background-color: white;
+          border-radius: 24px;
+          box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.18);
+          padding: 30px 23px;
+          text-align: center;
+          
+          h3 {
+            @include typography(24);
+            font-weight: 700;
+            color: $color-text;
+            margin-bottom: 8px;
           }
-
-          @media (max-width: 480px) {
-            padding: 20px 15px 0;
+  
+          p {
+            @include typography(16);
+            color: $color-dark-grey;
           }
+  
           img {
-            align-self: center;
+            width: 120px;
+            margin: 15px auto 0;
+            display: block;
           }
+        }
+        .img-end{
+          padding-bottom: 0%;
         }
       }
     }
-
+ 
     .details-2 {
       display: flex;
       flex-direction: column;
       gap: 15px;
-      margin: 40px 0;
-
-      @media (max-width: 768px) {
-        margin: 30px 0;
-        gap: 10px;
-      }
-
+      @include section-gap('margin-bottom');
+  
       .box {
-        padding: 32px 42px;
-        display: flex;
-        gap: 5px;
         background-color: white;
         border-radius: 12px;
+        padding: 24px 32px;
+        display: flex;
         align-items: center;
-
+        gap: 15px;
+        box-shadow: 0px 4px 20px rgba(175, 175, 175, 0.08);
+  
         @media (max-width: 768px) {
-          padding: 20px 25px;
-          flex-direction: row;
-          align-items: flex-start;
-          gap: 10px;
+          padding: 15px 20px;
         }
-
-        img {
-          flex-shrink: 0;
-          width: 24px;
-          height: 24px;
-        }
-
+  
+        img { width: 24px; flex-shrink: 0; }
+        
         p {
-          color: #475569;
-          font-size: 18px;
-
-          @media (max-width: 768px) {
-            font-size: 16px;
-          }
+          @include typography(18);
+          color: $color-dark-grey;
+          margin: 0;
         }
       }
     }
