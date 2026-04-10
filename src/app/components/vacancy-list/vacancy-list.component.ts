@@ -1,4 +1,4 @@
-import { Component, Output, OnInit, Input, EventEmitter, OnChanges, inject } from '@angular/core';
+import { Component, Output, OnInit, Input, EventEmitter, OnChanges, inject, HostListener } from '@angular/core';
 
 import { NgForOf } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -20,8 +20,8 @@ export class VacancyListComponent implements OnInit, OnChanges {
   vacancyCategory: vacancyCategory[] = [];
   regionList: regionList[] = [];
   vacancyList: vacancyList[] = [];
-  selectedCategory = '';
-  selectedRegion = '';
+  selectedCategory:number=0;
+  selectedRegion:number=0;
   private vacanciesService = inject(VacanciesService);
   private regionService = inject(RegionService);
 
@@ -29,7 +29,11 @@ export class VacancyListComponent implements OnInit, OnChanges {
   @Input() currentPage = 1;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   pages: number[] = [];
-
+  categoryOpen = false;
+  cityOpen = false;
+  selectedCategoryName = '';
+  selectedCityName = '';
+  
   ngOnInit() {
     this.vacanciesService.getVacancyCategory().subscribe(
       (response) => {
@@ -131,5 +135,37 @@ export class VacancyListComponent implements OnInit, OnChanges {
       this.selectPage(this.currentPage - 1);
       this.scrollToTop();
     }
+  }
+  toggleCategoryDropdown(event: Event) {
+    event.stopPropagation();
+    this.categoryOpen = !this.categoryOpen;
+    this.cityOpen = false; // закрываем второй, если открыт
+  }
+  
+  toggleCityDropdown(event: Event) {
+    event.stopPropagation();
+    this.cityOpen = !this.cityOpen;
+    this.categoryOpen = false; // закрываем первый, если открыт
+  }
+  
+  selectCategory(id: number, name: string) {
+    this.selectedCategory = id;
+    this.selectedCategoryName = name;
+    this.categoryOpen = false;
+    this.loadAllVacancies(); // вызываем твою функцию фильтрации
+  }
+  
+  selectCity(id: number, name: string) {
+    this.selectedRegion = id;
+    this.selectedCityName = name;
+    this.cityOpen = false;
+    this.loadAllVacancies(); // вызываем твою функцию фильтрации
+  }
+  
+  // Добавим закрытие при клике мимо (как мы делали в хедере)
+  @HostListener('document:click', ['$event'])
+  closeDropdowns(event: Event) {
+    this.categoryOpen = false;
+    this.cityOpen = false;
   }
 }

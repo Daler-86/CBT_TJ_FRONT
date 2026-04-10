@@ -31,15 +31,15 @@ export class VacanciesComponent implements OnInit {
         console.error('Ошибка при запросе данных', error);
       },
     );
-
-    this.vacanciesService.getVacancyContentItem().subscribe(
-      (response) => {
-        this.vacancyItems = response.data.vacancy_content_items;
-      },
-      (error) => {
-        console.error('Ошибка при запросе данных', error);
-      },
-    );
+// аз сабаби данныхо набудан ду блока нишон наметем
+    // this.vacanciesService.getVacancyContentItem().subscribe(
+    //   (response) => {
+    //     this.vacancyItems = response.data.vacancy_content_items;
+    //   },
+    //   (error) => {
+    //     console.error('Ошибка при запросе данных', error);
+    //   },
+    // );
 
     this.vacanciesService.getVacancyStatistic().subscribe(
       (response) => {
@@ -50,14 +50,14 @@ export class VacanciesComponent implements OnInit {
       },
     );
 
-    this.vacanciesService.getVacancyGallery().subscribe(
-      (response) => {
-        this.vacancyGalleries = response.data.vacancy_galleries;
-      },
-      (error) => {
-        console.error('Ошибка при запросе данных', error);
-      },
-    );
+    // this.vacanciesService.getVacancyGallery().subscribe(
+    //   (response) => {
+    //     this.vacancyGalleries = response.data.vacancy_galleries;
+    //   },
+    //   (error) => {
+    //     console.error('Ошибка при запросе данных', error);
+    //   },
+    // );
   }
 
   next() {
