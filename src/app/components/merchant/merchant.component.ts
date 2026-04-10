@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MerchantService } from '../../api/merchant.service';
@@ -26,6 +26,11 @@ export class MerchantComponent implements OnInit {
   filterRegionId: number | null = null;
   filterCategoryId: number | null = null;
   filterHasCashback = false; 
+
+  regionOpen = false;
+categoryOpen = false;
+selectedRegionName = '';
+selectedCategoryName = '';
 
   totalItems = 0;
   itemsPerPage = 12;
@@ -107,4 +112,37 @@ export class MerchantComponent implements OnInit {
   prevPage(): void {
     if (this.currentPage > 1) this.selectPage(this.currentPage - 1);
   }
+
+  
+toggleRegion(event: Event) {
+  event.stopPropagation();
+  this.regionOpen = !this.regionOpen;
+  this.categoryOpen = false;
+}
+
+toggleCategory(event: Event) {
+  event.stopPropagation();
+  this.categoryOpen = !this.categoryOpen;
+  this.regionOpen = false;
+}
+
+selectRegion(region: any) {
+  this.filterRegionId = region ? region.id : null;
+  this.selectedRegionName = region ? region.name : '';
+  this.regionOpen = false;
+  this.onFilterChange();
+}
+
+selectCategory(category: any) {
+  this.filterCategoryId = category ? category.id : null;
+  this.selectedCategoryName = category ? category.name : '';
+  this.categoryOpen = false;
+  this.onFilterChange();
+}
+
+@HostListener('document:click')
+closeAll() {
+  this.regionOpen = false;
+  this.categoryOpen = false;
+}
 }

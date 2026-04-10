@@ -1,60 +1,77 @@
 
 <div class="page-container">
-  <div class="page-header">
+  <div class="page-header card-white">
     <h1>{{ 'MERCHANTS_PAGE.TITLE' | translate }}</h1>
     <p>{{ 'MERCHANTS_PAGE.SUBTITLE' | translate }}</p>
   </div>
+
   <div class="content-wrapper">
-    <div class="filters-panel">
-      <div class="filter-controls">
+    <aside class="filters-panel">
+      <div class="filter-controls card-white">
         <p class="filters-title">{{ 'MERCHANTS_PAGE.FILTERS.TITLE' | translate }}</p>
-        <input
-          type="text"
-          class="search-input"
-          [placeholder]="'MERCHANTS_PAGE.FILTERS.SEARCH_PLACEHOLDER' | translate"
-          [(ngModel)]="filterName"
-          (keyup.enter)="onFilterChange()"
-        />
+        
+  
+        <input type="text" class="search-input" 
+               [placeholder]="'MERCHANTS_PAGE.FILTERS.SEARCH_PLACEHOLDER' | translate"
+               [(ngModel)]="filterName" (change)="onFilterChange()" 
+               />
 
-        <select class="filter-select" [(ngModel)]="filterRegionId" (change)="onFilterChange()">
-          <option [ngValue]="null">{{ 'MERCHANTS_PAGE.FILTERS.ALL_REGIONS' | translate }}</option>
-          @for (region of regions; track region.id) {
-            <option [value]="region.id">{{ region.name }}</option>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleRegion($event)">
+            {{ selectedRegionName || ('MERCHANTS_PAGE.FILTERS.ALL_REGIONS' | translate) }}
+          </div>
+          @if (regionOpen) {
+            <div class="dropdown-options">
+              <div class="dropdown-option" (click)="selectRegion(null)">
+                {{ 'MERCHANTS_PAGE.FILTERS.ALL_REGIONS' | translate }}
+              </div>
+              @for (region of regions; track region.id) {
+                <div class="dropdown-option" (click)="selectRegion(region)">{{ region.name }}</div>
+              }
+            </div>
           }
-        </select>
+        </div>
 
-        <select class="filter-select" [(ngModel)]="filterCategoryId" (change)="onFilterChange()">
-          <option [ngValue]="null">{{ 'MERCHANTS_PAGE.FILTERS.ALL_CATEGORIES' | translate }}</option>
-          @for (category of categories; track category.id) {
-            <option [value]="category.id">{{ category.name }}</option>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleCategory($event)">
+            {{ selectedCategoryName || ('MERCHANTS_PAGE.FILTERS.ALL_CATEGORIES' | translate) }}
+          </div>
+          @if (categoryOpen) {
+            <div class="dropdown-options">
+              <div class="dropdown-option" (click)="selectCategory(null)">
+                {{ 'MERCHANTS_PAGE.FILTERS.ALL_CATEGORIES' | translate }}
+              </div>
+              @for (category of categories; track category.id) {
+                <div class="dropdown-option" (click)="selectCategory(category)">{{ category.name }}</div>
+              }
+            </div>
           }
-        </select>
+        </div>
 
         <div class="cashback-toggle">
-          <label for="cashback">{{ 'MERCHANTS_PAGE.FILTERS.CASHBACKS' | translate }}</label>
+          <span>{{ 'MERCHANTS_PAGE.FILTERS.CASHBACKS' | translate }}</span>
           <label class="switch">
-            <input type="checkbox" id="cashback" [(ngModel)]="filterHasCashback" (change)="onFilterChange()" />
+            <input type="checkbox" [(ngModel)]="filterHasCashback" (change)="onFilterChange()" />
             <span class="slider round"></span>
           </label>
         </div>
       </div>
-    </div>
+    </aside>
 
     <div class="merchants-grid">
       @for (merchant of merchants; track merchant.id) {
-        <div class="merchant-card">
+        <div class="merchant-card card-white">
           <div class="card-logo-wrapper">
             <img [src]="imageUrl + merchant.upload_file" [alt]="merchant.name" class="card-logo" />
           </div>
           <h3 class="card-name">{{ merchant?.name }}</h3>
-          <p class="card-phone">{{ merchant.phone }}</p>
           <p class="card-address">{{ merchant.address }}</p>
         </div>
       }
     </div>
   </div>
 
-  @if (totalPages >= 1) {
+  @if (totalPages > 1) {
     <div class="pagination-container">
       <button
         (click)="selectPage(1)"
