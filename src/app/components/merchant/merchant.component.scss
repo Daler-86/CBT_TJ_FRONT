@@ -222,12 +222,6 @@
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-    margin-top: 20px;
-
-    @media (max-width: $mobile) {
-      justify-content: center;
-      margin-bottom: 30px;
-    }
 
     button {
       width: 44px;
