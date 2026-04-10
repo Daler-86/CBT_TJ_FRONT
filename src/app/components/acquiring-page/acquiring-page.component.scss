@@ -63,7 +63,7 @@
       width: 40%;
       display: flex;
       align-items: flex-end;
-      align-self: flex-end; 
+     justify-content: end;
       @media (max-width: $tablet) {
         width: 100%;
         justify-content: center;
