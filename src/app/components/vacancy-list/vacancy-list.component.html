@@ -1,36 +1,62 @@
 <div class="vacancies-container">
   <h1>{{ 'VACANCIES.TITLE' | translate }}</h1>
   <div class="vacancies-list">
+
     <div class="vacancy-filter">
-      <p>{{ 'VACANCIES.FILTERS.TITLE' | translate }}</p>
+      <p class="cb-label">{{ 'VACANCIES.FILTERS.TITLE' | translate }}</p>
       <form>
-        <label for="category">{{ 'VACANCIES.FILTERS.DIRECTION_LABEL' | translate }}</label
-        ><br />
-        <select id="category" [(ngModel)]="selectedCategory" name="category" (change)="loadAllVacancies()">
-          <option value="">{{ 'VACANCIES.FILTERS.ALL_DIRECTIONS' | translate }} ({{ vacancyCategory.length }})</option>
-          @for (category of vacancyCategory; track category.id) {
-            <option [value]="category.id">{{ category.name }}</option>
+        <!-- Фильтр Направление -->
+        <label for="category" class="cb-label">{{ 'VACANCIES.FILTERS.DIRECTION_LABEL' | translate }}</label>
+        
+        <div class="custom-dropdown" #categoryDropdown>
+          <div class="dropdown-selected" (click)="toggleCategoryDropdown($event)">
+            {{ selectedCategoryName || ('VACANCIES.FILTERS.ALL_DIRECTIONS' | translate) }}
+          </div>
+          
+          @if (categoryOpen) {
+            <div class="dropdown-options">
+              <div class="dropdown-option" (click)="selectCategory(0, 'Все направления')">
+                {{ 'VACANCIES.FILTERS.ALL_DIRECTIONS' | translate }} ({{ vacancyCategory.length }})
+              </div>
+              @for (category of vacancyCategory; track category.id) {
+                <div class="dropdown-option" (click)="selectCategory(category.id, category.name)">
+                  {{ category.name }}
+                </div>
+              }
+            </div>
           }
-        </select>
-        <br />
-        <label for="city">{{ 'VACANCIES.FILTERS.CITY_LABEL' | translate }}</label
-        ><br />
-        <select id="city" [(ngModel)]="selectedRegion" name="city" (change)="loadAllVacancies()">
-          <option value="">{{ 'VACANCIES.FILTERS.ALL_CITIES' | translate }} ({{ regionList.length }})</option>
-          @for (city of regionList; track city.id) {
-            <option [value]="city.id">{{ city.name }}</option>
+        </div>
+    
+        <!-- Фильтр Город -->
+        <label for="city" class="cb-label">{{ 'VACANCIES.FILTERS.CITY_LABEL' | translate }}</label>
+        
+        <div class="custom-dropdown" #cityDropdown>
+          <div class="dropdown-selected" (click)="toggleCityDropdown($event)">
+            {{ selectedCityName || ('VACANCIES.FILTERS.ALL_CITIES' | translate) }}
+          </div>
+          
+          @if (cityOpen) {
+            <div class="dropdown-options">
+              <div class="dropdown-option" (click)="selectCity(0, 'Все города')">
+                {{ 'VACANCIES.FILTERS.ALL_CITIES' | translate }} ({{ regionList.length }})
+              </div>
+              @for (city of regionList; track city.id) {
+                <div class="dropdown-option" (click)="selectCity(city.id, city.name)">
+                  {{ city.name }}
+                </div>
+              }
+            </div>
           }
-        </select>
+        </div>
       </form>
     </div>
-
     <div class="vacancy-items">
       <p>
         {{ 'VACANCIES.LIST.TOTAL' | translate }} {{ vacancyCount }} {{ 'VACANCIES.LIST.VACANCIES_LABEL' | translate }}
       </p>
       @for (vacancy of vacancyList; track vacancy.id) {
-        <div class="vacancy-item">
-          <a [routerLink]="['/vacancies/list', vacancy.id]">
+        <div class="vacancy-item" [routerLink]="['/vacancies/list', vacancy.id]">
+          <a >
             {{ vacancy.name }}
           </a>
 
@@ -39,7 +65,7 @@
               <img src="../../../assets/icons/location-icon.svg" [alt]="'vacancies.list.locationIconAlt' | translate" />
               <p>{{ vacancy.region_name }}</p>
             </div>
-            <a [routerLink]="[vacancy.id]">
+            <a>
               <img src="../../../assets/icons/strel.svg" [alt]="'vacancies.list.arrowIconAlt' | translate" />
             </a>
           </div>

@@ -1,248 +1,275 @@
+@import '../../../styles/variables.scss';
+
 .vacancies {
-  margin: none;
+  @include main-container;
+  background-color: #f6f7f8;
+  display: flex;
+  flex-direction: column;
+  & > div {
+    @include section-gap('margin-bottom');
+  }
 
   .vacancies-container {
-    margin: 30px 5% 0;
-    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     background-color: #fff;
     border-radius: 24px;
+    box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
     display: flex;
-    padding: 29px 58px;
     justify-content: space-between;
-    align-items: center;
-    @media (max-width: 1024px) {
-      display: block;
-      padding: 30px 50px;
+    align-items: stretch;
+    overflow: hidden;
+    @include section-gap('margin-bottom');
+
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      padding: 0; 
     }
+
     .card-info {
-      width: 50%;
-      @media (max-width: 1024px) {
+      width: 55%;
+      padding: 80px;
+
+      @media (max-width: $tablet) {
         width: 100%;
-        padding: 0;
+        padding: 40px 22px;
+        text-align: center;
       }
 
       .card-title {
-        font-size: 42px;
+        @include typography(42); 
         font-weight: 700;
-        margin-bottom: 10px;
+        margin-bottom: 24px;
+        color: $color-text;
       }
 
       .card-description {
-        font-size: 18px;
-        color: #475569;
-        font-weight: 500;
-        margin: 30px 0;
-        line-height: 23px;
+        @include typography(18); 
+        color: $color-grey;
+        margin-bottom: 40px;
+        line-height: 1.4;
       }
 
-      .card-buttons {
-        button {
-          @media (max-width: 1024px) {
-            width: 100%;
-            margin-bottom: 30px;
-          }
-        }
-        .btn-primary {
-          background-color: #00b06c;
-          color: #fff;
-          border: none;
-          padding: 19px 50px;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 14px;
-        }
+      .btn-primary {
+        @include primary-button;
+        background-color: $color-primary;
+        color: #fff;
+        border: none;
+        
       }
     }
 
     .card-image {
-      align-self: end;
-      @media (max-width: 1024px) {
+      width: 45%;
+      display: flex;
+padding: 20px 80px;
+
+      @media (max-width: $tablet) {
         width: 100%;
+        justify-content: center;
+        padding: 0 20px 20px;
       }
+
       img {
-        width: 100%;
+        display: block;
+        max-width: 100%;
+        height: auto;
       }
     }
   }
-
   .container {
     display: grid;
-    grid-template-columns: 462px 354px;
+    grid-template-columns: repeat(2, 1fr); 
     gap: 30px;
-    margin: 50px 5%;
-    justify-content: end;
-    @media (max-width: 1024px) {
+    width: 100%;
+    max-width: 900px; 
+    align-self: flex-end; 
+
+    @media (max-width: $mobile) {
       grid-template-columns: 1fr;
+      max-width: 100%;
+      gap: 20px;
     }
+
     .box {
       background-color: #fff;
       border-radius: 24px;
-      padding: 30px 60px;
-      box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-      h1 {
-        font-size: 42px;
-        font-weight: 700;
-        color: #141a20;
-      }
-      p {
-        margin-top: 30px;
-        font-weight: 500;
-      }
-    }
-  }
-  .why-we-are-great {
-    padding: 50px 5%;
-    background-color: #f9fafc;
-
-    h2 {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 40px;
-      width: 60%;
-      @media (max-width: 1024px) {
-        width: 100%;
-        font-size: 36px;
-      }
-    }
-
-    .features-container {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 32% 32% 32%;
-      justify-content: space-between;
-      @media (max-width: 1024px) {
-        grid-template-columns: 48% 48%;
-      }
-      @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-      }
-      gap: 20px;
-
-      .feature-card {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 25px 40px;
-
-        transition: transform 0.3s ease;
-
-        &:hover {
-          transform: translateY(-3px);
-        }
-
-        .feature-icon {
-          margin-bottom: 15px;
-
-          img {
-            margin-bottom: 20px;
-          }
-        }
-
-        h3 {
-          font-size: 28px;
-
-          font-weight: 700;
-          margin-bottom: 10px;
-        }
-
-        p {
-          font-size: 17px;
-          color: #475569;
-        }
-      }
-    }
-  }
-  .offices-container {
-    padding: 100px 5%;
-    text-align: center;
-    h2 {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 40px;
-      width: 60%;
-      text-align: start;
-      @media (max-width: 1024px) {
-        font-size: 36px;
-        width: 100%;
-      }
-    }
-
-    .office-content {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-      @media (max-width: 1024px) {
-        flex-wrap: wrap;
-      }
-    }
-
-    .office-image {
-      width: 75%;
-      margin-right: 20px;
-      border-radius: 10px;
-      overflow: hidden;
-      @media (max-width: 1024px) {
-        width: 100%;
-        margin-bottom: 25px;
-      }
-      img {
-        width: 100%;
-        border-radius: 24px;
-      }
-    }
-
-    .office-info {
-      width: 25%;
-      background-color: #f6f7f8;
-      border-radius: 24px;
-      padding: 30px 60px;
-      text-align: start;
+      padding: 40px;
+      box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.12);
       display: flex;
       flex-direction: column;
-      @media (max-width: 1024px) {
-        width: 100%;
+      height: 100%;
+
+      h1 {
+        @include typography(42); 
+        font-weight: 700;
+        color: $color-text;
+        margin: 0;
       }
 
       p {
-        margin-bottom: 10px;
+        @include typography(16);
+        color: $color-grey;
+        margin-top: 20px;
+        font-weight: 500;
       }
 
-      h3 {
-        font-size: 24px;
-        margin-bottom: 15px;
-      }
-
-      .navigation-buttons {
-        align-self: end;
-        margin-top: auto;
-
-        button {
-          margin: 0 10px;
-          padding: 20px;
-          background-color: #fff;
-          border: none;
-          border-radius: 50px;
-          cursor: pointer;
-
-          &:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-          }
-        }
-      }
-    }
-
-    .view-vacancies-button {
-      background-color: #00b06c;
-      color: #fff;
-      border: none;
-      padding: 19px 50px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-
-      &:hover {
-        background-color: #218838;
+      @media (max-width: $mobile) {
+        padding: 28px 22px; 
       }
     }
   }
+    // .why-we-are-great {
+  //   padding: 50px 5%;
+  //   background-color: #f9fafc;
+
+  //   h2 {
+  //     font-size: 42px;
+  //     font-weight: 700;
+  //     margin-bottom: 40px;
+  //     width: 60%;
+  //     @media (max-width: 1024px) {
+  //       width: 100%;
+  //       font-size: 36px;
+  //     }
+  //   }
+
+  //   .features-container {
+  //     width: 100%;
+  //     display: grid;
+  //     grid-template-columns: 32% 32% 32%;
+  //     justify-content: space-between;
+  //     @media (max-width: 1024px) {
+  //       grid-template-columns: 48% 48%;
+  //     }
+  //     @media (max-width: 768px) {
+  //       grid-template-columns: 1fr;
+  //     }
+  //     gap: 20px;
+
+  //     .feature-card {
+  //       background-color: #fff;
+  //       border-radius: 10px;
+  //       padding: 25px 40px;
+
+  //       transition: transform 0.3s ease;
+
+  //       &:hover {
+  //         transform: translateY(-3px);
+  //       }
+
+  //       .feature-icon {
+  //         margin-bottom: 15px;
+
+  //         img {
+  //           margin-bottom: 20px;
+  //         }
+  //       }
+
+  //       h3 {
+  //         font-size: 28px;
+
+  //         font-weight: 700;
+  //         margin-bottom: 10px;
+  //       }
+
+  //       p {
+  //         font-size: 17px;
+  //         color: #475569;
+  //       }
+  //     }
+  //   }
+  // }
+  // .offices-container {
+  //   padding: 100px 5%;
+  //   text-align: center;
+  //   h2 {
+  //     font-size: 42px;
+  //     font-weight: 700;
+  //     margin-bottom: 40px;
+  //     width: 60%;
+  //     text-align: start;
+  //     @media (max-width: 1024px) {
+  //       font-size: 36px;
+  //       width: 100%;
+  //     }
+  //   }
+
+  //   .office-content {
+  //     display: flex;
+  //     justify-content: center;
+  //     margin: 20px 0;
+  //     @media (max-width: 1024px) {
+  //       flex-wrap: wrap;
+  //     }
+  //   }
+
+  //   .office-image {
+  //     width: 75%;
+  //     margin-right: 20px;
+  //     border-radius: 10px;
+  //     overflow: hidden;
+  //     @media (max-width: 1024px) {
+  //       width: 100%;
+  //       margin-bottom: 25px;
+  //     }
+  //     img {
+  //       width: 100%;
+  //       border-radius: 24px;
+  //     }
+  //   }
+
+  //   .office-info {
+  //     width: 25%;
+  //     background-color: #f6f7f8;
+  //     border-radius: 24px;
+  //     padding: 30px 60px;
+  //     text-align: start;
+  //     display: flex;
+  //     flex-direction: column;
+  //     @media (max-width: 1024px) {
+  //       width: 100%;
+  //     }
+
+  //     p {
+  //       margin-bottom: 10px;
+  //     }
+
+  //     h3 {
+  //       font-size: 24px;
+  //       margin-bottom: 15px;
+  //     }
+
+  //     .navigation-buttons {
+  //       align-self: end;
+  //       margin-top: auto;
+
+  //       button {
+  //         margin: 0 10px;
+  //         padding: 20px;
+  //         background-color: #fff;
+  //         border: none;
+  //         border-radius: 50px;
+  //         cursor: pointer;
+
+  //         &:disabled {
+  //           opacity: 0.5;
+  //           cursor: not-allowed;
+  //         }
+  //       }
+  //     }
+  //   }
+
+  //   .view-vacancies-button {
+  //     background-color: #00b06c;
+  //     color: #fff;
+  //     border: none;
+  //     padding: 19px 50px;
+  //     border-radius: 5px;
+  //     cursor: pointer;
+  //     font-size: 14px;
+
+  //     &:hover {
+  //       background-color: #218838;
+  //     }
+  //   }
+  // }
 }
