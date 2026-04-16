@@ -1,11 +1,31 @@
 .bankDetail {
   padding: 3% 5%;
   background-color: #f6f7f8;
+
+  @media (max-width: 768px) {
+    padding: 4% 4%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 5% 3%;
+  }
+
   .btnCards {
     margin: 20px 0;
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      margin: 15px 0;
+      gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+      margin: 12px 0;
+      gap: 10px;
+    }
+
     button {
       border-radius: 53px;
       padding: 14px 28px;
@@ -19,28 +39,58 @@
 
       @media (max-width: 1024px) {
         padding: 10px 20px;
+        font-size: 16px;
       }
+
+      @media (max-width: 768px) {
+        padding: 8px 18px;
+        font-size: 15px;
+      }
+
+      @media (max-width: 480px) {
+        padding: 8px 16px;
+        font-size: 14px;
+        flex: 1;
+        text-align: center;
+        min-width: auto;
+      }
+
       &.active {
         background-color: #00b06c;
         color: white;
       }
     }
   }
+
   .card-container {
     position: relative;
     margin: 30px 0 0;
     box-shadow: 0px 4px 20px 0px rgba(175, 175, 175, 0.18);
-
     background-color: white;
     border-radius: 24px;
 
     @media (max-width: 1024px) {
       display: block;
       padding: 29px 50px;
+      margin: 25px 0 0;
     }
+
+    @media (max-width: 768px) {
+      padding: 20px 30px;
+      margin: 20px 0 0;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 15px 20px;
+      margin: 15px 0 0;
+      border-radius: 16px;
+    }
+
     .card-info {
       width: 50%;
       padding: 62px 76px;
+
       @media (max-width: 1024px) {
         width: 100%;
         padding: 0;
@@ -50,6 +100,16 @@
         font-size: 30px;
         font-weight: bold;
         margin-bottom: 10px;
+
+        @media (max-width: 768px) {
+          font-size: 26px;
+          margin-bottom: 8px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 22px;
+          margin-bottom: 6px;
+        }
       }
 
       .card-description {
@@ -58,6 +118,18 @@
         font-weight: 500;
         margin-bottom: 20px;
         line-height: 23px;
+
+        @media (max-width: 768px) {
+          font-size: 16px;
+          line-height: 22px;
+          margin-bottom: 15px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 14px;
+          line-height: 20px;
+          margin-bottom: 12px;
+        }
       }
     }
   }
@@ -68,12 +140,12 @@
   $row-padding: 40px 46px;
   $row-gap: 15px;
 
-  $label-color: #475569; 
-  $value-color: #222222; 
-  $link-color: #007bff; 
+  $label-color: #475569;
+  $value-color: #222222;
+  $link-color: #007bff;
 
   $label-width-percentage: 38%;
-  $value-label-gap: 20px; 
+  $value-label-gap: 20px;
 
   .info-list-container {
     margin: 60px 0;
@@ -81,24 +153,69 @@
 
   .info-item-row {
     display: flex;
-    align-items: center; 
+    align-items: center;
     background-color: $row-bg;
     border-radius: $row-border-radius;
     padding: $row-padding;
     margin-bottom: $row-gap;
 
+    @media (max-width: 1024px) {
+      padding: 30px 35px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 25px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 18px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
+    &:hover {
+      @media (min-width: 769px) {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+    }
+
     &:last-child {
       margin-bottom: 0;
     }
+
   }
 
   .info-label {
-    flex: 0 0 $label-width-percentage; 
+    flex: 0 0 $label-width-percentage;
     padding-right: $value-label-gap;
     color: $label-color;
     font-size: 18px;
     line-height: 100%;
-    word-wrap: break-word; 
+    word-wrap: break-word;
+
+    @media (max-width: 1024px) {
+      font-size: 17px;
+    }
+
+    @media (max-width: 768px) {
+      flex-basis: auto;
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: darken($label-color, 10%);
+      font-size: 16px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
   }
 
   .info-value {
@@ -107,12 +224,30 @@
     font-size: 18px;
     font-weight: 700;
     line-height: 1.5;
-    word-wrap: break-word; 
+    word-wrap: break-word;
+
+    @media (max-width: 1024px) {
+      font-size: 17px;
+    }
+
+    @media (max-width: 768px) {
+      flex-basis: auto;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
 
     a {
-      color: $value-color; 
+      color: $value-color;
       text-decoration: none;
       transition: color 0.2s ease;
+
+      @media (max-width: 768px) {
+        word-break: break-all;
+      }
 
       &:hover {
         color: $link-color;
@@ -126,31 +261,70 @@
     text-align: center;
     padding: 30px;
     color: #888;
+
+    @media (max-width: 768px) {
+      padding: 25px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 20px;
+      font-size: 14px;
+    }
   }
 
-  // --- Адаптивность ---
-  @media (max-width: 767.98px) {
+  @media (max-width: 360px) {
+    .bankDetail {
+      padding: 5% 3%;
+    }
+
+    .btnCards button {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    .card-container {
+      padding: 12px 15px;
+    }
+
     .info-item-row {
-      flex-direction: column; // Лейбл и значение друг под другом
-      align-items: stretch; // Растягиваем элементы на всю ширину
-      padding: 15px; // Уменьшаем паддинги
+      padding: 15px;
     }
 
     .info-label {
-      flex-basis: auto; // Сбрасываем фиксированную ширину
-      width: 100%;
-      padding-right: 0; // Убираем правый отступ
-      margin-bottom: 8px; // Добавляем отступ снизу
-      font-weight: 600; // Можно сделать лейбл жирнее на мобильных
-      color: darken($label-color, 10%); // Чуть темнее
+      font-size: 13px;
     }
 
     .info-value {
-      flex-basis: auto; // Сбрасываем flex
-      width: 100%;
+      font-size: 13px;
     }
-    .info-list-container {
-      padding: 10px; // Уменьшаем общие отступы
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .bankDetail {
+    padding: 4% 5%;
+  }
+
+  .card-info {
+    .card-title {
+      font-size: 28px;
     }
+
+    .card-description {
+      font-size: 17px;
+    }
+  }
+
+  .info-item-row {
+    padding: 35px 40px;
+  }
+
+  .info-label {
+    font-size: 17px;
+  }
+
+  .info-value {
+    font-size: 17px;
   }
 }
