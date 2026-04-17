@@ -901,6 +901,9 @@
   },
 
   "INSURANCE_PAGE": {
+    "CONTACT_INFO": {
+      "ADDRESS_TITLE": "Address"
+    },
     "CERTIFICATE":"Certificate",
     "TITLE": "DEPOSIT INSURANCE",
     "DESCRIPTION_1": "OJSC “Commercebank of Tajikistan” since November 28, 2017, in accordance with the “Certificate of Membership” No. 058, has been a member of the Individuals’ Deposit Insurance Fund. According to the “Certificate of Membership” No. 58 dated June 19, 2023, it is also a member of the Deposit and Savings Insurance Fund of Tajikistan.",
