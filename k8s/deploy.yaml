@@ -16,4 +16,4 @@ spec:
         - name: angular-app
           image: your-registry/angular-app:latest
           ports:
-            - containerPort: 80y
+            - containerPort: 80
