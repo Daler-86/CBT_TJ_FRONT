@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: angular-app
-          image: daler86/cbt-front:v1.1
+          image: daler86/cbt-front:1.1
           ports:
             - containerPort: 80
